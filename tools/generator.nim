@@ -378,6 +378,7 @@ proc genProcs(node: XmlNode, output: var string) =
   output.add("var\n")
   for commands in node.findAll("commands"):
     for command in commands.findAll("command"):
+      if command.attr("api") == "vulkansc": continue
       var vkProc: VkProc
       if command.child("proto") == nil:
         continue
@@ -429,6 +430,7 @@ proc genProcs(node: XmlNode, output: var string) =
 proc genFeatures(node: XmlNode, output: var string) =
   echo "Generating and Adding Features..."
   for feature in node.findAll("feature"):
+    if feature.attr("api") == "vulkansc": continue
     let number = feature.attr("number").replace(".", "_")
     output.add("\n# Vulkan {number}\n".fmt)
     output.add("proc vkLoad{number}*() =\n".fmt)
@@ -448,7 +450,7 @@ proc genExtensions(node: XmlNode, output: var string) =
   echo "Generating and Adding Extensions..."
   for extensions in node.findAll("extensions"):
     for extension in extensions.findAll("extension"):
-
+      # if extension.attr("api") == "vulkansc": continue
       var commands: seq[VkProc]
       for require in extension.findAll("require"):
         for command in require.findAll("command"):
