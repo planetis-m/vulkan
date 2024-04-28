@@ -34,6 +34,9 @@ proc translateType(s: string): string =
   result = result.replace("unsigned ", "u")
   result = result.replace("signed ", "")
   result = result.replace("struct ", "")
+  result = result.replace("_screen_context", "screen_context")
+  result = result.replace("_screen_window", "screen_window")
+  result = result.replace("_screen_buffer", "_screen_buffer")
 
   if result.contains('*'):
     let levels = result.count('*')
@@ -62,8 +65,11 @@ proc genTypes(node: XmlNode, output: var string) =
         if not inType:
           output.add("\ntype\n")
           inType = true
-
-        output.add("  {t.attr(\"name\")}* = ptr object\n".fmt)
+        var name = t.attr("name")
+        name = name.replace("_screen_context", "screen_context")
+        name = name.replace("_screen_window", "screen_window")
+        name = name.replace("_screen_buffer", "_screen_buffer")
+        output.add("  {name}* {{.header: {t.attr(\"requires\")}.}} = ptr object\n".fmt)
 
       # Define category
 

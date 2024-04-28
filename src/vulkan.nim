@@ -1744,35 +1744,35 @@ type
 # Types
 
 type
-  Display* = ptr object
-  VisualID* = ptr object
-  Window* = ptr object
-  RROutput* = ptr object
-  wl_display* = ptr object
-  wl_surface* = ptr object
-  HINSTANCE* = ptr object
-  HWND* = ptr object
-  HMONITOR* = ptr object
-  HANDLE* = ptr object
-  SECURITY_ATTRIBUTES* = ptr object
-  DWORD* = ptr object
-  LPCWSTR* = ptr object
-  xcb_connection_t* = ptr object
-  xcb_visualid_t* = ptr object
-  xcb_window_t* = ptr object
-  IDirectFB* = ptr object
-  IDirectFBSurface* = ptr object
-  zx_handle_t* = ptr object
-  GgpStreamDescriptor* = ptr object
-  GgpFrameToken* = ptr object
-  _screen_context* = ptr object
-  _screen_window* = ptr object
-  _screen_buffer* = ptr object
-  NvSciSyncAttrList* = ptr object
-  NvSciSyncObj* = ptr object
-  NvSciSyncFence* = ptr object
-  NvSciBufAttrList* = ptr object
-  NvSciBufObj* = ptr object
+  Display* {.header: X11/Xlib.h.} = ptr object
+  VisualID* {.header: X11/Xlib.h.} = ptr object
+  Window* {.header: X11/Xlib.h.} = ptr object
+  RROutput* {.header: X11/extensions/Xrandr.h.} = ptr object
+  wl_display* {.header: wayland-client.h.} = ptr object
+  wl_surface* {.header: wayland-client.h.} = ptr object
+  HINSTANCE* {.header: windows.h.} = ptr object
+  HWND* {.header: windows.h.} = ptr object
+  HMONITOR* {.header: windows.h.} = ptr object
+  HANDLE* {.header: windows.h.} = ptr object
+  SECURITY_ATTRIBUTES* {.header: windows.h.} = ptr object
+  DWORD* {.header: windows.h.} = ptr object
+  LPCWSTR* {.header: windows.h.} = ptr object
+  xcb_connection_t* {.header: xcb/xcb.h.} = ptr object
+  xcb_visualid_t* {.header: xcb/xcb.h.} = ptr object
+  xcb_window_t* {.header: xcb/xcb.h.} = ptr object
+  IDirectFB* {.header: directfb.h.} = ptr object
+  IDirectFBSurface* {.header: directfb.h.} = ptr object
+  zx_handle_t* {.header: zircon/types.h.} = ptr object
+  GgpStreamDescriptor* {.header: ggp_c/vulkan_types.h.} = ptr object
+  GgpFrameToken* {.header: ggp_c/vulkan_types.h.} = ptr object
+  screen_context* {.header: screen/screen.h.} = ptr object
+  screen_window* {.header: screen/screen.h.} = ptr object
+  _screen_buffer* {.header: screen/screen.h.} = ptr object
+  NvSciSyncAttrList* {.header: nvscisync.h.} = ptr object
+  NvSciSyncObj* {.header: nvscisync.h.} = ptr object
+  NvSciSyncFence* {.header: nvscisync.h.} = ptr object
+  NvSciBufAttrList* {.header: nvscibuf.h.} = ptr object
+  NvSciBufObj* {.header: nvscibuf.h.} = ptr object
 
 template vkMakeVersion*(variant, major, minor, patch: untyped): untyped =
   (((variant) shl 29) or ((major) shl 22) or ((minor) shl 12) or (patch))
@@ -1792,7 +1792,7 @@ template vkVersionPatch*(version: untyped): untyped =
 const vkApiVersion1_0* = vkMakeVersion(0, 1, 0, 0)
 const vkApiVersion1_1* = vkMakeVersion(0, 1, 1, 0)
 const vkApiVersion1_2* = vkMakeVersion(0, 1, 2, 0)
-const vkApiVersion1_2* = vkMakeVersion(0, 1, 3, 0)
+const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)
 
 type
   VkSampleMask* = distinct uint32
@@ -3295,8 +3295,8 @@ type
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkScreenSurfaceCreateFlagsQNX
-    context*: ptr _screen_context
-    window*: ptr _screen_window
+    context*: ptr screen_context
+    window*: ptr screen_window
 
   VkSurfaceFormatKHR* = object
     format*: VkFormat
@@ -8027,28 +8027,28 @@ type
     queryPool*: VkQueryPool
     firstQuery*: uint32
     queryCount*: uint32
-  StdVideoH264ProfileIdc* = ptr object
-  StdVideoH264LevelIdc* = ptr object
-  StdVideoH264ChromaFormatIdc* = ptr object
-  StdVideoH264PocType* = ptr object
-  StdVideoH264SpsFlags* = ptr object
-  StdVideoH264ScalingLists* = ptr object
-  StdVideoH264SequenceParameterSetVui* = ptr object
-  StdVideoH264AspectRatioIdc* = ptr object
-  StdVideoH264HrdParameters* = ptr object
-  StdVideoH264SpsVuiFlags* = ptr object
-  StdVideoH264WeightedBipredIdc* = ptr object
-  StdVideoH264PpsFlags* = ptr object
-  StdVideoH264SliceType* = ptr object
-  StdVideoH264CabacInitIdc* = ptr object
-  StdVideoH264DisableDeblockingFilterIdc* = ptr object
-  StdVideoH264PictureType* = ptr object
-  StdVideoH264ModificationOfPicNumsIdc* = ptr object
-  StdVideoH264MemMgmtControlOp* = ptr object
-  StdVideoDecodeH264PictureInfo* = ptr object
-  StdVideoDecodeH264ReferenceInfo* = ptr object
-  StdVideoDecodeH264PictureInfoFlags* = ptr object
-  StdVideoDecodeH264ReferenceInfoFlags* = ptr object
+  StdVideoH264ProfileIdc* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264LevelIdc* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264ChromaFormatIdc* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264PocType* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264SpsFlags* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264ScalingLists* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264SequenceParameterSetVui* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264AspectRatioIdc* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264HrdParameters* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264SpsVuiFlags* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264WeightedBipredIdc* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264PpsFlags* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264SliceType* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264CabacInitIdc* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264DisableDeblockingFilterIdc* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264PictureType* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264ModificationOfPicNumsIdc* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264MemMgmtControlOp* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoDecodeH264PictureInfo* {.header: vk_video/vulkan_video_codec_h264std_decode.h.} = ptr object
+  StdVideoDecodeH264ReferenceInfo* {.header: vk_video/vulkan_video_codec_h264std_decode.h.} = ptr object
+  StdVideoDecodeH264PictureInfoFlags* {.header: vk_video/vulkan_video_codec_h264std_decode.h.} = ptr object
+  StdVideoDecodeH264ReferenceInfoFlags* {.header: vk_video/vulkan_video_codec_h264std_decode.h.} = ptr object
 
   VkVideoDecodeH264ProfileInfoKHR* = object
     sType*: VkStructureType
@@ -8061,8 +8061,8 @@ type
     pNext*: pointer
     maxLevelIdc*: StdVideoH264LevelIdc
     fieldOffsetGranularity*: VkOffset2D
-  StdVideoH264SequenceParameterSet* = ptr object
-  StdVideoH264PictureParameterSet* = ptr object
+  StdVideoH264SequenceParameterSet* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
+  StdVideoH264PictureParameterSet* {.header: vk_video/vulkan_video_codec_h264std.h.} = ptr object
 
   VkVideoDecodeH264SessionParametersAddInfoKHR* = object
     sType*: VkStructureType
@@ -8090,28 +8090,28 @@ type
     sType*: VkStructureType
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoDecodeH264ReferenceInfo
-  StdVideoH265ProfileIdc* = ptr object
-  StdVideoH265VideoParameterSet* = ptr object
-  StdVideoH265SequenceParameterSet* = ptr object
-  StdVideoH265PictureParameterSet* = ptr object
-  StdVideoH265DecPicBufMgr* = ptr object
-  StdVideoH265HrdParameters* = ptr object
-  StdVideoH265VpsFlags* = ptr object
-  StdVideoH265LevelIdc* = ptr object
-  StdVideoH265SpsFlags* = ptr object
-  StdVideoH265ScalingLists* = ptr object
-  StdVideoH265SequenceParameterSetVui* = ptr object
-  StdVideoH265PredictorPaletteEntries* = ptr object
-  StdVideoH265PpsFlags* = ptr object
-  StdVideoH265SubLayerHrdParameters* = ptr object
-  StdVideoH265HrdFlags* = ptr object
-  StdVideoH265SpsVuiFlags* = ptr object
-  StdVideoH265SliceType* = ptr object
-  StdVideoH265PictureType* = ptr object
-  StdVideoDecodeH265PictureInfo* = ptr object
-  StdVideoDecodeH265ReferenceInfo* = ptr object
-  StdVideoDecodeH265PictureInfoFlags* = ptr object
-  StdVideoDecodeH265ReferenceInfoFlags* = ptr object
+  StdVideoH265ProfileIdc* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265VideoParameterSet* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265SequenceParameterSet* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265PictureParameterSet* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265DecPicBufMgr* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265HrdParameters* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265VpsFlags* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265LevelIdc* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265SpsFlags* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265ScalingLists* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265SequenceParameterSetVui* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265PredictorPaletteEntries* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265PpsFlags* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265SubLayerHrdParameters* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265HrdFlags* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265SpsVuiFlags* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265SliceType* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoH265PictureType* {.header: vk_video/vulkan_video_codec_h265std.h.} = ptr object
+  StdVideoDecodeH265PictureInfo* {.header: vk_video/vulkan_video_codec_h265std_decode.h.} = ptr object
+  StdVideoDecodeH265ReferenceInfo* {.header: vk_video/vulkan_video_codec_h265std_decode.h.} = ptr object
+  StdVideoDecodeH265PictureInfoFlags* {.header: vk_video/vulkan_video_codec_h265std_decode.h.} = ptr object
+  StdVideoDecodeH265ReferenceInfoFlags* {.header: vk_video/vulkan_video_codec_h265std_decode.h.} = ptr object
 
   VkVideoDecodeH265ProfileInfoKHR* = object
     sType*: VkStructureType
@@ -8152,11 +8152,11 @@ type
     sType*: VkStructureType
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoDecodeH265ReferenceInfo
-  StdVideoAV1Profile* = ptr object
-  StdVideoAV1Level* = ptr object
-  StdVideoAV1SequenceHeader* = ptr object
-  StdVideoDecodeAV1PictureInfo* = ptr object
-  StdVideoDecodeAV1ReferenceInfo* = ptr object
+  StdVideoAV1Profile* {.header: vk_video/vulkan_video_codec_av1std.h.} = ptr object
+  StdVideoAV1Level* {.header: vk_video/vulkan_video_codec_av1std.h.} = ptr object
+  StdVideoAV1SequenceHeader* {.header: vk_video/vulkan_video_codec_av1std.h.} = ptr object
+  StdVideoDecodeAV1PictureInfo* {.header: vk_video/vulkan_video_codec_av1std_decode.h.} = ptr object
+  StdVideoDecodeAV1ReferenceInfo* {.header: vk_video/vulkan_video_codec_av1std_decode.h.} = ptr object
 
   VkVideoDecodeAV1ProfileInfoKHR* = object
     sType*: VkStructureType
@@ -8343,16 +8343,16 @@ type
     preferredMaxL0ReferenceCount*: uint32
     preferredMaxL1ReferenceCount*: uint32
     preferredStdEntropyCodingModeFlag*: VkBool32
-  StdVideoEncodeH264SliceHeader* = ptr object
-  StdVideoEncodeH264PictureInfo* = ptr object
-  StdVideoEncodeH264ReferenceInfo* = ptr object
-  StdVideoEncodeH264SliceHeaderFlags* = ptr object
-  StdVideoEncodeH264ReferenceListsInfo* = ptr object
-  StdVideoEncodeH264PictureInfoFlags* = ptr object
-  StdVideoEncodeH264ReferenceInfoFlags* = ptr object
-  StdVideoEncodeH264RefMgmtFlags* = ptr object
-  StdVideoEncodeH264RefListModEntry* = ptr object
-  StdVideoEncodeH264RefPicMarkingEntry* = ptr object
+  StdVideoEncodeH264SliceHeader* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264PictureInfo* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264ReferenceInfo* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264SliceHeaderFlags* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264ReferenceListsInfo* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264PictureInfoFlags* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264ReferenceInfoFlags* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264RefMgmtFlags* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264RefListModEntry* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
+  StdVideoEncodeH264RefPicMarkingEntry* {.header: vk_video/vulkan_video_codec_h264std_encode.h.} = ptr object
 
   VkVideoEncodeH264SessionCreateInfoKHR* = object
     sType*: VkStructureType
@@ -8481,14 +8481,14 @@ type
     preferredConstantQp*: VkVideoEncodeH265QpKHR
     preferredMaxL0ReferenceCount*: uint32
     preferredMaxL1ReferenceCount*: uint32
-  StdVideoEncodeH265PictureInfoFlags* = ptr object
-  StdVideoEncodeH265PictureInfo* = ptr object
-  StdVideoEncodeH265SliceSegmentHeader* = ptr object
-  StdVideoEncodeH265ReferenceInfo* = ptr object
-  StdVideoEncodeH265ReferenceListsInfo* = ptr object
-  StdVideoEncodeH265SliceSegmentHeaderFlags* = ptr object
-  StdVideoEncodeH265ReferenceInfoFlags* = ptr object
-  StdVideoEncodeH265ReferenceModificationFlags* = ptr object
+  StdVideoEncodeH265PictureInfoFlags* {.header: vk_video/vulkan_video_codec_h265std_encode.h.} = ptr object
+  StdVideoEncodeH265PictureInfo* {.header: vk_video/vulkan_video_codec_h265std_encode.h.} = ptr object
+  StdVideoEncodeH265SliceSegmentHeader* {.header: vk_video/vulkan_video_codec_h265std_encode.h.} = ptr object
+  StdVideoEncodeH265ReferenceInfo* {.header: vk_video/vulkan_video_codec_h265std_encode.h.} = ptr object
+  StdVideoEncodeH265ReferenceListsInfo* {.header: vk_video/vulkan_video_codec_h265std_encode.h.} = ptr object
+  StdVideoEncodeH265SliceSegmentHeaderFlags* {.header: vk_video/vulkan_video_codec_h265std_encode.h.} = ptr object
+  StdVideoEncodeH265ReferenceInfoFlags* {.header: vk_video/vulkan_video_codec_h265std_encode.h.} = ptr object
+  StdVideoEncodeH265ReferenceModificationFlags* {.header: vk_video/vulkan_video_codec_h265std_encode.h.} = ptr object
 
   VkVideoEncodeH265SessionCreateInfoKHR* = object
     sType*: VkStructureType
@@ -11550,7 +11550,7 @@ proc newVkStreamDescriptorSurfaceCreateInfoGGP*(sType: VkStructureType, pNext: p
   result.flags = flags
   result.streamDescriptor = streamDescriptor
 
-proc newVkScreenSurfaceCreateInfoQNX*(sType: VkStructureType, pNext: pointer = nil, flags: VkScreenSurfaceCreateFlagsQNX = 0.VkScreenSurfaceCreateFlagsQNX, context: ptr _screen_context, window: ptr _screen_window): VkScreenSurfaceCreateInfoQNX =
+proc newVkScreenSurfaceCreateInfoQNX*(sType: VkStructureType, pNext: pointer = nil, flags: VkScreenSurfaceCreateFlagsQNX = 0.VkScreenSurfaceCreateFlagsQNX, context: ptr screen_context, window: ptr screen_window): VkScreenSurfaceCreateInfoQNX =
   result.sType = sType
   result.pNext = pNext
   result.flags = flags
@@ -18327,7 +18327,7 @@ var
   vkCreateImagePipeSurfaceFUCHSIA*: proc(instance: VkInstance, pCreateInfo: ptr VkImagePipeSurfaceCreateInfoFUCHSIA , pAllocator: ptr VkAllocationCallbacks , pSurface: ptr VkSurfaceKHR ): VkResult {.stdcall.}
   vkCreateStreamDescriptorSurfaceGGP*: proc(instance: VkInstance, pCreateInfo: ptr VkStreamDescriptorSurfaceCreateInfoGGP , pAllocator: ptr VkAllocationCallbacks , pSurface: ptr VkSurfaceKHR ): VkResult {.stdcall.}
   vkCreateScreenSurfaceQNX*: proc(instance: VkInstance, pCreateInfo: ptr VkScreenSurfaceCreateInfoQNX , pAllocator: ptr VkAllocationCallbacks , pSurface: ptr VkSurfaceKHR ): VkResult {.stdcall.}
-  vkGetPhysicalDeviceScreenPresentationSupportQNX*: proc(physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, window: ptr _screen_window ): VkBool32 {.stdcall.}
+  vkGetPhysicalDeviceScreenPresentationSupportQNX*: proc(physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, window: ptr screen_window ): VkBool32 {.stdcall.}
   vkCreateDebugReportCallbackEXT*: proc(instance: VkInstance, pCreateInfo: ptr VkDebugReportCallbackCreateInfoEXT , pAllocator: ptr VkAllocationCallbacks , pCallback: ptr VkDebugReportCallbackEXT ): VkResult {.stdcall.}
   vkDestroyDebugReportCallbackEXT*: proc(instance: VkInstance, callback: VkDebugReportCallbackEXT, pAllocator: ptr VkAllocationCallbacks ): void {.stdcall.}
   vkDebugReportMessageEXT*: proc(instance: VkInstance, flags: VkDebugReportFlagsEXT, objectType: VkDebugReportObjectTypeEXT, `object`: uint64, location: uint, messageCode: int32, pLayerPrefix: cstring , pMessage: cstring ): void {.stdcall.}
@@ -19631,7 +19631,7 @@ proc loadVK_EXT_extended_dynamic_state2*() =
 # Load VK_QNX_screen_surface
 proc loadVK_QNX_screen_surface*() =
   vkCreateScreenSurfaceQNX = cast[proc(instance: VkInstance, pCreateInfo: ptr VkScreenSurfaceCreateInfoQNX , pAllocator: ptr VkAllocationCallbacks , pSurface: ptr VkSurfaceKHR ): VkResult {.stdcall.}](vkGetProc("vkCreateScreenSurfaceQNX"))
-  vkGetPhysicalDeviceScreenPresentationSupportQNX = cast[proc(physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, window: ptr _screen_window ): VkBool32 {.stdcall.}](vkGetProc("vkGetPhysicalDeviceScreenPresentationSupportQNX"))
+  vkGetPhysicalDeviceScreenPresentationSupportQNX = cast[proc(physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, window: ptr screen_window ): VkBool32 {.stdcall.}](vkGetProc("vkGetPhysicalDeviceScreenPresentationSupportQNX"))
 
 # Load VK_EXT_color_write_enable
 proc loadVK_EXT_color_write_enable*() =
