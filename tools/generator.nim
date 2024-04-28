@@ -72,7 +72,7 @@ proc genTypes(node: XmlNode, output: var string) =
           continue
         inType = false
         let name = t.child("name").innerText
-        if  name == "VK_MAKE_VERSION":
+        if name == "VK_MAKE_VERSION":
           output.add("\ntemplate vkMakeVersion*(major, minor, patch: untyped): untyped =\n")
           output.add("  (((major) shl 22) or ((minor) shl 12) or (patch))\n")
         elif name == "VK_VERSION_MAJOR":
@@ -90,6 +90,8 @@ proc genTypes(node: XmlNode, output: var string) =
           output.add("const vkApiVersion1_1* = vkMakeVersion(1, 1, 0)\n")
         elif name == "VK_API_VERSION_1_2":
           output.add("const vkApiVersion1_2* = vkMakeVersion(1, 2, 0)\n")
+        elif name == "VK_API_VERSION_1_3":
+          output.add("const vkApiVersion1_2* = vkMakeVersion(1, 3, 0)\n")
         else:
           echo "category:define not found {name}".fmt
         continue
@@ -174,10 +176,16 @@ proc genTypes(node: XmlNode, output: var string) =
           output.add("  PFN_vkFreeFunction* = proc(pUserData: pointer; pMemory: pointer) {.cdecl.}\n")
         elif name == "PFN_vkVoidFunction":
           output.add("  PFN_vkVoidFunction* = proc() {.cdecl.}\n")
+        elif name == "PFN_vkFaultCallbackFunction":
+          output.add("  PFN_vkFaultCallbackFunction* = proc(unrecordedFaults: VkBool32; faultCount: uint32; pFaults: ptr VkFaultData) {.cdecl.}\n")
+        elif name == "PFN_vkDeviceMemoryReportCallbackEXT":
+          output.add("  PFN_vkDeviceMemoryReportCallbackEXT* = proc(pCallbackData: ptr VkDeviceMemoryReportCallbackDataEXT; pUserData: pointer) {.cdecl.}\n")
+        elif name == "PFN_vkGetInstanceProcAddrLUNARG":
+          output.add("  PFN_vkGetInstanceProcAddrLUNARG* = proc(instance: VkInstance; pName: cstring): PFN_vkVoidFunction {.cdecl.}\n")
         elif name == "PFN_vkDebugReportCallbackEXT":
-          output.add("  PFN_vkDebugReportCallbackEXT* = proc(flags: VkDebugReportFlagsEXT; objectType: VkDebugReportObjectTypeEXT; cbObject: uint64; location: csize; messageCode:  int32; pLayerPrefix: cstring; pMessage: cstring; pUserData: pointer): VkBool32 {.cdecl.}\n")
+          output.add("  PFN_vkDebugReportCallbackEXT* = proc(flags: VkDebugReportFlagsEXT; objectType: VkDebugReportObjectTypeEXT; cbObject: uint64; location: csize; messageCode: int32; pLayerPrefix: cstring; pMessage: cstring; pUserData: pointer): VkBool32 {.cdecl.}\n")
         elif name == "PFN_vkDebugUtilsMessengerCallbackEXT":
-          output.add("  PFN_vkDebugUtilsMessengerCallbackEXT* = proc(messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}\n"):
+          output.add("  PFN_vkDebugUtilsMessengerCallbackEXT* = proc(messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}\n")
         else:
           echo "category:funcpointer not found {name}".fmt
         continue
@@ -294,6 +302,8 @@ proc genEnums(node: XmlNode, output: var string) =
           enumValue = e.attr("alias")
         else:
           enumValue = enumValue.replace("(~0U)", "(not 0'u32)")
+          enumValue = enumValue.replace("(~1U)", "(not 1'u32)")
+          enumValue = enumValue.replace("(~2U)", "(not 2'u32)")
           enumValue = enumValue.replace("(~0U-1)", "(not 0'u32) - 1")
           enumValue = enumValue.replace("(~0U-2)", "(not 0'u32) - 2")
           enumValue = enumValue.replace("(~0ULL)", "(not 0'u64)")
@@ -476,7 +486,7 @@ proc genConstructors(node: XmlNode, output: var string) =
 proc main() =
   if not os.fileExists("vk.xml"):
     let client = newHttpClient()
-    let glUrl = "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/master/xml/vk.xml"
+    let glUrl = "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/main/xml/vk.xml"
     client.downloadFile(glUrl, "vk.xml")
 
   var output = srcHeader & "\n"
@@ -493,7 +503,7 @@ proc main() =
 
   output.add("\n" & vkInit)
 
-  writeFile("src/vulkan.nim", output)
+  writeFile("../src/vulkan.nim", output)
 
 if isMainModule:
   main()
