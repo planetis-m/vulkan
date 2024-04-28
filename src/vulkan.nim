@@ -39,7 +39,7 @@ proc setVKGetProc*(getProc: proc(procName: cstring): pointer {.cdecl.}) =
   vkGetProc = getProc
 
 type
-  VkHandle* = int64
+  VkHandle* = uint64
   VkNonDispatchableHandle* = uint64
   ANativeWindow = ptr object
   CAMetalLayer = ptr object
@@ -1774,8 +1774,11 @@ type
   NvSciBufAttrList* = ptr object
   NvSciBufObj* = ptr object
 
-template vkMakeVersion*(major, minor, patch: untyped): untyped =
-  (((major) shl 22) or ((minor) shl 12) or (patch))
+template vkMakeVersion*(variant, major, minor, patch: untyped): untyped =
+  (((variant) shl 29) or ((major) shl 22) or ((minor) shl 12) or (patch))
+
+template vkVersionVariant*(version: untyped): untyped =
+  ((uint32)(version) shr 29)
 
 template vkVersionMajor*(version: untyped): untyped =
   ((uint32)(version) shr 22)
@@ -1786,10 +1789,10 @@ template vkVersionMinor*(version: untyped): untyped =
 template vkVersionPatch*(version: untyped): untyped =
   ((uint32)(version) and 0x00000FFF)
 
-const vkApiVersion1_0* = vkMakeVersion(1, 0, 0)
-const vkApiVersion1_1* = vkMakeVersion(1, 1, 0)
-const vkApiVersion1_2* = vkMakeVersion(1, 2, 0)
-const vkApiVersion1_2* = vkMakeVersion(1, 3, 0)
+const vkApiVersion1_0* = vkMakeVersion(0, 1, 0, 0)
+const vkApiVersion1_1* = vkMakeVersion(0, 1, 1, 0)
+const vkApiVersion1_2* = vkMakeVersion(0, 1, 2, 0)
+const vkApiVersion1_2* = vkMakeVersion(0, 1, 3, 0)
 
 type
   VkSampleMask* = distinct uint32

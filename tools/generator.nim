@@ -72,26 +72,29 @@ proc genTypes(node: XmlNode, output: var string) =
           continue
         inType = false
         let name = t.child("name").innerText
-        if name == "VK_MAKE_VERSION":
-          output.add("\ntemplate vkMakeVersion*(major, minor, patch: untyped): untyped =\n")
-          output.add("  (((major) shl 22) or ((minor) shl 12) or (patch))\n")
-        elif name == "VK_VERSION_MAJOR":
+        if name == "VK_MAKE_API_VERSION":
+          output.add("\ntemplate vkMakeVersion*(variant, major, minor, patch: untyped): untyped =\n")
+          output.add("  (((variant) shl 29) or ((major) shl 22) or ((minor) shl 12) or (patch))\n")
+        elif name == "VK_API_VERSION_VARIANT":
+          output.add("\ntemplate vkVersionVariant*(version: untyped): untyped =\n")
+          output.add("  ((uint32)(version) shr 29)\n")
+        elif name == "VK_API_VERSION_MAJOR":
           output.add("\ntemplate vkVersionMajor*(version: untyped): untyped =\n")
           output.add("  ((uint32)(version) shr 22)\n")
-        elif name == "VK_VERSION_MINOR":
+        elif name == "VK_API_VERSION_MINOR":
           output.add("\ntemplate vkVersionMinor*(version: untyped): untyped =\n")
           output.add("  (((uint32)(version) shr 12) and 0x000003FF)\n")
-        elif name == "VK_VERSION_PATCH":
+        elif name == "VK_API_VERSION_PATCH":
           output.add("\ntemplate vkVersionPatch*(version: untyped): untyped =\n")
           output.add("  ((uint32)(version) and 0x00000FFF)\n")
         elif name == "VK_API_VERSION_1_0":
-          output.add("\nconst vkApiVersion1_0* = vkMakeVersion(1, 0, 0)\n")
+          output.add("\nconst vkApiVersion1_0* = vkMakeVersion(0, 1, 0, 0)\n")
         elif name == "VK_API_VERSION_1_1":
-          output.add("const vkApiVersion1_1* = vkMakeVersion(1, 1, 0)\n")
+          output.add("const vkApiVersion1_1* = vkMakeVersion(0, 1, 1, 0)\n")
         elif name == "VK_API_VERSION_1_2":
-          output.add("const vkApiVersion1_2* = vkMakeVersion(1, 2, 0)\n")
+          output.add("const vkApiVersion1_2* = vkMakeVersion(0, 1, 2, 0)\n")
         elif name == "VK_API_VERSION_1_3":
-          output.add("const vkApiVersion1_2* = vkMakeVersion(1, 3, 0)\n")
+          output.add("const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)\n")
         else:
           echo "category:define not found {name}".fmt
         continue
