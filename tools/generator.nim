@@ -60,7 +60,7 @@ proc genTypes(node: XmlNode, output: var string) =
   for types in node.findAll("types"):
     for t in types.items:
       if t.attr("category") == "include" or t.attr("requires") == "vk_platform" or
-         t.tag != "type" or t.attr("name") == "int":
+         t.tag != "type" or t.attr("name") == "int" or t.attr("api") == "vulkansc":
         continue
 
       # Require Header
@@ -407,7 +407,7 @@ proc genProcs(node: XmlNode, output: var string) =
           let arraySize = vkArg.argType[openBracket + 1 ..< vkArg.argType.find(']')]
           var typeName = vkArg.argType[0..<openBracket].translateType()
           typeName = typeName[0 ..< typeName.len - vkArg.name.len]
-          vkArg.argType = "array[{arraySize}, {typeName}]".fmt.strip
+          vkArg.argType = "array[{arraySize}, {typeName}]".fmt
         else:
           vkArg.argType = vkArg.argType[0 ..< vkArg.argType.len - vkArg.name.len]
           vkArg.argType = vkArg.argType.translateType().strip

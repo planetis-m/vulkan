@@ -1808,9 +1808,7 @@ type
   VkPipelineLayoutCreateFlags* = distinct VkFlags
   VkPipelineCacheCreateFlags* = distinct VkFlags
   VkPipelineDepthStencilStateCreateFlags* = distinct VkFlags
-  VkPipelineDepthStencilStateCreateFlags* = distinct VkFlags
   VkPipelineDynamicStateCreateFlags* = distinct VkFlags
-  VkPipelineColorBlendStateCreateFlags* = distinct VkFlags
   VkPipelineColorBlendStateCreateFlags* = distinct VkFlags
   VkPipelineMultisampleStateCreateFlags* = distinct VkFlags
   VkPipelineRasterizationStateCreateFlags* = distinct VkFlags
