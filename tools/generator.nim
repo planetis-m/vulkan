@@ -341,7 +341,7 @@ proc genEnums(node: XmlNode, output: var string) =
       if e.kind != xnElement or e.tag != "enum":
         continue
 
-      let enumName = e.attr("name")
+      var enumName = e.attr("name")
       var enumValueStr = e.attr("value")
       if enumValueStr == "":
         if e.attr("bitpos") == "":
@@ -360,6 +360,10 @@ proc genEnums(node: XmlNode, output: var string) =
 
       if elements.hasKey(enumValue):
         continue
+      if enumName == "VK_PIPELINE_CACHE_HEADER_VERSION_ONE":
+        enumName = "VK_PIPELINE_CACHE_HEADER_VER_ONE"
+      elif enumName == "VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT":
+        enumName = "VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VER_ONE_EXT"
       elements.add(enumValue, enumName)
 
     if elements.len == 0:
@@ -390,7 +394,7 @@ proc genProcs(node: XmlNode, output: var string) =
       vkProc.rVal = vkProc.rVal.translateType()
 
       # Skip commands that are preloaded
-      if  vkProc.name == "vkCreateInstance" or
+      if vkProc.name == "vkCreateInstance" or
           vkProc.name == "vkEnumerateInstanceExtensionProperties" or
           vkProc.name == "vkEnumerateInstanceLayerProperties" or
           vkProc.name == "vkEnumerateInstanceVersion":
