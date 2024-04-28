@@ -20,21 +20,24 @@ var vkStructureTypes: seq[string]
 
 proc translateType(s: string): string =
   result = s
-  result = result.replace("int64_t", "int64")
-  result = result.replace("int32_t", "int32")
-  result = result.replace("int16_t", "int16")
-  result = result.replace("int8_t", "int8")
-  result = result.replace("size_t", "uint") # uint matches pointer size just like size_t
-  result = result.replace("float", "float32")
-  result = result.replace("double", "float64")
-  result = result.replace("VK_DEFINE_HANDLE", "VkHandle")
-  result = result.replace("VK_DEFINE_NON_DISPATCHABLE_HANDLE", "VkNonDispatchableHandle")
-  result = result.replace("const ", "")
-  result = result.replace(" const", "")
-  result = result.replace("unsigned ", "u")
-  result = result.replace("signed ", "")
-  result = result.replace("struct ", "")
-  if result.startsWith('_'): result = result.substr(1)
+  result = result.multiReplace([
+    ("int64_t", "int64"),
+    ("int32_t", "int32"),
+    ("int16_t", "int16"),
+    ("int8_t", "int8"),
+    ("size_t", "uint"), # uint matches pointer size just like size_t
+    ("float", "float32"),
+    ("double", "float64"),
+    ("VK_DEFINE_HANDLE", "VkHandle"),
+    ("VK_DEFINE_NON_DISPATCHABLE_HANDLE", "VkNonDispatchableHandle"),
+    ("const ", ""),
+    (" const", ""),
+    ("unsigned ", "u"),
+    ("signed ", ""),
+    ("struct ", ""),
+  ])
+  if result.startsWith('_'):
+    result = result.substr(1)
 
   if result.contains('*'):
     let levels = result.count('*')
@@ -42,9 +45,11 @@ proc translateType(s: string): string =
     for i in 0..<levels:
       result = "ptr " & result
 
-  result = result.replace("ptr void", "pointer")
-  result = result.replace("ptr ptr char", "cstringArray")
-  result = result.replace("ptr char", "cstring")
+  result = result.multiReplace([
+    ("ptr void", "pointer"),
+    ("ptr ptr char", "cstringArray"),
+    ("ptr char", "cstring"),
+  ])
 
 proc genTypes(node: XmlNode, output: var string) =
   echo "Generating Types..."
@@ -230,9 +235,11 @@ proc genTypes(node: XmlNode, output: var string) =
           for i in 0 ..< depth:
             memberType = "ptr " & memberType
 
-          memberType = memberType.replace("ptr void", "pointer")
-          memberType = memberType.replace("ptr ptr char", "cstringArray")
-          memberType = memberType.replace("ptr char", "cstring")
+          memberType = memberType.multiReplace([
+            ("ptr void", "pointer"),
+            ("ptr ptr char", "cstringArray"),
+            ("ptr char", "cstring"),
+          ])
 
           var vkArg: VkArg
           vkArg.name = memberName
@@ -306,12 +313,14 @@ proc genEnums(node: XmlNode, output: var string) =
             continue
           enumValue = e.attr("alias")
         else:
-          enumValue = enumValue.replace("(~0U)", "(not 0'u32)")
-          enumValue = enumValue.replace("(~1U)", "(not 1'u32)")
-          enumValue = enumValue.replace("(~2U)", "(not 2'u32)")
-          enumValue = enumValue.replace("(~0U-1)", "(not 0'u32) - 1")
-          enumValue = enumValue.replace("(~0U-2)", "(not 0'u32) - 2")
-          enumValue = enumValue.replace("(~0ULL)", "(not 0'u64)")
+          enumValue = enumValue.multiReplace([
+            ("(~0U)", "(not 0'u32)"),
+            ("(~1U)", "(not 1'u32)"),
+            ("(~2U)", "(not 2'u32)"),
+            ("(~0U-1)", "(not 0'u32) - 1"),
+            ("(~0U-2)", "(not 0'u32) - 2"),
+            ("(~0ULL)", "(not 0'u64)"),
+          ])
 
         if enumName == "VK_LUID_SIZE_KHR":
           enumValue = "VK_LUID_SIZE"
