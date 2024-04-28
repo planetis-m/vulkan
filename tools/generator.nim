@@ -406,11 +406,11 @@ proc genProcs(node: XmlNode, output: var string) =
           let openBracket = vkArg.argType.find('[')
           let arraySize = vkArg.argType[openBracket + 1 ..< vkArg.argType.find(']')]
           var typeName = vkArg.argType[0..<openBracket].translateType()
-          typeName = typeName[0 ..< typeName.len - vkArg.name.len - 1]
-          vkArg.argType = "array[{arraySize}, {typeName}]".fmt
+          typeName = typeName[0 ..< typeName.len - vkArg.name.len]
+          vkArg.argType = "array[{arraySize}, {typeName}]".fmt.strip
         else:
-          vkArg.argType = vkArg.argType[0 ..< vkArg.argType.len - vkArg.name.len - 1]
-          vkArg.argType = vkArg.argType.translateType()
+          vkArg.argType = vkArg.argType[0 ..< vkArg.argType.len - vkArg.name.len]
+          vkArg.argType = vkArg.argType.translateType().strip
 
         for part in vkArg.name.split(" "):
           if keywords.contains(part):
