@@ -34,9 +34,7 @@ proc translateType(s: string): string =
   result = result.replace("unsigned ", "u")
   result = result.replace("signed ", "")
   result = result.replace("struct ", "")
-  result = result.replace("_screen_context", "screen_context")
-  result = result.replace("_screen_window", "screen_window")
-  result = result.replace("_screen_buffer", "screen_buffer")
+  if result.startsWith('_'): result = result.substr(1)
 
   if result.contains('*'):
     let levels = result.count('*')
@@ -66,9 +64,7 @@ proc genTypes(node: XmlNode, output: var string) =
           output.add("\ntype\n")
           inType = true
         var name = t.attr("name")
-        name = name.replace("_screen_context", "screen_context")
-        name = name.replace("_screen_window", "screen_window")
-        name = name.replace("_screen_buffer", "screen_buffer")
+        if name.startsWith('_'): name = name.substr(1)
         output.add("  {name}* {{.header: \"{t.attr(\"requires\")}\".}} = ptr object\n".fmt)
 
       # Define category
@@ -174,27 +170,27 @@ proc genTypes(node: XmlNode, output: var string) =
       if t.attr("category") == "funcpointer":
         let name = t.child("name").innerText
         if name == "PFN_vkInternalAllocationNotification":
-          output.add("  PFN_vkInternalAllocationNotification* = proc(pUserData: pointer; size: csize; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
+          output.add("  PFN_vkInternalAllocationNotification* = proc (pUserData: pointer; size: csize; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
         elif name == "PFN_vkInternalFreeNotification":
-          output.add("  PFN_vkInternalFreeNotification* = proc(pUserData: pointer; size: csize; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
+          output.add("  PFN_vkInternalFreeNotification* = proc (pUserData: pointer; size: csize; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
         elif name == "PFN_vkReallocationFunction":
-          output.add("  PFN_vkReallocationFunction* = proc(pUserData: pointer; pOriginal: pointer; size: csize; alignment: csize; allocationScope: VkSystemAllocationScope): pointer {.cdecl.}\n")
+          output.add("  PFN_vkReallocationFunction* = proc (pUserData: pointer; pOriginal: pointer; size: csize; alignment: csize; allocationScope: VkSystemAllocationScope): pointer {.cdecl.}\n")
         elif name == "PFN_vkAllocationFunction":
-          output.add("  PFN_vkAllocationFunction* = proc(pUserData: pointer; size: csize; alignment: csize; allocationScope: VkSystemAllocationScope): pointer {.cdecl.}\n")
+          output.add("  PFN_vkAllocationFunction* = proc (pUserData: pointer; size: csize; alignment: csize; allocationScope: VkSystemAllocationScope): pointer {.cdecl.}\n")
         elif name == "PFN_vkFreeFunction":
-          output.add("  PFN_vkFreeFunction* = proc(pUserData: pointer; pMemory: pointer) {.cdecl.}\n")
+          output.add("  PFN_vkFreeFunction* = proc (pUserData: pointer; pMemory: pointer) {.cdecl.}\n")
         elif name == "PFN_vkVoidFunction":
-          output.add("  PFN_vkVoidFunction* = proc() {.cdecl.}\n")
+          output.add("  PFN_vkVoidFunction* = proc () {.cdecl.}\n")
         elif name == "PFN_vkFaultCallbackFunction":
-          output.add("  PFN_vkFaultCallbackFunction* = proc(unrecordedFaults: VkBool32; faultCount: uint32; pFaults: ptr VkFaultData) {.cdecl.}\n")
+          output.add("  PFN_vkFaultCallbackFunction* = proc (unrecordedFaults: VkBool32; faultCount: uint32; pFaults: ptr VkFaultData) {.cdecl.}\n")
         elif name == "PFN_vkDeviceMemoryReportCallbackEXT":
-          output.add("  PFN_vkDeviceMemoryReportCallbackEXT* = proc(pCallbackData: ptr VkDeviceMemoryReportCallbackDataEXT; pUserData: pointer) {.cdecl.}\n")
+          output.add("  PFN_vkDeviceMemoryReportCallbackEXT* = proc (pCallbackData: ptr VkDeviceMemoryReportCallbackDataEXT; pUserData: pointer) {.cdecl.}\n")
         elif name == "PFN_vkGetInstanceProcAddrLUNARG":
-          output.add("  PFN_vkGetInstanceProcAddrLUNARG* = proc(instance: VkInstance; pName: cstring): PFN_vkVoidFunction {.cdecl.}\n")
+          output.add("  PFN_vkGetInstanceProcAddrLUNARG* = proc (instance: VkInstance; pName: cstring): PFN_vkVoidFunction {.cdecl.}\n")
         elif name == "PFN_vkDebugReportCallbackEXT":
-          output.add("  PFN_vkDebugReportCallbackEXT* = proc(flags: VkDebugReportFlagsEXT; objectType: VkDebugReportObjectTypeEXT; cbObject: uint64; location: csize; messageCode: int32; pLayerPrefix: cstring; pMessage: cstring; pUserData: pointer): VkBool32 {.cdecl.}\n")
+          output.add("  PFN_vkDebugReportCallbackEXT* = proc (flags: VkDebugReportFlagsEXT; objectType: VkDebugReportObjectTypeEXT; cbObject: uint64; location: csize; messageCode: int32; pLayerPrefix: cstring; pMessage: cstring; pUserData: pointer): VkBool32 {.cdecl.}\n")
         elif name == "PFN_vkDebugUtilsMessengerCallbackEXT":
-          output.add("  PFN_vkDebugUtilsMessengerCallbackEXT* = proc(messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}\n")
+          output.add("  PFN_vkDebugUtilsMessengerCallbackEXT* = proc (messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}\n")
         else:
           echo "category:funcpointer not found {name}".fmt
         continue
@@ -401,10 +397,10 @@ proc genProcs(node: XmlNode, output: var string) =
           let openBracket = vkArg.argType.find('[')
           let arraySize = vkArg.argType[openBracket + 1 ..< vkArg.argType.find(']')]
           var typeName = vkArg.argType[0..<openBracket].translateType()
-          typeName = typeName[0 ..< typeName.len - vkArg.name.len]
+          typeName = typeName[0 ..< typeName.len - vkArg.name.len - 1]
           vkArg.argType = "array[{arraySize}, {typeName}]".fmt
         else:
-          vkArg.argType = vkArg.argType[0 ..< vkArg.argType.len - vkArg.name.len]
+          vkArg.argType = vkArg.argType[0 ..< vkArg.argType.len - vkArg.name.len - 1]
           vkArg.argType = vkArg.argType.translateType()
 
         for part in vkArg.name.split(" "):
@@ -414,7 +410,7 @@ proc genProcs(node: XmlNode, output: var string) =
         vkProc.args.add(vkArg)
 
       vkProcs.add(vkProc)
-      output.add("  {vkProc.name}*: proc(".fmt)
+      output.add("  {vkProc.name}*: proc (".fmt)
       for arg in vkProc.args:
         if not output.endsWith('('):
           output.add(", ")
@@ -432,7 +428,7 @@ proc genFeatures(node: XmlNode, output: var string) =
       let name = command.attr("name")
       for vkProc in vkProcs:
         if name == vkProc.name:
-          output.add("  {name} = cast[proc(".fmt)
+          output.add("  {name} = cast[proc (".fmt)
           for arg in vkProc.args:
             if not output.endsWith("("):
               output.add(", ")
@@ -459,9 +455,9 @@ proc genExtensions(node: XmlNode, output: var string) =
       output.add("proc load{name}*() =\n".fmt)
 
       for vkProc in commands:
-        output.add("  {vkProc.name} = cast[proc(".fmt)
+        output.add("  {vkProc.name} = cast[proc (".fmt)
         for arg in vkProc.args:
-          if not output.endsWith("("):
+          if not output.endsWith('('):
             output.add(", ")
           output.add("{arg.name}: {arg.argType}".fmt)
         output.add("): {vkProc.rVal} {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n".fmt)
