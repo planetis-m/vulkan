@@ -89,7 +89,7 @@ proc genTypes(node: XmlNode, output: var string) =
           inType = true
         var name = t.attr("name")
         if name.startsWith('_'): name = name.substr(1)
-        output.add("  {name}* {{.header: \"{t.attr(\"requires\")}\".}} = object\n".fmt)
+        output.add("  {name}* {{.nodecl.}} = object\n".fmt)
 
       # Define category
 
