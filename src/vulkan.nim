@@ -2068,7 +2068,6 @@ type
   VkVideoSessionKHR* = distinct VkNonDispatchableHandle
   VkVideoSessionParametersKHR* = distinct VkNonDispatchableHandle
   VkSemaphoreSciSyncPoolNV* = distinct VkNonDispatchableHandle
-  VkPrivateDataSlotCreateFlagBitsEXT* = VkPrivateDataSlotCreateFlagBits
   VkDescriptorUpdateTemplateTypeKHR* = VkDescriptorUpdateTemplateType
   VkPointClippingBehaviorKHR* = VkPointClippingBehavior
   VkQueueGlobalPriorityEXT* = VkQueueGlobalPriorityKHR
@@ -2588,7 +2587,6 @@ type
     stage*: VkShaderStageFlagBits
     module*: VkShaderModule
     pName*: cstring
-    pName*: cstring
     pSpecializationInfo*: ptr VkSpecializationInfo
 
   VkComputePipelineCreateInfo* = object
@@ -2736,7 +2734,6 @@ type
     flags*: VkPipelineCreateFlags
     stageCount*: uint32
     pStages*: ptr VkPipelineShaderStageCreateInfo
-    pStages*: ptr VkPipelineShaderStageCreateInfo
     pVertexInputState*: ptr VkPipelineVertexInputStateCreateInfo
     pInputAssemblyState*: ptr VkPipelineInputAssemblyStateCreateInfo
     pTessellationState*: ptr VkPipelineTessellationStateCreateInfo
@@ -2756,7 +2753,6 @@ type
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCacheCreateFlags
-    initialDataSize*: uint
     initialDataSize*: uint
     pInitialData*: pointer
 
@@ -3326,7 +3322,6 @@ type
     compositeAlpha*: VkCompositeAlphaFlagBitsKHR
     presentMode*: VkPresentModeKHR
     clipped*: VkBool32
-    oldSwapchain*: VkSwapchainKHR
     oldSwapchain*: VkSwapchainKHR
 
   VkPresentInfoKHR* = object
@@ -9117,7 +9112,6 @@ type
     pNext*: pointer
     flags*: VkRenderingFlags
     viewMask*: uint32
-    colorAttachmentCount*: uint32
     colorAttachmentCount*: uint32
     pColorAttachmentFormats*: ptr VkFormat
     depthAttachmentFormat*: VkFormat

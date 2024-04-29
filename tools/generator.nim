@@ -10,7 +10,6 @@ type
   VkArg = object
     name: string
     argType: string
-    vulkansc: bool
   VkStruct = object
     name: string
     members: seq[VkArg]
@@ -211,6 +210,8 @@ proc genTypes(node: XmlNode, output: var string) =
           continue
         output.add("\n  {name}* = object\n".fmt)
         for member in t.findAll("member"):
+          if member.attr("api") == "vulkansc":
+            continue
           var memberName = member.child("name").innerText
           if keywords.contains(memberName):
             memberName = "`{memberName}`".fmt
@@ -241,8 +242,6 @@ proc genTypes(node: XmlNode, output: var string) =
             vkArg.argType = memberType
           else:
             vkArg.argType = "array[{arraySize}, {memberType}]".fmt
-          if member.attr("api") == "vulkansc":
-            vkArg.vulkansc = true
           vkStruct.members.add(vkArg)
           if not isArray:
             output.add("    {memberName}*: {memberType}\n".fmt)
@@ -455,7 +454,6 @@ proc genConstructors(node: XmlNode, output: var string) =
       continue
     output.add("\nproc new{s.name}*(".fmt)
     for m in s.members:
-      if m.vulkansc: continue
       if not output.endsWith('('):
         output.add(", ")
       output.add("{m.name}: {m.argType}".fmt)
@@ -469,7 +467,6 @@ proc genConstructors(node: XmlNode, output: var string) =
         output.add(" = nil")
     output.add("): {s.name} =\n".fmt)
     for m in s.members:
-      if m.vulkansc: continue
       output.add("  result.{m.name} = {m.name}\n".fmt)
 
 proc main() =
