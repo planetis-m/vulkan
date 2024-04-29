@@ -2036,10 +2036,10 @@ template vkVersionMajor*(version: untyped): untyped =
   uint32(version) shr 22
 
 template vkVersionMinor*(version: untyped): untyped =
-  ((uint32(version) shr 12) and 0x000003FF)
+  (uint32(version) shr 12) and 0x000003FF
 
 template vkVersionPatch*(version: untyped): untyped =
-  (uint32(version) and 0x00000FFF)
+  uint32(version) and 0x00000FFF
 
 const vkApiVersion1_0* = vkMakeVersion(0, 1, 0, 0)
 const vkApiVersion1_1* = vkMakeVersion(0, 1, 1, 0)

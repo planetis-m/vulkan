@@ -111,10 +111,10 @@ proc genTypes(node: XmlNode, output: var string) =
           output.add("  uint32(version) shr 22\n")
         elif name == "VK_API_VERSION_MINOR":
           output.add("\ntemplate vkVersionMinor*(version: untyped): untyped =\n")
-          output.add("  ((uint32(version) shr 12) and 0x000003FF)\n")
+          output.add("  (uint32(version) shr 12) and 0x000003FF\n")
         elif name == "VK_API_VERSION_PATCH":
           output.add("\ntemplate vkVersionPatch*(version: untyped): untyped =\n")
-          output.add("  (uint32(version) and 0x00000FFF)\n")
+          output.add("  uint32(version) and 0x00000FFF\n")
         elif name == "VK_API_VERSION_1_0":
           output.add("\nconst vkApiVersion1_0* = vkMakeVersion(0, 1, 0, 0)\n")
         elif name == "VK_API_VERSION_1_1":
@@ -234,7 +234,7 @@ proc genTypes(node: XmlNode, output: var string) =
           if member.attr("api") == "vulkansc":
             continue
           var memberName = member.child("name").innerText
-          if keywords.contains(memberName):
+          if isKeyword(memberName):
             memberName = &"`{memberName}`"
           var memberType = member.child("type").innerText
           memberType = memberType.translateType()
@@ -280,7 +280,7 @@ proc genTypes(node: XmlNode, output: var string) =
         output.add(&"\n  {name}* {{.union.}} = object\n")
         for member in t.findAll("member"):
           var memberName = member.child("name").innerText
-          if keywords.contains(memberName):
+          if isKeyword(memberName):
             memberName = &"`{memberName}`"
           var memberType = member.child("type").innerText
           var isArray = false
@@ -426,7 +426,7 @@ proc genProcs(node: XmlNode, output: var string) =
           vkArg.argType = vkArg.argType[0 ..< vkArg.argType.len - vkArg.name.len]
           vkArg.argType = vkArg.argType.translateType().strip
         for part in vkArg.name.split(" "):
-          if keywords.contains(part):
+          if isKeyword(part):
             vkArg.name = &"`{vkArg.name}`"
         vkProc.args.add(vkArg)
       vkProcs.add(vkProc)

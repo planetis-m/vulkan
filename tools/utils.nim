@@ -1,6 +1,8 @@
 # Written by Leonardo Mariscal <leo@ldmd.mx>, 2019
+import std/algorithm
 
-const srcHeader* = """
+const
+  srcHeader* = """
 # Written by Leonardo Mariscal <leo@ldmd.mx>, 2019
 
 ## Vulkan Bindings
@@ -55,7 +57,7 @@ type
   IOSurfaceRef* = object
 """
 
-const vkInit* = """
+  vkInit* = """
 var
   vkCreateInstance*: proc (pCreateInfo: ptr VkInstanceCreateInfo, pAllocator: ptr VkAllocationCallbacks, pInstance: ptr VkInstance): VkResult {.stdcall.}
   vkEnumerateInstanceExtensionProperties*: proc (pLayerName: cstring, pPropertyCount: ptr uint32, pProperties: ptr VkExtensionProperties): VkResult {.stdcall.}
@@ -82,10 +84,27 @@ proc vkInit*(instance: VkInstance, load1_0: bool = true, load1_1: bool = true): 
   return true
 """
 
-let keywords* = ["addr", "and", "as", "asm", "bind", "block", "break", "case", "cast", "concept",
-                 "const", "continue", "converter", "defer", "discard", "distinct", "div", "do",
-                 "elif", "else", "end", "enum", "except", "export", "finally", "for", "from", "func",
-                 "if", "import", "in", "include", "interface", "is", "isnot", "iterator", "let",
-                 "macro", "method", "mixin", "mod", "nil", "not", "notin", "object", "of", "or",
-                 "out", "proc", "ptr", "raise", "ref", "return", "shl", "shr", "static", "template",
-                 "try", "tuple", "type", "using", "var", "when", "while", "xor", "yield"]
+  keywords = ["addr", "and", "as", "asm",
+    "bind", "block", "break",
+    "case", "cast", "concept", "const", "continue", "converter",
+    "defer", "discard", "distinct", "div", "do",
+    "elif", "else", "end", "enum", "except", "export",
+    "finally", "for", "from", "func",
+    "if", "import", "in", "include", "interface", "is", "isnot", "iterator",
+    "let",
+    "macro", "method", "mixin", "mod",
+    "nil", "not", "notin",
+    "object", "of", "or", "out",
+    "proc", "ptr",
+    "raise", "ref", "return",
+    "shl", "shr", "static",
+    "template", "try", "tuple", "type",
+    "using",
+    "var",
+    "when", "while",
+    "xor",
+    "yield"]
+
+proc isKeyword*(s: string): bool {.inline.} =
+  ## Checks if an indentifier is a Nim keyword
+  binarySearch(keywords, s) >= 0
