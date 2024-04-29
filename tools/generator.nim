@@ -89,7 +89,7 @@ proc genTypes(node: XmlNode, output: var string) =
           inType = true
         var name = t.attr("name")
         if name.startsWith('_'): name = name.substr(1)
-        output.add("  {name}* {{.nodecl.}} = object\n".fmt)
+        output.add(&"  {name}* {{.nodecl.}} = object\n")
 
       # Define category
 
@@ -124,7 +124,7 @@ proc genTypes(node: XmlNode, output: var string) =
         elif name == "VK_API_VERSION_1_3":
           output.add("const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)\n")
         else:
-          echo "category:define not found {name}".fmt
+          echo &"category:define not found {name}"
         continue
 
       # Basetype category
@@ -138,7 +138,7 @@ proc genTypes(node: XmlNode, output: var string) =
           var bType = t.child("type").innerText
           bType = bType.translateType()
           if name == "VkRemoteAddressNV": bType = "pointer"
-          output.add("  {name}* = distinct {bType}\n".fmt)
+          output.add(&"  {name}* = distinct {bType}\n")
         continue
 
       # Bitmask category
@@ -157,7 +157,7 @@ proc genTypes(node: XmlNode, output: var string) =
         bType = bType.translateType()
         if not alias:
           bType = "distinct " & bType
-        output.add("  {name}* = {bType}\n".fmt)
+        output.add(&"  {name}* = {bType}\n")
         continue
 
       # Handle category
@@ -174,7 +174,7 @@ proc genTypes(node: XmlNode, output: var string) =
         bType = bType.translateType()
         if not alias:
           bType = "distinct " & bType
-        output.add("  {name}* = {bType}\n".fmt)
+        output.add(&"  {name}* = {bType}\n")
         continue
 
       # Enum category
@@ -186,7 +186,7 @@ proc genTypes(node: XmlNode, output: var string) =
         # The real enums are implemented below
         if alias != "":
           if alias == "VkPrivateDataSlotCreateFlagBits": continue
-          output.add("  {name}* = {alias}\n".fmt)
+          output.add(&"  {name}* = {alias}\n")
         continue
 
       # Funcpointer category
@@ -216,7 +216,7 @@ proc genTypes(node: XmlNode, output: var string) =
         elif name == "PFN_vkDebugUtilsMessengerCallbackEXT":
           output.add("  PFN_vkDebugUtilsMessengerCallbackEXT* = proc (messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}\n")
         else:
-          echo "category:funcpointer not found {name}".fmt
+          echo &"category:funcpointer not found {name}"
         continue
 
       # Struct category
@@ -227,15 +227,15 @@ proc genTypes(node: XmlNode, output: var string) =
         vkStruct.name = name
         if t.attr("alias") != "":
           let val = t.attr("alias")
-          output.add("\n  {name}* = {val}\n".fmt)
+          output.add(&"\n  {name}* = {val}\n")
           continue
-        output.add("\n  {name}* = object\n".fmt)
+        output.add(&"\n  {name}* = object\n")
         for member in t.findAll("member"):
           if member.attr("api") == "vulkansc":
             continue
           var memberName = member.child("name").innerText
           if keywords.contains(memberName):
-            memberName = "`{memberName}`".fmt
+            memberName = &"`{memberName}`"
           var memberType = member.child("type").innerText
           memberType = memberType.translateType()
           var isArray = false
@@ -262,12 +262,12 @@ proc genTypes(node: XmlNode, output: var string) =
           if not isArray:
             vkArg.argType = memberType
           else:
-            vkArg.argType = "array[{arraySize}, {memberType}]".fmt
+            vkArg.argType = &"array[{arraySize}, {memberType}]"
           vkStruct.members.add(vkArg)
           if not isArray:
-            output.add("    {memberName}*: {memberType}\n".fmt)
+            output.add(&"    {memberName}*: {memberType}\n")
           else:
-            output.add("    {memberName}*: array[{arraySize}, {memberType}]\n".fmt)
+            output.add(&"    {memberName}*: array[{arraySize}, {memberType}]\n")
         vkStructs.add(vkStruct)
         continue
 
@@ -277,11 +277,11 @@ proc genTypes(node: XmlNode, output: var string) =
         let name = t.attr("name")
         if name == "VkBaseOutStructure" or name == "VkBaseInStructure":
           continue
-        output.add("\n  {name}* {{.union.}} = object\n".fmt)
+        output.add(&"\n  {name}* {{.union.}} = object\n")
         for member in t.findAll("member"):
           var memberName = member.child("name").innerText
           if keywords.contains(memberName):
-            memberName = "`{memberName}`".fmt
+            memberName = &"`{memberName}`"
           var memberType = member.child("type").innerText
           var isArray = false
           var arraySize = "0"
@@ -299,9 +299,9 @@ proc genTypes(node: XmlNode, output: var string) =
             memberType = "ptr " & memberType
           memberType = memberType.translateType()
           if not isArray:
-            output.add("    {memberName}*: {memberType}\n".fmt)
+            output.add(&"    {memberName}*: {memberType}\n")
           else:
-            output.add("    {memberName}*: array[{arraySize}, {memberType}]\n".fmt)
+            output.add(&"    {memberName}*: array[{arraySize}, {memberType}]\n")
         continue
 
 proc genEnums(node: XmlNode, output: var string) =
@@ -335,7 +335,7 @@ proc genEnums(node: XmlNode, output: var string) =
           enumValue = "VK_QUEUE_FAMILY_EXTERNAL"
         elif enumName == "VK_MAX_DEVICE_GROUP_SIZE_KHR":
           enumValue = "VK_MAX_DEVICE_GROUP_SIZE"
-        output.add("  {enumName}* = {enumValue}\n".fmt)
+        output.add(&"  {enumName}* = {enumValue}\n")
       continue
     if not inType:
       output.add("\ntype\n")
@@ -366,7 +366,7 @@ proc genEnums(node: XmlNode, output: var string) =
       elements.add(enumValue, enumName)
     if elements.len == 0:
       continue
-    output.add("  {name}* {{.size: sizeof(int32).}} = enum\n".fmt)
+    output.add(&"  {name}* {{.size: sizeof(int32).}} = enum\n")
     elements.sort(system.cmp)
     var prev = -1
     for enumValue, tmp in elements.pairs:
@@ -383,9 +383,9 @@ proc genEnums(node: XmlNode, output: var string) =
       if name == "VkStructureType":
         vkStructureTypes.add(enumName)
       if prev + 1 != enumValue:
-        output.add("    {enumName} = {enumValue}\n".fmt)
+        output.add(&"    {enumName} = {enumValue}\n")
       else:
-        output.add("    {enumName}\n".fmt)
+        output.add(&"    {enumName}\n")
       prev = enumValue
     output.add("\n")
 
@@ -421,42 +421,42 @@ proc genProcs(node: XmlNode, output: var string) =
           let arraySize = vkArg.argType[openBracket + 1 ..< vkArg.argType.find(']')]
           var typeName = vkArg.argType[0..<openBracket].translateType()
           typeName = typeName[0 ..< typeName.len - vkArg.name.len]
-          vkArg.argType = "array[{arraySize}, {typeName}]".fmt
+          vkArg.argType = &"array[{arraySize}, {typeName}]"
         else:
           vkArg.argType = vkArg.argType[0 ..< vkArg.argType.len - vkArg.name.len]
           vkArg.argType = vkArg.argType.translateType().strip
         for part in vkArg.name.split(" "):
           if keywords.contains(part):
-            vkArg.name = "`{vkArg.name}`".fmt
+            vkArg.name = &"`{vkArg.name}`"
         vkProc.args.add(vkArg)
       vkProcs.add(vkProc)
-      output.add("  {vkProc.name}*: proc (".fmt)
+      output.add(&"  {vkProc.name}*: proc (")
       for arg in vkProc.args:
         if not output.endsWith('('):
           output.add(", ")
-        output.add("{arg.name}: {arg.argType}".fmt)
+        output.add(&"{arg.name}: {arg.argType}")
       if vkProc.rval == "void":
         output.add(") {.stdcall.}\n")
       else:
-        output.add("): {vkProc.rval} {{.stdcall.}}\n".fmt)
+        output.add(&"): {vkProc.rval} {{.stdcall.}}\n")
 
 proc genFeatures(node: XmlNode, output: var string) =
   echo "Generating and Adding Features..."
   for feature in node.findAll("feature"):
     if feature.attr("api") == "vulkansc": continue
     let number = feature.attr("number").replace(".", "_")
-    output.add("\n# Vulkan {number}\n".fmt)
-    output.add("proc vkLoad{number}*() =\n".fmt)
+    output.add(&"\n# Vulkan {number}\n")
+    output.add(&"proc vkLoad{number}*() =\n")
     for command in feature.findAll("command"):
       let name = command.attr("name")
       for vkProc in vkProcs:
         if name == vkProc.name:
-          output.add("  {name} = cast[proc (".fmt)
+          output.add(&"  {name} = cast[proc (")
           for arg in vkProc.args:
             if not output.endsWith("("):
               output.add(", ")
-            output.add("{arg.name}: {arg.argType}".fmt)
-          output.add("): {vkProc.rVal} {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n".fmt)
+            output.add(&"{arg.name}: {arg.argType}")
+          output.add(&"): {vkProc.rVal} {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n")
 
 proc genExtensions(node: XmlNode, output: var string) =
   echo "Generating and Adding Extensions..."
@@ -472,15 +472,15 @@ proc genExtensions(node: XmlNode, output: var string) =
       if commands.len == 0:
         continue
       let name = extension.attr("name")
-      output.add("\n# Load {name}\n".fmt)
-      output.add("proc load{name}*() =\n".fmt)
+      output.add(&"\n# Load {name}\n")
+      output.add(&"proc load{name}*() =\n")
       for vkProc in commands:
-        output.add("  {vkProc.name} = cast[proc (".fmt)
+        output.add(&"  {vkProc.name} = cast[proc (")
         for arg in vkProc.args:
           if not output.endsWith('('):
             output.add(", ")
-          output.add("{arg.name}: {arg.argType}".fmt)
-        output.add("): {vkProc.rVal} {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n".fmt)
+          output.add(&"{arg.name}: {arg.argType}")
+        output.add(&"): {vkProc.rVal} {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n")
 
 proc genConstructors(node: XmlNode, output: var string) =
   echo "Generating and Adding Constructors..."
@@ -488,24 +488,24 @@ proc genConstructors(node: XmlNode, output: var string) =
   for s in vkStructs:
     if s.members.len == 0:
       continue
-    output.add("\nproc new{s.name}*(".fmt)
+    output.add(&"\nproc new{s.name}*(")
     for m in s.members:
       if not output.endsWith('('):
         output.add(", ")
-      output.add("{m.name}: {m.argType}".fmt)
+      output.add(&"{m.name}: {m.argType}")
       if m.name.contains("flags"):
-        output.add(" = 0.{m.argType}".fmt)
+        output.add(&" = 0.{m.argType}")
       if m.name == "sType":
         for structType in vkStructureTypes:
           let tmp = s.name[2..<s.name.len]
           if structType.cmpIgnoreStyle(tmp) == 0:
-            output.add(" = VkStructureType.{tmp}".fmt)
+            output.add(&" = VkStructureType.{tmp}")
       if m.argType == "pointer":
         output.add(" = nil")
-    output.add("): {s.name} =\n".fmt)
-    output.add("  result = {s.name}(\n".fmt)
+    output.add(&"): {s.name} =\n")
+    output.add(&"  result = {s.name}(\n")
     for m in s.members:
-      output.add("    {m.name}: {m.name},\n".fmt)
+      output.add(&"    {m.name}: {m.name},\n")
     output.add("  )\n")
 
 proc main() =
