@@ -18,6 +18,25 @@ var vkProcs: seq[VkProc]
 var vkStructs: seq[VkStruct]
 var vkStructureTypes: seq[string]
 
+proc camelCaseAscii*(s: string): string =
+  ## Converts snake_case to CamelCase
+  var L = s.len
+  while L > 0 and s[L-1] == '_': dec L
+  result = newStringOfCap(L)
+  var i = 0
+  result.add s[i]
+  inc i
+  var flip = false
+  while i < L:
+    if s[i] == '_':
+      flip = true
+    else:
+      if flip:
+        result.add toUpperAscii(s[i])
+        flip = false
+      else: result.add toLowerAscii(s[i])
+    inc i
+
 proc translateType(s: string): string =
   result = s
   result = result.multiReplace([
@@ -326,6 +345,14 @@ proc genEnums(node: XmlNode, output: var string) =
       if e.attr("api") == "vulkansc" or e.attr("deprecated") != "":
         continue
       var enumName = e.attr("name")
+      enumName = camelCaseAscii(enumName)
+      var tmp = name
+      for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "FlagBits", "FlagBits2"]:
+        tmp.removeSuffix(suf)
+        enumName.removeSuffix(suf)
+      enumName.removePrefix(tmp)
+      if enumName[0] in Digits:
+        enumName = "N" & enumName
       var enumValueStr = e.attr("value")
       if enumValueStr == "":
         if e.attr("bitpos") == "":
@@ -342,14 +369,10 @@ proc genEnums(node: XmlNode, output: var string) =
         enumValue = enumValueStr.parseInt()
       if elements.hasKey(enumValue):
         continue
-      if enumName == "VK_PIPELINE_CACHE_HEADER_VERSION_ONE":
-        enumName = "VK_PIPELINE_CACHE_HEADER_VER_ONE"
-      elif enumName == "VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT":
-        enumName = "VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VER_ONE_EXT"
       elements.add(enumValue, enumName)
     if elements.len == 0:
       continue
-    output.add("  {name}* {{.size: int32.sizeof.}} = enum\n".fmt)
+    output.add("  {name}* {{.size: sizeof(int32).}} = enum\n".fmt)
     elements.sort(system.cmp)
     for k, v in elements.pairs:
       if name == "VkStructureType":
