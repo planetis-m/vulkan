@@ -123,6 +123,10 @@ proc genTypes(node: XmlNode, output: var string) =
           output.add("const vkApiVersion1_2* = vkMakeVersion(0, 1, 2, 0)\n")
         elif name == "VK_API_VERSION_1_3":
           output.add("const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)\n")
+        elif name == "VK_HEADER_VERSION":
+          output.add("const vkHeaderVersion* = 279\n")
+        elif name == "VK_HEADER_VERSION_COMPLETE":
+          output.add("const vkHeaderVersionComplete* = vkMakeVersion(0, 1, 3, vkHeaderVersion)\n")
         else:
           echo &"category:define not found {name}"
         continue
@@ -347,6 +351,15 @@ proc genEnums(node: XmlNode, output: var string) =
       if e.attr("api") == "vulkansc" or e.attr("deprecated") != "":
         continue
       var enumName = e.attr("name")
+      enumName = camelCaseAscii(enumName)
+      var tmp = name
+      for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "MSFT", "QCOM", "ANDROID", "FlagBits", "FlagBits2"]:
+        tmp.removeSuffix(suf)
+      for suf in ["Khr", "Ext", "Nv", "Intel", "Amd", "Msft", "Qcom", "Android"]:
+        enumName.removeSuffix(suf)
+      enumName.removePrefix(tmp)
+      if enumName[0] in Digits:
+        enumName = "N" & enumName
       var enumValueStr = e.attr("value")
       if enumValueStr == "":
         if e.attr("bitpos") == "":
@@ -369,17 +382,7 @@ proc genEnums(node: XmlNode, output: var string) =
     output.add(&"  {name}* {{.size: sizeof(int32).}} = enum\n")
     elements.sort(system.cmp)
     var prev = -1
-    for enumValue, tmp in elements.pairs:
-      var enumName = tmp
-      enumName = camelCaseAscii(enumName)
-      var tmp = name
-      for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "MSFT", "QCOM", "ANDROID", "FlagBits", "FlagBits2"]:
-        tmp.removeSuffix(suf)
-      for suf in ["Khr", "Ext", "Nv", "Intel", "Amd", "Msft", "Qcom", "Android"]:
-        enumName.removeSuffix(suf)
-      enumName.removePrefix(tmp)
-      if enumName[0] in Digits:
-        enumName = "N" & enumName
+    for enumValue, enumName in elements.pairs:
       if name == "VkStructureType":
         vkStructureTypes.add(enumName)
       if prev + 1 != enumValue:

@@ -2045,6 +2045,8 @@ const vkApiVersion1_0* = vkMakeVersion(0, 1, 0, 0)
 const vkApiVersion1_1* = vkMakeVersion(0, 1, 1, 0)
 const vkApiVersion1_2* = vkMakeVersion(0, 1, 2, 0)
 const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)
+const vkHeaderVersion* = 279
+const vkHeaderVersionComplete* = vkMakeVersion(0, 1, 3, vkHeaderVersion)
 
 type
   VkSampleMask* = distinct uint32
