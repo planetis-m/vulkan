@@ -93,20 +93,25 @@ type
     TransferSrcOptimal
     TransferDstOptimal
     Preinitialized
+
   VkAttachmentLoadOp* {.size: sizeof(int32).} = enum
     Load
     Clear
     DontCare
+
   VkAttachmentStoreOp* {.size: sizeof(int32).} = enum
     Store
     DontCare
+
   VkImageType* {.size: sizeof(int32).} = enum
     N1d
     N2d
     N3d
+
   VkImageTiling* {.size: sizeof(int32).} = enum
     Optimal
     Linear
+
   VkImageViewType* {.size: sizeof(int32).} = enum
     N1d
     N2d
@@ -115,9 +120,11 @@ type
     N1dArray
     N2dArray
     CubeArray
+
   VkCommandBufferLevel* {.size: sizeof(int32).} = enum
     Primary
     Secondary
+
   VkComponentSwizzle* {.size: sizeof(int32).} = enum
     Identity
     Zero
@@ -126,6 +133,7 @@ type
     G
     B
     A
+
   VkDescriptorType* {.size: sizeof(int32).} = enum
     Sampler
     CombinedImageSampler
@@ -138,10 +146,12 @@ type
     UniformBufferDynamic
     StorageBufferDynamic
     InputAttachment
+
   VkQueryType* {.size: sizeof(int32).} = enum
     Occlusion
     PipelineStatistics
     Timestamp
+
   VkBorderColor* {.size: sizeof(int32).} = enum
     FloatTransparentBlack
     IntTransparentBlack
@@ -149,11 +159,14 @@ type
     IntOpaqueBlack
     FloatOpaqueWhite
     IntOpaqueWhite
+
   VkPipelineBindPoint* {.size: sizeof(int32).} = enum
     Graphics
     Compute
+
   VkPipelineCacheHeaderVersion* {.size: sizeof(int32).} = enum
     One = 1
+
   VkPrimitiveTopology* {.size: sizeof(int32).} = enum
     PointList
     LineList
@@ -166,23 +179,29 @@ type
     TriangleListWithAdjacency
     TriangleStripWithAdjacency
     PatchList
+
   VkSharingMode* {.size: sizeof(int32).} = enum
     Exclusive
     Concurrent
+
   VkIndexType* {.size: sizeof(int32).} = enum
     Uint16
     Uint32
+
   VkFilter* {.size: sizeof(int32).} = enum
     Nearest
     Linear
+
   VkSamplerMipmapMode* {.size: sizeof(int32).} = enum
     Nearest
     Linear
+
   VkSamplerAddressMode* {.size: sizeof(int32).} = enum
     Repeat
     MirroredRepeat
     ClampToEdge
     ClampToBorder
+
   VkCompareOp* {.size: sizeof(int32).} = enum
     Never
     Less
@@ -192,13 +211,16 @@ type
     NotEqual
     GreaterOrEqual
     Always
+
   VkPolygonMode* {.size: sizeof(int32).} = enum
     Fill
     Line
     Point
+
   VkFrontFace* {.size: sizeof(int32).} = enum
     CounterClockwise
     Clockwise
+
   VkBlendFactor* {.size: sizeof(int32).} = enum
     Zero
     One
@@ -219,12 +241,14 @@ type
     OneMinusSrc1Color
     Src1Alpha
     OneMinusSrc1Alpha
+
   VkBlendOp* {.size: sizeof(int32).} = enum
     Add
     Subtract
     ReverseSubtract
     Min
     Max
+
   VkStencilOp* {.size: sizeof(int32).} = enum
     Keep
     Zero
@@ -234,6 +258,7 @@ type
     Invert
     IncrementAndWrap
     DecrementAndWrap
+
   VkLogicOp* {.size: sizeof(int32).} = enum
     Clear
     And
@@ -251,23 +276,28 @@ type
     OrInverted
     Nand
     Set
+
   VkInternalAllocationType* {.size: sizeof(int32).} = enum
     Executable
+
   VkSystemAllocationScope* {.size: sizeof(int32).} = enum
     Command
     Object
     Cache
     Device
     Instance
+
   VkPhysicalDeviceType* {.size: sizeof(int32).} = enum
     Other
     IntegratedGpu
     DiscreteGpu
     VirtualGpu
     Cpu
+
   VkVertexInputRate* {.size: sizeof(int32).} = enum
     Vertex
     Instance
+
   VkFormat* {.size: sizeof(int32).} = enum
     Undefined
     R4g4UnormPack8
@@ -454,6 +484,7 @@ type
     Astc12x10SrgbBlock
     Astc12x12UnormBlock
     Astc12x12SrgbBlock
+
   VkStructureType* {.size: sizeof(int32).} = enum
     ApplicationInfo
     InstanceCreateInfo
@@ -504,9 +535,11 @@ type
     MemoryBarrier
     LoaderInstanceCreateInfo
     LoaderDeviceCreateInfo
+
   VkSubpassContents* {.size: sizeof(int32).} = enum
     Inline
     SecondaryCommandBuffers
+
   VkResult* {.size: sizeof(int32).} = enum
     VkErrorUnknown = -13
     VkErrorFragmentedPool
@@ -527,6 +560,7 @@ type
     VkEventSet
     VkEventReset
     VkIncomplete
+
   VkDynamicState* {.size: sizeof(int32).} = enum
     Viewport
     Scissor
@@ -537,8 +571,10 @@ type
     StencilCompareMask
     StencilWriteMask
     StencilReference
+
   VkDescriptorUpdateTemplateType* {.size: sizeof(int32).} = enum
     DescriptorSet
+
   VkObjectType* {.size: sizeof(int32).} = enum
     Unknown
     Instance
@@ -566,30 +602,37 @@ type
     DescriptorSet
     Framebuffer
     CommandPool
+
   VkRayTracingInvocationReorderModeNV* {.size: sizeof(int32).} = enum
     None
     Reorder
+
   VkDirectDriverLoadingModeLUNARG* {.size: sizeof(int32).} = enum
     VkDirectDriverLoadingModeExclusiveLunarg
     VkDirectDriverLoadingModeInclusiveLunarg
+
   VkQueueFlagBits* {.size: sizeof(int32).} = enum
     GraphicsBit = 1
     ComputeBit
     TransferBit = 4
     SparseBindingBit = 8
+
   VkCullModeFlagBits* {.size: sizeof(int32).} = enum
     None
     FrontBit
     BackBit
     FrontAndBack
+
   VkMemoryPropertyFlagBits* {.size: sizeof(int32).} = enum
     DeviceLocalBit = 1
     HostVisibleBit
     HostCoherentBit = 4
     HostCachedBit = 8
     LazilyAllocatedBit = 16
+
   VkMemoryHeapFlagBits* {.size: sizeof(int32).} = enum
     DeviceLocalBit = 1
+
   VkAccessFlagBits* {.size: sizeof(int32).} = enum
     IndirectCommandReadBit = 1
     IndexReadBit
@@ -608,6 +651,7 @@ type
     HostWriteBit = 16384
     MemoryReadBit = 32768
     MemoryWriteBit = 65536
+
   VkBufferUsageFlagBits* {.size: sizeof(int32).} = enum
     TransferSrcBit = 1
     TransferDstBit
@@ -618,6 +662,7 @@ type
     IndexBufferBit = 64
     VertexBufferBit = 128
     IndirectBufferBit = 256
+
   VkBufferUsageFlagBits2KHR* {.size: sizeof(int32).} = enum
     N2TransferSrcBit = 1
     N2TransferDstBit
@@ -628,10 +673,12 @@ type
     N2IndexBufferBit = 64
     N2VertexBufferBit = 128
     N2IndirectBufferBit = 256
+
   VkBufferCreateFlagBits* {.size: sizeof(int32).} = enum
     SparseBindingBit = 1
     SparseResidencyBit
     SparseAliasedBit = 4
+
   VkShaderStageFlagBits* {.size: sizeof(int32).} = enum
     VertexBit = 1
     TessellationControlBit
@@ -641,6 +688,7 @@ type
     AllGraphics = 31
     ComputeBit
     All = 2147483647
+
   VkImageUsageFlagBits* {.size: sizeof(int32).} = enum
     TransferSrcBit = 1
     TransferDstBit
@@ -650,27 +698,33 @@ type
     DepthStencilAttachmentBit = 32
     TransientAttachmentBit = 64
     InputAttachmentBit = 128
+
   VkImageCreateFlagBits* {.size: sizeof(int32).} = enum
     SparseBindingBit = 1
     SparseResidencyBit
     SparseAliasedBit = 4
     MutableFormatBit = 8
     CubeCompatibleBit = 16
+
   VkPipelineCreateFlagBits* {.size: sizeof(int32).} = enum
     DisableOptimizationBit = 1
     AllowDerivativesBit
     DerivativeBit = 4
+
   VkPipelineCreateFlagBits2KHR* {.size: sizeof(int32).} = enum
     N2DisableOptimizationBit = 1
     N2AllowDerivativesBit
     N2DerivativeBit = 4
+
   VkColorComponentFlagBits* {.size: sizeof(int32).} = enum
     RBit = 1
     GBit
     BBit = 4
     ABit = 8
+
   VkFenceCreateFlagBits* {.size: sizeof(int32).} = enum
     SignaledBit = 1
+
   VkFormatFeatureFlagBits* {.size: sizeof(int32).} = enum
     SampledImageBit = 1
     StorageImageBit
@@ -685,17 +739,21 @@ type
     BlitSrcBit = 1024
     BlitDstBit = 2048
     SampledImageFilterLinearBit = 4096
+
   VkQueryControlFlagBits* {.size: sizeof(int32).} = enum
     PreciseBit = 1
+
   VkQueryResultFlagBits* {.size: sizeof(int32).} = enum
     N64Bit = 1
     WaitBit
     WithAvailabilityBit = 4
     PartialBit = 8
+
   VkCommandBufferUsageFlagBits* {.size: sizeof(int32).} = enum
     OneTimeSubmitBit = 1
     RenderPassContinueBit
     SimultaneousUseBit = 4
+
   VkQueryPipelineStatisticFlagBits* {.size: sizeof(int32).} = enum
     InputAssemblyVerticesBit = 1
     InputAssemblyPrimitivesBit
@@ -708,17 +766,21 @@ type
     TessellationControlShaderPatchesBit = 256
     TessellationEvaluationShaderInvocationsBit = 512
     ComputeShaderInvocationsBit = 1024
+
   VkImageAspectFlagBits* {.size: sizeof(int32).} = enum
     ColorBit = 1
     DepthBit
     StencilBit = 4
     MetadataBit = 8
+
   VkSparseImageFormatFlagBits* {.size: sizeof(int32).} = enum
     SingleMiptailBit = 1
     AlignedMipSizeBit
     NonstandardBlockSizeBit = 4
+
   VkSparseMemoryBindFlagBits* {.size: sizeof(int32).} = enum
     MetadataBit = 1
+
   VkPipelineStageFlagBits* {.size: sizeof(int32).} = enum
     TopOfPipeBit = 1
     DrawIndirectBit
@@ -737,13 +799,17 @@ type
     HostBit = 16384
     AllGraphicsBit = 32768
     AllCommandsBit = 65536
+
   VkCommandPoolCreateFlagBits* {.size: sizeof(int32).} = enum
     TransientBit = 1
     ResetCommandBufferBit
+
   VkCommandPoolResetFlagBits* {.size: sizeof(int32).} = enum
     ReleaseResourcesBit = 1
+
   VkCommandBufferResetFlagBits* {.size: sizeof(int32).} = enum
     ReleaseResourcesBit = 1
+
   VkSampleCountFlagBits* {.size: sizeof(int32).} = enum
     N1Bit = 1
     N2Bit
@@ -752,38 +818,49 @@ type
     N16Bit = 16
     N32Bit = 32
     N64Bit = 64
+
   VkAttachmentDescriptionFlagBits* {.size: sizeof(int32).} = enum
     MayAliasBit = 1
+
   VkStencilFaceFlagBits* {.size: sizeof(int32).} = enum
     FrontBit = 1
     BackBit
     FrontAndBack
+
   VkDescriptorPoolCreateFlagBits* {.size: sizeof(int32).} = enum
     FreeDescriptorSetBit = 1
+
   VkDependencyFlagBits* {.size: sizeof(int32).} = enum
     ByRegionBit = 1
+
   VkSemaphoreType* {.size: sizeof(int32).} = enum
     Binary
     Timeline
+
   VkSemaphoreWaitFlagBits* {.size: sizeof(int32).} = enum
     AnyBit = 1
+
   VkPresentModeKHR* {.size: sizeof(int32).} = enum
     Immediate
     Mailbox
     Fifo
     FifoRelaxed
+
   VkColorSpaceKHR* {.size: sizeof(int32).} = enum
     SrgbNonlinear
+
   VkDisplayPlaneAlphaFlagBitsKHR* {.size: sizeof(int32).} = enum
     OpaqueBit = 1
     GlobalBit
     PerPixelBit = 4
     PerPixelPremultipliedBit = 8
+
   VkCompositeAlphaFlagBitsKHR* {.size: sizeof(int32).} = enum
     OpaqueBit = 1
     PreMultipliedBit
     PostMultipliedBit = 4
     InheritBit = 8
+
   VkSurfaceTransformFlagBitsKHR* {.size: sizeof(int32).} = enum
     IdentityBit = 1
     Rotate90Bit
@@ -794,19 +871,23 @@ type
     HorizontalMirrorRotate180Bit = 64
     HorizontalMirrorRotate270Bit = 128
     InheritBit = 256
+
   VkSwapchainImageUsageFlagBitsANDROID* {.size: sizeof(int32).} = enum
-    VkSwapchainImageUsageSharedBitAndroid = 1
+    SharedBit = 1
+
   VkTimeDomainKHR* {.size: sizeof(int32).} = enum
     Device
     ClockMonotonic
     ClockMonotonicRaw
     QueryPerformanceCounter
+
   VkDebugReportFlagBitsEXT* {.size: sizeof(int32).} = enum
     InformationBit = 1
     WarningBit
     PerformanceWarningBit = 4
     ErrorBit = 8
     DebugBit = 16
+
   VkDebugReportObjectTypeEXT* {.size: sizeof(int32).} = enum
     Unknown
     Instance
@@ -840,33 +921,40 @@ type
     DisplayKhr
     DisplayModeKhr
     ValidationCacheExt = 33
+
   VkDeviceMemoryReportEventTypeEXT* {.size: sizeof(int32).} = enum
     Allocate
     Free
     Import
     Unimport
     AllocationFailed
+
   VkRasterizationOrderAMD* {.size: sizeof(int32).} = enum
     Strict
     Relaxed
+
   VkExternalMemoryHandleTypeFlagBitsNV* {.size: sizeof(int32).} = enum
     OpaqueWin32Bit = 1
     OpaqueWin32KmtBit
     D3d11ImageBit = 4
     D3d11ImageKmtBit = 8
+
   VkExternalMemoryFeatureFlagBitsNV* {.size: sizeof(int32).} = enum
     DedicatedOnlyBit = 1
     ExportableBit
     ImportableBit = 4
+
   VkValidationCheckEXT* {.size: sizeof(int32).} = enum
     All
     Shaders
+
   VkValidationFeatureEnableEXT* {.size: sizeof(int32).} = enum
     GpuAssisted
     GpuAssistedReserveBindingSlot
     BestPractices
     DebugPrintf
     SynchronizationValidation
+
   VkValidationFeatureDisableEXT* {.size: sizeof(int32).} = enum
     All
     Shaders
@@ -876,6 +964,7 @@ type
     CoreChecks
     UniqueHandles
     ShaderValidationCache
+
   VkLayerSettingTypeEXT* {.size: sizeof(int32).} = enum
     Bool32
     Int32
@@ -885,6 +974,7 @@ type
     Float32
     Float64
     String
+
   VkSubgroupFeatureFlagBits* {.size: sizeof(int32).} = enum
     BasicBit = 1
     VoteBit
@@ -894,12 +984,15 @@ type
     ShuffleRelativeBit = 32
     ClusteredBit = 64
     QuadBit = 128
+
   VkIndirectCommandsLayoutUsageFlagBitsNV* {.size: sizeof(int32).} = enum
     ExplicitPreprocessBit = 1
     IndexedSequencesBit
     UnorderedSequencesBit = 4
+
   VkIndirectStateFlagBitsNV* {.size: sizeof(int32).} = enum
     FlagFrontfaceBit = 1
+
   VkIndirectCommandsTokenTypeNV* {.size: sizeof(int32).} = enum
     ShaderGroup
     StateFlags
@@ -909,6 +1002,7 @@ type
     DrawIndexed
     Draw
     DrawTasks
+
   VkExternalMemoryHandleTypeFlagBits* {.size: sizeof(int32).} = enum
     OpaqueFdBit = 1
     OpaqueWin32Bit
@@ -917,53 +1011,68 @@ type
     D3d11TextureKmtBit = 16
     D3d12HeapBit = 32
     D3d12ResourceBit = 64
+
   VkExternalMemoryFeatureFlagBits* {.size: sizeof(int32).} = enum
     DedicatedOnlyBit = 1
     ExportableBit
     ImportableBit = 4
+
   VkExternalSemaphoreHandleTypeFlagBits* {.size: sizeof(int32).} = enum
     OpaqueFdBit = 1
     OpaqueWin32Bit
     OpaqueWin32KmtBit = 4
     D3d12FenceBit = 8
     SyncFdBit = 16
+
   VkExternalSemaphoreFeatureFlagBits* {.size: sizeof(int32).} = enum
     ExportableBit = 1
     ImportableBit
+
   VkSemaphoreImportFlagBits* {.size: sizeof(int32).} = enum
     TemporaryBit = 1
+
   VkExternalFenceHandleTypeFlagBits* {.size: sizeof(int32).} = enum
     OpaqueFdBit = 1
     OpaqueWin32Bit
     OpaqueWin32KmtBit = 4
     SyncFdBit = 8
+
   VkExternalFenceFeatureFlagBits* {.size: sizeof(int32).} = enum
     ExportableBit = 1
     ImportableBit
+
   VkFenceImportFlagBits* {.size: sizeof(int32).} = enum
     TemporaryBit = 1
+
   VkSurfaceCounterFlagBitsEXT* {.size: sizeof(int32).} = enum
     VblankBit = 1
+
   VkDisplayPowerStateEXT* {.size: sizeof(int32).} = enum
     Off
     Suspend
     On
+
   VkDeviceEventTypeEXT* {.size: sizeof(int32).} = enum
     DisplayHotplug
+
   VkDisplayEventTypeEXT* {.size: sizeof(int32).} = enum
     FirstPixelOut
+
   VkPeerMemoryFeatureFlagBits* {.size: sizeof(int32).} = enum
     CopySrcBit = 1
     CopyDstBit
     GenericSrcBit = 4
     GenericDstBit = 8
+
   VkMemoryAllocateFlagBits* {.size: sizeof(int32).} = enum
     DeviceMaskBit = 1
+
   VkDeviceGroupPresentModeFlagBitsKHR* {.size: sizeof(int32).} = enum
     LocalBit = 1
     RemoteBit
     SumBit = 4
     LocalMultiDeviceBit = 8
+
   VkViewportCoordinateSwizzleNV* {.size: sizeof(int32).} = enum
     PositiveX
     NegativeX
@@ -973,72 +1082,90 @@ type
     NegativeZ
     PositiveW
     NegativeW
+
   VkDiscardRectangleModeEXT* {.size: sizeof(int32).} = enum
     Inclusive
     Exclusive
+
   VkPointClippingBehavior* {.size: sizeof(int32).} = enum
     AllClipPlanes
     UserClipPlanesOnly
+
   VkSamplerReductionMode* {.size: sizeof(int32).} = enum
     WeightedAverage
     Min
     Max
+
   VkTessellationDomainOrigin* {.size: sizeof(int32).} = enum
     UpperLeft
     LowerLeft
+
   VkSamplerYcbcrModelConversion* {.size: sizeof(int32).} = enum
     RgbIdentity
     YcbcrIdentity
     Ycbcr709
     Ycbcr601
     Ycbcr2020
+
   VkSamplerYcbcrRange* {.size: sizeof(int32).} = enum
     ItuFull
     ItuNarrow
+
   VkChromaLocation* {.size: sizeof(int32).} = enum
     CositedEven
     Midpoint
+
   VkBlendOverlapEXT* {.size: sizeof(int32).} = enum
     Uncorrelated
     Disjoint
     Conjoint
+
   VkCoverageModulationModeNV* {.size: sizeof(int32).} = enum
     None
     Rgb
     Alpha
     Rgba
+
   VkCoverageReductionModeNV* {.size: sizeof(int32).} = enum
     Merge
     Truncate
+
   VkValidationCacheHeaderVersionEXT* {.size: sizeof(int32).} = enum
     One = 1
+
   VkShaderInfoTypeAMD* {.size: sizeof(int32).} = enum
     Statistics
     Binary
     Disassembly
+
   VkQueueGlobalPriorityKHR* {.size: sizeof(int32).} = enum
     Low = 128
     Medium = 256
     High = 512
     Realtime = 1024
+
   VkDebugUtilsMessageSeverityFlagBitsEXT* {.size: sizeof(int32).} = enum
     VerboseBit = 1
     InfoBit = 16
     WarningBit = 256
     ErrorBit = 4096
+
   VkDebugUtilsMessageTypeFlagBitsEXT* {.size: sizeof(int32).} = enum
     GeneralBit = 1
     ValidationBit
     PerformanceBit = 4
+
   VkConservativeRasterizationModeEXT* {.size: sizeof(int32).} = enum
     Disabled
     Overestimate
     Underestimate
+
   VkDescriptorBindingFlagBits* {.size: sizeof(int32).} = enum
     UpdateAfterBindBit = 1
     UpdateUnusedWhilePendingBit
     PartiallyBoundBit = 4
     VariableDescriptorCountBit = 8
+
   VkVendorId* {.size: sizeof(int32).} = enum
     Viv = 65537
     Vsi
@@ -1047,6 +1174,7 @@ type
     Mesa
     Pocl
     Mobileye
+
   VkDriverId* {.size: sizeof(int32).} = enum
     AmdProprietary = 1
     AmdOpenSource
@@ -1074,14 +1202,17 @@ type
     MesaNvk
     ImaginationOpenSourceMesa
     MesaAgxv
+
   VkConditionalRenderingFlagBitsEXT* {.size: sizeof(int32).} = enum
     InvertedBit = 1
+
   VkResolveModeFlagBits* {.size: sizeof(int32).} = enum
     None
     SampleZeroBit
     AverageBit
     MinBit = 4
     MaxBit = 8
+
   VkShadingRatePaletteEntryNV* {.size: sizeof(int32).} = enum
     NoInvocations
     N16InvocationsPerPixel
@@ -1095,87 +1226,108 @@ type
     N1InvocationPer4x2Pixels
     N1InvocationPer2x4Pixels
     N1InvocationPer4x4Pixels
+
   VkCoarseSampleOrderTypeNV* {.size: sizeof(int32).} = enum
     Default
     Custom
     PixelMajor
     SampleMajor
+
   VkGeometryInstanceFlagBitsKHR* {.size: sizeof(int32).} = enum
     TriangleFacingCullDisableBit = 1
     TriangleFlipFacingBit
     ForceOpaqueBit = 4
     ForceNoOpaqueBit = 8
+
   VkGeometryFlagBitsKHR* {.size: sizeof(int32).} = enum
     OpaqueBit = 1
     NoDuplicateAnyHitInvocationBit
+
   VkBuildAccelerationStructureFlagBitsKHR* {.size: sizeof(int32).} = enum
     AllowUpdateBit = 1
     AllowCompactionBit
     PreferFastTraceBit = 4
     PreferFastBuildBit = 8
     LowMemoryBit = 16
+
   VkAccelerationStructureCreateFlagBitsKHR* {.size: sizeof(int32).} = enum
     DeviceAddressCaptureReplayBit = 1
+
   VkCopyAccelerationStructureModeKHR* {.size: sizeof(int32).} = enum
     Clone
     Compact
     Serialize
     Deserialize
+
   VkBuildAccelerationStructureModeKHR* {.size: sizeof(int32).} = enum
     Build
     Update
+
   VkAccelerationStructureTypeKHR* {.size: sizeof(int32).} = enum
     TopLevel
     BottomLevel
     Generic
+
   VkGeometryTypeKHR* {.size: sizeof(int32).} = enum
     Triangles
     Aabbs
     Instances
+
   VkAccelerationStructureMemoryRequirementsTypeNV* {.size: sizeof(int32).} = enum
     Object
     BuildScratch
     UpdateScratch
+
   VkAccelerationStructureBuildTypeKHR* {.size: sizeof(int32).} = enum
     Host
     Device
     HostOrDevice
+
   VkRayTracingShaderGroupTypeKHR* {.size: sizeof(int32).} = enum
     General
     TrianglesHitGroup
     ProceduralHitGroup
+
   VkAccelerationStructureCompatibilityKHR* {.size: sizeof(int32).} = enum
     Compatible
     Incompatible
+
   VkShaderGroupShaderKHR* {.size: sizeof(int32).} = enum
     General
     ClosestHit
     AnyHit
     Intersection
+
   VkMemoryOverallocationBehaviorAMD* {.size: sizeof(int32).} = enum
     Default
     Allowed
     Disallowed
+
   VkDeviceDiagnosticsConfigFlagBitsNV* {.size: sizeof(int32).} = enum
     EnableShaderDebugInfoBit = 1
     EnableResourceTrackingBit
     EnableAutomaticCheckpointsBit = 4
     EnableShaderErrorReportingBit = 8
+
   VkPipelineCreationFeedbackFlagBits* {.size: sizeof(int32).} = enum
     ValidBit = 1
     ApplicationPipelineCacheHitBit
     BasePipelineAccelerationBit = 4
+
   VkFullScreenExclusiveEXT* {.size: sizeof(int32).} = enum
     Default
     Allowed
     Disallowed
     ApplicationControlled
+
   VkPerformanceCounterScopeKHR* {.size: sizeof(int32).} = enum
     CommandBuffer
     RenderPass
     Command
+
   VkMemoryDecompressionMethodFlagBitsNV* {.size: sizeof(int32).} = enum
     Gdeflate10Bit = 1
+
   VkPerformanceCounterUnitKHR* {.size: sizeof(int32).} = enum
     Generic
     Percentage
@@ -1188,6 +1340,7 @@ type
     Amps
     Hertz
     Cycles
+
   VkPerformanceCounterStorageKHR* {.size: sizeof(int32).} = enum
     Int32
     Int64
@@ -1195,44 +1348,55 @@ type
     Uint64
     Float32
     Float64
+
   VkPerformanceCounterDescriptionFlagBitsKHR* {.size: sizeof(int32).} = enum
     PerformanceImpactingBit = 1
     ConcurrentlyImpactedBit
+
   VkPerformanceConfigurationTypeINTEL* {.size: sizeof(int32).} = enum
     CommandQueueMetricsDiscoveryActivated
+
   VkQueryPoolSamplingModeINTEL* {.size: sizeof(int32).} = enum
     Manual
+
   VkPerformanceOverrideTypeINTEL* {.size: sizeof(int32).} = enum
     NullHardware
     FlushGpuCaches
+
   VkPerformanceParameterTypeINTEL* {.size: sizeof(int32).} = enum
     HwCountersSupported
     StreamMarkerValidBits
+
   VkPerformanceValueTypeINTEL* {.size: sizeof(int32).} = enum
     Uint32
     Uint64
     Float
     Bool
     String
+
   VkShaderFloatControlsIndependence* {.size: sizeof(int32).} = enum
     N32BitOnly
     All
     None
+
   VkPipelineExecutableStatisticFormatKHR* {.size: sizeof(int32).} = enum
     Bool32
     Int64
     Uint64
     Float64
+
   VkLineRasterizationModeKHR* {.size: sizeof(int32).} = enum
     Default
     Rectangular
     Bresenham
     RectangularSmooth
+
   VkFaultLevel* {.size: sizeof(int32).} = enum
     Unassigned
     Critical
     Recoverable
     Warning
+
   VkFaultType* {.size: sizeof(int32).} = enum
     Invalid
     Unassigned
@@ -1241,22 +1405,27 @@ type
     PhysicalDevice
     CommandBufferFull
     InvalidApiUsage
+
   VkFaultQueryBehavior* {.size: sizeof(int32).} = enum
     GetAndClearAllFaults
+
   VkToolPurposeFlagBits* {.size: sizeof(int32).} = enum
     ValidationBit = 1
     ProfilingBit
     TracingBit = 4
     AdditionalFeaturesBit = 8
     ModifyingFeaturesBit = 16
+
   VkPipelineMatchControl* {.size: sizeof(int32).} = enum
     ApplicationUuidExactMatch
+
   VkFragmentShadingRateCombinerOpKHR* {.size: sizeof(int32).} = enum
     Keep
     Replace
     Min
     Max
     Mul
+
   VkFragmentShadingRateNV* {.size: sizeof(int32).} = enum
     N1InvocationPerPixel
     N1InvocationPer1x2Pixels
@@ -1270,9 +1439,11 @@ type
     N8InvocationsPerPixel
     N16InvocationsPerPixel
     NoInvocations
+
   VkFragmentShadingRateTypeNV* {.size: sizeof(int32).} = enum
     FragmentSize
     Enums
+
   VkSubpassMergeStatusEXT* {.size: sizeof(int32).} = enum
     Merged
     Disallowed
@@ -1288,6 +1459,7 @@ type
     NotMergedResolveAttachmentReuse
     NotMergedSingleSubpass
     NotMergedUnspecified
+
   VkAccessFlagBits2* {.size: sizeof(int32).} = enum
     N2None
     N2IndirectCommandReadBit
@@ -1310,6 +1482,7 @@ type
     N2ShaderSampledReadBit = 4294967296
     N2ShaderStorageReadBit = 8589934592
     N2ShaderStorageWriteBit = 17179869184
+
   VkPipelineStageFlagBits2* {.size: sizeof(int32).} = enum
     N2None
     N2TopOfPipeBit
@@ -1336,111 +1509,141 @@ type
     N2IndexInputBit = 68719476736
     N2VertexAttributeInputBit = 137438953472
     N2PreRasterizationShadersBit = 274877906944
+
   VkSubmitFlagBits* {.size: sizeof(int32).} = enum
     ProtectedBit = 1
+
   VkSciSyncClientTypeNV* {.size: sizeof(int32).} = enum
     Signaler
     Waiter
     SignalerWaiter
+
   VkSciSyncPrimitiveTypeNV* {.size: sizeof(int32).} = enum
     Fence
     Semaphore
+
   VkProvokingVertexModeEXT* {.size: sizeof(int32).} = enum
     FirstVertex
     LastVertex
+
   VkPipelineCacheValidationVersion* {.size: sizeof(int32).} = enum
     SafetyCriticalOne = 1
+
   VkAccelerationStructureMotionInstanceTypeNV* {.size: sizeof(int32).} = enum
     Static
     MatrixMotion
     SrtMotion
+
   VkGraphicsPipelineLibraryFlagBitsEXT* {.size: sizeof(int32).} = enum
     VertexInputInterfaceBit = 1
     PreRasterizationShadersBit
     FragmentShaderBit = 4
     FragmentOutputInterfaceBit = 8
+
   VkDeviceAddressBindingFlagBitsEXT* {.size: sizeof(int32).} = enum
     InternalObjectBit = 1
+
   VkDeviceAddressBindingTypeEXT* {.size: sizeof(int32).} = enum
     Bind
     Unbind
+
   VkFrameBoundaryFlagBitsEXT* {.size: sizeof(int32).} = enum
     FrameEndBit = 1
+
   VkPresentScalingFlagBitsEXT* {.size: sizeof(int32).} = enum
     OneToOneBit = 1
     AspectRatioStretchBit
     StretchBit = 4
+
   VkPresentGravityFlagBitsEXT* {.size: sizeof(int32).} = enum
     MinBit = 1
     MaxBit
     CenteredBit = 4
+
   VkPhysicalDeviceSchedulingControlsFlagBitsARM* {.size: sizeof(int32).} = enum
     VkPhysicalDeviceSchedulingControlsShaderCoreCountArm = 1
+
   VkVideoCodecOperationFlagBitsKHR* {.size: sizeof(int32).} = enum
     None
+
   VkVideoChromaSubsamplingFlagBitsKHR* {.size: sizeof(int32).} = enum
     Invalid
     MonochromeBit
     N420Bit
     N422Bit = 4
     N444Bit = 8
+
   VkVideoComponentBitDepthFlagBitsKHR* {.size: sizeof(int32).} = enum
     Invalid
     N8Bit
     N10Bit = 4
     N12Bit = 16
+
   VkVideoCapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     ProtectedContentBit = 1
     SeparateReferenceImagesBit
+
   VkVideoSessionCreateFlagBitsKHR* {.size: sizeof(int32).} = enum
     ProtectedContentBit = 1
+
   VkVideoDecodeH264PictureLayoutFlagBitsKHR* {.size: sizeof(int32).} = enum
     Progressive
     InterlacedInterleavedLinesBit
     InterlacedSeparatePlanesBit
+
   VkVideoCodingControlFlagBitsKHR* {.size: sizeof(int32).} = enum
     ResetBit = 1
+
   VkQueryResultStatusKHR* {.size: sizeof(int32).} = enum
     Error = -1
     NotReady
     Complete
+
   VkVideoDecodeUsageFlagBitsKHR* {.size: sizeof(int32).} = enum
     Default
     TranscodingBit
     OfflineBit
     StreamingBit = 4
+
   VkVideoDecodeCapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     DpbAndOutputCoincideBit = 1
     DpbAndOutputDistinctBit
+
   VkVideoEncodeUsageFlagBitsKHR* {.size: sizeof(int32).} = enum
     Default
     TranscodingBit
     StreamingBit
     RecordingBit = 4
     ConferencingBit = 8
+
   VkVideoEncodeContentFlagBitsKHR* {.size: sizeof(int32).} = enum
     Default
     CameraBit
     DesktopBit
     RenderedBit = 4
+
   VkVideoEncodeTuningModeKHR* {.size: sizeof(int32).} = enum
     Default
     HighQuality
     LowLatency
     UltraLowLatency
     Lossless
+
   VkVideoEncodeCapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     PrecedingExternallyEncodedBytesBit = 1
     InsufficientBitstreamBufferRangeDetectionBit
+
   VkVideoEncodeFeedbackFlagBitsKHR* {.size: sizeof(int32).} = enum
     BitstreamBufferOffsetBit = 1
     BitstreamBytesWrittenBit
     BitstreamHasOverridesBit = 4
+
   VkVideoEncodeRateControlModeFlagBitsKHR* {.size: sizeof(int32).} = enum
     Default
     DisabledBit
     CbrBit
     VbrBit = 4
+
   VkVideoEncodeH264CapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     HrdComplianceBit = 1
     PredictionWeightTableGeneratedBit
@@ -1451,6 +1654,7 @@ type
     PerPictureTypeMinMaxQpBit = 64
     PerSliceConstantQpBit = 128
     GeneratePrefixNaluBit = 256
+
   VkVideoEncodeH264StdFlagBitsKHR* {.size: sizeof(int32).} = enum
     SeparateColorPlaneFlagSetBit = 1
     QpprimeYZeroTransformBypassFlagSetBit
@@ -1472,20 +1676,24 @@ type
     DeblockingFilterPartialBit = 131072
     SliceQpDeltaBit = 524288
     DifferentSliceQpDeltaBit = 1048576
+
   VkVideoEncodeH264RateControlFlagBitsKHR* {.size: sizeof(int32).} = enum
     AttemptHrdComplianceBit = 1
     RegularGopBit
     ReferencePatternFlatBit = 4
     ReferencePatternDyadicBit = 8
     TemporalLayerPatternDyadicBit = 16
+
   VkHostImageCopyFlagBitsEXT* {.size: sizeof(int32).} = enum
     Memcpy = 1
+
   VkImageConstraintsInfoFlagBitsFUCHSIA* {.size: sizeof(int32).} = enum
     VkImageConstraintsInfoCpuReadRarelyFuchsia = 1
     VkImageConstraintsInfoCpuReadOftenFuchsia
     VkImageConstraintsInfoCpuWriteRarelyFuchsia = 4
     VkImageConstraintsInfoCpuWriteOftenFuchsia = 8
     VkImageConstraintsInfoProtectedOptionalFuchsia = 16
+
   VkFormatFeatureFlagBits2* {.size: sizeof(int32).} = enum
     N2SampledImageBit = 1
     N2StorageImageBit
@@ -1514,10 +1722,12 @@ type
     N2StorageReadWithoutFormatBit = 2147483648
     N2StorageWriteWithoutFormatBit = 4294967296
     N2SampledImageDepthComparisonBit = 8589934592
+
   VkRenderingFlagBits* {.size: sizeof(int32).} = enum
     ContentsSecondaryCommandBuffersBit = 1
     SuspendingBit
     ResumingBit = 4
+
   VkVideoEncodeH265CapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     HrdComplianceBit = 1
     PredictionWeightTableGeneratedBit
@@ -1529,6 +1739,7 @@ type
     PerSliceSegmentConstantQpBit = 128
     MultipleTilesPerSliceSegmentBit = 256
     MultipleSliceSegmentsPerTileBit = 512
+
   VkVideoEncodeH265StdFlagBitsKHR* {.size: sizeof(int32).} = enum
     SeparateColorPlaneFlagSetBit = 1
     SampleAdaptiveOffsetEnabledFlagSetBit
@@ -1551,21 +1762,25 @@ type
     DependentSliceSegmentFlagSetBit = 262144
     SliceQpDeltaBit = 524288
     DifferentSliceQpDeltaBit = 1048576
+
   VkVideoEncodeH265RateControlFlagBitsKHR* {.size: sizeof(int32).} = enum
     AttemptHrdComplianceBit = 1
     RegularGopBit
     ReferencePatternFlatBit = 4
     ReferencePatternDyadicBit = 8
     TemporalSubLayerPatternDyadicBit = 16
+
   VkVideoEncodeH265CtbSizeFlagBitsKHR* {.size: sizeof(int32).} = enum
     N16Bit = 1
     N32Bit
     N64Bit = 4
+
   VkVideoEncodeH265TransformBlockSizeFlagBitsKHR* {.size: sizeof(int32).} = enum
     N4Bit = 1
     N8Bit
     N16Bit = 4
     N32Bit = 8
+
   VkExportMetalObjectTypeFlagBitsEXT* {.size: sizeof(int32).} = enum
     MetalDeviceBit = 1
     MetalCommandQueueBit
@@ -1573,11 +1788,13 @@ type
     MetalTextureBit = 8
     MetalIosurfaceBit = 16
     MetalSharedEventBit = 32
+
   VkImageCompressionFlagBitsEXT* {.size: sizeof(int32).} = enum
     Default
     FixedRateDefault
     FixedRateExplicit
     Disabled = 4
+
   VkImageCompressionFixedRateFlagBitsEXT* {.size: sizeof(int32).} = enum
     None
     N1bpcBit
@@ -1604,22 +1821,26 @@ type
     N22bpcBit = 2097152
     N23bpcBit = 4194304
     N24bpcBit = 8388608
+
   VkPipelineRobustnessBufferBehaviorEXT* {.size: sizeof(int32).} = enum
     DeviceDefault
     Disabled
     RobustBufferAccess
     RobustBufferAccess2
+
   VkPipelineRobustnessImageBehaviorEXT* {.size: sizeof(int32).} = enum
     DeviceDefault
     Disabled
     RobustImageAccess
     RobustImageAccess2
+
   VkOpticalFlowGridSizeFlagBitsNV* {.size: sizeof(int32).} = enum
     Unknown
     N1x1Bit
     N2x2Bit
     N4x4Bit = 4
     N8x8Bit = 8
+
   VkOpticalFlowUsageFlagBitsNV* {.size: sizeof(int32).} = enum
     Unknown
     InputBit
@@ -1627,11 +1848,13 @@ type
     HintBit = 4
     CostBit = 8
     GlobalFlowBit = 16
+
   VkOpticalFlowPerformanceLevelNV* {.size: sizeof(int32).} = enum
     Unknown
     Slow
     Medium
     Fast
+
   VkOpticalFlowSessionBindingPointNV* {.size: sizeof(int32).} = enum
     Unknown
     Input
@@ -1642,41 +1865,52 @@ type
     Cost
     BackwardCost
     GlobalFlow
+
   VkOpticalFlowSessionCreateFlagBitsNV* {.size: sizeof(int32).} = enum
     EnableHintBit = 1
     EnableCostBit
     EnableGlobalFlowBit = 4
     AllowRegionsBit = 8
     BothDirectionsBit = 16
+
   VkOpticalFlowExecuteFlagBitsNV* {.size: sizeof(int32).} = enum
     DisableTemporalHintsBit = 1
+
   VkMicromapTypeEXT* {.size: sizeof(int32).} = enum
     OpacityMicromap
+
   VkBuildMicromapFlagBitsEXT* {.size: sizeof(int32).} = enum
     PreferFastTraceBit = 1
     PreferFastBuildBit
     AllowCompactionBit = 4
+
   VkMicromapCreateFlagBitsEXT* {.size: sizeof(int32).} = enum
     DeviceAddressCaptureReplayBit = 1
+
   VkCopyMicromapModeEXT* {.size: sizeof(int32).} = enum
     Clone
     Serialize
     Deserialize
     Compact
+
   VkBuildMicromapModeEXT* {.size: sizeof(int32).} = enum
     Build
+
   VkOpacityMicromapFormatEXT* {.size: sizeof(int32).} = enum
     N2State = 1
     N4State
+
   VkOpacityMicromapSpecialIndexEXT* {.size: sizeof(int32).} = enum
     FullyUnknownOpaque = -4
     FullyUnknownTransparent
     FullyOpaque
     FullyTransparent
+
   VkDepthBiasRepresentationEXT* {.size: sizeof(int32).} = enum
     LeastRepresentableValueFormat
     LeastRepresentableValueForceUnorm
     Float
+
   VkDeviceFaultAddressTypeEXT* {.size: sizeof(int32).} = enum
     None
     ReadInvalid
@@ -1685,22 +1919,28 @@ type
     InstructionPointerUnknown
     InstructionPointerInvalid
     InstructionPointerFault
+
   VkDeviceFaultVendorBinaryHeaderVersionEXT* {.size: sizeof(int32).} = enum
     One = 1
+
   VkDisplacementMicromapFormatNV* {.size: sizeof(int32).} = enum
     N64Triangles64Bytes = 1
     N256Triangles128Bytes
     N1024Triangles128Bytes
+
   VkShaderCreateFlagBitsEXT* {.size: sizeof(int32).} = enum
     LinkStageBit = 1
+
   VkShaderCodeTypeEXT* {.size: sizeof(int32).} = enum
     Binary
     Spirv
+
   VkScopeKHR* {.size: sizeof(int32).} = enum
     Device = 1
     Workgroup
     Subgroup
     QueueFamily = 5
+
   VkComponentTypeKHR* {.size: sizeof(int32).} = enum
     Float16
     Float32
@@ -1713,17 +1953,21 @@ type
     Uint16
     Uint32
     Uint64
+
   VkCubicFilterWeightsQCOM* {.size: sizeof(int32).} = enum
-    VkCubicFilterWeightsCatmullRomQcom
-    VkCubicFilterWeightsZeroTangentCardinalQcom
-    VkCubicFilterWeightsBSplineQcom
-    VkCubicFilterWeightsMitchellNetravaliQcom
+    CatmullRom
+    ZeroTangentCardinal
+    BSpline
+    MitchellNetravali
+
   VkBlockMatchWindowCompareModeQCOM* {.size: sizeof(int32).} = enum
-    VkBlockMatchWindowCompareModeMinQcom
-    VkBlockMatchWindowCompareModeMaxQcom
+    Min
+    Max
+
   VkLayeredDriverUnderlyingApiMSFT* {.size: sizeof(int32).} = enum
-    VkLayeredDriverUnderlyingApiNoneMsft
-    VkLayeredDriverUnderlyingApiD3d12Msft
+    None
+    D3d12
+
   VkLatencyMarkerNV* {.size: sizeof(int32).} = enum
     SimulationStart
     SimulationEnd
@@ -1737,9 +1981,11 @@ type
     OutOfBandRendersubmitEnd
     OutOfBandPresentStart
     OutOfBandPresentEnd
+
   VkOutOfBandQueueTypeNV* {.size: sizeof(int32).} = enum
     Render
     Present
+
 
 # Types
 
@@ -10490,7 +10736,7 @@ proc newVkLayerProperties*(layerName: array[VK_MAX_EXTENSION_NAME_SIZE, char], s
     description: description,
   )
 
-proc newVkApplicationInfo*(sType: VkStructureType, pNext: pointer = nil, pApplicationName: cstring, applicationVersion: uint32, pEngineName: cstring, engineVersion: uint32, apiVersion: uint32): VkApplicationInfo =
+proc newVkApplicationInfo*(sType: VkStructureType = VkStructureType.ApplicationInfo, pNext: pointer = nil, pApplicationName: cstring, applicationVersion: uint32, pEngineName: cstring, engineVersion: uint32, apiVersion: uint32): VkApplicationInfo =
   result = VkApplicationInfo(
     sType: sType,
     pNext: pNext,
@@ -10511,7 +10757,7 @@ proc newVkAllocationCallbacks*(pUserData: pointer = nil, pfnAllocation: PFN_vkAl
     pfnInternalFree: pfnInternalFree,
   )
 
-proc newVkDeviceQueueCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkDeviceQueueCreateFlags = 0.VkDeviceQueueCreateFlags, queueFamilyIndex: uint32, queueCount: uint32, pQueuePriorities: ptr float32): VkDeviceQueueCreateInfo =
+proc newVkDeviceQueueCreateInfo*(sType: VkStructureType = VkStructureType.DeviceQueueCreateInfo, pNext: pointer = nil, flags: VkDeviceQueueCreateFlags = 0.VkDeviceQueueCreateFlags, queueFamilyIndex: uint32, queueCount: uint32, pQueuePriorities: ptr float32): VkDeviceQueueCreateInfo =
   result = VkDeviceQueueCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10521,7 +10767,7 @@ proc newVkDeviceQueueCreateInfo*(sType: VkStructureType, pNext: pointer = nil, f
     pQueuePriorities: pQueuePriorities,
   )
 
-proc newVkDeviceCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkDeviceCreateFlags = 0.VkDeviceCreateFlags, queueCreateInfoCount: uint32, pQueueCreateInfos: ptr VkDeviceQueueCreateInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray, pEnabledFeatures: ptr VkPhysicalDeviceFeatures): VkDeviceCreateInfo =
+proc newVkDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceCreateInfo, pNext: pointer = nil, flags: VkDeviceCreateFlags = 0.VkDeviceCreateFlags, queueCreateInfoCount: uint32, pQueueCreateInfos: ptr VkDeviceQueueCreateInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray, pEnabledFeatures: ptr VkPhysicalDeviceFeatures): VkDeviceCreateInfo =
   result = VkDeviceCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10535,7 +10781,7 @@ proc newVkDeviceCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags:
     pEnabledFeatures: pEnabledFeatures,
   )
 
-proc newVkInstanceCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkInstanceCreateFlags = 0.VkInstanceCreateFlags, pApplicationInfo: ptr VkApplicationInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray): VkInstanceCreateInfo =
+proc newVkInstanceCreateInfo*(sType: VkStructureType = VkStructureType.InstanceCreateInfo, pNext: pointer = nil, flags: VkInstanceCreateFlags = 0.VkInstanceCreateFlags, pApplicationInfo: ptr VkApplicationInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray): VkInstanceCreateInfo =
   result = VkInstanceCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10563,7 +10809,7 @@ proc newVkPhysicalDeviceMemoryProperties*(memoryTypeCount: uint32, memoryTypes: 
     memoryHeaps: memoryHeaps,
   )
 
-proc newVkMemoryAllocateInfo*(sType: VkStructureType, pNext: pointer = nil, allocationSize: VkDeviceSize, memoryTypeIndex: uint32): VkMemoryAllocateInfo =
+proc newVkMemoryAllocateInfo*(sType: VkStructureType = VkStructureType.MemoryAllocateInfo, pNext: pointer = nil, allocationSize: VkDeviceSize, memoryTypeIndex: uint32): VkMemoryAllocateInfo =
   result = VkMemoryAllocateInfo(
     sType: sType,
     pNext: pNext,
@@ -10606,7 +10852,7 @@ proc newVkMemoryHeap*(size: VkDeviceSize, flags: VkMemoryHeapFlags = 0.VkMemoryH
     flags: flags,
   )
 
-proc newVkMappedMemoryRange*(sType: VkStructureType, pNext: pointer = nil, memory: VkDeviceMemory, offset: VkDeviceSize, size: VkDeviceSize): VkMappedMemoryRange =
+proc newVkMappedMemoryRange*(sType: VkStructureType = VkStructureType.MappedMemoryRange, pNext: pointer = nil, memory: VkDeviceMemory, offset: VkDeviceSize, size: VkDeviceSize): VkMappedMemoryRange =
   result = VkMappedMemoryRange(
     sType: sType,
     pNext: pNext,
@@ -10645,7 +10891,7 @@ proc newVkDescriptorImageInfo*(sampler: VkSampler, imageView: VkImageView, image
     imageLayout: imageLayout,
   )
 
-proc newVkWriteDescriptorSet*(sType: VkStructureType, pNext: pointer = nil, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32, descriptorType: VkDescriptorType, pImageInfo: ptr VkDescriptorImageInfo, pBufferInfo: ptr ptr VkDescriptorBufferInfo, pTexelBufferView: ptr VkBufferView): VkWriteDescriptorSet =
+proc newVkWriteDescriptorSet*(sType: VkStructureType = VkStructureType.WriteDescriptorSet, pNext: pointer = nil, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32, descriptorType: VkDescriptorType, pImageInfo: ptr VkDescriptorImageInfo, pBufferInfo: ptr ptr VkDescriptorBufferInfo, pTexelBufferView: ptr VkBufferView): VkWriteDescriptorSet =
   result = VkWriteDescriptorSet(
     sType: sType,
     pNext: pNext,
@@ -10659,7 +10905,7 @@ proc newVkWriteDescriptorSet*(sType: VkStructureType, pNext: pointer = nil, dstS
     pTexelBufferView: pTexelBufferView,
   )
 
-proc newVkCopyDescriptorSet*(sType: VkStructureType, pNext: pointer = nil, srcSet: VkDescriptorSet, srcBinding: uint32, srcArrayElement: uint32, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32): VkCopyDescriptorSet =
+proc newVkCopyDescriptorSet*(sType: VkStructureType = VkStructureType.CopyDescriptorSet, pNext: pointer = nil, srcSet: VkDescriptorSet, srcBinding: uint32, srcArrayElement: uint32, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32): VkCopyDescriptorSet =
   result = VkCopyDescriptorSet(
     sType: sType,
     pNext: pNext,
@@ -10679,7 +10925,7 @@ proc newVkBufferUsageFlags2CreateInfoKHR*(sType: VkStructureType, pNext: pointer
     usage: usage,
   )
 
-proc newVkBufferCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkBufferCreateFlags = 0.VkBufferCreateFlags, size: VkDeviceSize, usage: VkBufferUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32): VkBufferCreateInfo =
+proc newVkBufferCreateInfo*(sType: VkStructureType = VkStructureType.BufferCreateInfo, pNext: pointer = nil, flags: VkBufferCreateFlags = 0.VkBufferCreateFlags, size: VkDeviceSize, usage: VkBufferUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32): VkBufferCreateInfo =
   result = VkBufferCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10691,7 +10937,7 @@ proc newVkBufferCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags:
     pQueueFamilyIndices: pQueueFamilyIndices,
   )
 
-proc newVkBufferViewCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkBufferViewCreateFlags = 0.VkBufferViewCreateFlags, buffer: VkBuffer, format: VkFormat, offset: VkDeviceSize, range: VkDeviceSize): VkBufferViewCreateInfo =
+proc newVkBufferViewCreateInfo*(sType: VkStructureType = VkStructureType.BufferViewCreateInfo, pNext: pointer = nil, flags: VkBufferViewCreateFlags = 0.VkBufferViewCreateFlags, buffer: VkBuffer, format: VkFormat, offset: VkDeviceSize, range: VkDeviceSize): VkBufferViewCreateInfo =
   result = VkBufferViewCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10726,7 +10972,7 @@ proc newVkImageSubresourceRange*(aspectMask: VkImageAspectFlags, baseMipLevel: u
     layerCount: layerCount,
   )
 
-proc newVkMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags): VkMemoryBarrier =
+proc newVkMemoryBarrier*(sType: VkStructureType = VkStructureType.MemoryBarrier, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags): VkMemoryBarrier =
   result = VkMemoryBarrier(
     sType: sType,
     pNext: pNext,
@@ -10734,7 +10980,7 @@ proc newVkMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcAccess
     dstAccessMask: dstAccessMask,
   )
 
-proc newVkBufferMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, buffer: VkBuffer, offset: VkDeviceSize, size: VkDeviceSize): VkBufferMemoryBarrier =
+proc newVkBufferMemoryBarrier*(sType: VkStructureType = VkStructureType.BufferMemoryBarrier, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, buffer: VkBuffer, offset: VkDeviceSize, size: VkDeviceSize): VkBufferMemoryBarrier =
   result = VkBufferMemoryBarrier(
     sType: sType,
     pNext: pNext,
@@ -10747,7 +10993,7 @@ proc newVkBufferMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, src
     size: size,
   )
 
-proc newVkImageMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, oldLayout: VkImageLayout, newLayout: VkImageLayout, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, image: VkImage, subresourceRange: VkImageSubresourceRange): VkImageMemoryBarrier =
+proc newVkImageMemoryBarrier*(sType: VkStructureType = VkStructureType.ImageMemoryBarrier, pNext: pointer = nil, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, oldLayout: VkImageLayout, newLayout: VkImageLayout, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, image: VkImage, subresourceRange: VkImageSubresourceRange): VkImageMemoryBarrier =
   result = VkImageMemoryBarrier(
     sType: sType,
     pNext: pNext,
@@ -10761,7 +11007,7 @@ proc newVkImageMemoryBarrier*(sType: VkStructureType, pNext: pointer = nil, srcA
     subresourceRange: subresourceRange,
   )
 
-proc newVkImageCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkImageCreateFlags = 0.VkImageCreateFlags, imageType: VkImageType, format: VkFormat, extent: VkExtent3D, mipLevels: uint32, arrayLayers: uint32, samples: VkSampleCountFlagBits, tiling: VkImageTiling, usage: VkImageUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32, initialLayout: VkImageLayout): VkImageCreateInfo =
+proc newVkImageCreateInfo*(sType: VkStructureType = VkStructureType.ImageCreateInfo, pNext: pointer = nil, flags: VkImageCreateFlags = 0.VkImageCreateFlags, imageType: VkImageType, format: VkFormat, extent: VkExtent3D, mipLevels: uint32, arrayLayers: uint32, samples: VkSampleCountFlagBits, tiling: VkImageTiling, usage: VkImageUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32, initialLayout: VkImageLayout): VkImageCreateInfo =
   result = VkImageCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10789,7 +11035,7 @@ proc newVkSubresourceLayout*(offset: VkDeviceSize, size: VkDeviceSize, rowPitch:
     depthPitch: depthPitch,
   )
 
-proc newVkImageViewCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkImageViewCreateFlags = 0.VkImageViewCreateFlags, image: VkImage, viewType: VkImageViewType, format: VkFormat, components: VkComponentMapping, subresourceRange: VkImageSubresourceRange): VkImageViewCreateInfo =
+proc newVkImageViewCreateInfo*(sType: VkStructureType = VkStructureType.ImageViewCreateInfo, pNext: pointer = nil, flags: VkImageViewCreateFlags = 0.VkImageViewCreateFlags, image: VkImage, viewType: VkImageViewType, format: VkFormat, components: VkComponentMapping, subresourceRange: VkImageSubresourceRange): VkImageViewCreateInfo =
   result = VkImageViewCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10848,7 +11094,7 @@ proc newVkSparseImageMemoryBindInfo*(image: VkImage, bindCount: uint32, pBinds: 
     pBinds: pBinds,
   )
 
-proc newVkBindSparseInfo*(sType: VkStructureType, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, bufferBindCount: uint32, pBufferBinds: ptr VkSparseBufferMemoryBindInfo, imageOpaqueBindCount: uint32, pImageOpaqueBinds: ptr VkSparseImageOpaqueMemoryBindInfo, imageBindCount: uint32, pImageBinds: ptr VkSparseImageMemoryBindInfo, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkBindSparseInfo =
+proc newVkBindSparseInfo*(sType: VkStructureType = VkStructureType.BindSparseInfo, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, bufferBindCount: uint32, pBufferBinds: ptr VkSparseBufferMemoryBindInfo, imageOpaqueBindCount: uint32, pImageOpaqueBinds: ptr VkSparseImageOpaqueMemoryBindInfo, imageBindCount: uint32, pImageBinds: ptr VkSparseImageMemoryBindInfo, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkBindSparseInfo =
   result = VkBindSparseInfo(
     sType: sType,
     pNext: pNext,
@@ -10917,7 +11163,7 @@ proc newVkImageResolve*(srcSubresource: VkImageSubresourceLayers, srcOffset: VkO
     extent: extent,
   )
 
-proc newVkShaderModuleCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkShaderModuleCreateFlags = 0.VkShaderModuleCreateFlags, codeSize: uint, pCode: ptr uint32): VkShaderModuleCreateInfo =
+proc newVkShaderModuleCreateInfo*(sType: VkStructureType = VkStructureType.ShaderModuleCreateInfo, pNext: pointer = nil, flags: VkShaderModuleCreateFlags = 0.VkShaderModuleCreateFlags, codeSize: uint, pCode: ptr uint32): VkShaderModuleCreateInfo =
   result = VkShaderModuleCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10935,7 +11181,7 @@ proc newVkDescriptorSetLayoutBinding*(binding: uint32, descriptorType: VkDescrip
     pImmutableSamplers: pImmutableSamplers,
   )
 
-proc newVkDescriptorSetLayoutCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkDescriptorSetLayoutCreateFlags = 0.VkDescriptorSetLayoutCreateFlags, bindingCount: uint32, pBindings: ptr VkDescriptorSetLayoutBinding): VkDescriptorSetLayoutCreateInfo =
+proc newVkDescriptorSetLayoutCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetLayoutCreateInfo, pNext: pointer = nil, flags: VkDescriptorSetLayoutCreateFlags = 0.VkDescriptorSetLayoutCreateFlags, bindingCount: uint32, pBindings: ptr VkDescriptorSetLayoutBinding): VkDescriptorSetLayoutCreateInfo =
   result = VkDescriptorSetLayoutCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10950,7 +11196,7 @@ proc newVkDescriptorPoolSize*(`type`: VkDescriptorType, descriptorCount: uint32)
     descriptorCount: descriptorCount,
   )
 
-proc newVkDescriptorPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkDescriptorPoolCreateFlags = 0.VkDescriptorPoolCreateFlags, maxSets: uint32, poolSizeCount: uint32, pPoolSizes: ptr VkDescriptorPoolSize): VkDescriptorPoolCreateInfo =
+proc newVkDescriptorPoolCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorPoolCreateInfo, pNext: pointer = nil, flags: VkDescriptorPoolCreateFlags = 0.VkDescriptorPoolCreateFlags, maxSets: uint32, poolSizeCount: uint32, pPoolSizes: ptr VkDescriptorPoolSize): VkDescriptorPoolCreateInfo =
   result = VkDescriptorPoolCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10960,7 +11206,7 @@ proc newVkDescriptorPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil
     pPoolSizes: pPoolSizes,
   )
 
-proc newVkDescriptorSetAllocateInfo*(sType: VkStructureType, pNext: pointer = nil, descriptorPool: VkDescriptorPool, descriptorSetCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout): VkDescriptorSetAllocateInfo =
+proc newVkDescriptorSetAllocateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetAllocateInfo, pNext: pointer = nil, descriptorPool: VkDescriptorPool, descriptorSetCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout): VkDescriptorSetAllocateInfo =
   result = VkDescriptorSetAllocateInfo(
     sType: sType,
     pNext: pNext,
@@ -10984,7 +11230,7 @@ proc newVkSpecializationInfo*(mapEntryCount: uint32, pMapEntries: ptr VkSpeciali
     pData: pData,
   )
 
-proc newVkPipelineShaderStageCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineShaderStageCreateFlags = 0.VkPipelineShaderStageCreateFlags, stage: VkShaderStageFlagBits, module: VkShaderModule, pName: cstring, pSpecializationInfo: ptr VkSpecializationInfo): VkPipelineShaderStageCreateInfo =
+proc newVkPipelineShaderStageCreateInfo*(sType: VkStructureType = VkStructureType.PipelineShaderStageCreateInfo, pNext: pointer = nil, flags: VkPipelineShaderStageCreateFlags = 0.VkPipelineShaderStageCreateFlags, stage: VkShaderStageFlagBits, module: VkShaderModule, pName: cstring, pSpecializationInfo: ptr VkSpecializationInfo): VkPipelineShaderStageCreateInfo =
   result = VkPipelineShaderStageCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -10995,7 +11241,7 @@ proc newVkPipelineShaderStageCreateInfo*(sType: VkStructureType, pNext: pointer 
     pSpecializationInfo: pSpecializationInfo,
   )
 
-proc newVkComputePipelineCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stage: VkPipelineShaderStageCreateInfo, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkComputePipelineCreateInfo =
+proc newVkComputePipelineCreateInfo*(sType: VkStructureType = VkStructureType.ComputePipelineCreateInfo, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stage: VkPipelineShaderStageCreateInfo, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkComputePipelineCreateInfo =
   result = VkComputePipelineCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11037,7 +11283,7 @@ proc newVkVertexInputAttributeDescription*(location: uint32, binding: uint32, fo
     offset: offset,
   )
 
-proc newVkPipelineVertexInputStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineVertexInputStateCreateFlags = 0.VkPipelineVertexInputStateCreateFlags, vertexBindingDescriptionCount: uint32, pVertexBindingDescriptions: ptr VkVertexInputBindingDescription, vertexAttributeDescriptionCount: uint32, pVertexAttributeDescriptions: ptr VkVertexInputAttributeDescription): VkPipelineVertexInputStateCreateInfo =
+proc newVkPipelineVertexInputStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineVertexInputStateCreateInfo, pNext: pointer = nil, flags: VkPipelineVertexInputStateCreateFlags = 0.VkPipelineVertexInputStateCreateFlags, vertexBindingDescriptionCount: uint32, pVertexBindingDescriptions: ptr VkVertexInputBindingDescription, vertexAttributeDescriptionCount: uint32, pVertexAttributeDescriptions: ptr VkVertexInputAttributeDescription): VkPipelineVertexInputStateCreateInfo =
   result = VkPipelineVertexInputStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11048,7 +11294,7 @@ proc newVkPipelineVertexInputStateCreateInfo*(sType: VkStructureType, pNext: poi
     pVertexAttributeDescriptions: pVertexAttributeDescriptions,
   )
 
-proc newVkPipelineInputAssemblyStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineInputAssemblyStateCreateFlags = 0.VkPipelineInputAssemblyStateCreateFlags, topology: VkPrimitiveTopology, primitiveRestartEnable: VkBool32): VkPipelineInputAssemblyStateCreateInfo =
+proc newVkPipelineInputAssemblyStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineInputAssemblyStateCreateInfo, pNext: pointer = nil, flags: VkPipelineInputAssemblyStateCreateFlags = 0.VkPipelineInputAssemblyStateCreateFlags, topology: VkPrimitiveTopology, primitiveRestartEnable: VkBool32): VkPipelineInputAssemblyStateCreateInfo =
   result = VkPipelineInputAssemblyStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11057,7 +11303,7 @@ proc newVkPipelineInputAssemblyStateCreateInfo*(sType: VkStructureType, pNext: p
     primitiveRestartEnable: primitiveRestartEnable,
   )
 
-proc newVkPipelineTessellationStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineTessellationStateCreateFlags = 0.VkPipelineTessellationStateCreateFlags, patchControlPoints: uint32): VkPipelineTessellationStateCreateInfo =
+proc newVkPipelineTessellationStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineTessellationStateCreateInfo, pNext: pointer = nil, flags: VkPipelineTessellationStateCreateFlags = 0.VkPipelineTessellationStateCreateFlags, patchControlPoints: uint32): VkPipelineTessellationStateCreateInfo =
   result = VkPipelineTessellationStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11065,7 +11311,7 @@ proc newVkPipelineTessellationStateCreateInfo*(sType: VkStructureType, pNext: po
     patchControlPoints: patchControlPoints,
   )
 
-proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineViewportStateCreateFlags = 0.VkPipelineViewportStateCreateFlags, viewportCount: uint32, pViewports: ptr VkViewport, scissorCount: uint32, pScissors: ptr VkRect2D): VkPipelineViewportStateCreateInfo =
+proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineViewportStateCreateInfo, pNext: pointer = nil, flags: VkPipelineViewportStateCreateFlags = 0.VkPipelineViewportStateCreateFlags, viewportCount: uint32, pViewports: ptr VkViewport, scissorCount: uint32, pScissors: ptr VkRect2D): VkPipelineViewportStateCreateInfo =
   result = VkPipelineViewportStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11076,7 +11322,7 @@ proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType, pNext: pointe
     pScissors: pScissors,
   )
 
-proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineRasterizationStateCreateFlags = 0.VkPipelineRasterizationStateCreateFlags, depthClampEnable: VkBool32, rasterizerDiscardEnable: VkBool32, polygonMode: VkPolygonMode, cullMode: VkCullModeFlags, frontFace: VkFrontFace, depthBiasEnable: VkBool32, depthBiasConstantFactor: float32, depthBiasClamp: float32, depthBiasSlopeFactor: float32, lineWidth: float32): VkPipelineRasterizationStateCreateInfo =
+proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineRasterizationStateCreateInfo, pNext: pointer = nil, flags: VkPipelineRasterizationStateCreateFlags = 0.VkPipelineRasterizationStateCreateFlags, depthClampEnable: VkBool32, rasterizerDiscardEnable: VkBool32, polygonMode: VkPolygonMode, cullMode: VkCullModeFlags, frontFace: VkFrontFace, depthBiasEnable: VkBool32, depthBiasConstantFactor: float32, depthBiasClamp: float32, depthBiasSlopeFactor: float32, lineWidth: float32): VkPipelineRasterizationStateCreateInfo =
   result = VkPipelineRasterizationStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11093,7 +11339,7 @@ proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType, pNext: p
     lineWidth: lineWidth,
   )
 
-proc newVkPipelineMultisampleStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineMultisampleStateCreateFlags = 0.VkPipelineMultisampleStateCreateFlags, rasterizationSamples: VkSampleCountFlagBits, sampleShadingEnable: VkBool32, minSampleShading: float32, pSampleMask: ptr VkSampleMask, alphaToCoverageEnable: VkBool32, alphaToOneEnable: VkBool32): VkPipelineMultisampleStateCreateInfo =
+proc newVkPipelineMultisampleStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineMultisampleStateCreateInfo, pNext: pointer = nil, flags: VkPipelineMultisampleStateCreateFlags = 0.VkPipelineMultisampleStateCreateFlags, rasterizationSamples: VkSampleCountFlagBits, sampleShadingEnable: VkBool32, minSampleShading: float32, pSampleMask: ptr VkSampleMask, alphaToCoverageEnable: VkBool32, alphaToOneEnable: VkBool32): VkPipelineMultisampleStateCreateInfo =
   result = VkPipelineMultisampleStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11118,7 +11364,7 @@ proc newVkPipelineColorBlendAttachmentState*(blendEnable: VkBool32, srcColorBlen
     colorWriteMask: colorWriteMask,
   )
 
-proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineColorBlendStateCreateFlags = 0.VkPipelineColorBlendStateCreateFlags, logicOpEnable: VkBool32, logicOp: VkLogicOp, attachmentCount: uint32, pAttachments: ptr VkPipelineColorBlendAttachmentState, blendConstants: array[4, float32]): VkPipelineColorBlendStateCreateInfo =
+proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineColorBlendStateCreateInfo, pNext: pointer = nil, flags: VkPipelineColorBlendStateCreateFlags = 0.VkPipelineColorBlendStateCreateFlags, logicOpEnable: VkBool32, logicOp: VkLogicOp, attachmentCount: uint32, pAttachments: ptr VkPipelineColorBlendAttachmentState, blendConstants: array[4, float32]): VkPipelineColorBlendStateCreateInfo =
   result = VkPipelineColorBlendStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11130,7 +11376,7 @@ proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType, pNext: poin
     blendConstants: blendConstants,
   )
 
-proc newVkPipelineDynamicStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineDynamicStateCreateFlags = 0.VkPipelineDynamicStateCreateFlags, dynamicStateCount: uint32, pDynamicStates: ptr VkDynamicState): VkPipelineDynamicStateCreateInfo =
+proc newVkPipelineDynamicStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineDynamicStateCreateInfo, pNext: pointer = nil, flags: VkPipelineDynamicStateCreateFlags = 0.VkPipelineDynamicStateCreateFlags, dynamicStateCount: uint32, pDynamicStates: ptr VkDynamicState): VkPipelineDynamicStateCreateInfo =
   result = VkPipelineDynamicStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11150,7 +11396,7 @@ proc newVkStencilOpState*(failOp: VkStencilOp, passOp: VkStencilOp, depthFailOp:
     reference: reference,
   )
 
-proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineDepthStencilStateCreateFlags = 0.VkPipelineDepthStencilStateCreateFlags, depthTestEnable: VkBool32, depthWriteEnable: VkBool32, depthCompareOp: VkCompareOp, depthBoundsTestEnable: VkBool32, stencilTestEnable: VkBool32, front: VkStencilOpState, back: VkStencilOpState, minDepthBounds: float32, maxDepthBounds: float32): VkPipelineDepthStencilStateCreateInfo =
+proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineDepthStencilStateCreateInfo, pNext: pointer = nil, flags: VkPipelineDepthStencilStateCreateFlags = 0.VkPipelineDepthStencilStateCreateFlags, depthTestEnable: VkBool32, depthWriteEnable: VkBool32, depthCompareOp: VkCompareOp, depthBoundsTestEnable: VkBool32, stencilTestEnable: VkBool32, front: VkStencilOpState, back: VkStencilOpState, minDepthBounds: float32, maxDepthBounds: float32): VkPipelineDepthStencilStateCreateInfo =
   result = VkPipelineDepthStencilStateCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11166,7 +11412,7 @@ proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType, pNext: po
     maxDepthBounds: maxDepthBounds,
   )
 
-proc newVkGraphicsPipelineCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, pVertexInputState: ptr VkPipelineVertexInputStateCreateInfo, pInputAssemblyState: ptr VkPipelineInputAssemblyStateCreateInfo, pTessellationState: ptr VkPipelineTessellationStateCreateInfo, pViewportState: ptr VkPipelineViewportStateCreateInfo, pRasterizationState: ptr VkPipelineRasterizationStateCreateInfo, pMultisampleState: ptr VkPipelineMultisampleStateCreateInfo, pDepthStencilState: ptr VkPipelineDepthStencilStateCreateInfo, pColorBlendState: ptr VkPipelineColorBlendStateCreateInfo, pDynamicState: ptr VkPipelineDynamicStateCreateInfo, layout: VkPipelineLayout, renderPass: VkRenderPass, subpass: uint32, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkGraphicsPipelineCreateInfo =
+proc newVkGraphicsPipelineCreateInfo*(sType: VkStructureType = VkStructureType.GraphicsPipelineCreateInfo, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, pVertexInputState: ptr VkPipelineVertexInputStateCreateInfo, pInputAssemblyState: ptr VkPipelineInputAssemblyStateCreateInfo, pTessellationState: ptr VkPipelineTessellationStateCreateInfo, pViewportState: ptr VkPipelineViewportStateCreateInfo, pRasterizationState: ptr VkPipelineRasterizationStateCreateInfo, pMultisampleState: ptr VkPipelineMultisampleStateCreateInfo, pDepthStencilState: ptr VkPipelineDepthStencilStateCreateInfo, pColorBlendState: ptr VkPipelineColorBlendStateCreateInfo, pDynamicState: ptr VkPipelineDynamicStateCreateInfo, layout: VkPipelineLayout, renderPass: VkRenderPass, subpass: uint32, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkGraphicsPipelineCreateInfo =
   result = VkGraphicsPipelineCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11189,7 +11435,7 @@ proc newVkGraphicsPipelineCreateInfo*(sType: VkStructureType, pNext: pointer = n
     basePipelineIndex: basePipelineIndex,
   )
 
-proc newVkPipelineCacheCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineCacheCreateFlags = 0.VkPipelineCacheCreateFlags, initialDataSize: uint, pInitialData: pointer = nil): VkPipelineCacheCreateInfo =
+proc newVkPipelineCacheCreateInfo*(sType: VkStructureType = VkStructureType.PipelineCacheCreateInfo, pNext: pointer = nil, flags: VkPipelineCacheCreateFlags = 0.VkPipelineCacheCreateFlags, initialDataSize: uint, pInitialData: pointer = nil): VkPipelineCacheCreateInfo =
   result = VkPipelineCacheCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11241,7 +11487,7 @@ proc newVkPushConstantRange*(stageFlags: VkShaderStageFlags, offset: uint32, siz
     size: size,
   )
 
-proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkPipelineLayoutCreateFlags = 0.VkPipelineLayoutCreateFlags, setLayoutCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout, pushConstantRangeCount: uint32, pPushConstantRanges: ptr VkPushConstantRange): VkPipelineLayoutCreateInfo =
+proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType = VkStructureType.PipelineLayoutCreateInfo, pNext: pointer = nil, flags: VkPipelineLayoutCreateFlags = 0.VkPipelineLayoutCreateFlags, setLayoutCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout, pushConstantRangeCount: uint32, pPushConstantRanges: ptr VkPushConstantRange): VkPipelineLayoutCreateInfo =
   result = VkPipelineLayoutCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11252,7 +11498,7 @@ proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType, pNext: pointer = nil
     pPushConstantRanges: pPushConstantRanges,
   )
 
-proc newVkSamplerCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkSamplerCreateFlags = 0.VkSamplerCreateFlags, magFilter: VkFilter, minFilter: VkFilter, mipmapMode: VkSamplerMipmapMode, addressModeU: VkSamplerAddressMode, addressModeV: VkSamplerAddressMode, addressModeW: VkSamplerAddressMode, mipLodBias: float32, anisotropyEnable: VkBool32, maxAnisotropy: float32, compareEnable: VkBool32, compareOp: VkCompareOp, minLod: float32, maxLod: float32, borderColor: VkBorderColor, unnormalizedCoordinates: VkBool32): VkSamplerCreateInfo =
+proc newVkSamplerCreateInfo*(sType: VkStructureType = VkStructureType.SamplerCreateInfo, pNext: pointer = nil, flags: VkSamplerCreateFlags = 0.VkSamplerCreateFlags, magFilter: VkFilter, minFilter: VkFilter, mipmapMode: VkSamplerMipmapMode, addressModeU: VkSamplerAddressMode, addressModeV: VkSamplerAddressMode, addressModeW: VkSamplerAddressMode, mipLodBias: float32, anisotropyEnable: VkBool32, maxAnisotropy: float32, compareEnable: VkBool32, compareOp: VkCompareOp, minLod: float32, maxLod: float32, borderColor: VkBorderColor, unnormalizedCoordinates: VkBool32): VkSamplerCreateInfo =
   result = VkSamplerCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11274,7 +11520,7 @@ proc newVkSamplerCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags
     unnormalizedCoordinates: unnormalizedCoordinates,
   )
 
-proc newVkCommandPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkCommandPoolCreateFlags = 0.VkCommandPoolCreateFlags, queueFamilyIndex: uint32): VkCommandPoolCreateInfo =
+proc newVkCommandPoolCreateInfo*(sType: VkStructureType = VkStructureType.CommandPoolCreateInfo, pNext: pointer = nil, flags: VkCommandPoolCreateFlags = 0.VkCommandPoolCreateFlags, queueFamilyIndex: uint32): VkCommandPoolCreateInfo =
   result = VkCommandPoolCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11282,7 +11528,7 @@ proc newVkCommandPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, f
     queueFamilyIndex: queueFamilyIndex,
   )
 
-proc newVkCommandBufferAllocateInfo*(sType: VkStructureType, pNext: pointer = nil, commandPool: VkCommandPool, level: VkCommandBufferLevel, commandBufferCount: uint32): VkCommandBufferAllocateInfo =
+proc newVkCommandBufferAllocateInfo*(sType: VkStructureType = VkStructureType.CommandBufferAllocateInfo, pNext: pointer = nil, commandPool: VkCommandPool, level: VkCommandBufferLevel, commandBufferCount: uint32): VkCommandBufferAllocateInfo =
   result = VkCommandBufferAllocateInfo(
     sType: sType,
     pNext: pNext,
@@ -11291,7 +11537,7 @@ proc newVkCommandBufferAllocateInfo*(sType: VkStructureType, pNext: pointer = ni
     commandBufferCount: commandBufferCount,
   )
 
-proc newVkCommandBufferInheritanceInfo*(sType: VkStructureType, pNext: pointer = nil, renderPass: VkRenderPass, subpass: uint32, framebuffer: VkFramebuffer, occlusionQueryEnable: VkBool32, queryFlags: VkQueryControlFlags, pipelineStatistics: VkQueryPipelineStatisticFlags): VkCommandBufferInheritanceInfo =
+proc newVkCommandBufferInheritanceInfo*(sType: VkStructureType = VkStructureType.CommandBufferInheritanceInfo, pNext: pointer = nil, renderPass: VkRenderPass, subpass: uint32, framebuffer: VkFramebuffer, occlusionQueryEnable: VkBool32, queryFlags: VkQueryControlFlags, pipelineStatistics: VkQueryPipelineStatisticFlags): VkCommandBufferInheritanceInfo =
   result = VkCommandBufferInheritanceInfo(
     sType: sType,
     pNext: pNext,
@@ -11303,7 +11549,7 @@ proc newVkCommandBufferInheritanceInfo*(sType: VkStructureType, pNext: pointer =
     pipelineStatistics: pipelineStatistics,
   )
 
-proc newVkCommandBufferBeginInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkCommandBufferUsageFlags = 0.VkCommandBufferUsageFlags, pInheritanceInfo: ptr VkCommandBufferInheritanceInfo): VkCommandBufferBeginInfo =
+proc newVkCommandBufferBeginInfo*(sType: VkStructureType = VkStructureType.CommandBufferBeginInfo, pNext: pointer = nil, flags: VkCommandBufferUsageFlags = 0.VkCommandBufferUsageFlags, pInheritanceInfo: ptr VkCommandBufferInheritanceInfo): VkCommandBufferBeginInfo =
   result = VkCommandBufferBeginInfo(
     sType: sType,
     pNext: pNext,
@@ -11311,7 +11557,7 @@ proc newVkCommandBufferBeginInfo*(sType: VkStructureType, pNext: pointer = nil, 
     pInheritanceInfo: pInheritanceInfo,
   )
 
-proc newVkRenderPassBeginInfo*(sType: VkStructureType, pNext: pointer = nil, renderPass: VkRenderPass, framebuffer: VkFramebuffer, renderArea: VkRect2D, clearValueCount: uint32, pClearValues: ptr VkClearValue): VkRenderPassBeginInfo =
+proc newVkRenderPassBeginInfo*(sType: VkStructureType = VkStructureType.RenderPassBeginInfo, pNext: pointer = nil, renderPass: VkRenderPass, framebuffer: VkFramebuffer, renderArea: VkRect2D, clearValueCount: uint32, pClearValues: ptr VkClearValue): VkRenderPassBeginInfo =
   result = VkRenderPassBeginInfo(
     sType: sType,
     pNext: pNext,
@@ -11379,7 +11625,7 @@ proc newVkSubpassDependency*(srcSubpass: uint32, dstSubpass: uint32, srcStageMas
     dependencyFlags: dependencyFlags,
   )
 
-proc newVkRenderPassCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkRenderPassCreateFlags = 0.VkRenderPassCreateFlags, attachmentCount: uint32, pAttachments: ptr VkAttachmentDescription, subpassCount: uint32, pSubpasses: ptr VkSubpassDescription, dependencyCount: uint32, pDependencies: ptr VkSubpassDependency): VkRenderPassCreateInfo =
+proc newVkRenderPassCreateInfo*(sType: VkStructureType = VkStructureType.RenderPassCreateInfo, pNext: pointer = nil, flags: VkRenderPassCreateFlags = 0.VkRenderPassCreateFlags, attachmentCount: uint32, pAttachments: ptr VkAttachmentDescription, subpassCount: uint32, pSubpasses: ptr VkSubpassDescription, dependencyCount: uint32, pDependencies: ptr VkSubpassDependency): VkRenderPassCreateInfo =
   result = VkRenderPassCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11392,14 +11638,14 @@ proc newVkRenderPassCreateInfo*(sType: VkStructureType, pNext: pointer = nil, fl
     pDependencies: pDependencies,
   )
 
-proc newVkEventCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkEventCreateFlags = 0.VkEventCreateFlags): VkEventCreateInfo =
+proc newVkEventCreateInfo*(sType: VkStructureType = VkStructureType.EventCreateInfo, pNext: pointer = nil, flags: VkEventCreateFlags = 0.VkEventCreateFlags): VkEventCreateInfo =
   result = VkEventCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
   )
 
-proc newVkFenceCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkFenceCreateFlags = 0.VkFenceCreateFlags): VkFenceCreateInfo =
+proc newVkFenceCreateInfo*(sType: VkStructureType = VkStructureType.FenceCreateInfo, pNext: pointer = nil, flags: VkFenceCreateFlags = 0.VkFenceCreateFlags): VkFenceCreateInfo =
   result = VkFenceCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11584,14 +11830,14 @@ proc newVkPhysicalDeviceLimits*(maxImageDimension1D: uint32, maxImageDimension2D
     nonCoherentAtomSize: nonCoherentAtomSize,
   )
 
-proc newVkSemaphoreCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkSemaphoreCreateFlags = 0.VkSemaphoreCreateFlags): VkSemaphoreCreateInfo =
+proc newVkSemaphoreCreateInfo*(sType: VkStructureType = VkStructureType.SemaphoreCreateInfo, pNext: pointer = nil, flags: VkSemaphoreCreateFlags = 0.VkSemaphoreCreateFlags): VkSemaphoreCreateInfo =
   result = VkSemaphoreCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
   )
 
-proc newVkQueryPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkQueryPoolCreateFlags = 0.VkQueryPoolCreateFlags, queryType: VkQueryType, queryCount: uint32, pipelineStatistics: VkQueryPipelineStatisticFlags): VkQueryPoolCreateInfo =
+proc newVkQueryPoolCreateInfo*(sType: VkStructureType = VkStructureType.QueryPoolCreateInfo, pNext: pointer = nil, flags: VkQueryPoolCreateFlags = 0.VkQueryPoolCreateFlags, queryType: VkQueryType, queryCount: uint32, pipelineStatistics: VkQueryPipelineStatisticFlags): VkQueryPoolCreateInfo =
   result = VkQueryPoolCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11601,7 +11847,7 @@ proc newVkQueryPoolCreateInfo*(sType: VkStructureType, pNext: pointer = nil, fla
     pipelineStatistics: pipelineStatistics,
   )
 
-proc newVkFramebufferCreateInfo*(sType: VkStructureType, pNext: pointer = nil, flags: VkFramebufferCreateFlags = 0.VkFramebufferCreateFlags, renderPass: VkRenderPass, attachmentCount: uint32, pAttachments: ptr VkImageView, width: uint32, height: uint32, layers: uint32): VkFramebufferCreateInfo =
+proc newVkFramebufferCreateInfo*(sType: VkStructureType = VkStructureType.FramebufferCreateInfo, pNext: pointer = nil, flags: VkFramebufferCreateFlags = 0.VkFramebufferCreateFlags, renderPass: VkRenderPass, attachmentCount: uint32, pAttachments: ptr VkImageView, width: uint32, height: uint32, layers: uint32): VkFramebufferCreateInfo =
   result = VkFramebufferCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -11651,7 +11897,7 @@ proc newVkMultiDrawIndexedInfoEXT*(firstIndex: uint32, indexCount: uint32, verte
     vertexOffset: vertexOffset,
   )
 
-proc newVkSubmitInfo*(sType: VkStructureType, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, pWaitDstStageMask: ptr VkPipelineStageFlags, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkSubmitInfo =
+proc newVkSubmitInfo*(sType: VkStructureType = VkStructureType.SubmitInfo, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, pWaitDstStageMask: ptr VkPipelineStageFlags, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkSubmitInfo =
   result = VkSubmitInfo(
     sType: sType,
     pNext: pNext,

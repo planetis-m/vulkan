@@ -345,15 +345,6 @@ proc genEnums(node: XmlNode, output: var string) =
       if e.attr("api") == "vulkansc" or e.attr("deprecated") != "":
         continue
       var enumName = e.attr("name")
-      enumName = camelCaseAscii(enumName)
-      var tmp = name
-      for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "FlagBits", "FlagBits2"]:
-        tmp.removeSuffix(suf)
-      for suf in ["Khr", "Ext", "Nv", "Intel", "Amd"]:
-        enumName.removeSuffix(suf)
-      enumName.removePrefix(tmp)
-      if enumName[0] in Digits:
-        enumName = "N" & enumName
       var enumValueStr = e.attr("value")
       if enumValueStr == "":
         if e.attr("bitpos") == "":
@@ -376,14 +367,25 @@ proc genEnums(node: XmlNode, output: var string) =
     output.add("  {name}* {{.size: sizeof(int32).}} = enum\n".fmt)
     elements.sort(system.cmp)
     var prev = -1
-    for k, v in elements.pairs:
+    for enumValue, tmp in elements.pairs:
+      var enumName = tmp
+      enumName = camelCaseAscii(enumName)
+      var tmp = name
+      for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "MSFT", "QCOM", "ANDROID", "FlagBits", "FlagBits2"]:
+        tmp.removeSuffix(suf)
+      for suf in ["Khr", "Ext", "Nv", "Intel", "Amd", "Msft", "Qcom", "Android"]:
+        enumName.removeSuffix(suf)
+      enumName.removePrefix(tmp)
+      if enumName[0] in Digits:
+        enumName = "N" & enumName
       if name == "VkStructureType":
-        vkStructureTypes.add(v.replace("_", ""))
-      if prev + 1 != k:
-        output.add("    {v} = {k}\n".fmt)
+        vkStructureTypes.add(enumName)
+      if prev + 1 != enumValue:
+        output.add("    {enumName} = {enumValue}\n".fmt)
       else:
-        output.add("    {v}\n".fmt)
-      prev = k
+        output.add("    {enumName}\n".fmt)
+      prev = enumValue
+    output.add("\n")
 
 proc genProcs(node: XmlNode, output: var string) =
   echo "Generating Procedures..."
@@ -490,8 +492,9 @@ proc genConstructors(node: XmlNode, output: var string) =
         output.add(" = 0.{m.argType}".fmt)
       if m.name == "sType":
         for structType in vkStructureTypes:
-          if structType.cmpIgnoreStyle("VkStructureType{s.name[2..<s.name.len]}".fmt) == 0:
-            output.add(" = VkStructureType{s.name[2..<s.name.len]}".fmt)
+          let tmp = s.name[2..<s.name.len]
+          if structType.cmpIgnoreStyle(tmp) == 0:
+            output.add(" = VkStructureType.{tmp}".fmt)
       if m.argType == "pointer":
         output.add(" = nil")
     output.add("): {s.name} =\n".fmt)
