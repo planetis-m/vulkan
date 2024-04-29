@@ -349,6 +349,7 @@ proc genEnums(node: XmlNode, output: var string) =
       var tmp = name
       for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "FlagBits", "FlagBits2"]:
         tmp.removeSuffix(suf)
+      for suf in ["Khr", "Ext", "Nv", "Intel", "Amd"]:
         enumName.removeSuffix(suf)
       enumName.removePrefix(tmp)
       if enumName[0] in Digits:
@@ -374,10 +375,15 @@ proc genEnums(node: XmlNode, output: var string) =
       continue
     output.add("  {name}* {{.size: sizeof(int32).}} = enum\n".fmt)
     elements.sort(system.cmp)
+    var prev = -1
     for k, v in elements.pairs:
       if name == "VkStructureType":
         vkStructureTypes.add(v.replace("_", ""))
-      output.add("    {v} = {k}\n".fmt)
+      if prev + 1 != k:
+        output.add("    {v} = {k}\n".fmt)
+      else:
+        output.add("    {v}\n".fmt)
+      prev = k
 
 proc genProcs(node: XmlNode, output: var string) =
   echo "Generating Procedures..."

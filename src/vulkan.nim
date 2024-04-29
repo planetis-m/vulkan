@@ -84,507 +84,507 @@ const
 
 type
   VkImageLayout* {.size: sizeof(int32).} = enum
-    Undefined = 0
-    General = 1
-    ColorAttachmentOptimal = 2
-    DepthStencilAttachmentOptimal = 3
-    DepthStencilReadOnlyOptimal = 4
-    ShaderReadOnlyOptimal = 5
-    TransferSrcOptimal = 6
-    TransferDstOptimal = 7
-    Preinitialized = 8
+    Undefined
+    General
+    ColorAttachmentOptimal
+    DepthStencilAttachmentOptimal
+    DepthStencilReadOnlyOptimal
+    ShaderReadOnlyOptimal
+    TransferSrcOptimal
+    TransferDstOptimal
+    Preinitialized
   VkAttachmentLoadOp* {.size: sizeof(int32).} = enum
-    Load = 0
-    Clear = 1
-    DontCare = 2
+    Load
+    Clear
+    DontCare
   VkAttachmentStoreOp* {.size: sizeof(int32).} = enum
-    Store = 0
-    DontCare = 1
+    Store
+    DontCare
   VkImageType* {.size: sizeof(int32).} = enum
-    N1d = 0
-    N2d = 1
-    N3d = 2
+    N1d
+    N2d
+    N3d
   VkImageTiling* {.size: sizeof(int32).} = enum
-    Optimal = 0
-    Linear = 1
+    Optimal
+    Linear
   VkImageViewType* {.size: sizeof(int32).} = enum
-    N1d = 0
-    N2d = 1
-    N3d = 2
-    Cube = 3
-    N1dArray = 4
-    N2dArray = 5
-    CubeArray = 6
+    N1d
+    N2d
+    N3d
+    Cube
+    N1dArray
+    N2dArray
+    CubeArray
   VkCommandBufferLevel* {.size: sizeof(int32).} = enum
-    Primary = 0
-    Secondary = 1
+    Primary
+    Secondary
   VkComponentSwizzle* {.size: sizeof(int32).} = enum
-    Identity = 0
-    Zero = 1
-    One = 2
-    R = 3
-    G = 4
-    B = 5
-    A = 6
+    Identity
+    Zero
+    One
+    R
+    G
+    B
+    A
   VkDescriptorType* {.size: sizeof(int32).} = enum
-    Sampler = 0
-    CombinedImageSampler = 1
-    SampledImage = 2
-    StorageImage = 3
-    UniformTexelBuffer = 4
-    StorageTexelBuffer = 5
-    UniformBuffer = 6
-    StorageBuffer = 7
-    UniformBufferDynamic = 8
-    StorageBufferDynamic = 9
-    InputAttachment = 10
+    Sampler
+    CombinedImageSampler
+    SampledImage
+    StorageImage
+    UniformTexelBuffer
+    StorageTexelBuffer
+    UniformBuffer
+    StorageBuffer
+    UniformBufferDynamic
+    StorageBufferDynamic
+    InputAttachment
   VkQueryType* {.size: sizeof(int32).} = enum
-    Occlusion = 0
-    PipelineStatistics = 1
-    Timestamp = 2
+    Occlusion
+    PipelineStatistics
+    Timestamp
   VkBorderColor* {.size: sizeof(int32).} = enum
-    FloatTransparentBlack = 0
-    IntTransparentBlack = 1
-    FloatOpaqueBlack = 2
-    IntOpaqueBlack = 3
-    FloatOpaqueWhite = 4
-    IntOpaqueWhite = 5
+    FloatTransparentBlack
+    IntTransparentBlack
+    FloatOpaqueBlack
+    IntOpaqueBlack
+    FloatOpaqueWhite
+    IntOpaqueWhite
   VkPipelineBindPoint* {.size: sizeof(int32).} = enum
-    Graphics = 0
-    Compute = 1
+    Graphics
+    Compute
   VkPipelineCacheHeaderVersion* {.size: sizeof(int32).} = enum
     One = 1
   VkPrimitiveTopology* {.size: sizeof(int32).} = enum
-    PointList = 0
-    LineList = 1
-    LineStrip = 2
-    TriangleList = 3
-    TriangleStrip = 4
-    TriangleFan = 5
-    LineListWithAdjacency = 6
-    LineStripWithAdjacency = 7
-    TriangleListWithAdjacency = 8
-    TriangleStripWithAdjacency = 9
-    PatchList = 10
+    PointList
+    LineList
+    LineStrip
+    TriangleList
+    TriangleStrip
+    TriangleFan
+    LineListWithAdjacency
+    LineStripWithAdjacency
+    TriangleListWithAdjacency
+    TriangleStripWithAdjacency
+    PatchList
   VkSharingMode* {.size: sizeof(int32).} = enum
-    Exclusive = 0
-    Concurrent = 1
+    Exclusive
+    Concurrent
   VkIndexType* {.size: sizeof(int32).} = enum
-    Uint16 = 0
-    Uint32 = 1
+    Uint16
+    Uint32
   VkFilter* {.size: sizeof(int32).} = enum
-    Nearest = 0
-    Linear = 1
+    Nearest
+    Linear
   VkSamplerMipmapMode* {.size: sizeof(int32).} = enum
-    Nearest = 0
-    Linear = 1
+    Nearest
+    Linear
   VkSamplerAddressMode* {.size: sizeof(int32).} = enum
-    Repeat = 0
-    MirroredRepeat = 1
-    ClampToEdge = 2
-    ClampToBorder = 3
+    Repeat
+    MirroredRepeat
+    ClampToEdge
+    ClampToBorder
   VkCompareOp* {.size: sizeof(int32).} = enum
-    Never = 0
-    Less = 1
-    Equal = 2
-    LessOrEqual = 3
-    Greater = 4
-    NotEqual = 5
-    GreaterOrEqual = 6
-    Always = 7
+    Never
+    Less
+    Equal
+    LessOrEqual
+    Greater
+    NotEqual
+    GreaterOrEqual
+    Always
   VkPolygonMode* {.size: sizeof(int32).} = enum
-    Fill = 0
-    Line = 1
-    Point = 2
+    Fill
+    Line
+    Point
   VkFrontFace* {.size: sizeof(int32).} = enum
-    CounterClockwise = 0
-    Clockwise = 1
+    CounterClockwise
+    Clockwise
   VkBlendFactor* {.size: sizeof(int32).} = enum
-    Zero = 0
-    One = 1
-    SrcColor = 2
-    OneMinusSrcColor = 3
-    DstColor = 4
-    OneMinusDstColor = 5
-    SrcAlpha = 6
-    OneMinusSrcAlpha = 7
-    DstAlpha = 8
-    OneMinusDstAlpha = 9
-    ConstantColor = 10
-    OneMinusConstantColor = 11
-    ConstantAlpha = 12
-    OneMinusConstantAlpha = 13
-    SrcAlphaSaturate = 14
-    Src1Color = 15
-    OneMinusSrc1Color = 16
-    Src1Alpha = 17
-    OneMinusSrc1Alpha = 18
+    Zero
+    One
+    SrcColor
+    OneMinusSrcColor
+    DstColor
+    OneMinusDstColor
+    SrcAlpha
+    OneMinusSrcAlpha
+    DstAlpha
+    OneMinusDstAlpha
+    ConstantColor
+    OneMinusConstantColor
+    ConstantAlpha
+    OneMinusConstantAlpha
+    SrcAlphaSaturate
+    Src1Color
+    OneMinusSrc1Color
+    Src1Alpha
+    OneMinusSrc1Alpha
   VkBlendOp* {.size: sizeof(int32).} = enum
-    Add = 0
-    Subtract = 1
-    ReverseSubtract = 2
-    Min = 3
-    Max = 4
+    Add
+    Subtract
+    ReverseSubtract
+    Min
+    Max
   VkStencilOp* {.size: sizeof(int32).} = enum
-    Keep = 0
-    Zero = 1
-    Replace = 2
-    IncrementAndClamp = 3
-    DecrementAndClamp = 4
-    Invert = 5
-    IncrementAndWrap = 6
-    DecrementAndWrap = 7
+    Keep
+    Zero
+    Replace
+    IncrementAndClamp
+    DecrementAndClamp
+    Invert
+    IncrementAndWrap
+    DecrementAndWrap
   VkLogicOp* {.size: sizeof(int32).} = enum
-    Clear = 0
-    And = 1
-    AndReverse = 2
-    Copy = 3
-    AndInverted = 4
-    NoOp = 5
-    Xor = 6
-    Or = 7
-    Nor = 8
-    Equivalent = 9
-    Invert = 10
-    OrReverse = 11
-    CopyInverted = 12
-    OrInverted = 13
-    Nand = 14
-    Set = 15
+    Clear
+    And
+    AndReverse
+    Copy
+    AndInverted
+    NoOp
+    Xor
+    Or
+    Nor
+    Equivalent
+    Invert
+    OrReverse
+    CopyInverted
+    OrInverted
+    Nand
+    Set
   VkInternalAllocationType* {.size: sizeof(int32).} = enum
-    Executable = 0
+    Executable
   VkSystemAllocationScope* {.size: sizeof(int32).} = enum
-    Command = 0
-    Object = 1
-    Cache = 2
-    Device = 3
-    Instance = 4
+    Command
+    Object
+    Cache
+    Device
+    Instance
   VkPhysicalDeviceType* {.size: sizeof(int32).} = enum
-    Other = 0
-    IntegratedGpu = 1
-    DiscreteGpu = 2
-    VirtualGpu = 3
-    Cpu = 4
+    Other
+    IntegratedGpu
+    DiscreteGpu
+    VirtualGpu
+    Cpu
   VkVertexInputRate* {.size: sizeof(int32).} = enum
-    Vertex = 0
-    Instance = 1
+    Vertex
+    Instance
   VkFormat* {.size: sizeof(int32).} = enum
-    Undefined = 0
-    R4g4UnormPack8 = 1
-    R4g4b4a4UnormPack16 = 2
-    B4g4r4a4UnormPack16 = 3
-    R5g6b5UnormPack16 = 4
-    B5g6r5UnormPack16 = 5
-    R5g5b5a1UnormPack16 = 6
-    B5g5r5a1UnormPack16 = 7
-    A1r5g5b5UnormPack16 = 8
-    R8Unorm = 9
-    R8Snorm = 10
-    R8Uscaled = 11
-    R8Sscaled = 12
-    R8Uint = 13
-    R8Sint = 14
-    R8Srgb = 15
-    R8g8Unorm = 16
-    R8g8Snorm = 17
-    R8g8Uscaled = 18
-    R8g8Sscaled = 19
-    R8g8Uint = 20
-    R8g8Sint = 21
-    R8g8Srgb = 22
-    R8g8b8Unorm = 23
-    R8g8b8Snorm = 24
-    R8g8b8Uscaled = 25
-    R8g8b8Sscaled = 26
-    R8g8b8Uint = 27
-    R8g8b8Sint = 28
-    R8g8b8Srgb = 29
-    B8g8r8Unorm = 30
-    B8g8r8Snorm = 31
-    B8g8r8Uscaled = 32
-    B8g8r8Sscaled = 33
-    B8g8r8Uint = 34
-    B8g8r8Sint = 35
-    B8g8r8Srgb = 36
-    R8g8b8a8Unorm = 37
-    R8g8b8a8Snorm = 38
-    R8g8b8a8Uscaled = 39
-    R8g8b8a8Sscaled = 40
-    R8g8b8a8Uint = 41
-    R8g8b8a8Sint = 42
-    R8g8b8a8Srgb = 43
-    B8g8r8a8Unorm = 44
-    B8g8r8a8Snorm = 45
-    B8g8r8a8Uscaled = 46
-    B8g8r8a8Sscaled = 47
-    B8g8r8a8Uint = 48
-    B8g8r8a8Sint = 49
-    B8g8r8a8Srgb = 50
-    A8b8g8r8UnormPack32 = 51
-    A8b8g8r8SnormPack32 = 52
-    A8b8g8r8UscaledPack32 = 53
-    A8b8g8r8SscaledPack32 = 54
-    A8b8g8r8UintPack32 = 55
-    A8b8g8r8SintPack32 = 56
-    A8b8g8r8SrgbPack32 = 57
-    A2r10g10b10UnormPack32 = 58
-    A2r10g10b10SnormPack32 = 59
-    A2r10g10b10UscaledPack32 = 60
-    A2r10g10b10SscaledPack32 = 61
-    A2r10g10b10UintPack32 = 62
-    A2r10g10b10SintPack32 = 63
-    A2b10g10r10UnormPack32 = 64
-    A2b10g10r10SnormPack32 = 65
-    A2b10g10r10UscaledPack32 = 66
-    A2b10g10r10SscaledPack32 = 67
-    A2b10g10r10UintPack32 = 68
-    A2b10g10r10SintPack32 = 69
-    R16Unorm = 70
-    R16Snorm = 71
-    R16Uscaled = 72
-    R16Sscaled = 73
-    R16Uint = 74
-    R16Sint = 75
-    R16Sfloat = 76
-    R16g16Unorm = 77
-    R16g16Snorm = 78
-    R16g16Uscaled = 79
-    R16g16Sscaled = 80
-    R16g16Uint = 81
-    R16g16Sint = 82
-    R16g16Sfloat = 83
-    R16g16b16Unorm = 84
-    R16g16b16Snorm = 85
-    R16g16b16Uscaled = 86
-    R16g16b16Sscaled = 87
-    R16g16b16Uint = 88
-    R16g16b16Sint = 89
-    R16g16b16Sfloat = 90
-    R16g16b16a16Unorm = 91
-    R16g16b16a16Snorm = 92
-    R16g16b16a16Uscaled = 93
-    R16g16b16a16Sscaled = 94
-    R16g16b16a16Uint = 95
-    R16g16b16a16Sint = 96
-    R16g16b16a16Sfloat = 97
-    R32Uint = 98
-    R32Sint = 99
-    R32Sfloat = 100
-    R32g32Uint = 101
-    R32g32Sint = 102
-    R32g32Sfloat = 103
-    R32g32b32Uint = 104
-    R32g32b32Sint = 105
-    R32g32b32Sfloat = 106
-    R32g32b32a32Uint = 107
-    R32g32b32a32Sint = 108
-    R32g32b32a32Sfloat = 109
-    R64Uint = 110
-    R64Sint = 111
-    R64Sfloat = 112
-    R64g64Uint = 113
-    R64g64Sint = 114
-    R64g64Sfloat = 115
-    R64g64b64Uint = 116
-    R64g64b64Sint = 117
-    R64g64b64Sfloat = 118
-    R64g64b64a64Uint = 119
-    R64g64b64a64Sint = 120
-    R64g64b64a64Sfloat = 121
-    B10g11r11UfloatPack32 = 122
-    E5b9g9r9UfloatPack32 = 123
-    D16Unorm = 124
-    X8D24UnormPack32 = 125
-    D32Sfloat = 126
-    S8Uint = 127
-    D16UnormS8Uint = 128
-    D24UnormS8Uint = 129
-    D32SfloatS8Uint = 130
-    Bc1RgbUnormBlock = 131
-    Bc1RgbSrgbBlock = 132
-    Bc1RgbaUnormBlock = 133
-    Bc1RgbaSrgbBlock = 134
-    Bc2UnormBlock = 135
-    Bc2SrgbBlock = 136
-    Bc3UnormBlock = 137
-    Bc3SrgbBlock = 138
-    Bc4UnormBlock = 139
-    Bc4SnormBlock = 140
-    Bc5UnormBlock = 141
-    Bc5SnormBlock = 142
-    Bc6hUfloatBlock = 143
-    Bc6hSfloatBlock = 144
-    Bc7UnormBlock = 145
-    Bc7SrgbBlock = 146
-    Etc2R8g8b8UnormBlock = 147
-    Etc2R8g8b8SrgbBlock = 148
-    Etc2R8g8b8a1UnormBlock = 149
-    Etc2R8g8b8a1SrgbBlock = 150
-    Etc2R8g8b8a8UnormBlock = 151
-    Etc2R8g8b8a8SrgbBlock = 152
-    EacR11UnormBlock = 153
-    EacR11SnormBlock = 154
-    EacR11g11UnormBlock = 155
-    EacR11g11SnormBlock = 156
-    Astc4x4UnormBlock = 157
-    Astc4x4SrgbBlock = 158
-    Astc5x4UnormBlock = 159
-    Astc5x4SrgbBlock = 160
-    Astc5x5UnormBlock = 161
-    Astc5x5SrgbBlock = 162
-    Astc6x5UnormBlock = 163
-    Astc6x5SrgbBlock = 164
-    Astc6x6UnormBlock = 165
-    Astc6x6SrgbBlock = 166
-    Astc8x5UnormBlock = 167
-    Astc8x5SrgbBlock = 168
-    Astc8x6UnormBlock = 169
-    Astc8x6SrgbBlock = 170
-    Astc8x8UnormBlock = 171
-    Astc8x8SrgbBlock = 172
-    Astc10x5UnormBlock = 173
-    Astc10x5SrgbBlock = 174
-    Astc10x6UnormBlock = 175
-    Astc10x6SrgbBlock = 176
-    Astc10x8UnormBlock = 177
-    Astc10x8SrgbBlock = 178
-    Astc10x10UnormBlock = 179
-    Astc10x10SrgbBlock = 180
-    Astc12x10UnormBlock = 181
-    Astc12x10SrgbBlock = 182
-    Astc12x12UnormBlock = 183
-    Astc12x12SrgbBlock = 184
+    Undefined
+    R4g4UnormPack8
+    R4g4b4a4UnormPack16
+    B4g4r4a4UnormPack16
+    R5g6b5UnormPack16
+    B5g6r5UnormPack16
+    R5g5b5a1UnormPack16
+    B5g5r5a1UnormPack16
+    A1r5g5b5UnormPack16
+    R8Unorm
+    R8Snorm
+    R8Uscaled
+    R8Sscaled
+    R8Uint
+    R8Sint
+    R8Srgb
+    R8g8Unorm
+    R8g8Snorm
+    R8g8Uscaled
+    R8g8Sscaled
+    R8g8Uint
+    R8g8Sint
+    R8g8Srgb
+    R8g8b8Unorm
+    R8g8b8Snorm
+    R8g8b8Uscaled
+    R8g8b8Sscaled
+    R8g8b8Uint
+    R8g8b8Sint
+    R8g8b8Srgb
+    B8g8r8Unorm
+    B8g8r8Snorm
+    B8g8r8Uscaled
+    B8g8r8Sscaled
+    B8g8r8Uint
+    B8g8r8Sint
+    B8g8r8Srgb
+    R8g8b8a8Unorm
+    R8g8b8a8Snorm
+    R8g8b8a8Uscaled
+    R8g8b8a8Sscaled
+    R8g8b8a8Uint
+    R8g8b8a8Sint
+    R8g8b8a8Srgb
+    B8g8r8a8Unorm
+    B8g8r8a8Snorm
+    B8g8r8a8Uscaled
+    B8g8r8a8Sscaled
+    B8g8r8a8Uint
+    B8g8r8a8Sint
+    B8g8r8a8Srgb
+    A8b8g8r8UnormPack32
+    A8b8g8r8SnormPack32
+    A8b8g8r8UscaledPack32
+    A8b8g8r8SscaledPack32
+    A8b8g8r8UintPack32
+    A8b8g8r8SintPack32
+    A8b8g8r8SrgbPack32
+    A2r10g10b10UnormPack32
+    A2r10g10b10SnormPack32
+    A2r10g10b10UscaledPack32
+    A2r10g10b10SscaledPack32
+    A2r10g10b10UintPack32
+    A2r10g10b10SintPack32
+    A2b10g10r10UnormPack32
+    A2b10g10r10SnormPack32
+    A2b10g10r10UscaledPack32
+    A2b10g10r10SscaledPack32
+    A2b10g10r10UintPack32
+    A2b10g10r10SintPack32
+    R16Unorm
+    R16Snorm
+    R16Uscaled
+    R16Sscaled
+    R16Uint
+    R16Sint
+    R16Sfloat
+    R16g16Unorm
+    R16g16Snorm
+    R16g16Uscaled
+    R16g16Sscaled
+    R16g16Uint
+    R16g16Sint
+    R16g16Sfloat
+    R16g16b16Unorm
+    R16g16b16Snorm
+    R16g16b16Uscaled
+    R16g16b16Sscaled
+    R16g16b16Uint
+    R16g16b16Sint
+    R16g16b16Sfloat
+    R16g16b16a16Unorm
+    R16g16b16a16Snorm
+    R16g16b16a16Uscaled
+    R16g16b16a16Sscaled
+    R16g16b16a16Uint
+    R16g16b16a16Sint
+    R16g16b16a16Sfloat
+    R32Uint
+    R32Sint
+    R32Sfloat
+    R32g32Uint
+    R32g32Sint
+    R32g32Sfloat
+    R32g32b32Uint
+    R32g32b32Sint
+    R32g32b32Sfloat
+    R32g32b32a32Uint
+    R32g32b32a32Sint
+    R32g32b32a32Sfloat
+    R64Uint
+    R64Sint
+    R64Sfloat
+    R64g64Uint
+    R64g64Sint
+    R64g64Sfloat
+    R64g64b64Uint
+    R64g64b64Sint
+    R64g64b64Sfloat
+    R64g64b64a64Uint
+    R64g64b64a64Sint
+    R64g64b64a64Sfloat
+    B10g11r11UfloatPack32
+    E5b9g9r9UfloatPack32
+    D16Unorm
+    X8D24UnormPack32
+    D32Sfloat
+    S8Uint
+    D16UnormS8Uint
+    D24UnormS8Uint
+    D32SfloatS8Uint
+    Bc1RgbUnormBlock
+    Bc1RgbSrgbBlock
+    Bc1RgbaUnormBlock
+    Bc1RgbaSrgbBlock
+    Bc2UnormBlock
+    Bc2SrgbBlock
+    Bc3UnormBlock
+    Bc3SrgbBlock
+    Bc4UnormBlock
+    Bc4SnormBlock
+    Bc5UnormBlock
+    Bc5SnormBlock
+    Bc6hUfloatBlock
+    Bc6hSfloatBlock
+    Bc7UnormBlock
+    Bc7SrgbBlock
+    Etc2R8g8b8UnormBlock
+    Etc2R8g8b8SrgbBlock
+    Etc2R8g8b8a1UnormBlock
+    Etc2R8g8b8a1SrgbBlock
+    Etc2R8g8b8a8UnormBlock
+    Etc2R8g8b8a8SrgbBlock
+    EacR11UnormBlock
+    EacR11SnormBlock
+    EacR11g11UnormBlock
+    EacR11g11SnormBlock
+    Astc4x4UnormBlock
+    Astc4x4SrgbBlock
+    Astc5x4UnormBlock
+    Astc5x4SrgbBlock
+    Astc5x5UnormBlock
+    Astc5x5SrgbBlock
+    Astc6x5UnormBlock
+    Astc6x5SrgbBlock
+    Astc6x6UnormBlock
+    Astc6x6SrgbBlock
+    Astc8x5UnormBlock
+    Astc8x5SrgbBlock
+    Astc8x6UnormBlock
+    Astc8x6SrgbBlock
+    Astc8x8UnormBlock
+    Astc8x8SrgbBlock
+    Astc10x5UnormBlock
+    Astc10x5SrgbBlock
+    Astc10x6UnormBlock
+    Astc10x6SrgbBlock
+    Astc10x8UnormBlock
+    Astc10x8SrgbBlock
+    Astc10x10UnormBlock
+    Astc10x10SrgbBlock
+    Astc12x10UnormBlock
+    Astc12x10SrgbBlock
+    Astc12x12UnormBlock
+    Astc12x12SrgbBlock
   VkStructureType* {.size: sizeof(int32).} = enum
-    ApplicationInfo = 0
-    InstanceCreateInfo = 1
-    DeviceQueueCreateInfo = 2
-    DeviceCreateInfo = 3
-    SubmitInfo = 4
-    MemoryAllocateInfo = 5
-    MappedMemoryRange = 6
-    BindSparseInfo = 7
-    FenceCreateInfo = 8
-    SemaphoreCreateInfo = 9
-    EventCreateInfo = 10
-    QueryPoolCreateInfo = 11
-    BufferCreateInfo = 12
-    BufferViewCreateInfo = 13
-    ImageCreateInfo = 14
-    ImageViewCreateInfo = 15
-    ShaderModuleCreateInfo = 16
-    PipelineCacheCreateInfo = 17
-    PipelineShaderStageCreateInfo = 18
-    PipelineVertexInputStateCreateInfo = 19
-    PipelineInputAssemblyStateCreateInfo = 20
-    PipelineTessellationStateCreateInfo = 21
-    PipelineViewportStateCreateInfo = 22
-    PipelineRasterizationStateCreateInfo = 23
-    PipelineMultisampleStateCreateInfo = 24
-    PipelineDepthStencilStateCreateInfo = 25
-    PipelineColorBlendStateCreateInfo = 26
-    PipelineDynamicStateCreateInfo = 27
-    GraphicsPipelineCreateInfo = 28
-    ComputePipelineCreateInfo = 29
-    PipelineLayoutCreateInfo = 30
-    SamplerCreateInfo = 31
-    DescriptorSetLayoutCreateInfo = 32
-    DescriptorPoolCreateInfo = 33
-    DescriptorSetAllocateInfo = 34
-    WriteDescriptorSet = 35
-    CopyDescriptorSet = 36
-    FramebufferCreateInfo = 37
-    RenderPassCreateInfo = 38
-    CommandPoolCreateInfo = 39
-    CommandBufferAllocateInfo = 40
-    CommandBufferInheritanceInfo = 41
-    CommandBufferBeginInfo = 42
-    RenderPassBeginInfo = 43
-    BufferMemoryBarrier = 44
-    ImageMemoryBarrier = 45
-    MemoryBarrier = 46
-    LoaderInstanceCreateInfo = 47
-    LoaderDeviceCreateInfo = 48
+    ApplicationInfo
+    InstanceCreateInfo
+    DeviceQueueCreateInfo
+    DeviceCreateInfo
+    SubmitInfo
+    MemoryAllocateInfo
+    MappedMemoryRange
+    BindSparseInfo
+    FenceCreateInfo
+    SemaphoreCreateInfo
+    EventCreateInfo
+    QueryPoolCreateInfo
+    BufferCreateInfo
+    BufferViewCreateInfo
+    ImageCreateInfo
+    ImageViewCreateInfo
+    ShaderModuleCreateInfo
+    PipelineCacheCreateInfo
+    PipelineShaderStageCreateInfo
+    PipelineVertexInputStateCreateInfo
+    PipelineInputAssemblyStateCreateInfo
+    PipelineTessellationStateCreateInfo
+    PipelineViewportStateCreateInfo
+    PipelineRasterizationStateCreateInfo
+    PipelineMultisampleStateCreateInfo
+    PipelineDepthStencilStateCreateInfo
+    PipelineColorBlendStateCreateInfo
+    PipelineDynamicStateCreateInfo
+    GraphicsPipelineCreateInfo
+    ComputePipelineCreateInfo
+    PipelineLayoutCreateInfo
+    SamplerCreateInfo
+    DescriptorSetLayoutCreateInfo
+    DescriptorPoolCreateInfo
+    DescriptorSetAllocateInfo
+    WriteDescriptorSet
+    CopyDescriptorSet
+    FramebufferCreateInfo
+    RenderPassCreateInfo
+    CommandPoolCreateInfo
+    CommandBufferAllocateInfo
+    CommandBufferInheritanceInfo
+    CommandBufferBeginInfo
+    RenderPassBeginInfo
+    BufferMemoryBarrier
+    ImageMemoryBarrier
+    MemoryBarrier
+    LoaderInstanceCreateInfo
+    LoaderDeviceCreateInfo
   VkSubpassContents* {.size: sizeof(int32).} = enum
-    Inline = 0
-    SecondaryCommandBuffers = 1
+    Inline
+    SecondaryCommandBuffers
   VkResult* {.size: sizeof(int32).} = enum
     VkErrorUnknown = -13
-    VkErrorFragmentedPool = -12
-    VkErrorFormatNotSupported = -11
-    VkErrorTooManyObjects = -10
-    VkErrorIncompatibleDriver = -9
-    VkErrorFeatureNotPresent = -8
-    VkErrorExtensionNotPresent = -7
-    VkErrorLayerNotPresent = -6
-    VkErrorMemoryMapFailed = -5
-    VkErrorDeviceLost = -4
-    VkErrorInitializationFailed = -3
-    VkErrorOutOfDeviceMemory = -2
-    VkErrorOutOfHostMemory = -1
-    VkSuccess = 0
-    VkNotReady = 1
-    VkTimeout = 2
-    VkEventSet = 3
-    VkEventReset = 4
-    VkIncomplete = 5
+    VkErrorFragmentedPool
+    VkErrorFormatNotSupported
+    VkErrorTooManyObjects
+    VkErrorIncompatibleDriver
+    VkErrorFeatureNotPresent
+    VkErrorExtensionNotPresent
+    VkErrorLayerNotPresent
+    VkErrorMemoryMapFailed
+    VkErrorDeviceLost
+    VkErrorInitializationFailed
+    VkErrorOutOfDeviceMemory
+    VkErrorOutOfHostMemory
+    VkSuccess
+    VkNotReady
+    VkTimeout
+    VkEventSet
+    VkEventReset
+    VkIncomplete
   VkDynamicState* {.size: sizeof(int32).} = enum
-    Viewport = 0
-    Scissor = 1
-    LineWidth = 2
-    DepthBias = 3
-    BlendConstants = 4
-    DepthBounds = 5
-    StencilCompareMask = 6
-    StencilWriteMask = 7
-    StencilReference = 8
+    Viewport
+    Scissor
+    LineWidth
+    DepthBias
+    BlendConstants
+    DepthBounds
+    StencilCompareMask
+    StencilWriteMask
+    StencilReference
   VkDescriptorUpdateTemplateType* {.size: sizeof(int32).} = enum
-    DescriptorSet = 0
+    DescriptorSet
   VkObjectType* {.size: sizeof(int32).} = enum
-    Unknown = 0
-    Instance = 1
-    PhysicalDevice = 2
-    Device = 3
-    Queue = 4
-    Semaphore = 5
-    CommandBuffer = 6
-    Fence = 7
-    DeviceMemory = 8
-    Buffer = 9
-    Image = 10
-    Event = 11
-    QueryPool = 12
-    BufferView = 13
-    ImageView = 14
-    ShaderModule = 15
-    PipelineCache = 16
-    PipelineLayout = 17
-    RenderPass = 18
-    Pipeline = 19
-    DescriptorSetLayout = 20
-    Sampler = 21
-    DescriptorPool = 22
-    DescriptorSet = 23
-    Framebuffer = 24
-    CommandPool = 25
+    Unknown
+    Instance
+    PhysicalDevice
+    Device
+    Queue
+    Semaphore
+    CommandBuffer
+    Fence
+    DeviceMemory
+    Buffer
+    Image
+    Event
+    QueryPool
+    BufferView
+    ImageView
+    ShaderModule
+    PipelineCache
+    PipelineLayout
+    RenderPass
+    Pipeline
+    DescriptorSetLayout
+    Sampler
+    DescriptorPool
+    DescriptorSet
+    Framebuffer
+    CommandPool
   VkRayTracingInvocationReorderModeNV* {.size: sizeof(int32).} = enum
-    NoneNv = 0
-    ReorderNv = 1
+    None
+    Reorder
   VkDirectDriverLoadingModeLUNARG* {.size: sizeof(int32).} = enum
-    VkDirectDriverLoadingModeExclusiveLunarg = 0
-    VkDirectDriverLoadingModeInclusiveLunarg = 1
+    VkDirectDriverLoadingModeExclusiveLunarg
+    VkDirectDriverLoadingModeInclusiveLunarg
   VkQueueFlagBits* {.size: sizeof(int32).} = enum
     GraphicsBit = 1
-    ComputeBit = 2
+    ComputeBit
     TransferBit = 4
     SparseBindingBit = 8
   VkCullModeFlagBits* {.size: sizeof(int32).} = enum
-    None = 0
-    FrontBit = 1
-    BackBit = 2
-    FrontAndBack = 3
+    None
+    FrontBit
+    BackBit
+    FrontAndBack
   VkMemoryPropertyFlagBits* {.size: sizeof(int32).} = enum
     DeviceLocalBit = 1
-    HostVisibleBit = 2
+    HostVisibleBit
     HostCoherentBit = 4
     HostCachedBit = 8
     LazilyAllocatedBit = 16
@@ -592,7 +592,7 @@ type
     DeviceLocalBit = 1
   VkAccessFlagBits* {.size: sizeof(int32).} = enum
     IndirectCommandReadBit = 1
-    IndexReadBit = 2
+    IndexReadBit
     VertexAttributeReadBit = 4
     UniformReadBit = 8
     InputAttachmentReadBit = 16
@@ -610,7 +610,7 @@ type
     MemoryWriteBit = 65536
   VkBufferUsageFlagBits* {.size: sizeof(int32).} = enum
     TransferSrcBit = 1
-    TransferDstBit = 2
+    TransferDstBit
     UniformTexelBufferBit = 4
     StorageTexelBufferBit = 8
     UniformBufferBit = 16
@@ -619,31 +619,31 @@ type
     VertexBufferBit = 128
     IndirectBufferBit = 256
   VkBufferUsageFlagBits2KHR* {.size: sizeof(int32).} = enum
-    N2TransferSrcBitKhr = 1
-    N2TransferDstBitKhr = 2
-    N2UniformTexelBufferBitKhr = 4
-    N2StorageTexelBufferBitKhr = 8
-    N2UniformBufferBitKhr = 16
-    N2StorageBufferBitKhr = 32
-    N2IndexBufferBitKhr = 64
-    N2VertexBufferBitKhr = 128
-    N2IndirectBufferBitKhr = 256
+    N2TransferSrcBit = 1
+    N2TransferDstBit
+    N2UniformTexelBufferBit = 4
+    N2StorageTexelBufferBit = 8
+    N2UniformBufferBit = 16
+    N2StorageBufferBit = 32
+    N2IndexBufferBit = 64
+    N2VertexBufferBit = 128
+    N2IndirectBufferBit = 256
   VkBufferCreateFlagBits* {.size: sizeof(int32).} = enum
     SparseBindingBit = 1
-    SparseResidencyBit = 2
+    SparseResidencyBit
     SparseAliasedBit = 4
   VkShaderStageFlagBits* {.size: sizeof(int32).} = enum
     VertexBit = 1
-    TessellationControlBit = 2
+    TessellationControlBit
     TessellationEvaluationBit = 4
     GeometryBit = 8
     FragmentBit = 16
     AllGraphics = 31
-    ComputeBit = 32
+    ComputeBit
     All = 2147483647
   VkImageUsageFlagBits* {.size: sizeof(int32).} = enum
     TransferSrcBit = 1
-    TransferDstBit = 2
+    TransferDstBit
     SampledBit = 4
     StorageBit = 8
     ColorAttachmentBit = 16
@@ -652,28 +652,28 @@ type
     InputAttachmentBit = 128
   VkImageCreateFlagBits* {.size: sizeof(int32).} = enum
     SparseBindingBit = 1
-    SparseResidencyBit = 2
+    SparseResidencyBit
     SparseAliasedBit = 4
     MutableFormatBit = 8
     CubeCompatibleBit = 16
   VkPipelineCreateFlagBits* {.size: sizeof(int32).} = enum
     DisableOptimizationBit = 1
-    AllowDerivativesBit = 2
+    AllowDerivativesBit
     DerivativeBit = 4
   VkPipelineCreateFlagBits2KHR* {.size: sizeof(int32).} = enum
-    N2DisableOptimizationBitKhr = 1
-    N2AllowDerivativesBitKhr = 2
-    N2DerivativeBitKhr = 4
+    N2DisableOptimizationBit = 1
+    N2AllowDerivativesBit
+    N2DerivativeBit = 4
   VkColorComponentFlagBits* {.size: sizeof(int32).} = enum
     RBit = 1
-    GBit = 2
+    GBit
     BBit = 4
     ABit = 8
   VkFenceCreateFlagBits* {.size: sizeof(int32).} = enum
     SignaledBit = 1
   VkFormatFeatureFlagBits* {.size: sizeof(int32).} = enum
     SampledImageBit = 1
-    StorageImageBit = 2
+    StorageImageBit
     StorageImageAtomicBit = 4
     UniformTexelBufferBit = 8
     StorageTexelBufferBit = 16
@@ -689,16 +689,16 @@ type
     PreciseBit = 1
   VkQueryResultFlagBits* {.size: sizeof(int32).} = enum
     N64Bit = 1
-    WaitBit = 2
+    WaitBit
     WithAvailabilityBit = 4
     PartialBit = 8
   VkCommandBufferUsageFlagBits* {.size: sizeof(int32).} = enum
     OneTimeSubmitBit = 1
-    RenderPassContinueBit = 2
+    RenderPassContinueBit
     SimultaneousUseBit = 4
   VkQueryPipelineStatisticFlagBits* {.size: sizeof(int32).} = enum
     InputAssemblyVerticesBit = 1
-    InputAssemblyPrimitivesBit = 2
+    InputAssemblyPrimitivesBit
     VertexShaderInvocationsBit = 4
     GeometryShaderInvocationsBit = 8
     GeometryShaderPrimitivesBit = 16
@@ -710,18 +710,18 @@ type
     ComputeShaderInvocationsBit = 1024
   VkImageAspectFlagBits* {.size: sizeof(int32).} = enum
     ColorBit = 1
-    DepthBit = 2
+    DepthBit
     StencilBit = 4
     MetadataBit = 8
   VkSparseImageFormatFlagBits* {.size: sizeof(int32).} = enum
     SingleMiptailBit = 1
-    AlignedMipSizeBit = 2
+    AlignedMipSizeBit
     NonstandardBlockSizeBit = 4
   VkSparseMemoryBindFlagBits* {.size: sizeof(int32).} = enum
     MetadataBit = 1
   VkPipelineStageFlagBits* {.size: sizeof(int32).} = enum
     TopOfPipeBit = 1
-    DrawIndirectBit = 2
+    DrawIndirectBit
     VertexInputBit = 4
     VertexShaderBit = 8
     TessellationControlShaderBit = 16
@@ -739,14 +739,14 @@ type
     AllCommandsBit = 65536
   VkCommandPoolCreateFlagBits* {.size: sizeof(int32).} = enum
     TransientBit = 1
-    ResetCommandBufferBit = 2
+    ResetCommandBufferBit
   VkCommandPoolResetFlagBits* {.size: sizeof(int32).} = enum
     ReleaseResourcesBit = 1
   VkCommandBufferResetFlagBits* {.size: sizeof(int32).} = enum
     ReleaseResourcesBit = 1
   VkSampleCountFlagBits* {.size: sizeof(int32).} = enum
     N1Bit = 1
-    N2Bit = 2
+    N2Bit
     N4Bit = 4
     N8Bit = 8
     N16Bit = 16
@@ -756,138 +756,138 @@ type
     MayAliasBit = 1
   VkStencilFaceFlagBits* {.size: sizeof(int32).} = enum
     FrontBit = 1
-    BackBit = 2
-    FrontAndBack = 3
+    BackBit
+    FrontAndBack
   VkDescriptorPoolCreateFlagBits* {.size: sizeof(int32).} = enum
     FreeDescriptorSetBit = 1
   VkDependencyFlagBits* {.size: sizeof(int32).} = enum
     ByRegionBit = 1
   VkSemaphoreType* {.size: sizeof(int32).} = enum
-    Binary = 0
-    Timeline = 1
+    Binary
+    Timeline
   VkSemaphoreWaitFlagBits* {.size: sizeof(int32).} = enum
     AnyBit = 1
   VkPresentModeKHR* {.size: sizeof(int32).} = enum
-    ImmediateKhr = 0
-    MailboxKhr = 1
-    FifoKhr = 2
-    FifoRelaxedKhr = 3
+    Immediate
+    Mailbox
+    Fifo
+    FifoRelaxed
   VkColorSpaceKHR* {.size: sizeof(int32).} = enum
-    SrgbNonlinearKhr = 0
+    SrgbNonlinear
   VkDisplayPlaneAlphaFlagBitsKHR* {.size: sizeof(int32).} = enum
-    OpaqueBitKhr = 1
-    GlobalBitKhr = 2
-    PerPixelBitKhr = 4
-    PerPixelPremultipliedBitKhr = 8
+    OpaqueBit = 1
+    GlobalBit
+    PerPixelBit = 4
+    PerPixelPremultipliedBit = 8
   VkCompositeAlphaFlagBitsKHR* {.size: sizeof(int32).} = enum
-    OpaqueBitKhr = 1
-    PreMultipliedBitKhr = 2
-    PostMultipliedBitKhr = 4
-    InheritBitKhr = 8
+    OpaqueBit = 1
+    PreMultipliedBit
+    PostMultipliedBit = 4
+    InheritBit = 8
   VkSurfaceTransformFlagBitsKHR* {.size: sizeof(int32).} = enum
-    IdentityBitKhr = 1
-    Rotate90BitKhr = 2
-    Rotate180BitKhr = 4
-    Rotate270BitKhr = 8
-    HorizontalMirrorBitKhr = 16
-    HorizontalMirrorRotate90BitKhr = 32
-    HorizontalMirrorRotate180BitKhr = 64
-    HorizontalMirrorRotate270BitKhr = 128
-    InheritBitKhr = 256
+    IdentityBit = 1
+    Rotate90Bit
+    Rotate180Bit = 4
+    Rotate270Bit = 8
+    HorizontalMirrorBit = 16
+    HorizontalMirrorRotate90Bit = 32
+    HorizontalMirrorRotate180Bit = 64
+    HorizontalMirrorRotate270Bit = 128
+    InheritBit = 256
   VkSwapchainImageUsageFlagBitsANDROID* {.size: sizeof(int32).} = enum
     VkSwapchainImageUsageSharedBitAndroid = 1
   VkTimeDomainKHR* {.size: sizeof(int32).} = enum
-    DeviceKhr = 0
-    ClockMonotonicKhr = 1
-    ClockMonotonicRawKhr = 2
-    QueryPerformanceCounterKhr = 3
+    Device
+    ClockMonotonic
+    ClockMonotonicRaw
+    QueryPerformanceCounter
   VkDebugReportFlagBitsEXT* {.size: sizeof(int32).} = enum
-    InformationBitExt = 1
-    WarningBitExt = 2
-    PerformanceWarningBitExt = 4
-    ErrorBitExt = 8
-    DebugBitExt = 16
+    InformationBit = 1
+    WarningBit
+    PerformanceWarningBit = 4
+    ErrorBit = 8
+    DebugBit = 16
   VkDebugReportObjectTypeEXT* {.size: sizeof(int32).} = enum
-    UnknownExt = 0
-    InstanceExt = 1
-    PhysicalDeviceExt = 2
-    DeviceExt = 3
-    QueueExt = 4
-    SemaphoreExt = 5
-    CommandBufferExt = 6
-    FenceExt = 7
-    DeviceMemoryExt = 8
-    BufferExt = 9
-    ImageExt = 10
-    EventExt = 11
-    QueryPoolExt = 12
-    BufferViewExt = 13
-    ImageViewExt = 14
-    ShaderModuleExt = 15
-    PipelineCacheExt = 16
-    PipelineLayoutExt = 17
-    RenderPassExt = 18
-    PipelineExt = 19
-    DescriptorSetLayoutExt = 20
-    SamplerExt = 21
-    DescriptorPoolExt = 22
-    DescriptorSetExt = 23
-    FramebufferExt = 24
-    CommandPoolExt = 25
-    SurfaceKhrExt = 26
-    SwapchainKhrExt = 27
-    DebugReportCallbackExtExt = 28
-    DisplayKhrExt = 29
-    DisplayModeKhrExt = 30
-    ValidationCacheExtExt = 33
+    Unknown
+    Instance
+    PhysicalDevice
+    Device
+    Queue
+    Semaphore
+    CommandBuffer
+    Fence
+    DeviceMemory
+    Buffer
+    Image
+    Event
+    QueryPool
+    BufferView
+    ImageView
+    ShaderModule
+    PipelineCache
+    PipelineLayout
+    RenderPass
+    Pipeline
+    DescriptorSetLayout
+    Sampler
+    DescriptorPool
+    DescriptorSet
+    Framebuffer
+    CommandPool
+    SurfaceKhr
+    SwapchainKhr
+    DebugReportCallbackExt
+    DisplayKhr
+    DisplayModeKhr
+    ValidationCacheExt = 33
   VkDeviceMemoryReportEventTypeEXT* {.size: sizeof(int32).} = enum
-    AllocateExt = 0
-    FreeExt = 1
-    ImportExt = 2
-    UnimportExt = 3
-    AllocationFailedExt = 4
+    Allocate
+    Free
+    Import
+    Unimport
+    AllocationFailed
   VkRasterizationOrderAMD* {.size: sizeof(int32).} = enum
-    StrictAmd = 0
-    RelaxedAmd = 1
+    Strict
+    Relaxed
   VkExternalMemoryHandleTypeFlagBitsNV* {.size: sizeof(int32).} = enum
-    OpaqueWin32BitNv = 1
-    OpaqueWin32KmtBitNv = 2
-    D3d11ImageBitNv = 4
-    D3d11ImageKmtBitNv = 8
+    OpaqueWin32Bit = 1
+    OpaqueWin32KmtBit
+    D3d11ImageBit = 4
+    D3d11ImageKmtBit = 8
   VkExternalMemoryFeatureFlagBitsNV* {.size: sizeof(int32).} = enum
-    DedicatedOnlyBitNv = 1
-    ExportableBitNv = 2
-    ImportableBitNv = 4
+    DedicatedOnlyBit = 1
+    ExportableBit
+    ImportableBit = 4
   VkValidationCheckEXT* {.size: sizeof(int32).} = enum
-    AllExt = 0
-    ShadersExt = 1
+    All
+    Shaders
   VkValidationFeatureEnableEXT* {.size: sizeof(int32).} = enum
-    GpuAssistedExt = 0
-    GpuAssistedReserveBindingSlotExt = 1
-    BestPracticesExt = 2
-    DebugPrintfExt = 3
-    SynchronizationValidationExt = 4
+    GpuAssisted
+    GpuAssistedReserveBindingSlot
+    BestPractices
+    DebugPrintf
+    SynchronizationValidation
   VkValidationFeatureDisableEXT* {.size: sizeof(int32).} = enum
-    AllExt = 0
-    ShadersExt = 1
-    ThreadSafetyExt = 2
-    ApiParametersExt = 3
-    ObjectLifetimesExt = 4
-    CoreChecksExt = 5
-    UniqueHandlesExt = 6
-    ShaderValidationCacheExt = 7
+    All
+    Shaders
+    ThreadSafety
+    ApiParameters
+    ObjectLifetimes
+    CoreChecks
+    UniqueHandles
+    ShaderValidationCache
   VkLayerSettingTypeEXT* {.size: sizeof(int32).} = enum
-    Bool32Ext = 0
-    Int32Ext = 1
-    Int64Ext = 2
-    Uint32Ext = 3
-    Uint64Ext = 4
-    Float32Ext = 5
-    Float64Ext = 6
-    StringExt = 7
+    Bool32
+    Int32
+    Int64
+    Uint32
+    Uint64
+    Float32
+    Float64
+    String
   VkSubgroupFeatureFlagBits* {.size: sizeof(int32).} = enum
     BasicBit = 1
-    VoteBit = 2
+    VoteBit
     ArithmeticBit = 4
     BallotBit = 8
     ShuffleBit = 16
@@ -895,23 +895,23 @@ type
     ClusteredBit = 64
     QuadBit = 128
   VkIndirectCommandsLayoutUsageFlagBitsNV* {.size: sizeof(int32).} = enum
-    ExplicitPreprocessBitNv = 1
-    IndexedSequencesBitNv = 2
-    UnorderedSequencesBitNv = 4
+    ExplicitPreprocessBit = 1
+    IndexedSequencesBit
+    UnorderedSequencesBit = 4
   VkIndirectStateFlagBitsNV* {.size: sizeof(int32).} = enum
-    FlagFrontfaceBitNv = 1
+    FlagFrontfaceBit = 1
   VkIndirectCommandsTokenTypeNV* {.size: sizeof(int32).} = enum
-    ShaderGroupNv = 0
-    StateFlagsNv = 1
-    IndexBufferNv = 2
-    VertexBufferNv = 3
-    PushConstantNv = 4
-    DrawIndexedNv = 5
-    DrawNv = 6
-    DrawTasksNv = 7
+    ShaderGroup
+    StateFlags
+    IndexBuffer
+    VertexBuffer
+    PushConstant
+    DrawIndexed
+    Draw
+    DrawTasks
   VkExternalMemoryHandleTypeFlagBits* {.size: sizeof(int32).} = enum
     OpaqueFdBit = 1
-    OpaqueWin32Bit = 2
+    OpaqueWin32Bit
     OpaqueWin32KmtBit = 4
     D3d11TextureBit = 8
     D3d11TextureKmtBit = 16
@@ -919,379 +919,379 @@ type
     D3d12ResourceBit = 64
   VkExternalMemoryFeatureFlagBits* {.size: sizeof(int32).} = enum
     DedicatedOnlyBit = 1
-    ExportableBit = 2
+    ExportableBit
     ImportableBit = 4
   VkExternalSemaphoreHandleTypeFlagBits* {.size: sizeof(int32).} = enum
     OpaqueFdBit = 1
-    OpaqueWin32Bit = 2
+    OpaqueWin32Bit
     OpaqueWin32KmtBit = 4
     D3d12FenceBit = 8
     SyncFdBit = 16
   VkExternalSemaphoreFeatureFlagBits* {.size: sizeof(int32).} = enum
     ExportableBit = 1
-    ImportableBit = 2
+    ImportableBit
   VkSemaphoreImportFlagBits* {.size: sizeof(int32).} = enum
     TemporaryBit = 1
   VkExternalFenceHandleTypeFlagBits* {.size: sizeof(int32).} = enum
     OpaqueFdBit = 1
-    OpaqueWin32Bit = 2
+    OpaqueWin32Bit
     OpaqueWin32KmtBit = 4
     SyncFdBit = 8
   VkExternalFenceFeatureFlagBits* {.size: sizeof(int32).} = enum
     ExportableBit = 1
-    ImportableBit = 2
+    ImportableBit
   VkFenceImportFlagBits* {.size: sizeof(int32).} = enum
     TemporaryBit = 1
   VkSurfaceCounterFlagBitsEXT* {.size: sizeof(int32).} = enum
-    VblankBitExt = 1
+    VblankBit = 1
   VkDisplayPowerStateEXT* {.size: sizeof(int32).} = enum
-    OffExt = 0
-    SuspendExt = 1
-    OnExt = 2
+    Off
+    Suspend
+    On
   VkDeviceEventTypeEXT* {.size: sizeof(int32).} = enum
-    DisplayHotplugExt = 0
+    DisplayHotplug
   VkDisplayEventTypeEXT* {.size: sizeof(int32).} = enum
-    FirstPixelOutExt = 0
+    FirstPixelOut
   VkPeerMemoryFeatureFlagBits* {.size: sizeof(int32).} = enum
     CopySrcBit = 1
-    CopyDstBit = 2
+    CopyDstBit
     GenericSrcBit = 4
     GenericDstBit = 8
   VkMemoryAllocateFlagBits* {.size: sizeof(int32).} = enum
     DeviceMaskBit = 1
   VkDeviceGroupPresentModeFlagBitsKHR* {.size: sizeof(int32).} = enum
-    LocalBitKhr = 1
-    RemoteBitKhr = 2
-    SumBitKhr = 4
-    LocalMultiDeviceBitKhr = 8
+    LocalBit = 1
+    RemoteBit
+    SumBit = 4
+    LocalMultiDeviceBit = 8
   VkViewportCoordinateSwizzleNV* {.size: sizeof(int32).} = enum
-    PositiveXNv = 0
-    NegativeXNv = 1
-    PositiveYNv = 2
-    NegativeYNv = 3
-    PositiveZNv = 4
-    NegativeZNv = 5
-    PositiveWNv = 6
-    NegativeWNv = 7
+    PositiveX
+    NegativeX
+    PositiveY
+    NegativeY
+    PositiveZ
+    NegativeZ
+    PositiveW
+    NegativeW
   VkDiscardRectangleModeEXT* {.size: sizeof(int32).} = enum
-    InclusiveExt = 0
-    ExclusiveExt = 1
+    Inclusive
+    Exclusive
   VkPointClippingBehavior* {.size: sizeof(int32).} = enum
-    AllClipPlanes = 0
-    UserClipPlanesOnly = 1
+    AllClipPlanes
+    UserClipPlanesOnly
   VkSamplerReductionMode* {.size: sizeof(int32).} = enum
-    WeightedAverage = 0
-    Min = 1
-    Max = 2
+    WeightedAverage
+    Min
+    Max
   VkTessellationDomainOrigin* {.size: sizeof(int32).} = enum
-    UpperLeft = 0
-    LowerLeft = 1
+    UpperLeft
+    LowerLeft
   VkSamplerYcbcrModelConversion* {.size: sizeof(int32).} = enum
-    RgbIdentity = 0
-    YcbcrIdentity = 1
-    Ycbcr709 = 2
-    Ycbcr601 = 3
-    Ycbcr2020 = 4
+    RgbIdentity
+    YcbcrIdentity
+    Ycbcr709
+    Ycbcr601
+    Ycbcr2020
   VkSamplerYcbcrRange* {.size: sizeof(int32).} = enum
-    ItuFull = 0
-    ItuNarrow = 1
+    ItuFull
+    ItuNarrow
   VkChromaLocation* {.size: sizeof(int32).} = enum
-    CositedEven = 0
-    Midpoint = 1
+    CositedEven
+    Midpoint
   VkBlendOverlapEXT* {.size: sizeof(int32).} = enum
-    UncorrelatedExt = 0
-    DisjointExt = 1
-    ConjointExt = 2
+    Uncorrelated
+    Disjoint
+    Conjoint
   VkCoverageModulationModeNV* {.size: sizeof(int32).} = enum
-    NoneNv = 0
-    RgbNv = 1
-    AlphaNv = 2
-    RgbaNv = 3
+    None
+    Rgb
+    Alpha
+    Rgba
   VkCoverageReductionModeNV* {.size: sizeof(int32).} = enum
-    MergeNv = 0
-    TruncateNv = 1
+    Merge
+    Truncate
   VkValidationCacheHeaderVersionEXT* {.size: sizeof(int32).} = enum
-    OneExt = 1
+    One = 1
   VkShaderInfoTypeAMD* {.size: sizeof(int32).} = enum
-    StatisticsAmd = 0
-    BinaryAmd = 1
-    DisassemblyAmd = 2
+    Statistics
+    Binary
+    Disassembly
   VkQueueGlobalPriorityKHR* {.size: sizeof(int32).} = enum
-    LowKhr = 128
-    MediumKhr = 256
-    HighKhr = 512
-    RealtimeKhr = 1024
+    Low = 128
+    Medium = 256
+    High = 512
+    Realtime = 1024
   VkDebugUtilsMessageSeverityFlagBitsEXT* {.size: sizeof(int32).} = enum
-    VerboseBitExt = 1
-    InfoBitExt = 16
-    WarningBitExt = 256
-    ErrorBitExt = 4096
+    VerboseBit = 1
+    InfoBit = 16
+    WarningBit = 256
+    ErrorBit = 4096
   VkDebugUtilsMessageTypeFlagBitsEXT* {.size: sizeof(int32).} = enum
-    GeneralBitExt = 1
-    ValidationBitExt = 2
-    PerformanceBitExt = 4
+    GeneralBit = 1
+    ValidationBit
+    PerformanceBit = 4
   VkConservativeRasterizationModeEXT* {.size: sizeof(int32).} = enum
-    DisabledExt = 0
-    OverestimateExt = 1
-    UnderestimateExt = 2
+    Disabled
+    Overestimate
+    Underestimate
   VkDescriptorBindingFlagBits* {.size: sizeof(int32).} = enum
     UpdateAfterBindBit = 1
-    UpdateUnusedWhilePendingBit = 2
+    UpdateUnusedWhilePendingBit
     PartiallyBoundBit = 4
     VariableDescriptorCountBit = 8
   VkVendorId* {.size: sizeof(int32).} = enum
     Viv = 65537
-    Vsi = 65538
-    Kazan = 65539
-    Codeplay = 65540
-    Mesa = 65541
-    Pocl = 65542
-    Mobileye = 65543
+    Vsi
+    Kazan
+    Codeplay
+    Mesa
+    Pocl
+    Mobileye
   VkDriverId* {.size: sizeof(int32).} = enum
     AmdProprietary = 1
-    AmdOpenSource = 2
-    MesaRadv = 3
-    NvidiaProprietary = 4
-    IntelProprietaryWindows = 5
-    IntelOpenSourceMesa = 6
-    ImaginationProprietary = 7
-    QualcommProprietary = 8
-    ArmProprietary = 9
-    GoogleSwiftshader = 10
-    GgpProprietary = 11
-    BroadcomProprietary = 12
-    MesaLlvmpipe = 13
-    Moltenvk = 14
-    CoreaviProprietary = 15
-    JuiceProprietary = 16
-    VerisiliconProprietary = 17
-    MesaTurnip = 18
-    MesaV3dv = 19
-    MesaPanvk = 20
-    SamsungProprietary = 21
-    MesaVenus = 22
-    MesaDozen = 23
-    MesaNvk = 24
-    ImaginationOpenSourceMesa = 25
-    MesaAgxv = 26
+    AmdOpenSource
+    MesaRadv
+    NvidiaProprietary
+    IntelProprietaryWindows
+    IntelOpenSourceMesa
+    ImaginationProprietary
+    QualcommProprietary
+    ArmProprietary
+    GoogleSwiftshader
+    GgpProprietary
+    BroadcomProprietary
+    MesaLlvmpipe
+    Moltenvk
+    CoreaviProprietary
+    JuiceProprietary
+    VerisiliconProprietary
+    MesaTurnip
+    MesaV3dv
+    MesaPanvk
+    SamsungProprietary
+    MesaVenus
+    MesaDozen
+    MesaNvk
+    ImaginationOpenSourceMesa
+    MesaAgxv
   VkConditionalRenderingFlagBitsEXT* {.size: sizeof(int32).} = enum
-    InvertedBitExt = 1
+    InvertedBit = 1
   VkResolveModeFlagBits* {.size: sizeof(int32).} = enum
-    None = 0
-    SampleZeroBit = 1
-    AverageBit = 2
+    None
+    SampleZeroBit
+    AverageBit
     MinBit = 4
     MaxBit = 8
   VkShadingRatePaletteEntryNV* {.size: sizeof(int32).} = enum
-    NoInvocationsNv = 0
-    N16InvocationsPerPixelNv = 1
-    N8InvocationsPerPixelNv = 2
-    N4InvocationsPerPixelNv = 3
-    N2InvocationsPerPixelNv = 4
-    N1InvocationPerPixelNv = 5
-    N1InvocationPer2x1PixelsNv = 6
-    N1InvocationPer1x2PixelsNv = 7
-    N1InvocationPer2x2PixelsNv = 8
-    N1InvocationPer4x2PixelsNv = 9
-    N1InvocationPer2x4PixelsNv = 10
-    N1InvocationPer4x4PixelsNv = 11
+    NoInvocations
+    N16InvocationsPerPixel
+    N8InvocationsPerPixel
+    N4InvocationsPerPixel
+    N2InvocationsPerPixel
+    N1InvocationPerPixel
+    N1InvocationPer2x1Pixels
+    N1InvocationPer1x2Pixels
+    N1InvocationPer2x2Pixels
+    N1InvocationPer4x2Pixels
+    N1InvocationPer2x4Pixels
+    N1InvocationPer4x4Pixels
   VkCoarseSampleOrderTypeNV* {.size: sizeof(int32).} = enum
-    DefaultNv = 0
-    CustomNv = 1
-    PixelMajorNv = 2
-    SampleMajorNv = 3
+    Default
+    Custom
+    PixelMajor
+    SampleMajor
   VkGeometryInstanceFlagBitsKHR* {.size: sizeof(int32).} = enum
-    TriangleFacingCullDisableBitKhr = 1
-    TriangleFlipFacingBitKhr = 2
-    ForceOpaqueBitKhr = 4
-    ForceNoOpaqueBitKhr = 8
+    TriangleFacingCullDisableBit = 1
+    TriangleFlipFacingBit
+    ForceOpaqueBit = 4
+    ForceNoOpaqueBit = 8
   VkGeometryFlagBitsKHR* {.size: sizeof(int32).} = enum
-    OpaqueBitKhr = 1
-    NoDuplicateAnyHitInvocationBitKhr = 2
+    OpaqueBit = 1
+    NoDuplicateAnyHitInvocationBit
   VkBuildAccelerationStructureFlagBitsKHR* {.size: sizeof(int32).} = enum
-    AllowUpdateBitKhr = 1
-    AllowCompactionBitKhr = 2
-    PreferFastTraceBitKhr = 4
-    PreferFastBuildBitKhr = 8
-    LowMemoryBitKhr = 16
+    AllowUpdateBit = 1
+    AllowCompactionBit
+    PreferFastTraceBit = 4
+    PreferFastBuildBit = 8
+    LowMemoryBit = 16
   VkAccelerationStructureCreateFlagBitsKHR* {.size: sizeof(int32).} = enum
-    DeviceAddressCaptureReplayBitKhr = 1
+    DeviceAddressCaptureReplayBit = 1
   VkCopyAccelerationStructureModeKHR* {.size: sizeof(int32).} = enum
-    CloneKhr = 0
-    CompactKhr = 1
-    SerializeKhr = 2
-    DeserializeKhr = 3
+    Clone
+    Compact
+    Serialize
+    Deserialize
   VkBuildAccelerationStructureModeKHR* {.size: sizeof(int32).} = enum
-    BuildKhr = 0
-    UpdateKhr = 1
+    Build
+    Update
   VkAccelerationStructureTypeKHR* {.size: sizeof(int32).} = enum
-    TopLevelKhr = 0
-    BottomLevelKhr = 1
-    GenericKhr = 2
+    TopLevel
+    BottomLevel
+    Generic
   VkGeometryTypeKHR* {.size: sizeof(int32).} = enum
-    TrianglesKhr = 0
-    AabbsKhr = 1
-    InstancesKhr = 2
+    Triangles
+    Aabbs
+    Instances
   VkAccelerationStructureMemoryRequirementsTypeNV* {.size: sizeof(int32).} = enum
-    ObjectNv = 0
-    BuildScratchNv = 1
-    UpdateScratchNv = 2
+    Object
+    BuildScratch
+    UpdateScratch
   VkAccelerationStructureBuildTypeKHR* {.size: sizeof(int32).} = enum
-    HostKhr = 0
-    DeviceKhr = 1
-    HostOrDeviceKhr = 2
+    Host
+    Device
+    HostOrDevice
   VkRayTracingShaderGroupTypeKHR* {.size: sizeof(int32).} = enum
-    GeneralKhr = 0
-    TrianglesHitGroupKhr = 1
-    ProceduralHitGroupKhr = 2
+    General
+    TrianglesHitGroup
+    ProceduralHitGroup
   VkAccelerationStructureCompatibilityKHR* {.size: sizeof(int32).} = enum
-    CompatibleKhr = 0
-    IncompatibleKhr = 1
+    Compatible
+    Incompatible
   VkShaderGroupShaderKHR* {.size: sizeof(int32).} = enum
-    GeneralKhr = 0
-    ClosestHitKhr = 1
-    AnyHitKhr = 2
-    IntersectionKhr = 3
+    General
+    ClosestHit
+    AnyHit
+    Intersection
   VkMemoryOverallocationBehaviorAMD* {.size: sizeof(int32).} = enum
-    DefaultAmd = 0
-    AllowedAmd = 1
-    DisallowedAmd = 2
+    Default
+    Allowed
+    Disallowed
   VkDeviceDiagnosticsConfigFlagBitsNV* {.size: sizeof(int32).} = enum
-    EnableShaderDebugInfoBitNv = 1
-    EnableResourceTrackingBitNv = 2
-    EnableAutomaticCheckpointsBitNv = 4
-    EnableShaderErrorReportingBitNv = 8
+    EnableShaderDebugInfoBit = 1
+    EnableResourceTrackingBit
+    EnableAutomaticCheckpointsBit = 4
+    EnableShaderErrorReportingBit = 8
   VkPipelineCreationFeedbackFlagBits* {.size: sizeof(int32).} = enum
     ValidBit = 1
-    ApplicationPipelineCacheHitBit = 2
+    ApplicationPipelineCacheHitBit
     BasePipelineAccelerationBit = 4
   VkFullScreenExclusiveEXT* {.size: sizeof(int32).} = enum
-    DefaultExt = 0
-    AllowedExt = 1
-    DisallowedExt = 2
-    ApplicationControlledExt = 3
+    Default
+    Allowed
+    Disallowed
+    ApplicationControlled
   VkPerformanceCounterScopeKHR* {.size: sizeof(int32).} = enum
-    CommandBufferKhr = 0
-    RenderPassKhr = 1
-    CommandKhr = 2
+    CommandBuffer
+    RenderPass
+    Command
   VkMemoryDecompressionMethodFlagBitsNV* {.size: sizeof(int32).} = enum
-    Gdeflate10BitNv = 1
+    Gdeflate10Bit = 1
   VkPerformanceCounterUnitKHR* {.size: sizeof(int32).} = enum
-    GenericKhr = 0
-    PercentageKhr = 1
-    NanosecondsKhr = 2
-    BytesKhr = 3
-    BytesPerSecondKhr = 4
-    KelvinKhr = 5
-    WattsKhr = 6
-    VoltsKhr = 7
-    AmpsKhr = 8
-    HertzKhr = 9
-    CyclesKhr = 10
+    Generic
+    Percentage
+    Nanoseconds
+    Bytes
+    BytesPerSecond
+    Kelvin
+    Watts
+    Volts
+    Amps
+    Hertz
+    Cycles
   VkPerformanceCounterStorageKHR* {.size: sizeof(int32).} = enum
-    Int32Khr = 0
-    Int64Khr = 1
-    Uint32Khr = 2
-    Uint64Khr = 3
-    Float32Khr = 4
-    Float64Khr = 5
+    Int32
+    Int64
+    Uint32
+    Uint64
+    Float32
+    Float64
   VkPerformanceCounterDescriptionFlagBitsKHR* {.size: sizeof(int32).} = enum
-    PerformanceImpactingBitKhr = 1
-    ConcurrentlyImpactedBitKhr = 2
+    PerformanceImpactingBit = 1
+    ConcurrentlyImpactedBit
   VkPerformanceConfigurationTypeINTEL* {.size: sizeof(int32).} = enum
-    CommandQueueMetricsDiscoveryActivatedIntel = 0
+    CommandQueueMetricsDiscoveryActivated
   VkQueryPoolSamplingModeINTEL* {.size: sizeof(int32).} = enum
-    ManualIntel = 0
+    Manual
   VkPerformanceOverrideTypeINTEL* {.size: sizeof(int32).} = enum
-    NullHardwareIntel = 0
-    FlushGpuCachesIntel = 1
+    NullHardware
+    FlushGpuCaches
   VkPerformanceParameterTypeINTEL* {.size: sizeof(int32).} = enum
-    HwCountersSupportedIntel = 0
-    StreamMarkerValidBitsIntel = 1
+    HwCountersSupported
+    StreamMarkerValidBits
   VkPerformanceValueTypeINTEL* {.size: sizeof(int32).} = enum
-    Uint32Intel = 0
-    Uint64Intel = 1
-    FloatIntel = 2
-    BoolIntel = 3
-    StringIntel = 4
+    Uint32
+    Uint64
+    Float
+    Bool
+    String
   VkShaderFloatControlsIndependence* {.size: sizeof(int32).} = enum
-    N32BitOnly = 0
-    All = 1
-    None = 2
+    N32BitOnly
+    All
+    None
   VkPipelineExecutableStatisticFormatKHR* {.size: sizeof(int32).} = enum
-    Bool32Khr = 0
-    Int64Khr = 1
-    Uint64Khr = 2
-    Float64Khr = 3
+    Bool32
+    Int64
+    Uint64
+    Float64
   VkLineRasterizationModeKHR* {.size: sizeof(int32).} = enum
-    DefaultKhr = 0
-    RectangularKhr = 1
-    BresenhamKhr = 2
-    RectangularSmoothKhr = 3
+    Default
+    Rectangular
+    Bresenham
+    RectangularSmooth
   VkFaultLevel* {.size: sizeof(int32).} = enum
-    Unassigned = 0
-    Critical = 1
-    Recoverable = 2
-    Warning = 3
+    Unassigned
+    Critical
+    Recoverable
+    Warning
   VkFaultType* {.size: sizeof(int32).} = enum
-    Invalid = 0
-    Unassigned = 1
-    Implementation = 2
-    System = 3
-    PhysicalDevice = 4
-    CommandBufferFull = 5
-    InvalidApiUsage = 6
+    Invalid
+    Unassigned
+    Implementation
+    System
+    PhysicalDevice
+    CommandBufferFull
+    InvalidApiUsage
   VkFaultQueryBehavior* {.size: sizeof(int32).} = enum
-    GetAndClearAllFaults = 0
+    GetAndClearAllFaults
   VkToolPurposeFlagBits* {.size: sizeof(int32).} = enum
     ValidationBit = 1
-    ProfilingBit = 2
+    ProfilingBit
     TracingBit = 4
     AdditionalFeaturesBit = 8
     ModifyingFeaturesBit = 16
   VkPipelineMatchControl* {.size: sizeof(int32).} = enum
-    ApplicationUuidExactMatch = 0
+    ApplicationUuidExactMatch
   VkFragmentShadingRateCombinerOpKHR* {.size: sizeof(int32).} = enum
-    KeepKhr = 0
-    ReplaceKhr = 1
-    MinKhr = 2
-    MaxKhr = 3
-    MulKhr = 4
+    Keep
+    Replace
+    Min
+    Max
+    Mul
   VkFragmentShadingRateNV* {.size: sizeof(int32).} = enum
-    N1InvocationPerPixelNv = 0
-    N1InvocationPer1x2PixelsNv = 1
-    N1InvocationPer2x1PixelsNv = 4
-    N1InvocationPer2x2PixelsNv = 5
-    N1InvocationPer2x4PixelsNv = 6
-    N1InvocationPer4x2PixelsNv = 9
-    N1InvocationPer4x4PixelsNv = 10
-    N2InvocationsPerPixelNv = 11
-    N4InvocationsPerPixelNv = 12
-    N8InvocationsPerPixelNv = 13
-    N16InvocationsPerPixelNv = 14
-    NoInvocationsNv = 15
+    N1InvocationPerPixel
+    N1InvocationPer1x2Pixels
+    N1InvocationPer2x1Pixels = 4
+    N1InvocationPer2x2Pixels
+    N1InvocationPer2x4Pixels
+    N1InvocationPer4x2Pixels = 9
+    N1InvocationPer4x4Pixels
+    N2InvocationsPerPixel
+    N4InvocationsPerPixel
+    N8InvocationsPerPixel
+    N16InvocationsPerPixel
+    NoInvocations
   VkFragmentShadingRateTypeNV* {.size: sizeof(int32).} = enum
-    FragmentSizeNv = 0
-    EnumsNv = 1
+    FragmentSize
+    Enums
   VkSubpassMergeStatusEXT* {.size: sizeof(int32).} = enum
-    MergedExt = 0
-    DisallowedExt = 1
-    NotMergedSideEffectsExt = 2
-    NotMergedSamplesMismatchExt = 3
-    NotMergedViewsMismatchExt = 4
-    NotMergedAliasingExt = 5
-    NotMergedDependenciesExt = 6
-    NotMergedIncompatibleInputAttachmentExt = 7
-    NotMergedTooManyAttachmentsExt = 8
-    NotMergedInsufficientStorageExt = 9
-    NotMergedDepthStencilCountExt = 10
-    NotMergedResolveAttachmentReuseExt = 11
-    NotMergedSingleSubpassExt = 12
-    NotMergedUnspecifiedExt = 13
+    Merged
+    Disallowed
+    NotMergedSideEffects
+    NotMergedSamplesMismatch
+    NotMergedViewsMismatch
+    NotMergedAliasing
+    NotMergedDependencies
+    NotMergedIncompatibleInputAttachment
+    NotMergedTooManyAttachments
+    NotMergedInsufficientStorage
+    NotMergedDepthStencilCount
+    NotMergedResolveAttachmentReuse
+    NotMergedSingleSubpass
+    NotMergedUnspecified
   VkAccessFlagBits2* {.size: sizeof(int32).} = enum
-    N2None = 0
-    N2IndirectCommandReadBit = 1
-    N2IndexReadBit = 2
+    N2None
+    N2IndirectCommandReadBit
+    N2IndexReadBit
     N2VertexAttributeReadBit = 4
     N2UniformReadBit = 8
     N2InputAttachmentReadBit = 16
@@ -1311,9 +1311,9 @@ type
     N2ShaderStorageReadBit = 8589934592
     N2ShaderStorageWriteBit = 17179869184
   VkPipelineStageFlagBits2* {.size: sizeof(int32).} = enum
-    N2None = 0
-    N2TopOfPipeBit = 1
-    N2DrawIndirectBit = 2
+    N2None
+    N2TopOfPipeBit
+    N2DrawIndirectBit
     N2VertexInputBit = 4
     N2VertexShaderBit = 8
     N2TessellationControlShaderBit = 16
@@ -1339,156 +1339,156 @@ type
   VkSubmitFlagBits* {.size: sizeof(int32).} = enum
     ProtectedBit = 1
   VkSciSyncClientTypeNV* {.size: sizeof(int32).} = enum
-    SignalerNv = 0
-    WaiterNv = 1
-    SignalerWaiterNv = 2
+    Signaler
+    Waiter
+    SignalerWaiter
   VkSciSyncPrimitiveTypeNV* {.size: sizeof(int32).} = enum
-    FenceNv = 0
-    SemaphoreNv = 1
+    Fence
+    Semaphore
   VkProvokingVertexModeEXT* {.size: sizeof(int32).} = enum
-    FirstVertexExt = 0
-    LastVertexExt = 1
+    FirstVertex
+    LastVertex
   VkPipelineCacheValidationVersion* {.size: sizeof(int32).} = enum
     SafetyCriticalOne = 1
   VkAccelerationStructureMotionInstanceTypeNV* {.size: sizeof(int32).} = enum
-    StaticNv = 0
-    MatrixMotionNv = 1
-    SrtMotionNv = 2
+    Static
+    MatrixMotion
+    SrtMotion
   VkGraphicsPipelineLibraryFlagBitsEXT* {.size: sizeof(int32).} = enum
-    VertexInputInterfaceBitExt = 1
-    PreRasterizationShadersBitExt = 2
-    FragmentShaderBitExt = 4
-    FragmentOutputInterfaceBitExt = 8
+    VertexInputInterfaceBit = 1
+    PreRasterizationShadersBit
+    FragmentShaderBit = 4
+    FragmentOutputInterfaceBit = 8
   VkDeviceAddressBindingFlagBitsEXT* {.size: sizeof(int32).} = enum
-    InternalObjectBitExt = 1
+    InternalObjectBit = 1
   VkDeviceAddressBindingTypeEXT* {.size: sizeof(int32).} = enum
-    BindExt = 0
-    UnbindExt = 1
+    Bind
+    Unbind
   VkFrameBoundaryFlagBitsEXT* {.size: sizeof(int32).} = enum
-    FrameEndBitExt = 1
+    FrameEndBit = 1
   VkPresentScalingFlagBitsEXT* {.size: sizeof(int32).} = enum
-    OneToOneBitExt = 1
-    AspectRatioStretchBitExt = 2
-    StretchBitExt = 4
+    OneToOneBit = 1
+    AspectRatioStretchBit
+    StretchBit = 4
   VkPresentGravityFlagBitsEXT* {.size: sizeof(int32).} = enum
-    MinBitExt = 1
-    MaxBitExt = 2
-    CenteredBitExt = 4
+    MinBit = 1
+    MaxBit
+    CenteredBit = 4
   VkPhysicalDeviceSchedulingControlsFlagBitsARM* {.size: sizeof(int32).} = enum
     VkPhysicalDeviceSchedulingControlsShaderCoreCountArm = 1
   VkVideoCodecOperationFlagBitsKHR* {.size: sizeof(int32).} = enum
-    NoneKhr = 0
+    None
   VkVideoChromaSubsamplingFlagBitsKHR* {.size: sizeof(int32).} = enum
-    InvalidKhr = 0
-    MonochromeBitKhr = 1
-    N420BitKhr = 2
-    N422BitKhr = 4
-    N444BitKhr = 8
+    Invalid
+    MonochromeBit
+    N420Bit
+    N422Bit = 4
+    N444Bit = 8
   VkVideoComponentBitDepthFlagBitsKHR* {.size: sizeof(int32).} = enum
-    InvalidKhr = 0
-    N8BitKhr = 1
-    N10BitKhr = 4
-    N12BitKhr = 16
+    Invalid
+    N8Bit
+    N10Bit = 4
+    N12Bit = 16
   VkVideoCapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
-    ProtectedContentBitKhr = 1
-    SeparateReferenceImagesBitKhr = 2
+    ProtectedContentBit = 1
+    SeparateReferenceImagesBit
   VkVideoSessionCreateFlagBitsKHR* {.size: sizeof(int32).} = enum
-    ProtectedContentBitKhr = 1
+    ProtectedContentBit = 1
   VkVideoDecodeH264PictureLayoutFlagBitsKHR* {.size: sizeof(int32).} = enum
-    ProgressiveKhr = 0
-    InterlacedInterleavedLinesBitKhr = 1
-    InterlacedSeparatePlanesBitKhr = 2
+    Progressive
+    InterlacedInterleavedLinesBit
+    InterlacedSeparatePlanesBit
   VkVideoCodingControlFlagBitsKHR* {.size: sizeof(int32).} = enum
-    ResetBitKhr = 1
+    ResetBit = 1
   VkQueryResultStatusKHR* {.size: sizeof(int32).} = enum
-    ErrorKhr = -1
-    NotReadyKhr = 0
-    CompleteKhr = 1
+    Error = -1
+    NotReady
+    Complete
   VkVideoDecodeUsageFlagBitsKHR* {.size: sizeof(int32).} = enum
-    DefaultKhr = 0
-    TranscodingBitKhr = 1
-    OfflineBitKhr = 2
-    StreamingBitKhr = 4
+    Default
+    TranscodingBit
+    OfflineBit
+    StreamingBit = 4
   VkVideoDecodeCapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
-    DpbAndOutputCoincideBitKhr = 1
-    DpbAndOutputDistinctBitKhr = 2
+    DpbAndOutputCoincideBit = 1
+    DpbAndOutputDistinctBit
   VkVideoEncodeUsageFlagBitsKHR* {.size: sizeof(int32).} = enum
-    DefaultKhr = 0
-    TranscodingBitKhr = 1
-    StreamingBitKhr = 2
-    RecordingBitKhr = 4
-    ConferencingBitKhr = 8
+    Default
+    TranscodingBit
+    StreamingBit
+    RecordingBit = 4
+    ConferencingBit = 8
   VkVideoEncodeContentFlagBitsKHR* {.size: sizeof(int32).} = enum
-    DefaultKhr = 0
-    CameraBitKhr = 1
-    DesktopBitKhr = 2
-    RenderedBitKhr = 4
+    Default
+    CameraBit
+    DesktopBit
+    RenderedBit = 4
   VkVideoEncodeTuningModeKHR* {.size: sizeof(int32).} = enum
-    DefaultKhr = 0
-    HighQualityKhr = 1
-    LowLatencyKhr = 2
-    UltraLowLatencyKhr = 3
-    LosslessKhr = 4
+    Default
+    HighQuality
+    LowLatency
+    UltraLowLatency
+    Lossless
   VkVideoEncodeCapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
-    PrecedingExternallyEncodedBytesBitKhr = 1
-    InsufficientBitstreamBufferRangeDetectionBitKhr = 2
+    PrecedingExternallyEncodedBytesBit = 1
+    InsufficientBitstreamBufferRangeDetectionBit
   VkVideoEncodeFeedbackFlagBitsKHR* {.size: sizeof(int32).} = enum
-    BitstreamBufferOffsetBitKhr = 1
-    BitstreamBytesWrittenBitKhr = 2
-    BitstreamHasOverridesBitKhr = 4
+    BitstreamBufferOffsetBit = 1
+    BitstreamBytesWrittenBit
+    BitstreamHasOverridesBit = 4
   VkVideoEncodeRateControlModeFlagBitsKHR* {.size: sizeof(int32).} = enum
-    DefaultKhr = 0
-    DisabledBitKhr = 1
-    CbrBitKhr = 2
-    VbrBitKhr = 4
+    Default
+    DisabledBit
+    CbrBit
+    VbrBit = 4
   VkVideoEncodeH264CapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
-    HrdComplianceBitKhr = 1
-    PredictionWeightTableGeneratedBitKhr = 2
-    RowUnalignedSliceBitKhr = 4
-    DifferentSliceTypeBitKhr = 8
-    BFrameInL0ListBitKhr = 16
-    BFrameInL1ListBitKhr = 32
-    PerPictureTypeMinMaxQpBitKhr = 64
-    PerSliceConstantQpBitKhr = 128
-    GeneratePrefixNaluBitKhr = 256
+    HrdComplianceBit = 1
+    PredictionWeightTableGeneratedBit
+    RowUnalignedSliceBit = 4
+    DifferentSliceTypeBit = 8
+    BFrameInL0ListBit = 16
+    BFrameInL1ListBit = 32
+    PerPictureTypeMinMaxQpBit = 64
+    PerSliceConstantQpBit = 128
+    GeneratePrefixNaluBit = 256
   VkVideoEncodeH264StdFlagBitsKHR* {.size: sizeof(int32).} = enum
-    SeparateColorPlaneFlagSetBitKhr = 1
-    QpprimeYZeroTransformBypassFlagSetBitKhr = 2
-    ScalingMatrixPresentFlagSetBitKhr = 4
-    ChromaQpIndexOffsetBitKhr = 8
-    SecondChromaQpIndexOffsetBitKhr = 16
-    PicInitQpMinus26BitKhr = 32
-    WeightedPredFlagSetBitKhr = 64
-    WeightedBipredIdcExplicitBitKhr = 128
-    WeightedBipredIdcImplicitBitKhr = 256
-    Transform8x8ModeFlagSetBitKhr = 512
-    DirectSpatialMvPredFlagUnsetBitKhr = 1024
-    EntropyCodingModeFlagUnsetBitKhr = 2048
-    EntropyCodingModeFlagSetBitKhr = 4096
-    Direct8x8InferenceFlagUnsetBitKhr = 8192
-    ConstrainedIntraPredFlagSetBitKhr = 16384
-    DeblockingFilterDisabledBitKhr = 32768
-    DeblockingFilterEnabledBitKhr = 65536
-    DeblockingFilterPartialBitKhr = 131072
-    SliceQpDeltaBitKhr = 524288
-    DifferentSliceQpDeltaBitKhr = 1048576
+    SeparateColorPlaneFlagSetBit = 1
+    QpprimeYZeroTransformBypassFlagSetBit
+    ScalingMatrixPresentFlagSetBit = 4
+    ChromaQpIndexOffsetBit = 8
+    SecondChromaQpIndexOffsetBit = 16
+    PicInitQpMinus26Bit = 32
+    WeightedPredFlagSetBit = 64
+    WeightedBipredIdcExplicitBit = 128
+    WeightedBipredIdcImplicitBit = 256
+    Transform8x8ModeFlagSetBit = 512
+    DirectSpatialMvPredFlagUnsetBit = 1024
+    EntropyCodingModeFlagUnsetBit = 2048
+    EntropyCodingModeFlagSetBit = 4096
+    Direct8x8InferenceFlagUnsetBit = 8192
+    ConstrainedIntraPredFlagSetBit = 16384
+    DeblockingFilterDisabledBit = 32768
+    DeblockingFilterEnabledBit = 65536
+    DeblockingFilterPartialBit = 131072
+    SliceQpDeltaBit = 524288
+    DifferentSliceQpDeltaBit = 1048576
   VkVideoEncodeH264RateControlFlagBitsKHR* {.size: sizeof(int32).} = enum
-    AttemptHrdComplianceBitKhr = 1
-    RegularGopBitKhr = 2
-    ReferencePatternFlatBitKhr = 4
-    ReferencePatternDyadicBitKhr = 8
-    TemporalLayerPatternDyadicBitKhr = 16
+    AttemptHrdComplianceBit = 1
+    RegularGopBit
+    ReferencePatternFlatBit = 4
+    ReferencePatternDyadicBit = 8
+    TemporalLayerPatternDyadicBit = 16
   VkHostImageCopyFlagBitsEXT* {.size: sizeof(int32).} = enum
-    MemcpyExt = 1
+    Memcpy = 1
   VkImageConstraintsInfoFlagBitsFUCHSIA* {.size: sizeof(int32).} = enum
     VkImageConstraintsInfoCpuReadRarelyFuchsia = 1
-    VkImageConstraintsInfoCpuReadOftenFuchsia = 2
+    VkImageConstraintsInfoCpuReadOftenFuchsia
     VkImageConstraintsInfoCpuWriteRarelyFuchsia = 4
     VkImageConstraintsInfoCpuWriteOftenFuchsia = 8
     VkImageConstraintsInfoProtectedOptionalFuchsia = 16
   VkFormatFeatureFlagBits2* {.size: sizeof(int32).} = enum
     N2SampledImageBit = 1
-    N2StorageImageBit = 2
+    N2StorageImageBit
     N2StorageImageAtomicBit = 4
     N2UniformTexelBufferBit = 8
     N2StorageTexelBufferBit = 16
@@ -1516,230 +1516,230 @@ type
     N2SampledImageDepthComparisonBit = 8589934592
   VkRenderingFlagBits* {.size: sizeof(int32).} = enum
     ContentsSecondaryCommandBuffersBit = 1
-    SuspendingBit = 2
+    SuspendingBit
     ResumingBit = 4
   VkVideoEncodeH265CapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
-    HrdComplianceBitKhr = 1
-    PredictionWeightTableGeneratedBitKhr = 2
-    RowUnalignedSliceSegmentBitKhr = 4
-    DifferentSliceSegmentTypeBitKhr = 8
-    BFrameInL0ListBitKhr = 16
-    BFrameInL1ListBitKhr = 32
-    PerPictureTypeMinMaxQpBitKhr = 64
-    PerSliceSegmentConstantQpBitKhr = 128
-    MultipleTilesPerSliceSegmentBitKhr = 256
-    MultipleSliceSegmentsPerTileBitKhr = 512
+    HrdComplianceBit = 1
+    PredictionWeightTableGeneratedBit
+    RowUnalignedSliceSegmentBit = 4
+    DifferentSliceSegmentTypeBit = 8
+    BFrameInL0ListBit = 16
+    BFrameInL1ListBit = 32
+    PerPictureTypeMinMaxQpBit = 64
+    PerSliceSegmentConstantQpBit = 128
+    MultipleTilesPerSliceSegmentBit = 256
+    MultipleSliceSegmentsPerTileBit = 512
   VkVideoEncodeH265StdFlagBitsKHR* {.size: sizeof(int32).} = enum
-    SeparateColorPlaneFlagSetBitKhr = 1
-    SampleAdaptiveOffsetEnabledFlagSetBitKhr = 2
-    ScalingListDataPresentFlagSetBitKhr = 4
-    PcmEnabledFlagSetBitKhr = 8
-    SpsTemporalMvpEnabledFlagSetBitKhr = 16
-    InitQpMinus26BitKhr = 32
-    WeightedPredFlagSetBitKhr = 64
-    WeightedBipredFlagSetBitKhr = 128
-    Log2ParallelMergeLevelMinus2BitKhr = 256
-    SignDataHidingEnabledFlagSetBitKhr = 512
-    TransformSkipEnabledFlagSetBitKhr = 1024
-    TransformSkipEnabledFlagUnsetBitKhr = 2048
-    PpsSliceChromaQpOffsetsPresentFlagSetBitKhr = 4096
-    TransquantBypassEnabledFlagSetBitKhr = 8192
-    ConstrainedIntraPredFlagSetBitKhr = 16384
-    EntropyCodingSyncEnabledFlagSetBitKhr = 32768
-    DeblockingFilterOverrideEnabledFlagSetBitKhr = 65536
-    DependentSliceSegmentsEnabledFlagSetBitKhr = 131072
-    DependentSliceSegmentFlagSetBitKhr = 262144
-    SliceQpDeltaBitKhr = 524288
-    DifferentSliceQpDeltaBitKhr = 1048576
+    SeparateColorPlaneFlagSetBit = 1
+    SampleAdaptiveOffsetEnabledFlagSetBit
+    ScalingListDataPresentFlagSetBit = 4
+    PcmEnabledFlagSetBit = 8
+    SpsTemporalMvpEnabledFlagSetBit = 16
+    InitQpMinus26Bit = 32
+    WeightedPredFlagSetBit = 64
+    WeightedBipredFlagSetBit = 128
+    Log2ParallelMergeLevelMinus2Bit = 256
+    SignDataHidingEnabledFlagSetBit = 512
+    TransformSkipEnabledFlagSetBit = 1024
+    TransformSkipEnabledFlagUnsetBit = 2048
+    PpsSliceChromaQpOffsetsPresentFlagSetBit = 4096
+    TransquantBypassEnabledFlagSetBit = 8192
+    ConstrainedIntraPredFlagSetBit = 16384
+    EntropyCodingSyncEnabledFlagSetBit = 32768
+    DeblockingFilterOverrideEnabledFlagSetBit = 65536
+    DependentSliceSegmentsEnabledFlagSetBit = 131072
+    DependentSliceSegmentFlagSetBit = 262144
+    SliceQpDeltaBit = 524288
+    DifferentSliceQpDeltaBit = 1048576
   VkVideoEncodeH265RateControlFlagBitsKHR* {.size: sizeof(int32).} = enum
-    AttemptHrdComplianceBitKhr = 1
-    RegularGopBitKhr = 2
-    ReferencePatternFlatBitKhr = 4
-    ReferencePatternDyadicBitKhr = 8
-    TemporalSubLayerPatternDyadicBitKhr = 16
+    AttemptHrdComplianceBit = 1
+    RegularGopBit
+    ReferencePatternFlatBit = 4
+    ReferencePatternDyadicBit = 8
+    TemporalSubLayerPatternDyadicBit = 16
   VkVideoEncodeH265CtbSizeFlagBitsKHR* {.size: sizeof(int32).} = enum
-    N16BitKhr = 1
-    N32BitKhr = 2
-    N64BitKhr = 4
+    N16Bit = 1
+    N32Bit
+    N64Bit = 4
   VkVideoEncodeH265TransformBlockSizeFlagBitsKHR* {.size: sizeof(int32).} = enum
-    N4BitKhr = 1
-    N8BitKhr = 2
-    N16BitKhr = 4
-    N32BitKhr = 8
+    N4Bit = 1
+    N8Bit
+    N16Bit = 4
+    N32Bit = 8
   VkExportMetalObjectTypeFlagBitsEXT* {.size: sizeof(int32).} = enum
-    MetalDeviceBitExt = 1
-    MetalCommandQueueBitExt = 2
-    MetalBufferBitExt = 4
-    MetalTextureBitExt = 8
-    MetalIosurfaceBitExt = 16
-    MetalSharedEventBitExt = 32
+    MetalDeviceBit = 1
+    MetalCommandQueueBit
+    MetalBufferBit = 4
+    MetalTextureBit = 8
+    MetalIosurfaceBit = 16
+    MetalSharedEventBit = 32
   VkImageCompressionFlagBitsEXT* {.size: sizeof(int32).} = enum
-    DefaultExt = 0
-    FixedRateDefaultExt = 1
-    FixedRateExplicitExt = 2
-    DisabledExt = 4
+    Default
+    FixedRateDefault
+    FixedRateExplicit
+    Disabled = 4
   VkImageCompressionFixedRateFlagBitsEXT* {.size: sizeof(int32).} = enum
-    NoneExt = 0
-    N1bpcBitExt = 1
-    N2bpcBitExt = 2
-    N3bpcBitExt = 4
-    N4bpcBitExt = 8
-    N5bpcBitExt = 16
-    N6bpcBitExt = 32
-    N7bpcBitExt = 64
-    N8bpcBitExt = 128
-    N9bpcBitExt = 256
-    N10bpcBitExt = 512
-    N11bpcBitExt = 1024
-    N12bpcBitExt = 2048
-    N13bpcBitExt = 4096
-    N14bpcBitExt = 8192
-    N15bpcBitExt = 16384
-    N16bpcBitExt = 32768
-    N17bpcBitExt = 65536
-    N18bpcBitExt = 131072
-    N19bpcBitExt = 262144
-    N20bpcBitExt = 524288
-    N21bpcBitExt = 1048576
-    N22bpcBitExt = 2097152
-    N23bpcBitExt = 4194304
-    N24bpcBitExt = 8388608
+    None
+    N1bpcBit
+    N2bpcBit
+    N3bpcBit = 4
+    N4bpcBit = 8
+    N5bpcBit = 16
+    N6bpcBit = 32
+    N7bpcBit = 64
+    N8bpcBit = 128
+    N9bpcBit = 256
+    N10bpcBit = 512
+    N11bpcBit = 1024
+    N12bpcBit = 2048
+    N13bpcBit = 4096
+    N14bpcBit = 8192
+    N15bpcBit = 16384
+    N16bpcBit = 32768
+    N17bpcBit = 65536
+    N18bpcBit = 131072
+    N19bpcBit = 262144
+    N20bpcBit = 524288
+    N21bpcBit = 1048576
+    N22bpcBit = 2097152
+    N23bpcBit = 4194304
+    N24bpcBit = 8388608
   VkPipelineRobustnessBufferBehaviorEXT* {.size: sizeof(int32).} = enum
-    DeviceDefaultExt = 0
-    DisabledExt = 1
-    RobustBufferAccessExt = 2
-    RobustBufferAccess2Ext = 3
+    DeviceDefault
+    Disabled
+    RobustBufferAccess
+    RobustBufferAccess2
   VkPipelineRobustnessImageBehaviorEXT* {.size: sizeof(int32).} = enum
-    DeviceDefaultExt = 0
-    DisabledExt = 1
-    RobustImageAccessExt = 2
-    RobustImageAccess2Ext = 3
+    DeviceDefault
+    Disabled
+    RobustImageAccess
+    RobustImageAccess2
   VkOpticalFlowGridSizeFlagBitsNV* {.size: sizeof(int32).} = enum
-    UnknownNv = 0
-    N1x1BitNv = 1
-    N2x2BitNv = 2
-    N4x4BitNv = 4
-    N8x8BitNv = 8
+    Unknown
+    N1x1Bit
+    N2x2Bit
+    N4x4Bit = 4
+    N8x8Bit = 8
   VkOpticalFlowUsageFlagBitsNV* {.size: sizeof(int32).} = enum
-    UnknownNv = 0
-    InputBitNv = 1
-    OutputBitNv = 2
-    HintBitNv = 4
-    CostBitNv = 8
-    GlobalFlowBitNv = 16
+    Unknown
+    InputBit
+    OutputBit
+    HintBit = 4
+    CostBit = 8
+    GlobalFlowBit = 16
   VkOpticalFlowPerformanceLevelNV* {.size: sizeof(int32).} = enum
-    UnknownNv = 0
-    SlowNv = 1
-    MediumNv = 2
-    FastNv = 3
+    Unknown
+    Slow
+    Medium
+    Fast
   VkOpticalFlowSessionBindingPointNV* {.size: sizeof(int32).} = enum
-    UnknownNv = 0
-    InputNv = 1
-    ReferenceNv = 2
-    HintNv = 3
-    FlowVectorNv = 4
-    BackwardFlowVectorNv = 5
-    CostNv = 6
-    BackwardCostNv = 7
-    GlobalFlowNv = 8
+    Unknown
+    Input
+    Reference
+    Hint
+    FlowVector
+    BackwardFlowVector
+    Cost
+    BackwardCost
+    GlobalFlow
   VkOpticalFlowSessionCreateFlagBitsNV* {.size: sizeof(int32).} = enum
-    EnableHintBitNv = 1
-    EnableCostBitNv = 2
-    EnableGlobalFlowBitNv = 4
-    AllowRegionsBitNv = 8
-    BothDirectionsBitNv = 16
+    EnableHintBit = 1
+    EnableCostBit
+    EnableGlobalFlowBit = 4
+    AllowRegionsBit = 8
+    BothDirectionsBit = 16
   VkOpticalFlowExecuteFlagBitsNV* {.size: sizeof(int32).} = enum
-    DisableTemporalHintsBitNv = 1
+    DisableTemporalHintsBit = 1
   VkMicromapTypeEXT* {.size: sizeof(int32).} = enum
-    OpacityMicromapExt = 0
+    OpacityMicromap
   VkBuildMicromapFlagBitsEXT* {.size: sizeof(int32).} = enum
-    PreferFastTraceBitExt = 1
-    PreferFastBuildBitExt = 2
-    AllowCompactionBitExt = 4
+    PreferFastTraceBit = 1
+    PreferFastBuildBit
+    AllowCompactionBit = 4
   VkMicromapCreateFlagBitsEXT* {.size: sizeof(int32).} = enum
-    DeviceAddressCaptureReplayBitExt = 1
+    DeviceAddressCaptureReplayBit = 1
   VkCopyMicromapModeEXT* {.size: sizeof(int32).} = enum
-    CloneExt = 0
-    SerializeExt = 1
-    DeserializeExt = 2
-    CompactExt = 3
+    Clone
+    Serialize
+    Deserialize
+    Compact
   VkBuildMicromapModeEXT* {.size: sizeof(int32).} = enum
-    BuildExt = 0
+    Build
   VkOpacityMicromapFormatEXT* {.size: sizeof(int32).} = enum
-    N2StateExt = 1
-    N4StateExt = 2
+    N2State = 1
+    N4State
   VkOpacityMicromapSpecialIndexEXT* {.size: sizeof(int32).} = enum
-    FullyUnknownOpaqueExt = -4
-    FullyUnknownTransparentExt = -3
-    FullyOpaqueExt = -2
-    FullyTransparentExt = -1
+    FullyUnknownOpaque = -4
+    FullyUnknownTransparent
+    FullyOpaque
+    FullyTransparent
   VkDepthBiasRepresentationEXT* {.size: sizeof(int32).} = enum
-    LeastRepresentableValueFormatExt = 0
-    LeastRepresentableValueForceUnormExt = 1
-    FloatExt = 2
+    LeastRepresentableValueFormat
+    LeastRepresentableValueForceUnorm
+    Float
   VkDeviceFaultAddressTypeEXT* {.size: sizeof(int32).} = enum
-    NoneExt = 0
-    ReadInvalidExt = 1
-    WriteInvalidExt = 2
-    ExecuteInvalidExt = 3
-    InstructionPointerUnknownExt = 4
-    InstructionPointerInvalidExt = 5
-    InstructionPointerFaultExt = 6
+    None
+    ReadInvalid
+    WriteInvalid
+    ExecuteInvalid
+    InstructionPointerUnknown
+    InstructionPointerInvalid
+    InstructionPointerFault
   VkDeviceFaultVendorBinaryHeaderVersionEXT* {.size: sizeof(int32).} = enum
-    OneExt = 1
+    One = 1
   VkDisplacementMicromapFormatNV* {.size: sizeof(int32).} = enum
-    N64Triangles64BytesNv = 1
-    N256Triangles128BytesNv = 2
-    N1024Triangles128BytesNv = 3
+    N64Triangles64Bytes = 1
+    N256Triangles128Bytes
+    N1024Triangles128Bytes
   VkShaderCreateFlagBitsEXT* {.size: sizeof(int32).} = enum
-    LinkStageBitExt = 1
+    LinkStageBit = 1
   VkShaderCodeTypeEXT* {.size: sizeof(int32).} = enum
-    BinaryExt = 0
-    SpirvExt = 1
+    Binary
+    Spirv
   VkScopeKHR* {.size: sizeof(int32).} = enum
-    DeviceKhr = 1
-    WorkgroupKhr = 2
-    SubgroupKhr = 3
-    QueueFamilyKhr = 5
+    Device = 1
+    Workgroup
+    Subgroup
+    QueueFamily = 5
   VkComponentTypeKHR* {.size: sizeof(int32).} = enum
-    Float16Khr = 0
-    Float32Khr = 1
-    Float64Khr = 2
-    Sint8Khr = 3
-    Sint16Khr = 4
-    Sint32Khr = 5
-    Sint64Khr = 6
-    Uint8Khr = 7
-    Uint16Khr = 8
-    Uint32Khr = 9
-    Uint64Khr = 10
+    Float16
+    Float32
+    Float64
+    Sint8
+    Sint16
+    Sint32
+    Sint64
+    Uint8
+    Uint16
+    Uint32
+    Uint64
   VkCubicFilterWeightsQCOM* {.size: sizeof(int32).} = enum
-    VkCubicFilterWeightsCatmullRomQcom = 0
-    VkCubicFilterWeightsZeroTangentCardinalQcom = 1
-    VkCubicFilterWeightsBSplineQcom = 2
-    VkCubicFilterWeightsMitchellNetravaliQcom = 3
+    VkCubicFilterWeightsCatmullRomQcom
+    VkCubicFilterWeightsZeroTangentCardinalQcom
+    VkCubicFilterWeightsBSplineQcom
+    VkCubicFilterWeightsMitchellNetravaliQcom
   VkBlockMatchWindowCompareModeQCOM* {.size: sizeof(int32).} = enum
-    VkBlockMatchWindowCompareModeMinQcom = 0
-    VkBlockMatchWindowCompareModeMaxQcom = 1
+    VkBlockMatchWindowCompareModeMinQcom
+    VkBlockMatchWindowCompareModeMaxQcom
   VkLayeredDriverUnderlyingApiMSFT* {.size: sizeof(int32).} = enum
-    VkLayeredDriverUnderlyingApiNoneMsft = 0
-    VkLayeredDriverUnderlyingApiD3d12Msft = 1
+    VkLayeredDriverUnderlyingApiNoneMsft
+    VkLayeredDriverUnderlyingApiD3d12Msft
   VkLatencyMarkerNV* {.size: sizeof(int32).} = enum
-    SimulationStartNv = 0
-    SimulationEndNv = 1
-    RendersubmitStartNv = 2
-    RendersubmitEndNv = 3
-    PresentStartNv = 4
-    PresentEndNv = 5
-    InputSampleNv = 6
-    TriggerFlashNv = 7
-    OutOfBandRendersubmitStartNv = 8
-    OutOfBandRendersubmitEndNv = 9
-    OutOfBandPresentStartNv = 10
-    OutOfBandPresentEndNv = 11
+    SimulationStart
+    SimulationEnd
+    RendersubmitStart
+    RendersubmitEnd
+    PresentStart
+    PresentEnd
+    InputSample
+    TriggerFlash
+    OutOfBandRendersubmitStart
+    OutOfBandRendersubmitEnd
+    OutOfBandPresentStart
+    OutOfBandPresentEnd
   VkOutOfBandQueueTypeNV* {.size: sizeof(int32).} = enum
-    RenderNv = 0
-    PresentNv = 1
+    Render
+    Present
 
 # Types
 
