@@ -489,8 +489,10 @@ proc genConstructors(node: XmlNode, output: var string) =
       if m.argType == "pointer":
         output.add(" = nil")
     output.add("): {s.name} =\n".fmt)
+    output.add("  result = {s.name}(\n".fmt)
     for m in s.members:
-      output.add("  result.{m.name} = {m.name}\n".fmt)
+      output.add("    {m.name}: {m.name},\n".fmt)
+    output.add("  )\n")
 
 proc main() =
   if not os.fileExists("vk.xml"):
