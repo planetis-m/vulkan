@@ -44,9 +44,15 @@ proc setVKGetProc*(getProc: proc (procName: cstring): pointer {.cdecl.}) =
 type
   VkHandle* = uint
   VkNonDispatchableHandle* = uint
-  ANativeWindow = ptr object
-  CAMetalLayer = ptr object
-  AHardwareBuffer = ptr object
+  ANativeWindow* = object
+  AHardwareBuffer* = object
+  CAMetalLayer* = object
+  MTLDevice_id* = object
+  MTLCommandQueue_id* = object
+  MTLBuffer_id* = object
+  MTLTexture_id* = object
+  MTLSharedEvent_id* = object
+  IOSurfaceRef* = object
 """
 
 const vkInit* = """

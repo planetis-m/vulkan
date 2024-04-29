@@ -137,6 +137,7 @@ proc genTypes(node: XmlNode, output: var string) =
         if t.child("type") != nil:
           var bType = t.child("type").innerText
           bType = bType.translateType()
+          if name == "VkRemoteAddressNV": bType = "pointer"
           output.add("  {name}* = distinct {bType}\n".fmt)
         continue
 
@@ -184,6 +185,7 @@ proc genTypes(node: XmlNode, output: var string) =
         # We are only outputting aliased enums here
         # The real enums are implemented below
         if alias != "":
+          if alias == "VkPrivateDataSlotCreateFlagBits": continue
           output.add("  {name}* = {alias}\n".fmt)
         continue
 
@@ -433,7 +435,10 @@ proc genProcs(node: XmlNode, output: var string) =
         if not output.endsWith('('):
           output.add(", ")
         output.add("{arg.name}: {arg.argType}".fmt)
-      output.add("): {vkProc.rval} {{.stdcall.}}\n".fmt)
+      if vkProc.rval == "void":
+        output.add(") {.stdcall.}\n")
+      else:
+        output.add("): {vkProc.rval} {{.stdcall.}}\n".fmt)
 
 proc genFeatures(node: XmlNode, output: var string) =
   echo "Generating and Adding Features..."
