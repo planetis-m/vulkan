@@ -614,8 +614,8 @@ type
     Reorder
 
   VkDirectDriverLoadingModeLUNARG* {.size: sizeof(int32).} = enum
-    VkDirectDriverLoadingModeExclusiveLunarg
-    VkDirectDriverLoadingModeInclusiveLunarg
+    Exclusive
+    Inclusive
 
   VkQueueFlagBits* {.size: sizeof(int32).} = enum
     GraphicsBit = 1

@@ -353,9 +353,9 @@ proc genEnums(node: XmlNode, output: var string) =
       var enumName = e.attr("name")
       enumName = camelCaseAscii(enumName)
       var tmp = name
-      for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "MSFT", "QCOM", "ANDROID", "FlagBits", "FlagBits2"]:
+      for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "MSFT", "QCOM", "ANDROID", "LUNARG", "FlagBits", "FlagBits2"]:
         tmp.removeSuffix(suf)
-      for suf in ["Khr", "Ext", "Nv", "Intel", "Amd", "Msft", "Qcom", "Android"]:
+      for suf in ["Khr", "Ext", "Nv", "Intel", "Amd", "Msft", "Qcom", "Android", "Lunarg"]:
         enumName.removeSuffix(suf)
       enumName.removePrefix(tmp)
       if enumName[0] in Digits:
@@ -500,9 +500,9 @@ proc genConstructors(node: XmlNode, output: var string) =
         output.add(&" = 0.{m.argType}")
       if m.name == "sType":
         for structType in vkStructureTypes:
-          let tmp = s.name[2..<s.name.len]
-          if structType.cmpIgnoreStyle(tmp) == 0:
-            output.add(&" = VkStructureType.{tmp}")
+          let styp = s.name.substr(2)
+          if structType.cmpIgnoreStyle(styp) == 0:
+            output.add(&" = VkStructureType.{styp}")
       if m.argType == "pointer":
         output.add(" = nil")
     output.add(&"): {s.name} =\n")
