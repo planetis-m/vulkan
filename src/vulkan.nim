@@ -20,18 +20,12 @@ when not defined(vkCustomLoader):
 
   let vkHandleDLL = loadLib(vkDLL)
   if isNil(vkHandleDLL):
-    quit("could not load: " & vkDLL)
+    raise newException(LibraryError, "could not load: " & vkDLL)
 
-  let vkGetProcAddress = cast[proc (inst: pointer, s: cstring): pointer {.stdcall.}](symAddr(vkHandleDLL, "vkGetInstanceProcAddr"))
-  if vkGetProcAddress == nil:
-    quit("failed to load `vkGetInstanceProcAddr` from " & vkDLL)
+  let vkGetProcAddress = cast[proc (inst: pointer, s: cstring): pointer {.stdcall.}](checkedSymAddr(vkHandleDLL, "vkGetInstanceProcAddr"))
 
   vkGetProc = proc (procName: cstring): pointer {.cdecl.} =
-    when defined(windows):
-      result = vkGetProcAddress(currInst, procName)
-      if result != nil:
-        return
-    result = symAddr(vkHandleDLL, procName)
+    result = vkGetProcAddress(currInst, procName)
     if result == nil:
       raiseInvalidLibrary(procName)
 
