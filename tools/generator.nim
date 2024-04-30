@@ -198,13 +198,13 @@ proc genTypes(node: XmlNode, output: var string) =
       if t.attr("category") == "funcpointer":
         let name = t.child("name").innerText
         if name == "PFN_vkInternalAllocationNotification":
-          output.add("  PFN_vkInternalAllocationNotification* = proc (pUserData: pointer; size: csize; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
+          output.add("  PFN_vkInternalAllocationNotification* = proc (pUserData: pointer; size: uint; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
         elif name == "PFN_vkInternalFreeNotification":
-          output.add("  PFN_vkInternalFreeNotification* = proc (pUserData: pointer; size: csize; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
+          output.add("  PFN_vkInternalFreeNotification* = proc (pUserData: pointer; size: uint; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
         elif name == "PFN_vkReallocationFunction":
-          output.add("  PFN_vkReallocationFunction* = proc (pUserData: pointer; pOriginal: pointer; size: csize; alignment: csize; allocationScope: VkSystemAllocationScope): pointer {.cdecl.}\n")
+          output.add("  PFN_vkReallocationFunction* = proc (pUserData: pointer; pOriginal: pointer; size: uint; alignment: uint; allocationScope: VkSystemAllocationScope): pointer {.cdecl.}\n")
         elif name == "PFN_vkAllocationFunction":
-          output.add("  PFN_vkAllocationFunction* = proc (pUserData: pointer; size: csize; alignment: csize; allocationScope: VkSystemAllocationScope): pointer {.cdecl.}\n")
+          output.add("  PFN_vkAllocationFunction* = proc (pUserData: pointer; size: uint; alignment: uint; allocationScope: VkSystemAllocationScope): pointer {.cdecl.}\n")
         elif name == "PFN_vkFreeFunction":
           output.add("  PFN_vkFreeFunction* = proc (pUserData: pointer; pMemory: pointer) {.cdecl.}\n")
         elif name == "PFN_vkVoidFunction":
@@ -216,7 +216,7 @@ proc genTypes(node: XmlNode, output: var string) =
         elif name == "PFN_vkGetInstanceProcAddrLUNARG":
           output.add("  PFN_vkGetInstanceProcAddrLUNARG* = proc (instance: VkInstance; pName: cstring): PFN_vkVoidFunction {.cdecl.}\n")
         elif name == "PFN_vkDebugReportCallbackEXT":
-          output.add("  PFN_vkDebugReportCallbackEXT* = proc (flags: VkDebugReportFlagsEXT; objectType: VkDebugReportObjectTypeEXT; cbObject: uint64; location: csize; messageCode: int32; pLayerPrefix: cstring; pMessage: cstring; pUserData: pointer): VkBool32 {.cdecl.}\n")
+          output.add("  PFN_vkDebugReportCallbackEXT* = proc (flags: VkDebugReportFlagsEXT; objectType: VkDebugReportObjectTypeEXT; cbObject: uint64; location: uint; messageCode: int32; pLayerPrefix: cstring; pMessage: cstring; pUserData: pointer): VkBool32 {.cdecl.}\n")
         elif name == "PFN_vkDebugUtilsMessengerCallbackEXT":
           output.add("  PFN_vkDebugUtilsMessengerCallbackEXT* = proc (messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}\n")
         else:
