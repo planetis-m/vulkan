@@ -439,9 +439,10 @@ proc genProcs(node: XmlNode, output: var string) =
           output.add(", ")
         output.add(&"{arg.name}: {arg.argType}")
       if vkProc.rval == "void":
-        output.add(") {.stdcall.}\n")
+        output.add(")")
       else:
-        output.add(&"): {vkProc.rval} {{.stdcall.}}\n")
+        output.add(&"): {vkProc.rval}")
+      output.add(" {.stdcall.}\n")
 
 proc genFeatures(node: XmlNode, output: var string) =
   echo "Generating and Adding Features..."
@@ -459,7 +460,11 @@ proc genFeatures(node: XmlNode, output: var string) =
             if not output.endsWith("("):
               output.add(", ")
             output.add(&"{arg.name}: {arg.argType}")
-          output.add(&"): {vkProc.rVal} {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n")
+          if vkProc.rval == "void":
+            output.add(&")")
+          else:
+            output.add(&"): {vkProc.rVal}")
+          output.add(&" {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n")
 
 proc genExtensions(node: XmlNode, output: var string) =
   echo "Generating and Adding Extensions..."
@@ -483,7 +488,11 @@ proc genExtensions(node: XmlNode, output: var string) =
           if not output.endsWith('('):
             output.add(", ")
           output.add(&"{arg.name}: {arg.argType}")
-        output.add(&"): {vkProc.rVal} {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n")
+        if vkProc.rval == "void":
+          output.add(&")")
+        else:
+          output.add(&"): {vkProc.rVal}")
+        output.add(&" {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n")
 
 proc genConstructors(node: XmlNode, output: var string) =
   echo "Generating and Adding Constructors..."
