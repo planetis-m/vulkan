@@ -240,7 +240,7 @@ proc genTypes(node: XmlNode, output: var string) =
             if arraySize != "":
               isArray = true
             if arraySize == "_DYNAMIC":
-              memberType = "ptr " & memberType
+              # memberType = "ptr " & memberType
               isArray = false
           var depth = member.innerText.count('*')
           if memberType == "pointer":

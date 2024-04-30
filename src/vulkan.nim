@@ -2574,7 +2574,7 @@ type
     descriptorCount*: uint32
     descriptorType*: VkDescriptorType
     pImageInfo*: ptr VkDescriptorImageInfo
-    pBufferInfo*: ptr ptr VkDescriptorBufferInfo
+    pBufferInfo*: ptr VkDescriptorBufferInfo
     pTexelBufferView*: ptr VkBufferView
 
   VkCopyDescriptorSet* = object
@@ -10898,7 +10898,7 @@ proc newVkDescriptorImageInfo*(sampler: VkSampler, imageView: VkImageView, image
     imageLayout: imageLayout,
   )
 
-proc newVkWriteDescriptorSet*(sType: VkStructureType = VkStructureType.WriteDescriptorSet, pNext: pointer = nil, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32, descriptorType: VkDescriptorType, pImageInfo: ptr VkDescriptorImageInfo, pBufferInfo: ptr ptr VkDescriptorBufferInfo, pTexelBufferView: ptr VkBufferView): VkWriteDescriptorSet =
+proc newVkWriteDescriptorSet*(sType: VkStructureType = VkStructureType.WriteDescriptorSet, pNext: pointer = nil, dstSet: VkDescriptorSet, dstBinding: uint32, dstArrayElement: uint32, descriptorCount: uint32, descriptorType: VkDescriptorType, pImageInfo: ptr VkDescriptorImageInfo, pBufferInfo: ptr VkDescriptorBufferInfo, pTexelBufferView: ptr VkBufferView): VkWriteDescriptorSet =
   result = VkWriteDescriptorSet(
     sType: sType,
     pNext: pNext,
