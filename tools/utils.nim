@@ -74,14 +74,15 @@ proc vkPreload*(load1_1: bool = true) =
   if load1_1:
     vkEnumerateInstanceVersion = cast[proc (pApiVersion: ptr uint32): VkResult {.stdcall.}](vkGetProc("vkEnumerateInstanceVersion"))
 
-proc vkInit*(instance: VkInstance, load1_0: bool = true, load1_1: bool = true): bool =
+proc vkInit*(instance: VkInstance, load1_0: bool = true, load1_1: bool = true) =
   currInst = cast[pointer](instance)
+  if currInst == nil:
+    raise newException(NilAccessDefect, "Instance is nil")
   if load1_0:
     vkLoad1_0()
   when not defined(macosx):
     if load1_1:
       vkLoad1_1()
-  return true
 """
 
   keywords = ["addr", "and", "as", "asm",

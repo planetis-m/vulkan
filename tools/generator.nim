@@ -73,9 +73,7 @@ proc translateType(s: string): string =
 proc genTypes(node: XmlNode, output: var string) =
   echo "Generating Types..."
   output.add("\n# Types\n")
-
   var inType = false
-
   for types in node.findAll("types"):
     for t in types.items:
       if t.attr("category") == "include" or t.attr("requires") == "vk_platform" or
@@ -92,7 +90,6 @@ proc genTypes(node: XmlNode, output: var string) =
         output.add(&"  {name}* {{.nodecl.}} = object\n")
 
       # Define category
-
       if t.attr("category") == "define":
         if t.child("name") == nil:
           continue
@@ -132,7 +129,6 @@ proc genTypes(node: XmlNode, output: var string) =
         continue
 
       # Basetype category
-
       if t.attr("category") == "basetype":
         if not inType:
           output.add("\ntype\n")
@@ -146,7 +142,6 @@ proc genTypes(node: XmlNode, output: var string) =
         continue
 
       # Bitmask category
-
       if t.attr("category") == "bitmask":
         var name = t.attr("name")
         if t.attr("api") == "vulkansc":
@@ -165,7 +160,6 @@ proc genTypes(node: XmlNode, output: var string) =
         continue
 
       # Handle category
-
       if t.attr("category") == "handle":
         var name = t.attr("name")
         if t.child("name") != nil:
@@ -182,7 +176,6 @@ proc genTypes(node: XmlNode, output: var string) =
         continue
 
       # Enum category
-
       if t.attr("category") == "enum":
         let name = t.attr("name")
         let alias = t.attr("alias")
@@ -194,7 +187,6 @@ proc genTypes(node: XmlNode, output: var string) =
         continue
 
       # Funcpointer category
-
       if t.attr("category") == "funcpointer":
         let name = t.child("name").innerText
         if name == "PFN_vkInternalAllocationNotification":
@@ -224,7 +216,6 @@ proc genTypes(node: XmlNode, output: var string) =
         continue
 
       # Struct category
-
       if t.attr("category") == "struct":
         let name = t.attr("name")
         var vkStruct: VkStruct
