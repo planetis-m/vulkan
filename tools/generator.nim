@@ -529,7 +529,7 @@ proc main() =
 
   output.add("\n" & vkInit)
 
-  writeFile("../src/vulkan.nim", output)
+  writeFile("src/vulkan.nim", output)
 
 if isMainModule:
   main()

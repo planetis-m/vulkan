@@ -1,7 +1,7 @@
 # Package
 
-version     = "1.2.1"
-author      = "Leonardo Mariscal"
+version     = "1.3.279"
+author      = "Antonis Geralis"
 description = "Vulkan bindings for Nim"
 license     = "MIT"
 srcDir      = "src"
