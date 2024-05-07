@@ -2365,7 +2365,7 @@ type
   PFN_vkFreeFunction* = proc (pUserData: pointer; pMemory: pointer) {.cdecl.}
   PFN_vkVoidFunction* = proc () {.cdecl.}
   PFN_vkDebugReportCallbackEXT* = proc (flags: VkDebugReportFlagsEXT; objectType: VkDebugReportObjectTypeEXT; cbObject: uint64; location: uint; messageCode: int32; pLayerPrefix: cstring; pMessage: cstring; pUserData: pointer): VkBool32 {.cdecl.}
-  PFN_vkDebugUtilsMessengerCallbackEXT* = proc (messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}
+  PFN_vkDebugUtilsMessengerCallbackEXT* = proc (messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: ptr VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}
   PFN_vkFaultCallbackFunction* = proc (unrecordedFaults: VkBool32; faultCount: uint32; pFaults: ptr VkFaultData) {.cdecl.}
   PFN_vkDeviceMemoryReportCallbackEXT* = proc (pCallbackData: ptr VkDeviceMemoryReportCallbackDataEXT; pUserData: pointer) {.cdecl.}
   PFN_vkGetInstanceProcAddrLUNARG* = proc (instance: VkInstance; pName: cstring): PFN_vkVoidFunction {.cdecl.}

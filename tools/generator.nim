@@ -39,22 +39,23 @@ proc camelCaseAscii*(s: string): string =
 
 proc translateType(s: string): string =
   result = s
-  result = result.multiReplace([
-    ("int64_t", "int64"),
-    ("int32_t", "int32"),
-    ("int16_t", "int16"),
-    ("int8_t", "int8"),
-    ("size_t", "uint"), # uint matches pointer size just like size_t
-    ("float", "float32"),
-    ("double", "float64"),
-    ("VK_DEFINE_HANDLE", "VkHandle"),
-    ("VK_DEFINE_NON_DISPATCHABLE_HANDLE", "VkNonDispatchableHandle"),
-    ("const ", ""),
-    (" const", ""),
-    ("unsigned ", "u"),
-    ("signed ", ""),
-    ("struct ", ""),
-  ])
+  result = result.multiReplace({
+    "int64_t": "int64",
+    "int32_t": "int32",
+    "int16_t": "int16",
+    "int8_t": "int8",
+    "size_t": "uint", # uint matches pointer size just like size_t
+    "float": "float32",
+    "double": "float64",
+    "VK_DEFINE_HANDLE": "VkHandle",
+    "VK_DEFINE_NON_DISPATCHABLE_HANDLE": "VkNonDispatchableHandle",
+    "const ": "",
+    " const": "",
+    "unsigned ": "u",
+    "signed ": "",
+    "struct ": "",
+  })
+
   if result.startsWith('_'):
     result = result.substr(1)
 
@@ -64,11 +65,11 @@ proc translateType(s: string): string =
     for i in 0..<levels:
       result = "ptr " & result
 
-  result = result.multiReplace([
-    ("ptr void", "pointer"),
-    ("ptr ptr char", "cstringArray"),
-    ("ptr char", "cstring"),
-  ])
+  result = result.multiReplace({
+    "ptr void": "pointer",
+    "ptr ptr char": "cstringArray",
+    "ptr char": "cstring",
+  })
 
 proc genTypes(node: XmlNode, output: var string) =
   echo "Generating Types..."
@@ -210,7 +211,7 @@ proc genTypes(node: XmlNode, output: var string) =
         elif name == "PFN_vkDebugReportCallbackEXT":
           output.add("  PFN_vkDebugReportCallbackEXT* = proc (flags: VkDebugReportFlagsEXT; objectType: VkDebugReportObjectTypeEXT; cbObject: uint64; location: uint; messageCode: int32; pLayerPrefix: cstring; pMessage: cstring; pUserData: pointer): VkBool32 {.cdecl.}\n")
         elif name == "PFN_vkDebugUtilsMessengerCallbackEXT":
-          output.add("  PFN_vkDebugUtilsMessengerCallbackEXT* = proc (messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}\n")
+          output.add("  PFN_vkDebugUtilsMessengerCallbackEXT* = proc (messageSeverity: VkDebugUtilsMessageSeverityFlagBitsEXT, messageTypes: VkDebugUtilsMessageTypeFlagsEXT, pCallbackData: ptr VkDebugUtilsMessengerCallbackDataEXT, userData: pointer): VkBool32 {.cdecl.}\n")
         else:
           echo &"category:funcpointer not found {name}"
         continue
@@ -240,18 +241,17 @@ proc genTypes(node: XmlNode, output: var string) =
             if arraySize != "":
               isArray = true
             if arraySize == "_DYNAMIC":
-              # memberType = "ptr " & memberType
               isArray = false
           var depth = member.innerText.count('*')
           if memberType == "pointer":
             depth.dec
           for i in 0 ..< depth:
             memberType = "ptr " & memberType
-          memberType = memberType.multiReplace([
-            ("ptr void", "pointer"),
-            ("ptr ptr char", "cstringArray"),
-            ("ptr char", "cstring"),
-          ])
+          memberType = memberType.multiReplace({
+            "ptr void": "pointer",
+            "ptr ptr char": "cstringArray",
+            "ptr char": "cstring",
+          })
           var vkArg: VkArg
           vkArg.name = memberName
           if not isArray:
@@ -316,14 +316,14 @@ proc genEnums(node: XmlNode, output: var string) =
             continue
           enumValue = e.attr("alias")
         else:
-          enumValue = enumValue.multiReplace([
-            ("(~0U)", "(not 0'u32)"),
-            ("(~1U)", "(not 1'u32)"),
-            ("(~2U)", "(not 2'u32)"),
-            ("(~0U-1)", "(not 0'u32) - 1"),
-            ("(~0U-2)", "(not 0'u32) - 2"),
-            ("(~0ULL)", "(not 0'u64)"),
-          ])
+          enumValue = enumValue.multiReplace({
+            "(~0U)": "(not 0'u32)",
+            "(~1U)": "(not 1'u32)",
+            "(~2U)": "(not 2'u32)",
+            "(~0U-1)": "(not 0'u32) - 1",
+            "(~0U-2)": "(not 0'u32) - 2",
+            "(~0ULL)": "(not 0'u64)",
+          })
         if enumName == "VK_LUID_SIZE_KHR":
           enumValue = "VK_LUID_SIZE"
         elif enumName == "VK_QUEUE_FAMILY_EXTERNAL_KHR":
