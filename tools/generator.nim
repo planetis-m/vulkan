@@ -339,6 +339,13 @@ proc getEnumValue(e: XmlNode, name: string, extNumber: int): (int, string) =
   result = (enumValue, enumName)
 
 proc genEnums(node: XmlNode, output: var string) =
+  var extOrFeature: seq[XmlNode] = @[]
+  for ext in node.findAll("extension"):
+    if ext.attr("supported") == "disabled": continue
+    extOrFeature.add ext
+  for feat in node.findAll("feature"):
+    if feat.attr("supported") == "disabled": continue
+    extOrFeature.add feat
   echo "Generating and Adding Enums"
   output.add("# Enums\n")
   var inType = false
@@ -385,11 +392,11 @@ proc genEnums(node: XmlNode, output: var string) =
         continue
       elements.add(enumValue, enumName)
     # Add extensions
-    for ext in node.findAll("extension"):
-      if ext.attr("supported") == "disabled": continue
-      let extNumberAttr = ext.attr("number")
-      let extNumber = if extNumberAttr != "": extNumberAttr.parseInt() else: 1
-      for r in ext.items:
+    for extOrFeat in extOrFeature.items:
+      let extNumberAttr = extOrFeat.attr("number")
+      let extNumber =
+        if extNumberAttr != "" and extOrFeat.tag == "extension": extNumberAttr.parseInt() else: 1
+      for r in extOrFeat.items:
         if r.kind != xnElement or r.tag != "require":
           continue
         for e in r.items:
