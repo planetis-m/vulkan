@@ -299,6 +299,42 @@ proc genTypes(node: XmlNode, output: var string) =
             output.add(&"    {memberName}*: array[{arraySize}, {memberType}]\n")
         continue
 
+proc getEnumValue(e: XmlNode, name: string): (int, string) =
+  const companies =
+    ["KHR", "EXT", "NV", "INTEL", "AMD", "MSFT", "QCOM", "ANDROID", "LUNARG", "HUAWEI", "QNX", "ARM"]
+  var enumName = e.attr("name")
+  enumName = camelCaseAscii(enumName)
+  var tmp = name
+  tmp = tmp.replace("FlagBits", "")
+  var suffixes: seq[string] = @[]
+  for suf in companies:
+    if tmp.endsWith(suf):
+      suffixes.add(camelCaseAscii(suf))
+    tmp.removeSuffix(suf)
+  for suf in suffixes.items:
+    enumName.removeSuffix(suf)
+  enumName.removePrefix(tmp)
+  if enumName.startsWith("Reserved"):
+    return (0, "")
+  if enumName[0] in Digits:
+    enumName = "N" & enumName
+  var enumValueStr = e.attr("value")
+  if enumValueStr == "":
+    var num = 0
+    if e.attr("bitpos") != "":
+      let bitpos = e.attr("bitpos").parseInt()
+      num.setBit(bitpos)
+    enumValueStr = $num
+  enumValueStr = enumValueStr.translateType()
+  var enumValue = 0
+  if enumValueStr.contains('x'):
+    enumValue = fromHex[int](enumValueStr)
+  else:
+    enumValue = enumValueStr.parseInt()
+  if name == "VkToolPurposeFlagBits" and enumName == "ValidationBit":
+    echo (e, enumValue, e.attr("alias"))
+  result = (enumValue, enumName)
+
 proc genEnums(node: XmlNode, output: var string) =
   echo "Generating and Adding Enums"
   output.add("# Enums\n")
@@ -339,33 +375,10 @@ proc genEnums(node: XmlNode, output: var string) =
     for e in enums.items:
       if e.kind != xnElement or e.tag != "enum":
         continue
-      if e.attr("api") == "vulkansc" or e.attr("deprecated") != "":
+      if e.attr("api") == "vulkansc" or e.attr("deprecated") != "" or e.attr("alias") != "":
         continue
-      var enumName = e.attr("name")
-      enumName = camelCaseAscii(enumName)
-      var tmp = name
-      for suf in ["KHR", "EXT", "NV", "INTEL", "AMD", "MSFT", "QCOM", "ANDROID", "LUNARG", "FlagBits", "FlagBits2"]:
-        tmp.removeSuffix(suf)
-      for suf in ["Khr", "Ext", "Nv", "Intel", "Amd", "Msft", "Qcom", "Android", "Lunarg"]:
-        enumName.removeSuffix(suf)
-      enumName.removePrefix(tmp)
-      if enumName[0] in Digits:
-        enumName = "N" & enumName
-      var enumValueStr = e.attr("value")
-      if enumValueStr == "":
-        if e.attr("bitpos") == "":
-          continue
-        let bitpos = e.attr("bitpos").parseInt()
-        var num = 0
-        num.setBit(bitpos)
-        enumValueStr = $num
-      enumValueStr = enumValueStr.translateType()
-      var enumValue = 0
-      if enumValueStr.contains('x'):
-        enumValue = fromHex[int](enumValueStr)
-      else:
-        enumValue = enumValueStr.parseInt()
-      if elements.hasKey(enumValue):
+      let (enumValue, enumName) = getEnumValue(e, name)
+      if enumName == "" or elements.hasKey(enumValue):
         continue
       elements.add(enumValue, enumName)
     if elements.len == 0:
