@@ -664,15 +664,15 @@ type
     IndirectBufferBit = 256
 
   VkBufferUsageFlagBits2KHR* {.size: sizeof(int32).} = enum
-    N2TransferSrcBit = 1
-    N2TransferDstBit
-    N2UniformTexelBufferBit = 4
-    N2StorageTexelBufferBit = 8
-    N2UniformBufferBit = 16
-    N2StorageBufferBit = 32
-    N2IndexBufferBit = 64
-    N2VertexBufferBit = 128
-    N2IndirectBufferBit = 256
+    TransferSrcBit = 1
+    TransferDstBit
+    UniformTexelBufferBit = 4
+    StorageTexelBufferBit = 8
+    UniformBufferBit = 16
+    StorageBufferBit = 32
+    IndexBufferBit = 64
+    VertexBufferBit = 128
+    IndirectBufferBit = 256
 
   VkBufferCreateFlagBits* {.size: sizeof(int32).} = enum
     SparseBindingBit = 1
@@ -712,9 +712,9 @@ type
     DerivativeBit = 4
 
   VkPipelineCreateFlagBits2KHR* {.size: sizeof(int32).} = enum
-    N2DisableOptimizationBit = 1
-    N2AllowDerivativesBit
-    N2DerivativeBit = 4
+    DisableOptimizationBit = 1
+    AllowDerivativesBit
+    DerivativeBit = 4
 
   VkColorComponentFlagBits* {.size: sizeof(int32).} = enum
     RBit = 1
@@ -915,11 +915,11 @@ type
     DescriptorSet
     Framebuffer
     CommandPool
-    SurfaceKhr
-    SwapchainKhr
+    Surface
+    Swapchain
     DebugReportCallbackExt
-    DisplayKhr
-    DisplayModeKhr
+    Display
+    DisplayMode
     ValidationCacheExt = 33
 
   VkDeviceMemoryReportEventTypeEXT* {.size: sizeof(int32).} = enum
@@ -1461,54 +1461,54 @@ type
     NotMergedUnspecified
 
   VkAccessFlagBits2* {.size: sizeof(int32).} = enum
-    N2None
-    N2IndirectCommandReadBit
-    N2IndexReadBit
-    N2VertexAttributeReadBit = 4
-    N2UniformReadBit = 8
-    N2InputAttachmentReadBit = 16
-    N2ShaderReadBit = 32
-    N2ShaderWriteBit = 64
-    N2ColorAttachmentReadBit = 128
-    N2ColorAttachmentWriteBit = 256
-    N2DepthStencilAttachmentReadBit = 512
-    N2DepthStencilAttachmentWriteBit = 1024
-    N2TransferReadBit = 2048
-    N2TransferWriteBit = 4096
-    N2HostReadBit = 8192
-    N2HostWriteBit = 16384
-    N2MemoryReadBit = 32768
-    N2MemoryWriteBit = 65536
-    N2ShaderSampledReadBit = 4294967296
-    N2ShaderStorageReadBit = 8589934592
-    N2ShaderStorageWriteBit = 17179869184
+    None
+    IndirectCommandReadBit
+    IndexReadBit
+    VertexAttributeReadBit = 4
+    UniformReadBit = 8
+    InputAttachmentReadBit = 16
+    ShaderReadBit = 32
+    ShaderWriteBit = 64
+    ColorAttachmentReadBit = 128
+    ColorAttachmentWriteBit = 256
+    DepthStencilAttachmentReadBit = 512
+    DepthStencilAttachmentWriteBit = 1024
+    TransferReadBit = 2048
+    TransferWriteBit = 4096
+    HostReadBit = 8192
+    HostWriteBit = 16384
+    MemoryReadBit = 32768
+    MemoryWriteBit = 65536
+    ShaderSampledReadBit = 4294967296
+    ShaderStorageReadBit = 8589934592
+    ShaderStorageWriteBit = 17179869184
 
   VkPipelineStageFlagBits2* {.size: sizeof(int32).} = enum
-    N2None
-    N2TopOfPipeBit
-    N2DrawIndirectBit
-    N2VertexInputBit = 4
-    N2VertexShaderBit = 8
-    N2TessellationControlShaderBit = 16
-    N2TessellationEvaluationShaderBit = 32
-    N2GeometryShaderBit = 64
-    N2FragmentShaderBit = 128
-    N2EarlyFragmentTestsBit = 256
-    N2LateFragmentTestsBit = 512
-    N2ColorAttachmentOutputBit = 1024
-    N2ComputeShaderBit = 2048
-    N2AllTransferBit = 4096
-    N2BottomOfPipeBit = 8192
-    N2HostBit = 16384
-    N2AllGraphicsBit = 32768
-    N2AllCommandsBit = 65536
-    N2CopyBit = 4294967296
-    N2ResolveBit = 8589934592
-    N2BlitBit = 17179869184
-    N2ClearBit = 34359738368
-    N2IndexInputBit = 68719476736
-    N2VertexAttributeInputBit = 137438953472
-    N2PreRasterizationShadersBit = 274877906944
+    None
+    TopOfPipeBit
+    DrawIndirectBit
+    VertexInputBit = 4
+    VertexShaderBit = 8
+    TessellationControlShaderBit = 16
+    TessellationEvaluationShaderBit = 32
+    GeometryShaderBit = 64
+    FragmentShaderBit = 128
+    EarlyFragmentTestsBit = 256
+    LateFragmentTestsBit = 512
+    ColorAttachmentOutputBit = 1024
+    ComputeShaderBit = 2048
+    AllTransferBit = 4096
+    BottomOfPipeBit = 8192
+    HostBit = 16384
+    AllGraphicsBit = 32768
+    AllCommandsBit = 65536
+    CopyBit = 4294967296
+    ResolveBit = 8589934592
+    BlitBit = 17179869184
+    ClearBit = 34359738368
+    IndexInputBit = 68719476736
+    VertexAttributeInputBit = 137438953472
+    PreRasterizationShadersBit = 274877906944
 
   VkSubmitFlagBits* {.size: sizeof(int32).} = enum
     ProtectedBit = 1
@@ -1561,7 +1561,7 @@ type
     CenteredBit = 4
 
   VkPhysicalDeviceSchedulingControlsFlagBitsARM* {.size: sizeof(int32).} = enum
-    VkPhysicalDeviceSchedulingControlsShaderCoreCountArm = 1
+    ShaderCoreCount = 1
 
   VkVideoCodecOperationFlagBitsKHR* {.size: sizeof(int32).} = enum
     None
@@ -1695,33 +1695,33 @@ type
     VkImageConstraintsInfoProtectedOptionalFuchsia = 16
 
   VkFormatFeatureFlagBits2* {.size: sizeof(int32).} = enum
-    N2SampledImageBit = 1
-    N2StorageImageBit
-    N2StorageImageAtomicBit = 4
-    N2UniformTexelBufferBit = 8
-    N2StorageTexelBufferBit = 16
-    N2StorageTexelBufferAtomicBit = 32
-    N2VertexBufferBit = 64
-    N2ColorAttachmentBit = 128
-    N2ColorAttachmentBlendBit = 256
-    N2DepthStencilAttachmentBit = 512
-    N2BlitSrcBit = 1024
-    N2BlitDstBit = 2048
-    N2SampledImageFilterLinearBit = 4096
-    N2SampledImageFilterCubicBit = 8192
-    N2TransferSrcBit = 16384
-    N2TransferDstBit = 32768
-    N2SampledImageFilterMinmaxBit = 65536
-    N2MidpointChromaSamplesBit = 131072
-    N2SampledImageYcbcrConversionLinearFilterBit = 262144
-    N2SampledImageYcbcrConversionSeparateReconstructionFilterBit = 524288
-    N2SampledImageYcbcrConversionChromaReconstructionExplicitBit = 1048576
-    N2SampledImageYcbcrConversionChromaReconstructionExplicitForceableBit = 2097152
-    N2DisjointBit = 4194304
-    N2CositedChromaSamplesBit = 8388608
-    N2StorageReadWithoutFormatBit = 2147483648
-    N2StorageWriteWithoutFormatBit = 4294967296
-    N2SampledImageDepthComparisonBit = 8589934592
+    SampledImageBit = 1
+    StorageImageBit
+    StorageImageAtomicBit = 4
+    UniformTexelBufferBit = 8
+    StorageTexelBufferBit = 16
+    StorageTexelBufferAtomicBit = 32
+    VertexBufferBit = 64
+    ColorAttachmentBit = 128
+    ColorAttachmentBlendBit = 256
+    DepthStencilAttachmentBit = 512
+    BlitSrcBit = 1024
+    BlitDstBit = 2048
+    SampledImageFilterLinearBit = 4096
+    SampledImageFilterCubicBit = 8192
+    TransferSrcBit = 16384
+    TransferDstBit = 32768
+    SampledImageFilterMinmaxBit = 65536
+    MidpointChromaSamplesBit = 131072
+    SampledImageYcbcrConversionLinearFilterBit = 262144
+    SampledImageYcbcrConversionSeparateReconstructionFilterBit = 524288
+    SampledImageYcbcrConversionChromaReconstructionExplicitBit = 1048576
+    SampledImageYcbcrConversionChromaReconstructionExplicitForceableBit = 2097152
+    DisjointBit = 4194304
+    CositedChromaSamplesBit = 8388608
+    StorageReadWithoutFormatBit = 2147483648
+    StorageWriteWithoutFormatBit = 4294967296
+    SampledImageDepthComparisonBit = 8589934592
 
   VkRenderingFlagBits* {.size: sizeof(int32).} = enum
     ContentsSecondaryCommandBuffersBit = 1
