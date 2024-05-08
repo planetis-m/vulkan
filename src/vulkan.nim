@@ -915,11 +915,11 @@ type
     DescriptorSet
     Framebuffer
     CommandPool
-    Surface
-    Swapchain
+    SurfaceKhr
+    SwapchainKhr
     DebugReportCallbackExt
-    Display
-    DisplayMode
+    DisplayKhr
+    DisplayModeKhr
     ValidationCacheExt = 33
 
   VkDeviceMemoryReportEventTypeEXT* {.size: sizeof(int32).} = enum
