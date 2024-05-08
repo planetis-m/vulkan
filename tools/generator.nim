@@ -299,7 +299,7 @@ proc genTypes(node: XmlNode, output: var string) =
             output.add(&"    {memberName}*: array[{arraySize}, {memberType}]\n")
         continue
 
-proc getEnumValue(e: XmlNode, name: string): (int, string) =
+proc getEnumValue(e: XmlNode, name: string, extNumber: int): (int, string) =
   const companies =
     ["KHR", "EXT", "NV", "INTEL", "AMD", "MSFT", "QCOM", "ANDROID", "LUNARG", "HUAWEI", "QNX", "ARM"]
   var enumName = e.attr("name")
@@ -314,8 +314,6 @@ proc getEnumValue(e: XmlNode, name: string): (int, string) =
   for suf in suffixes.items:
     enumName.removeSuffix(suf)
   enumName.removePrefix(tmp)
-  if enumName.startsWith("Reserved"):
-    return (0, "")
   if enumName[0] in Digits:
     enumName = "N" & enumName
   var enumValueStr = e.attr("value")
@@ -324,15 +322,20 @@ proc getEnumValue(e: XmlNode, name: string): (int, string) =
     if e.attr("bitpos") != "":
       let bitpos = e.attr("bitpos").parseInt()
       num.setBit(bitpos)
+    if e.attr("offset") != "":
+      let extNumberAttr = e.attr("extnumber")
+      let extNumber = if extNumberAttr != "": extNumberAttr.parseInt() else: extNumber
+      let enumBase = 1000000000 + (extNumber - 1) * 1000
+      num = parseInt(e.attr("offset")) + enumBase
+    if e.attr("dir") == "-":
+      num = -num
     enumValueStr = $num
   enumValueStr = enumValueStr.translateType()
   var enumValue = 0
-  if enumValueStr.contains('x'):
+  if enumValueStr.startsWith("0x"):
     enumValue = fromHex[int](enumValueStr)
   else:
     enumValue = enumValueStr.parseInt()
-  if name == "VkToolPurposeFlagBits" and enumName == "ValidationBit":
-    echo (e, enumValue, e.attr("alias"))
   result = (enumValue, enumName)
 
 proc genEnums(node: XmlNode, output: var string) =
@@ -377,10 +380,30 @@ proc genEnums(node: XmlNode, output: var string) =
         continue
       if e.attr("api") == "vulkansc" or e.attr("deprecated") != "" or e.attr("alias") != "":
         continue
-      let (enumValue, enumName) = getEnumValue(e, name)
-      if enumName == "" or elements.hasKey(enumValue):
+      let (enumValue, enumName) = getEnumValue(e, name, 1)
+      if elements.hasKey(enumValue):
         continue
       elements.add(enumValue, enumName)
+    # Add extensions
+    for ext in node.findAll("extension"):
+      if ext.attr("supported") == "disabled": continue
+      let extNumberAttr = ext.attr("number")
+      let extNumber = if extNumberAttr != "": extNumberAttr.parseInt() else: 1
+      for r in ext.items:
+        if r.kind != xnElement or r.tag != "require":
+          continue
+        for e in r.items:
+          if e.kind != xnElement or e.tag != "enum":
+            continue
+          if e.attr("api") == "vulkansc" or e.attr("deprecated") != "" or e.attr("alias") != "":
+            continue
+          let extends = e.attr("extends")
+          if extends != name:
+            continue
+          let (enumValue, enumName) = getEnumValue(e, name, extNumber)
+          if elements.hasKey(enumValue):
+            continue
+          elements.add(enumValue, enumName)
     if elements.len == 0:
       continue
     output.add(&"  {name}* {{.size: sizeof(int32).}} = enum\n")
