@@ -377,7 +377,25 @@ proc genEnums(node: XmlNode, output: var string) =
         elif enumName == "VK_MAX_DEVICE_GROUP_SIZE_KHR":
           enumValue = "VK_MAX_DEVICE_GROUP_SIZE"
         output.add(&"  {enumName}* = {enumValue}\n")
-      continue
+  for extOrFeat in extOrFeature.items:
+    if extOrFeat.tag == "feature": continue
+    let name = extOrFeat.attr("name")
+    output.add(&"  # Extension: {name}\n")
+    for r in extOrFeat.items:
+      if r.kind != xnElement or r.tag != "require":
+        continue
+      for e in r.items:
+        if e.kind != xnElement or e.tag != "enum":
+          continue
+        if e.attr("api") == "vulkansc" or e.attr("deprecated") != "" or e.attr("alias") != "":
+          continue
+        let enumName = e.attr("name")
+        if enumName.endsWith("_NAME") or enumName.endsWith("_VERSION"):
+          var enumValue = e.attr("value")
+          output.add(&"  {enumName}* = {enumValue}\n")
+  for enums in node.findAll("enums"):
+    let name = enums.attr("name")
+    if name == "API Constants": continue
     if not inType:
       output.add("\ntype\n")
       inType = true
@@ -481,6 +499,7 @@ proc genProcs(node: XmlNode, output: var string) =
 proc genFeatures(node: XmlNode, output: var string) =
   echo "Generating and Adding Features..."
   for feature in node.findAll("feature"):
+    # if feature.attr("supported") == "disabled": continue
     if feature.attr("api") == "vulkansc": continue
     let number = feature.attr("number").replace(".", "_")
     output.add(&"\n# Vulkan {number}\n")
@@ -504,6 +523,7 @@ proc genExtensions(node: XmlNode, output: var string) =
   echo "Generating and Adding Extensions..."
   for extensions in node.findAll("extensions"):
     for extension in extensions.findAll("extension"):
+      # if extension.attr("supported") == "disabled": continue
       # if extension.attr("api") == "vulkansc": continue
       var commands: seq[VkProc]
       for require in extension.findAll("require"):
