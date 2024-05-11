@@ -1,6 +1,7 @@
 # Written by Leonardo Mariscal <leo@ldmd.mx>, 2019
 
-import strutils, ./utils, httpClient, os, xmlparser, xmltree, streams, strformat, math, tables, algorithm, bitops
+import std/[strutils, httpclient, os, xmlparser, xmltree, streams, strformat, math, tables, algorithm, bitops, sequtils]
+import utils # local import
 
 type
   VkProc = object
@@ -13,10 +14,16 @@ type
   VkStruct = object
     name: string
     members: seq[VkArg]
+  VkFlags = object
+    name: string
+    flagbits: string
+    bType: string
 
 var vkProcs: seq[VkProc]
 var vkStructs: seq[VkStruct]
 var vkStructureTypes: seq[string]
+var vkFlagsTypes: seq[VkFlags]
+var vkFlagBitsTypes: seq[string]
 
 proc camelCaseAscii*(s: string): string =
   ## Converts snake_case to CamelCase
@@ -158,6 +165,11 @@ proc genTypes(node: XmlNode, output: var string) =
         if not alias:
           bType = "distinct " & bType
         output.add(&"  {name}* = {bType}\n")
+        vkFlagsTypes.add VkFlags(
+          name: name,
+          flagbits: name.replace("Flags", "FlagBits"),
+          bType: if bType == "VkFlags64": "uint64" else: "uint32"
+        )
         continue
 
       # Handle category
@@ -390,9 +402,9 @@ proc genEnums(node: XmlNode, output: var string) =
         if e.attr("api") == "vulkansc" or e.attr("deprecated") != "" or e.attr("alias") != "":
           continue
         let enumName = e.attr("name")
-        if enumName.endsWith("_NAME") or enumName.endsWith("_VERSION"):
-          var enumValue = e.attr("value")
-          output.add(&"  {enumName}* = {enumValue}\n")
+        if not enumName.endsWith("EXTENSION_NAME") and not enumName.endsWith("SPEC_VERSION"): continue
+        var enumValue = e.attr("value")
+        output.add(&"  {enumName}* = {enumValue}\n")
   for enums in node.findAll("enums"):
     let name = enums.attr("name")
     if name == "API Constants": continue
@@ -432,6 +444,8 @@ proc genEnums(node: XmlNode, output: var string) =
     if elements.len == 0:
       continue
     output.add(&"  {name}* {{.size: sizeof(int32).}} = enum\n")
+    if name.contains("FlagBits"):
+      vkFlagBitsTypes.add name
     elements.sort(system.cmp)
     var prev = -1
     for enumValue, enumName in elements.pairs:
@@ -443,6 +457,25 @@ proc genEnums(node: XmlNode, output: var string) =
         output.add(&"    {enumName}\n")
       prev = enumValue
     output.add("\n")
+
+proc genFlags(output: var string) =
+  echo "Generating Flags helpers..."
+  output.add("\n# Flags helpers\n")
+  output.add("""
+import std/macros
+
+macro flagsImpl(base: typed, args: varargs[untyped]): untyped =
+  let arr = newNimNode(nnkBracketExpr)
+  for n in args: arr.add newCall(base, n)
+  result = nestList(bindSym"or", arr)
+
+""")
+  for flags in vkFlagsTypes.items:
+    if not vkFlagBitsTypes.anyIt(it == flags.flagbits): continue
+    output.add(&"""
+template `{{}}`*(t: typedesc[{flags.name}]; args: varargs[{flags.flagbits}]): untyped =
+  t(flagsImpl({flags.bType}, args))
+""")
 
 proc genProcs(node: XmlNode, output: var string) =
   echo "Generating Procedures..."
@@ -589,6 +622,7 @@ proc main() =
   xml.genProcs(output)
   xml.genFeatures(output)
   xml.genExtensions(output)
+  genFlags(output)
 
   output.add("\n" & vkInit)
 

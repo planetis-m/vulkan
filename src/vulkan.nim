@@ -24881,6 +24881,277 @@ proc loadVK_KHR_maintenance6*() =
   vkCmdSetDescriptorBufferOffsets2EXT = cast[proc (commandBuffer: VkCommandBuffer, pSetDescriptorBufferOffsetsInfo: ptr VkSetDescriptorBufferOffsetsInfoEXT) {.stdcall.}](vkGetProc("vkCmdSetDescriptorBufferOffsets2EXT"))
   vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = cast[proc (commandBuffer: VkCommandBuffer, pBindDescriptorBufferEmbeddedSamplersInfo: ptr VkBindDescriptorBufferEmbeddedSamplersInfoEXT) {.stdcall.}](vkGetProc("vkCmdBindDescriptorBufferEmbeddedSamplers2EXT"))
 
+# Flags helpers
+import std/macros
+
+macro flagsImpl(base: typed, args: varargs[untyped]): untyped =
+  let arr = newNimNode(nnkBracketExpr)
+  for n in args: arr.add newCall(base, n)
+  result = nestList(bindSym"or", arr)
+
+template `{}`*(t: typedesc[VkFramebufferCreateFlags]; args: varargs[VkFramebufferCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkRenderPassCreateFlags]; args: varargs[VkRenderPassCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSamplerCreateFlags]; args: varargs[VkSamplerCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineLayoutCreateFlags]; args: varargs[VkPipelineLayoutCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineCacheCreateFlags]; args: varargs[VkPipelineCacheCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineDepthStencilStateCreateFlags]; args: varargs[VkPipelineDepthStencilStateCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineColorBlendStateCreateFlags]; args: varargs[VkPipelineColorBlendStateCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineShaderStageCreateFlags]; args: varargs[VkPipelineShaderStageCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDescriptorSetLayoutCreateFlags]; args: varargs[VkDescriptorSetLayoutCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkInstanceCreateFlags]; args: varargs[VkInstanceCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDeviceQueueCreateFlags]; args: varargs[VkDeviceQueueCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkQueueFlags]; args: varargs[VkQueueFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkMemoryPropertyFlags]; args: varargs[VkMemoryPropertyFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkMemoryHeapFlags]; args: varargs[VkMemoryHeapFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkAccessFlags]; args: varargs[VkAccessFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkBufferUsageFlags]; args: varargs[VkBufferUsageFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkBufferCreateFlags]; args: varargs[VkBufferCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkShaderStageFlags]; args: varargs[VkShaderStageFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkImageUsageFlags]; args: varargs[VkImageUsageFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkImageCreateFlags]; args: varargs[VkImageCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkImageViewCreateFlags]; args: varargs[VkImageViewCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineCreateFlags]; args: varargs[VkPipelineCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkColorComponentFlags]; args: varargs[VkColorComponentFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkFenceCreateFlags]; args: varargs[VkFenceCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkFormatFeatureFlags]; args: varargs[VkFormatFeatureFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkQueryControlFlags]; args: varargs[VkQueryControlFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkQueryResultFlags]; args: varargs[VkQueryResultFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkEventCreateFlags]; args: varargs[VkEventCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkCommandPoolCreateFlags]; args: varargs[VkCommandPoolCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkCommandPoolResetFlags]; args: varargs[VkCommandPoolResetFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkCommandBufferResetFlags]; args: varargs[VkCommandBufferResetFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkCommandBufferUsageFlags]; args: varargs[VkCommandBufferUsageFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkQueryPipelineStatisticFlags]; args: varargs[VkQueryPipelineStatisticFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkMemoryMapFlags]; args: varargs[VkMemoryMapFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkMemoryUnmapFlagsKHR]; args: varargs[VkMemoryUnmapFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkImageAspectFlags]; args: varargs[VkImageAspectFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSparseMemoryBindFlags]; args: varargs[VkSparseMemoryBindFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSparseImageFormatFlags]; args: varargs[VkSparseImageFormatFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSubpassDescriptionFlags]; args: varargs[VkSubpassDescriptionFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineStageFlags]; args: varargs[VkPipelineStageFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSampleCountFlags]; args: varargs[VkSampleCountFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkAttachmentDescriptionFlags]; args: varargs[VkAttachmentDescriptionFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkStencilFaceFlags]; args: varargs[VkStencilFaceFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkCullModeFlags]; args: varargs[VkCullModeFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDescriptorPoolCreateFlags]; args: varargs[VkDescriptorPoolCreateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDependencyFlags]; args: varargs[VkDependencyFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSubgroupFeatureFlags]; args: varargs[VkSubgroupFeatureFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkIndirectCommandsLayoutUsageFlagsNV]; args: varargs[VkIndirectCommandsLayoutUsageFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkIndirectStateFlagsNV]; args: varargs[VkIndirectStateFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkGeometryFlagsKHR]; args: varargs[VkGeometryFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkGeometryInstanceFlagsKHR]; args: varargs[VkGeometryInstanceFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkBuildAccelerationStructureFlagsKHR]; args: varargs[VkBuildAccelerationStructureFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkAccelerationStructureCreateFlagsKHR]; args: varargs[VkAccelerationStructureCreateFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineCreationFeedbackFlags]; args: varargs[VkPipelineCreationFeedbackFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPerformanceCounterDescriptionFlagsKHR]; args: varargs[VkPerformanceCounterDescriptionFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSemaphoreWaitFlags]; args: varargs[VkSemaphoreWaitFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDeviceDiagnosticsConfigFlagsNV]; args: varargs[VkDeviceDiagnosticsConfigFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkAccessFlags2]; args: varargs[VkAccessFlagBits2]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineStageFlags2]; args: varargs[VkPipelineStageFlagBits2]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkFormatFeatureFlags2]; args: varargs[VkFormatFeatureFlagBits2]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkRenderingFlags]; args: varargs[VkRenderingFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkMemoryDecompressionMethodFlagsNV]; args: varargs[VkMemoryDecompressionMethodFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkBuildMicromapFlagsEXT]; args: varargs[VkBuildMicromapFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkMicromapCreateFlagsEXT]; args: varargs[VkMicromapCreateFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPipelineCreateFlags2KHR]; args: varargs[VkPipelineCreateFlagBits2KHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkBufferUsageFlags2KHR]; args: varargs[VkBufferUsageFlagBits2KHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkCompositeAlphaFlagsKHR]; args: varargs[VkCompositeAlphaFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDisplayPlaneAlphaFlagsKHR]; args: varargs[VkDisplayPlaneAlphaFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSurfaceTransformFlagsKHR]; args: varargs[VkSurfaceTransformFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSwapchainCreateFlagsKHR]; args: varargs[VkSwapchainCreateFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPeerMemoryFeatureFlags]; args: varargs[VkPeerMemoryFeatureFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkMemoryAllocateFlags]; args: varargs[VkMemoryAllocateFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDeviceGroupPresentModeFlagsKHR]; args: varargs[VkDeviceGroupPresentModeFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDebugReportFlagsEXT]; args: varargs[VkDebugReportFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExternalMemoryHandleTypeFlagsNV]; args: varargs[VkExternalMemoryHandleTypeFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExternalMemoryFeatureFlagsNV]; args: varargs[VkExternalMemoryFeatureFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExternalMemoryHandleTypeFlags]; args: varargs[VkExternalMemoryHandleTypeFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExternalMemoryFeatureFlags]; args: varargs[VkExternalMemoryFeatureFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExternalSemaphoreHandleTypeFlags]; args: varargs[VkExternalSemaphoreHandleTypeFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExternalSemaphoreFeatureFlags]; args: varargs[VkExternalSemaphoreFeatureFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSemaphoreImportFlags]; args: varargs[VkSemaphoreImportFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExternalFenceHandleTypeFlags]; args: varargs[VkExternalFenceHandleTypeFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExternalFenceFeatureFlags]; args: varargs[VkExternalFenceFeatureFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkFenceImportFlags]; args: varargs[VkFenceImportFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSurfaceCounterFlagsEXT]; args: varargs[VkSurfaceCounterFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDebugUtilsMessageSeverityFlagsEXT]; args: varargs[VkDebugUtilsMessageSeverityFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDebugUtilsMessageTypeFlagsEXT]; args: varargs[VkDebugUtilsMessageTypeFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDescriptorBindingFlags]; args: varargs[VkDescriptorBindingFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkConditionalRenderingFlagsEXT]; args: varargs[VkConditionalRenderingFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkResolveModeFlags]; args: varargs[VkResolveModeFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSwapchainImageUsageFlagsANDROID]; args: varargs[VkSwapchainImageUsageFlagBitsANDROID]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkToolPurposeFlags]; args: varargs[VkToolPurposeFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkSubmitFlags]; args: varargs[VkSubmitFlagBits]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkHostImageCopyFlagsEXT]; args: varargs[VkHostImageCopyFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkImageConstraintsInfoFlagsFUCHSIA]; args: varargs[VkImageConstraintsInfoFlagBitsFUCHSIA]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkGraphicsPipelineLibraryFlagsEXT]; args: varargs[VkGraphicsPipelineLibraryFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkImageCompressionFlagsEXT]; args: varargs[VkImageCompressionFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkImageCompressionFixedRateFlagsEXT]; args: varargs[VkImageCompressionFixedRateFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkExportMetalObjectTypeFlagsEXT]; args: varargs[VkExportMetalObjectTypeFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkDeviceAddressBindingFlagsEXT]; args: varargs[VkDeviceAddressBindingFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkOpticalFlowGridSizeFlagsNV]; args: varargs[VkOpticalFlowGridSizeFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkOpticalFlowUsageFlagsNV]; args: varargs[VkOpticalFlowUsageFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkOpticalFlowSessionCreateFlagsNV]; args: varargs[VkOpticalFlowSessionCreateFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkOpticalFlowExecuteFlagsNV]; args: varargs[VkOpticalFlowExecuteFlagBitsNV]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkFrameBoundaryFlagsEXT]; args: varargs[VkFrameBoundaryFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPresentScalingFlagsEXT]; args: varargs[VkPresentScalingFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPresentGravityFlagsEXT]; args: varargs[VkPresentGravityFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkShaderCreateFlagsEXT]; args: varargs[VkShaderCreateFlagBitsEXT]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkPhysicalDeviceSchedulingControlsFlagsARM]; args: varargs[VkPhysicalDeviceSchedulingControlsFlagBitsARM]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoCodecOperationFlagsKHR]; args: varargs[VkVideoCodecOperationFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoCapabilityFlagsKHR]; args: varargs[VkVideoCapabilityFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoSessionCreateFlagsKHR]; args: varargs[VkVideoSessionCreateFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoCodingControlFlagsKHR]; args: varargs[VkVideoCodingControlFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoDecodeUsageFlagsKHR]; args: varargs[VkVideoDecodeUsageFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoDecodeCapabilityFlagsKHR]; args: varargs[VkVideoDecodeCapabilityFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoDecodeH264PictureLayoutFlagsKHR]; args: varargs[VkVideoDecodeH264PictureLayoutFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeUsageFlagsKHR]; args: varargs[VkVideoEncodeUsageFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeContentFlagsKHR]; args: varargs[VkVideoEncodeContentFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeCapabilityFlagsKHR]; args: varargs[VkVideoEncodeCapabilityFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeFeedbackFlagsKHR]; args: varargs[VkVideoEncodeFeedbackFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeRateControlModeFlagsKHR]; args: varargs[VkVideoEncodeRateControlModeFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoChromaSubsamplingFlagsKHR]; args: varargs[VkVideoChromaSubsamplingFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoComponentBitDepthFlagsKHR]; args: varargs[VkVideoComponentBitDepthFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeH264CapabilityFlagsKHR]; args: varargs[VkVideoEncodeH264CapabilityFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeH264StdFlagsKHR]; args: varargs[VkVideoEncodeH264StdFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeH264RateControlFlagsKHR]; args: varargs[VkVideoEncodeH264RateControlFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeH265CapabilityFlagsKHR]; args: varargs[VkVideoEncodeH265CapabilityFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeH265StdFlagsKHR]; args: varargs[VkVideoEncodeH265StdFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeH265RateControlFlagsKHR]; args: varargs[VkVideoEncodeH265RateControlFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeH265CtbSizeFlagsKHR]; args: varargs[VkVideoEncodeH265CtbSizeFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+template `{}`*(t: typedesc[VkVideoEncodeH265TransformBlockSizeFlagsKHR]; args: varargs[VkVideoEncodeH265TransformBlockSizeFlagBitsKHR]): untyped =
+  t(flagsImpl(uint32, args))
+
 var
   vkCreateInstance*: proc (pCreateInfo: ptr VkInstanceCreateInfo, pAllocator: ptr VkAllocationCallbacks, pInstance: ptr VkInstance): VkResult {.stdcall.}
   vkEnumerateInstanceExtensionProperties*: proc (pLayerName: cstring, pPropertyCount: ptr uint32, pProperties: ptr VkExtensionProperties): VkResult {.stdcall.}
