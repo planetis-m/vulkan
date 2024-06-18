@@ -5069,33 +5069,33 @@ type
   PFN_vkDeviceMemoryReportCallbackEXT* = proc (pCallbackData: ptr VkDeviceMemoryReportCallbackDataEXT; pUserData: pointer) {.cdecl.}
   PFN_vkGetInstanceProcAddrLUNARG* = proc (instance: VkInstance; pName: cstring): PFN_vkVoidFunction {.cdecl.}
 
-  VkBaseOutStructure* = object
+  VkBaseOutStructure* {.byref.} = object
     sType*: VkStructureType
     pNext*: ptr VkBaseOutStructure
 
-  VkBaseInStructure* = object
+  VkBaseInStructure* {.byref.} = object
     sType*: VkStructureType
     pNext*: ptr VkBaseInStructure
 
-  VkOffset2D* = object
+  VkOffset2D* {.byref.} = object
     x*: int32
     y*: int32
 
-  VkOffset3D* = object
+  VkOffset3D* {.byref.} = object
     x*: int32
     y*: int32
     z*: int32
 
-  VkExtent2D* = object
+  VkExtent2D* {.byref.} = object
     width*: uint32
     height*: uint32
 
-  VkExtent3D* = object
+  VkExtent3D* {.byref.} = object
     width*: uint32
     height*: uint32
     depth*: uint32
 
-  VkViewport* = object
+  VkViewport* {.byref.} = object
     x*: float32
     y*: float32
     width*: float32
@@ -5103,22 +5103,22 @@ type
     minDepth*: float32
     maxDepth*: float32
 
-  VkRect2D* = object
+  VkRect2D* {.byref.} = object
     offset*: VkOffset2D
     extent*: VkExtent2D
 
-  VkClearRect* = object
+  VkClearRect* {.byref.} = object
     rect*: VkRect2D
     baseArrayLayer*: uint32
     layerCount*: uint32
 
-  VkComponentMapping* = object
+  VkComponentMapping* {.byref.} = object
     r*: VkComponentSwizzle
     g*: VkComponentSwizzle
     b*: VkComponentSwizzle
     a*: VkComponentSwizzle
 
-  VkPhysicalDeviceProperties* = object
+  VkPhysicalDeviceProperties* {.byref.} = object
     apiVersion*: uint32
     driverVersion*: uint32
     vendorID*: uint32
@@ -5129,17 +5129,17 @@ type
     limits*: VkPhysicalDeviceLimits
     sparseProperties*: VkPhysicalDeviceSparseProperties
 
-  VkExtensionProperties* = object
+  VkExtensionProperties* {.byref.} = object
     extensionName*: array[VK_MAX_EXTENSION_NAME_SIZE, char]
     specVersion*: uint32
 
-  VkLayerProperties* = object
+  VkLayerProperties* {.byref.} = object
     layerName*: array[VK_MAX_EXTENSION_NAME_SIZE, char]
     specVersion*: uint32
     implementationVersion*: uint32
     description*: array[VK_MAX_DESCRIPTION_SIZE, char]
 
-  VkApplicationInfo* = object
+  VkApplicationInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pApplicationName*: cstring
@@ -5148,7 +5148,7 @@ type
     engineVersion*: uint32
     apiVersion*: uint32
 
-  VkAllocationCallbacks* = object
+  VkAllocationCallbacks* {.byref.} = object
     pUserData*: pointer
     pfnAllocation*: PFN_vkAllocationFunction
     pfnReallocation*: PFN_vkReallocationFunction
@@ -5156,7 +5156,7 @@ type
     pfnInternalAllocation*: PFN_vkInternalAllocationNotification
     pfnInternalFree*: PFN_vkInternalFreeNotification
 
-  VkDeviceQueueCreateInfo* = object
+  VkDeviceQueueCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDeviceQueueCreateFlags
@@ -5164,7 +5164,7 @@ type
     queueCount*: uint32
     pQueuePriorities*: ptr float32
 
-  VkDeviceCreateInfo* = object
+  VkDeviceCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDeviceCreateFlags
@@ -5176,7 +5176,7 @@ type
     ppEnabledExtensionNames*: cstringArray
     pEnabledFeatures*: ptr VkPhysicalDeviceFeatures
 
-  VkInstanceCreateInfo* = object
+  VkInstanceCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkInstanceCreateFlags
@@ -5186,79 +5186,79 @@ type
     enabledExtensionCount*: uint32
     ppEnabledExtensionNames*: cstringArray
 
-  VkQueueFamilyProperties* = object
+  VkQueueFamilyProperties* {.byref.} = object
     queueFlags*: VkQueueFlags
     queueCount*: uint32
     timestampValidBits*: uint32
     minImageTransferGranularity*: VkExtent3D
 
-  VkPhysicalDeviceMemoryProperties* = object
+  VkPhysicalDeviceMemoryProperties* {.byref.} = object
     memoryTypeCount*: uint32
     memoryTypes*: array[VK_MAX_MEMORY_TYPES, VkMemoryType]
     memoryHeapCount*: uint32
     memoryHeaps*: array[VK_MAX_MEMORY_HEAPS, VkMemoryHeap]
 
-  VkMemoryAllocateInfo* = object
+  VkMemoryAllocateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     allocationSize*: VkDeviceSize
     memoryTypeIndex*: uint32
 
-  VkMemoryRequirements* = object
+  VkMemoryRequirements* {.byref.} = object
     size*: VkDeviceSize
     alignment*: VkDeviceSize
     memoryTypeBits*: uint32
 
-  VkSparseImageFormatProperties* = object
+  VkSparseImageFormatProperties* {.byref.} = object
     aspectMask*: VkImageAspectFlags
     imageGranularity*: VkExtent3D
     flags*: VkSparseImageFormatFlags
 
-  VkSparseImageMemoryRequirements* = object
+  VkSparseImageMemoryRequirements* {.byref.} = object
     formatProperties*: VkSparseImageFormatProperties
     imageMipTailFirstLod*: uint32
     imageMipTailSize*: VkDeviceSize
     imageMipTailOffset*: VkDeviceSize
     imageMipTailStride*: VkDeviceSize
 
-  VkMemoryType* = object
+  VkMemoryType* {.byref.} = object
     propertyFlags*: VkMemoryPropertyFlags
     heapIndex*: uint32
 
-  VkMemoryHeap* = object
+  VkMemoryHeap* {.byref.} = object
     size*: VkDeviceSize
     flags*: VkMemoryHeapFlags
 
-  VkMappedMemoryRange* = object
+  VkMappedMemoryRange* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
     offset*: VkDeviceSize
     size*: VkDeviceSize
 
-  VkFormatProperties* = object
+  VkFormatProperties* {.byref.} = object
     linearTilingFeatures*: VkFormatFeatureFlags
     optimalTilingFeatures*: VkFormatFeatureFlags
     bufferFeatures*: VkFormatFeatureFlags
 
-  VkImageFormatProperties* = object
+  VkImageFormatProperties* {.byref.} = object
     maxExtent*: VkExtent3D
     maxMipLevels*: uint32
     maxArrayLayers*: uint32
     sampleCounts*: VkSampleCountFlags
     maxResourceSize*: VkDeviceSize
 
-  VkDescriptorBufferInfo* = object
+  VkDescriptorBufferInfo* {.byref.} = object
     buffer*: VkBuffer
     offset*: VkDeviceSize
     range*: VkDeviceSize
 
-  VkDescriptorImageInfo* = object
+  VkDescriptorImageInfo* {.byref.} = object
     sampler*: VkSampler
     imageView*: VkImageView
     imageLayout*: VkImageLayout
 
-  VkWriteDescriptorSet* = object
+  VkWriteDescriptorSet* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dstSet*: VkDescriptorSet
@@ -5270,7 +5270,7 @@ type
     pBufferInfo*: ptr VkDescriptorBufferInfo
     pTexelBufferView*: ptr VkBufferView
 
-  VkCopyDescriptorSet* = object
+  VkCopyDescriptorSet* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcSet*: VkDescriptorSet
@@ -5281,12 +5281,12 @@ type
     dstArrayElement*: uint32
     descriptorCount*: uint32
 
-  VkBufferUsageFlags2CreateInfoKHR* = object
+  VkBufferUsageFlags2CreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     usage*: VkBufferUsageFlags2KHR
 
-  VkBufferCreateInfo* = object
+  VkBufferCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkBufferCreateFlags
@@ -5296,7 +5296,7 @@ type
     queueFamilyIndexCount*: uint32
     pQueueFamilyIndices*: ptr uint32
 
-  VkBufferViewCreateInfo* = object
+  VkBufferViewCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkBufferViewCreateFlags
@@ -5305,31 +5305,31 @@ type
     offset*: VkDeviceSize
     range*: VkDeviceSize
 
-  VkImageSubresource* = object
+  VkImageSubresource* {.byref.} = object
     aspectMask*: VkImageAspectFlags
     mipLevel*: uint32
     arrayLayer*: uint32
 
-  VkImageSubresourceLayers* = object
+  VkImageSubresourceLayers* {.byref.} = object
     aspectMask*: VkImageAspectFlags
     mipLevel*: uint32
     baseArrayLayer*: uint32
     layerCount*: uint32
 
-  VkImageSubresourceRange* = object
+  VkImageSubresourceRange* {.byref.} = object
     aspectMask*: VkImageAspectFlags
     baseMipLevel*: uint32
     levelCount*: uint32
     baseArrayLayer*: uint32
     layerCount*: uint32
 
-  VkMemoryBarrier* = object
+  VkMemoryBarrier* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcAccessMask*: VkAccessFlags
     dstAccessMask*: VkAccessFlags
 
-  VkBufferMemoryBarrier* = object
+  VkBufferMemoryBarrier* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcAccessMask*: VkAccessFlags
@@ -5340,7 +5340,7 @@ type
     offset*: VkDeviceSize
     size*: VkDeviceSize
 
-  VkImageMemoryBarrier* = object
+  VkImageMemoryBarrier* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcAccessMask*: VkAccessFlags
@@ -5352,7 +5352,7 @@ type
     image*: VkImage
     subresourceRange*: VkImageSubresourceRange
 
-  VkImageCreateInfo* = object
+  VkImageCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkImageCreateFlags
@@ -5369,14 +5369,14 @@ type
     pQueueFamilyIndices*: ptr uint32
     initialLayout*: VkImageLayout
 
-  VkSubresourceLayout* = object
+  VkSubresourceLayout* {.byref.} = object
     offset*: VkDeviceSize
     size*: VkDeviceSize
     rowPitch*: VkDeviceSize
     arrayPitch*: VkDeviceSize
     depthPitch*: VkDeviceSize
 
-  VkImageViewCreateInfo* = object
+  VkImageViewCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkImageViewCreateFlags
@@ -5386,19 +5386,19 @@ type
     components*: VkComponentMapping
     subresourceRange*: VkImageSubresourceRange
 
-  VkBufferCopy* = object
+  VkBufferCopy* {.byref.} = object
     srcOffset*: VkDeviceSize
     dstOffset*: VkDeviceSize
     size*: VkDeviceSize
 
-  VkSparseMemoryBind* = object
+  VkSparseMemoryBind* {.byref.} = object
     resourceOffset*: VkDeviceSize
     size*: VkDeviceSize
     memory*: VkDeviceMemory
     memoryOffset*: VkDeviceSize
     flags*: VkSparseMemoryBindFlags
 
-  VkSparseImageMemoryBind* = object
+  VkSparseImageMemoryBind* {.byref.} = object
     subresource*: VkImageSubresource
     offset*: VkOffset3D
     extent*: VkExtent3D
@@ -5406,22 +5406,22 @@ type
     memoryOffset*: VkDeviceSize
     flags*: VkSparseMemoryBindFlags
 
-  VkSparseBufferMemoryBindInfo* = object
+  VkSparseBufferMemoryBindInfo* {.byref.} = object
     buffer*: VkBuffer
     bindCount*: uint32
     pBinds*: ptr VkSparseMemoryBind
 
-  VkSparseImageOpaqueMemoryBindInfo* = object
+  VkSparseImageOpaqueMemoryBindInfo* {.byref.} = object
     image*: VkImage
     bindCount*: uint32
     pBinds*: ptr VkSparseMemoryBind
 
-  VkSparseImageMemoryBindInfo* = object
+  VkSparseImageMemoryBindInfo* {.byref.} = object
     image*: VkImage
     bindCount*: uint32
     pBinds*: ptr VkSparseImageMemoryBind
 
-  VkBindSparseInfo* = object
+  VkBindSparseInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     waitSemaphoreCount*: uint32
@@ -5435,20 +5435,20 @@ type
     signalSemaphoreCount*: uint32
     pSignalSemaphores*: ptr VkSemaphore
 
-  VkImageCopy* = object
+  VkImageCopy* {.byref.} = object
     srcSubresource*: VkImageSubresourceLayers
     srcOffset*: VkOffset3D
     dstSubresource*: VkImageSubresourceLayers
     dstOffset*: VkOffset3D
     extent*: VkExtent3D
 
-  VkImageBlit* = object
+  VkImageBlit* {.byref.} = object
     srcSubresource*: VkImageSubresourceLayers
     srcOffsets*: array[2, VkOffset3D]
     dstSubresource*: VkImageSubresourceLayers
     dstOffsets*: array[2, VkOffset3D]
 
-  VkBufferImageCopy* = object
+  VkBufferImageCopy* {.byref.} = object
     bufferOffset*: VkDeviceSize
     bufferRowLength*: uint32
     bufferImageHeight*: uint32
@@ -5456,12 +5456,12 @@ type
     imageOffset*: VkOffset3D
     imageExtent*: VkExtent3D
 
-  VkCopyMemoryIndirectCommandNV* = object
+  VkCopyMemoryIndirectCommandNV* {.byref.} = object
     srcAddress*: VkDeviceAddress
     dstAddress*: VkDeviceAddress
     size*: VkDeviceSize
 
-  VkCopyMemoryToImageIndirectCommandNV* = object
+  VkCopyMemoryToImageIndirectCommandNV* {.byref.} = object
     srcAddress*: VkDeviceAddress
     bufferRowLength*: uint32
     bufferImageHeight*: uint32
@@ -5469,39 +5469,39 @@ type
     imageOffset*: VkOffset3D
     imageExtent*: VkExtent3D
 
-  VkImageResolve* = object
+  VkImageResolve* {.byref.} = object
     srcSubresource*: VkImageSubresourceLayers
     srcOffset*: VkOffset3D
     dstSubresource*: VkImageSubresourceLayers
     dstOffset*: VkOffset3D
     extent*: VkExtent3D
 
-  VkShaderModuleCreateInfo* = object
+  VkShaderModuleCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkShaderModuleCreateFlags
     codeSize*: uint
     pCode*: ptr uint32
 
-  VkDescriptorSetLayoutBinding* = object
+  VkDescriptorSetLayoutBinding* {.byref.} = object
     binding*: uint32
     descriptorType*: VkDescriptorType
     descriptorCount*: uint32
     stageFlags*: VkShaderStageFlags
     pImmutableSamplers*: ptr VkSampler
 
-  VkDescriptorSetLayoutCreateInfo* = object
+  VkDescriptorSetLayoutCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDescriptorSetLayoutCreateFlags
     bindingCount*: uint32
     pBindings*: ptr VkDescriptorSetLayoutBinding
 
-  VkDescriptorPoolSize* = object
+  VkDescriptorPoolSize* {.byref.} = object
     `type`*: VkDescriptorType
     descriptorCount*: uint32
 
-  VkDescriptorPoolCreateInfo* = object
+  VkDescriptorPoolCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDescriptorPoolCreateFlags
@@ -5509,25 +5509,25 @@ type
     poolSizeCount*: uint32
     pPoolSizes*: ptr VkDescriptorPoolSize
 
-  VkDescriptorSetAllocateInfo* = object
+  VkDescriptorSetAllocateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorPool*: VkDescriptorPool
     descriptorSetCount*: uint32
     pSetLayouts*: ptr VkDescriptorSetLayout
 
-  VkSpecializationMapEntry* = object
+  VkSpecializationMapEntry* {.byref.} = object
     constantID*: uint32
     offset*: uint32
     size*: uint
 
-  VkSpecializationInfo* = object
+  VkSpecializationInfo* {.byref.} = object
     mapEntryCount*: uint32
     pMapEntries*: ptr VkSpecializationMapEntry
     dataSize*: uint
     pData*: pointer
 
-  VkPipelineShaderStageCreateInfo* = object
+  VkPipelineShaderStageCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineShaderStageCreateFlags
@@ -5536,7 +5536,7 @@ type
     pName*: cstring
     pSpecializationInfo*: ptr VkSpecializationInfo
 
-  VkComputePipelineCreateInfo* = object
+  VkComputePipelineCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCreateFlags
@@ -5545,30 +5545,30 @@ type
     basePipelineHandle*: VkPipeline
     basePipelineIndex*: int32
 
-  VkComputePipelineIndirectBufferInfoNV* = object
+  VkComputePipelineIndirectBufferInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceAddress*: VkDeviceAddress
     size*: VkDeviceSize
     pipelineDeviceAddressCaptureReplay*: VkDeviceAddress
 
-  VkPipelineCreateFlags2CreateInfoKHR* = object
+  VkPipelineCreateFlags2CreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCreateFlags2KHR
 
-  VkVertexInputBindingDescription* = object
+  VkVertexInputBindingDescription* {.byref.} = object
     binding*: uint32
     stride*: uint32
     inputRate*: VkVertexInputRate
 
-  VkVertexInputAttributeDescription* = object
+  VkVertexInputAttributeDescription* {.byref.} = object
     location*: uint32
     binding*: uint32
     format*: VkFormat
     offset*: uint32
 
-  VkPipelineVertexInputStateCreateInfo* = object
+  VkPipelineVertexInputStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineVertexInputStateCreateFlags
@@ -5577,20 +5577,20 @@ type
     vertexAttributeDescriptionCount*: uint32
     pVertexAttributeDescriptions*: ptr VkVertexInputAttributeDescription
 
-  VkPipelineInputAssemblyStateCreateInfo* = object
+  VkPipelineInputAssemblyStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineInputAssemblyStateCreateFlags
     topology*: VkPrimitiveTopology
     primitiveRestartEnable*: VkBool32
 
-  VkPipelineTessellationStateCreateInfo* = object
+  VkPipelineTessellationStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineTessellationStateCreateFlags
     patchControlPoints*: uint32
 
-  VkPipelineViewportStateCreateInfo* = object
+  VkPipelineViewportStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineViewportStateCreateFlags
@@ -5599,7 +5599,7 @@ type
     scissorCount*: uint32
     pScissors*: ptr VkRect2D
 
-  VkPipelineRasterizationStateCreateInfo* = object
+  VkPipelineRasterizationStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineRasterizationStateCreateFlags
@@ -5614,7 +5614,7 @@ type
     depthBiasSlopeFactor*: float32
     lineWidth*: float32
 
-  VkPipelineMultisampleStateCreateInfo* = object
+  VkPipelineMultisampleStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineMultisampleStateCreateFlags
@@ -5625,7 +5625,7 @@ type
     alphaToCoverageEnable*: VkBool32
     alphaToOneEnable*: VkBool32
 
-  VkPipelineColorBlendAttachmentState* = object
+  VkPipelineColorBlendAttachmentState* {.byref.} = object
     blendEnable*: VkBool32
     srcColorBlendFactor*: VkBlendFactor
     dstColorBlendFactor*: VkBlendFactor
@@ -5635,7 +5635,7 @@ type
     alphaBlendOp*: VkBlendOp
     colorWriteMask*: VkColorComponentFlags
 
-  VkPipelineColorBlendStateCreateInfo* = object
+  VkPipelineColorBlendStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineColorBlendStateCreateFlags
@@ -5645,14 +5645,14 @@ type
     pAttachments*: ptr VkPipelineColorBlendAttachmentState
     blendConstants*: array[4, float32]
 
-  VkPipelineDynamicStateCreateInfo* = object
+  VkPipelineDynamicStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineDynamicStateCreateFlags
     dynamicStateCount*: uint32
     pDynamicStates*: ptr VkDynamicState
 
-  VkStencilOpState* = object
+  VkStencilOpState* {.byref.} = object
     failOp*: VkStencilOp
     passOp*: VkStencilOp
     depthFailOp*: VkStencilOp
@@ -5661,7 +5661,7 @@ type
     writeMask*: uint32
     reference*: uint32
 
-  VkPipelineDepthStencilStateCreateInfo* = object
+  VkPipelineDepthStencilStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineDepthStencilStateCreateFlags
@@ -5675,7 +5675,7 @@ type
     minDepthBounds*: float32
     maxDepthBounds*: float32
 
-  VkGraphicsPipelineCreateInfo* = object
+  VkGraphicsPipelineCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCreateFlags
@@ -5696,25 +5696,25 @@ type
     basePipelineHandle*: VkPipeline
     basePipelineIndex*: int32
 
-  VkPipelineCacheCreateInfo* = object
+  VkPipelineCacheCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCacheCreateFlags
     initialDataSize*: uint
     pInitialData*: pointer
 
-  VkPipelineCacheHeaderVersionOne* = object
+  VkPipelineCacheHeaderVersionOne* {.byref.} = object
     headerSize*: uint32
     headerVersion*: VkPipelineCacheHeaderVersion
     vendorID*: uint32
     deviceID*: uint32
     pipelineCacheUUID*: array[VK_UUID_SIZE, uint8]
 
-  VkPipelineCacheStageValidationIndexEntry* = object
+  VkPipelineCacheStageValidationIndexEntry* {.byref.} = object
     codeSize*: uint64
     codeOffset*: uint64
 
-  VkPipelineCacheSafetyCriticalIndexEntry* = object
+  VkPipelineCacheSafetyCriticalIndexEntry* {.byref.} = object
     pipelineIdentifier*: array[VK_UUID_SIZE, uint8]
     pipelineMemorySize*: uint64
     jsonSize*: uint64
@@ -5723,7 +5723,7 @@ type
     stageIndexStride*: uint32
     stageIndexOffset*: uint64
 
-  VkPipelineCacheHeaderVersionSafetyCriticalOne* = object
+  VkPipelineCacheHeaderVersionSafetyCriticalOne* {.byref.} = object
     headerVersionOne*: VkPipelineCacheHeaderVersionOne
     validationVersion*: VkPipelineCacheValidationVersion
     implementationData*: uint32
@@ -5731,12 +5731,12 @@ type
     pipelineIndexStride*: uint32
     pipelineIndexOffset*: uint64
 
-  VkPushConstantRange* = object
+  VkPushConstantRange* {.byref.} = object
     stageFlags*: VkShaderStageFlags
     offset*: uint32
     size*: uint32
 
-  VkPipelineLayoutCreateInfo* = object
+  VkPipelineLayoutCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineLayoutCreateFlags
@@ -5745,7 +5745,7 @@ type
     pushConstantRangeCount*: uint32
     pPushConstantRanges*: ptr VkPushConstantRange
 
-  VkSamplerCreateInfo* = object
+  VkSamplerCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkSamplerCreateFlags
@@ -5765,20 +5765,20 @@ type
     borderColor*: VkBorderColor
     unnormalizedCoordinates*: VkBool32
 
-  VkCommandPoolCreateInfo* = object
+  VkCommandPoolCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkCommandPoolCreateFlags
     queueFamilyIndex*: uint32
 
-  VkCommandBufferAllocateInfo* = object
+  VkCommandBufferAllocateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     commandPool*: VkCommandPool
     level*: VkCommandBufferLevel
     commandBufferCount*: uint32
 
-  VkCommandBufferInheritanceInfo* = object
+  VkCommandBufferInheritanceInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     renderPass*: VkRenderPass
@@ -5788,13 +5788,13 @@ type
     queryFlags*: VkQueryControlFlags
     pipelineStatistics*: VkQueryPipelineStatisticFlags
 
-  VkCommandBufferBeginInfo* = object
+  VkCommandBufferBeginInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkCommandBufferUsageFlags
     pInheritanceInfo*: ptr VkCommandBufferInheritanceInfo
 
-  VkRenderPassBeginInfo* = object
+  VkRenderPassBeginInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     renderPass*: VkRenderPass
@@ -5803,25 +5803,25 @@ type
     clearValueCount*: uint32
     pClearValues*: ptr VkClearValue
 
-  VkClearColorValue* {.union.} = object
+  VkClearColorValue* {.union, byref.} = object
     float32*: array[4, float32]
     int32*: array[4, int32]
     uint32*: array[4, uint32]
 
-  VkClearDepthStencilValue* = object
+  VkClearDepthStencilValue* {.byref.} = object
     depth*: float32
     stencil*: uint32
 
-  VkClearValue* {.union.} = object
+  VkClearValue* {.union, byref.} = object
     color*: VkClearColorValue
     depthStencil*: VkClearDepthStencilValue
 
-  VkClearAttachment* = object
+  VkClearAttachment* {.byref.} = object
     aspectMask*: VkImageAspectFlags
     colorAttachment*: uint32
     clearValue*: VkClearValue
 
-  VkAttachmentDescription* = object
+  VkAttachmentDescription* {.byref.} = object
     flags*: VkAttachmentDescriptionFlags
     format*: VkFormat
     samples*: VkSampleCountFlagBits
@@ -5832,11 +5832,11 @@ type
     initialLayout*: VkImageLayout
     finalLayout*: VkImageLayout
 
-  VkAttachmentReference* = object
+  VkAttachmentReference* {.byref.} = object
     attachment*: uint32
     layout*: VkImageLayout
 
-  VkSubpassDescription* = object
+  VkSubpassDescription* {.byref.} = object
     flags*: VkSubpassDescriptionFlags
     pipelineBindPoint*: VkPipelineBindPoint
     inputAttachmentCount*: uint32
@@ -5848,7 +5848,7 @@ type
     preserveAttachmentCount*: uint32
     pPreserveAttachments*: ptr uint32
 
-  VkSubpassDependency* = object
+  VkSubpassDependency* {.byref.} = object
     srcSubpass*: uint32
     dstSubpass*: uint32
     srcStageMask*: VkPipelineStageFlags
@@ -5857,7 +5857,7 @@ type
     dstAccessMask*: VkAccessFlags
     dependencyFlags*: VkDependencyFlags
 
-  VkRenderPassCreateInfo* = object
+  VkRenderPassCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkRenderPassCreateFlags
@@ -5868,17 +5868,17 @@ type
     dependencyCount*: uint32
     pDependencies*: ptr VkSubpassDependency
 
-  VkEventCreateInfo* = object
+  VkEventCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkEventCreateFlags
 
-  VkFenceCreateInfo* = object
+  VkFenceCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkFenceCreateFlags
 
-  VkPhysicalDeviceFeatures* = object
+  VkPhysicalDeviceFeatures* {.byref.} = object
     robustBufferAccess*: VkBool32
     fullDrawIndexUint32*: VkBool32
     imageCubeArray*: VkBool32
@@ -5935,14 +5935,14 @@ type
     variableMultisampleRate*: VkBool32
     inheritedQueries*: VkBool32
 
-  VkPhysicalDeviceSparseProperties* = object
+  VkPhysicalDeviceSparseProperties* {.byref.} = object
     residencyStandard2DBlockShape*: VkBool32
     residencyStandard2DMultisampleBlockShape*: VkBool32
     residencyStandard3DBlockShape*: VkBool32
     residencyAlignedMipSize*: VkBool32
     residencyNonResidentStrict*: VkBool32
 
-  VkPhysicalDeviceLimits* = object
+  VkPhysicalDeviceLimits* {.byref.} = object
     maxImageDimension1D*: uint32
     maxImageDimension2D*: uint32
     maxImageDimension3D*: uint32
@@ -6050,12 +6050,12 @@ type
     optimalBufferCopyRowPitchAlignment*: VkDeviceSize
     nonCoherentAtomSize*: VkDeviceSize
 
-  VkSemaphoreCreateInfo* = object
+  VkSemaphoreCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkSemaphoreCreateFlags
 
-  VkQueryPoolCreateInfo* = object
+  VkQueryPoolCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkQueryPoolCreateFlags
@@ -6063,7 +6063,7 @@ type
     queryCount*: uint32
     pipelineStatistics*: VkQueryPipelineStatisticFlags
 
-  VkFramebufferCreateInfo* = object
+  VkFramebufferCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkFramebufferCreateFlags
@@ -6074,34 +6074,34 @@ type
     height*: uint32
     layers*: uint32
 
-  VkDrawIndirectCommand* = object
+  VkDrawIndirectCommand* {.byref.} = object
     vertexCount*: uint32
     instanceCount*: uint32
     firstVertex*: uint32
     firstInstance*: uint32
 
-  VkDrawIndexedIndirectCommand* = object
+  VkDrawIndexedIndirectCommand* {.byref.} = object
     indexCount*: uint32
     instanceCount*: uint32
     firstIndex*: uint32
     vertexOffset*: int32
     firstInstance*: uint32
 
-  VkDispatchIndirectCommand* = object
+  VkDispatchIndirectCommand* {.byref.} = object
     x*: uint32
     y*: uint32
     z*: uint32
 
-  VkMultiDrawInfoEXT* = object
+  VkMultiDrawInfoEXT* {.byref.} = object
     firstVertex*: uint32
     vertexCount*: uint32
 
-  VkMultiDrawIndexedInfoEXT* = object
+  VkMultiDrawIndexedInfoEXT* {.byref.} = object
     firstIndex*: uint32
     indexCount*: uint32
     vertexOffset*: int32
 
-  VkSubmitInfo* = object
+  VkSubmitInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     waitSemaphoreCount*: uint32
@@ -6112,7 +6112,7 @@ type
     signalSemaphoreCount*: uint32
     pSignalSemaphores*: ptr VkSemaphore
 
-  VkDisplayPropertiesKHR* = object
+  VkDisplayPropertiesKHR* {.byref.} = object
     display*: VkDisplayKHR
     displayName*: cstring
     physicalDimensions*: VkExtent2D
@@ -6121,25 +6121,25 @@ type
     planeReorderPossible*: VkBool32
     persistentContent*: VkBool32
 
-  VkDisplayPlanePropertiesKHR* = object
+  VkDisplayPlanePropertiesKHR* {.byref.} = object
     currentDisplay*: VkDisplayKHR
     currentStackIndex*: uint32
 
-  VkDisplayModeParametersKHR* = object
+  VkDisplayModeParametersKHR* {.byref.} = object
     visibleRegion*: VkExtent2D
     refreshRate*: uint32
 
-  VkDisplayModePropertiesKHR* = object
+  VkDisplayModePropertiesKHR* {.byref.} = object
     displayMode*: VkDisplayModeKHR
     parameters*: VkDisplayModeParametersKHR
 
-  VkDisplayModeCreateInfoKHR* = object
+  VkDisplayModeCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDisplayModeCreateFlagsKHR
     parameters*: VkDisplayModeParametersKHR
 
-  VkDisplayPlaneCapabilitiesKHR* = object
+  VkDisplayPlaneCapabilitiesKHR* {.byref.} = object
     supportedAlpha*: VkDisplayPlaneAlphaFlagsKHR
     minSrcPosition*: VkOffset2D
     maxSrcPosition*: VkOffset2D
@@ -6150,7 +6150,7 @@ type
     minDstExtent*: VkExtent2D
     maxDstExtent*: VkExtent2D
 
-  VkDisplaySurfaceCreateInfoKHR* = object
+  VkDisplaySurfaceCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDisplaySurfaceCreateFlagsKHR
@@ -6162,14 +6162,14 @@ type
     alphaMode*: VkDisplayPlaneAlphaFlagBitsKHR
     imageExtent*: VkExtent2D
 
-  VkDisplayPresentInfoKHR* = object
+  VkDisplayPresentInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcRect*: VkRect2D
     dstRect*: VkRect2D
     persistent*: VkBool32
 
-  VkSurfaceCapabilitiesKHR* = object
+  VkSurfaceCapabilitiesKHR* {.byref.} = object
     minImageCount*: uint32
     maxImageCount*: uint32
     currentExtent*: VkExtent2D
@@ -6181,77 +6181,77 @@ type
     supportedCompositeAlpha*: VkCompositeAlphaFlagsKHR
     supportedUsageFlags*: VkImageUsageFlags
 
-  VkAndroidSurfaceCreateInfoKHR* = object
+  VkAndroidSurfaceCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkAndroidSurfaceCreateFlagsKHR
     window*: ptr ANativeWindow
 
-  VkViSurfaceCreateInfoNN* = object
+  VkViSurfaceCreateInfoNN* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkViSurfaceCreateFlagsNN
     window*: pointer
 
-  VkWaylandSurfaceCreateInfoKHR* = object
+  VkWaylandSurfaceCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkWaylandSurfaceCreateFlagsKHR
     display*: ptr wl_display
     surface*: ptr wl_surface
 
-  VkWin32SurfaceCreateInfoKHR* = object
+  VkWin32SurfaceCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkWin32SurfaceCreateFlagsKHR
     hinstance*: HINSTANCE
     hwnd*: HWND
 
-  VkXlibSurfaceCreateInfoKHR* = object
+  VkXlibSurfaceCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkXlibSurfaceCreateFlagsKHR
     dpy*: ptr Display
     window*: Window
 
-  VkXcbSurfaceCreateInfoKHR* = object
+  VkXcbSurfaceCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkXcbSurfaceCreateFlagsKHR
     connection*: ptr xcb_connection_t
     window*: xcb_window_t
 
-  VkDirectFBSurfaceCreateInfoEXT* = object
+  VkDirectFBSurfaceCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDirectFBSurfaceCreateFlagsEXT
     dfb*: ptr IDirectFB
     surface*: ptr IDirectFBSurface
 
-  VkImagePipeSurfaceCreateInfoFUCHSIA* = object
+  VkImagePipeSurfaceCreateInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkImagePipeSurfaceCreateFlagsFUCHSIA
     imagePipeHandle*: zx_handle_t
 
-  VkStreamDescriptorSurfaceCreateInfoGGP* = object
+  VkStreamDescriptorSurfaceCreateInfoGGP* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkStreamDescriptorSurfaceCreateFlagsGGP
     streamDescriptor*: GgpStreamDescriptor
 
-  VkScreenSurfaceCreateInfoQNX* = object
+  VkScreenSurfaceCreateInfoQNX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkScreenSurfaceCreateFlagsQNX
     context*: ptr screen_context
     window*: ptr screen_window
 
-  VkSurfaceFormatKHR* = object
+  VkSurfaceFormatKHR* {.byref.} = object
     format*: VkFormat
     colorSpace*: VkColorSpaceKHR
 
-  VkSwapchainCreateInfoKHR* = object
+  VkSwapchainCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkSwapchainCreateFlagsKHR
@@ -6271,7 +6271,7 @@ type
     clipped*: VkBool32
     oldSwapchain*: VkSwapchainKHR
 
-  VkPresentInfoKHR* = object
+  VkPresentInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     waitSemaphoreCount*: uint32
@@ -6281,20 +6281,20 @@ type
     pImageIndices*: ptr uint32
     pResults*: ptr VkResult
 
-  VkDebugReportCallbackCreateInfoEXT* = object
+  VkDebugReportCallbackCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDebugReportFlagsEXT
     pfnCallback*: PFN_vkDebugReportCallbackEXT
     pUserData*: pointer
 
-  VkValidationFlagsEXT* = object
+  VkValidationFlagsEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     disabledValidationCheckCount*: uint32
     pDisabledValidationChecks*: ptr VkValidationCheckEXT
 
-  VkValidationFeaturesEXT* = object
+  VkValidationFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     enabledValidationFeatureCount*: uint32
@@ -6302,20 +6302,20 @@ type
     disabledValidationFeatureCount*: uint32
     pDisabledValidationFeatures*: ptr VkValidationFeatureDisableEXT
 
-  VkLayerSettingsCreateInfoEXT* = object
+  VkLayerSettingsCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     settingCount*: uint32
     pSettings*: ptr VkLayerSettingEXT
 
-  VkLayerSettingEXT* = object
+  VkLayerSettingEXT* {.byref.} = object
     pLayerName*: cstring
     pSettingName*: cstring
     `type`*: VkLayerSettingTypeEXT
     valueCount*: uint32
     pValues*: pointer
 
-  VkApplicationParametersEXT* = object
+  VkApplicationParametersEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     vendorID*: uint32
@@ -6323,19 +6323,19 @@ type
     key*: uint32
     value*: uint64
 
-  VkPipelineRasterizationStateRasterizationOrderAMD* = object
+  VkPipelineRasterizationStateRasterizationOrderAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rasterizationOrder*: VkRasterizationOrderAMD
 
-  VkDebugMarkerObjectNameInfoEXT* = object
+  VkDebugMarkerObjectNameInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     objectType*: VkDebugReportObjectTypeEXT
     `object`*: uint64
     pObjectName*: cstring
 
-  VkDebugMarkerObjectTagInfoEXT* = object
+  VkDebugMarkerObjectTagInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     objectType*: VkDebugReportObjectTypeEXT
@@ -6344,79 +6344,79 @@ type
     tagSize*: uint
     pTag*: pointer
 
-  VkDebugMarkerMarkerInfoEXT* = object
+  VkDebugMarkerMarkerInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pMarkerName*: cstring
     color*: array[4, float32]
 
-  VkDedicatedAllocationImageCreateInfoNV* = object
+  VkDedicatedAllocationImageCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dedicatedAllocation*: VkBool32
 
-  VkDedicatedAllocationBufferCreateInfoNV* = object
+  VkDedicatedAllocationBufferCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dedicatedAllocation*: VkBool32
 
-  VkDedicatedAllocationMemoryAllocateInfoNV* = object
+  VkDedicatedAllocationMemoryAllocateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
     buffer*: VkBuffer
 
-  VkExternalImageFormatPropertiesNV* = object
+  VkExternalImageFormatPropertiesNV* {.byref.} = object
     imageFormatProperties*: VkImageFormatProperties
     externalMemoryFeatures*: VkExternalMemoryFeatureFlagsNV
     exportFromImportedHandleTypes*: VkExternalMemoryHandleTypeFlagsNV
     compatibleHandleTypes*: VkExternalMemoryHandleTypeFlagsNV
 
-  VkExternalMemoryImageCreateInfoNV* = object
+  VkExternalMemoryImageCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleTypes*: VkExternalMemoryHandleTypeFlagsNV
 
-  VkExportMemoryAllocateInfoNV* = object
+  VkExportMemoryAllocateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleTypes*: VkExternalMemoryHandleTypeFlagsNV
 
-  VkImportMemoryWin32HandleInfoNV* = object
+  VkImportMemoryWin32HandleInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalMemoryHandleTypeFlagsNV
     handle*: HANDLE
 
-  VkExportMemoryWin32HandleInfoNV* = object
+  VkExportMemoryWin32HandleInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pAttributes*: ptr SECURITY_ATTRIBUTES
     dwAccess*: DWORD
 
-  VkExportMemorySciBufInfoNV* = object
+  VkExportMemorySciBufInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pAttributes*: NvSciBufAttrList
 
-  VkImportMemorySciBufInfoNV* = object
+  VkImportMemorySciBufInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalMemoryHandleTypeFlagBits
     handle*: NvSciBufObj
 
-  VkMemoryGetSciBufInfoNV* = object
+  VkMemoryGetSciBufInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
     handleType*: VkExternalMemoryHandleTypeFlagBits
 
-  VkMemorySciBufPropertiesNV* = object
+  VkMemorySciBufPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryTypeBits*: uint32
 
-  VkPhysicalDeviceExternalMemorySciBufFeaturesNV* = object
+  VkPhysicalDeviceExternalMemorySciBufFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sciBufImport*: VkBool32
@@ -6424,7 +6424,7 @@ type
 
   VkPhysicalDeviceExternalSciBufFeaturesNV* = VkPhysicalDeviceExternalMemorySciBufFeaturesNV
 
-  VkWin32KeyedMutexAcquireReleaseInfoNV* = object
+  VkWin32KeyedMutexAcquireReleaseInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     acquireCount*: uint32
@@ -6435,40 +6435,40 @@ type
     pReleaseSyncs*: ptr VkDeviceMemory
     pReleaseKeys*: ptr uint64
 
-  VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV* = object
+  VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceGeneratedCommands*: VkBool32
 
-  VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV* = object
+  VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceGeneratedCompute*: VkBool32
     deviceGeneratedComputePipelines*: VkBool32
     deviceGeneratedComputeCaptureReplay*: VkBool32
 
-  VkDevicePrivateDataCreateInfo* = object
+  VkDevicePrivateDataCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     privateDataSlotRequestCount*: uint32
 
   VkDevicePrivateDataCreateInfoEXT* = VkDevicePrivateDataCreateInfo
 
-  VkPrivateDataSlotCreateInfo* = object
+  VkPrivateDataSlotCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPrivateDataSlotCreateFlags
 
   VkPrivateDataSlotCreateInfoEXT* = VkPrivateDataSlotCreateInfo
 
-  VkPhysicalDevicePrivateDataFeatures* = object
+  VkPhysicalDevicePrivateDataFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     privateData*: VkBool32
 
   VkPhysicalDevicePrivateDataFeaturesEXT* = VkPhysicalDevicePrivateDataFeatures
 
-  VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV* = object
+  VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxGraphicsShaderGroupCount*: uint32
@@ -6481,12 +6481,12 @@ type
     minSequencesIndexBufferOffsetAlignment*: uint32
     minIndirectCommandsBufferOffsetAlignment*: uint32
 
-  VkPhysicalDeviceMultiDrawPropertiesEXT* = object
+  VkPhysicalDeviceMultiDrawPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxMultiDrawCount*: uint32
 
-  VkGraphicsShaderGroupCreateInfoNV* = object
+  VkGraphicsShaderGroupCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stageCount*: uint32
@@ -6494,7 +6494,7 @@ type
     pVertexInputState*: ptr VkPipelineVertexInputStateCreateInfo
     pTessellationState*: ptr VkPipelineTessellationStateCreateInfo
 
-  VkGraphicsPipelineShaderGroupsCreateInfoNV* = object
+  VkGraphicsPipelineShaderGroupsCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     groupCount*: uint32
@@ -6502,27 +6502,27 @@ type
     pipelineCount*: uint32
     pPipelines*: ptr VkPipeline
 
-  VkBindShaderGroupIndirectCommandNV* = object
+  VkBindShaderGroupIndirectCommandNV* {.byref.} = object
     groupIndex*: uint32
 
-  VkBindIndexBufferIndirectCommandNV* = object
+  VkBindIndexBufferIndirectCommandNV* {.byref.} = object
     bufferAddress*: VkDeviceAddress
     size*: uint32
     indexType*: VkIndexType
 
-  VkBindVertexBufferIndirectCommandNV* = object
+  VkBindVertexBufferIndirectCommandNV* {.byref.} = object
     bufferAddress*: VkDeviceAddress
     size*: uint32
     stride*: uint32
 
-  VkSetStateFlagsIndirectCommandNV* = object
+  VkSetStateFlagsIndirectCommandNV* {.byref.} = object
     data*: uint32
 
-  VkIndirectCommandsStreamNV* = object
+  VkIndirectCommandsStreamNV* {.byref.} = object
     buffer*: VkBuffer
     offset*: VkDeviceSize
 
-  VkIndirectCommandsLayoutTokenNV* = object
+  VkIndirectCommandsLayoutTokenNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     tokenType*: VkIndirectCommandsTokenTypeNV
@@ -6539,7 +6539,7 @@ type
     pIndexTypes*: ptr VkIndexType
     pIndexTypeValues*: ptr uint32
 
-  VkIndirectCommandsLayoutCreateInfoNV* = object
+  VkIndirectCommandsLayoutCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkIndirectCommandsLayoutUsageFlagsNV
@@ -6549,7 +6549,7 @@ type
     streamCount*: uint32
     pStreamStrides*: ptr uint32
 
-  VkGeneratedCommandsInfoNV* = object
+  VkGeneratedCommandsInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineBindPoint*: VkPipelineBindPoint
@@ -6566,7 +6566,7 @@ type
     sequencesIndexBuffer*: VkBuffer
     sequencesIndexOffset*: VkDeviceSize
 
-  VkGeneratedCommandsMemoryRequirementsInfoNV* = object
+  VkGeneratedCommandsMemoryRequirementsInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineBindPoint*: VkPipelineBindPoint
@@ -6574,44 +6574,44 @@ type
     indirectCommandsLayout*: VkIndirectCommandsLayoutNV
     maxSequencesCount*: uint32
 
-  VkPipelineIndirectDeviceAddressInfoNV* = object
+  VkPipelineIndirectDeviceAddressInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineBindPoint*: VkPipelineBindPoint
     pipeline*: VkPipeline
 
-  VkBindPipelineIndirectCommandNV* = object
+  VkBindPipelineIndirectCommandNV* {.byref.} = object
     pipelineAddress*: VkDeviceAddress
 
-  VkPhysicalDeviceFeatures2* = object
+  VkPhysicalDeviceFeatures2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     features*: VkPhysicalDeviceFeatures
 
   VkPhysicalDeviceFeatures2KHR* = VkPhysicalDeviceFeatures2
 
-  VkPhysicalDeviceProperties2* = object
+  VkPhysicalDeviceProperties2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     properties*: VkPhysicalDeviceProperties
 
   VkPhysicalDeviceProperties2KHR* = VkPhysicalDeviceProperties2
 
-  VkFormatProperties2* = object
+  VkFormatProperties2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     formatProperties*: VkFormatProperties
 
   VkFormatProperties2KHR* = VkFormatProperties2
 
-  VkImageFormatProperties2* = object
+  VkImageFormatProperties2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageFormatProperties*: VkImageFormatProperties
 
   VkImageFormatProperties2KHR* = VkImageFormatProperties2
 
-  VkPhysicalDeviceImageFormatInfo2* = object
+  VkPhysicalDeviceImageFormatInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     format*: VkFormat
@@ -6622,28 +6622,28 @@ type
 
   VkPhysicalDeviceImageFormatInfo2KHR* = VkPhysicalDeviceImageFormatInfo2
 
-  VkQueueFamilyProperties2* = object
+  VkQueueFamilyProperties2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     queueFamilyProperties*: VkQueueFamilyProperties
 
   VkQueueFamilyProperties2KHR* = VkQueueFamilyProperties2
 
-  VkPhysicalDeviceMemoryProperties2* = object
+  VkPhysicalDeviceMemoryProperties2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryProperties*: VkPhysicalDeviceMemoryProperties
 
   VkPhysicalDeviceMemoryProperties2KHR* = VkPhysicalDeviceMemoryProperties2
 
-  VkSparseImageFormatProperties2* = object
+  VkSparseImageFormatProperties2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     properties*: VkSparseImageFormatProperties
 
   VkSparseImageFormatProperties2KHR* = VkSparseImageFormatProperties2
 
-  VkPhysicalDeviceSparseImageFormatInfo2* = object
+  VkPhysicalDeviceSparseImageFormatInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     format*: VkFormat
@@ -6654,12 +6654,12 @@ type
 
   VkPhysicalDeviceSparseImageFormatInfo2KHR* = VkPhysicalDeviceSparseImageFormatInfo2
 
-  VkPhysicalDevicePushDescriptorPropertiesKHR* = object
+  VkPhysicalDevicePushDescriptorPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxPushDescriptors*: uint32
 
-  VkConformanceVersion* = object
+  VkConformanceVersion* {.byref.} = object
     major*: uint8
     minor*: uint8
     subminor*: uint8
@@ -6667,7 +6667,7 @@ type
 
   VkConformanceVersionKHR* = VkConformanceVersion
 
-  VkPhysicalDeviceDriverProperties* = object
+  VkPhysicalDeviceDriverProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     driverID*: VkDriverId
@@ -6677,22 +6677,22 @@ type
 
   VkPhysicalDeviceDriverPropertiesKHR* = VkPhysicalDeviceDriverProperties
 
-  VkPresentRegionsKHR* = object
+  VkPresentRegionsKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainCount*: uint32
     pRegions*: ptr VkPresentRegionKHR
 
-  VkPresentRegionKHR* = object
+  VkPresentRegionKHR* {.byref.} = object
     rectangleCount*: uint32
     pRectangles*: ptr VkRectLayerKHR
 
-  VkRectLayerKHR* = object
+  VkRectLayerKHR* {.byref.} = object
     offset*: VkOffset2D
     extent*: VkExtent2D
     layer*: uint32
 
-  VkPhysicalDeviceVariablePointersFeatures* = object
+  VkPhysicalDeviceVariablePointersFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     variablePointersStorageBuffer*: VkBool32
@@ -6704,28 +6704,28 @@ type
 
   VkPhysicalDeviceVariablePointerFeatures* = VkPhysicalDeviceVariablePointersFeatures
 
-  VkExternalMemoryProperties* = object
+  VkExternalMemoryProperties* {.byref.} = object
     externalMemoryFeatures*: VkExternalMemoryFeatureFlags
     exportFromImportedHandleTypes*: VkExternalMemoryHandleTypeFlags
     compatibleHandleTypes*: VkExternalMemoryHandleTypeFlags
 
   VkExternalMemoryPropertiesKHR* = VkExternalMemoryProperties
 
-  VkPhysicalDeviceExternalImageFormatInfo* = object
+  VkPhysicalDeviceExternalImageFormatInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalMemoryHandleTypeFlagBits
 
   VkPhysicalDeviceExternalImageFormatInfoKHR* = VkPhysicalDeviceExternalImageFormatInfo
 
-  VkExternalImageFormatProperties* = object
+  VkExternalImageFormatProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     externalMemoryProperties*: VkExternalMemoryProperties
 
   VkExternalImageFormatPropertiesKHR* = VkExternalImageFormatProperties
 
-  VkPhysicalDeviceExternalBufferInfo* = object
+  VkPhysicalDeviceExternalBufferInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkBufferCreateFlags
@@ -6734,14 +6734,14 @@ type
 
   VkPhysicalDeviceExternalBufferInfoKHR* = VkPhysicalDeviceExternalBufferInfo
 
-  VkExternalBufferProperties* = object
+  VkExternalBufferProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     externalMemoryProperties*: VkExternalMemoryProperties
 
   VkExternalBufferPropertiesKHR* = VkExternalBufferProperties
 
-  VkPhysicalDeviceIDProperties* = object
+  VkPhysicalDeviceIDProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceUUID*: array[VK_UUID_SIZE, uint8]
@@ -6752,87 +6752,87 @@ type
 
   VkPhysicalDeviceIDPropertiesKHR* = VkPhysicalDeviceIDProperties
 
-  VkExternalMemoryImageCreateInfo* = object
+  VkExternalMemoryImageCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleTypes*: VkExternalMemoryHandleTypeFlags
 
   VkExternalMemoryImageCreateInfoKHR* = VkExternalMemoryImageCreateInfo
 
-  VkExternalMemoryBufferCreateInfo* = object
+  VkExternalMemoryBufferCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleTypes*: VkExternalMemoryHandleTypeFlags
 
   VkExternalMemoryBufferCreateInfoKHR* = VkExternalMemoryBufferCreateInfo
 
-  VkExportMemoryAllocateInfo* = object
+  VkExportMemoryAllocateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleTypes*: VkExternalMemoryHandleTypeFlags
 
   VkExportMemoryAllocateInfoKHR* = VkExportMemoryAllocateInfo
 
-  VkImportMemoryWin32HandleInfoKHR* = object
+  VkImportMemoryWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalMemoryHandleTypeFlagBits
     handle*: HANDLE
     name*: LPCWSTR
 
-  VkExportMemoryWin32HandleInfoKHR* = object
+  VkExportMemoryWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pAttributes*: ptr SECURITY_ATTRIBUTES
     dwAccess*: DWORD
     name*: LPCWSTR
 
-  VkImportMemoryZirconHandleInfoFUCHSIA* = object
+  VkImportMemoryZirconHandleInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalMemoryHandleTypeFlagBits
     handle*: zx_handle_t
 
-  VkMemoryZirconHandlePropertiesFUCHSIA* = object
+  VkMemoryZirconHandlePropertiesFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryTypeBits*: uint32
 
-  VkMemoryGetZirconHandleInfoFUCHSIA* = object
+  VkMemoryGetZirconHandleInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
     handleType*: VkExternalMemoryHandleTypeFlagBits
 
-  VkMemoryWin32HandlePropertiesKHR* = object
+  VkMemoryWin32HandlePropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryTypeBits*: uint32
 
-  VkMemoryGetWin32HandleInfoKHR* = object
+  VkMemoryGetWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
     handleType*: VkExternalMemoryHandleTypeFlagBits
 
-  VkImportMemoryFdInfoKHR* = object
+  VkImportMemoryFdInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalMemoryHandleTypeFlagBits
     fd*: int
 
-  VkMemoryFdPropertiesKHR* = object
+  VkMemoryFdPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryTypeBits*: uint32
 
-  VkMemoryGetFdInfoKHR* = object
+  VkMemoryGetFdInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
     handleType*: VkExternalMemoryHandleTypeFlagBits
 
-  VkWin32KeyedMutexAcquireReleaseInfoKHR* = object
+  VkWin32KeyedMutexAcquireReleaseInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     acquireCount*: uint32
@@ -6843,14 +6843,14 @@ type
     pReleaseSyncs*: ptr VkDeviceMemory
     pReleaseKeys*: ptr uint64
 
-  VkPhysicalDeviceExternalSemaphoreInfo* = object
+  VkPhysicalDeviceExternalSemaphoreInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalSemaphoreHandleTypeFlagBits
 
   VkPhysicalDeviceExternalSemaphoreInfoKHR* = VkPhysicalDeviceExternalSemaphoreInfo
 
-  VkExternalSemaphoreProperties* = object
+  VkExternalSemaphoreProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     exportFromImportedHandleTypes*: VkExternalSemaphoreHandleTypeFlags
@@ -6859,14 +6859,14 @@ type
 
   VkExternalSemaphorePropertiesKHR* = VkExternalSemaphoreProperties
 
-  VkExportSemaphoreCreateInfo* = object
+  VkExportSemaphoreCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleTypes*: VkExternalSemaphoreHandleTypeFlags
 
   VkExportSemaphoreCreateInfoKHR* = VkExportSemaphoreCreateInfo
 
-  VkImportSemaphoreWin32HandleInfoKHR* = object
+  VkImportSemaphoreWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
@@ -6875,14 +6875,14 @@ type
     handle*: HANDLE
     name*: LPCWSTR
 
-  VkExportSemaphoreWin32HandleInfoKHR* = object
+  VkExportSemaphoreWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pAttributes*: ptr SECURITY_ATTRIBUTES
     dwAccess*: DWORD
     name*: LPCWSTR
 
-  VkD3D12FenceSubmitInfoKHR* = object
+  VkD3D12FenceSubmitInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     waitSemaphoreValuesCount*: uint32
@@ -6890,13 +6890,13 @@ type
     signalSemaphoreValuesCount*: uint32
     pSignalSemaphoreValues*: ptr uint64
 
-  VkSemaphoreGetWin32HandleInfoKHR* = object
+  VkSemaphoreGetWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
     handleType*: VkExternalSemaphoreHandleTypeFlagBits
 
-  VkImportSemaphoreFdInfoKHR* = object
+  VkImportSemaphoreFdInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
@@ -6904,13 +6904,13 @@ type
     handleType*: VkExternalSemaphoreHandleTypeFlagBits
     fd*: int
 
-  VkSemaphoreGetFdInfoKHR* = object
+  VkSemaphoreGetFdInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
     handleType*: VkExternalSemaphoreHandleTypeFlagBits
 
-  VkImportSemaphoreZirconHandleInfoFUCHSIA* = object
+  VkImportSemaphoreZirconHandleInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
@@ -6918,20 +6918,20 @@ type
     handleType*: VkExternalSemaphoreHandleTypeFlagBits
     zirconHandle*: zx_handle_t
 
-  VkSemaphoreGetZirconHandleInfoFUCHSIA* = object
+  VkSemaphoreGetZirconHandleInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
     handleType*: VkExternalSemaphoreHandleTypeFlagBits
 
-  VkPhysicalDeviceExternalFenceInfo* = object
+  VkPhysicalDeviceExternalFenceInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalFenceHandleTypeFlagBits
 
   VkPhysicalDeviceExternalFenceInfoKHR* = VkPhysicalDeviceExternalFenceInfo
 
-  VkExternalFenceProperties* = object
+  VkExternalFenceProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     exportFromImportedHandleTypes*: VkExternalFenceHandleTypeFlags
@@ -6940,14 +6940,14 @@ type
 
   VkExternalFencePropertiesKHR* = VkExternalFenceProperties
 
-  VkExportFenceCreateInfo* = object
+  VkExportFenceCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleTypes*: VkExternalFenceHandleTypeFlags
 
   VkExportFenceCreateInfoKHR* = VkExportFenceCreateInfo
 
-  VkImportFenceWin32HandleInfoKHR* = object
+  VkImportFenceWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fence*: VkFence
@@ -6956,20 +6956,20 @@ type
     handle*: HANDLE
     name*: LPCWSTR
 
-  VkExportFenceWin32HandleInfoKHR* = object
+  VkExportFenceWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pAttributes*: ptr SECURITY_ATTRIBUTES
     dwAccess*: DWORD
     name*: LPCWSTR
 
-  VkFenceGetWin32HandleInfoKHR* = object
+  VkFenceGetWin32HandleInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fence*: VkFence
     handleType*: VkExternalFenceHandleTypeFlagBits
 
-  VkImportFenceFdInfoKHR* = object
+  VkImportFenceFdInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fence*: VkFence
@@ -6977,55 +6977,55 @@ type
     handleType*: VkExternalFenceHandleTypeFlagBits
     fd*: int
 
-  VkFenceGetFdInfoKHR* = object
+  VkFenceGetFdInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fence*: VkFence
     handleType*: VkExternalFenceHandleTypeFlagBits
 
-  VkExportFenceSciSyncInfoNV* = object
+  VkExportFenceSciSyncInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pAttributes*: NvSciSyncAttrList
 
-  VkImportFenceSciSyncInfoNV* = object
+  VkImportFenceSciSyncInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fence*: VkFence
     handleType*: VkExternalFenceHandleTypeFlagBits
     handle*: pointer
 
-  VkFenceGetSciSyncInfoNV* = object
+  VkFenceGetSciSyncInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fence*: VkFence
     handleType*: VkExternalFenceHandleTypeFlagBits
 
-  VkExportSemaphoreSciSyncInfoNV* = object
+  VkExportSemaphoreSciSyncInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pAttributes*: NvSciSyncAttrList
 
-  VkImportSemaphoreSciSyncInfoNV* = object
+  VkImportSemaphoreSciSyncInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
     handleType*: VkExternalSemaphoreHandleTypeFlagBits
     handle*: pointer
 
-  VkSemaphoreGetSciSyncInfoNV* = object
+  VkSemaphoreGetSciSyncInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
     handleType*: VkExternalSemaphoreHandleTypeFlagBits
 
-  VkSciSyncAttributesInfoNV* = object
+  VkSciSyncAttributesInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     clientType*: VkSciSyncClientTypeNV
     primitiveType*: VkSciSyncPrimitiveTypeNV
 
-  VkPhysicalDeviceExternalSciSyncFeaturesNV* = object
+  VkPhysicalDeviceExternalSciSyncFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sciSyncFence*: VkBool32
@@ -7033,7 +7033,7 @@ type
     sciSyncImport*: VkBool32
     sciSyncExport*: VkBool32
 
-  VkPhysicalDeviceExternalSciSync2FeaturesNV* = object
+  VkPhysicalDeviceExternalSciSync2FeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sciSyncFence*: VkBool32
@@ -7041,23 +7041,23 @@ type
     sciSyncImport*: VkBool32
     sciSyncExport*: VkBool32
 
-  VkSemaphoreSciSyncPoolCreateInfoNV* = object
+  VkSemaphoreSciSyncPoolCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handle*: NvSciSyncObj
 
-  VkSemaphoreSciSyncCreateInfoNV* = object
+  VkSemaphoreSciSyncCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphorePool*: VkSemaphoreSciSyncPoolNV
     pFence*: ptr NvSciSyncFence
 
-  VkDeviceSemaphoreSciSyncPoolReservationCreateInfoNV* = object
+  VkDeviceSemaphoreSciSyncPoolReservationCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphoreSciSyncPoolRequestCount*: uint32
 
-  VkPhysicalDeviceMultiviewFeatures* = object
+  VkPhysicalDeviceMultiviewFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     multiview*: VkBool32
@@ -7066,7 +7066,7 @@ type
 
   VkPhysicalDeviceMultiviewFeaturesKHR* = VkPhysicalDeviceMultiviewFeatures
 
-  VkPhysicalDeviceMultiviewProperties* = object
+  VkPhysicalDeviceMultiviewProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxMultiviewViewCount*: uint32
@@ -7074,7 +7074,7 @@ type
 
   VkPhysicalDeviceMultiviewPropertiesKHR* = VkPhysicalDeviceMultiviewProperties
 
-  VkRenderPassMultiviewCreateInfo* = object
+  VkRenderPassMultiviewCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     subpassCount*: uint32
@@ -7086,7 +7086,7 @@ type
 
   VkRenderPassMultiviewCreateInfoKHR* = VkRenderPassMultiviewCreateInfo
 
-  VkSurfaceCapabilities2EXT* = object
+  VkSurfaceCapabilities2EXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minImageCount*: uint32
@@ -7101,27 +7101,27 @@ type
     supportedUsageFlags*: VkImageUsageFlags
     supportedSurfaceCounters*: VkSurfaceCounterFlagsEXT
 
-  VkDisplayPowerInfoEXT* = object
+  VkDisplayPowerInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     powerState*: VkDisplayPowerStateEXT
 
-  VkDeviceEventInfoEXT* = object
+  VkDeviceEventInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceEvent*: VkDeviceEventTypeEXT
 
-  VkDisplayEventInfoEXT* = object
+  VkDisplayEventInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     displayEvent*: VkDisplayEventTypeEXT
 
-  VkSwapchainCounterCreateInfoEXT* = object
+  VkSwapchainCounterCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     surfaceCounters*: VkSurfaceCounterFlagsEXT
 
-  VkPhysicalDeviceGroupProperties* = object
+  VkPhysicalDeviceGroupProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     physicalDeviceCount*: uint32
@@ -7130,7 +7130,7 @@ type
 
   VkPhysicalDeviceGroupPropertiesKHR* = VkPhysicalDeviceGroupProperties
 
-  VkMemoryAllocateFlagsInfo* = object
+  VkMemoryAllocateFlagsInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkMemoryAllocateFlags
@@ -7138,7 +7138,7 @@ type
 
   VkMemoryAllocateFlagsInfoKHR* = VkMemoryAllocateFlagsInfo
 
-  VkBindBufferMemoryInfo* = object
+  VkBindBufferMemoryInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     buffer*: VkBuffer
@@ -7147,7 +7147,7 @@ type
 
   VkBindBufferMemoryInfoKHR* = VkBindBufferMemoryInfo
 
-  VkBindBufferMemoryDeviceGroupInfo* = object
+  VkBindBufferMemoryDeviceGroupInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceIndexCount*: uint32
@@ -7155,7 +7155,7 @@ type
 
   VkBindBufferMemoryDeviceGroupInfoKHR* = VkBindBufferMemoryDeviceGroupInfo
 
-  VkBindImageMemoryInfo* = object
+  VkBindImageMemoryInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
@@ -7164,7 +7164,7 @@ type
 
   VkBindImageMemoryInfoKHR* = VkBindImageMemoryInfo
 
-  VkBindImageMemoryDeviceGroupInfo* = object
+  VkBindImageMemoryDeviceGroupInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceIndexCount*: uint32
@@ -7174,7 +7174,7 @@ type
 
   VkBindImageMemoryDeviceGroupInfoKHR* = VkBindImageMemoryDeviceGroupInfo
 
-  VkDeviceGroupRenderPassBeginInfo* = object
+  VkDeviceGroupRenderPassBeginInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceMask*: uint32
@@ -7183,14 +7183,14 @@ type
 
   VkDeviceGroupRenderPassBeginInfoKHR* = VkDeviceGroupRenderPassBeginInfo
 
-  VkDeviceGroupCommandBufferBeginInfo* = object
+  VkDeviceGroupCommandBufferBeginInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceMask*: uint32
 
   VkDeviceGroupCommandBufferBeginInfoKHR* = VkDeviceGroupCommandBufferBeginInfo
 
-  VkDeviceGroupSubmitInfo* = object
+  VkDeviceGroupSubmitInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     waitSemaphoreCount*: uint32
@@ -7202,7 +7202,7 @@ type
 
   VkDeviceGroupSubmitInfoKHR* = VkDeviceGroupSubmitInfo
 
-  VkDeviceGroupBindSparseInfo* = object
+  VkDeviceGroupBindSparseInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     resourceDeviceIndex*: uint32
@@ -7210,24 +7210,24 @@ type
 
   VkDeviceGroupBindSparseInfoKHR* = VkDeviceGroupBindSparseInfo
 
-  VkDeviceGroupPresentCapabilitiesKHR* = object
+  VkDeviceGroupPresentCapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentMask*: array[VK_MAX_DEVICE_GROUP_SIZE, uint32]
     modes*: VkDeviceGroupPresentModeFlagsKHR
 
-  VkImageSwapchainCreateInfoKHR* = object
+  VkImageSwapchainCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchain*: VkSwapchainKHR
 
-  VkBindImageMemorySwapchainInfoKHR* = object
+  VkBindImageMemorySwapchainInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchain*: VkSwapchainKHR
     imageIndex*: uint32
 
-  VkAcquireNextImageInfoKHR* = object
+  VkAcquireNextImageInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchain*: VkSwapchainKHR
@@ -7236,14 +7236,14 @@ type
     fence*: VkFence
     deviceMask*: uint32
 
-  VkDeviceGroupPresentInfoKHR* = object
+  VkDeviceGroupPresentInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainCount*: uint32
     pDeviceMasks*: ptr uint32
     mode*: VkDeviceGroupPresentModeFlagBitsKHR
 
-  VkDeviceGroupDeviceCreateInfo* = object
+  VkDeviceGroupDeviceCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     physicalDeviceCount*: uint32
@@ -7251,12 +7251,12 @@ type
 
   VkDeviceGroupDeviceCreateInfoKHR* = VkDeviceGroupDeviceCreateInfo
 
-  VkDeviceGroupSwapchainCreateInfoKHR* = object
+  VkDeviceGroupSwapchainCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     modes*: VkDeviceGroupPresentModeFlagsKHR
 
-  VkDescriptorUpdateTemplateEntry* = object
+  VkDescriptorUpdateTemplateEntry* {.byref.} = object
     dstBinding*: uint32
     dstArrayElement*: uint32
     descriptorCount*: uint32
@@ -7266,7 +7266,7 @@ type
 
   VkDescriptorUpdateTemplateEntryKHR* = VkDescriptorUpdateTemplateEntry
 
-  VkDescriptorUpdateTemplateCreateInfo* = object
+  VkDescriptorUpdateTemplateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDescriptorUpdateTemplateCreateFlags
@@ -7280,27 +7280,27 @@ type
 
   VkDescriptorUpdateTemplateCreateInfoKHR* = VkDescriptorUpdateTemplateCreateInfo
 
-  VkXYColorEXT* = object
+  VkXYColorEXT* {.byref.} = object
     x*: float32
     y*: float32
 
-  VkPhysicalDevicePresentIdFeaturesKHR* = object
+  VkPhysicalDevicePresentIdFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentId*: VkBool32
 
-  VkPresentIdKHR* = object
+  VkPresentIdKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainCount*: uint32
     pPresentIds*: ptr uint64
 
-  VkPhysicalDevicePresentWaitFeaturesKHR* = object
+  VkPhysicalDevicePresentWaitFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentWait*: VkBool32
 
-  VkHdrMetadataEXT* = object
+  VkHdrMetadataEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     displayPrimaryRed*: VkXYColorEXT
@@ -7312,84 +7312,84 @@ type
     maxContentLightLevel*: float32
     maxFrameAverageLightLevel*: float32
 
-  VkDisplayNativeHdrSurfaceCapabilitiesAMD* = object
+  VkDisplayNativeHdrSurfaceCapabilitiesAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     localDimmingSupport*: VkBool32
 
-  VkSwapchainDisplayNativeHdrCreateInfoAMD* = object
+  VkSwapchainDisplayNativeHdrCreateInfoAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     localDimmingEnable*: VkBool32
 
-  VkRefreshCycleDurationGOOGLE* = object
+  VkRefreshCycleDurationGOOGLE* {.byref.} = object
     refreshDuration*: uint64
 
-  VkPastPresentationTimingGOOGLE* = object
+  VkPastPresentationTimingGOOGLE* {.byref.} = object
     presentID*: uint32
     desiredPresentTime*: uint64
     actualPresentTime*: uint64
     earliestPresentTime*: uint64
     presentMargin*: uint64
 
-  VkPresentTimesInfoGOOGLE* = object
+  VkPresentTimesInfoGOOGLE* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainCount*: uint32
     pTimes*: ptr VkPresentTimeGOOGLE
 
-  VkPresentTimeGOOGLE* = object
+  VkPresentTimeGOOGLE* {.byref.} = object
     presentID*: uint32
     desiredPresentTime*: uint64
 
-  VkIOSSurfaceCreateInfoMVK* = object
+  VkIOSSurfaceCreateInfoMVK* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkIOSSurfaceCreateFlagsMVK
     pView*: pointer
 
-  VkMacOSSurfaceCreateInfoMVK* = object
+  VkMacOSSurfaceCreateInfoMVK* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkMacOSSurfaceCreateFlagsMVK
     pView*: pointer
 
-  VkMetalSurfaceCreateInfoEXT* = object
+  VkMetalSurfaceCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkMetalSurfaceCreateFlagsEXT
     pLayer*: ptr CAMetalLayer
 
-  VkViewportWScalingNV* = object
+  VkViewportWScalingNV* {.byref.} = object
     xcoeff*: float32
     ycoeff*: float32
 
-  VkPipelineViewportWScalingStateCreateInfoNV* = object
+  VkPipelineViewportWScalingStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     viewportWScalingEnable*: VkBool32
     viewportCount*: uint32
     pViewportWScalings*: ptr VkViewportWScalingNV
 
-  VkViewportSwizzleNV* = object
+  VkViewportSwizzleNV* {.byref.} = object
     x*: VkViewportCoordinateSwizzleNV
     y*: VkViewportCoordinateSwizzleNV
     z*: VkViewportCoordinateSwizzleNV
     w*: VkViewportCoordinateSwizzleNV
 
-  VkPipelineViewportSwizzleStateCreateInfoNV* = object
+  VkPipelineViewportSwizzleStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineViewportSwizzleStateCreateFlagsNV
     viewportCount*: uint32
     pViewportSwizzles*: ptr VkViewportSwizzleNV
 
-  VkPhysicalDeviceDiscardRectanglePropertiesEXT* = object
+  VkPhysicalDeviceDiscardRectanglePropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxDiscardRectangles*: uint32
 
-  VkPipelineDiscardRectangleStateCreateInfoEXT* = object
+  VkPipelineDiscardRectangleStateCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineDiscardRectangleStateCreateFlagsEXT
@@ -7397,19 +7397,19 @@ type
     discardRectangleCount*: uint32
     pDiscardRectangles*: ptr VkRect2D
 
-  VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX* = object
+  VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     perViewPositionAllComponents*: VkBool32
 
-  VkInputAttachmentAspectReference* = object
+  VkInputAttachmentAspectReference* {.byref.} = object
     subpass*: uint32
     inputAttachmentIndex*: uint32
     aspectMask*: VkImageAspectFlags
 
   VkInputAttachmentAspectReferenceKHR* = VkInputAttachmentAspectReference
 
-  VkRenderPassInputAttachmentAspectCreateInfo* = object
+  VkRenderPassInputAttachmentAspectCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     aspectReferenceCount*: uint32
@@ -7417,53 +7417,53 @@ type
 
   VkRenderPassInputAttachmentAspectCreateInfoKHR* = VkRenderPassInputAttachmentAspectCreateInfo
 
-  VkPhysicalDeviceSurfaceInfo2KHR* = object
+  VkPhysicalDeviceSurfaceInfo2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     surface*: VkSurfaceKHR
 
-  VkSurfaceCapabilities2KHR* = object
+  VkSurfaceCapabilities2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     surfaceCapabilities*: VkSurfaceCapabilitiesKHR
 
-  VkSurfaceFormat2KHR* = object
+  VkSurfaceFormat2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     surfaceFormat*: VkSurfaceFormatKHR
 
-  VkDisplayProperties2KHR* = object
+  VkDisplayProperties2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     displayProperties*: VkDisplayPropertiesKHR
 
-  VkDisplayPlaneProperties2KHR* = object
+  VkDisplayPlaneProperties2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     displayPlaneProperties*: VkDisplayPlanePropertiesKHR
 
-  VkDisplayModeProperties2KHR* = object
+  VkDisplayModeProperties2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     displayModeProperties*: VkDisplayModePropertiesKHR
 
-  VkDisplayPlaneInfo2KHR* = object
+  VkDisplayPlaneInfo2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     mode*: VkDisplayModeKHR
     planeIndex*: uint32
 
-  VkDisplayPlaneCapabilities2KHR* = object
+  VkDisplayPlaneCapabilities2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     capabilities*: VkDisplayPlaneCapabilitiesKHR
 
-  VkSharedPresentSurfaceCapabilitiesKHR* = object
+  VkSharedPresentSurfaceCapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sharedPresentSupportedUsageFlags*: VkImageUsageFlags
 
-  VkPhysicalDevice16BitStorageFeatures* = object
+  VkPhysicalDevice16BitStorageFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     storageBuffer16BitAccess*: VkBool32
@@ -7473,7 +7473,7 @@ type
 
   VkPhysicalDevice16BitStorageFeaturesKHR* = VkPhysicalDevice16BitStorageFeatures
 
-  VkPhysicalDeviceSubgroupProperties* = object
+  VkPhysicalDeviceSubgroupProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     subgroupSize*: uint32
@@ -7481,42 +7481,42 @@ type
     supportedOperations*: VkSubgroupFeatureFlags
     quadOperationsInAllStages*: VkBool32
 
-  VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures* = object
+  VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderSubgroupExtendedTypes*: VkBool32
 
   VkPhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR* = VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures
 
-  VkBufferMemoryRequirementsInfo2* = object
+  VkBufferMemoryRequirementsInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     buffer*: VkBuffer
 
   VkBufferMemoryRequirementsInfo2KHR* = VkBufferMemoryRequirementsInfo2
 
-  VkDeviceBufferMemoryRequirements* = object
+  VkDeviceBufferMemoryRequirements* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pCreateInfo*: ptr VkBufferCreateInfo
 
   VkDeviceBufferMemoryRequirementsKHR* = VkDeviceBufferMemoryRequirements
 
-  VkImageMemoryRequirementsInfo2* = object
+  VkImageMemoryRequirementsInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
 
   VkImageMemoryRequirementsInfo2KHR* = VkImageMemoryRequirementsInfo2
 
-  VkImageSparseMemoryRequirementsInfo2* = object
+  VkImageSparseMemoryRequirementsInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
 
   VkImageSparseMemoryRequirementsInfo2KHR* = VkImageSparseMemoryRequirementsInfo2
 
-  VkDeviceImageMemoryRequirements* = object
+  VkDeviceImageMemoryRequirements* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pCreateInfo*: ptr VkImageCreateInfo
@@ -7524,28 +7524,28 @@ type
 
   VkDeviceImageMemoryRequirementsKHR* = VkDeviceImageMemoryRequirements
 
-  VkMemoryRequirements2* = object
+  VkMemoryRequirements2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryRequirements*: VkMemoryRequirements
 
   VkMemoryRequirements2KHR* = VkMemoryRequirements2
 
-  VkSparseImageMemoryRequirements2* = object
+  VkSparseImageMemoryRequirements2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryRequirements*: VkSparseImageMemoryRequirements
 
   VkSparseImageMemoryRequirements2KHR* = VkSparseImageMemoryRequirements2
 
-  VkPhysicalDevicePointClippingProperties* = object
+  VkPhysicalDevicePointClippingProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pointClippingBehavior*: VkPointClippingBehavior
 
   VkPhysicalDevicePointClippingPropertiesKHR* = VkPhysicalDevicePointClippingProperties
 
-  VkMemoryDedicatedRequirements* = object
+  VkMemoryDedicatedRequirements* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     prefersDedicatedAllocation*: VkBool32
@@ -7553,7 +7553,7 @@ type
 
   VkMemoryDedicatedRequirementsKHR* = VkMemoryDedicatedRequirements
 
-  VkMemoryDedicatedAllocateInfo* = object
+  VkMemoryDedicatedAllocateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
@@ -7561,12 +7561,12 @@ type
 
   VkMemoryDedicatedAllocateInfoKHR* = VkMemoryDedicatedAllocateInfo
 
-  VkImageViewUsageCreateInfo* = object
+  VkImageViewUsageCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     usage*: VkImageUsageFlags
 
-  VkImageViewSlicedCreateInfoEXT* = object
+  VkImageViewSlicedCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sliceOffset*: uint32
@@ -7574,21 +7574,21 @@ type
 
   VkImageViewUsageCreateInfoKHR* = VkImageViewUsageCreateInfo
 
-  VkPipelineTessellationDomainOriginStateCreateInfo* = object
+  VkPipelineTessellationDomainOriginStateCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     domainOrigin*: VkTessellationDomainOrigin
 
   VkPipelineTessellationDomainOriginStateCreateInfoKHR* = VkPipelineTessellationDomainOriginStateCreateInfo
 
-  VkSamplerYcbcrConversionInfo* = object
+  VkSamplerYcbcrConversionInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     conversion*: VkSamplerYcbcrConversion
 
   VkSamplerYcbcrConversionInfoKHR* = VkSamplerYcbcrConversionInfo
 
-  VkSamplerYcbcrConversionCreateInfo* = object
+  VkSamplerYcbcrConversionCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     format*: VkFormat
@@ -7602,76 +7602,76 @@ type
 
   VkSamplerYcbcrConversionCreateInfoKHR* = VkSamplerYcbcrConversionCreateInfo
 
-  VkBindImagePlaneMemoryInfo* = object
+  VkBindImagePlaneMemoryInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     planeAspect*: VkImageAspectFlagBits
 
   VkBindImagePlaneMemoryInfoKHR* = VkBindImagePlaneMemoryInfo
 
-  VkImagePlaneMemoryRequirementsInfo* = object
+  VkImagePlaneMemoryRequirementsInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     planeAspect*: VkImageAspectFlagBits
 
   VkImagePlaneMemoryRequirementsInfoKHR* = VkImagePlaneMemoryRequirementsInfo
 
-  VkPhysicalDeviceSamplerYcbcrConversionFeatures* = object
+  VkPhysicalDeviceSamplerYcbcrConversionFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     samplerYcbcrConversion*: VkBool32
 
   VkPhysicalDeviceSamplerYcbcrConversionFeaturesKHR* = VkPhysicalDeviceSamplerYcbcrConversionFeatures
 
-  VkSamplerYcbcrConversionImageFormatProperties* = object
+  VkSamplerYcbcrConversionImageFormatProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     combinedImageSamplerDescriptorCount*: uint32
 
   VkSamplerYcbcrConversionImageFormatPropertiesKHR* = VkSamplerYcbcrConversionImageFormatProperties
 
-  VkTextureLODGatherFormatPropertiesAMD* = object
+  VkTextureLODGatherFormatPropertiesAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     supportsTextureGatherLODBiasAMD*: VkBool32
 
-  VkConditionalRenderingBeginInfoEXT* = object
+  VkConditionalRenderingBeginInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     buffer*: VkBuffer
     offset*: VkDeviceSize
     flags*: VkConditionalRenderingFlagsEXT
 
-  VkProtectedSubmitInfo* = object
+  VkProtectedSubmitInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     protectedSubmit*: VkBool32
 
-  VkPhysicalDeviceProtectedMemoryFeatures* = object
+  VkPhysicalDeviceProtectedMemoryFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     protectedMemory*: VkBool32
 
-  VkPhysicalDeviceProtectedMemoryProperties* = object
+  VkPhysicalDeviceProtectedMemoryProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     protectedNoFault*: VkBool32
 
-  VkDeviceQueueInfo2* = object
+  VkDeviceQueueInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDeviceQueueCreateFlags
     queueFamilyIndex*: uint32
     queueIndex*: uint32
 
-  VkPipelineCoverageToColorStateCreateInfoNV* = object
+  VkPipelineCoverageToColorStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCoverageToColorStateCreateFlagsNV
     coverageToColorEnable*: VkBool32
     coverageToColorLocation*: uint32
 
-  VkPhysicalDeviceSamplerFilterMinmaxProperties* = object
+  VkPhysicalDeviceSamplerFilterMinmaxProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     filterMinmaxSingleComponentFormats*: VkBool32
@@ -7679,11 +7679,11 @@ type
 
   VkPhysicalDeviceSamplerFilterMinmaxPropertiesEXT* = VkPhysicalDeviceSamplerFilterMinmaxProperties
 
-  VkSampleLocationEXT* = object
+  VkSampleLocationEXT* {.byref.} = object
     x*: float32
     y*: float32
 
-  VkSampleLocationsInfoEXT* = object
+  VkSampleLocationsInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sampleLocationsPerPixel*: VkSampleCountFlagBits
@@ -7691,15 +7691,15 @@ type
     sampleLocationsCount*: uint32
     pSampleLocations*: ptr VkSampleLocationEXT
 
-  VkAttachmentSampleLocationsEXT* = object
+  VkAttachmentSampleLocationsEXT* {.byref.} = object
     attachmentIndex*: uint32
     sampleLocationsInfo*: VkSampleLocationsInfoEXT
 
-  VkSubpassSampleLocationsEXT* = object
+  VkSubpassSampleLocationsEXT* {.byref.} = object
     subpassIndex*: uint32
     sampleLocationsInfo*: VkSampleLocationsInfoEXT
 
-  VkRenderPassSampleLocationsBeginInfoEXT* = object
+  VkRenderPassSampleLocationsBeginInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     attachmentInitialSampleLocationsCount*: uint32
@@ -7707,13 +7707,13 @@ type
     postSubpassSampleLocationsCount*: uint32
     pPostSubpassSampleLocations*: ptr VkSubpassSampleLocationsEXT
 
-  VkPipelineSampleLocationsStateCreateInfoEXT* = object
+  VkPipelineSampleLocationsStateCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sampleLocationsEnable*: VkBool32
     sampleLocationsInfo*: VkSampleLocationsInfoEXT
 
-  VkPhysicalDeviceSampleLocationsPropertiesEXT* = object
+  VkPhysicalDeviceSampleLocationsPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sampleLocationSampleCounts*: VkSampleCountFlags
@@ -7722,29 +7722,29 @@ type
     sampleLocationSubPixelBits*: uint32
     variableSampleLocations*: VkBool32
 
-  VkMultisamplePropertiesEXT* = object
+  VkMultisamplePropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxSampleLocationGridSize*: VkExtent2D
 
-  VkSamplerReductionModeCreateInfo* = object
+  VkSamplerReductionModeCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     reductionMode*: VkSamplerReductionMode
 
   VkSamplerReductionModeCreateInfoEXT* = VkSamplerReductionModeCreateInfo
 
-  VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT* = object
+  VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     advancedBlendCoherentOperations*: VkBool32
 
-  VkPhysicalDeviceMultiDrawFeaturesEXT* = object
+  VkPhysicalDeviceMultiDrawFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     multiDraw*: VkBool32
 
-  VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT* = object
+  VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     advancedBlendMaxColorAttachments*: uint32
@@ -7754,14 +7754,14 @@ type
     advancedBlendCorrelatedOverlap*: VkBool32
     advancedBlendAllOperations*: VkBool32
 
-  VkPipelineColorBlendAdvancedStateCreateInfoEXT* = object
+  VkPipelineColorBlendAdvancedStateCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcPremultiplied*: VkBool32
     dstPremultiplied*: VkBool32
     blendOverlap*: VkBlendOverlapEXT
 
-  VkPhysicalDeviceInlineUniformBlockFeatures* = object
+  VkPhysicalDeviceInlineUniformBlockFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     inlineUniformBlock*: VkBool32
@@ -7769,7 +7769,7 @@ type
 
   VkPhysicalDeviceInlineUniformBlockFeaturesEXT* = VkPhysicalDeviceInlineUniformBlockFeatures
 
-  VkPhysicalDeviceInlineUniformBlockProperties* = object
+  VkPhysicalDeviceInlineUniformBlockProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxInlineUniformBlockSize*: uint32
@@ -7780,7 +7780,7 @@ type
 
   VkPhysicalDeviceInlineUniformBlockPropertiesEXT* = VkPhysicalDeviceInlineUniformBlockProperties
 
-  VkWriteDescriptorSetInlineUniformBlock* = object
+  VkWriteDescriptorSetInlineUniformBlock* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dataSize*: uint32
@@ -7788,14 +7788,14 @@ type
 
   VkWriteDescriptorSetInlineUniformBlockEXT* = VkWriteDescriptorSetInlineUniformBlock
 
-  VkDescriptorPoolInlineUniformBlockCreateInfo* = object
+  VkDescriptorPoolInlineUniformBlockCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxInlineUniformBlockBindings*: uint32
 
   VkDescriptorPoolInlineUniformBlockCreateInfoEXT* = VkDescriptorPoolInlineUniformBlockCreateInfo
 
-  VkPipelineCoverageModulationStateCreateInfoNV* = object
+  VkPipelineCoverageModulationStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCoverageModulationStateCreateFlagsNV
@@ -7804,7 +7804,7 @@ type
     coverageModulationTableCount*: uint32
     pCoverageModulationTable*: ptr float32
 
-  VkImageFormatListCreateInfo* = object
+  VkImageFormatListCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     viewFormatCount*: uint32
@@ -7812,19 +7812,19 @@ type
 
   VkImageFormatListCreateInfoKHR* = VkImageFormatListCreateInfo
 
-  VkValidationCacheCreateInfoEXT* = object
+  VkValidationCacheCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkValidationCacheCreateFlagsEXT
     initialDataSize*: uint
     pInitialData*: pointer
 
-  VkShaderModuleValidationCacheCreateInfoEXT* = object
+  VkShaderModuleValidationCacheCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     validationCache*: VkValidationCacheEXT
 
-  VkPhysicalDeviceMaintenance3Properties* = object
+  VkPhysicalDeviceMaintenance3Properties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxPerSetDescriptors*: uint32
@@ -7832,26 +7832,26 @@ type
 
   VkPhysicalDeviceMaintenance3PropertiesKHR* = VkPhysicalDeviceMaintenance3Properties
 
-  VkPhysicalDeviceMaintenance4Features* = object
+  VkPhysicalDeviceMaintenance4Features* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maintenance4*: VkBool32
 
   VkPhysicalDeviceMaintenance4FeaturesKHR* = VkPhysicalDeviceMaintenance4Features
 
-  VkPhysicalDeviceMaintenance4Properties* = object
+  VkPhysicalDeviceMaintenance4Properties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxBufferSize*: VkDeviceSize
 
   VkPhysicalDeviceMaintenance4PropertiesKHR* = VkPhysicalDeviceMaintenance4Properties
 
-  VkPhysicalDeviceMaintenance5FeaturesKHR* = object
+  VkPhysicalDeviceMaintenance5FeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maintenance5*: VkBool32
 
-  VkPhysicalDeviceMaintenance5PropertiesKHR* = object
+  VkPhysicalDeviceMaintenance5PropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     earlyFragmentMultisampleCoverageAfterSampleCounting*: VkBool32
@@ -7861,19 +7861,19 @@ type
     nonStrictSinglePixelWideLinesUseParallelogram*: VkBool32
     nonStrictWideLinesUseParallelogram*: VkBool32
 
-  VkPhysicalDeviceMaintenance6FeaturesKHR* = object
+  VkPhysicalDeviceMaintenance6FeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maintenance6*: VkBool32
 
-  VkPhysicalDeviceMaintenance6PropertiesKHR* = object
+  VkPhysicalDeviceMaintenance6PropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     blockTexelViewCompatibleMultipleLayers*: VkBool32
     maxCombinedImageSamplerDescriptorCount*: uint32
     fragmentShadingRateClampCombinerInputs*: VkBool32
 
-  VkRenderingAreaInfoKHR* = object
+  VkRenderingAreaInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     viewMask*: uint32
@@ -7882,21 +7882,21 @@ type
     depthAttachmentFormat*: VkFormat
     stencilAttachmentFormat*: VkFormat
 
-  VkDescriptorSetLayoutSupport* = object
+  VkDescriptorSetLayoutSupport* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     supported*: VkBool32
 
   VkDescriptorSetLayoutSupportKHR* = VkDescriptorSetLayoutSupport
 
-  VkPhysicalDeviceShaderDrawParametersFeatures* = object
+  VkPhysicalDeviceShaderDrawParametersFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderDrawParameters*: VkBool32
 
   VkPhysicalDeviceShaderDrawParameterFeatures* = VkPhysicalDeviceShaderDrawParametersFeatures
 
-  VkPhysicalDeviceShaderFloat16Int8Features* = object
+  VkPhysicalDeviceShaderFloat16Int8Features* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderFloat16*: VkBool32
@@ -7906,7 +7906,7 @@ type
 
   VkPhysicalDeviceFloat16Int8FeaturesKHR* = VkPhysicalDeviceShaderFloat16Int8Features
 
-  VkPhysicalDeviceFloatControlsProperties* = object
+  VkPhysicalDeviceFloatControlsProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     denormBehaviorIndependence*: VkShaderFloatControlsIndependence
@@ -7929,18 +7929,18 @@ type
 
   VkPhysicalDeviceFloatControlsPropertiesKHR* = VkPhysicalDeviceFloatControlsProperties
 
-  VkPhysicalDeviceHostQueryResetFeatures* = object
+  VkPhysicalDeviceHostQueryResetFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     hostQueryReset*: VkBool32
 
   VkPhysicalDeviceHostQueryResetFeaturesEXT* = VkPhysicalDeviceHostQueryResetFeatures
 
-  VkNativeBufferUsage2ANDROID* = object
+  VkNativeBufferUsage2ANDROID* {.byref.} = object
     consumer*: uint64
     producer*: uint64
 
-  VkNativeBufferANDROID* = object
+  VkNativeBufferANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handle*: pointer
@@ -7949,24 +7949,24 @@ type
     usage*: int
     usage2*: VkNativeBufferUsage2ANDROID
 
-  VkSwapchainImageCreateInfoANDROID* = object
+  VkSwapchainImageCreateInfoANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     usage*: VkSwapchainImageUsageFlagsANDROID
 
-  VkPhysicalDevicePresentationPropertiesANDROID* = object
+  VkPhysicalDevicePresentationPropertiesANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sharedImage*: VkBool32
 
-  VkShaderResourceUsageAMD* = object
+  VkShaderResourceUsageAMD* {.byref.} = object
     numUsedVgprs*: uint32
     numUsedSgprs*: uint32
     ldsSizePerLocalWorkGroup*: uint32
     ldsUsageSizeInBytes*: uint
     scratchMemUsageInBytes*: uint
 
-  VkShaderStatisticsInfoAMD* = object
+  VkShaderStatisticsInfoAMD* {.byref.} = object
     shaderStageMask*: VkShaderStageFlags
     resourceUsage*: VkShaderResourceUsageAMD
     numPhysicalVgprs*: uint32
@@ -7975,21 +7975,21 @@ type
     numAvailableSgprs*: uint32
     computeWorkGroupSize*: array[3, uint32]
 
-  VkDeviceQueueGlobalPriorityCreateInfoKHR* = object
+  VkDeviceQueueGlobalPriorityCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     globalPriority*: VkQueueGlobalPriorityKHR
 
   VkDeviceQueueGlobalPriorityCreateInfoEXT* = VkDeviceQueueGlobalPriorityCreateInfoKHR
 
-  VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR* = object
+  VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     globalPriorityQuery*: VkBool32
 
   VkPhysicalDeviceGlobalPriorityQueryFeaturesEXT* = VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR
 
-  VkQueueFamilyGlobalPriorityPropertiesKHR* = object
+  VkQueueFamilyGlobalPriorityPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     priorityCount*: uint32
@@ -7997,14 +7997,14 @@ type
 
   VkQueueFamilyGlobalPriorityPropertiesEXT* = VkQueueFamilyGlobalPriorityPropertiesKHR
 
-  VkDebugUtilsObjectNameInfoEXT* = object
+  VkDebugUtilsObjectNameInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     objectType*: VkObjectType
     objectHandle*: uint64
     pObjectName*: cstring
 
-  VkDebugUtilsObjectTagInfoEXT* = object
+  VkDebugUtilsObjectTagInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     objectType*: VkObjectType
@@ -8013,13 +8013,13 @@ type
     tagSize*: uint
     pTag*: pointer
 
-  VkDebugUtilsLabelEXT* = object
+  VkDebugUtilsLabelEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pLabelName*: cstring
     color*: array[4, float32]
 
-  VkDebugUtilsMessengerCreateInfoEXT* = object
+  VkDebugUtilsMessengerCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDebugUtilsMessengerCreateFlagsEXT
@@ -8028,7 +8028,7 @@ type
     pfnUserCallback*: PFN_vkDebugUtilsMessengerCallbackEXT
     pUserData*: pointer
 
-  VkDebugUtilsMessengerCallbackDataEXT* = object
+  VkDebugUtilsMessengerCallbackDataEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDebugUtilsMessengerCallbackDataFlagsEXT
@@ -8042,19 +8042,19 @@ type
     objectCount*: uint32
     pObjects*: ptr VkDebugUtilsObjectNameInfoEXT
 
-  VkPhysicalDeviceDeviceMemoryReportFeaturesEXT* = object
+  VkPhysicalDeviceDeviceMemoryReportFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceMemoryReport*: VkBool32
 
-  VkDeviceDeviceMemoryReportCreateInfoEXT* = object
+  VkDeviceDeviceMemoryReportCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDeviceMemoryReportFlagsEXT
     pfnUserCallback*: PFN_vkDeviceMemoryReportCallbackEXT
     pUserData*: pointer
 
-  VkDeviceMemoryReportCallbackDataEXT* = object
+  VkDeviceMemoryReportCallbackDataEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDeviceMemoryReportFlagsEXT
@@ -8065,23 +8065,23 @@ type
     objectHandle*: uint64
     heapIndex*: uint32
 
-  VkImportMemoryHostPointerInfoEXT* = object
+  VkImportMemoryHostPointerInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     handleType*: VkExternalMemoryHandleTypeFlagBits
     pHostPointer*: pointer
 
-  VkMemoryHostPointerPropertiesEXT* = object
+  VkMemoryHostPointerPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryTypeBits*: uint32
 
-  VkPhysicalDeviceExternalMemoryHostPropertiesEXT* = object
+  VkPhysicalDeviceExternalMemoryHostPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minImportedHostPointerAlignment*: VkDeviceSize
 
-  VkPhysicalDeviceConservativeRasterizationPropertiesEXT* = object
+  VkPhysicalDeviceConservativeRasterizationPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     primitiveOverestimationSize*: float32
@@ -8094,14 +8094,14 @@ type
     fullyCoveredFragmentShaderInputVariable*: VkBool32
     conservativeRasterizationPostDepthCoverage*: VkBool32
 
-  VkCalibratedTimestampInfoKHR* = object
+  VkCalibratedTimestampInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     timeDomain*: VkTimeDomainKHR
 
   VkCalibratedTimestampInfoEXT* = VkCalibratedTimestampInfoKHR
 
-  VkPhysicalDeviceShaderCorePropertiesAMD* = object
+  VkPhysicalDeviceShaderCorePropertiesAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderEngineCount*: uint32
@@ -8119,20 +8119,20 @@ type
     maxVgprAllocation*: uint32
     vgprAllocationGranularity*: uint32
 
-  VkPhysicalDeviceShaderCoreProperties2AMD* = object
+  VkPhysicalDeviceShaderCoreProperties2AMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderCoreFeatures*: VkShaderCorePropertiesFlagsAMD
     activeComputeUnitCount*: uint32
 
-  VkPipelineRasterizationConservativeStateCreateInfoEXT* = object
+  VkPipelineRasterizationConservativeStateCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineRasterizationConservativeStateCreateFlagsEXT
     conservativeRasterizationMode*: VkConservativeRasterizationModeEXT
     extraPrimitiveOverestimationSize*: float32
 
-  VkPhysicalDeviceDescriptorIndexingFeatures* = object
+  VkPhysicalDeviceDescriptorIndexingFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderInputAttachmentArrayDynamicIndexing*: VkBool32
@@ -8158,7 +8158,7 @@ type
 
   VkPhysicalDeviceDescriptorIndexingFeaturesEXT* = VkPhysicalDeviceDescriptorIndexingFeatures
 
-  VkPhysicalDeviceDescriptorIndexingProperties* = object
+  VkPhysicalDeviceDescriptorIndexingProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxUpdateAfterBindDescriptorsInAllPools*: uint32
@@ -8187,7 +8187,7 @@ type
 
   VkPhysicalDeviceDescriptorIndexingPropertiesEXT* = VkPhysicalDeviceDescriptorIndexingProperties
 
-  VkDescriptorSetLayoutBindingFlagsCreateInfo* = object
+  VkDescriptorSetLayoutBindingFlagsCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     bindingCount*: uint32
@@ -8195,7 +8195,7 @@ type
 
   VkDescriptorSetLayoutBindingFlagsCreateInfoEXT* = VkDescriptorSetLayoutBindingFlagsCreateInfo
 
-  VkDescriptorSetVariableDescriptorCountAllocateInfo* = object
+  VkDescriptorSetVariableDescriptorCountAllocateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorSetCount*: uint32
@@ -8203,14 +8203,14 @@ type
 
   VkDescriptorSetVariableDescriptorCountAllocateInfoEXT* = VkDescriptorSetVariableDescriptorCountAllocateInfo
 
-  VkDescriptorSetVariableDescriptorCountLayoutSupport* = object
+  VkDescriptorSetVariableDescriptorCountLayoutSupport* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxVariableDescriptorCount*: uint32
 
   VkDescriptorSetVariableDescriptorCountLayoutSupportEXT* = VkDescriptorSetVariableDescriptorCountLayoutSupport
 
-  VkAttachmentDescription2* = object
+  VkAttachmentDescription2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkAttachmentDescriptionFlags
@@ -8225,7 +8225,7 @@ type
 
   VkAttachmentDescription2KHR* = VkAttachmentDescription2
 
-  VkAttachmentReference2* = object
+  VkAttachmentReference2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     attachment*: uint32
@@ -8234,7 +8234,7 @@ type
 
   VkAttachmentReference2KHR* = VkAttachmentReference2
 
-  VkSubpassDescription2* = object
+  VkSubpassDescription2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkSubpassDescriptionFlags
@@ -8251,7 +8251,7 @@ type
 
   VkSubpassDescription2KHR* = VkSubpassDescription2
 
-  VkSubpassDependency2* = object
+  VkSubpassDependency2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcSubpass*: uint32
@@ -8265,7 +8265,7 @@ type
 
   VkSubpassDependency2KHR* = VkSubpassDependency2
 
-  VkRenderPassCreateInfo2* = object
+  VkRenderPassCreateInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkRenderPassCreateFlags
@@ -8280,34 +8280,34 @@ type
 
   VkRenderPassCreateInfo2KHR* = VkRenderPassCreateInfo2
 
-  VkSubpassBeginInfo* = object
+  VkSubpassBeginInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     contents*: VkSubpassContents
 
   VkSubpassBeginInfoKHR* = VkSubpassBeginInfo
 
-  VkSubpassEndInfo* = object
+  VkSubpassEndInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
 
   VkSubpassEndInfoKHR* = VkSubpassEndInfo
 
-  VkPhysicalDeviceTimelineSemaphoreFeatures* = object
+  VkPhysicalDeviceTimelineSemaphoreFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     timelineSemaphore*: VkBool32
 
   VkPhysicalDeviceTimelineSemaphoreFeaturesKHR* = VkPhysicalDeviceTimelineSemaphoreFeatures
 
-  VkPhysicalDeviceTimelineSemaphoreProperties* = object
+  VkPhysicalDeviceTimelineSemaphoreProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxTimelineSemaphoreValueDifference*: uint64
 
   VkPhysicalDeviceTimelineSemaphorePropertiesKHR* = VkPhysicalDeviceTimelineSemaphoreProperties
 
-  VkSemaphoreTypeCreateInfo* = object
+  VkSemaphoreTypeCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphoreType*: VkSemaphoreType
@@ -8315,7 +8315,7 @@ type
 
   VkSemaphoreTypeCreateInfoKHR* = VkSemaphoreTypeCreateInfo
 
-  VkTimelineSemaphoreSubmitInfo* = object
+  VkTimelineSemaphoreSubmitInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     waitSemaphoreValueCount*: uint32
@@ -8325,7 +8325,7 @@ type
 
   VkTimelineSemaphoreSubmitInfoKHR* = VkTimelineSemaphoreSubmitInfo
 
-  VkSemaphoreWaitInfo* = object
+  VkSemaphoreWaitInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkSemaphoreWaitFlags
@@ -8335,7 +8335,7 @@ type
 
   VkSemaphoreWaitInfoKHR* = VkSemaphoreWaitInfo
 
-  VkSemaphoreSignalInfo* = object
+  VkSemaphoreSignalInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
@@ -8343,13 +8343,13 @@ type
 
   VkSemaphoreSignalInfoKHR* = VkSemaphoreSignalInfo
 
-  VkVertexInputBindingDivisorDescriptionKHR* = object
+  VkVertexInputBindingDivisorDescriptionKHR* {.byref.} = object
     binding*: uint32
     divisor*: uint32
 
   VkVertexInputBindingDivisorDescriptionEXT* = VkVertexInputBindingDivisorDescriptionKHR
 
-  VkPipelineVertexInputDivisorStateCreateInfoKHR* = object
+  VkPipelineVertexInputDivisorStateCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     vertexBindingDivisorCount*: uint32
@@ -8357,18 +8357,18 @@ type
 
   VkPipelineVertexInputDivisorStateCreateInfoEXT* = VkPipelineVertexInputDivisorStateCreateInfoKHR
 
-  VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT* = object
+  VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxVertexAttribDivisor*: uint32
 
-  VkPhysicalDeviceVertexAttributeDivisorPropertiesKHR* = object
+  VkPhysicalDeviceVertexAttributeDivisorPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxVertexAttribDivisor*: uint32
     supportsNonZeroFirstInstance*: VkBool32
 
-  VkPhysicalDevicePCIBusInfoPropertiesEXT* = object
+  VkPhysicalDevicePCIBusInfoPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pciDomain*: uint32
@@ -8376,28 +8376,28 @@ type
     pciDevice*: uint32
     pciFunction*: uint32
 
-  VkImportAndroidHardwareBufferInfoANDROID* = object
+  VkImportAndroidHardwareBufferInfoANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     buffer*: ptr AHardwareBuffer
 
-  VkAndroidHardwareBufferUsageANDROID* = object
+  VkAndroidHardwareBufferUsageANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     androidHardwareBufferUsage*: uint64
 
-  VkAndroidHardwareBufferPropertiesANDROID* = object
+  VkAndroidHardwareBufferPropertiesANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     allocationSize*: VkDeviceSize
     memoryTypeBits*: uint32
 
-  VkMemoryGetAndroidHardwareBufferInfoANDROID* = object
+  VkMemoryGetAndroidHardwareBufferInfoANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
 
-  VkAndroidHardwareBufferFormatPropertiesANDROID* = object
+  VkAndroidHardwareBufferFormatPropertiesANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     format*: VkFormat
@@ -8409,17 +8409,17 @@ type
     suggestedXChromaOffset*: VkChromaLocation
     suggestedYChromaOffset*: VkChromaLocation
 
-  VkCommandBufferInheritanceConditionalRenderingInfoEXT* = object
+  VkCommandBufferInheritanceConditionalRenderingInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     conditionalRenderingEnable*: VkBool32
 
-  VkExternalFormatANDROID* = object
+  VkExternalFormatANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     externalFormat*: uint64
 
-  VkPhysicalDevice8BitStorageFeatures* = object
+  VkPhysicalDevice8BitStorageFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     storageBuffer8BitAccess*: VkBool32
@@ -8428,13 +8428,13 @@ type
 
   VkPhysicalDevice8BitStorageFeaturesKHR* = VkPhysicalDevice8BitStorageFeatures
 
-  VkPhysicalDeviceConditionalRenderingFeaturesEXT* = object
+  VkPhysicalDeviceConditionalRenderingFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     conditionalRendering*: VkBool32
     inheritedConditionalRendering*: VkBool32
 
-  VkPhysicalDeviceVulkanMemoryModelFeatures* = object
+  VkPhysicalDeviceVulkanMemoryModelFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     vulkanMemoryModel*: VkBool32
@@ -8443,7 +8443,7 @@ type
 
   VkPhysicalDeviceVulkanMemoryModelFeaturesKHR* = VkPhysicalDeviceVulkanMemoryModelFeatures
 
-  VkPhysicalDeviceShaderAtomicInt64Features* = object
+  VkPhysicalDeviceShaderAtomicInt64Features* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderBufferInt64Atomics*: VkBool32
@@ -8451,7 +8451,7 @@ type
 
   VkPhysicalDeviceShaderAtomicInt64FeaturesKHR* = VkPhysicalDeviceShaderAtomicInt64Features
 
-  VkPhysicalDeviceShaderAtomicFloatFeaturesEXT* = object
+  VkPhysicalDeviceShaderAtomicFloatFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderBufferFloat32Atomics*: VkBool32
@@ -8467,7 +8467,7 @@ type
     sparseImageFloat32Atomics*: VkBool32
     sparseImageFloat32AtomicAdd*: VkBool32
 
-  VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT* = object
+  VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderBufferFloat16Atomics*: VkBool32
@@ -8483,7 +8483,7 @@ type
     shaderImageFloat32AtomicMinMax*: VkBool32
     sparseImageFloat32AtomicMinMax*: VkBool32
 
-  VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR* = object
+  VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     vertexAttributeInstanceRateDivisor*: VkBool32
@@ -8491,18 +8491,18 @@ type
 
   VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT* = VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR
 
-  VkQueueFamilyCheckpointPropertiesNV* = object
+  VkQueueFamilyCheckpointPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     checkpointExecutionStageMask*: VkPipelineStageFlags
 
-  VkCheckpointDataNV* = object
+  VkCheckpointDataNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stage*: VkPipelineStageFlagBits
     pCheckpointMarker*: pointer
 
-  VkPhysicalDeviceDepthStencilResolveProperties* = object
+  VkPhysicalDeviceDepthStencilResolveProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     supportedDepthResolveModes*: VkResolveModeFlags
@@ -8512,7 +8512,7 @@ type
 
   VkPhysicalDeviceDepthStencilResolvePropertiesKHR* = VkPhysicalDeviceDepthStencilResolveProperties
 
-  VkSubpassDescriptionDepthStencilResolve* = object
+  VkSubpassDescriptionDepthStencilResolve* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     depthResolveMode*: VkResolveModeFlagBits
@@ -8521,23 +8521,23 @@ type
 
   VkSubpassDescriptionDepthStencilResolveKHR* = VkSubpassDescriptionDepthStencilResolve
 
-  VkImageViewASTCDecodeModeEXT* = object
+  VkImageViewASTCDecodeModeEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     decodeMode*: VkFormat
 
-  VkPhysicalDeviceASTCDecodeFeaturesEXT* = object
+  VkPhysicalDeviceASTCDecodeFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     decodeModeSharedExponent*: VkBool32
 
-  VkPhysicalDeviceTransformFeedbackFeaturesEXT* = object
+  VkPhysicalDeviceTransformFeedbackFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     transformFeedback*: VkBool32
     geometryStreams*: VkBool32
 
-  VkPhysicalDeviceTransformFeedbackPropertiesEXT* = object
+  VkPhysicalDeviceTransformFeedbackPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxTransformFeedbackStreams*: uint32
@@ -8551,39 +8551,39 @@ type
     transformFeedbackRasterizationStreamSelect*: VkBool32
     transformFeedbackDraw*: VkBool32
 
-  VkPipelineRasterizationStateStreamCreateInfoEXT* = object
+  VkPipelineRasterizationStateStreamCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineRasterizationStateStreamCreateFlagsEXT
     rasterizationStream*: uint32
 
-  VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV* = object
+  VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     representativeFragmentTest*: VkBool32
 
-  VkPipelineRepresentativeFragmentTestStateCreateInfoNV* = object
+  VkPipelineRepresentativeFragmentTestStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     representativeFragmentTestEnable*: VkBool32
 
-  VkPhysicalDeviceExclusiveScissorFeaturesNV* = object
+  VkPhysicalDeviceExclusiveScissorFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     exclusiveScissor*: VkBool32
 
-  VkPipelineViewportExclusiveScissorStateCreateInfoNV* = object
+  VkPipelineViewportExclusiveScissorStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     exclusiveScissorCount*: uint32
     pExclusiveScissors*: ptr VkRect2D
 
-  VkPhysicalDeviceCornerSampledImageFeaturesNV* = object
+  VkPhysicalDeviceCornerSampledImageFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cornerSampledImage*: VkBool32
 
-  VkPhysicalDeviceComputeShaderDerivativesFeaturesNV* = object
+  VkPhysicalDeviceComputeShaderDerivativesFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     computeDerivativeGroupQuads*: VkBool32
@@ -8591,91 +8591,91 @@ type
 
   VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV* = VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR
 
-  VkPhysicalDeviceShaderImageFootprintFeaturesNV* = object
+  VkPhysicalDeviceShaderImageFootprintFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageFootprint*: VkBool32
 
-  VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV* = object
+  VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dedicatedAllocationImageAliasing*: VkBool32
 
-  VkPhysicalDeviceCopyMemoryIndirectFeaturesNV* = object
+  VkPhysicalDeviceCopyMemoryIndirectFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     indirectCopy*: VkBool32
 
-  VkPhysicalDeviceCopyMemoryIndirectPropertiesNV* = object
+  VkPhysicalDeviceCopyMemoryIndirectPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     supportedQueues*: VkQueueFlags
 
-  VkPhysicalDeviceMemoryDecompressionFeaturesNV* = object
+  VkPhysicalDeviceMemoryDecompressionFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryDecompression*: VkBool32
 
-  VkPhysicalDeviceMemoryDecompressionPropertiesNV* = object
+  VkPhysicalDeviceMemoryDecompressionPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     decompressionMethods*: VkMemoryDecompressionMethodFlagsNV
     maxDecompressionIndirectCount*: uint64
 
-  VkShadingRatePaletteNV* = object
+  VkShadingRatePaletteNV* {.byref.} = object
     shadingRatePaletteEntryCount*: uint32
     pShadingRatePaletteEntries*: ptr VkShadingRatePaletteEntryNV
 
-  VkPipelineViewportShadingRateImageStateCreateInfoNV* = object
+  VkPipelineViewportShadingRateImageStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shadingRateImageEnable*: VkBool32
     viewportCount*: uint32
     pShadingRatePalettes*: ptr VkShadingRatePaletteNV
 
-  VkPhysicalDeviceShadingRateImageFeaturesNV* = object
+  VkPhysicalDeviceShadingRateImageFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shadingRateImage*: VkBool32
     shadingRateCoarseSampleOrder*: VkBool32
 
-  VkPhysicalDeviceShadingRateImagePropertiesNV* = object
+  VkPhysicalDeviceShadingRateImagePropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shadingRateTexelSize*: VkExtent2D
     shadingRatePaletteSize*: uint32
     shadingRateMaxCoarseSamples*: uint32
 
-  VkPhysicalDeviceInvocationMaskFeaturesHUAWEI* = object
+  VkPhysicalDeviceInvocationMaskFeaturesHUAWEI* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     invocationMask*: VkBool32
 
-  VkCoarseSampleLocationNV* = object
+  VkCoarseSampleLocationNV* {.byref.} = object
     pixelX*: uint32
     pixelY*: uint32
     sample*: uint32
 
-  VkCoarseSampleOrderCustomNV* = object
+  VkCoarseSampleOrderCustomNV* {.byref.} = object
     shadingRate*: VkShadingRatePaletteEntryNV
     sampleCount*: uint32
     sampleLocationCount*: uint32
     pSampleLocations*: ptr VkCoarseSampleLocationNV
 
-  VkPipelineViewportCoarseSampleOrderStateCreateInfoNV* = object
+  VkPipelineViewportCoarseSampleOrderStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sampleOrderType*: VkCoarseSampleOrderTypeNV
     customSampleOrderCount*: uint32
     pCustomSampleOrders*: ptr VkCoarseSampleOrderCustomNV
 
-  VkPhysicalDeviceMeshShaderFeaturesNV* = object
+  VkPhysicalDeviceMeshShaderFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     taskShader*: VkBool32
     meshShader*: VkBool32
 
-  VkPhysicalDeviceMeshShaderPropertiesNV* = object
+  VkPhysicalDeviceMeshShaderPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxDrawMeshTasksCount*: uint32
@@ -8692,11 +8692,11 @@ type
     meshOutputPerVertexGranularity*: uint32
     meshOutputPerPrimitiveGranularity*: uint32
 
-  VkDrawMeshTasksIndirectCommandNV* = object
+  VkDrawMeshTasksIndirectCommandNV* {.byref.} = object
     taskCount*: uint32
     firstTask*: uint32
 
-  VkPhysicalDeviceMeshShaderFeaturesEXT* = object
+  VkPhysicalDeviceMeshShaderFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     taskShader*: VkBool32
@@ -8705,7 +8705,7 @@ type
     primitiveFragmentShadingRateMeshShader*: VkBool32
     meshShaderQueries*: VkBool32
 
-  VkPhysicalDeviceMeshShaderPropertiesEXT* = object
+  VkPhysicalDeviceMeshShaderPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxTaskWorkGroupTotalCount*: uint32
@@ -8737,12 +8737,12 @@ type
     prefersCompactVertexOutput*: VkBool32
     prefersCompactPrimitiveOutput*: VkBool32
 
-  VkDrawMeshTasksIndirectCommandEXT* = object
+  VkDrawMeshTasksIndirectCommandEXT* {.byref.} = object
     groupCountX*: uint32
     groupCountY*: uint32
     groupCountZ*: uint32
 
-  VkRayTracingShaderGroupCreateInfoNV* = object
+  VkRayTracingShaderGroupCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkRayTracingShaderGroupTypeKHR
@@ -8751,7 +8751,7 @@ type
     anyHitShader*: uint32
     intersectionShader*: uint32
 
-  VkRayTracingShaderGroupCreateInfoKHR* = object
+  VkRayTracingShaderGroupCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkRayTracingShaderGroupTypeKHR
@@ -8761,7 +8761,7 @@ type
     intersectionShader*: uint32
     pShaderGroupCaptureReplayHandle*: pointer
 
-  VkRayTracingPipelineCreateInfoNV* = object
+  VkRayTracingPipelineCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCreateFlags
@@ -8774,7 +8774,7 @@ type
     basePipelineHandle*: VkPipeline
     basePipelineIndex*: int32
 
-  VkRayTracingPipelineCreateInfoKHR* = object
+  VkRayTracingPipelineCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCreateFlags
@@ -8790,7 +8790,7 @@ type
     basePipelineHandle*: VkPipeline
     basePipelineIndex*: int32
 
-  VkGeometryTrianglesNV* = object
+  VkGeometryTrianglesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     vertexData*: VkBuffer
@@ -8805,7 +8805,7 @@ type
     transformData*: VkBuffer
     transformOffset*: VkDeviceSize
 
-  VkGeometryAABBNV* = object
+  VkGeometryAABBNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     aabbData*: VkBuffer
@@ -8813,18 +8813,18 @@ type
     stride*: uint32
     offset*: VkDeviceSize
 
-  VkGeometryDataNV* = object
+  VkGeometryDataNV* {.byref.} = object
     triangles*: VkGeometryTrianglesNV
     aabbs*: VkGeometryAABBNV
 
-  VkGeometryNV* = object
+  VkGeometryNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     geometryType*: VkGeometryTypeKHR
     geometry*: VkGeometryDataNV
     flags*: VkGeometryFlagsKHR
 
-  VkAccelerationStructureInfoNV* = object
+  VkAccelerationStructureInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkAccelerationStructureTypeNV
@@ -8833,13 +8833,13 @@ type
     geometryCount*: uint32
     pGeometries*: ptr VkGeometryNV
 
-  VkAccelerationStructureCreateInfoNV* = object
+  VkAccelerationStructureCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     compactedSize*: VkDeviceSize
     info*: VkAccelerationStructureInfoNV
 
-  VkBindAccelerationStructureMemoryInfoNV* = object
+  VkBindAccelerationStructureMemoryInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     accelerationStructure*: VkAccelerationStructureNV
@@ -8848,25 +8848,25 @@ type
     deviceIndexCount*: uint32
     pDeviceIndices*: ptr uint32
 
-  VkWriteDescriptorSetAccelerationStructureKHR* = object
+  VkWriteDescriptorSetAccelerationStructureKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     accelerationStructureCount*: uint32
     pAccelerationStructures*: ptr VkAccelerationStructureKHR
 
-  VkWriteDescriptorSetAccelerationStructureNV* = object
+  VkWriteDescriptorSetAccelerationStructureNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     accelerationStructureCount*: uint32
     pAccelerationStructures*: ptr VkAccelerationStructureNV
 
-  VkAccelerationStructureMemoryRequirementsInfoNV* = object
+  VkAccelerationStructureMemoryRequirementsInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkAccelerationStructureMemoryRequirementsTypeNV
     accelerationStructure*: VkAccelerationStructureNV
 
-  VkPhysicalDeviceAccelerationStructureFeaturesKHR* = object
+  VkPhysicalDeviceAccelerationStructureFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     accelerationStructure*: VkBool32
@@ -8875,7 +8875,7 @@ type
     accelerationStructureHostCommands*: VkBool32
     descriptorBindingAccelerationStructureUpdateAfterBind*: VkBool32
 
-  VkPhysicalDeviceRayTracingPipelineFeaturesKHR* = object
+  VkPhysicalDeviceRayTracingPipelineFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rayTracingPipeline*: VkBool32
@@ -8884,12 +8884,12 @@ type
     rayTracingPipelineTraceRaysIndirect*: VkBool32
     rayTraversalPrimitiveCulling*: VkBool32
 
-  VkPhysicalDeviceRayQueryFeaturesKHR* = object
+  VkPhysicalDeviceRayQueryFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rayQuery*: VkBool32
 
-  VkPhysicalDeviceAccelerationStructurePropertiesKHR* = object
+  VkPhysicalDeviceAccelerationStructurePropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxGeometryCount*: uint64
@@ -8901,7 +8901,7 @@ type
     maxDescriptorSetUpdateAfterBindAccelerationStructures*: uint32
     minAccelerationStructureScratchOffsetAlignment*: uint32
 
-  VkPhysicalDeviceRayTracingPipelinePropertiesKHR* = object
+  VkPhysicalDeviceRayTracingPipelinePropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderGroupHandleSize*: uint32
@@ -8913,7 +8913,7 @@ type
     shaderGroupHandleAlignment*: uint32
     maxRayHitAttributeSize*: uint32
 
-  VkPhysicalDeviceRayTracingPropertiesNV* = object
+  VkPhysicalDeviceRayTracingPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderGroupHandleSize*: uint32
@@ -8925,17 +8925,17 @@ type
     maxTriangleCount*: uint64
     maxDescriptorSetAccelerationStructures*: uint32
 
-  VkStridedDeviceAddressRegionKHR* = object
+  VkStridedDeviceAddressRegionKHR* {.byref.} = object
     deviceAddress*: VkDeviceAddress
     stride*: VkDeviceSize
     size*: VkDeviceSize
 
-  VkTraceRaysIndirectCommandKHR* = object
+  VkTraceRaysIndirectCommandKHR* {.byref.} = object
     width*: uint32
     height*: uint32
     depth*: uint32
 
-  VkTraceRaysIndirectCommand2KHR* = object
+  VkTraceRaysIndirectCommand2KHR* {.byref.} = object
     raygenShaderRecordAddress*: VkDeviceAddress
     raygenShaderRecordSize*: VkDeviceSize
     missShaderBindingTableAddress*: VkDeviceAddress
@@ -8951,24 +8951,24 @@ type
     height*: uint32
     depth*: uint32
 
-  VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR* = object
+  VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rayTracingMaintenance1*: VkBool32
     rayTracingPipelineTraceRaysIndirect2*: VkBool32
 
-  VkDrmFormatModifierPropertiesListEXT* = object
+  VkDrmFormatModifierPropertiesListEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     drmFormatModifierCount*: uint32
     pDrmFormatModifierProperties*: ptr VkDrmFormatModifierPropertiesEXT
 
-  VkDrmFormatModifierPropertiesEXT* = object
+  VkDrmFormatModifierPropertiesEXT* {.byref.} = object
     drmFormatModifier*: uint64
     drmFormatModifierPlaneCount*: uint32
     drmFormatModifierTilingFeatures*: VkFormatFeatureFlags
 
-  VkPhysicalDeviceImageDrmFormatModifierInfoEXT* = object
+  VkPhysicalDeviceImageDrmFormatModifierInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     drmFormatModifier*: uint64
@@ -8976,61 +8976,61 @@ type
     queueFamilyIndexCount*: uint32
     pQueueFamilyIndices*: ptr uint32
 
-  VkImageDrmFormatModifierListCreateInfoEXT* = object
+  VkImageDrmFormatModifierListCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     drmFormatModifierCount*: uint32
     pDrmFormatModifiers*: ptr uint64
 
-  VkImageDrmFormatModifierExplicitCreateInfoEXT* = object
+  VkImageDrmFormatModifierExplicitCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     drmFormatModifier*: uint64
     drmFormatModifierPlaneCount*: uint32
     pPlaneLayouts*: ptr VkSubresourceLayout
 
-  VkImageDrmFormatModifierPropertiesEXT* = object
+  VkImageDrmFormatModifierPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     drmFormatModifier*: uint64
 
-  VkImageStencilUsageCreateInfo* = object
+  VkImageStencilUsageCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stencilUsage*: VkImageUsageFlags
 
   VkImageStencilUsageCreateInfoEXT* = VkImageStencilUsageCreateInfo
 
-  VkDeviceMemoryOverallocationCreateInfoAMD* = object
+  VkDeviceMemoryOverallocationCreateInfoAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     overallocationBehavior*: VkMemoryOverallocationBehaviorAMD
 
-  VkPhysicalDeviceFragmentDensityMapFeaturesEXT* = object
+  VkPhysicalDeviceFragmentDensityMapFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityMap*: VkBool32
     fragmentDensityMapDynamic*: VkBool32
     fragmentDensityMapNonSubsampledImages*: VkBool32
 
-  VkPhysicalDeviceFragmentDensityMap2FeaturesEXT* = object
+  VkPhysicalDeviceFragmentDensityMap2FeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityMapDeferred*: VkBool32
 
-  VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM* = object
+  VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityMapOffset*: VkBool32
 
-  VkPhysicalDeviceFragmentDensityMapPropertiesEXT* = object
+  VkPhysicalDeviceFragmentDensityMapPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minFragmentDensityTexelSize*: VkExtent2D
     maxFragmentDensityTexelSize*: VkExtent2D
     fragmentDensityInvocations*: VkBool32
 
-  VkPhysicalDeviceFragmentDensityMap2PropertiesEXT* = object
+  VkPhysicalDeviceFragmentDensityMap2PropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     subsampledLoads*: VkBool32
@@ -9038,74 +9038,74 @@ type
     maxSubsampledArrayLayers*: uint32
     maxDescriptorSetSubsampledSamplers*: uint32
 
-  VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM* = object
+  VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityOffsetGranularity*: VkExtent2D
 
-  VkRenderPassFragmentDensityMapCreateInfoEXT* = object
+  VkRenderPassFragmentDensityMapCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityMapAttachment*: VkAttachmentReference
 
-  VkSubpassFragmentDensityMapOffsetEndInfoQCOM* = object
+  VkSubpassFragmentDensityMapOffsetEndInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityOffsetCount*: uint32
     pFragmentDensityOffsets*: ptr VkOffset2D
 
-  VkPhysicalDeviceScalarBlockLayoutFeatures* = object
+  VkPhysicalDeviceScalarBlockLayoutFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     scalarBlockLayout*: VkBool32
 
   VkPhysicalDeviceScalarBlockLayoutFeaturesEXT* = VkPhysicalDeviceScalarBlockLayoutFeatures
 
-  VkSurfaceProtectedCapabilitiesKHR* = object
+  VkSurfaceProtectedCapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     supportsProtected*: VkBool32
 
-  VkPhysicalDeviceUniformBufferStandardLayoutFeatures* = object
+  VkPhysicalDeviceUniformBufferStandardLayoutFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     uniformBufferStandardLayout*: VkBool32
 
   VkPhysicalDeviceUniformBufferStandardLayoutFeaturesKHR* = VkPhysicalDeviceUniformBufferStandardLayoutFeatures
 
-  VkPhysicalDeviceDepthClipEnableFeaturesEXT* = object
+  VkPhysicalDeviceDepthClipEnableFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     depthClipEnable*: VkBool32
 
-  VkPipelineRasterizationDepthClipStateCreateInfoEXT* = object
+  VkPipelineRasterizationDepthClipStateCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineRasterizationDepthClipStateCreateFlagsEXT
     depthClipEnable*: VkBool32
 
-  VkPhysicalDeviceMemoryBudgetPropertiesEXT* = object
+  VkPhysicalDeviceMemoryBudgetPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     heapBudget*: array[VK_MAX_MEMORY_HEAPS, VkDeviceSize]
     heapUsage*: array[VK_MAX_MEMORY_HEAPS, VkDeviceSize]
 
-  VkPhysicalDeviceMemoryPriorityFeaturesEXT* = object
+  VkPhysicalDeviceMemoryPriorityFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryPriority*: VkBool32
 
-  VkMemoryPriorityAllocateInfoEXT* = object
+  VkMemoryPriorityAllocateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     priority*: float32
 
-  VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT* = object
+  VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pageableDeviceLocalMemory*: VkBool32
 
-  VkPhysicalDeviceBufferDeviceAddressFeatures* = object
+  VkPhysicalDeviceBufferDeviceAddressFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     bufferDeviceAddress*: VkBool32
@@ -9114,7 +9114,7 @@ type
 
   VkPhysicalDeviceBufferDeviceAddressFeaturesKHR* = VkPhysicalDeviceBufferDeviceAddressFeatures
 
-  VkPhysicalDeviceBufferDeviceAddressFeaturesEXT* = object
+  VkPhysicalDeviceBufferDeviceAddressFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     bufferDeviceAddress*: VkBool32
@@ -9123,7 +9123,7 @@ type
 
   VkPhysicalDeviceBufferAddressFeaturesEXT* = VkPhysicalDeviceBufferDeviceAddressFeaturesEXT
 
-  VkBufferDeviceAddressInfo* = object
+  VkBufferDeviceAddressInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     buffer*: VkBuffer
@@ -9132,37 +9132,37 @@ type
 
   VkBufferDeviceAddressInfoEXT* = VkBufferDeviceAddressInfo
 
-  VkBufferOpaqueCaptureAddressCreateInfo* = object
+  VkBufferOpaqueCaptureAddressCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     opaqueCaptureAddress*: uint64
 
   VkBufferOpaqueCaptureAddressCreateInfoKHR* = VkBufferOpaqueCaptureAddressCreateInfo
 
-  VkBufferDeviceAddressCreateInfoEXT* = object
+  VkBufferDeviceAddressCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceAddress*: VkDeviceAddress
 
-  VkPhysicalDeviceImageViewImageFormatInfoEXT* = object
+  VkPhysicalDeviceImageViewImageFormatInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageViewType*: VkImageViewType
 
-  VkFilterCubicImageViewImageFormatPropertiesEXT* = object
+  VkFilterCubicImageViewImageFormatPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     filterCubic*: VkBool32
     filterCubicMinmax*: VkBool32
 
-  VkPhysicalDeviceImagelessFramebufferFeatures* = object
+  VkPhysicalDeviceImagelessFramebufferFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imagelessFramebuffer*: VkBool32
 
   VkPhysicalDeviceImagelessFramebufferFeaturesKHR* = VkPhysicalDeviceImagelessFramebufferFeatures
 
-  VkFramebufferAttachmentsCreateInfo* = object
+  VkFramebufferAttachmentsCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     attachmentImageInfoCount*: uint32
@@ -9170,7 +9170,7 @@ type
 
   VkFramebufferAttachmentsCreateInfoKHR* = VkFramebufferAttachmentsCreateInfo
 
-  VkFramebufferAttachmentImageInfo* = object
+  VkFramebufferAttachmentImageInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkImageCreateFlags
@@ -9183,7 +9183,7 @@ type
 
   VkFramebufferAttachmentImageInfoKHR* = VkFramebufferAttachmentImageInfo
 
-  VkRenderPassAttachmentBeginInfo* = object
+  VkRenderPassAttachmentBeginInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     attachmentCount*: uint32
@@ -9191,25 +9191,25 @@ type
 
   VkRenderPassAttachmentBeginInfoKHR* = VkRenderPassAttachmentBeginInfo
 
-  VkPhysicalDeviceTextureCompressionASTCHDRFeatures* = object
+  VkPhysicalDeviceTextureCompressionASTCHDRFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     textureCompressionASTC_HDR*: VkBool32
 
   VkPhysicalDeviceTextureCompressionASTCHDRFeaturesEXT* = VkPhysicalDeviceTextureCompressionASTCHDRFeatures
 
-  VkPhysicalDeviceCooperativeMatrixFeaturesNV* = object
+  VkPhysicalDeviceCooperativeMatrixFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cooperativeMatrix*: VkBool32
     cooperativeMatrixRobustBufferAccess*: VkBool32
 
-  VkPhysicalDeviceCooperativeMatrixPropertiesNV* = object
+  VkPhysicalDeviceCooperativeMatrixPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cooperativeMatrixSupportedStages*: VkShaderStageFlags
 
-  VkCooperativeMatrixPropertiesNV* = object
+  VkCooperativeMatrixPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     MSize*: uint32
@@ -9221,36 +9221,36 @@ type
     DType*: VkComponentTypeNV
     scope*: VkScopeNV
 
-  VkPhysicalDeviceYcbcrImageArraysFeaturesEXT* = object
+  VkPhysicalDeviceYcbcrImageArraysFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     ycbcrImageArrays*: VkBool32
 
-  VkImageViewHandleInfoNVX* = object
+  VkImageViewHandleInfoNVX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageView*: VkImageView
     descriptorType*: VkDescriptorType
     sampler*: VkSampler
 
-  VkImageViewAddressPropertiesNVX* = object
+  VkImageViewAddressPropertiesNVX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceAddress*: VkDeviceAddress
     size*: VkDeviceSize
 
-  VkPresentFrameTokenGGP* = object
+  VkPresentFrameTokenGGP* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     frameToken*: GgpFrameToken
 
-  VkPipelineCreationFeedback* = object
+  VkPipelineCreationFeedback* {.byref.} = object
     flags*: VkPipelineCreationFeedbackFlags
     duration*: uint64
 
   VkPipelineCreationFeedbackEXT* = VkPipelineCreationFeedback
 
-  VkPipelineCreationFeedbackCreateInfo* = object
+  VkPipelineCreationFeedbackCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pPipelineCreationFeedback*: ptr VkPipelineCreationFeedback
@@ -9259,48 +9259,48 @@ type
 
   VkPipelineCreationFeedbackCreateInfoEXT* = VkPipelineCreationFeedbackCreateInfo
 
-  VkSurfaceFullScreenExclusiveInfoEXT* = object
+  VkSurfaceFullScreenExclusiveInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fullScreenExclusive*: VkFullScreenExclusiveEXT
 
-  VkSurfaceFullScreenExclusiveWin32InfoEXT* = object
+  VkSurfaceFullScreenExclusiveWin32InfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     hmonitor*: HMONITOR
 
-  VkSurfaceCapabilitiesFullScreenExclusiveEXT* = object
+  VkSurfaceCapabilitiesFullScreenExclusiveEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fullScreenExclusiveSupported*: VkBool32
 
-  VkPhysicalDevicePresentBarrierFeaturesNV* = object
+  VkPhysicalDevicePresentBarrierFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentBarrier*: VkBool32
 
-  VkSurfaceCapabilitiesPresentBarrierNV* = object
+  VkSurfaceCapabilitiesPresentBarrierNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentBarrierSupported*: VkBool32
 
-  VkSwapchainPresentBarrierCreateInfoNV* = object
+  VkSwapchainPresentBarrierCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentBarrierEnable*: VkBool32
 
-  VkPhysicalDevicePerformanceQueryFeaturesKHR* = object
+  VkPhysicalDevicePerformanceQueryFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     performanceCounterQueryPools*: VkBool32
     performanceCounterMultipleQueryPools*: VkBool32
 
-  VkPhysicalDevicePerformanceQueryPropertiesKHR* = object
+  VkPhysicalDevicePerformanceQueryPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     allowCommandBufferQueryCopies*: VkBool32
 
-  VkPerformanceCounterKHR* = object
+  VkPerformanceCounterKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     unit*: VkPerformanceCounterUnitKHR
@@ -9308,7 +9308,7 @@ type
     storage*: VkPerformanceCounterStorageKHR
     uuid*: array[VK_UUID_SIZE, uint8]
 
-  VkPerformanceCounterDescriptionKHR* = object
+  VkPerformanceCounterDescriptionKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPerformanceCounterDescriptionFlagsKHR
@@ -9316,14 +9316,14 @@ type
     category*: array[VK_MAX_DESCRIPTION_SIZE, char]
     description*: array[VK_MAX_DESCRIPTION_SIZE, char]
 
-  VkQueryPoolPerformanceCreateInfoKHR* = object
+  VkQueryPoolPerformanceCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     queueFamilyIndex*: uint32
     counterIndexCount*: uint32
     pCounterIndices*: ptr uint32
 
-  VkPerformanceCounterResultKHR* {.union.} = object
+  VkPerformanceCounterResultKHR* {.union, byref.} = object
     int32*: int32
     int64*: int64
     uint32*: uint32
@@ -9331,39 +9331,39 @@ type
     float32*: float32
     float64*: float64
 
-  VkAcquireProfilingLockInfoKHR* = object
+  VkAcquireProfilingLockInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkAcquireProfilingLockFlagsKHR
     timeout*: uint64
 
-  VkPerformanceQuerySubmitInfoKHR* = object
+  VkPerformanceQuerySubmitInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     counterPassIndex*: uint32
 
-  VkPerformanceQueryReservationInfoKHR* = object
+  VkPerformanceQueryReservationInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxPerformanceQueriesPerPool*: uint32
 
-  VkHeadlessSurfaceCreateInfoEXT* = object
+  VkHeadlessSurfaceCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkHeadlessSurfaceCreateFlagsEXT
 
-  VkPhysicalDeviceCoverageReductionModeFeaturesNV* = object
+  VkPhysicalDeviceCoverageReductionModeFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     coverageReductionMode*: VkBool32
 
-  VkPipelineCoverageReductionStateCreateInfoNV* = object
+  VkPipelineCoverageReductionStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCoverageReductionStateCreateFlagsNV
     coverageReductionMode*: VkCoverageReductionModeNV
 
-  VkFramebufferMixedSamplesCombinationNV* = object
+  VkFramebufferMixedSamplesCombinationNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     coverageReductionMode*: VkCoverageReductionModeNV
@@ -9371,100 +9371,100 @@ type
     depthStencilSamples*: VkSampleCountFlags
     colorSamples*: VkSampleCountFlags
 
-  VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL* = object
+  VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderIntegerFunctions2*: VkBool32
 
-  VkPerformanceValueDataINTEL* {.union.} = object
+  VkPerformanceValueDataINTEL* {.union, byref.} = object
     value32*: uint32
     value64*: uint64
     valueFloat*: float32
     valueBool*: VkBool32
     valueString*: cstring
 
-  VkPerformanceValueINTEL* = object
+  VkPerformanceValueINTEL* {.byref.} = object
     `type`*: VkPerformanceValueTypeINTEL
     data*: VkPerformanceValueDataINTEL
 
-  VkInitializePerformanceApiInfoINTEL* = object
+  VkInitializePerformanceApiInfoINTEL* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pUserData*: pointer
 
-  VkQueryPoolPerformanceQueryCreateInfoINTEL* = object
+  VkQueryPoolPerformanceQueryCreateInfoINTEL* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     performanceCountersSampling*: VkQueryPoolSamplingModeINTEL
 
   VkQueryPoolCreateInfoINTEL* = VkQueryPoolPerformanceQueryCreateInfoINTEL
 
-  VkPerformanceMarkerInfoINTEL* = object
+  VkPerformanceMarkerInfoINTEL* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     marker*: uint64
 
-  VkPerformanceStreamMarkerInfoINTEL* = object
+  VkPerformanceStreamMarkerInfoINTEL* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     marker*: uint32
 
-  VkPerformanceOverrideInfoINTEL* = object
+  VkPerformanceOverrideInfoINTEL* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkPerformanceOverrideTypeINTEL
     enable*: VkBool32
     parameter*: uint64
 
-  VkPerformanceConfigurationAcquireInfoINTEL* = object
+  VkPerformanceConfigurationAcquireInfoINTEL* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkPerformanceConfigurationTypeINTEL
 
-  VkPhysicalDeviceShaderClockFeaturesKHR* = object
+  VkPhysicalDeviceShaderClockFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderSubgroupClock*: VkBool32
     shaderDeviceClock*: VkBool32
 
-  VkPhysicalDeviceIndexTypeUint8FeaturesKHR* = object
+  VkPhysicalDeviceIndexTypeUint8FeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     indexTypeUint8*: VkBool32
 
   VkPhysicalDeviceIndexTypeUint8FeaturesEXT* = VkPhysicalDeviceIndexTypeUint8FeaturesKHR
 
-  VkPhysicalDeviceShaderSMBuiltinsPropertiesNV* = object
+  VkPhysicalDeviceShaderSMBuiltinsPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderSMCount*: uint32
     shaderWarpsPerSM*: uint32
 
-  VkPhysicalDeviceShaderSMBuiltinsFeaturesNV* = object
+  VkPhysicalDeviceShaderSMBuiltinsFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderSMBuiltins*: VkBool32
 
-  VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT* = object
+  VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentShaderSampleInterlock*: VkBool32
     fragmentShaderPixelInterlock*: VkBool32
     fragmentShaderShadingRateInterlock*: VkBool32
 
-  VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures* = object
+  VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     separateDepthStencilLayouts*: VkBool32
 
   VkPhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR* = VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures
 
-  VkAttachmentReferenceStencilLayout* = object
+  VkAttachmentReferenceStencilLayout* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stencilLayout*: VkImageLayout
 
-  VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT* = object
+  VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     primitiveTopologyListRestart*: VkBool32
@@ -9472,7 +9472,7 @@ type
 
   VkAttachmentReferenceStencilLayoutKHR* = VkAttachmentReferenceStencilLayout
 
-  VkAttachmentDescriptionStencilLayout* = object
+  VkAttachmentDescriptionStencilLayout* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stencilInitialLayout*: VkImageLayout
@@ -9480,19 +9480,19 @@ type
 
   VkAttachmentDescriptionStencilLayoutKHR* = VkAttachmentDescriptionStencilLayout
 
-  VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR* = object
+  VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineExecutableInfo*: VkBool32
 
-  VkPipelineInfoKHR* = object
+  VkPipelineInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipeline*: VkPipeline
 
   VkPipelineInfoEXT* = VkPipelineInfoKHR
 
-  VkPipelineExecutablePropertiesKHR* = object
+  VkPipelineExecutablePropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stages*: VkShaderStageFlags
@@ -9500,19 +9500,19 @@ type
     description*: array[VK_MAX_DESCRIPTION_SIZE, char]
     subgroupSize*: uint32
 
-  VkPipelineExecutableInfoKHR* = object
+  VkPipelineExecutableInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipeline*: VkPipeline
     executableIndex*: uint32
 
-  VkPipelineExecutableStatisticValueKHR* {.union.} = object
+  VkPipelineExecutableStatisticValueKHR* {.union, byref.} = object
     b32*: VkBool32
     i64*: int64
     u64*: uint64
     f64*: float64
 
-  VkPipelineExecutableStatisticKHR* = object
+  VkPipelineExecutableStatisticKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     name*: array[VK_MAX_DESCRIPTION_SIZE, char]
@@ -9520,7 +9520,7 @@ type
     format*: VkPipelineExecutableStatisticFormatKHR
     value*: VkPipelineExecutableStatisticValueKHR
 
-  VkPipelineExecutableInternalRepresentationKHR* = object
+  VkPipelineExecutableInternalRepresentationKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     name*: array[VK_MAX_DESCRIPTION_SIZE, char]
@@ -9529,19 +9529,19 @@ type
     dataSize*: uint
     pData*: pointer
 
-  VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures* = object
+  VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderDemoteToHelperInvocation*: VkBool32
 
   VkPhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT* = VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures
 
-  VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT* = object
+  VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     texelBufferAlignment*: VkBool32
 
-  VkPhysicalDeviceTexelBufferAlignmentProperties* = object
+  VkPhysicalDeviceTexelBufferAlignmentProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     storageTexelBufferOffsetAlignmentBytes*: VkDeviceSize
@@ -9551,7 +9551,7 @@ type
 
   VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT* = VkPhysicalDeviceTexelBufferAlignmentProperties
 
-  VkPhysicalDeviceSubgroupSizeControlFeatures* = object
+  VkPhysicalDeviceSubgroupSizeControlFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     subgroupSizeControl*: VkBool32
@@ -9559,7 +9559,7 @@ type
 
   VkPhysicalDeviceSubgroupSizeControlFeaturesEXT* = VkPhysicalDeviceSubgroupSizeControlFeatures
 
-  VkPhysicalDeviceSubgroupSizeControlProperties* = object
+  VkPhysicalDeviceSubgroupSizeControlProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minSubgroupSize*: uint32
@@ -9569,7 +9569,7 @@ type
 
   VkPhysicalDeviceSubgroupSizeControlPropertiesEXT* = VkPhysicalDeviceSubgroupSizeControlProperties
 
-  VkPipelineShaderStageRequiredSubgroupSizeCreateInfo* = object
+  VkPipelineShaderStageRequiredSubgroupSizeCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     requiredSubgroupSize*: uint32
@@ -9578,18 +9578,18 @@ type
 
   VkShaderRequiredSubgroupSizeCreateInfoEXT* = VkPipelineShaderStageRequiredSubgroupSizeCreateInfo
 
-  VkSubpassShadingPipelineCreateInfoHUAWEI* = object
+  VkSubpassShadingPipelineCreateInfoHUAWEI* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     renderPass*: VkRenderPass
     subpass*: uint32
 
-  VkPhysicalDeviceSubpassShadingPropertiesHUAWEI* = object
+  VkPhysicalDeviceSubpassShadingPropertiesHUAWEI* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxSubpassShadingWorkgroupSizeAspectRatio*: uint32
 
-  VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI* = object
+  VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxWorkGroupCount*: array[3, uint32]
@@ -9597,21 +9597,21 @@ type
     maxOutputClusterCount*: uint32
     indirectBufferOffsetAlignment*: VkDeviceSize
 
-  VkMemoryOpaqueCaptureAddressAllocateInfo* = object
+  VkMemoryOpaqueCaptureAddressAllocateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     opaqueCaptureAddress*: uint64
 
   VkMemoryOpaqueCaptureAddressAllocateInfoKHR* = VkMemoryOpaqueCaptureAddressAllocateInfo
 
-  VkDeviceMemoryOpaqueCaptureAddressInfo* = object
+  VkDeviceMemoryOpaqueCaptureAddressInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
 
   VkDeviceMemoryOpaqueCaptureAddressInfoKHR* = VkDeviceMemoryOpaqueCaptureAddressInfo
 
-  VkPhysicalDeviceLineRasterizationFeaturesKHR* = object
+  VkPhysicalDeviceLineRasterizationFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rectangularLines*: VkBool32
@@ -9623,14 +9623,14 @@ type
 
   VkPhysicalDeviceLineRasterizationFeaturesEXT* = VkPhysicalDeviceLineRasterizationFeaturesKHR
 
-  VkPhysicalDeviceLineRasterizationPropertiesKHR* = object
+  VkPhysicalDeviceLineRasterizationPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     lineSubPixelPrecisionBits*: uint32
 
   VkPhysicalDeviceLineRasterizationPropertiesEXT* = VkPhysicalDeviceLineRasterizationPropertiesKHR
 
-  VkPipelineRasterizationLineStateCreateInfoKHR* = object
+  VkPipelineRasterizationLineStateCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     lineRasterizationMode*: VkLineRasterizationModeKHR
@@ -9640,14 +9640,14 @@ type
 
   VkPipelineRasterizationLineStateCreateInfoEXT* = VkPipelineRasterizationLineStateCreateInfoKHR
 
-  VkPhysicalDevicePipelineCreationCacheControlFeatures* = object
+  VkPhysicalDevicePipelineCreationCacheControlFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineCreationCacheControl*: VkBool32
 
   VkPhysicalDevicePipelineCreationCacheControlFeaturesEXT* = VkPhysicalDevicePipelineCreationCacheControlFeatures
 
-  VkPhysicalDeviceVulkan11Features* = object
+  VkPhysicalDeviceVulkan11Features* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     storageBuffer16BitAccess*: VkBool32
@@ -9663,7 +9663,7 @@ type
     samplerYcbcrConversion*: VkBool32
     shaderDrawParameters*: VkBool32
 
-  VkPhysicalDeviceVulkan11Properties* = object
+  VkPhysicalDeviceVulkan11Properties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceUUID*: array[VK_UUID_SIZE, uint8]
@@ -9682,7 +9682,7 @@ type
     maxPerSetDescriptors*: uint32
     maxMemoryAllocationSize*: VkDeviceSize
 
-  VkPhysicalDeviceVulkan12Features* = object
+  VkPhysicalDeviceVulkan12Features* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     samplerMirrorClampToEdge*: VkBool32
@@ -9733,7 +9733,7 @@ type
     shaderOutputLayer*: VkBool32
     subgroupBroadcastDynamicId*: VkBool32
 
-  VkPhysicalDeviceVulkan12Properties* = object
+  VkPhysicalDeviceVulkan12Properties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     driverID*: VkDriverId
@@ -9789,7 +9789,7 @@ type
     maxTimelineSemaphoreValueDifference*: uint64
     framebufferIntegerColorSampleCounts*: VkSampleCountFlags
 
-  VkPhysicalDeviceVulkan13Features* = object
+  VkPhysicalDeviceVulkan13Features* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     robustImageAccess*: VkBool32
@@ -9808,7 +9808,7 @@ type
     shaderIntegerDotProduct*: VkBool32
     maintenance4*: VkBool32
 
-  VkPhysicalDeviceVulkan13Properties* = object
+  VkPhysicalDeviceVulkan13Properties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minSubgroupSize*: uint32
@@ -9857,30 +9857,30 @@ type
     uniformTexelBufferOffsetSingleTexelAlignment*: VkBool32
     maxBufferSize*: VkDeviceSize
 
-  VkPipelineCompilerControlCreateInfoAMD* = object
+  VkPipelineCompilerControlCreateInfoAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     compilerControlFlags*: VkPipelineCompilerControlFlagsAMD
 
-  VkPhysicalDeviceCoherentMemoryFeaturesAMD* = object
+  VkPhysicalDeviceCoherentMemoryFeaturesAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceCoherentMemory*: VkBool32
 
-  VkFaultData* = object
+  VkFaultData* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     faultLevel*: VkFaultLevel
     faultType*: VkFaultType
 
-  VkFaultCallbackInfo* = object
+  VkFaultCallbackInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     faultCount*: uint32
     pFaults*: ptr VkFaultData
     pfnFaultCallback*: PFN_vkFaultCallbackFunction
 
-  VkPhysicalDeviceToolProperties* = object
+  VkPhysicalDeviceToolProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     name*: array[VK_MAX_EXTENSION_NAME_SIZE, char]
@@ -9891,48 +9891,48 @@ type
 
   VkPhysicalDeviceToolPropertiesEXT* = VkPhysicalDeviceToolProperties
 
-  VkSamplerCustomBorderColorCreateInfoEXT* = object
+  VkSamplerCustomBorderColorCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     customBorderColor*: VkClearColorValue
     format*: VkFormat
 
-  VkPhysicalDeviceCustomBorderColorPropertiesEXT* = object
+  VkPhysicalDeviceCustomBorderColorPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxCustomBorderColorSamplers*: uint32
 
-  VkPhysicalDeviceCustomBorderColorFeaturesEXT* = object
+  VkPhysicalDeviceCustomBorderColorFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     customBorderColors*: VkBool32
     customBorderColorWithoutFormat*: VkBool32
 
-  VkSamplerBorderColorComponentMappingCreateInfoEXT* = object
+  VkSamplerBorderColorComponentMappingCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     components*: VkComponentMapping
     srgb*: VkBool32
 
-  VkPhysicalDeviceBorderColorSwizzleFeaturesEXT* = object
+  VkPhysicalDeviceBorderColorSwizzleFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     borderColorSwizzle*: VkBool32
     borderColorSwizzleFromImage*: VkBool32
 
-  VkDeviceOrHostAddressKHR* {.union.} = object
+  VkDeviceOrHostAddressKHR* {.union, byref.} = object
     deviceAddress*: VkDeviceAddress
     hostAddress*: pointer
 
-  VkDeviceOrHostAddressConstKHR* {.union.} = object
+  VkDeviceOrHostAddressConstKHR* {.union, byref.} = object
     deviceAddress*: VkDeviceAddress
     hostAddress*: pointer
 
-  VkDeviceOrHostAddressConstAMDX* {.union.} = object
+  VkDeviceOrHostAddressConstAMDX* {.union, byref.} = object
     deviceAddress*: VkDeviceAddress
     hostAddress*: pointer
 
-  VkAccelerationStructureGeometryTrianglesDataKHR* = object
+  VkAccelerationStructureGeometryTrianglesDataKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     vertexFormat*: VkFormat
@@ -9943,31 +9943,31 @@ type
     indexData*: VkDeviceOrHostAddressConstKHR
     transformData*: VkDeviceOrHostAddressConstKHR
 
-  VkAccelerationStructureGeometryAabbsDataKHR* = object
+  VkAccelerationStructureGeometryAabbsDataKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     data*: VkDeviceOrHostAddressConstKHR
     stride*: VkDeviceSize
 
-  VkAccelerationStructureGeometryInstancesDataKHR* = object
+  VkAccelerationStructureGeometryInstancesDataKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     arrayOfPointers*: VkBool32
     data*: VkDeviceOrHostAddressConstKHR
 
-  VkAccelerationStructureGeometryDataKHR* {.union.} = object
+  VkAccelerationStructureGeometryDataKHR* {.union, byref.} = object
     triangles*: VkAccelerationStructureGeometryTrianglesDataKHR
     aabbs*: VkAccelerationStructureGeometryAabbsDataKHR
     instances*: VkAccelerationStructureGeometryInstancesDataKHR
 
-  VkAccelerationStructureGeometryKHR* = object
+  VkAccelerationStructureGeometryKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     geometryType*: VkGeometryTypeKHR
     geometry*: VkAccelerationStructureGeometryDataKHR
     flags*: VkGeometryFlagsKHR
 
-  VkAccelerationStructureBuildGeometryInfoKHR* = object
+  VkAccelerationStructureBuildGeometryInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkAccelerationStructureTypeKHR
@@ -9980,13 +9980,13 @@ type
     ppGeometries*: ptr ptr VkAccelerationStructureGeometryKHR
     scratchData*: VkDeviceOrHostAddressKHR
 
-  VkAccelerationStructureBuildRangeInfoKHR* = object
+  VkAccelerationStructureBuildRangeInfoKHR* {.byref.} = object
     primitiveCount*: uint32
     primitiveOffset*: uint32
     firstVertex*: uint32
     transformOffset*: uint32
 
-  VkAccelerationStructureCreateInfoKHR* = object
+  VkAccelerationStructureCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     createFlags*: VkAccelerationStructureCreateFlagsKHR
@@ -9996,7 +9996,7 @@ type
     `type`*: VkAccelerationStructureTypeKHR
     deviceAddress*: VkDeviceAddress
 
-  VkAabbPositionsKHR* = object
+  VkAabbPositionsKHR* {.byref.} = object
     minX*: float32
     minY*: float32
     minZ*: float32
@@ -10006,12 +10006,12 @@ type
 
   VkAabbPositionsNV* = VkAabbPositionsKHR
 
-  VkTransformMatrixKHR* = object
+  VkTransformMatrixKHR* {.byref.} = object
     matrix*: array[3, float32]
 
   VkTransformMatrixNV* = VkTransformMatrixKHR
 
-  VkAccelerationStructureInstanceKHR* = object
+  VkAccelerationStructureInstanceKHR* {.byref.} = object
     transform*: VkTransformMatrixKHR
     instanceCustomIndex*: uint32
     mask*: uint32
@@ -10021,73 +10021,73 @@ type
 
   VkAccelerationStructureInstanceNV* = VkAccelerationStructureInstanceKHR
 
-  VkAccelerationStructureDeviceAddressInfoKHR* = object
+  VkAccelerationStructureDeviceAddressInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     accelerationStructure*: VkAccelerationStructureKHR
 
-  VkAccelerationStructureVersionInfoKHR* = object
+  VkAccelerationStructureVersionInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pVersionData*: ptr uint8
 
-  VkCopyAccelerationStructureInfoKHR* = object
+  VkCopyAccelerationStructureInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     src*: VkAccelerationStructureKHR
     dst*: VkAccelerationStructureKHR
     mode*: VkCopyAccelerationStructureModeKHR
 
-  VkCopyAccelerationStructureToMemoryInfoKHR* = object
+  VkCopyAccelerationStructureToMemoryInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     src*: VkAccelerationStructureKHR
     dst*: VkDeviceOrHostAddressKHR
     mode*: VkCopyAccelerationStructureModeKHR
 
-  VkCopyMemoryToAccelerationStructureInfoKHR* = object
+  VkCopyMemoryToAccelerationStructureInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     src*: VkDeviceOrHostAddressConstKHR
     dst*: VkAccelerationStructureKHR
     mode*: VkCopyAccelerationStructureModeKHR
 
-  VkRayTracingPipelineInterfaceCreateInfoKHR* = object
+  VkRayTracingPipelineInterfaceCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxPipelineRayPayloadSize*: uint32
     maxPipelineRayHitAttributeSize*: uint32
 
-  VkPipelineLibraryCreateInfoKHR* = object
+  VkPipelineLibraryCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     libraryCount*: uint32
     pLibraries*: ptr VkPipeline
 
-  VkRefreshObjectKHR* = object
+  VkRefreshObjectKHR* {.byref.} = object
     objectType*: VkObjectType
     objectHandle*: uint64
     flags*: VkRefreshObjectFlagsKHR
 
-  VkRefreshObjectListKHR* = object
+  VkRefreshObjectListKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     objectCount*: uint32
     pObjects*: ptr VkRefreshObjectKHR
 
-  VkPhysicalDeviceExtendedDynamicStateFeaturesEXT* = object
+  VkPhysicalDeviceExtendedDynamicStateFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     extendedDynamicState*: VkBool32
 
-  VkPhysicalDeviceExtendedDynamicState2FeaturesEXT* = object
+  VkPhysicalDeviceExtendedDynamicState2FeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     extendedDynamicState2*: VkBool32
     extendedDynamicState2LogicOp*: VkBool32
     extendedDynamicState2PatchControlPoints*: VkBool32
 
-  VkPhysicalDeviceExtendedDynamicState3FeaturesEXT* = object
+  VkPhysicalDeviceExtendedDynamicState3FeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     extendedDynamicState3TessellationDomainOrigin*: VkBool32
@@ -10122,12 +10122,12 @@ type
     extendedDynamicState3RepresentativeFragmentTestEnable*: VkBool32
     extendedDynamicState3ShadingRateImageEnable*: VkBool32
 
-  VkPhysicalDeviceExtendedDynamicState3PropertiesEXT* = object
+  VkPhysicalDeviceExtendedDynamicState3PropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dynamicPrimitiveTopologyUnrestricted*: VkBool32
 
-  VkColorBlendEquationEXT* = object
+  VkColorBlendEquationEXT* {.byref.} = object
     srcColorBlendFactor*: VkBlendFactor
     dstColorBlendFactor*: VkBlendFactor
     colorBlendOp*: VkBlendOp
@@ -10135,79 +10135,79 @@ type
     dstAlphaBlendFactor*: VkBlendFactor
     alphaBlendOp*: VkBlendOp
 
-  VkColorBlendAdvancedEXT* = object
+  VkColorBlendAdvancedEXT* {.byref.} = object
     advancedBlendOp*: VkBlendOp
     srcPremultiplied*: VkBool32
     dstPremultiplied*: VkBool32
     blendOverlap*: VkBlendOverlapEXT
     clampResults*: VkBool32
 
-  VkRenderPassTransformBeginInfoQCOM* = object
+  VkRenderPassTransformBeginInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     transform*: VkSurfaceTransformFlagBitsKHR
 
-  VkCopyCommandTransformInfoQCOM* = object
+  VkCopyCommandTransformInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     transform*: VkSurfaceTransformFlagBitsKHR
 
-  VkCommandBufferInheritanceRenderPassTransformInfoQCOM* = object
+  VkCommandBufferInheritanceRenderPassTransformInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     transform*: VkSurfaceTransformFlagBitsKHR
     renderArea*: VkRect2D
 
-  VkPhysicalDeviceDiagnosticsConfigFeaturesNV* = object
+  VkPhysicalDeviceDiagnosticsConfigFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     diagnosticsConfig*: VkBool32
 
-  VkDeviceDiagnosticsConfigCreateInfoNV* = object
+  VkDeviceDiagnosticsConfigCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDeviceDiagnosticsConfigFlagsNV
 
-  VkPipelineOfflineCreateInfo* = object
+  VkPipelineOfflineCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineIdentifier*: array[VK_UUID_SIZE, uint8]
     matchControl*: VkPipelineMatchControl
     poolEntrySize*: VkDeviceSize
 
-  VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures* = object
+  VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderZeroInitializeWorkgroupMemory*: VkBool32
 
   VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR* = VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures
 
-  VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR* = object
+  VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderSubgroupUniformControlFlow*: VkBool32
 
-  VkPhysicalDeviceRobustness2FeaturesEXT* = object
+  VkPhysicalDeviceRobustness2FeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     robustBufferAccess2*: VkBool32
     robustImageAccess2*: VkBool32
     nullDescriptor*: VkBool32
 
-  VkPhysicalDeviceRobustness2PropertiesEXT* = object
+  VkPhysicalDeviceRobustness2PropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     robustStorageBufferAccessSizeAlignment*: VkDeviceSize
     robustUniformBufferAccessSizeAlignment*: VkDeviceSize
 
-  VkPhysicalDeviceImageRobustnessFeatures* = object
+  VkPhysicalDeviceImageRobustnessFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     robustImageAccess*: VkBool32
 
   VkPhysicalDeviceImageRobustnessFeaturesEXT* = VkPhysicalDeviceImageRobustnessFeatures
 
-  VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR* = object
+  VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     workgroupMemoryExplicitLayout*: VkBool32
@@ -10215,7 +10215,7 @@ type
     workgroupMemoryExplicitLayout8BitAccess*: VkBool32
     workgroupMemoryExplicitLayout16BitAccess*: VkBool32
 
-  VkPhysicalDevicePortabilitySubsetFeaturesKHR* = object
+  VkPhysicalDevicePortabilitySubsetFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     constantAlphaColorBlendFactors*: VkBool32
@@ -10234,34 +10234,34 @@ type
     triangleFans*: VkBool32
     vertexAttributeAccessBeyondStride*: VkBool32
 
-  VkPhysicalDevicePortabilitySubsetPropertiesKHR* = object
+  VkPhysicalDevicePortabilitySubsetPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minVertexInputBindingStrideAlignment*: uint32
 
-  VkPhysicalDevice4444FormatsFeaturesEXT* = object
+  VkPhysicalDevice4444FormatsFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     formatA4R4G4B4*: VkBool32
     formatA4B4G4R4*: VkBool32
 
-  VkPhysicalDeviceSubpassShadingFeaturesHUAWEI* = object
+  VkPhysicalDeviceSubpassShadingFeaturesHUAWEI* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     subpassShading*: VkBool32
 
-  VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI* = object
+  VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     clustercullingShader*: VkBool32
     multiviewClusterCullingShader*: VkBool32
 
-  VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI* = object
+  VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     clusterShadingRate*: VkBool32
 
-  VkBufferCopy2* = object
+  VkBufferCopy2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcOffset*: VkDeviceSize
@@ -10270,7 +10270,7 @@ type
 
   VkBufferCopy2KHR* = VkBufferCopy2
 
-  VkImageCopy2* = object
+  VkImageCopy2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcSubresource*: VkImageSubresourceLayers
@@ -10281,7 +10281,7 @@ type
 
   VkImageCopy2KHR* = VkImageCopy2
 
-  VkImageBlit2* = object
+  VkImageBlit2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcSubresource*: VkImageSubresourceLayers
@@ -10291,7 +10291,7 @@ type
 
   VkImageBlit2KHR* = VkImageBlit2
 
-  VkBufferImageCopy2* = object
+  VkBufferImageCopy2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     bufferOffset*: VkDeviceSize
@@ -10303,7 +10303,7 @@ type
 
   VkBufferImageCopy2KHR* = VkBufferImageCopy2
 
-  VkImageResolve2* = object
+  VkImageResolve2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcSubresource*: VkImageSubresourceLayers
@@ -10314,7 +10314,7 @@ type
 
   VkImageResolve2KHR* = VkImageResolve2
 
-  VkCopyBufferInfo2* = object
+  VkCopyBufferInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcBuffer*: VkBuffer
@@ -10324,7 +10324,7 @@ type
 
   VkCopyBufferInfo2KHR* = VkCopyBufferInfo2
 
-  VkCopyImageInfo2* = object
+  VkCopyImageInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcImage*: VkImage
@@ -10336,7 +10336,7 @@ type
 
   VkCopyImageInfo2KHR* = VkCopyImageInfo2
 
-  VkBlitImageInfo2* = object
+  VkBlitImageInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcImage*: VkImage
@@ -10349,7 +10349,7 @@ type
 
   VkBlitImageInfo2KHR* = VkBlitImageInfo2
 
-  VkCopyBufferToImageInfo2* = object
+  VkCopyBufferToImageInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcBuffer*: VkBuffer
@@ -10360,7 +10360,7 @@ type
 
   VkCopyBufferToImageInfo2KHR* = VkCopyBufferToImageInfo2
 
-  VkCopyImageToBufferInfo2* = object
+  VkCopyImageToBufferInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcImage*: VkImage
@@ -10371,7 +10371,7 @@ type
 
   VkCopyImageToBufferInfo2KHR* = VkCopyImageToBufferInfo2
 
-  VkResolveImageInfo2* = object
+  VkResolveImageInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcImage*: VkImage
@@ -10383,32 +10383,32 @@ type
 
   VkResolveImageInfo2KHR* = VkResolveImageInfo2
 
-  VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT* = object
+  VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderImageInt64Atomics*: VkBool32
     sparseImageInt64Atomics*: VkBool32
 
-  VkFragmentShadingRateAttachmentInfoKHR* = object
+  VkFragmentShadingRateAttachmentInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pFragmentShadingRateAttachment*: ptr VkAttachmentReference2
     shadingRateAttachmentTexelSize*: VkExtent2D
 
-  VkPipelineFragmentShadingRateStateCreateInfoKHR* = object
+  VkPipelineFragmentShadingRateStateCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentSize*: VkExtent2D
     combinerOps*: array[2, VkFragmentShadingRateCombinerOpKHR]
 
-  VkPhysicalDeviceFragmentShadingRateFeaturesKHR* = object
+  VkPhysicalDeviceFragmentShadingRateFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineFragmentShadingRate*: VkBool32
     primitiveFragmentShadingRate*: VkBool32
     attachmentFragmentShadingRate*: VkBool32
 
-  VkPhysicalDeviceFragmentShadingRatePropertiesKHR* = object
+  VkPhysicalDeviceFragmentShadingRatePropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minFragmentShadingRateAttachmentTexelSize*: VkExtent2D
@@ -10429,75 +10429,75 @@ type
     fragmentShadingRateWithCustomSampleLocations*: VkBool32
     fragmentShadingRateStrictMultiplyCombiner*: VkBool32
 
-  VkPhysicalDeviceFragmentShadingRateKHR* = object
+  VkPhysicalDeviceFragmentShadingRateKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sampleCounts*: VkSampleCountFlags
     fragmentSize*: VkExtent2D
 
-  VkPhysicalDeviceShaderTerminateInvocationFeatures* = object
+  VkPhysicalDeviceShaderTerminateInvocationFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderTerminateInvocation*: VkBool32
 
   VkPhysicalDeviceShaderTerminateInvocationFeaturesKHR* = VkPhysicalDeviceShaderTerminateInvocationFeatures
 
-  VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV* = object
+  VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentShadingRateEnums*: VkBool32
     supersampleFragmentShadingRates*: VkBool32
     noInvocationFragmentShadingRates*: VkBool32
 
-  VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV* = object
+  VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxFragmentShadingRateInvocationCount*: VkSampleCountFlagBits
 
-  VkPipelineFragmentShadingRateEnumStateCreateInfoNV* = object
+  VkPipelineFragmentShadingRateEnumStateCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shadingRateType*: VkFragmentShadingRateTypeNV
     shadingRate*: VkFragmentShadingRateNV
     combinerOps*: array[2, VkFragmentShadingRateCombinerOpKHR]
 
-  VkAccelerationStructureBuildSizesInfoKHR* = object
+  VkAccelerationStructureBuildSizesInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     accelerationStructureSize*: VkDeviceSize
     updateScratchSize*: VkDeviceSize
     buildScratchSize*: VkDeviceSize
 
-  VkPhysicalDeviceImage2DViewOf3DFeaturesEXT* = object
+  VkPhysicalDeviceImage2DViewOf3DFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image2DViewOf3D*: VkBool32
     sampler2DViewOf3D*: VkBool32
 
-  VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT* = object
+  VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageSlicedViewOf3D*: VkBool32
 
-  VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT* = object
+  VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     attachmentFeedbackLoopDynamicState*: VkBool32
 
-  VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT* = object
+  VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     mutableDescriptorType*: VkBool32
 
   VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE* = VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT
 
-  VkMutableDescriptorTypeListEXT* = object
+  VkMutableDescriptorTypeListEXT* {.byref.} = object
     descriptorTypeCount*: uint32
     pDescriptorTypes*: ptr VkDescriptorType
 
   VkMutableDescriptorTypeListVALVE* = VkMutableDescriptorTypeListEXT
 
-  VkMutableDescriptorTypeCreateInfoEXT* = object
+  VkMutableDescriptorTypeCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     mutableDescriptorTypeListCount*: uint32
@@ -10505,27 +10505,27 @@ type
 
   VkMutableDescriptorTypeCreateInfoVALVE* = VkMutableDescriptorTypeCreateInfoEXT
 
-  VkPhysicalDeviceDepthClipControlFeaturesEXT* = object
+  VkPhysicalDeviceDepthClipControlFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     depthClipControl*: VkBool32
 
-  VkPipelineViewportDepthClipControlCreateInfoEXT* = object
+  VkPipelineViewportDepthClipControlCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     negativeOneToOne*: VkBool32
 
-  VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT* = object
+  VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     vertexInputDynamicState*: VkBool32
 
-  VkPhysicalDeviceExternalMemoryRDMAFeaturesNV* = object
+  VkPhysicalDeviceExternalMemoryRDMAFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     externalMemoryRDMA*: VkBool32
 
-  VkVertexInputBindingDescription2EXT* = object
+  VkVertexInputBindingDescription2EXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     binding*: uint32
@@ -10533,7 +10533,7 @@ type
     inputRate*: VkVertexInputRate
     divisor*: uint32
 
-  VkVertexInputAttributeDescription2EXT* = object
+  VkVertexInputAttributeDescription2EXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     location*: uint32
@@ -10541,18 +10541,18 @@ type
     format*: VkFormat
     offset*: uint32
 
-  VkPhysicalDeviceColorWriteEnableFeaturesEXT* = object
+  VkPhysicalDeviceColorWriteEnableFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     colorWriteEnable*: VkBool32
 
-  VkPipelineColorWriteCreateInfoEXT* = object
+  VkPipelineColorWriteCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     attachmentCount*: uint32
     pColorWriteEnables*: ptr VkBool32
 
-  VkMemoryBarrier2* = object
+  VkMemoryBarrier2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcStageMask*: VkPipelineStageFlags2
@@ -10562,7 +10562,7 @@ type
 
   VkMemoryBarrier2KHR* = VkMemoryBarrier2
 
-  VkImageMemoryBarrier2* = object
+  VkImageMemoryBarrier2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcStageMask*: VkPipelineStageFlags2
@@ -10578,7 +10578,7 @@ type
 
   VkImageMemoryBarrier2KHR* = VkImageMemoryBarrier2
 
-  VkBufferMemoryBarrier2* = object
+  VkBufferMemoryBarrier2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     srcStageMask*: VkPipelineStageFlags2
@@ -10593,7 +10593,7 @@ type
 
   VkBufferMemoryBarrier2KHR* = VkBufferMemoryBarrier2
 
-  VkDependencyInfo* = object
+  VkDependencyInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dependencyFlags*: VkDependencyFlags
@@ -10606,7 +10606,7 @@ type
 
   VkDependencyInfoKHR* = VkDependencyInfo
 
-  VkSemaphoreSubmitInfo* = object
+  VkSemaphoreSubmitInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
@@ -10616,7 +10616,7 @@ type
 
   VkSemaphoreSubmitInfoKHR* = VkSemaphoreSubmitInfo
 
-  VkCommandBufferSubmitInfo* = object
+  VkCommandBufferSubmitInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     commandBuffer*: VkCommandBuffer
@@ -10624,7 +10624,7 @@ type
 
   VkCommandBufferSubmitInfoKHR* = VkCommandBufferSubmitInfo
 
-  VkSubmitInfo2* = object
+  VkSubmitInfo2* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkSubmitFlags
@@ -10637,30 +10637,30 @@ type
 
   VkSubmitInfo2KHR* = VkSubmitInfo2
 
-  VkQueueFamilyCheckpointProperties2NV* = object
+  VkQueueFamilyCheckpointProperties2NV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     checkpointExecutionStageMask*: VkPipelineStageFlags2
 
-  VkCheckpointData2NV* = object
+  VkCheckpointData2NV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stage*: VkPipelineStageFlags2
     pCheckpointMarker*: pointer
 
-  VkPhysicalDeviceSynchronization2Features* = object
+  VkPhysicalDeviceSynchronization2Features* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     synchronization2*: VkBool32
 
   VkPhysicalDeviceSynchronization2FeaturesKHR* = VkPhysicalDeviceSynchronization2Features
 
-  VkPhysicalDeviceHostImageCopyFeaturesEXT* = object
+  VkPhysicalDeviceHostImageCopyFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     hostImageCopy*: VkBool32
 
-  VkPhysicalDeviceHostImageCopyPropertiesEXT* = object
+  VkPhysicalDeviceHostImageCopyPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     copySrcLayoutCount*: uint32
@@ -10670,7 +10670,7 @@ type
     optimalTilingLayoutUUID*: array[VK_UUID_SIZE, uint8]
     identicalMemoryTypeRequirements*: VkBool32
 
-  VkMemoryToImageCopyEXT* = object
+  VkMemoryToImageCopyEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pHostPointer*: pointer
@@ -10680,7 +10680,7 @@ type
     imageOffset*: VkOffset3D
     imageExtent*: VkExtent3D
 
-  VkImageToMemoryCopyEXT* = object
+  VkImageToMemoryCopyEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pHostPointer*: pointer
@@ -10690,7 +10690,7 @@ type
     imageOffset*: VkOffset3D
     imageExtent*: VkExtent3D
 
-  VkCopyMemoryToImageInfoEXT* = object
+  VkCopyMemoryToImageInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkHostImageCopyFlagsEXT
@@ -10699,7 +10699,7 @@ type
     regionCount*: uint32
     pRegions*: ptr VkMemoryToImageCopyEXT
 
-  VkCopyImageToMemoryInfoEXT* = object
+  VkCopyImageToMemoryInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkHostImageCopyFlagsEXT
@@ -10708,7 +10708,7 @@ type
     regionCount*: uint32
     pRegions*: ptr VkImageToMemoryCopyEXT
 
-  VkCopyImageToImageInfoEXT* = object
+  VkCopyImageToImageInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkHostImageCopyFlagsEXT
@@ -10719,7 +10719,7 @@ type
     regionCount*: uint32
     pRegions*: ptr VkImageCopy2
 
-  VkHostImageLayoutTransitionInfoEXT* = object
+  VkHostImageLayoutTransitionInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
@@ -10727,18 +10727,18 @@ type
     newLayout*: VkImageLayout
     subresourceRange*: VkImageSubresourceRange
 
-  VkSubresourceHostMemcpySizeEXT* = object
+  VkSubresourceHostMemcpySizeEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     size*: VkDeviceSize
 
-  VkHostImageCopyDevicePerformanceQueryEXT* = object
+  VkHostImageCopyDevicePerformanceQueryEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     optimalDeviceAccess*: VkBool32
     identicalMemoryLayout*: VkBool32
 
-  VkPhysicalDeviceVulkanSC10Properties* = object
+  VkPhysicalDeviceVulkanSC10Properties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceNoDynamicHostAllocations*: VkBool32
@@ -10760,13 +10760,13 @@ type
     maxCommandPoolCommandBuffers*: uint32
     maxCommandBufferSize*: VkDeviceSize
 
-  VkPipelinePoolSize* = object
+  VkPipelinePoolSize* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     poolEntrySize*: VkDeviceSize
     poolEntryCount*: uint32
 
-  VkDeviceObjectReservationCreateInfo* = object
+  VkDeviceObjectReservationCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineCacheCreateInfoCount*: uint32
@@ -10811,79 +10811,79 @@ type
     maxTimestampQueriesPerPool*: uint32
     maxImmutableSamplersPerDescriptorSetLayout*: uint32
 
-  VkCommandPoolMemoryReservationCreateInfo* = object
+  VkCommandPoolMemoryReservationCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     commandPoolReservedSize*: VkDeviceSize
     commandPoolMaxCommandBuffers*: uint32
 
-  VkCommandPoolMemoryConsumption* = object
+  VkCommandPoolMemoryConsumption* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     commandPoolAllocated*: VkDeviceSize
     commandPoolReservedSize*: VkDeviceSize
     commandBufferAllocated*: VkDeviceSize
 
-  VkPhysicalDeviceVulkanSC10Features* = object
+  VkPhysicalDeviceVulkanSC10Features* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderAtomicInstructions*: VkBool32
 
-  VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT* = object
+  VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     primitivesGeneratedQuery*: VkBool32
     primitivesGeneratedQueryWithRasterizerDiscard*: VkBool32
     primitivesGeneratedQueryWithNonZeroStreams*: VkBool32
 
-  VkPhysicalDeviceLegacyDitheringFeaturesEXT* = object
+  VkPhysicalDeviceLegacyDitheringFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     legacyDithering*: VkBool32
 
-  VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT* = object
+  VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     multisampledRenderToSingleSampled*: VkBool32
 
-  VkSubpassResolvePerformanceQueryEXT* = object
+  VkSubpassResolvePerformanceQueryEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     optimal*: VkBool32
 
-  VkMultisampledRenderToSingleSampledInfoEXT* = object
+  VkMultisampledRenderToSingleSampledInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     multisampledRenderToSingleSampledEnable*: VkBool32
     rasterizationSamples*: VkSampleCountFlagBits
 
-  VkPhysicalDevicePipelineProtectedAccessFeaturesEXT* = object
+  VkPhysicalDevicePipelineProtectedAccessFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineProtectedAccess*: VkBool32
 
-  VkQueueFamilyVideoPropertiesKHR* = object
+  VkQueueFamilyVideoPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     videoCodecOperations*: VkVideoCodecOperationFlagsKHR
 
-  VkQueueFamilyQueryResultStatusPropertiesKHR* = object
+  VkQueueFamilyQueryResultStatusPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     queryResultStatusSupport*: VkBool32
 
-  VkVideoProfileListInfoKHR* = object
+  VkVideoProfileListInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     profileCount*: uint32
     pProfiles*: ptr VkVideoProfileInfoKHR
 
-  VkPhysicalDeviceVideoFormatInfoKHR* = object
+  VkPhysicalDeviceVideoFormatInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageUsage*: VkImageUsageFlags
 
-  VkVideoFormatPropertiesKHR* = object
+  VkVideoFormatPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     format*: VkFormat
@@ -10893,7 +10893,7 @@ type
     imageTiling*: VkImageTiling
     imageUsageFlags*: VkImageUsageFlags
 
-  VkVideoProfileInfoKHR* = object
+  VkVideoProfileInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     videoCodecOperation*: VkVideoCodecOperationFlagBitsKHR
@@ -10901,7 +10901,7 @@ type
     lumaBitDepth*: VkVideoComponentBitDepthFlagsKHR
     chromaBitDepth*: VkVideoComponentBitDepthFlagsKHR
 
-  VkVideoCapabilitiesKHR* = object
+  VkVideoCapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoCapabilityFlagsKHR
@@ -10914,13 +10914,13 @@ type
     maxActiveReferencePictures*: uint32
     stdHeaderVersion*: VkExtensionProperties
 
-  VkVideoSessionMemoryRequirementsKHR* = object
+  VkVideoSessionMemoryRequirementsKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryBindIndex*: uint32
     memoryRequirements*: VkMemoryRequirements
 
-  VkBindVideoSessionMemoryInfoKHR* = object
+  VkBindVideoSessionMemoryInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryBindIndex*: uint32
@@ -10928,7 +10928,7 @@ type
     memoryOffset*: VkDeviceSize
     memorySize*: VkDeviceSize
 
-  VkVideoPictureResourceInfoKHR* = object
+  VkVideoPictureResourceInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     codedOffset*: VkOffset2D
@@ -10936,23 +10936,23 @@ type
     baseArrayLayer*: uint32
     imageViewBinding*: VkImageView
 
-  VkVideoReferenceSlotInfoKHR* = object
+  VkVideoReferenceSlotInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     slotIndex*: int32
     pPictureResource*: ptr VkVideoPictureResourceInfoKHR
 
-  VkVideoDecodeCapabilitiesKHR* = object
+  VkVideoDecodeCapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoDecodeCapabilityFlagsKHR
 
-  VkVideoDecodeUsageInfoKHR* = object
+  VkVideoDecodeUsageInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     videoUsageHints*: VkVideoDecodeUsageFlagsKHR
 
-  VkVideoDecodeInfoKHR* = object
+  VkVideoDecodeInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoDecodeFlagsKHR
@@ -10964,12 +10964,12 @@ type
     referenceSlotCount*: uint32
     pReferenceSlots*: ptr VkVideoReferenceSlotInfoKHR
 
-  VkPhysicalDeviceVideoMaintenance1FeaturesKHR* = object
+  VkPhysicalDeviceVideoMaintenance1FeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     videoMaintenance1*: VkBool32
 
-  VkVideoInlineQueryInfoKHR* = object
+  VkVideoInlineQueryInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     queryPool*: VkQueryPool
@@ -10998,13 +10998,13 @@ type
   StdVideoDecodeH264PictureInfoFlags* {.nodecl.} = object
   StdVideoDecodeH264ReferenceInfoFlags* {.nodecl.} = object
 
-  VkVideoDecodeH264ProfileInfoKHR* = object
+  VkVideoDecodeH264ProfileInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdProfileIdc*: StdVideoH264ProfileIdc
     pictureLayout*: VkVideoDecodeH264PictureLayoutFlagBitsKHR
 
-  VkVideoDecodeH264CapabilitiesKHR* = object
+  VkVideoDecodeH264CapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxLevelIdc*: StdVideoH264LevelIdc
@@ -11012,7 +11012,7 @@ type
   StdVideoH264SequenceParameterSet* {.nodecl.} = object
   StdVideoH264PictureParameterSet* {.nodecl.} = object
 
-  VkVideoDecodeH264SessionParametersAddInfoKHR* = object
+  VkVideoDecodeH264SessionParametersAddInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdSPSCount*: uint32
@@ -11020,21 +11020,21 @@ type
     stdPPSCount*: uint32
     pStdPPSs*: ptr StdVideoH264PictureParameterSet
 
-  VkVideoDecodeH264SessionParametersCreateInfoKHR* = object
+  VkVideoDecodeH264SessionParametersCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxStdSPSCount*: uint32
     maxStdPPSCount*: uint32
     pParametersAddInfo*: ptr VkVideoDecodeH264SessionParametersAddInfoKHR
 
-  VkVideoDecodeH264PictureInfoKHR* = object
+  VkVideoDecodeH264PictureInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdPictureInfo*: ptr StdVideoDecodeH264PictureInfo
     sliceCount*: uint32
     pSliceOffsets*: ptr uint32
 
-  VkVideoDecodeH264DpbSlotInfoKHR* = object
+  VkVideoDecodeH264DpbSlotInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoDecodeH264ReferenceInfo
@@ -11061,17 +11061,17 @@ type
   StdVideoDecodeH265PictureInfoFlags* {.nodecl.} = object
   StdVideoDecodeH265ReferenceInfoFlags* {.nodecl.} = object
 
-  VkVideoDecodeH265ProfileInfoKHR* = object
+  VkVideoDecodeH265ProfileInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdProfileIdc*: StdVideoH265ProfileIdc
 
-  VkVideoDecodeH265CapabilitiesKHR* = object
+  VkVideoDecodeH265CapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxLevelIdc*: StdVideoH265LevelIdc
 
-  VkVideoDecodeH265SessionParametersAddInfoKHR* = object
+  VkVideoDecodeH265SessionParametersAddInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdVPSCount*: uint32
@@ -11081,7 +11081,7 @@ type
     stdPPSCount*: uint32
     pStdPPSs*: ptr StdVideoH265PictureParameterSet
 
-  VkVideoDecodeH265SessionParametersCreateInfoKHR* = object
+  VkVideoDecodeH265SessionParametersCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxStdVPSCount*: uint32
@@ -11089,14 +11089,14 @@ type
     maxStdPPSCount*: uint32
     pParametersAddInfo*: ptr VkVideoDecodeH265SessionParametersAddInfoKHR
 
-  VkVideoDecodeH265PictureInfoKHR* = object
+  VkVideoDecodeH265PictureInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdPictureInfo*: ptr StdVideoDecodeH265PictureInfo
     sliceSegmentCount*: uint32
     pSliceSegmentOffsets*: ptr uint32
 
-  VkVideoDecodeH265DpbSlotInfoKHR* = object
+  VkVideoDecodeH265DpbSlotInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoDecodeH265ReferenceInfo
@@ -11106,23 +11106,23 @@ type
   StdVideoDecodeAV1PictureInfo* {.nodecl.} = object
   StdVideoDecodeAV1ReferenceInfo* {.nodecl.} = object
 
-  VkVideoDecodeAV1ProfileInfoKHR* = object
+  VkVideoDecodeAV1ProfileInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdProfile*: StdVideoAV1Profile
     filmGrainSupport*: VkBool32
 
-  VkVideoDecodeAV1CapabilitiesKHR* = object
+  VkVideoDecodeAV1CapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxLevel*: StdVideoAV1Level
 
-  VkVideoDecodeAV1SessionParametersCreateInfoKHR* = object
+  VkVideoDecodeAV1SessionParametersCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdSequenceHeader*: ptr StdVideoAV1SequenceHeader
 
-  VkVideoDecodeAV1PictureInfoKHR* = object
+  VkVideoDecodeAV1PictureInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdPictureInfo*: ptr StdVideoDecodeAV1PictureInfo
@@ -11132,12 +11132,12 @@ type
     pTileOffsets*: ptr uint32
     pTileSizes*: ptr uint32
 
-  VkVideoDecodeAV1DpbSlotInfoKHR* = object
+  VkVideoDecodeAV1DpbSlotInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoDecodeAV1ReferenceInfo
 
-  VkVideoSessionCreateInfoKHR* = object
+  VkVideoSessionCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     queueFamilyIndex*: uint32
@@ -11150,29 +11150,29 @@ type
     maxActiveReferencePictures*: uint32
     pStdHeaderVersion*: ptr VkExtensionProperties
 
-  VkVideoSessionParametersCreateInfoKHR* = object
+  VkVideoSessionParametersCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoSessionParametersCreateFlagsKHR
     videoSessionParametersTemplate*: VkVideoSessionParametersKHR
     videoSession*: VkVideoSessionKHR
 
-  VkVideoSessionParametersUpdateInfoKHR* = object
+  VkVideoSessionParametersUpdateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     updateSequenceCount*: uint32
 
-  VkVideoEncodeSessionParametersGetInfoKHR* = object
+  VkVideoEncodeSessionParametersGetInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     videoSessionParameters*: VkVideoSessionParametersKHR
 
-  VkVideoEncodeSessionParametersFeedbackInfoKHR* = object
+  VkVideoEncodeSessionParametersFeedbackInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     hasOverrides*: VkBool32
 
-  VkVideoBeginCodingInfoKHR* = object
+  VkVideoBeginCodingInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoBeginCodingFlagsKHR
@@ -11181,24 +11181,24 @@ type
     referenceSlotCount*: uint32
     pReferenceSlots*: ptr VkVideoReferenceSlotInfoKHR
 
-  VkVideoEndCodingInfoKHR* = object
+  VkVideoEndCodingInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoEndCodingFlagsKHR
 
-  VkVideoCodingControlInfoKHR* = object
+  VkVideoCodingControlInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoCodingControlFlagsKHR
 
-  VkVideoEncodeUsageInfoKHR* = object
+  VkVideoEncodeUsageInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     videoUsageHints*: VkVideoEncodeUsageFlagsKHR
     videoContentHints*: VkVideoEncodeContentFlagsKHR
     tuningMode*: VkVideoEncodeTuningModeKHR
 
-  VkVideoEncodeInfoKHR* = object
+  VkVideoEncodeInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoEncodeFlagsKHR
@@ -11211,29 +11211,29 @@ type
     pReferenceSlots*: ptr VkVideoReferenceSlotInfoKHR
     precedingExternallyEncodedBytes*: uint32
 
-  VkQueryPoolVideoEncodeFeedbackCreateInfoKHR* = object
+  VkQueryPoolVideoEncodeFeedbackCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     encodeFeedbackFlags*: VkVideoEncodeFeedbackFlagsKHR
 
-  VkVideoEncodeQualityLevelInfoKHR* = object
+  VkVideoEncodeQualityLevelInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     qualityLevel*: uint32
 
-  VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR* = object
+  VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pVideoProfile*: ptr VkVideoProfileInfoKHR
     qualityLevel*: uint32
 
-  VkVideoEncodeQualityLevelPropertiesKHR* = object
+  VkVideoEncodeQualityLevelPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     preferredRateControlMode*: VkVideoEncodeRateControlModeFlagBitsKHR
     preferredRateControlLayerCount*: uint32
 
-  VkVideoEncodeRateControlInfoKHR* = object
+  VkVideoEncodeRateControlInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoEncodeRateControlFlagsKHR
@@ -11243,7 +11243,7 @@ type
     virtualBufferSizeInMs*: uint32
     initialVirtualBufferSizeInMs*: uint32
 
-  VkVideoEncodeRateControlLayerInfoKHR* = object
+  VkVideoEncodeRateControlLayerInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     averageBitrate*: uint64
@@ -11251,7 +11251,7 @@ type
     frameRateNumerator*: uint32
     frameRateDenominator*: uint32
 
-  VkVideoEncodeCapabilitiesKHR* = object
+  VkVideoEncodeCapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoEncodeCapabilityFlagsKHR
@@ -11262,7 +11262,7 @@ type
     encodeInputPictureGranularity*: VkExtent2D
     supportedEncodeFeedbackFlags*: VkVideoEncodeFeedbackFlagsKHR
 
-  VkVideoEncodeH264CapabilitiesKHR* = object
+  VkVideoEncodeH264CapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoEncodeH264CapabilityFlagsKHR
@@ -11279,7 +11279,7 @@ type
     requiresGopRemainingFrames*: VkBool32
     stdSyntaxFlags*: VkVideoEncodeH264StdFlagsKHR
 
-  VkVideoEncodeH264QualityLevelPropertiesKHR* = object
+  VkVideoEncodeH264QualityLevelPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     preferredRateControlFlags*: VkVideoEncodeH264RateControlFlagsKHR
@@ -11302,13 +11302,13 @@ type
   StdVideoEncodeH264RefListModEntry* {.nodecl.} = object
   StdVideoEncodeH264RefPicMarkingEntry* {.nodecl.} = object
 
-  VkVideoEncodeH264SessionCreateInfoKHR* = object
+  VkVideoEncodeH264SessionCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     useMaxLevelIdc*: VkBool32
     maxLevelIdc*: StdVideoH264LevelIdc
 
-  VkVideoEncodeH264SessionParametersAddInfoKHR* = object
+  VkVideoEncodeH264SessionParametersAddInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdSPSCount*: uint32
@@ -11316,14 +11316,14 @@ type
     stdPPSCount*: uint32
     pStdPPSs*: ptr StdVideoH264PictureParameterSet
 
-  VkVideoEncodeH264SessionParametersCreateInfoKHR* = object
+  VkVideoEncodeH264SessionParametersCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxStdSPSCount*: uint32
     maxStdPPSCount*: uint32
     pParametersAddInfo*: ptr VkVideoEncodeH264SessionParametersAddInfoKHR
 
-  VkVideoEncodeH264SessionParametersGetInfoKHR* = object
+  VkVideoEncodeH264SessionParametersGetInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     writeStdSPS*: VkBool32
@@ -11331,18 +11331,18 @@ type
     stdSPSId*: uint32
     stdPPSId*: uint32
 
-  VkVideoEncodeH264SessionParametersFeedbackInfoKHR* = object
+  VkVideoEncodeH264SessionParametersFeedbackInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     hasStdSPSOverrides*: VkBool32
     hasStdPPSOverrides*: VkBool32
 
-  VkVideoEncodeH264DpbSlotInfoKHR* = object
+  VkVideoEncodeH264DpbSlotInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoEncodeH264ReferenceInfo
 
-  VkVideoEncodeH264PictureInfoKHR* = object
+  VkVideoEncodeH264PictureInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     naluSliceEntryCount*: uint32
@@ -11350,18 +11350,18 @@ type
     pStdPictureInfo*: ptr StdVideoEncodeH264PictureInfo
     generatePrefixNalu*: VkBool32
 
-  VkVideoEncodeH264ProfileInfoKHR* = object
+  VkVideoEncodeH264ProfileInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdProfileIdc*: StdVideoH264ProfileIdc
 
-  VkVideoEncodeH264NaluSliceInfoKHR* = object
+  VkVideoEncodeH264NaluSliceInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     constantQp*: int32
     pStdSliceHeader*: ptr StdVideoEncodeH264SliceHeader
 
-  VkVideoEncodeH264RateControlInfoKHR* = object
+  VkVideoEncodeH264RateControlInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoEncodeH264RateControlFlagsKHR
@@ -11370,17 +11370,17 @@ type
     consecutiveBFrameCount*: uint32
     temporalLayerCount*: uint32
 
-  VkVideoEncodeH264QpKHR* = object
+  VkVideoEncodeH264QpKHR* {.byref.} = object
     qpI*: int32
     qpP*: int32
     qpB*: int32
 
-  VkVideoEncodeH264FrameSizeKHR* = object
+  VkVideoEncodeH264FrameSizeKHR* {.byref.} = object
     frameISize*: uint32
     framePSize*: uint32
     frameBSize*: uint32
 
-  VkVideoEncodeH264GopRemainingFrameInfoKHR* = object
+  VkVideoEncodeH264GopRemainingFrameInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     useGopRemainingFrames*: VkBool32
@@ -11388,7 +11388,7 @@ type
     gopRemainingP*: uint32
     gopRemainingB*: uint32
 
-  VkVideoEncodeH264RateControlLayerInfoKHR* = object
+  VkVideoEncodeH264RateControlLayerInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     useMinQp*: VkBool32
@@ -11398,7 +11398,7 @@ type
     useMaxFrameSize*: VkBool32
     maxFrameSize*: VkVideoEncodeH264FrameSizeKHR
 
-  VkVideoEncodeH265CapabilitiesKHR* = object
+  VkVideoEncodeH265CapabilitiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoEncodeH265CapabilityFlagsKHR
@@ -11418,7 +11418,7 @@ type
     requiresGopRemainingFrames*: VkBool32
     stdSyntaxFlags*: VkVideoEncodeH265StdFlagsKHR
 
-  VkVideoEncodeH265QualityLevelPropertiesKHR* = object
+  VkVideoEncodeH265QualityLevelPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     preferredRateControlFlags*: VkVideoEncodeH265RateControlFlagsKHR
@@ -11438,13 +11438,13 @@ type
   StdVideoEncodeH265ReferenceInfoFlags* {.nodecl.} = object
   StdVideoEncodeH265ReferenceModificationFlags* {.nodecl.} = object
 
-  VkVideoEncodeH265SessionCreateInfoKHR* = object
+  VkVideoEncodeH265SessionCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     useMaxLevelIdc*: VkBool32
     maxLevelIdc*: StdVideoH265LevelIdc
 
-  VkVideoEncodeH265SessionParametersAddInfoKHR* = object
+  VkVideoEncodeH265SessionParametersAddInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdVPSCount*: uint32
@@ -11454,7 +11454,7 @@ type
     stdPPSCount*: uint32
     pStdPPSs*: ptr StdVideoH265PictureParameterSet
 
-  VkVideoEncodeH265SessionParametersCreateInfoKHR* = object
+  VkVideoEncodeH265SessionParametersCreateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxStdVPSCount*: uint32
@@ -11462,7 +11462,7 @@ type
     maxStdPPSCount*: uint32
     pParametersAddInfo*: ptr VkVideoEncodeH265SessionParametersAddInfoKHR
 
-  VkVideoEncodeH265SessionParametersGetInfoKHR* = object
+  VkVideoEncodeH265SessionParametersGetInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     writeStdVPS*: VkBool32
@@ -11472,27 +11472,27 @@ type
     stdSPSId*: uint32
     stdPPSId*: uint32
 
-  VkVideoEncodeH265SessionParametersFeedbackInfoKHR* = object
+  VkVideoEncodeH265SessionParametersFeedbackInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     hasStdVPSOverrides*: VkBool32
     hasStdSPSOverrides*: VkBool32
     hasStdPPSOverrides*: VkBool32
 
-  VkVideoEncodeH265PictureInfoKHR* = object
+  VkVideoEncodeH265PictureInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     naluSliceSegmentEntryCount*: uint32
     pNaluSliceSegmentEntries*: ptr VkVideoEncodeH265NaluSliceSegmentInfoKHR
     pStdPictureInfo*: ptr StdVideoEncodeH265PictureInfo
 
-  VkVideoEncodeH265NaluSliceSegmentInfoKHR* = object
+  VkVideoEncodeH265NaluSliceSegmentInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     constantQp*: int32
     pStdSliceSegmentHeader*: ptr StdVideoEncodeH265SliceSegmentHeader
 
-  VkVideoEncodeH265RateControlInfoKHR* = object
+  VkVideoEncodeH265RateControlInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkVideoEncodeH265RateControlFlagsKHR
@@ -11501,17 +11501,17 @@ type
     consecutiveBFrameCount*: uint32
     subLayerCount*: uint32
 
-  VkVideoEncodeH265QpKHR* = object
+  VkVideoEncodeH265QpKHR* {.byref.} = object
     qpI*: int32
     qpP*: int32
     qpB*: int32
 
-  VkVideoEncodeH265FrameSizeKHR* = object
+  VkVideoEncodeH265FrameSizeKHR* {.byref.} = object
     frameISize*: uint32
     framePSize*: uint32
     frameBSize*: uint32
 
-  VkVideoEncodeH265GopRemainingFrameInfoKHR* = object
+  VkVideoEncodeH265GopRemainingFrameInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     useGopRemainingFrames*: VkBool32
@@ -11519,7 +11519,7 @@ type
     gopRemainingP*: uint32
     gopRemainingB*: uint32
 
-  VkVideoEncodeH265RateControlLayerInfoKHR* = object
+  VkVideoEncodeH265RateControlLayerInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     useMinQp*: VkBool32
@@ -11529,63 +11529,63 @@ type
     useMaxFrameSize*: VkBool32
     maxFrameSize*: VkVideoEncodeH265FrameSizeKHR
 
-  VkVideoEncodeH265ProfileInfoKHR* = object
+  VkVideoEncodeH265ProfileInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stdProfileIdc*: StdVideoH265ProfileIdc
 
-  VkVideoEncodeH265DpbSlotInfoKHR* = object
+  VkVideoEncodeH265DpbSlotInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoEncodeH265ReferenceInfo
 
-  VkPhysicalDeviceInheritedViewportScissorFeaturesNV* = object
+  VkPhysicalDeviceInheritedViewportScissorFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     inheritedViewportScissor2D*: VkBool32
 
-  VkCommandBufferInheritanceViewportScissorInfoNV* = object
+  VkCommandBufferInheritanceViewportScissorInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     viewportScissor2D*: VkBool32
     viewportDepthCount*: uint32
     pViewportDepths*: ptr VkViewport
 
-  VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT* = object
+  VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     ycbcr2plane444Formats*: VkBool32
 
-  VkPhysicalDeviceProvokingVertexFeaturesEXT* = object
+  VkPhysicalDeviceProvokingVertexFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     provokingVertexLast*: VkBool32
     transformFeedbackPreservesProvokingVertex*: VkBool32
 
-  VkPhysicalDeviceProvokingVertexPropertiesEXT* = object
+  VkPhysicalDeviceProvokingVertexPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     provokingVertexModePerPipeline*: VkBool32
     transformFeedbackPreservesTriangleFanProvokingVertex*: VkBool32
 
-  VkPipelineRasterizationProvokingVertexStateCreateInfoEXT* = object
+  VkPipelineRasterizationProvokingVertexStateCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     provokingVertexMode*: VkProvokingVertexModeEXT
 
-  VkCuModuleCreateInfoNVX* = object
+  VkCuModuleCreateInfoNVX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dataSize*: uint
     pData*: pointer
 
-  VkCuFunctionCreateInfoNVX* = object
+  VkCuFunctionCreateInfoNVX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     module*: VkCuModuleNVX
     pName*: cstring
 
-  VkCuLaunchInfoNVX* = object
+  VkCuLaunchInfoNVX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     function*: VkCuFunctionNVX
@@ -11601,7 +11601,7 @@ type
     extraCount*: uint
     pExtras*: ptr pointer
 
-  VkPhysicalDeviceDescriptorBufferFeaturesEXT* = object
+  VkPhysicalDeviceDescriptorBufferFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorBuffer*: VkBool32
@@ -11609,7 +11609,7 @@ type
     descriptorBufferImageLayoutIgnored*: VkBool32
     descriptorBufferPushDescriptors*: VkBool32
 
-  VkPhysicalDeviceDescriptorBufferPropertiesEXT* = object
+  VkPhysicalDeviceDescriptorBufferPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     combinedImageSamplerDescriptorSingleArray*: VkBool32
@@ -11646,30 +11646,30 @@ type
     resourceDescriptorBufferAddressSpaceSize*: VkDeviceSize
     descriptorBufferAddressSpaceSize*: VkDeviceSize
 
-  VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT* = object
+  VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     combinedImageSamplerDensityMapDescriptorSize*: uint
 
-  VkDescriptorAddressInfoEXT* = object
+  VkDescriptorAddressInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     address*: VkDeviceAddress
     range*: VkDeviceSize
     format*: VkFormat
 
-  VkDescriptorBufferBindingInfoEXT* = object
+  VkDescriptorBufferBindingInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     address*: VkDeviceAddress
     usage*: VkBufferUsageFlags
 
-  VkDescriptorBufferBindingPushDescriptorBufferHandleEXT* = object
+  VkDescriptorBufferBindingPushDescriptorBufferHandleEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     buffer*: VkBuffer
 
-  VkDescriptorDataEXT* {.union.} = object
+  VkDescriptorDataEXT* {.union, byref.} = object
     pSampler*: ptr VkSampler
     pCombinedImageSampler*: ptr VkDescriptorImageInfo
     pInputAttachmentImage*: ptr VkDescriptorImageInfo
@@ -11681,51 +11681,51 @@ type
     pStorageBuffer*: ptr VkDescriptorAddressInfoEXT
     accelerationStructure*: VkDeviceAddress
 
-  VkDescriptorGetInfoEXT* = object
+  VkDescriptorGetInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkDescriptorType
     data*: VkDescriptorDataEXT
 
-  VkBufferCaptureDescriptorDataInfoEXT* = object
+  VkBufferCaptureDescriptorDataInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     buffer*: VkBuffer
 
-  VkImageCaptureDescriptorDataInfoEXT* = object
+  VkImageCaptureDescriptorDataInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
 
-  VkImageViewCaptureDescriptorDataInfoEXT* = object
+  VkImageViewCaptureDescriptorDataInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageView*: VkImageView
 
-  VkSamplerCaptureDescriptorDataInfoEXT* = object
+  VkSamplerCaptureDescriptorDataInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     sampler*: VkSampler
 
-  VkAccelerationStructureCaptureDescriptorDataInfoEXT* = object
+  VkAccelerationStructureCaptureDescriptorDataInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     accelerationStructure*: VkAccelerationStructureKHR
     accelerationStructureNV*: VkAccelerationStructureNV
 
-  VkOpaqueCaptureDescriptorDataCreateInfoEXT* = object
+  VkOpaqueCaptureDescriptorDataCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     opaqueCaptureDescriptorData*: pointer
 
-  VkPhysicalDeviceShaderIntegerDotProductFeatures* = object
+  VkPhysicalDeviceShaderIntegerDotProductFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderIntegerDotProduct*: VkBool32
 
   VkPhysicalDeviceShaderIntegerDotProductFeaturesKHR* = VkPhysicalDeviceShaderIntegerDotProductFeatures
 
-  VkPhysicalDeviceShaderIntegerDotProductProperties* = object
+  VkPhysicalDeviceShaderIntegerDotProductProperties* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     integerDotProduct8BitUnsignedAccelerated*: VkBool32
@@ -11761,7 +11761,7 @@ type
 
   VkPhysicalDeviceShaderIntegerDotProductPropertiesKHR* = VkPhysicalDeviceShaderIntegerDotProductProperties
 
-  VkPhysicalDeviceDrmPropertiesEXT* = object
+  VkPhysicalDeviceDrmPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     hasPrimary*: VkBool32
@@ -11771,34 +11771,34 @@ type
     renderMajor*: int64
     renderMinor*: int64
 
-  VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR* = object
+  VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentShaderBarycentric*: VkBool32
 
-  VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR* = object
+  VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     triStripVertexOrderIndependentOfProvokingVertex*: VkBool32
 
-  VkPhysicalDeviceRayTracingMotionBlurFeaturesNV* = object
+  VkPhysicalDeviceRayTracingMotionBlurFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rayTracingMotionBlur*: VkBool32
     rayTracingMotionBlurPipelineTraceRaysIndirect*: VkBool32
 
-  VkAccelerationStructureGeometryMotionTrianglesDataNV* = object
+  VkAccelerationStructureGeometryMotionTrianglesDataNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     vertexData*: VkDeviceOrHostAddressConstKHR
 
-  VkAccelerationStructureMotionInfoNV* = object
+  VkAccelerationStructureMotionInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxInstances*: uint32
     flags*: VkAccelerationStructureMotionInfoFlagsNV
 
-  VkSRTDataNV* = object
+  VkSRTDataNV* {.byref.} = object
     sx*: float32
     a*: float32
     b*: float32
@@ -11816,7 +11816,7 @@ type
     ty*: float32
     tz*: float32
 
-  VkAccelerationStructureSRTMotionInstanceNV* = object
+  VkAccelerationStructureSRTMotionInstanceNV* {.byref.} = object
     transformT0*: VkSRTDataNV
     transformT1*: VkSRTDataNV
     instanceCustomIndex*: uint32
@@ -11825,7 +11825,7 @@ type
     flags*: VkGeometryInstanceFlagsKHR
     accelerationStructureReference*: uint64
 
-  VkAccelerationStructureMatrixMotionInstanceNV* = object
+  VkAccelerationStructureMatrixMotionInstanceNV* {.byref.} = object
     transformT0*: VkTransformMatrixKHR
     transformT1*: VkTransformMatrixKHR
     instanceCustomIndex*: uint32
@@ -11834,47 +11834,47 @@ type
     flags*: VkGeometryInstanceFlagsKHR
     accelerationStructureReference*: uint64
 
-  VkAccelerationStructureMotionInstanceDataNV* {.union.} = object
+  VkAccelerationStructureMotionInstanceDataNV* {.union, byref.} = object
     staticInstance*: VkAccelerationStructureInstanceKHR
     matrixMotionInstance*: VkAccelerationStructureMatrixMotionInstanceNV
     srtMotionInstance*: VkAccelerationStructureSRTMotionInstanceNV
 
-  VkAccelerationStructureMotionInstanceNV* = object
+  VkAccelerationStructureMotionInstanceNV* {.byref.} = object
     `type`*: VkAccelerationStructureMotionInstanceTypeNV
     flags*: VkAccelerationStructureMotionInstanceFlagsNV
     data*: VkAccelerationStructureMotionInstanceDataNV
   VkRemoteAddressNV* = distinct pointer
 
-  VkMemoryGetRemoteAddressInfoNV* = object
+  VkMemoryGetRemoteAddressInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
     handleType*: VkExternalMemoryHandleTypeFlagBits
 
-  VkImportMemoryBufferCollectionFUCHSIA* = object
+  VkImportMemoryBufferCollectionFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     collection*: VkBufferCollectionFUCHSIA
     index*: uint32
 
-  VkBufferCollectionImageCreateInfoFUCHSIA* = object
+  VkBufferCollectionImageCreateInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     collection*: VkBufferCollectionFUCHSIA
     index*: uint32
 
-  VkBufferCollectionBufferCreateInfoFUCHSIA* = object
+  VkBufferCollectionBufferCreateInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     collection*: VkBufferCollectionFUCHSIA
     index*: uint32
 
-  VkBufferCollectionCreateInfoFUCHSIA* = object
+  VkBufferCollectionCreateInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     collectionToken*: zx_handle_t
 
-  VkBufferCollectionPropertiesFUCHSIA* = object
+  VkBufferCollectionPropertiesFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryTypeBits*: uint32
@@ -11889,19 +11889,19 @@ type
     suggestedXChromaOffset*: VkChromaLocation
     suggestedYChromaOffset*: VkChromaLocation
 
-  VkBufferConstraintsInfoFUCHSIA* = object
+  VkBufferConstraintsInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     createInfo*: VkBufferCreateInfo
     requiredFormatFeatures*: VkFormatFeatureFlags
     bufferCollectionConstraints*: VkBufferCollectionConstraintsInfoFUCHSIA
 
-  VkSysmemColorSpaceFUCHSIA* = object
+  VkSysmemColorSpaceFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     colorSpace*: uint32
 
-  VkImageFormatConstraintsInfoFUCHSIA* = object
+  VkImageFormatConstraintsInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageCreateInfo*: VkImageCreateInfo
@@ -11911,7 +11911,7 @@ type
     colorSpaceCount*: uint32
     pColorSpaces*: ptr VkSysmemColorSpaceFUCHSIA
 
-  VkImageConstraintsInfoFUCHSIA* = object
+  VkImageConstraintsInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     formatConstraintsCount*: uint32
@@ -11919,7 +11919,7 @@ type
     bufferCollectionConstraints*: VkBufferCollectionConstraintsInfoFUCHSIA
     flags*: VkImageConstraintsInfoFlagsFUCHSIA
 
-  VkBufferCollectionConstraintsInfoFUCHSIA* = object
+  VkBufferCollectionConstraintsInfoFUCHSIA* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minBufferCount*: uint32
@@ -11930,19 +11930,19 @@ type
   VkCudaModuleNV* = distinct VkNonDispatchableHandle
   VkCudaFunctionNV* = distinct VkNonDispatchableHandle
 
-  VkCudaModuleCreateInfoNV* = object
+  VkCudaModuleCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dataSize*: uint
     pData*: pointer
 
-  VkCudaFunctionCreateInfoNV* = object
+  VkCudaFunctionCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     module*: VkCudaModuleNV
     pName*: cstring
 
-  VkCudaLaunchInfoNV* = object
+  VkCudaLaunchInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     function*: VkCudaFunctionNV
@@ -11958,12 +11958,12 @@ type
     extraCount*: uint
     pExtras*: ptr pointer
 
-  VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT* = object
+  VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     formatRgba10x6WithoutYCbCrSampler*: VkBool32
 
-  VkFormatProperties3* = object
+  VkFormatProperties3* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     linearTilingFeatures*: VkFormatFeatureFlags2
@@ -11972,18 +11972,18 @@ type
 
   VkFormatProperties3KHR* = VkFormatProperties3
 
-  VkDrmFormatModifierPropertiesList2EXT* = object
+  VkDrmFormatModifierPropertiesList2EXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     drmFormatModifierCount*: uint32
     pDrmFormatModifierProperties*: ptr VkDrmFormatModifierProperties2EXT
 
-  VkDrmFormatModifierProperties2EXT* = object
+  VkDrmFormatModifierProperties2EXT* {.byref.} = object
     drmFormatModifier*: uint64
     drmFormatModifierPlaneCount*: uint32
     drmFormatModifierTilingFeatures*: VkFormatFeatureFlags2
 
-  VkAndroidHardwareBufferFormatProperties2ANDROID* = object
+  VkAndroidHardwareBufferFormatProperties2ANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     format*: VkFormat
@@ -11995,7 +11995,7 @@ type
     suggestedXChromaOffset*: VkChromaLocation
     suggestedYChromaOffset*: VkChromaLocation
 
-  VkPipelineRenderingCreateInfo* = object
+  VkPipelineRenderingCreateInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     viewMask*: uint32
@@ -12006,7 +12006,7 @@ type
 
   VkPipelineRenderingCreateInfoKHR* = VkPipelineRenderingCreateInfo
 
-  VkRenderingInfo* = object
+  VkRenderingInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkRenderingFlags
@@ -12020,7 +12020,7 @@ type
 
   VkRenderingInfoKHR* = VkRenderingInfo
 
-  VkRenderingAttachmentInfo* = object
+  VkRenderingAttachmentInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageView*: VkImageView
@@ -12034,27 +12034,27 @@ type
 
   VkRenderingAttachmentInfoKHR* = VkRenderingAttachmentInfo
 
-  VkRenderingFragmentShadingRateAttachmentInfoKHR* = object
+  VkRenderingFragmentShadingRateAttachmentInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageView*: VkImageView
     imageLayout*: VkImageLayout
     shadingRateAttachmentTexelSize*: VkExtent2D
 
-  VkRenderingFragmentDensityMapAttachmentInfoEXT* = object
+  VkRenderingFragmentDensityMapAttachmentInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageView*: VkImageView
     imageLayout*: VkImageLayout
 
-  VkPhysicalDeviceDynamicRenderingFeatures* = object
+  VkPhysicalDeviceDynamicRenderingFeatures* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dynamicRendering*: VkBool32
 
   VkPhysicalDeviceDynamicRenderingFeaturesKHR* = VkPhysicalDeviceDynamicRenderingFeatures
 
-  VkCommandBufferInheritanceRenderingInfo* = object
+  VkCommandBufferInheritanceRenderingInfo* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkRenderingFlags
@@ -12067,7 +12067,7 @@ type
 
   VkCommandBufferInheritanceRenderingInfoKHR* = VkCommandBufferInheritanceRenderingInfo
 
-  VkAttachmentSampleCountInfoAMD* = object
+  VkAttachmentSampleCountInfoAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     colorAttachmentCount*: uint32
@@ -12076,23 +12076,23 @@ type
 
   VkAttachmentSampleCountInfoNV* = VkAttachmentSampleCountInfoAMD
 
-  VkMultiviewPerViewAttributesInfoNVX* = object
+  VkMultiviewPerViewAttributesInfoNVX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     perViewAttributes*: VkBool32
     perViewAttributesPositionXOnly*: VkBool32
 
-  VkPhysicalDeviceImageViewMinLodFeaturesEXT* = object
+  VkPhysicalDeviceImageViewMinLodFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minLod*: VkBool32
 
-  VkImageViewMinLodCreateInfoEXT* = object
+  VkImageViewMinLodCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minLod*: float32
 
-  VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT* = object
+  VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rasterizationOrderColorAttachmentAccess*: VkBool32
@@ -12101,144 +12101,144 @@ type
 
   VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM* = VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT
 
-  VkPhysicalDeviceLinearColorAttachmentFeaturesNV* = object
+  VkPhysicalDeviceLinearColorAttachmentFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     linearColorAttachment*: VkBool32
 
-  VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT* = object
+  VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     graphicsPipelineLibrary*: VkBool32
 
-  VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT* = object
+  VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     graphicsPipelineLibraryFastLinking*: VkBool32
     graphicsPipelineLibraryIndependentInterpolationDecoration*: VkBool32
 
-  VkGraphicsPipelineLibraryCreateInfoEXT* = object
+  VkGraphicsPipelineLibraryCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkGraphicsPipelineLibraryFlagsEXT
 
-  VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE* = object
+  VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorSetHostMapping*: VkBool32
 
-  VkDescriptorSetBindingReferenceVALVE* = object
+  VkDescriptorSetBindingReferenceVALVE* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorSetLayout*: VkDescriptorSetLayout
     binding*: uint32
 
-  VkDescriptorSetLayoutHostMappingInfoVALVE* = object
+  VkDescriptorSetLayoutHostMappingInfoVALVE* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorOffset*: uint
     descriptorSize*: uint32
 
-  VkPhysicalDeviceNestedCommandBufferFeaturesEXT* = object
+  VkPhysicalDeviceNestedCommandBufferFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     nestedCommandBuffer*: VkBool32
     nestedCommandBufferRendering*: VkBool32
     nestedCommandBufferSimultaneousUse*: VkBool32
 
-  VkPhysicalDeviceNestedCommandBufferPropertiesEXT* = object
+  VkPhysicalDeviceNestedCommandBufferPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxCommandBufferNestingLevel*: uint32
 
-  VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT* = object
+  VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderModuleIdentifier*: VkBool32
 
-  VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT* = object
+  VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderModuleIdentifierAlgorithmUUID*: array[VK_UUID_SIZE, uint8]
 
-  VkPipelineShaderStageModuleIdentifierCreateInfoEXT* = object
+  VkPipelineShaderStageModuleIdentifierCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     identifierSize*: uint32
     pIdentifier*: ptr uint8
 
-  VkShaderModuleIdentifierEXT* = object
+  VkShaderModuleIdentifierEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     identifierSize*: uint32
     identifier*: array[VK_MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT, uint8]
 
-  VkImageCompressionControlEXT* = object
+  VkImageCompressionControlEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkImageCompressionFlagsEXT
     compressionControlPlaneCount*: uint32
     pFixedRateFlags*: ptr VkImageCompressionFixedRateFlagsEXT
 
-  VkPhysicalDeviceImageCompressionControlFeaturesEXT* = object
+  VkPhysicalDeviceImageCompressionControlFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageCompressionControl*: VkBool32
 
-  VkImageCompressionPropertiesEXT* = object
+  VkImageCompressionPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageCompressionFlags*: VkImageCompressionFlagsEXT
     imageCompressionFixedRateFlags*: VkImageCompressionFixedRateFlagsEXT
 
-  VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT* = object
+  VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageCompressionControlSwapchain*: VkBool32
 
-  VkImageSubresource2KHR* = object
+  VkImageSubresource2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     imageSubresource*: VkImageSubresource
 
   VkImageSubresource2EXT* = VkImageSubresource2KHR
 
-  VkSubresourceLayout2KHR* = object
+  VkSubresourceLayout2KHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     subresourceLayout*: VkSubresourceLayout
 
   VkSubresourceLayout2EXT* = VkSubresourceLayout2KHR
 
-  VkRenderPassCreationControlEXT* = object
+  VkRenderPassCreationControlEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     disallowMerging*: VkBool32
 
-  VkRenderPassCreationFeedbackInfoEXT* = object
+  VkRenderPassCreationFeedbackInfoEXT* {.byref.} = object
     postMergeSubpassCount*: uint32
 
-  VkRenderPassCreationFeedbackCreateInfoEXT* = object
+  VkRenderPassCreationFeedbackCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pRenderPassFeedback*: ptr VkRenderPassCreationFeedbackInfoEXT
 
-  VkRenderPassSubpassFeedbackInfoEXT* = object
+  VkRenderPassSubpassFeedbackInfoEXT* {.byref.} = object
     subpassMergeStatus*: VkSubpassMergeStatusEXT
     description*: array[VK_MAX_DESCRIPTION_SIZE, char]
     postMergeIndex*: uint32
 
-  VkRenderPassSubpassFeedbackCreateInfoEXT* = object
+  VkRenderPassSubpassFeedbackCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pSubpassFeedback*: ptr VkRenderPassSubpassFeedbackInfoEXT
 
-  VkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT* = object
+  VkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     subpassMergeFeedback*: VkBool32
 
-  VkMicromapBuildInfoEXT* = object
+  VkMicromapBuildInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     `type`*: VkMicromapTypeEXT
@@ -12253,7 +12253,7 @@ type
     triangleArray*: VkDeviceOrHostAddressConstKHR
     triangleArrayStride*: VkDeviceSize
 
-  VkMicromapCreateInfoEXT* = object
+  VkMicromapCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     createFlags*: VkMicromapCreateFlagsEXT
@@ -12263,63 +12263,63 @@ type
     `type`*: VkMicromapTypeEXT
     deviceAddress*: VkDeviceAddress
 
-  VkMicromapVersionInfoEXT* = object
+  VkMicromapVersionInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pVersionData*: ptr uint8
 
-  VkCopyMicromapInfoEXT* = object
+  VkCopyMicromapInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     src*: VkMicromapEXT
     dst*: VkMicromapEXT
     mode*: VkCopyMicromapModeEXT
 
-  VkCopyMicromapToMemoryInfoEXT* = object
+  VkCopyMicromapToMemoryInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     src*: VkMicromapEXT
     dst*: VkDeviceOrHostAddressKHR
     mode*: VkCopyMicromapModeEXT
 
-  VkCopyMemoryToMicromapInfoEXT* = object
+  VkCopyMemoryToMicromapInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     src*: VkDeviceOrHostAddressConstKHR
     dst*: VkMicromapEXT
     mode*: VkCopyMicromapModeEXT
 
-  VkMicromapBuildSizesInfoEXT* = object
+  VkMicromapBuildSizesInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     micromapSize*: VkDeviceSize
     buildScratchSize*: VkDeviceSize
     discardable*: VkBool32
 
-  VkMicromapUsageEXT* = object
+  VkMicromapUsageEXT* {.byref.} = object
     count*: uint32
     subdivisionLevel*: uint32
     format*: uint32
 
-  VkMicromapTriangleEXT* = object
+  VkMicromapTriangleEXT* {.byref.} = object
     dataOffset*: uint32
     subdivisionLevel*: uint16
     format*: uint16
 
-  VkPhysicalDeviceOpacityMicromapFeaturesEXT* = object
+  VkPhysicalDeviceOpacityMicromapFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     micromap*: VkBool32
     micromapCaptureReplay*: VkBool32
     micromapHostCommands*: VkBool32
 
-  VkPhysicalDeviceOpacityMicromapPropertiesEXT* = object
+  VkPhysicalDeviceOpacityMicromapPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxOpacity2StateSubdivisionLevel*: uint32
     maxOpacity4StateSubdivisionLevel*: uint32
 
-  VkAccelerationStructureTrianglesOpacityMicromapEXT* = object
+  VkAccelerationStructureTrianglesOpacityMicromapEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     indexType*: VkIndexType
@@ -12331,17 +12331,17 @@ type
     ppUsageCounts*: ptr ptr VkMicromapUsageEXT
     micromap*: VkMicromapEXT
 
-  VkPhysicalDeviceDisplacementMicromapFeaturesNV* = object
+  VkPhysicalDeviceDisplacementMicromapFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     displacementMicromap*: VkBool32
 
-  VkPhysicalDeviceDisplacementMicromapPropertiesNV* = object
+  VkPhysicalDeviceDisplacementMicromapPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxDisplacementMicromapSubdivisionLevel*: uint32
 
-  VkAccelerationStructureTrianglesDisplacementMicromapNV* = object
+  VkAccelerationStructureTrianglesDisplacementMicromapNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     displacementBiasAndScaleFormat*: VkFormat
@@ -12361,58 +12361,58 @@ type
     ppUsageCounts*: ptr ptr VkMicromapUsageEXT
     micromap*: VkMicromapEXT
 
-  VkPipelinePropertiesIdentifierEXT* = object
+  VkPipelinePropertiesIdentifierEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineIdentifier*: array[VK_UUID_SIZE, uint8]
 
-  VkPhysicalDevicePipelinePropertiesFeaturesEXT* = object
+  VkPhysicalDevicePipelinePropertiesFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelinePropertiesIdentifier*: VkBool32
 
-  VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD* = object
+  VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderEarlyAndLateFragmentTests*: VkBool32
 
-  VkExternalMemoryAcquireUnmodifiedEXT* = object
+  VkExternalMemoryAcquireUnmodifiedEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     acquireUnmodifiedMemory*: VkBool32
 
-  VkExportMetalObjectCreateInfoEXT* = object
+  VkExportMetalObjectCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     exportObjectType*: VkExportMetalObjectTypeFlagBitsEXT
 
-  VkExportMetalObjectsInfoEXT* = object
+  VkExportMetalObjectsInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
 
-  VkExportMetalDeviceInfoEXT* = object
+  VkExportMetalDeviceInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     mtlDevice*: MTLDevice_id
 
-  VkExportMetalCommandQueueInfoEXT* = object
+  VkExportMetalCommandQueueInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     queue*: VkQueue
     mtlCommandQueue*: MTLCommandQueue_id
 
-  VkExportMetalBufferInfoEXT* = object
+  VkExportMetalBufferInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memory*: VkDeviceMemory
     mtlBuffer*: MTLBuffer_id
 
-  VkImportMetalBufferInfoEXT* = object
+  VkImportMetalBufferInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     mtlBuffer*: MTLBuffer_id
 
-  VkExportMetalTextureInfoEXT* = object
+  VkExportMetalTextureInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
@@ -12421,46 +12421,46 @@ type
     plane*: VkImageAspectFlagBits
     mtlTexture*: MTLTexture_id
 
-  VkImportMetalTextureInfoEXT* = object
+  VkImportMetalTextureInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     plane*: VkImageAspectFlagBits
     mtlTexture*: MTLTexture_id
 
-  VkExportMetalIOSurfaceInfoEXT* = object
+  VkExportMetalIOSurfaceInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
     ioSurface*: IOSurfaceRef
 
-  VkImportMetalIOSurfaceInfoEXT* = object
+  VkImportMetalIOSurfaceInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     ioSurface*: IOSurfaceRef
 
-  VkExportMetalSharedEventInfoEXT* = object
+  VkExportMetalSharedEventInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     semaphore*: VkSemaphore
     event*: VkEvent
     mtlSharedEvent*: MTLSharedEvent_id
 
-  VkImportMetalSharedEventInfoEXT* = object
+  VkImportMetalSharedEventInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     mtlSharedEvent*: MTLSharedEvent_id
 
-  VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT* = object
+  VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     nonSeamlessCubeMap*: VkBool32
 
-  VkPhysicalDevicePipelineRobustnessFeaturesEXT* = object
+  VkPhysicalDevicePipelineRobustnessFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineRobustness*: VkBool32
 
-  VkPipelineRobustnessCreateInfoEXT* = object
+  VkPipelineRobustnessCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     storageBuffers*: VkPipelineRobustnessBufferBehaviorEXT
@@ -12468,7 +12468,7 @@ type
     vertexInputs*: VkPipelineRobustnessBufferBehaviorEXT
     images*: VkPipelineRobustnessImageBehaviorEXT
 
-  VkPhysicalDevicePipelineRobustnessPropertiesEXT* = object
+  VkPhysicalDevicePipelineRobustnessPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     defaultRobustnessStorageBuffers*: VkPipelineRobustnessBufferBehaviorEXT
@@ -12476,21 +12476,21 @@ type
     defaultRobustnessVertexInputs*: VkPipelineRobustnessBufferBehaviorEXT
     defaultRobustnessImages*: VkPipelineRobustnessImageBehaviorEXT
 
-  VkImageViewSampleWeightCreateInfoQCOM* = object
+  VkImageViewSampleWeightCreateInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     filterCenter*: VkOffset2D
     filterSize*: VkExtent2D
     numPhases*: uint32
 
-  VkPhysicalDeviceImageProcessingFeaturesQCOM* = object
+  VkPhysicalDeviceImageProcessingFeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     textureSampleWeighted*: VkBool32
     textureBoxFilter*: VkBool32
     textureBlockMatch*: VkBool32
 
-  VkPhysicalDeviceImageProcessingPropertiesQCOM* = object
+  VkPhysicalDeviceImageProcessingPropertiesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxWeightFilterPhases*: uint32
@@ -12498,45 +12498,45 @@ type
     maxBlockMatchRegion*: VkExtent2D
     maxBoxFilterBlockSize*: VkExtent2D
 
-  VkPhysicalDeviceTilePropertiesFeaturesQCOM* = object
+  VkPhysicalDeviceTilePropertiesFeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     tileProperties*: VkBool32
 
-  VkTilePropertiesQCOM* = object
+  VkTilePropertiesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     tileSize*: VkExtent3D
     apronSize*: VkExtent2D
     origin*: VkOffset2D
 
-  VkPhysicalDeviceAmigoProfilingFeaturesSEC* = object
+  VkPhysicalDeviceAmigoProfilingFeaturesSEC* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     amigoProfiling*: VkBool32
 
-  VkAmigoProfilingSubmitInfoSEC* = object
+  VkAmigoProfilingSubmitInfoSEC* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     firstDrawTimestamp*: uint64
     swapBufferTimestamp*: uint64
 
-  VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT* = object
+  VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     attachmentFeedbackLoopLayout*: VkBool32
 
-  VkPhysicalDeviceDepthClampZeroOneFeaturesEXT* = object
+  VkPhysicalDeviceDepthClampZeroOneFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     depthClampZeroOne*: VkBool32
 
-  VkPhysicalDeviceAddressBindingReportFeaturesEXT* = object
+  VkPhysicalDeviceAddressBindingReportFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     reportAddressBinding*: VkBool32
 
-  VkDeviceAddressBindingCallbackDataEXT* = object
+  VkDeviceAddressBindingCallbackDataEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDeviceAddressBindingFlagsEXT
@@ -12544,12 +12544,12 @@ type
     size*: VkDeviceSize
     bindingType*: VkDeviceAddressBindingTypeEXT
 
-  VkPhysicalDeviceOpticalFlowFeaturesNV* = object
+  VkPhysicalDeviceOpticalFlowFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     opticalFlow*: VkBool32
 
-  VkPhysicalDeviceOpticalFlowPropertiesNV* = object
+  VkPhysicalDeviceOpticalFlowPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     supportedOutputGridSizes*: VkOpticalFlowGridSizeFlagsNV
@@ -12564,17 +12564,17 @@ type
     maxHeight*: uint32
     maxNumRegionsOfInterest*: uint32
 
-  VkOpticalFlowImageFormatInfoNV* = object
+  VkOpticalFlowImageFormatInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     usage*: VkOpticalFlowUsageFlagsNV
 
-  VkOpticalFlowImageFormatPropertiesNV* = object
+  VkOpticalFlowImageFormatPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     format*: VkFormat
 
-  VkOpticalFlowSessionCreateInfoNV* = object
+  VkOpticalFlowSessionCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     width*: uint32
@@ -12587,44 +12587,44 @@ type
     performanceLevel*: VkOpticalFlowPerformanceLevelNV
     flags*: VkOpticalFlowSessionCreateFlagsNV
 
-  VkOpticalFlowSessionCreatePrivateDataInfoNV* = object
+  VkOpticalFlowSessionCreatePrivateDataInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     id*: uint32
     size*: uint32
     pPrivateData*: pointer
 
-  VkOpticalFlowExecuteInfoNV* = object
+  VkOpticalFlowExecuteInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkOpticalFlowExecuteFlagsNV
     regionCount*: uint32
     pRegions*: ptr VkRect2D
 
-  VkPhysicalDeviceFaultFeaturesEXT* = object
+  VkPhysicalDeviceFaultFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     deviceFault*: VkBool32
     deviceFaultVendorBinary*: VkBool32
 
-  VkDeviceFaultAddressInfoEXT* = object
+  VkDeviceFaultAddressInfoEXT* {.byref.} = object
     addressType*: VkDeviceFaultAddressTypeEXT
     reportedAddress*: VkDeviceAddress
     addressPrecision*: VkDeviceSize
 
-  VkDeviceFaultVendorInfoEXT* = object
+  VkDeviceFaultVendorInfoEXT* {.byref.} = object
     description*: array[VK_MAX_DESCRIPTION_SIZE, char]
     vendorFaultCode*: uint64
     vendorFaultData*: uint64
 
-  VkDeviceFaultCountsEXT* = object
+  VkDeviceFaultCountsEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     addressInfoCount*: uint32
     vendorInfoCount*: uint32
     vendorBinarySize*: VkDeviceSize
 
-  VkDeviceFaultInfoEXT* = object
+  VkDeviceFaultInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     description*: array[VK_MAX_DESCRIPTION_SIZE, char]
@@ -12632,7 +12632,7 @@ type
     pVendorInfos*: ptr VkDeviceFaultVendorInfoEXT
     pVendorBinaryData*: pointer
 
-  VkDeviceFaultVendorBinaryHeaderVersionOneEXT* = object
+  VkDeviceFaultVendorBinaryHeaderVersionOneEXT* {.byref.} = object
     headerSize*: uint32
     headerVersion*: VkDeviceFaultVendorBinaryHeaderVersionEXT
     vendorID*: uint32
@@ -12645,44 +12645,44 @@ type
     engineVersion*: uint32
     apiVersion*: uint32
 
-  VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT* = object
+  VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineLibraryGroupHandles*: VkBool32
 
-  VkDepthBiasInfoEXT* = object
+  VkDepthBiasInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     depthBiasConstantFactor*: float32
     depthBiasClamp*: float32
     depthBiasSlopeFactor*: float32
 
-  VkDepthBiasRepresentationInfoEXT* = object
+  VkDepthBiasRepresentationInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     depthBiasRepresentation*: VkDepthBiasRepresentationEXT
     depthBiasExact*: VkBool32
 
-  VkDecompressMemoryRegionNV* = object
+  VkDecompressMemoryRegionNV* {.byref.} = object
     srcAddress*: VkDeviceAddress
     dstAddress*: VkDeviceAddress
     compressedSize*: VkDeviceSize
     decompressedSize*: VkDeviceSize
     decompressionMethod*: VkMemoryDecompressionMethodFlagsNV
 
-  VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM* = object
+  VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderCoreMask*: uint64
     shaderCoreCount*: uint32
     shaderWarpsPerCore*: uint32
 
-  VkPhysicalDeviceShaderCoreBuiltinsFeaturesARM* = object
+  VkPhysicalDeviceShaderCoreBuiltinsFeaturesARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderCoreBuiltins*: VkBool32
 
-  VkFrameBoundaryEXT* = object
+  VkFrameBoundaryEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkFrameBoundaryFlagsEXT
@@ -12695,22 +12695,22 @@ type
     tagSize*: uint
     pTag*: pointer
 
-  VkPhysicalDeviceFrameBoundaryFeaturesEXT* = object
+  VkPhysicalDeviceFrameBoundaryFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     frameBoundary*: VkBool32
 
-  VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT* = object
+  VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dynamicRenderingUnusedAttachments*: VkBool32
 
-  VkSurfacePresentModeEXT* = object
+  VkSurfacePresentModeEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentMode*: VkPresentModeKHR
 
-  VkSurfacePresentScalingCapabilitiesEXT* = object
+  VkSurfacePresentScalingCapabilitiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     supportedPresentScaling*: VkPresentScalingFlagsEXT
@@ -12719,50 +12719,50 @@ type
     minScaledImageExtent*: VkExtent2D
     maxScaledImageExtent*: VkExtent2D
 
-  VkSurfacePresentModeCompatibilityEXT* = object
+  VkSurfacePresentModeCompatibilityEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentModeCount*: uint32
     pPresentModes*: ptr VkPresentModeKHR
 
-  VkPhysicalDeviceSwapchainMaintenance1FeaturesEXT* = object
+  VkPhysicalDeviceSwapchainMaintenance1FeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainMaintenance1*: VkBool32
 
-  VkSwapchainPresentFenceInfoEXT* = object
+  VkSwapchainPresentFenceInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainCount*: uint32
     pFences*: ptr VkFence
 
-  VkSwapchainPresentModesCreateInfoEXT* = object
+  VkSwapchainPresentModesCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentModeCount*: uint32
     pPresentModes*: ptr VkPresentModeKHR
 
-  VkSwapchainPresentModeInfoEXT* = object
+  VkSwapchainPresentModeInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainCount*: uint32
     pPresentModes*: ptr VkPresentModeKHR
 
-  VkSwapchainPresentScalingCreateInfoEXT* = object
+  VkSwapchainPresentScalingCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     scalingBehavior*: VkPresentScalingFlagsEXT
     presentGravityX*: VkPresentGravityFlagsEXT
     presentGravityY*: VkPresentGravityFlagsEXT
 
-  VkReleaseSwapchainImagesInfoEXT* = object
+  VkReleaseSwapchainImagesInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     swapchain*: VkSwapchainKHR
     imageIndexCount*: uint32
     pImageIndices*: ptr uint32
 
-  VkPhysicalDeviceDepthBiasControlFeaturesEXT* = object
+  VkPhysicalDeviceDepthBiasControlFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     depthBiasControl*: VkBool32
@@ -12770,81 +12770,81 @@ type
     floatRepresentation*: VkBool32
     depthBiasExact*: VkBool32
 
-  VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV* = object
+  VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rayTracingInvocationReorder*: VkBool32
 
-  VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV* = object
+  VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rayTracingInvocationReorderReorderingHint*: VkRayTracingInvocationReorderModeNV
 
-  VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV* = object
+  VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     extendedSparseAddressSpace*: VkBool32
 
-  VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV* = object
+  VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     extendedSparseAddressSpaceSize*: VkDeviceSize
     extendedSparseImageUsageFlags*: VkImageUsageFlags
     extendedSparseBufferUsageFlags*: VkBufferUsageFlags
 
-  VkDirectDriverLoadingInfoLUNARG* = object
+  VkDirectDriverLoadingInfoLUNARG* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkDirectDriverLoadingFlagsLUNARG
     pfnGetInstanceProcAddr*: PFN_vkGetInstanceProcAddrLUNARG
 
-  VkDirectDriverLoadingListLUNARG* = object
+  VkDirectDriverLoadingListLUNARG* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     mode*: VkDirectDriverLoadingModeLUNARG
     driverCount*: uint32
     pDrivers*: ptr VkDirectDriverLoadingInfoLUNARG
 
-  VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM* = object
+  VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     multiviewPerViewViewports*: VkBool32
 
-  VkPhysicalDeviceRayTracingPositionFetchFeaturesKHR* = object
+  VkPhysicalDeviceRayTracingPositionFetchFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     rayTracingPositionFetch*: VkBool32
 
-  VkDeviceImageSubresourceInfoKHR* = object
+  VkDeviceImageSubresourceInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pCreateInfo*: ptr VkImageCreateInfo
     pSubresource*: ptr VkImageSubresource2KHR
 
-  VkPhysicalDeviceShaderCorePropertiesARM* = object
+  VkPhysicalDeviceShaderCorePropertiesARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pixelRate*: uint32
     texelRate*: uint32
     fmaRate*: uint32
 
-  VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM* = object
+  VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     multiviewPerViewRenderAreas*: VkBool32
 
-  VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM* = object
+  VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     perViewRenderAreaCount*: uint32
     pPerViewRenderAreas*: ptr VkRect2D
 
-  VkQueryLowLatencySupportNV* = object
+  VkQueryLowLatencySupportNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pQueriedLowLatencyData*: pointer
 
-  VkMemoryMapInfoKHR* = object
+  VkMemoryMapInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkMemoryMapFlags
@@ -12852,24 +12852,24 @@ type
     offset*: VkDeviceSize
     size*: VkDeviceSize
 
-  VkMemoryUnmapInfoKHR* = object
+  VkMemoryUnmapInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkMemoryUnmapFlagsKHR
     memory*: VkDeviceMemory
 
-  VkPhysicalDeviceShaderObjectFeaturesEXT* = object
+  VkPhysicalDeviceShaderObjectFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderObject*: VkBool32
 
-  VkPhysicalDeviceShaderObjectPropertiesEXT* = object
+  VkPhysicalDeviceShaderObjectPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderBinaryUUID*: array[VK_UUID_SIZE, uint8]
     shaderBinaryVersion*: uint32
 
-  VkShaderCreateInfoEXT* = object
+  VkShaderCreateInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkShaderCreateFlagsEXT
@@ -12885,32 +12885,32 @@ type
     pPushConstantRanges*: ptr VkPushConstantRange
     pSpecializationInfo*: ptr VkSpecializationInfo
 
-  VkPhysicalDeviceShaderTileImageFeaturesEXT* = object
+  VkPhysicalDeviceShaderTileImageFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderTileImageColorReadAccess*: VkBool32
     shaderTileImageDepthReadAccess*: VkBool32
     shaderTileImageStencilReadAccess*: VkBool32
 
-  VkPhysicalDeviceShaderTileImagePropertiesEXT* = object
+  VkPhysicalDeviceShaderTileImagePropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderTileImageCoherentReadAccelerated*: VkBool32
     shaderTileImageReadSampleFromPixelRateInvocation*: VkBool32
     shaderTileImageReadFromHelperInvocation*: VkBool32
 
-  VkImportScreenBufferInfoQNX* = object
+  VkImportScreenBufferInfoQNX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     buffer*: ptr screen_buffer
 
-  VkScreenBufferPropertiesQNX* = object
+  VkScreenBufferPropertiesQNX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     allocationSize*: VkDeviceSize
     memoryTypeBits*: uint32
 
-  VkScreenBufferFormatPropertiesQNX* = object
+  VkScreenBufferFormatPropertiesQNX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     format*: VkFormat
@@ -12923,23 +12923,23 @@ type
     suggestedXChromaOffset*: VkChromaLocation
     suggestedYChromaOffset*: VkChromaLocation
 
-  VkExternalFormatQNX* = object
+  VkExternalFormatQNX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     externalFormat*: uint64
 
-  VkPhysicalDeviceExternalMemoryScreenBufferFeaturesQNX* = object
+  VkPhysicalDeviceExternalMemoryScreenBufferFeaturesQNX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     screenBufferImport*: VkBool32
 
-  VkPhysicalDeviceCooperativeMatrixFeaturesKHR* = object
+  VkPhysicalDeviceCooperativeMatrixFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cooperativeMatrix*: VkBool32
     cooperativeMatrixRobustBufferAccess*: VkBool32
 
-  VkCooperativeMatrixPropertiesKHR* = object
+  VkCooperativeMatrixPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     MSize*: uint32
@@ -12952,12 +12952,12 @@ type
     saturatingAccumulation*: VkBool32
     scope*: VkScopeKHR
 
-  VkPhysicalDeviceCooperativeMatrixPropertiesKHR* = object
+  VkPhysicalDeviceCooperativeMatrixPropertiesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cooperativeMatrixSupportedStages*: VkShaderStageFlags
 
-  VkPhysicalDeviceShaderEnqueuePropertiesAMDX* = object
+  VkPhysicalDeviceShaderEnqueuePropertiesAMDX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxExecutionGraphDepth*: uint32
@@ -12966,12 +12966,12 @@ type
     maxExecutionGraphShaderPayloadCount*: uint32
     executionGraphDispatchAddressAlignment*: uint32
 
-  VkPhysicalDeviceShaderEnqueueFeaturesAMDX* = object
+  VkPhysicalDeviceShaderEnqueueFeaturesAMDX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderEnqueue*: VkBool32
 
-  VkExecutionGraphPipelineCreateInfoAMDX* = object
+  VkExecutionGraphPipelineCreateInfoAMDX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkPipelineCreateFlags
@@ -12982,34 +12982,34 @@ type
     basePipelineHandle*: VkPipeline
     basePipelineIndex*: int32
 
-  VkPipelineShaderStageNodeCreateInfoAMDX* = object
+  VkPipelineShaderStageNodeCreateInfoAMDX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pName*: cstring
     index*: uint32
 
-  VkExecutionGraphPipelineScratchSizeAMDX* = object
+  VkExecutionGraphPipelineScratchSizeAMDX* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     size*: VkDeviceSize
 
-  VkDispatchGraphInfoAMDX* = object
+  VkDispatchGraphInfoAMDX* {.byref.} = object
     nodeIndex*: uint32
     payloadCount*: uint32
     payloads*: VkDeviceOrHostAddressConstAMDX
     payloadStride*: uint64
 
-  VkDispatchGraphCountInfoAMDX* = object
+  VkDispatchGraphCountInfoAMDX* {.byref.} = object
     count*: uint32
     infos*: VkDeviceOrHostAddressConstAMDX
     stride*: uint64
 
-  VkBindMemoryStatusKHR* = object
+  VkBindMemoryStatusKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pResult*: ptr VkResult
 
-  VkBindDescriptorSetsInfoKHR* = object
+  VkBindDescriptorSetsInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stageFlags*: VkShaderStageFlags
@@ -13020,7 +13020,7 @@ type
     dynamicOffsetCount*: uint32
     pDynamicOffsets*: ptr uint32
 
-  VkPushConstantsInfoKHR* = object
+  VkPushConstantsInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     layout*: VkPipelineLayout
@@ -13029,7 +13029,7 @@ type
     size*: uint32
     pValues*: pointer
 
-  VkPushDescriptorSetInfoKHR* = object
+  VkPushDescriptorSetInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stageFlags*: VkShaderStageFlags
@@ -13038,7 +13038,7 @@ type
     descriptorWriteCount*: uint32
     pDescriptorWrites*: ptr VkWriteDescriptorSet
 
-  VkPushDescriptorSetWithTemplateInfoKHR* = object
+  VkPushDescriptorSetWithTemplateInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorUpdateTemplate*: VkDescriptorUpdateTemplate
@@ -13046,7 +13046,7 @@ type
     set*: uint32
     pData*: pointer
 
-  VkSetDescriptorBufferOffsetsInfoEXT* = object
+  VkSetDescriptorBufferOffsetsInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stageFlags*: VkShaderStageFlags
@@ -13056,119 +13056,119 @@ type
     pBufferIndices*: ptr uint32
     pOffsets*: ptr VkDeviceSize
 
-  VkBindDescriptorBufferEmbeddedSamplersInfoEXT* = object
+  VkBindDescriptorBufferEmbeddedSamplersInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stageFlags*: VkShaderStageFlags
     layout*: VkPipelineLayout
     set*: uint32
 
-  VkPhysicalDeviceCubicClampFeaturesQCOM* = object
+  VkPhysicalDeviceCubicClampFeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cubicRangeClamp*: VkBool32
 
-  VkPhysicalDeviceYcbcrDegammaFeaturesQCOM* = object
+  VkPhysicalDeviceYcbcrDegammaFeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     ycbcrDegamma*: VkBool32
 
-  VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM* = object
+  VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     enableYDegamma*: VkBool32
     enableCbCrDegamma*: VkBool32
 
-  VkPhysicalDeviceCubicWeightsFeaturesQCOM* = object
+  VkPhysicalDeviceCubicWeightsFeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     selectableCubicWeights*: VkBool32
 
-  VkSamplerCubicWeightsCreateInfoQCOM* = object
+  VkSamplerCubicWeightsCreateInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cubicWeights*: VkCubicFilterWeightsQCOM
 
-  VkBlitImageCubicWeightsInfoQCOM* = object
+  VkBlitImageCubicWeightsInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cubicWeights*: VkCubicFilterWeightsQCOM
 
-  VkPhysicalDeviceImageProcessing2FeaturesQCOM* = object
+  VkPhysicalDeviceImageProcessing2FeaturesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     textureBlockMatch2*: VkBool32
 
-  VkPhysicalDeviceImageProcessing2PropertiesQCOM* = object
+  VkPhysicalDeviceImageProcessing2PropertiesQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     maxBlockMatchWindow*: VkExtent2D
 
-  VkSamplerBlockMatchWindowCreateInfoQCOM* = object
+  VkSamplerBlockMatchWindowCreateInfoQCOM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     windowExtent*: VkExtent2D
     windowCompareMode*: VkBlockMatchWindowCompareModeQCOM
 
-  VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV* = object
+  VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorPoolOverallocation*: VkBool32
 
-  VkPhysicalDeviceLayeredDriverPropertiesMSFT* = object
+  VkPhysicalDeviceLayeredDriverPropertiesMSFT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     underlyingAPI*: VkLayeredDriverUnderlyingApiMSFT
 
-  VkPhysicalDevicePerStageDescriptorSetFeaturesNV* = object
+  VkPhysicalDevicePerStageDescriptorSetFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     perStageDescriptorSet*: VkBool32
     dynamicPipelineLayout*: VkBool32
 
-  VkPhysicalDeviceExternalFormatResolveFeaturesANDROID* = object
+  VkPhysicalDeviceExternalFormatResolveFeaturesANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     externalFormatResolve*: VkBool32
 
-  VkPhysicalDeviceExternalFormatResolvePropertiesANDROID* = object
+  VkPhysicalDeviceExternalFormatResolvePropertiesANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     nullColorAttachmentWithExternalFormatResolve*: VkBool32
     externalFormatResolveChromaOffsetX*: VkChromaLocation
     externalFormatResolveChromaOffsetY*: VkChromaLocation
 
-  VkAndroidHardwareBufferFormatResolvePropertiesANDROID* = object
+  VkAndroidHardwareBufferFormatResolvePropertiesANDROID* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     colorAttachmentFormat*: VkFormat
 
-  VkLatencySleepModeInfoNV* = object
+  VkLatencySleepModeInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     lowLatencyMode*: VkBool32
     lowLatencyBoost*: VkBool32
     minimumIntervalUs*: uint32
 
-  VkLatencySleepInfoNV* = object
+  VkLatencySleepInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     signalSemaphore*: VkSemaphore
     value*: uint64
 
-  VkSetLatencyMarkerInfoNV* = object
+  VkSetLatencyMarkerInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentID*: uint64
     marker*: VkLatencyMarkerNV
 
-  VkGetLatencyMarkerInfoNV* = object
+  VkGetLatencyMarkerInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     timingCount*: uint32
     pTimings*: ptr VkLatencyTimingsFrameReportNV
 
-  VkLatencyTimingsFrameReportNV* = object
+  VkLatencyTimingsFrameReportNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentID*: uint64
@@ -13186,119 +13186,119 @@ type
     gpuRenderStartTimeUs*: uint64
     gpuRenderEndTimeUs*: uint64
 
-  VkOutOfBandQueueTypeInfoNV* = object
+  VkOutOfBandQueueTypeInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     queueType*: VkOutOfBandQueueTypeNV
 
-  VkLatencySubmissionPresentIdNV* = object
+  VkLatencySubmissionPresentIdNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentID*: uint64
 
-  VkSwapchainLatencyCreateInfoNV* = object
+  VkSwapchainLatencyCreateInfoNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     latencyModeEnable*: VkBool32
 
-  VkLatencySurfaceCapabilitiesNV* = object
+  VkLatencySurfaceCapabilitiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     presentModeCount*: uint32
     pPresentModes*: ptr VkPresentModeKHR
 
-  VkPhysicalDeviceCudaKernelLaunchFeaturesNV* = object
+  VkPhysicalDeviceCudaKernelLaunchFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     cudaKernelLaunchFeatures*: VkBool32
 
-  VkPhysicalDeviceCudaKernelLaunchPropertiesNV* = object
+  VkPhysicalDeviceCudaKernelLaunchPropertiesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     computeCapabilityMinor*: uint32
     computeCapabilityMajor*: uint32
 
-  VkDeviceQueueShaderCoreControlCreateInfoARM* = object
+  VkDeviceQueueShaderCoreControlCreateInfoARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderCoreCount*: uint32
 
-  VkPhysicalDeviceSchedulingControlsFeaturesARM* = object
+  VkPhysicalDeviceSchedulingControlsFeaturesARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     schedulingControls*: VkBool32
 
-  VkPhysicalDeviceSchedulingControlsPropertiesARM* = object
+  VkPhysicalDeviceSchedulingControlsPropertiesARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     schedulingControlsFlags*: VkPhysicalDeviceSchedulingControlsFlagsARM
 
-  VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG* = object
+  VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     relaxedLineRasterization*: VkBool32
 
-  VkPhysicalDeviceRenderPassStripedFeaturesARM* = object
+  VkPhysicalDeviceRenderPassStripedFeaturesARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     renderPassStriped*: VkBool32
 
-  VkPhysicalDeviceRenderPassStripedPropertiesARM* = object
+  VkPhysicalDeviceRenderPassStripedPropertiesARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     renderPassStripeGranularity*: VkExtent2D
     maxRenderPassStripes*: uint32
 
-  VkRenderPassStripeInfoARM* = object
+  VkRenderPassStripeInfoARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stripeArea*: VkRect2D
 
-  VkRenderPassStripeBeginInfoARM* = object
+  VkRenderPassStripeBeginInfoARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stripeInfoCount*: uint32
     pStripeInfos*: ptr VkRenderPassStripeInfoARM
 
-  VkRenderPassStripeSubmitInfoARM* = object
+  VkRenderPassStripeSubmitInfoARM* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     stripeSemaphoreInfoCount*: uint32
     pStripeSemaphoreInfos*: ptr VkSemaphoreSubmitInfo
 
-  VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR* = object
+  VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderMaximalReconvergence*: VkBool32
 
-  VkPhysicalDeviceShaderSubgroupRotateFeaturesKHR* = object
+  VkPhysicalDeviceShaderSubgroupRotateFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderSubgroupRotate*: VkBool32
     shaderSubgroupRotateClustered*: VkBool32
 
-  VkPhysicalDeviceShaderExpectAssumeFeaturesKHR* = object
+  VkPhysicalDeviceShaderExpectAssumeFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderExpectAssume*: VkBool32
 
-  VkPhysicalDeviceShaderFloatControls2FeaturesKHR* = object
+  VkPhysicalDeviceShaderFloatControls2FeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderFloatControls2*: VkBool32
 
-  VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR* = object
+  VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     dynamicRenderingLocalRead*: VkBool32
 
-  VkRenderingAttachmentLocationInfoKHR* = object
+  VkRenderingAttachmentLocationInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     colorAttachmentCount*: uint32
     pColorAttachmentLocations*: ptr uint32
 
-  VkRenderingInputAttachmentIndexInfoKHR* = object
+  VkRenderingInputAttachmentIndexInfoKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     colorAttachmentCount*: uint32
@@ -13306,34 +13306,34 @@ type
     pDepthInputAttachmentIndex*: ptr uint32
     pStencilInputAttachmentIndex*: ptr uint32
 
-  VkPhysicalDeviceShaderQuadControlFeaturesKHR* = object
+  VkPhysicalDeviceShaderQuadControlFeaturesKHR* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderQuadControl*: VkBool32
 
-  VkPhysicalDeviceShaderAtomicFloat16VectorFeaturesNV* = object
+  VkPhysicalDeviceShaderAtomicFloat16VectorFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderFloat16VectorAtomics*: VkBool32
 
-  VkPhysicalDeviceMapMemoryPlacedFeaturesEXT* = object
+  VkPhysicalDeviceMapMemoryPlacedFeaturesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     memoryMapPlaced*: VkBool32
     memoryMapRangePlaced*: VkBool32
     memoryUnmapReserve*: VkBool32
 
-  VkPhysicalDeviceMapMemoryPlacedPropertiesEXT* = object
+  VkPhysicalDeviceMapMemoryPlacedPropertiesEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     minPlacedMemoryMapAlignment*: VkDeviceSize
 
-  VkMemoryMapPlacedInfoEXT* = object
+  VkMemoryMapPlacedInfoEXT* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     pPlacedAddress*: pointer
 
-  VkPhysicalDeviceRawAccessChainsFeaturesNV* = object
+  VkPhysicalDeviceRawAccessChainsFeaturesNV* {.byref.} = object
     sType*: VkStructureType
     pNext*: pointer
     shaderRawAccessChains*: VkBool32
@@ -13457,23 +13457,23 @@ proc newVkAllocationCallbacks*(pUserData: pointer = nil, pfnAllocation: PFN_vkAl
     pfnInternalFree: pfnInternalFree,
   )
 
-proc newVkDeviceQueueCreateInfo*(sType: VkStructureType = VkStructureType.DeviceQueueCreateInfo, pNext: pointer = nil, flags: VkDeviceQueueCreateFlags = 0.VkDeviceQueueCreateFlags, queueFamilyIndex: uint32, queueCount: uint32, pQueuePriorities: ptr float32): VkDeviceQueueCreateInfo =
+proc newVkDeviceQueueCreateInfo*(sType: VkStructureType = VkStructureType.DeviceQueueCreateInfo, pNext: pointer = nil, flags: VkDeviceQueueCreateFlags = 0.VkDeviceQueueCreateFlags, queueFamilyIndex: uint32, queuePriorities: openarray[float32]): VkDeviceQueueCreateInfo =
   result = VkDeviceQueueCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     queueFamilyIndex: queueFamilyIndex,
-    queueCount: queueCount,
-    pQueuePriorities: pQueuePriorities,
+    queueCount: len(queuePriorities).uint32,
+    pQueuePriorities: if len(queuePriorities) == 0: nil else: cast[ptr float32](queuePriorities),
   )
 
-proc newVkDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceCreateInfo, pNext: pointer = nil, flags: VkDeviceCreateFlags = 0.VkDeviceCreateFlags, queueCreateInfoCount: uint32, pQueueCreateInfos: ptr VkDeviceQueueCreateInfo, enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray, pEnabledFeatures: ptr VkPhysicalDeviceFeatures): VkDeviceCreateInfo =
+proc newVkDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceCreateInfo, pNext: pointer = nil, flags: VkDeviceCreateFlags = 0.VkDeviceCreateFlags, queueCreateInfos: openarray[VkDeviceQueueCreateInfo], enabledLayerCount: uint32, ppEnabledLayerNames: cstringArray, enabledExtensionCount: uint32, ppEnabledExtensionNames: cstringArray, pEnabledFeatures: ptr VkPhysicalDeviceFeatures): VkDeviceCreateInfo =
   result = VkDeviceCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    queueCreateInfoCount: queueCreateInfoCount,
-    pQueueCreateInfos: pQueueCreateInfos,
+    queueCreateInfoCount: len(queueCreateInfos).uint32,
+    pQueueCreateInfos: if len(queueCreateInfos) == 0: nil else: cast[ptr VkDeviceQueueCreateInfo](queueCreateInfos),
     enabledLayerCount: enabledLayerCount,
     ppEnabledLayerNames: ppEnabledLayerNames,
     enabledExtensionCount: enabledExtensionCount,
@@ -13625,7 +13625,7 @@ proc newVkBufferUsageFlags2CreateInfoKHR*(sType: VkStructureType = VkStructureTy
     usage: usage,
   )
 
-proc newVkBufferCreateInfo*(sType: VkStructureType = VkStructureType.BufferCreateInfo, pNext: pointer = nil, flags: VkBufferCreateFlags = 0.VkBufferCreateFlags, size: VkDeviceSize, usage: VkBufferUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32): VkBufferCreateInfo =
+proc newVkBufferCreateInfo*(sType: VkStructureType = VkStructureType.BufferCreateInfo, pNext: pointer = nil, flags: VkBufferCreateFlags = 0.VkBufferCreateFlags, size: VkDeviceSize, usage: VkBufferUsageFlags, sharingMode: VkSharingMode, queueFamilyIndices: openarray[uint32]): VkBufferCreateInfo =
   result = VkBufferCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -13633,8 +13633,8 @@ proc newVkBufferCreateInfo*(sType: VkStructureType = VkStructureType.BufferCreat
     size: size,
     usage: usage,
     sharingMode: sharingMode,
-    queueFamilyIndexCount: queueFamilyIndexCount,
-    pQueueFamilyIndices: pQueueFamilyIndices,
+    queueFamilyIndexCount: len(queueFamilyIndices).uint32,
+    pQueueFamilyIndices: if len(queueFamilyIndices) == 0: nil else: cast[ptr uint32](queueFamilyIndices),
   )
 
 proc newVkBufferViewCreateInfo*(sType: VkStructureType = VkStructureType.BufferViewCreateInfo, pNext: pointer = nil, flags: VkBufferViewCreateFlags = 0.VkBufferViewCreateFlags, buffer: VkBuffer, format: VkFormat, offset: VkDeviceSize, range: VkDeviceSize): VkBufferViewCreateInfo =
@@ -13707,7 +13707,7 @@ proc newVkImageMemoryBarrier*(sType: VkStructureType = VkStructureType.ImageMemo
     subresourceRange: subresourceRange,
   )
 
-proc newVkImageCreateInfo*(sType: VkStructureType = VkStructureType.ImageCreateInfo, pNext: pointer = nil, flags: VkImageCreateFlags = 0.VkImageCreateFlags, imageType: VkImageType, format: VkFormat, extent: VkExtent3D, mipLevels: uint32, arrayLayers: uint32, samples: VkSampleCountFlagBits, tiling: VkImageTiling, usage: VkImageUsageFlags, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32, initialLayout: VkImageLayout): VkImageCreateInfo =
+proc newVkImageCreateInfo*(sType: VkStructureType = VkStructureType.ImageCreateInfo, pNext: pointer = nil, flags: VkImageCreateFlags = 0.VkImageCreateFlags, imageType: VkImageType, format: VkFormat, extent: VkExtent3D, mipLevels: uint32, arrayLayers: uint32, samples: VkSampleCountFlagBits, tiling: VkImageTiling, usage: VkImageUsageFlags, sharingMode: VkSharingMode, queueFamilyIndices: openarray[uint32], initialLayout: VkImageLayout): VkImageCreateInfo =
   result = VkImageCreateInfo(
     sType: sType,
     pNext: pNext,
@@ -13721,8 +13721,8 @@ proc newVkImageCreateInfo*(sType: VkStructureType = VkStructureType.ImageCreateI
     tiling: tiling,
     usage: usage,
     sharingMode: sharingMode,
-    queueFamilyIndexCount: queueFamilyIndexCount,
-    pQueueFamilyIndices: pQueueFamilyIndices,
+    queueFamilyIndexCount: len(queueFamilyIndices).uint32,
+    pQueueFamilyIndices: if len(queueFamilyIndices) == 0: nil else: cast[ptr uint32](queueFamilyIndices),
     initialLayout: initialLayout,
   )
 
@@ -13773,41 +13773,41 @@ proc newVkSparseImageMemoryBind*(subresource: VkImageSubresource, offset: VkOffs
     flags: flags,
   )
 
-proc newVkSparseBufferMemoryBindInfo*(buffer: VkBuffer, bindCount: uint32, pBinds: ptr VkSparseMemoryBind): VkSparseBufferMemoryBindInfo =
+proc newVkSparseBufferMemoryBindInfo*(buffer: VkBuffer, binds: openarray[VkSparseMemoryBind]): VkSparseBufferMemoryBindInfo =
   result = VkSparseBufferMemoryBindInfo(
     buffer: buffer,
-    bindCount: bindCount,
-    pBinds: pBinds,
+    bindCount: len(binds).uint32,
+    pBinds: if len(binds) == 0: nil else: cast[ptr VkSparseMemoryBind](binds),
   )
 
-proc newVkSparseImageOpaqueMemoryBindInfo*(image: VkImage, bindCount: uint32, pBinds: ptr VkSparseMemoryBind): VkSparseImageOpaqueMemoryBindInfo =
+proc newVkSparseImageOpaqueMemoryBindInfo*(image: VkImage, binds: openarray[VkSparseMemoryBind]): VkSparseImageOpaqueMemoryBindInfo =
   result = VkSparseImageOpaqueMemoryBindInfo(
     image: image,
-    bindCount: bindCount,
-    pBinds: pBinds,
+    bindCount: len(binds).uint32,
+    pBinds: if len(binds) == 0: nil else: cast[ptr VkSparseMemoryBind](binds),
   )
 
-proc newVkSparseImageMemoryBindInfo*(image: VkImage, bindCount: uint32, pBinds: ptr VkSparseImageMemoryBind): VkSparseImageMemoryBindInfo =
+proc newVkSparseImageMemoryBindInfo*(image: VkImage, binds: openarray[VkSparseImageMemoryBind]): VkSparseImageMemoryBindInfo =
   result = VkSparseImageMemoryBindInfo(
     image: image,
-    bindCount: bindCount,
-    pBinds: pBinds,
+    bindCount: len(binds).uint32,
+    pBinds: if len(binds) == 0: nil else: cast[ptr VkSparseImageMemoryBind](binds),
   )
 
-proc newVkBindSparseInfo*(sType: VkStructureType = VkStructureType.BindSparseInfo, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, bufferBindCount: uint32, pBufferBinds: ptr VkSparseBufferMemoryBindInfo, imageOpaqueBindCount: uint32, pImageOpaqueBinds: ptr VkSparseImageOpaqueMemoryBindInfo, imageBindCount: uint32, pImageBinds: ptr VkSparseImageMemoryBindInfo, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkBindSparseInfo =
+proc newVkBindSparseInfo*(sType: VkStructureType = VkStructureType.BindSparseInfo, pNext: pointer = nil, waitSemaphores: openarray[VkSemaphore], bufferBinds: openarray[VkSparseBufferMemoryBindInfo], imageOpaqueBinds: openarray[VkSparseImageOpaqueMemoryBindInfo], imageBinds: openarray[VkSparseImageMemoryBindInfo], signalSemaphores: openarray[VkSemaphore]): VkBindSparseInfo =
   result = VkBindSparseInfo(
     sType: sType,
     pNext: pNext,
-    waitSemaphoreCount: waitSemaphoreCount,
-    pWaitSemaphores: pWaitSemaphores,
-    bufferBindCount: bufferBindCount,
-    pBufferBinds: pBufferBinds,
-    imageOpaqueBindCount: imageOpaqueBindCount,
-    pImageOpaqueBinds: pImageOpaqueBinds,
-    imageBindCount: imageBindCount,
-    pImageBinds: pImageBinds,
-    signalSemaphoreCount: signalSemaphoreCount,
-    pSignalSemaphores: pSignalSemaphores,
+    waitSemaphoreCount: len(waitSemaphores).uint32,
+    pWaitSemaphores: if len(waitSemaphores) == 0: nil else: cast[ptr VkSemaphore](waitSemaphores),
+    bufferBindCount: len(bufferBinds).uint32,
+    pBufferBinds: if len(bufferBinds) == 0: nil else: cast[ptr VkSparseBufferMemoryBindInfo](bufferBinds),
+    imageOpaqueBindCount: len(imageOpaqueBinds).uint32,
+    pImageOpaqueBinds: if len(imageOpaqueBinds) == 0: nil else: cast[ptr VkSparseImageOpaqueMemoryBindInfo](imageOpaqueBinds),
+    imageBindCount: len(imageBinds).uint32,
+    pImageBinds: if len(imageBinds) == 0: nil else: cast[ptr VkSparseImageMemoryBindInfo](imageBinds),
+    signalSemaphoreCount: len(signalSemaphores).uint32,
+    pSignalSemaphores: if len(signalSemaphores) == 0: nil else: cast[ptr VkSemaphore](signalSemaphores),
   )
 
 proc newVkImageCopy*(srcSubresource: VkImageSubresourceLayers, srcOffset: VkOffset3D, dstSubresource: VkImageSubresourceLayers, dstOffset: VkOffset3D, extent: VkExtent3D): VkImageCopy =
@@ -13863,13 +13863,13 @@ proc newVkImageResolve*(srcSubresource: VkImageSubresourceLayers, srcOffset: VkO
     extent: extent,
   )
 
-proc newVkShaderModuleCreateInfo*(sType: VkStructureType = VkStructureType.ShaderModuleCreateInfo, pNext: pointer = nil, flags: VkShaderModuleCreateFlags = 0.VkShaderModuleCreateFlags, codeSize: uint, pCode: ptr uint32): VkShaderModuleCreateInfo =
+proc newVkShaderModuleCreateInfo*(sType: VkStructureType = VkStructureType.ShaderModuleCreateInfo, pNext: pointer = nil, flags: VkShaderModuleCreateFlags = 0.VkShaderModuleCreateFlags, code: openarray[uint32]): VkShaderModuleCreateInfo =
   result = VkShaderModuleCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    codeSize: codeSize,
-    pCode: pCode,
+    codeSize: len(code).uint,
+    pCode: if len(code) == 0: nil else: cast[ptr uint32](code),
   )
 
 proc newVkDescriptorSetLayoutBinding*(binding: uint32, descriptorType: VkDescriptorType, descriptorCount: uint32, stageFlags: VkShaderStageFlags, pImmutableSamplers: ptr VkSampler): VkDescriptorSetLayoutBinding =
@@ -13881,13 +13881,13 @@ proc newVkDescriptorSetLayoutBinding*(binding: uint32, descriptorType: VkDescrip
     pImmutableSamplers: pImmutableSamplers,
   )
 
-proc newVkDescriptorSetLayoutCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetLayoutCreateInfo, pNext: pointer = nil, flags: VkDescriptorSetLayoutCreateFlags = 0.VkDescriptorSetLayoutCreateFlags, bindingCount: uint32, pBindings: ptr VkDescriptorSetLayoutBinding): VkDescriptorSetLayoutCreateInfo =
+proc newVkDescriptorSetLayoutCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetLayoutCreateInfo, pNext: pointer = nil, flags: VkDescriptorSetLayoutCreateFlags = 0.VkDescriptorSetLayoutCreateFlags, bindings: openarray[VkDescriptorSetLayoutBinding]): VkDescriptorSetLayoutCreateInfo =
   result = VkDescriptorSetLayoutCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    bindingCount: bindingCount,
-    pBindings: pBindings,
+    bindingCount: len(bindings).uint32,
+    pBindings: if len(bindings) == 0: nil else: cast[ptr VkDescriptorSetLayoutBinding](bindings),
   )
 
 proc newVkDescriptorPoolSize*(`type`: VkDescriptorType, descriptorCount: uint32): VkDescriptorPoolSize =
@@ -13896,23 +13896,23 @@ proc newVkDescriptorPoolSize*(`type`: VkDescriptorType, descriptorCount: uint32)
     descriptorCount: descriptorCount,
   )
 
-proc newVkDescriptorPoolCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorPoolCreateInfo, pNext: pointer = nil, flags: VkDescriptorPoolCreateFlags = 0.VkDescriptorPoolCreateFlags, maxSets: uint32, poolSizeCount: uint32, pPoolSizes: ptr VkDescriptorPoolSize): VkDescriptorPoolCreateInfo =
+proc newVkDescriptorPoolCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorPoolCreateInfo, pNext: pointer = nil, flags: VkDescriptorPoolCreateFlags = 0.VkDescriptorPoolCreateFlags, maxSets: uint32, poolSizes: openarray[VkDescriptorPoolSize]): VkDescriptorPoolCreateInfo =
   result = VkDescriptorPoolCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     maxSets: maxSets,
-    poolSizeCount: poolSizeCount,
-    pPoolSizes: pPoolSizes,
+    poolSizeCount: len(poolSizes).uint32,
+    pPoolSizes: if len(poolSizes) == 0: nil else: cast[ptr VkDescriptorPoolSize](poolSizes),
   )
 
-proc newVkDescriptorSetAllocateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetAllocateInfo, pNext: pointer = nil, descriptorPool: VkDescriptorPool, descriptorSetCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout): VkDescriptorSetAllocateInfo =
+proc newVkDescriptorSetAllocateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetAllocateInfo, pNext: pointer = nil, descriptorPool: VkDescriptorPool, setLayouts: openarray[VkDescriptorSetLayout]): VkDescriptorSetAllocateInfo =
   result = VkDescriptorSetAllocateInfo(
     sType: sType,
     pNext: pNext,
     descriptorPool: descriptorPool,
-    descriptorSetCount: descriptorSetCount,
-    pSetLayouts: pSetLayouts,
+    descriptorSetCount: len(setLayouts).uint32,
+    pSetLayouts: if len(setLayouts) == 0: nil else: cast[ptr VkDescriptorSetLayout](setLayouts),
   )
 
 proc newVkSpecializationMapEntry*(constantID: uint32, offset: uint32, size: uint): VkSpecializationMapEntry =
@@ -13922,10 +13922,10 @@ proc newVkSpecializationMapEntry*(constantID: uint32, offset: uint32, size: uint
     size: size,
   )
 
-proc newVkSpecializationInfo*(mapEntryCount: uint32, pMapEntries: ptr VkSpecializationMapEntry, dataSize: uint, pData: pointer = nil): VkSpecializationInfo =
+proc newVkSpecializationInfo*(mapEntries: openarray[VkSpecializationMapEntry], dataSize: uint, pData: pointer = nil): VkSpecializationInfo =
   result = VkSpecializationInfo(
-    mapEntryCount: mapEntryCount,
-    pMapEntries: pMapEntries,
+    mapEntryCount: len(mapEntries).uint32,
+    pMapEntries: if len(mapEntries) == 0: nil else: cast[ptr VkSpecializationMapEntry](mapEntries),
     dataSize: dataSize,
     pData: pData,
   )
@@ -13983,15 +13983,15 @@ proc newVkVertexInputAttributeDescription*(location: uint32, binding: uint32, fo
     offset: offset,
   )
 
-proc newVkPipelineVertexInputStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineVertexInputStateCreateInfo, pNext: pointer = nil, flags: VkPipelineVertexInputStateCreateFlags = 0.VkPipelineVertexInputStateCreateFlags, vertexBindingDescriptionCount: uint32, pVertexBindingDescriptions: ptr VkVertexInputBindingDescription, vertexAttributeDescriptionCount: uint32, pVertexAttributeDescriptions: ptr VkVertexInputAttributeDescription): VkPipelineVertexInputStateCreateInfo =
+proc newVkPipelineVertexInputStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineVertexInputStateCreateInfo, pNext: pointer = nil, flags: VkPipelineVertexInputStateCreateFlags = 0.VkPipelineVertexInputStateCreateFlags, vertexBindingDescriptions: openarray[VkVertexInputBindingDescription], vertexAttributeDescriptions: openarray[VkVertexInputAttributeDescription]): VkPipelineVertexInputStateCreateInfo =
   result = VkPipelineVertexInputStateCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    vertexBindingDescriptionCount: vertexBindingDescriptionCount,
-    pVertexBindingDescriptions: pVertexBindingDescriptions,
-    vertexAttributeDescriptionCount: vertexAttributeDescriptionCount,
-    pVertexAttributeDescriptions: pVertexAttributeDescriptions,
+    vertexBindingDescriptionCount: len(vertexBindingDescriptions).uint32,
+    pVertexBindingDescriptions: if len(vertexBindingDescriptions) == 0: nil else: cast[ptr VkVertexInputBindingDescription](vertexBindingDescriptions),
+    vertexAttributeDescriptionCount: len(vertexAttributeDescriptions).uint32,
+    pVertexAttributeDescriptions: if len(vertexAttributeDescriptions) == 0: nil else: cast[ptr VkVertexInputAttributeDescription](vertexAttributeDescriptions),
   )
 
 proc newVkPipelineInputAssemblyStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineInputAssemblyStateCreateInfo, pNext: pointer = nil, flags: VkPipelineInputAssemblyStateCreateFlags = 0.VkPipelineInputAssemblyStateCreateFlags, topology: VkPrimitiveTopology, primitiveRestartEnable: VkBool32): VkPipelineInputAssemblyStateCreateInfo =
@@ -14011,15 +14011,15 @@ proc newVkPipelineTessellationStateCreateInfo*(sType: VkStructureType = VkStruct
     patchControlPoints: patchControlPoints,
   )
 
-proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineViewportStateCreateInfo, pNext: pointer = nil, flags: VkPipelineViewportStateCreateFlags = 0.VkPipelineViewportStateCreateFlags, viewportCount: uint32, pViewports: ptr VkViewport, scissorCount: uint32, pScissors: ptr VkRect2D): VkPipelineViewportStateCreateInfo =
+proc newVkPipelineViewportStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineViewportStateCreateInfo, pNext: pointer = nil, flags: VkPipelineViewportStateCreateFlags = 0.VkPipelineViewportStateCreateFlags, viewports: openarray[VkViewport], scissors: openarray[VkRect2D]): VkPipelineViewportStateCreateInfo =
   result = VkPipelineViewportStateCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    viewportCount: viewportCount,
-    pViewports: pViewports,
-    scissorCount: scissorCount,
-    pScissors: pScissors,
+    viewportCount: len(viewports).uint32,
+    pViewports: if len(viewports) == 0: nil else: cast[ptr VkViewport](viewports),
+    scissorCount: len(scissors).uint32,
+    pScissors: if len(scissors) == 0: nil else: cast[ptr VkRect2D](scissors),
   )
 
 proc newVkPipelineRasterizationStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineRasterizationStateCreateInfo, pNext: pointer = nil, flags: VkPipelineRasterizationStateCreateFlags = 0.VkPipelineRasterizationStateCreateFlags, depthClampEnable: VkBool32, rasterizerDiscardEnable: VkBool32, polygonMode: VkPolygonMode, cullMode: VkCullModeFlags, frontFace: VkFrontFace, depthBiasEnable: VkBool32, depthBiasConstantFactor: float32, depthBiasClamp: float32, depthBiasSlopeFactor: float32, lineWidth: float32): VkPipelineRasterizationStateCreateInfo =
@@ -14064,25 +14064,25 @@ proc newVkPipelineColorBlendAttachmentState*(blendEnable: VkBool32, srcColorBlen
     colorWriteMask: colorWriteMask,
   )
 
-proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineColorBlendStateCreateInfo, pNext: pointer = nil, flags: VkPipelineColorBlendStateCreateFlags = 0.VkPipelineColorBlendStateCreateFlags, logicOpEnable: VkBool32, logicOp: VkLogicOp, attachmentCount: uint32, pAttachments: ptr VkPipelineColorBlendAttachmentState, blendConstants: array[4, float32]): VkPipelineColorBlendStateCreateInfo =
+proc newVkPipelineColorBlendStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineColorBlendStateCreateInfo, pNext: pointer = nil, flags: VkPipelineColorBlendStateCreateFlags = 0.VkPipelineColorBlendStateCreateFlags, logicOpEnable: VkBool32, logicOp: VkLogicOp, attachments: openarray[VkPipelineColorBlendAttachmentState], blendConstants: array[4, float32]): VkPipelineColorBlendStateCreateInfo =
   result = VkPipelineColorBlendStateCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     logicOpEnable: logicOpEnable,
     logicOp: logicOp,
-    attachmentCount: attachmentCount,
-    pAttachments: pAttachments,
+    attachmentCount: len(attachments).uint32,
+    pAttachments: if len(attachments) == 0: nil else: cast[ptr VkPipelineColorBlendAttachmentState](attachments),
     blendConstants: blendConstants,
   )
 
-proc newVkPipelineDynamicStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineDynamicStateCreateInfo, pNext: pointer = nil, flags: VkPipelineDynamicStateCreateFlags = 0.VkPipelineDynamicStateCreateFlags, dynamicStateCount: uint32, pDynamicStates: ptr VkDynamicState): VkPipelineDynamicStateCreateInfo =
+proc newVkPipelineDynamicStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineDynamicStateCreateInfo, pNext: pointer = nil, flags: VkPipelineDynamicStateCreateFlags = 0.VkPipelineDynamicStateCreateFlags, dynamicStates: openarray[VkDynamicState]): VkPipelineDynamicStateCreateInfo =
   result = VkPipelineDynamicStateCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    dynamicStateCount: dynamicStateCount,
-    pDynamicStates: pDynamicStates,
+    dynamicStateCount: len(dynamicStates).uint32,
+    pDynamicStates: if len(dynamicStates) == 0: nil else: cast[ptr VkDynamicState](dynamicStates),
   )
 
 proc newVkStencilOpState*(failOp: VkStencilOp, passOp: VkStencilOp, depthFailOp: VkStencilOp, compareOp: VkCompareOp, compareMask: uint32, writeMask: uint32, reference: uint32): VkStencilOpState =
@@ -14112,13 +14112,13 @@ proc newVkPipelineDepthStencilStateCreateInfo*(sType: VkStructureType = VkStruct
     maxDepthBounds: maxDepthBounds,
   )
 
-proc newVkGraphicsPipelineCreateInfo*(sType: VkStructureType = VkStructureType.GraphicsPipelineCreateInfo, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, pVertexInputState: ptr VkPipelineVertexInputStateCreateInfo, pInputAssemblyState: ptr VkPipelineInputAssemblyStateCreateInfo, pTessellationState: ptr VkPipelineTessellationStateCreateInfo, pViewportState: ptr VkPipelineViewportStateCreateInfo, pRasterizationState: ptr VkPipelineRasterizationStateCreateInfo, pMultisampleState: ptr VkPipelineMultisampleStateCreateInfo, pDepthStencilState: ptr VkPipelineDepthStencilStateCreateInfo, pColorBlendState: ptr VkPipelineColorBlendStateCreateInfo, pDynamicState: ptr VkPipelineDynamicStateCreateInfo, layout: VkPipelineLayout, renderPass: VkRenderPass, subpass: uint32, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkGraphicsPipelineCreateInfo =
+proc newVkGraphicsPipelineCreateInfo*(sType: VkStructureType = VkStructureType.GraphicsPipelineCreateInfo, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stages: openarray[VkPipelineShaderStageCreateInfo], pVertexInputState: ptr VkPipelineVertexInputStateCreateInfo, pInputAssemblyState: ptr VkPipelineInputAssemblyStateCreateInfo, pTessellationState: ptr VkPipelineTessellationStateCreateInfo, pViewportState: ptr VkPipelineViewportStateCreateInfo, pRasterizationState: ptr VkPipelineRasterizationStateCreateInfo, pMultisampleState: ptr VkPipelineMultisampleStateCreateInfo, pDepthStencilState: ptr VkPipelineDepthStencilStateCreateInfo, pColorBlendState: ptr VkPipelineColorBlendStateCreateInfo, pDynamicState: ptr VkPipelineDynamicStateCreateInfo, layout: VkPipelineLayout, renderPass: VkRenderPass, subpass: uint32, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkGraphicsPipelineCreateInfo =
   result = VkGraphicsPipelineCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    stageCount: stageCount,
-    pStages: pStages,
+    stageCount: len(stages).uint32,
+    pStages: if len(stages) == 0: nil else: cast[ptr VkPipelineShaderStageCreateInfo](stages),
     pVertexInputState: pVertexInputState,
     pInputAssemblyState: pInputAssemblyState,
     pTessellationState: pTessellationState,
@@ -14187,15 +14187,15 @@ proc newVkPushConstantRange*(stageFlags: VkShaderStageFlags, offset: uint32, siz
     size: size,
   )
 
-proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType = VkStructureType.PipelineLayoutCreateInfo, pNext: pointer = nil, flags: VkPipelineLayoutCreateFlags = 0.VkPipelineLayoutCreateFlags, setLayoutCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout, pushConstantRangeCount: uint32, pPushConstantRanges: ptr VkPushConstantRange): VkPipelineLayoutCreateInfo =
+proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType = VkStructureType.PipelineLayoutCreateInfo, pNext: pointer = nil, flags: VkPipelineLayoutCreateFlags = 0.VkPipelineLayoutCreateFlags, setLayouts: openarray[VkDescriptorSetLayout], pushConstantRanges: openarray[VkPushConstantRange]): VkPipelineLayoutCreateInfo =
   result = VkPipelineLayoutCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    setLayoutCount: setLayoutCount,
-    pSetLayouts: pSetLayouts,
-    pushConstantRangeCount: pushConstantRangeCount,
-    pPushConstantRanges: pPushConstantRanges,
+    setLayoutCount: len(setLayouts).uint32,
+    pSetLayouts: if len(setLayouts) == 0: nil else: cast[ptr VkDescriptorSetLayout](setLayouts),
+    pushConstantRangeCount: len(pushConstantRanges).uint32,
+    pPushConstantRanges: if len(pushConstantRanges) == 0: nil else: cast[ptr VkPushConstantRange](pushConstantRanges),
   )
 
 proc newVkSamplerCreateInfo*(sType: VkStructureType = VkStructureType.SamplerCreateInfo, pNext: pointer = nil, flags: VkSamplerCreateFlags = 0.VkSamplerCreateFlags, magFilter: VkFilter, minFilter: VkFilter, mipmapMode: VkSamplerMipmapMode, addressModeU: VkSamplerAddressMode, addressModeV: VkSamplerAddressMode, addressModeW: VkSamplerAddressMode, mipLodBias: float32, anisotropyEnable: VkBool32, maxAnisotropy: float32, compareEnable: VkBool32, compareOp: VkCompareOp, minLod: float32, maxLod: float32, borderColor: VkBorderColor, unnormalizedCoordinates: VkBool32): VkSamplerCreateInfo =
@@ -14257,15 +14257,15 @@ proc newVkCommandBufferBeginInfo*(sType: VkStructureType = VkStructureType.Comma
     pInheritanceInfo: pInheritanceInfo,
   )
 
-proc newVkRenderPassBeginInfo*(sType: VkStructureType = VkStructureType.RenderPassBeginInfo, pNext: pointer = nil, renderPass: VkRenderPass, framebuffer: VkFramebuffer, renderArea: VkRect2D, clearValueCount: uint32, pClearValues: ptr VkClearValue): VkRenderPassBeginInfo =
+proc newVkRenderPassBeginInfo*(sType: VkStructureType = VkStructureType.RenderPassBeginInfo, pNext: pointer = nil, renderPass: VkRenderPass, framebuffer: VkFramebuffer, renderArea: VkRect2D, clearValues: openarray[VkClearValue]): VkRenderPassBeginInfo =
   result = VkRenderPassBeginInfo(
     sType: sType,
     pNext: pNext,
     renderPass: renderPass,
     framebuffer: framebuffer,
     renderArea: renderArea,
-    clearValueCount: clearValueCount,
-    pClearValues: pClearValues,
+    clearValueCount: len(clearValues).uint32,
+    pClearValues: if len(clearValues) == 0: nil else: cast[ptr VkClearValue](clearValues),
   )
 
 proc newVkClearDepthStencilValue*(depth: float32, stencil: uint32): VkClearDepthStencilValue =
@@ -14300,18 +14300,18 @@ proc newVkAttachmentReference*(attachment: uint32, layout: VkImageLayout): VkAtt
     layout: layout,
   )
 
-proc newVkSubpassDescription*(flags: VkSubpassDescriptionFlags = 0.VkSubpassDescriptionFlags, pipelineBindPoint: VkPipelineBindPoint, inputAttachmentCount: uint32, pInputAttachments: ptr VkAttachmentReference, colorAttachmentCount: uint32, pColorAttachments: ptr VkAttachmentReference, pResolveAttachments: ptr VkAttachmentReference, pDepthStencilAttachment: ptr VkAttachmentReference, preserveAttachmentCount: uint32, pPreserveAttachments: ptr uint32): VkSubpassDescription =
+proc newVkSubpassDescription*(flags: VkSubpassDescriptionFlags = 0.VkSubpassDescriptionFlags, pipelineBindPoint: VkPipelineBindPoint, inputAttachments: openarray[VkAttachmentReference], colorAttachments: openarray[VkAttachmentReference], resolveAttachments: openarray[VkAttachmentReference], pDepthStencilAttachment: ptr VkAttachmentReference, preserveAttachments: openarray[uint32]): VkSubpassDescription =
   result = VkSubpassDescription(
     flags: flags,
     pipelineBindPoint: pipelineBindPoint,
-    inputAttachmentCount: inputAttachmentCount,
-    pInputAttachments: pInputAttachments,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachments: pColorAttachments,
-    pResolveAttachments: pResolveAttachments,
+    inputAttachmentCount: len(inputAttachments).uint32,
+    pInputAttachments: if len(inputAttachments) == 0: nil else: cast[ptr VkAttachmentReference](inputAttachments),
+    colorAttachmentCount: len(colorAttachments).uint32,
+    pColorAttachments: if len(colorAttachments) == 0: nil else: cast[ptr VkAttachmentReference](colorAttachments),
+    pResolveAttachments: if len(resolveAttachments) == 0: nil else: cast[ptr VkAttachmentReference](resolveAttachments),
     pDepthStencilAttachment: pDepthStencilAttachment,
-    preserveAttachmentCount: preserveAttachmentCount,
-    pPreserveAttachments: pPreserveAttachments,
+    preserveAttachmentCount: len(preserveAttachments).uint32,
+    pPreserveAttachments: if len(preserveAttachments) == 0: nil else: cast[ptr uint32](preserveAttachments),
   )
 
 proc newVkSubpassDependency*(srcSubpass: uint32, dstSubpass: uint32, srcStageMask: VkPipelineStageFlags, dstStageMask: VkPipelineStageFlags, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, dependencyFlags: VkDependencyFlags): VkSubpassDependency =
@@ -14325,17 +14325,17 @@ proc newVkSubpassDependency*(srcSubpass: uint32, dstSubpass: uint32, srcStageMas
     dependencyFlags: dependencyFlags,
   )
 
-proc newVkRenderPassCreateInfo*(sType: VkStructureType = VkStructureType.RenderPassCreateInfo, pNext: pointer = nil, flags: VkRenderPassCreateFlags = 0.VkRenderPassCreateFlags, attachmentCount: uint32, pAttachments: ptr VkAttachmentDescription, subpassCount: uint32, pSubpasses: ptr VkSubpassDescription, dependencyCount: uint32, pDependencies: ptr VkSubpassDependency): VkRenderPassCreateInfo =
+proc newVkRenderPassCreateInfo*(sType: VkStructureType = VkStructureType.RenderPassCreateInfo, pNext: pointer = nil, flags: VkRenderPassCreateFlags = 0.VkRenderPassCreateFlags, attachments: openarray[VkAttachmentDescription], subpasses: openarray[VkSubpassDescription], dependencies: openarray[VkSubpassDependency]): VkRenderPassCreateInfo =
   result = VkRenderPassCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    attachmentCount: attachmentCount,
-    pAttachments: pAttachments,
-    subpassCount: subpassCount,
-    pSubpasses: pSubpasses,
-    dependencyCount: dependencyCount,
-    pDependencies: pDependencies,
+    attachmentCount: len(attachments).uint32,
+    pAttachments: if len(attachments) == 0: nil else: cast[ptr VkAttachmentDescription](attachments),
+    subpassCount: len(subpasses).uint32,
+    pSubpasses: if len(subpasses) == 0: nil else: cast[ptr VkSubpassDescription](subpasses),
+    dependencyCount: len(dependencies).uint32,
+    pDependencies: if len(dependencies) == 0: nil else: cast[ptr VkSubpassDependency](dependencies),
   )
 
 proc newVkEventCreateInfo*(sType: VkStructureType = VkStructureType.EventCreateInfo, pNext: pointer = nil, flags: VkEventCreateFlags = 0.VkEventCreateFlags): VkEventCreateInfo =
@@ -14547,14 +14547,14 @@ proc newVkQueryPoolCreateInfo*(sType: VkStructureType = VkStructureType.QueryPoo
     pipelineStatistics: pipelineStatistics,
   )
 
-proc newVkFramebufferCreateInfo*(sType: VkStructureType = VkStructureType.FramebufferCreateInfo, pNext: pointer = nil, flags: VkFramebufferCreateFlags = 0.VkFramebufferCreateFlags, renderPass: VkRenderPass, attachmentCount: uint32, pAttachments: ptr VkImageView, width: uint32, height: uint32, layers: uint32): VkFramebufferCreateInfo =
+proc newVkFramebufferCreateInfo*(sType: VkStructureType = VkStructureType.FramebufferCreateInfo, pNext: pointer = nil, flags: VkFramebufferCreateFlags = 0.VkFramebufferCreateFlags, renderPass: VkRenderPass, attachments: openarray[VkImageView], width: uint32, height: uint32, layers: uint32): VkFramebufferCreateInfo =
   result = VkFramebufferCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     renderPass: renderPass,
-    attachmentCount: attachmentCount,
-    pAttachments: pAttachments,
+    attachmentCount: len(attachments).uint32,
+    pAttachments: if len(attachments) == 0: nil else: cast[ptr VkImageView](attachments),
     width: width,
     height: height,
     layers: layers,
@@ -14597,17 +14597,17 @@ proc newVkMultiDrawIndexedInfoEXT*(firstIndex: uint32, indexCount: uint32, verte
     vertexOffset: vertexOffset,
   )
 
-proc newVkSubmitInfo*(sType: VkStructureType = VkStructureType.SubmitInfo, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, pWaitDstStageMask: ptr VkPipelineStageFlags, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer, signalSemaphoreCount: uint32, pSignalSemaphores: ptr VkSemaphore): VkSubmitInfo =
+proc newVkSubmitInfo*(sType: VkStructureType = VkStructureType.SubmitInfo, pNext: pointer = nil, waitSemaphores: openarray[VkSemaphore], pWaitDstStageMask: ptr VkPipelineStageFlags, commandBuffers: openarray[VkCommandBuffer], signalSemaphores: openarray[VkSemaphore]): VkSubmitInfo =
   result = VkSubmitInfo(
     sType: sType,
     pNext: pNext,
-    waitSemaphoreCount: waitSemaphoreCount,
-    pWaitSemaphores: pWaitSemaphores,
+    waitSemaphoreCount: len(waitSemaphores).uint32,
+    pWaitSemaphores: if len(waitSemaphores) == 0: nil else: cast[ptr VkSemaphore](waitSemaphores),
     pWaitDstStageMask: pWaitDstStageMask,
-    commandBufferCount: commandBufferCount,
-    pCommandBuffers: pCommandBuffers,
-    signalSemaphoreCount: signalSemaphoreCount,
-    pSignalSemaphores: pSignalSemaphores,
+    commandBufferCount: len(commandBuffers).uint32,
+    pCommandBuffers: if len(commandBuffers) == 0: nil else: cast[ptr VkCommandBuffer](commandBuffers),
+    signalSemaphoreCount: len(signalSemaphores).uint32,
+    pSignalSemaphores: if len(signalSemaphores) == 0: nil else: cast[ptr VkSemaphore](signalSemaphores),
   )
 
 proc newVkDisplayPropertiesKHR*(display: VkDisplayKHR, displayName: cstring, physicalDimensions: VkExtent2D, physicalResolution: VkExtent2D, supportedTransforms: VkSurfaceTransformFlagsKHR, planeReorderPossible: VkBool32, persistentContent: VkBool32): VkDisplayPropertiesKHR =
@@ -14789,7 +14789,7 @@ proc newVkSurfaceFormatKHR*(format: VkFormat, colorSpace: VkColorSpaceKHR): VkSu
     colorSpace: colorSpace,
   )
 
-proc newVkSwapchainCreateInfoKHR*(sType: VkStructureType = VkStructureType.SwapchainCreateInfoKHR, pNext: pointer = nil, flags: VkSwapchainCreateFlagsKHR = 0.VkSwapchainCreateFlagsKHR, surface: VkSurfaceKHR, minImageCount: uint32, imageFormat: VkFormat, imageColorSpace: VkColorSpaceKHR, imageExtent: VkExtent2D, imageArrayLayers: uint32, imageUsage: VkImageUsageFlags, imageSharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32, preTransform: VkSurfaceTransformFlagBitsKHR, compositeAlpha: VkCompositeAlphaFlagBitsKHR, presentMode: VkPresentModeKHR, clipped: VkBool32, oldSwapchain: VkSwapchainKHR): VkSwapchainCreateInfoKHR =
+proc newVkSwapchainCreateInfoKHR*(sType: VkStructureType = VkStructureType.SwapchainCreateInfoKHR, pNext: pointer = nil, flags: VkSwapchainCreateFlagsKHR = 0.VkSwapchainCreateFlagsKHR, surface: VkSurfaceKHR, minImageCount: uint32, imageFormat: VkFormat, imageColorSpace: VkColorSpaceKHR, imageExtent: VkExtent2D, imageArrayLayers: uint32, imageUsage: VkImageUsageFlags, imageSharingMode: VkSharingMode, queueFamilyIndices: openarray[uint32], preTransform: VkSurfaceTransformFlagBitsKHR, compositeAlpha: VkCompositeAlphaFlagBitsKHR, presentMode: VkPresentModeKHR, clipped: VkBool32, oldSwapchain: VkSwapchainKHR): VkSwapchainCreateInfoKHR =
   result = VkSwapchainCreateInfoKHR(
     sType: sType,
     pNext: pNext,
@@ -14802,8 +14802,8 @@ proc newVkSwapchainCreateInfoKHR*(sType: VkStructureType = VkStructureType.Swapc
     imageArrayLayers: imageArrayLayers,
     imageUsage: imageUsage,
     imageSharingMode: imageSharingMode,
-    queueFamilyIndexCount: queueFamilyIndexCount,
-    pQueueFamilyIndices: pQueueFamilyIndices,
+    queueFamilyIndexCount: len(queueFamilyIndices).uint32,
+    pQueueFamilyIndices: if len(queueFamilyIndices) == 0: nil else: cast[ptr uint32](queueFamilyIndices),
     preTransform: preTransform,
     compositeAlpha: compositeAlpha,
     presentMode: presentMode,
@@ -14811,16 +14811,16 @@ proc newVkSwapchainCreateInfoKHR*(sType: VkStructureType = VkStructureType.Swapc
     oldSwapchain: oldSwapchain,
   )
 
-proc newVkPresentInfoKHR*(sType: VkStructureType = VkStructureType.PresentInfoKHR, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, swapchainCount: uint32, pSwapchains: ptr VkSwapchainKHR, pImageIndices: ptr uint32, pResults: ptr VkResult): VkPresentInfoKHR =
+proc newVkPresentInfoKHR*(sType: VkStructureType = VkStructureType.PresentInfoKHR, pNext: pointer = nil, waitSemaphores: openarray[VkSemaphore], swapchains: openarray[VkSwapchainKHR], imageIndices: openarray[uint32], results: openarray[VkResult]): VkPresentInfoKHR =
   result = VkPresentInfoKHR(
     sType: sType,
     pNext: pNext,
-    waitSemaphoreCount: waitSemaphoreCount,
-    pWaitSemaphores: pWaitSemaphores,
-    swapchainCount: swapchainCount,
-    pSwapchains: pSwapchains,
-    pImageIndices: pImageIndices,
-    pResults: pResults,
+    waitSemaphoreCount: len(waitSemaphores).uint32,
+    pWaitSemaphores: if len(waitSemaphores) == 0: nil else: cast[ptr VkSemaphore](waitSemaphores),
+    swapchainCount: len(swapchains).uint32,
+    pSwapchains: if len(swapchains) == 0: nil else: cast[ptr VkSwapchainKHR](swapchains),
+    pImageIndices: if len(imageIndices) == 0: nil else: cast[ptr uint32](imageIndices),
+    pResults: if len(results) == 0: nil else: cast[ptr VkResult](results),
   )
 
 proc newVkDebugReportCallbackCreateInfoEXT*(sType: VkStructureType = VkStructureType.DebugReportCallbackCreateInfoEXT, pNext: pointer = nil, flags: VkDebugReportFlagsEXT = 0.VkDebugReportFlagsEXT, pfnCallback: PFN_vkDebugReportCallbackEXT, pUserData: pointer = nil): VkDebugReportCallbackCreateInfoEXT =
@@ -14832,30 +14832,30 @@ proc newVkDebugReportCallbackCreateInfoEXT*(sType: VkStructureType = VkStructure
     pUserData: pUserData,
   )
 
-proc newVkValidationFlagsEXT*(sType: VkStructureType = VkStructureType.ValidationFlagsEXT, pNext: pointer = nil, disabledValidationCheckCount: uint32, pDisabledValidationChecks: ptr VkValidationCheckEXT): VkValidationFlagsEXT =
+proc newVkValidationFlagsEXT*(sType: VkStructureType = VkStructureType.ValidationFlagsEXT, pNext: pointer = nil, disabledValidationChecks: openarray[VkValidationCheckEXT]): VkValidationFlagsEXT =
   result = VkValidationFlagsEXT(
     sType: sType,
     pNext: pNext,
-    disabledValidationCheckCount: disabledValidationCheckCount,
-    pDisabledValidationChecks: pDisabledValidationChecks,
+    disabledValidationCheckCount: len(disabledValidationChecks).uint32,
+    pDisabledValidationChecks: if len(disabledValidationChecks) == 0: nil else: cast[ptr VkValidationCheckEXT](disabledValidationChecks),
   )
 
-proc newVkValidationFeaturesEXT*(sType: VkStructureType = VkStructureType.ValidationFeaturesEXT, pNext: pointer = nil, enabledValidationFeatureCount: uint32, pEnabledValidationFeatures: ptr VkValidationFeatureEnableEXT, disabledValidationFeatureCount: uint32, pDisabledValidationFeatures: ptr VkValidationFeatureDisableEXT): VkValidationFeaturesEXT =
+proc newVkValidationFeaturesEXT*(sType: VkStructureType = VkStructureType.ValidationFeaturesEXT, pNext: pointer = nil, enabledValidationFeatures: openarray[VkValidationFeatureEnableEXT], disabledValidationFeatures: openarray[VkValidationFeatureDisableEXT]): VkValidationFeaturesEXT =
   result = VkValidationFeaturesEXT(
     sType: sType,
     pNext: pNext,
-    enabledValidationFeatureCount: enabledValidationFeatureCount,
-    pEnabledValidationFeatures: pEnabledValidationFeatures,
-    disabledValidationFeatureCount: disabledValidationFeatureCount,
-    pDisabledValidationFeatures: pDisabledValidationFeatures,
+    enabledValidationFeatureCount: len(enabledValidationFeatures).uint32,
+    pEnabledValidationFeatures: if len(enabledValidationFeatures) == 0: nil else: cast[ptr VkValidationFeatureEnableEXT](enabledValidationFeatures),
+    disabledValidationFeatureCount: len(disabledValidationFeatures).uint32,
+    pDisabledValidationFeatures: if len(disabledValidationFeatures) == 0: nil else: cast[ptr VkValidationFeatureDisableEXT](disabledValidationFeatures),
   )
 
-proc newVkLayerSettingsCreateInfoEXT*(sType: VkStructureType = VkStructureType.LayerSettingsCreateInfoEXT, pNext: pointer = nil, settingCount: uint32, pSettings: ptr VkLayerSettingEXT): VkLayerSettingsCreateInfoEXT =
+proc newVkLayerSettingsCreateInfoEXT*(sType: VkStructureType = VkStructureType.LayerSettingsCreateInfoEXT, pNext: pointer = nil, settings: openarray[VkLayerSettingEXT]): VkLayerSettingsCreateInfoEXT =
   result = VkLayerSettingsCreateInfoEXT(
     sType: sType,
     pNext: pNext,
-    settingCount: settingCount,
-    pSettings: pSettings,
+    settingCount: len(settings).uint32,
+    pSettings: if len(settings) == 0: nil else: cast[ptr VkLayerSettingEXT](settings),
   )
 
 proc newVkLayerSettingEXT*(pLayerName: cstring, pSettingName: cstring, `type`: VkLayerSettingTypeEXT, valueCount: uint32, pValues: pointer = nil): VkLayerSettingEXT =
@@ -15010,17 +15010,17 @@ proc newVkPhysicalDeviceExternalMemorySciBufFeaturesNV*(sType: VkStructureType =
     sciBufExport: sciBufExport,
   )
 
-proc newVkWin32KeyedMutexAcquireReleaseInfoNV*(sType: VkStructureType = VkStructureType.Win32KeyedMutexAcquireReleaseInfoNV, pNext: pointer = nil, acquireCount: uint32, pAcquireSyncs: ptr VkDeviceMemory, pAcquireKeys: ptr uint64, pAcquireTimeoutMilliseconds: ptr uint32, releaseCount: uint32, pReleaseSyncs: ptr VkDeviceMemory, pReleaseKeys: ptr uint64): VkWin32KeyedMutexAcquireReleaseInfoNV =
+proc newVkWin32KeyedMutexAcquireReleaseInfoNV*(sType: VkStructureType = VkStructureType.Win32KeyedMutexAcquireReleaseInfoNV, pNext: pointer = nil, acquireSyncs: openarray[VkDeviceMemory], acquireKeys: openarray[uint64], acquireTimeoutMilliseconds: openarray[uint32], releaseSyncs: openarray[VkDeviceMemory], releaseKeys: openarray[uint64]): VkWin32KeyedMutexAcquireReleaseInfoNV =
   result = VkWin32KeyedMutexAcquireReleaseInfoNV(
     sType: sType,
     pNext: pNext,
-    acquireCount: acquireCount,
-    pAcquireSyncs: pAcquireSyncs,
-    pAcquireKeys: pAcquireKeys,
-    pAcquireTimeoutMilliseconds: pAcquireTimeoutMilliseconds,
-    releaseCount: releaseCount,
-    pReleaseSyncs: pReleaseSyncs,
-    pReleaseKeys: pReleaseKeys,
+    acquireCount: len(acquireSyncs).uint32,
+    pAcquireSyncs: if len(acquireSyncs) == 0: nil else: cast[ptr VkDeviceMemory](acquireSyncs),
+    pAcquireKeys: if len(acquireKeys) == 0: nil else: cast[ptr uint64](acquireKeys),
+    pAcquireTimeoutMilliseconds: if len(acquireTimeoutMilliseconds) == 0: nil else: cast[ptr uint32](acquireTimeoutMilliseconds),
+    releaseCount: len(releaseSyncs).uint32,
+    pReleaseSyncs: if len(releaseSyncs) == 0: nil else: cast[ptr VkDeviceMemory](releaseSyncs),
+    pReleaseKeys: if len(releaseKeys) == 0: nil else: cast[ptr uint64](releaseKeys),
   )
 
 proc newVkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceDeviceGeneratedCommandsFeaturesNV, pNext: pointer = nil, deviceGeneratedCommands: VkBool32): VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV =
@@ -15082,24 +15082,24 @@ proc newVkPhysicalDeviceMultiDrawPropertiesEXT*(sType: VkStructureType = VkStruc
     maxMultiDrawCount: maxMultiDrawCount,
   )
 
-proc newVkGraphicsShaderGroupCreateInfoNV*(sType: VkStructureType = VkStructureType.GraphicsShaderGroupCreateInfoNV, pNext: pointer = nil, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, pVertexInputState: ptr VkPipelineVertexInputStateCreateInfo, pTessellationState: ptr VkPipelineTessellationStateCreateInfo): VkGraphicsShaderGroupCreateInfoNV =
+proc newVkGraphicsShaderGroupCreateInfoNV*(sType: VkStructureType = VkStructureType.GraphicsShaderGroupCreateInfoNV, pNext: pointer = nil, stages: openarray[VkPipelineShaderStageCreateInfo], pVertexInputState: ptr VkPipelineVertexInputStateCreateInfo, pTessellationState: ptr VkPipelineTessellationStateCreateInfo): VkGraphicsShaderGroupCreateInfoNV =
   result = VkGraphicsShaderGroupCreateInfoNV(
     sType: sType,
     pNext: pNext,
-    stageCount: stageCount,
-    pStages: pStages,
+    stageCount: len(stages).uint32,
+    pStages: if len(stages) == 0: nil else: cast[ptr VkPipelineShaderStageCreateInfo](stages),
     pVertexInputState: pVertexInputState,
     pTessellationState: pTessellationState,
   )
 
-proc newVkGraphicsPipelineShaderGroupsCreateInfoNV*(sType: VkStructureType = VkStructureType.GraphicsPipelineShaderGroupsCreateInfoNV, pNext: pointer = nil, groupCount: uint32, pGroups: ptr VkGraphicsShaderGroupCreateInfoNV, pipelineCount: uint32, pPipelines: ptr VkPipeline): VkGraphicsPipelineShaderGroupsCreateInfoNV =
+proc newVkGraphicsPipelineShaderGroupsCreateInfoNV*(sType: VkStructureType = VkStructureType.GraphicsPipelineShaderGroupsCreateInfoNV, pNext: pointer = nil, groups: openarray[VkGraphicsShaderGroupCreateInfoNV], pipelines: openarray[VkPipeline]): VkGraphicsPipelineShaderGroupsCreateInfoNV =
   result = VkGraphicsPipelineShaderGroupsCreateInfoNV(
     sType: sType,
     pNext: pNext,
-    groupCount: groupCount,
-    pGroups: pGroups,
-    pipelineCount: pipelineCount,
-    pPipelines: pPipelines,
+    groupCount: len(groups).uint32,
+    pGroups: if len(groups) == 0: nil else: cast[ptr VkGraphicsShaderGroupCreateInfoNV](groups),
+    pipelineCount: len(pipelines).uint32,
+    pPipelines: if len(pipelines) == 0: nil else: cast[ptr VkPipeline](pipelines),
   )
 
 proc newVkBindShaderGroupIndirectCommandNV*(groupIndex: uint32): VkBindShaderGroupIndirectCommandNV =
@@ -15132,7 +15132,7 @@ proc newVkIndirectCommandsStreamNV*(buffer: VkBuffer, offset: VkDeviceSize): VkI
     offset: offset,
   )
 
-proc newVkIndirectCommandsLayoutTokenNV*(sType: VkStructureType = VkStructureType.IndirectCommandsLayoutTokenNV, pNext: pointer = nil, tokenType: VkIndirectCommandsTokenTypeNV, stream: uint32, offset: uint32, vertexBindingUnit: uint32, vertexDynamicStride: VkBool32, pushconstantPipelineLayout: VkPipelineLayout, pushconstantShaderStageFlags: VkShaderStageFlags, pushconstantOffset: uint32, pushconstantSize: uint32, indirectStateFlags: VkIndirectStateFlagsNV, indexTypeCount: uint32, pIndexTypes: ptr VkIndexType, pIndexTypeValues: ptr uint32): VkIndirectCommandsLayoutTokenNV =
+proc newVkIndirectCommandsLayoutTokenNV*(sType: VkStructureType = VkStructureType.IndirectCommandsLayoutTokenNV, pNext: pointer = nil, tokenType: VkIndirectCommandsTokenTypeNV, stream: uint32, offset: uint32, vertexBindingUnit: uint32, vertexDynamicStride: VkBool32, pushconstantPipelineLayout: VkPipelineLayout, pushconstantShaderStageFlags: VkShaderStageFlags, pushconstantOffset: uint32, pushconstantSize: uint32, indirectStateFlags: VkIndirectStateFlagsNV, indexTypes: openarray[VkIndexType], indexTypeValues: openarray[uint32]): VkIndirectCommandsLayoutTokenNV =
   result = VkIndirectCommandsLayoutTokenNV(
     sType: sType,
     pNext: pNext,
@@ -15146,32 +15146,32 @@ proc newVkIndirectCommandsLayoutTokenNV*(sType: VkStructureType = VkStructureTyp
     pushconstantOffset: pushconstantOffset,
     pushconstantSize: pushconstantSize,
     indirectStateFlags: indirectStateFlags,
-    indexTypeCount: indexTypeCount,
-    pIndexTypes: pIndexTypes,
-    pIndexTypeValues: pIndexTypeValues,
+    indexTypeCount: len(indexTypes).uint32,
+    pIndexTypes: if len(indexTypes) == 0: nil else: cast[ptr VkIndexType](indexTypes),
+    pIndexTypeValues: if len(indexTypeValues) == 0: nil else: cast[ptr uint32](indexTypeValues),
   )
 
-proc newVkIndirectCommandsLayoutCreateInfoNV*(sType: VkStructureType = VkStructureType.IndirectCommandsLayoutCreateInfoNV, pNext: pointer = nil, flags: VkIndirectCommandsLayoutUsageFlagsNV = 0.VkIndirectCommandsLayoutUsageFlagsNV, pipelineBindPoint: VkPipelineBindPoint, tokenCount: uint32, pTokens: ptr VkIndirectCommandsLayoutTokenNV, streamCount: uint32, pStreamStrides: ptr uint32): VkIndirectCommandsLayoutCreateInfoNV =
+proc newVkIndirectCommandsLayoutCreateInfoNV*(sType: VkStructureType = VkStructureType.IndirectCommandsLayoutCreateInfoNV, pNext: pointer = nil, flags: VkIndirectCommandsLayoutUsageFlagsNV = 0.VkIndirectCommandsLayoutUsageFlagsNV, pipelineBindPoint: VkPipelineBindPoint, tokens: openarray[VkIndirectCommandsLayoutTokenNV], streamStrides: openarray[uint32]): VkIndirectCommandsLayoutCreateInfoNV =
   result = VkIndirectCommandsLayoutCreateInfoNV(
     sType: sType,
     pNext: pNext,
     flags: flags,
     pipelineBindPoint: pipelineBindPoint,
-    tokenCount: tokenCount,
-    pTokens: pTokens,
-    streamCount: streamCount,
-    pStreamStrides: pStreamStrides,
+    tokenCount: len(tokens).uint32,
+    pTokens: if len(tokens) == 0: nil else: cast[ptr VkIndirectCommandsLayoutTokenNV](tokens),
+    streamCount: len(streamStrides).uint32,
+    pStreamStrides: if len(streamStrides) == 0: nil else: cast[ptr uint32](streamStrides),
   )
 
-proc newVkGeneratedCommandsInfoNV*(sType: VkStructureType = VkStructureType.GeneratedCommandsInfoNV, pNext: pointer = nil, pipelineBindPoint: VkPipelineBindPoint, pipeline: VkPipeline, indirectCommandsLayout: VkIndirectCommandsLayoutNV, streamCount: uint32, pStreams: ptr VkIndirectCommandsStreamNV, sequencesCount: uint32, preprocessBuffer: VkBuffer, preprocessOffset: VkDeviceSize, preprocessSize: VkDeviceSize, sequencesCountBuffer: VkBuffer, sequencesCountOffset: VkDeviceSize, sequencesIndexBuffer: VkBuffer, sequencesIndexOffset: VkDeviceSize): VkGeneratedCommandsInfoNV =
+proc newVkGeneratedCommandsInfoNV*(sType: VkStructureType = VkStructureType.GeneratedCommandsInfoNV, pNext: pointer = nil, pipelineBindPoint: VkPipelineBindPoint, pipeline: VkPipeline, indirectCommandsLayout: VkIndirectCommandsLayoutNV, streams: openarray[VkIndirectCommandsStreamNV], sequencesCount: uint32, preprocessBuffer: VkBuffer, preprocessOffset: VkDeviceSize, preprocessSize: VkDeviceSize, sequencesCountBuffer: VkBuffer, sequencesCountOffset: VkDeviceSize, sequencesIndexBuffer: VkBuffer, sequencesIndexOffset: VkDeviceSize): VkGeneratedCommandsInfoNV =
   result = VkGeneratedCommandsInfoNV(
     sType: sType,
     pNext: pNext,
     pipelineBindPoint: pipelineBindPoint,
     pipeline: pipeline,
     indirectCommandsLayout: indirectCommandsLayout,
-    streamCount: streamCount,
-    pStreams: pStreams,
+    streamCount: len(streams).uint32,
+    pStreams: if len(streams) == 0: nil else: cast[ptr VkIndirectCommandsStreamNV](streams),
     sequencesCount: sequencesCount,
     preprocessBuffer: preprocessBuffer,
     preprocessOffset: preprocessOffset,
@@ -15301,18 +15301,18 @@ proc newVkPhysicalDeviceDriverProperties*(sType: VkStructureType = VkStructureTy
     conformanceVersion: conformanceVersion,
   )
 
-proc newVkPresentRegionsKHR*(sType: VkStructureType = VkStructureType.PresentRegionsKHR, pNext: pointer = nil, swapchainCount: uint32, pRegions: ptr VkPresentRegionKHR): VkPresentRegionsKHR =
+proc newVkPresentRegionsKHR*(sType: VkStructureType = VkStructureType.PresentRegionsKHR, pNext: pointer = nil, regions: openarray[VkPresentRegionKHR]): VkPresentRegionsKHR =
   result = VkPresentRegionsKHR(
     sType: sType,
     pNext: pNext,
-    swapchainCount: swapchainCount,
-    pRegions: pRegions,
+    swapchainCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkPresentRegionKHR](regions),
   )
 
-proc newVkPresentRegionKHR*(rectangleCount: uint32, pRectangles: ptr VkRectLayerKHR): VkPresentRegionKHR =
+proc newVkPresentRegionKHR*(rectangles: openarray[VkRectLayerKHR]): VkPresentRegionKHR =
   result = VkPresentRegionKHR(
-    rectangleCount: rectangleCount,
-    pRectangles: pRectangles,
+    rectangleCount: len(rectangles).uint32,
+    pRectangles: if len(rectangles) == 0: nil else: cast[ptr VkRectLayerKHR](rectangles),
   )
 
 proc newVkRectLayerKHR*(offset: VkOffset2D, extent: VkExtent2D, layer: uint32): VkRectLayerKHR =
@@ -15478,17 +15478,17 @@ proc newVkMemoryGetFdInfoKHR*(sType: VkStructureType = VkStructureType.MemoryGet
     handleType: handleType,
   )
 
-proc newVkWin32KeyedMutexAcquireReleaseInfoKHR*(sType: VkStructureType = VkStructureType.Win32KeyedMutexAcquireReleaseInfoKHR, pNext: pointer = nil, acquireCount: uint32, pAcquireSyncs: ptr VkDeviceMemory, pAcquireKeys: ptr uint64, pAcquireTimeouts: ptr uint32, releaseCount: uint32, pReleaseSyncs: ptr VkDeviceMemory, pReleaseKeys: ptr uint64): VkWin32KeyedMutexAcquireReleaseInfoKHR =
+proc newVkWin32KeyedMutexAcquireReleaseInfoKHR*(sType: VkStructureType = VkStructureType.Win32KeyedMutexAcquireReleaseInfoKHR, pNext: pointer = nil, acquireSyncs: openarray[VkDeviceMemory], acquireKeys: openarray[uint64], acquireTimeouts: openarray[uint32], releaseSyncs: openarray[VkDeviceMemory], releaseKeys: openarray[uint64]): VkWin32KeyedMutexAcquireReleaseInfoKHR =
   result = VkWin32KeyedMutexAcquireReleaseInfoKHR(
     sType: sType,
     pNext: pNext,
-    acquireCount: acquireCount,
-    pAcquireSyncs: pAcquireSyncs,
-    pAcquireKeys: pAcquireKeys,
-    pAcquireTimeouts: pAcquireTimeouts,
-    releaseCount: releaseCount,
-    pReleaseSyncs: pReleaseSyncs,
-    pReleaseKeys: pReleaseKeys,
+    acquireCount: len(acquireSyncs).uint32,
+    pAcquireSyncs: if len(acquireSyncs) == 0: nil else: cast[ptr VkDeviceMemory](acquireSyncs),
+    pAcquireKeys: if len(acquireKeys) == 0: nil else: cast[ptr uint64](acquireKeys),
+    pAcquireTimeouts: if len(acquireTimeouts) == 0: nil else: cast[ptr uint32](acquireTimeouts),
+    releaseCount: len(releaseSyncs).uint32,
+    pReleaseSyncs: if len(releaseSyncs) == 0: nil else: cast[ptr VkDeviceMemory](releaseSyncs),
+    pReleaseKeys: if len(releaseKeys) == 0: nil else: cast[ptr uint64](releaseKeys),
   )
 
 proc newVkPhysicalDeviceExternalSemaphoreInfo*(sType: VkStructureType = VkStructureType.PhysicalDeviceExternalSemaphoreInfo, pNext: pointer = nil, handleType: VkExternalSemaphoreHandleTypeFlagBits): VkPhysicalDeviceExternalSemaphoreInfo =
@@ -15534,14 +15534,14 @@ proc newVkExportSemaphoreWin32HandleInfoKHR*(sType: VkStructureType = VkStructur
     name: name,
   )
 
-proc newVkD3D12FenceSubmitInfoKHR*(sType: VkStructureType = VkStructureType.D3D12FenceSubmitInfoKHR, pNext: pointer = nil, waitSemaphoreValuesCount: uint32, pWaitSemaphoreValues: ptr uint64, signalSemaphoreValuesCount: uint32, pSignalSemaphoreValues: ptr uint64): VkD3D12FenceSubmitInfoKHR =
+proc newVkD3D12FenceSubmitInfoKHR*(sType: VkStructureType = VkStructureType.D3D12FenceSubmitInfoKHR, pNext: pointer = nil, waitSemaphoreValues: openarray[uint64], signalSemaphoreValues: openarray[uint64]): VkD3D12FenceSubmitInfoKHR =
   result = VkD3D12FenceSubmitInfoKHR(
     sType: sType,
     pNext: pNext,
-    waitSemaphoreValuesCount: waitSemaphoreValuesCount,
-    pWaitSemaphoreValues: pWaitSemaphoreValues,
-    signalSemaphoreValuesCount: signalSemaphoreValuesCount,
-    pSignalSemaphoreValues: pSignalSemaphoreValues,
+    waitSemaphoreValuesCount: len(waitSemaphoreValues).uint32,
+    pWaitSemaphoreValues: if len(waitSemaphoreValues) == 0: nil else: cast[ptr uint64](waitSemaphoreValues),
+    signalSemaphoreValuesCount: len(signalSemaphoreValues).uint32,
+    pSignalSemaphoreValues: if len(signalSemaphoreValues) == 0: nil else: cast[ptr uint64](signalSemaphoreValues),
   )
 
 proc newVkSemaphoreGetWin32HandleInfoKHR*(sType: VkStructureType = VkStructureType.SemaphoreGetWin32HandleInfoKHR, pNext: pointer = nil, semaphore: VkSemaphore, handleType: VkExternalSemaphoreHandleTypeFlagBits): VkSemaphoreGetWin32HandleInfoKHR =
@@ -15772,16 +15772,16 @@ proc newVkPhysicalDeviceMultiviewProperties*(sType: VkStructureType = VkStructur
     maxMultiviewInstanceIndex: maxMultiviewInstanceIndex,
   )
 
-proc newVkRenderPassMultiviewCreateInfo*(sType: VkStructureType = VkStructureType.RenderPassMultiviewCreateInfo, pNext: pointer = nil, subpassCount: uint32, pViewMasks: ptr uint32, dependencyCount: uint32, pViewOffsets: ptr int32, correlationMaskCount: uint32, pCorrelationMasks: ptr uint32): VkRenderPassMultiviewCreateInfo =
+proc newVkRenderPassMultiviewCreateInfo*(sType: VkStructureType = VkStructureType.RenderPassMultiviewCreateInfo, pNext: pointer = nil, viewMasks: openarray[uint32], viewOffsets: openarray[int32], correlationMasks: openarray[uint32]): VkRenderPassMultiviewCreateInfo =
   result = VkRenderPassMultiviewCreateInfo(
     sType: sType,
     pNext: pNext,
-    subpassCount: subpassCount,
-    pViewMasks: pViewMasks,
-    dependencyCount: dependencyCount,
-    pViewOffsets: pViewOffsets,
-    correlationMaskCount: correlationMaskCount,
-    pCorrelationMasks: pCorrelationMasks,
+    subpassCount: len(viewMasks).uint32,
+    pViewMasks: if len(viewMasks) == 0: nil else: cast[ptr uint32](viewMasks),
+    dependencyCount: len(viewOffsets).uint32,
+    pViewOffsets: if len(viewOffsets) == 0: nil else: cast[ptr int32](viewOffsets),
+    correlationMaskCount: len(correlationMasks).uint32,
+    pCorrelationMasks: if len(correlationMasks) == 0: nil else: cast[ptr uint32](correlationMasks),
   )
 
 proc newVkSurfaceCapabilities2EXT*(sType: VkStructureType = VkStructureType.SurfaceCapabilities2EXT, pNext: pointer = nil, minImageCount: uint32, maxImageCount: uint32, currentExtent: VkExtent2D, minImageExtent: VkExtent2D, maxImageExtent: VkExtent2D, maxImageArrayLayers: uint32, supportedTransforms: VkSurfaceTransformFlagsKHR, currentTransform: VkSurfaceTransformFlagBitsKHR, supportedCompositeAlpha: VkCompositeAlphaFlagsKHR, supportedUsageFlags: VkImageUsageFlags, supportedSurfaceCounters: VkSurfaceCounterFlagsEXT): VkSurfaceCapabilities2EXT =
@@ -15855,12 +15855,12 @@ proc newVkBindBufferMemoryInfo*(sType: VkStructureType = VkStructureType.BindBuf
     memoryOffset: memoryOffset,
   )
 
-proc newVkBindBufferMemoryDeviceGroupInfo*(sType: VkStructureType = VkStructureType.BindBufferMemoryDeviceGroupInfo, pNext: pointer = nil, deviceIndexCount: uint32, pDeviceIndices: ptr uint32): VkBindBufferMemoryDeviceGroupInfo =
+proc newVkBindBufferMemoryDeviceGroupInfo*(sType: VkStructureType = VkStructureType.BindBufferMemoryDeviceGroupInfo, pNext: pointer = nil, deviceIndices: openarray[uint32]): VkBindBufferMemoryDeviceGroupInfo =
   result = VkBindBufferMemoryDeviceGroupInfo(
     sType: sType,
     pNext: pNext,
-    deviceIndexCount: deviceIndexCount,
-    pDeviceIndices: pDeviceIndices,
+    deviceIndexCount: len(deviceIndices).uint32,
+    pDeviceIndices: if len(deviceIndices) == 0: nil else: cast[ptr uint32](deviceIndices),
   )
 
 proc newVkBindImageMemoryInfo*(sType: VkStructureType = VkStructureType.BindImageMemoryInfo, pNext: pointer = nil, image: VkImage, memory: VkDeviceMemory, memoryOffset: VkDeviceSize): VkBindImageMemoryInfo =
@@ -15872,23 +15872,23 @@ proc newVkBindImageMemoryInfo*(sType: VkStructureType = VkStructureType.BindImag
     memoryOffset: memoryOffset,
   )
 
-proc newVkBindImageMemoryDeviceGroupInfo*(sType: VkStructureType = VkStructureType.BindImageMemoryDeviceGroupInfo, pNext: pointer = nil, deviceIndexCount: uint32, pDeviceIndices: ptr uint32, splitInstanceBindRegionCount: uint32, pSplitInstanceBindRegions: ptr VkRect2D): VkBindImageMemoryDeviceGroupInfo =
+proc newVkBindImageMemoryDeviceGroupInfo*(sType: VkStructureType = VkStructureType.BindImageMemoryDeviceGroupInfo, pNext: pointer = nil, deviceIndices: openarray[uint32], splitInstanceBindRegions: openarray[VkRect2D]): VkBindImageMemoryDeviceGroupInfo =
   result = VkBindImageMemoryDeviceGroupInfo(
     sType: sType,
     pNext: pNext,
-    deviceIndexCount: deviceIndexCount,
-    pDeviceIndices: pDeviceIndices,
-    splitInstanceBindRegionCount: splitInstanceBindRegionCount,
-    pSplitInstanceBindRegions: pSplitInstanceBindRegions,
+    deviceIndexCount: len(deviceIndices).uint32,
+    pDeviceIndices: if len(deviceIndices) == 0: nil else: cast[ptr uint32](deviceIndices),
+    splitInstanceBindRegionCount: len(splitInstanceBindRegions).uint32,
+    pSplitInstanceBindRegions: if len(splitInstanceBindRegions) == 0: nil else: cast[ptr VkRect2D](splitInstanceBindRegions),
   )
 
-proc newVkDeviceGroupRenderPassBeginInfo*(sType: VkStructureType = VkStructureType.DeviceGroupRenderPassBeginInfo, pNext: pointer = nil, deviceMask: uint32, deviceRenderAreaCount: uint32, pDeviceRenderAreas: ptr VkRect2D): VkDeviceGroupRenderPassBeginInfo =
+proc newVkDeviceGroupRenderPassBeginInfo*(sType: VkStructureType = VkStructureType.DeviceGroupRenderPassBeginInfo, pNext: pointer = nil, deviceMask: uint32, deviceRenderAreas: openarray[VkRect2D]): VkDeviceGroupRenderPassBeginInfo =
   result = VkDeviceGroupRenderPassBeginInfo(
     sType: sType,
     pNext: pNext,
     deviceMask: deviceMask,
-    deviceRenderAreaCount: deviceRenderAreaCount,
-    pDeviceRenderAreas: pDeviceRenderAreas,
+    deviceRenderAreaCount: len(deviceRenderAreas).uint32,
+    pDeviceRenderAreas: if len(deviceRenderAreas) == 0: nil else: cast[ptr VkRect2D](deviceRenderAreas),
   )
 
 proc newVkDeviceGroupCommandBufferBeginInfo*(sType: VkStructureType = VkStructureType.DeviceGroupCommandBufferBeginInfo, pNext: pointer = nil, deviceMask: uint32): VkDeviceGroupCommandBufferBeginInfo =
@@ -15898,16 +15898,16 @@ proc newVkDeviceGroupCommandBufferBeginInfo*(sType: VkStructureType = VkStructur
     deviceMask: deviceMask,
   )
 
-proc newVkDeviceGroupSubmitInfo*(sType: VkStructureType = VkStructureType.DeviceGroupSubmitInfo, pNext: pointer = nil, waitSemaphoreCount: uint32, pWaitSemaphoreDeviceIndices: ptr uint32, commandBufferCount: uint32, pCommandBufferDeviceMasks: ptr uint32, signalSemaphoreCount: uint32, pSignalSemaphoreDeviceIndices: ptr uint32): VkDeviceGroupSubmitInfo =
+proc newVkDeviceGroupSubmitInfo*(sType: VkStructureType = VkStructureType.DeviceGroupSubmitInfo, pNext: pointer = nil, waitSemaphoreDeviceIndices: openarray[uint32], commandBufferDeviceMasks: openarray[uint32], signalSemaphoreDeviceIndices: openarray[uint32]): VkDeviceGroupSubmitInfo =
   result = VkDeviceGroupSubmitInfo(
     sType: sType,
     pNext: pNext,
-    waitSemaphoreCount: waitSemaphoreCount,
-    pWaitSemaphoreDeviceIndices: pWaitSemaphoreDeviceIndices,
-    commandBufferCount: commandBufferCount,
-    pCommandBufferDeviceMasks: pCommandBufferDeviceMasks,
-    signalSemaphoreCount: signalSemaphoreCount,
-    pSignalSemaphoreDeviceIndices: pSignalSemaphoreDeviceIndices,
+    waitSemaphoreCount: len(waitSemaphoreDeviceIndices).uint32,
+    pWaitSemaphoreDeviceIndices: if len(waitSemaphoreDeviceIndices) == 0: nil else: cast[ptr uint32](waitSemaphoreDeviceIndices),
+    commandBufferCount: len(commandBufferDeviceMasks).uint32,
+    pCommandBufferDeviceMasks: if len(commandBufferDeviceMasks) == 0: nil else: cast[ptr uint32](commandBufferDeviceMasks),
+    signalSemaphoreCount: len(signalSemaphoreDeviceIndices).uint32,
+    pSignalSemaphoreDeviceIndices: if len(signalSemaphoreDeviceIndices) == 0: nil else: cast[ptr uint32](signalSemaphoreDeviceIndices),
   )
 
 proc newVkDeviceGroupBindSparseInfo*(sType: VkStructureType = VkStructureType.DeviceGroupBindSparseInfo, pNext: pointer = nil, resourceDeviceIndex: uint32, memoryDeviceIndex: uint32): VkDeviceGroupBindSparseInfo =
@@ -15952,21 +15952,21 @@ proc newVkAcquireNextImageInfoKHR*(sType: VkStructureType = VkStructureType.Acqu
     deviceMask: deviceMask,
   )
 
-proc newVkDeviceGroupPresentInfoKHR*(sType: VkStructureType = VkStructureType.DeviceGroupPresentInfoKHR, pNext: pointer = nil, swapchainCount: uint32, pDeviceMasks: ptr uint32, mode: VkDeviceGroupPresentModeFlagBitsKHR): VkDeviceGroupPresentInfoKHR =
+proc newVkDeviceGroupPresentInfoKHR*(sType: VkStructureType = VkStructureType.DeviceGroupPresentInfoKHR, pNext: pointer = nil, deviceMasks: openarray[uint32], mode: VkDeviceGroupPresentModeFlagBitsKHR): VkDeviceGroupPresentInfoKHR =
   result = VkDeviceGroupPresentInfoKHR(
     sType: sType,
     pNext: pNext,
-    swapchainCount: swapchainCount,
-    pDeviceMasks: pDeviceMasks,
+    swapchainCount: len(deviceMasks).uint32,
+    pDeviceMasks: if len(deviceMasks) == 0: nil else: cast[ptr uint32](deviceMasks),
     mode: mode,
   )
 
-proc newVkDeviceGroupDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceGroupDeviceCreateInfo, pNext: pointer = nil, physicalDeviceCount: uint32, pPhysicalDevices: ptr VkPhysicalDevice): VkDeviceGroupDeviceCreateInfo =
+proc newVkDeviceGroupDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceGroupDeviceCreateInfo, pNext: pointer = nil, physicalDevices: openarray[VkPhysicalDevice]): VkDeviceGroupDeviceCreateInfo =
   result = VkDeviceGroupDeviceCreateInfo(
     sType: sType,
     pNext: pNext,
-    physicalDeviceCount: physicalDeviceCount,
-    pPhysicalDevices: pPhysicalDevices,
+    physicalDeviceCount: len(physicalDevices).uint32,
+    pPhysicalDevices: if len(physicalDevices) == 0: nil else: cast[ptr VkPhysicalDevice](physicalDevices),
   )
 
 proc newVkDeviceGroupSwapchainCreateInfoKHR*(sType: VkStructureType = VkStructureType.DeviceGroupSwapchainCreateInfoKHR, pNext: pointer = nil, modes: VkDeviceGroupPresentModeFlagsKHR): VkDeviceGroupSwapchainCreateInfoKHR =
@@ -15986,13 +15986,13 @@ proc newVkDescriptorUpdateTemplateEntry*(dstBinding: uint32, dstArrayElement: ui
     stride: stride,
   )
 
-proc newVkDescriptorUpdateTemplateCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorUpdateTemplateCreateInfo, pNext: pointer = nil, flags: VkDescriptorUpdateTemplateCreateFlags = 0.VkDescriptorUpdateTemplateCreateFlags, descriptorUpdateEntryCount: uint32, pDescriptorUpdateEntries: ptr VkDescriptorUpdateTemplateEntry, templateType: VkDescriptorUpdateTemplateType, descriptorSetLayout: VkDescriptorSetLayout, pipelineBindPoint: VkPipelineBindPoint, pipelineLayout: VkPipelineLayout, set: uint32): VkDescriptorUpdateTemplateCreateInfo =
+proc newVkDescriptorUpdateTemplateCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorUpdateTemplateCreateInfo, pNext: pointer = nil, flags: VkDescriptorUpdateTemplateCreateFlags = 0.VkDescriptorUpdateTemplateCreateFlags, descriptorUpdateEntries: openarray[VkDescriptorUpdateTemplateEntry], templateType: VkDescriptorUpdateTemplateType, descriptorSetLayout: VkDescriptorSetLayout, pipelineBindPoint: VkPipelineBindPoint, pipelineLayout: VkPipelineLayout, set: uint32): VkDescriptorUpdateTemplateCreateInfo =
   result = VkDescriptorUpdateTemplateCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    descriptorUpdateEntryCount: descriptorUpdateEntryCount,
-    pDescriptorUpdateEntries: pDescriptorUpdateEntries,
+    descriptorUpdateEntryCount: len(descriptorUpdateEntries).uint32,
+    pDescriptorUpdateEntries: if len(descriptorUpdateEntries) == 0: nil else: cast[ptr VkDescriptorUpdateTemplateEntry](descriptorUpdateEntries),
     templateType: templateType,
     descriptorSetLayout: descriptorSetLayout,
     pipelineBindPoint: pipelineBindPoint,
@@ -16013,12 +16013,12 @@ proc newVkPhysicalDevicePresentIdFeaturesKHR*(sType: VkStructureType = VkStructu
     presentId: presentId,
   )
 
-proc newVkPresentIdKHR*(sType: VkStructureType = VkStructureType.PresentIdKHR, pNext: pointer = nil, swapchainCount: uint32, pPresentIds: ptr uint64): VkPresentIdKHR =
+proc newVkPresentIdKHR*(sType: VkStructureType = VkStructureType.PresentIdKHR, pNext: pointer = nil, presentIds: openarray[uint64]): VkPresentIdKHR =
   result = VkPresentIdKHR(
     sType: sType,
     pNext: pNext,
-    swapchainCount: swapchainCount,
-    pPresentIds: pPresentIds,
+    swapchainCount: len(presentIds).uint32,
+    pPresentIds: if len(presentIds) == 0: nil else: cast[ptr uint64](presentIds),
   )
 
 proc newVkPhysicalDevicePresentWaitFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDevicePresentWaitFeaturesKHR, pNext: pointer = nil, presentWait: VkBool32): VkPhysicalDevicePresentWaitFeaturesKHR =
@@ -16070,12 +16070,12 @@ proc newVkPastPresentationTimingGOOGLE*(presentID: uint32, desiredPresentTime: u
     presentMargin: presentMargin,
   )
 
-proc newVkPresentTimesInfoGOOGLE*(sType: VkStructureType = VkStructureType.PresentTimesInfoGOOGLE, pNext: pointer = nil, swapchainCount: uint32, pTimes: ptr VkPresentTimeGOOGLE): VkPresentTimesInfoGOOGLE =
+proc newVkPresentTimesInfoGOOGLE*(sType: VkStructureType = VkStructureType.PresentTimesInfoGOOGLE, pNext: pointer = nil, times: openarray[VkPresentTimeGOOGLE]): VkPresentTimesInfoGOOGLE =
   result = VkPresentTimesInfoGOOGLE(
     sType: sType,
     pNext: pNext,
-    swapchainCount: swapchainCount,
-    pTimes: pTimes,
+    swapchainCount: len(times).uint32,
+    pTimes: if len(times) == 0: nil else: cast[ptr VkPresentTimeGOOGLE](times),
   )
 
 proc newVkPresentTimeGOOGLE*(presentID: uint32, desiredPresentTime: uint64): VkPresentTimeGOOGLE =
@@ -16114,13 +16114,13 @@ proc newVkViewportWScalingNV*(xcoeff: float32, ycoeff: float32): VkViewportWScal
     ycoeff: ycoeff,
   )
 
-proc newVkPipelineViewportWScalingStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportWScalingStateCreateInfoNV, pNext: pointer = nil, viewportWScalingEnable: VkBool32, viewportCount: uint32, pViewportWScalings: ptr VkViewportWScalingNV): VkPipelineViewportWScalingStateCreateInfoNV =
+proc newVkPipelineViewportWScalingStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportWScalingStateCreateInfoNV, pNext: pointer = nil, viewportWScalingEnable: VkBool32, viewportWScalings: openarray[VkViewportWScalingNV]): VkPipelineViewportWScalingStateCreateInfoNV =
   result = VkPipelineViewportWScalingStateCreateInfoNV(
     sType: sType,
     pNext: pNext,
     viewportWScalingEnable: viewportWScalingEnable,
-    viewportCount: viewportCount,
-    pViewportWScalings: pViewportWScalings,
+    viewportCount: len(viewportWScalings).uint32,
+    pViewportWScalings: if len(viewportWScalings) == 0: nil else: cast[ptr VkViewportWScalingNV](viewportWScalings),
   )
 
 proc newVkViewportSwizzleNV*(x: VkViewportCoordinateSwizzleNV, y: VkViewportCoordinateSwizzleNV, z: VkViewportCoordinateSwizzleNV, w: VkViewportCoordinateSwizzleNV): VkViewportSwizzleNV =
@@ -16131,13 +16131,13 @@ proc newVkViewportSwizzleNV*(x: VkViewportCoordinateSwizzleNV, y: VkViewportCoor
     w: w,
   )
 
-proc newVkPipelineViewportSwizzleStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportSwizzleStateCreateInfoNV, pNext: pointer = nil, flags: VkPipelineViewportSwizzleStateCreateFlagsNV = 0.VkPipelineViewportSwizzleStateCreateFlagsNV, viewportCount: uint32, pViewportSwizzles: ptr VkViewportSwizzleNV): VkPipelineViewportSwizzleStateCreateInfoNV =
+proc newVkPipelineViewportSwizzleStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportSwizzleStateCreateInfoNV, pNext: pointer = nil, flags: VkPipelineViewportSwizzleStateCreateFlagsNV = 0.VkPipelineViewportSwizzleStateCreateFlagsNV, viewportSwizzles: openarray[VkViewportSwizzleNV]): VkPipelineViewportSwizzleStateCreateInfoNV =
   result = VkPipelineViewportSwizzleStateCreateInfoNV(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    viewportCount: viewportCount,
-    pViewportSwizzles: pViewportSwizzles,
+    viewportCount: len(viewportSwizzles).uint32,
+    pViewportSwizzles: if len(viewportSwizzles) == 0: nil else: cast[ptr VkViewportSwizzleNV](viewportSwizzles),
   )
 
 proc newVkPhysicalDeviceDiscardRectanglePropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDiscardRectanglePropertiesEXT, pNext: pointer = nil, maxDiscardRectangles: uint32): VkPhysicalDeviceDiscardRectanglePropertiesEXT =
@@ -16147,14 +16147,14 @@ proc newVkPhysicalDeviceDiscardRectanglePropertiesEXT*(sType: VkStructureType = 
     maxDiscardRectangles: maxDiscardRectangles,
   )
 
-proc newVkPipelineDiscardRectangleStateCreateInfoEXT*(sType: VkStructureType = VkStructureType.PipelineDiscardRectangleStateCreateInfoEXT, pNext: pointer = nil, flags: VkPipelineDiscardRectangleStateCreateFlagsEXT = 0.VkPipelineDiscardRectangleStateCreateFlagsEXT, discardRectangleMode: VkDiscardRectangleModeEXT, discardRectangleCount: uint32, pDiscardRectangles: ptr VkRect2D): VkPipelineDiscardRectangleStateCreateInfoEXT =
+proc newVkPipelineDiscardRectangleStateCreateInfoEXT*(sType: VkStructureType = VkStructureType.PipelineDiscardRectangleStateCreateInfoEXT, pNext: pointer = nil, flags: VkPipelineDiscardRectangleStateCreateFlagsEXT = 0.VkPipelineDiscardRectangleStateCreateFlagsEXT, discardRectangleMode: VkDiscardRectangleModeEXT, discardRectangles: openarray[VkRect2D]): VkPipelineDiscardRectangleStateCreateInfoEXT =
   result = VkPipelineDiscardRectangleStateCreateInfoEXT(
     sType: sType,
     pNext: pNext,
     flags: flags,
     discardRectangleMode: discardRectangleMode,
-    discardRectangleCount: discardRectangleCount,
-    pDiscardRectangles: pDiscardRectangles,
+    discardRectangleCount: len(discardRectangles).uint32,
+    pDiscardRectangles: if len(discardRectangles) == 0: nil else: cast[ptr VkRect2D](discardRectangles),
   )
 
 proc newVkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX*(sType: VkStructureType = VkStructureType.PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX, pNext: pointer = nil, perViewPositionAllComponents: VkBool32): VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX =
@@ -16171,12 +16171,12 @@ proc newVkInputAttachmentAspectReference*(subpass: uint32, inputAttachmentIndex:
     aspectMask: aspectMask,
   )
 
-proc newVkRenderPassInputAttachmentAspectCreateInfo*(sType: VkStructureType = VkStructureType.RenderPassInputAttachmentAspectCreateInfo, pNext: pointer = nil, aspectReferenceCount: uint32, pAspectReferences: ptr VkInputAttachmentAspectReference): VkRenderPassInputAttachmentAspectCreateInfo =
+proc newVkRenderPassInputAttachmentAspectCreateInfo*(sType: VkStructureType = VkStructureType.RenderPassInputAttachmentAspectCreateInfo, pNext: pointer = nil, aspectReferences: openarray[VkInputAttachmentAspectReference]): VkRenderPassInputAttachmentAspectCreateInfo =
   result = VkRenderPassInputAttachmentAspectCreateInfo(
     sType: sType,
     pNext: pNext,
-    aspectReferenceCount: aspectReferenceCount,
-    pAspectReferences: pAspectReferences,
+    aspectReferenceCount: len(aspectReferences).uint32,
+    pAspectReferences: if len(aspectReferences) == 0: nil else: cast[ptr VkInputAttachmentAspectReference](aspectReferences),
   )
 
 proc newVkPhysicalDeviceSurfaceInfo2KHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceSurfaceInfo2KHR, pNext: pointer = nil, surface: VkSurfaceKHR): VkPhysicalDeviceSurfaceInfo2KHR =
@@ -16483,14 +16483,14 @@ proc newVkSampleLocationEXT*(x: float32, y: float32): VkSampleLocationEXT =
     y: y,
   )
 
-proc newVkSampleLocationsInfoEXT*(sType: VkStructureType = VkStructureType.SampleLocationsInfoEXT, pNext: pointer = nil, sampleLocationsPerPixel: VkSampleCountFlagBits, sampleLocationGridSize: VkExtent2D, sampleLocationsCount: uint32, pSampleLocations: ptr VkSampleLocationEXT): VkSampleLocationsInfoEXT =
+proc newVkSampleLocationsInfoEXT*(sType: VkStructureType = VkStructureType.SampleLocationsInfoEXT, pNext: pointer = nil, sampleLocationsPerPixel: VkSampleCountFlagBits, sampleLocationGridSize: VkExtent2D, sampleLocations: openarray[VkSampleLocationEXT]): VkSampleLocationsInfoEXT =
   result = VkSampleLocationsInfoEXT(
     sType: sType,
     pNext: pNext,
     sampleLocationsPerPixel: sampleLocationsPerPixel,
     sampleLocationGridSize: sampleLocationGridSize,
-    sampleLocationsCount: sampleLocationsCount,
-    pSampleLocations: pSampleLocations,
+    sampleLocationsCount: len(sampleLocations).uint32,
+    pSampleLocations: if len(sampleLocations) == 0: nil else: cast[ptr VkSampleLocationEXT](sampleLocations),
   )
 
 proc newVkAttachmentSampleLocationsEXT*(attachmentIndex: uint32, sampleLocationsInfo: VkSampleLocationsInfoEXT): VkAttachmentSampleLocationsEXT =
@@ -16505,14 +16505,14 @@ proc newVkSubpassSampleLocationsEXT*(subpassIndex: uint32, sampleLocationsInfo: 
     sampleLocationsInfo: sampleLocationsInfo,
   )
 
-proc newVkRenderPassSampleLocationsBeginInfoEXT*(sType: VkStructureType = VkStructureType.RenderPassSampleLocationsBeginInfoEXT, pNext: pointer = nil, attachmentInitialSampleLocationsCount: uint32, pAttachmentInitialSampleLocations: ptr VkAttachmentSampleLocationsEXT, postSubpassSampleLocationsCount: uint32, pPostSubpassSampleLocations: ptr VkSubpassSampleLocationsEXT): VkRenderPassSampleLocationsBeginInfoEXT =
+proc newVkRenderPassSampleLocationsBeginInfoEXT*(sType: VkStructureType = VkStructureType.RenderPassSampleLocationsBeginInfoEXT, pNext: pointer = nil, attachmentInitialSampleLocations: openarray[VkAttachmentSampleLocationsEXT], postSubpassSampleLocations: openarray[VkSubpassSampleLocationsEXT]): VkRenderPassSampleLocationsBeginInfoEXT =
   result = VkRenderPassSampleLocationsBeginInfoEXT(
     sType: sType,
     pNext: pNext,
-    attachmentInitialSampleLocationsCount: attachmentInitialSampleLocationsCount,
-    pAttachmentInitialSampleLocations: pAttachmentInitialSampleLocations,
-    postSubpassSampleLocationsCount: postSubpassSampleLocationsCount,
-    pPostSubpassSampleLocations: pPostSubpassSampleLocations,
+    attachmentInitialSampleLocationsCount: len(attachmentInitialSampleLocations).uint32,
+    pAttachmentInitialSampleLocations: if len(attachmentInitialSampleLocations) == 0: nil else: cast[ptr VkAttachmentSampleLocationsEXT](attachmentInitialSampleLocations),
+    postSubpassSampleLocationsCount: len(postSubpassSampleLocations).uint32,
+    pPostSubpassSampleLocations: if len(postSubpassSampleLocations) == 0: nil else: cast[ptr VkSubpassSampleLocationsEXT](postSubpassSampleLocations),
   )
 
 proc newVkPipelineSampleLocationsStateCreateInfoEXT*(sType: VkStructureType = VkStructureType.PipelineSampleLocationsStateCreateInfoEXT, pNext: pointer = nil, sampleLocationsEnable: VkBool32, sampleLocationsInfo: VkSampleLocationsInfoEXT): VkPipelineSampleLocationsStateCreateInfoEXT =
@@ -16628,12 +16628,12 @@ proc newVkPipelineCoverageModulationStateCreateInfoNV*(sType: VkStructureType = 
     pCoverageModulationTable: pCoverageModulationTable,
   )
 
-proc newVkImageFormatListCreateInfo*(sType: VkStructureType = VkStructureType.ImageFormatListCreateInfo, pNext: pointer = nil, viewFormatCount: uint32, pViewFormats: ptr VkFormat): VkImageFormatListCreateInfo =
+proc newVkImageFormatListCreateInfo*(sType: VkStructureType = VkStructureType.ImageFormatListCreateInfo, pNext: pointer = nil, viewFormats: openarray[VkFormat]): VkImageFormatListCreateInfo =
   result = VkImageFormatListCreateInfo(
     sType: sType,
     pNext: pNext,
-    viewFormatCount: viewFormatCount,
-    pViewFormats: pViewFormats,
+    viewFormatCount: len(viewFormats).uint32,
+    pViewFormats: if len(viewFormats) == 0: nil else: cast[ptr VkFormat](viewFormats),
   )
 
 proc newVkValidationCacheCreateInfoEXT*(sType: VkStructureType = VkStructureType.ValidationCacheCreateInfoEXT, pNext: pointer = nil, flags: VkValidationCacheCreateFlagsEXT = 0.VkValidationCacheCreateFlagsEXT, initialDataSize: uint, pInitialData: pointer = nil): VkValidationCacheCreateInfoEXT =
@@ -16709,13 +16709,13 @@ proc newVkPhysicalDeviceMaintenance6PropertiesKHR*(sType: VkStructureType = VkSt
     fragmentShadingRateClampCombinerInputs: fragmentShadingRateClampCombinerInputs,
   )
 
-proc newVkRenderingAreaInfoKHR*(sType: VkStructureType = VkStructureType.RenderingAreaInfoKHR, pNext: pointer = nil, viewMask: uint32, colorAttachmentCount: uint32, pColorAttachmentFormats: ptr VkFormat, depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat): VkRenderingAreaInfoKHR =
+proc newVkRenderingAreaInfoKHR*(sType: VkStructureType = VkStructureType.RenderingAreaInfoKHR, pNext: pointer = nil, viewMask: uint32, colorAttachmentFormats: openarray[VkFormat], depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat): VkRenderingAreaInfoKHR =
   result = VkRenderingAreaInfoKHR(
     sType: sType,
     pNext: pNext,
     viewMask: viewMask,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachmentFormats: pColorAttachmentFormats,
+    colorAttachmentCount: len(colorAttachmentFormats).uint32,
+    pColorAttachmentFormats: if len(colorAttachmentFormats) == 0: nil else: cast[ptr VkFormat](colorAttachmentFormats),
     depthAttachmentFormat: depthAttachmentFormat,
     stencilAttachmentFormat: stencilAttachmentFormat,
   )
@@ -16884,7 +16884,7 @@ proc newVkDebugUtilsMessengerCreateInfoEXT*(sType: VkStructureType = VkStructure
     pUserData: pUserData,
   )
 
-proc newVkDebugUtilsMessengerCallbackDataEXT*(sType: VkStructureType = VkStructureType.DebugUtilsMessengerCallbackDataEXT, pNext: pointer = nil, flags: VkDebugUtilsMessengerCallbackDataFlagsEXT = 0.VkDebugUtilsMessengerCallbackDataFlagsEXT, pMessageIdName: cstring, messageIdNumber: int32, pMessage: cstring, queueLabelCount: uint32, pQueueLabels: ptr VkDebugUtilsLabelEXT, cmdBufLabelCount: uint32, pCmdBufLabels: ptr VkDebugUtilsLabelEXT, objectCount: uint32, pObjects: ptr VkDebugUtilsObjectNameInfoEXT): VkDebugUtilsMessengerCallbackDataEXT =
+proc newVkDebugUtilsMessengerCallbackDataEXT*(sType: VkStructureType = VkStructureType.DebugUtilsMessengerCallbackDataEXT, pNext: pointer = nil, flags: VkDebugUtilsMessengerCallbackDataFlagsEXT = 0.VkDebugUtilsMessengerCallbackDataFlagsEXT, pMessageIdName: cstring, messageIdNumber: int32, pMessage: cstring, queueLabels: openarray[VkDebugUtilsLabelEXT], cmdBufLabels: openarray[VkDebugUtilsLabelEXT], objects: openarray[VkDebugUtilsObjectNameInfoEXT]): VkDebugUtilsMessengerCallbackDataEXT =
   result = VkDebugUtilsMessengerCallbackDataEXT(
     sType: sType,
     pNext: pNext,
@@ -16892,12 +16892,12 @@ proc newVkDebugUtilsMessengerCallbackDataEXT*(sType: VkStructureType = VkStructu
     pMessageIdName: pMessageIdName,
     messageIdNumber: messageIdNumber,
     pMessage: pMessage,
-    queueLabelCount: queueLabelCount,
-    pQueueLabels: pQueueLabels,
-    cmdBufLabelCount: cmdBufLabelCount,
-    pCmdBufLabels: pCmdBufLabels,
-    objectCount: objectCount,
-    pObjects: pObjects,
+    queueLabelCount: len(queueLabels).uint32,
+    pQueueLabels: if len(queueLabels) == 0: nil else: cast[ptr VkDebugUtilsLabelEXT](queueLabels),
+    cmdBufLabelCount: len(cmdBufLabels).uint32,
+    pCmdBufLabels: if len(cmdBufLabels) == 0: nil else: cast[ptr VkDebugUtilsLabelEXT](cmdBufLabels),
+    objectCount: len(objects).uint32,
+    pObjects: if len(objects) == 0: nil else: cast[ptr VkDebugUtilsObjectNameInfoEXT](objects),
   )
 
 proc newVkPhysicalDeviceDeviceMemoryReportFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDeviceMemoryReportFeaturesEXT, pNext: pointer = nil, deviceMemoryReport: VkBool32): VkPhysicalDeviceDeviceMemoryReportFeaturesEXT =
@@ -17065,20 +17065,20 @@ proc newVkPhysicalDeviceDescriptorIndexingProperties*(sType: VkStructureType = V
     maxDescriptorSetUpdateAfterBindInputAttachments: maxDescriptorSetUpdateAfterBindInputAttachments,
   )
 
-proc newVkDescriptorSetLayoutBindingFlagsCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetLayoutBindingFlagsCreateInfo, pNext: pointer = nil, bindingCount: uint32, pBindingFlags: ptr VkDescriptorBindingFlags): VkDescriptorSetLayoutBindingFlagsCreateInfo =
+proc newVkDescriptorSetLayoutBindingFlagsCreateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetLayoutBindingFlagsCreateInfo, pNext: pointer = nil, bindingFlags: openarray[VkDescriptorBindingFlags]): VkDescriptorSetLayoutBindingFlagsCreateInfo =
   result = VkDescriptorSetLayoutBindingFlagsCreateInfo(
     sType: sType,
     pNext: pNext,
-    bindingCount: bindingCount,
-    pBindingFlags: pBindingFlags,
+    bindingCount: len(bindingFlags).uint32,
+    pBindingFlags: if len(bindingFlags) == 0: nil else: cast[ptr VkDescriptorBindingFlags](bindingFlags),
   )
 
-proc newVkDescriptorSetVariableDescriptorCountAllocateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetVariableDescriptorCountAllocateInfo, pNext: pointer = nil, descriptorSetCount: uint32, pDescriptorCounts: ptr uint32): VkDescriptorSetVariableDescriptorCountAllocateInfo =
+proc newVkDescriptorSetVariableDescriptorCountAllocateInfo*(sType: VkStructureType = VkStructureType.DescriptorSetVariableDescriptorCountAllocateInfo, pNext: pointer = nil, descriptorCounts: openarray[uint32]): VkDescriptorSetVariableDescriptorCountAllocateInfo =
   result = VkDescriptorSetVariableDescriptorCountAllocateInfo(
     sType: sType,
     pNext: pNext,
-    descriptorSetCount: descriptorSetCount,
-    pDescriptorCounts: pDescriptorCounts,
+    descriptorSetCount: len(descriptorCounts).uint32,
+    pDescriptorCounts: if len(descriptorCounts) == 0: nil else: cast[ptr uint32](descriptorCounts),
   )
 
 proc newVkDescriptorSetVariableDescriptorCountLayoutSupport*(sType: VkStructureType = VkStructureType.DescriptorSetVariableDescriptorCountLayoutSupport, pNext: pointer = nil, maxVariableDescriptorCount: uint32): VkDescriptorSetVariableDescriptorCountLayoutSupport =
@@ -17112,21 +17112,21 @@ proc newVkAttachmentReference2*(sType: VkStructureType = VkStructureType.Attachm
     aspectMask: aspectMask,
   )
 
-proc newVkSubpassDescription2*(sType: VkStructureType = VkStructureType.SubpassDescription2, pNext: pointer = nil, flags: VkSubpassDescriptionFlags = 0.VkSubpassDescriptionFlags, pipelineBindPoint: VkPipelineBindPoint, viewMask: uint32, inputAttachmentCount: uint32, pInputAttachments: ptr VkAttachmentReference2, colorAttachmentCount: uint32, pColorAttachments: ptr VkAttachmentReference2, pResolveAttachments: ptr VkAttachmentReference2, pDepthStencilAttachment: ptr VkAttachmentReference2, preserveAttachmentCount: uint32, pPreserveAttachments: ptr uint32): VkSubpassDescription2 =
+proc newVkSubpassDescription2*(sType: VkStructureType = VkStructureType.SubpassDescription2, pNext: pointer = nil, flags: VkSubpassDescriptionFlags = 0.VkSubpassDescriptionFlags, pipelineBindPoint: VkPipelineBindPoint, viewMask: uint32, inputAttachments: openarray[VkAttachmentReference2], colorAttachments: openarray[VkAttachmentReference2], resolveAttachments: openarray[VkAttachmentReference2], pDepthStencilAttachment: ptr VkAttachmentReference2, preserveAttachments: openarray[uint32]): VkSubpassDescription2 =
   result = VkSubpassDescription2(
     sType: sType,
     pNext: pNext,
     flags: flags,
     pipelineBindPoint: pipelineBindPoint,
     viewMask: viewMask,
-    inputAttachmentCount: inputAttachmentCount,
-    pInputAttachments: pInputAttachments,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachments: pColorAttachments,
-    pResolveAttachments: pResolveAttachments,
+    inputAttachmentCount: len(inputAttachments).uint32,
+    pInputAttachments: if len(inputAttachments) == 0: nil else: cast[ptr VkAttachmentReference2](inputAttachments),
+    colorAttachmentCount: len(colorAttachments).uint32,
+    pColorAttachments: if len(colorAttachments) == 0: nil else: cast[ptr VkAttachmentReference2](colorAttachments),
+    pResolveAttachments: if len(resolveAttachments) == 0: nil else: cast[ptr VkAttachmentReference2](resolveAttachments),
     pDepthStencilAttachment: pDepthStencilAttachment,
-    preserveAttachmentCount: preserveAttachmentCount,
-    pPreserveAttachments: pPreserveAttachments,
+    preserveAttachmentCount: len(preserveAttachments).uint32,
+    pPreserveAttachments: if len(preserveAttachments) == 0: nil else: cast[ptr uint32](preserveAttachments),
   )
 
 proc newVkSubpassDependency2*(sType: VkStructureType = VkStructureType.SubpassDependency2, pNext: pointer = nil, srcSubpass: uint32, dstSubpass: uint32, srcStageMask: VkPipelineStageFlags, dstStageMask: VkPipelineStageFlags, srcAccessMask: VkAccessFlags, dstAccessMask: VkAccessFlags, dependencyFlags: VkDependencyFlags, viewOffset: int32): VkSubpassDependency2 =
@@ -17143,19 +17143,19 @@ proc newVkSubpassDependency2*(sType: VkStructureType = VkStructureType.SubpassDe
     viewOffset: viewOffset,
   )
 
-proc newVkRenderPassCreateInfo2*(sType: VkStructureType = VkStructureType.RenderPassCreateInfo2, pNext: pointer = nil, flags: VkRenderPassCreateFlags = 0.VkRenderPassCreateFlags, attachmentCount: uint32, pAttachments: ptr VkAttachmentDescription2, subpassCount: uint32, pSubpasses: ptr VkSubpassDescription2, dependencyCount: uint32, pDependencies: ptr VkSubpassDependency2, correlatedViewMaskCount: uint32, pCorrelatedViewMasks: ptr uint32): VkRenderPassCreateInfo2 =
+proc newVkRenderPassCreateInfo2*(sType: VkStructureType = VkStructureType.RenderPassCreateInfo2, pNext: pointer = nil, flags: VkRenderPassCreateFlags = 0.VkRenderPassCreateFlags, attachments: openarray[VkAttachmentDescription2], subpasses: openarray[VkSubpassDescription2], dependencies: openarray[VkSubpassDependency2], correlatedViewMasks: openarray[uint32]): VkRenderPassCreateInfo2 =
   result = VkRenderPassCreateInfo2(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    attachmentCount: attachmentCount,
-    pAttachments: pAttachments,
-    subpassCount: subpassCount,
-    pSubpasses: pSubpasses,
-    dependencyCount: dependencyCount,
-    pDependencies: pDependencies,
-    correlatedViewMaskCount: correlatedViewMaskCount,
-    pCorrelatedViewMasks: pCorrelatedViewMasks,
+    attachmentCount: len(attachments).uint32,
+    pAttachments: if len(attachments) == 0: nil else: cast[ptr VkAttachmentDescription2](attachments),
+    subpassCount: len(subpasses).uint32,
+    pSubpasses: if len(subpasses) == 0: nil else: cast[ptr VkSubpassDescription2](subpasses),
+    dependencyCount: len(dependencies).uint32,
+    pDependencies: if len(dependencies) == 0: nil else: cast[ptr VkSubpassDependency2](dependencies),
+    correlatedViewMaskCount: len(correlatedViewMasks).uint32,
+    pCorrelatedViewMasks: if len(correlatedViewMasks) == 0: nil else: cast[ptr uint32](correlatedViewMasks),
   )
 
 proc newVkSubpassBeginInfo*(sType: VkStructureType = VkStructureType.SubpassBeginInfo, pNext: pointer = nil, contents: VkSubpassContents): VkSubpassBeginInfo =
@@ -17193,24 +17193,24 @@ proc newVkSemaphoreTypeCreateInfo*(sType: VkStructureType = VkStructureType.Sema
     initialValue: initialValue,
   )
 
-proc newVkTimelineSemaphoreSubmitInfo*(sType: VkStructureType = VkStructureType.TimelineSemaphoreSubmitInfo, pNext: pointer = nil, waitSemaphoreValueCount: uint32, pWaitSemaphoreValues: ptr uint64, signalSemaphoreValueCount: uint32, pSignalSemaphoreValues: ptr uint64): VkTimelineSemaphoreSubmitInfo =
+proc newVkTimelineSemaphoreSubmitInfo*(sType: VkStructureType = VkStructureType.TimelineSemaphoreSubmitInfo, pNext: pointer = nil, waitSemaphoreValues: openarray[uint64], signalSemaphoreValues: openarray[uint64]): VkTimelineSemaphoreSubmitInfo =
   result = VkTimelineSemaphoreSubmitInfo(
     sType: sType,
     pNext: pNext,
-    waitSemaphoreValueCount: waitSemaphoreValueCount,
-    pWaitSemaphoreValues: pWaitSemaphoreValues,
-    signalSemaphoreValueCount: signalSemaphoreValueCount,
-    pSignalSemaphoreValues: pSignalSemaphoreValues,
+    waitSemaphoreValueCount: len(waitSemaphoreValues).uint32,
+    pWaitSemaphoreValues: if len(waitSemaphoreValues) == 0: nil else: cast[ptr uint64](waitSemaphoreValues),
+    signalSemaphoreValueCount: len(signalSemaphoreValues).uint32,
+    pSignalSemaphoreValues: if len(signalSemaphoreValues) == 0: nil else: cast[ptr uint64](signalSemaphoreValues),
   )
 
-proc newVkSemaphoreWaitInfo*(sType: VkStructureType = VkStructureType.SemaphoreWaitInfo, pNext: pointer = nil, flags: VkSemaphoreWaitFlags = 0.VkSemaphoreWaitFlags, semaphoreCount: uint32, pSemaphores: ptr VkSemaphore, pValues: ptr uint64): VkSemaphoreWaitInfo =
+proc newVkSemaphoreWaitInfo*(sType: VkStructureType = VkStructureType.SemaphoreWaitInfo, pNext: pointer = nil, flags: VkSemaphoreWaitFlags = 0.VkSemaphoreWaitFlags, semaphores: openarray[VkSemaphore], values: openarray[uint64]): VkSemaphoreWaitInfo =
   result = VkSemaphoreWaitInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    semaphoreCount: semaphoreCount,
-    pSemaphores: pSemaphores,
-    pValues: pValues,
+    semaphoreCount: len(semaphores).uint32,
+    pSemaphores: if len(semaphores) == 0: nil else: cast[ptr VkSemaphore](semaphores),
+    pValues: if len(values) == 0: nil else: cast[ptr uint64](values),
   )
 
 proc newVkSemaphoreSignalInfo*(sType: VkStructureType = VkStructureType.SemaphoreSignalInfo, pNext: pointer = nil, semaphore: VkSemaphore, value: uint64): VkSemaphoreSignalInfo =
@@ -17227,12 +17227,12 @@ proc newVkVertexInputBindingDivisorDescriptionKHR*(binding: uint32, divisor: uin
     divisor: divisor,
   )
 
-proc newVkPipelineVertexInputDivisorStateCreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineVertexInputDivisorStateCreateInfoKHR, pNext: pointer = nil, vertexBindingDivisorCount: uint32, pVertexBindingDivisors: ptr VkVertexInputBindingDivisorDescriptionKHR): VkPipelineVertexInputDivisorStateCreateInfoKHR =
+proc newVkPipelineVertexInputDivisorStateCreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineVertexInputDivisorStateCreateInfoKHR, pNext: pointer = nil, vertexBindingDivisors: openarray[VkVertexInputBindingDivisorDescriptionKHR]): VkPipelineVertexInputDivisorStateCreateInfoKHR =
   result = VkPipelineVertexInputDivisorStateCreateInfoKHR(
     sType: sType,
     pNext: pNext,
-    vertexBindingDivisorCount: vertexBindingDivisorCount,
-    pVertexBindingDivisors: pVertexBindingDivisors,
+    vertexBindingDivisorCount: len(vertexBindingDivisors).uint32,
+    pVertexBindingDivisors: if len(vertexBindingDivisors) == 0: nil else: cast[ptr VkVertexInputBindingDivisorDescriptionKHR](vertexBindingDivisors),
   )
 
 proc newVkPhysicalDeviceVertexAttributeDivisorPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceVertexAttributeDivisorPropertiesEXT, pNext: pointer = nil, maxVertexAttribDivisor: uint32): VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT =
@@ -17496,12 +17496,12 @@ proc newVkPhysicalDeviceExclusiveScissorFeaturesNV*(sType: VkStructureType = VkS
     exclusiveScissor: exclusiveScissor,
   )
 
-proc newVkPipelineViewportExclusiveScissorStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportExclusiveScissorStateCreateInfoNV, pNext: pointer = nil, exclusiveScissorCount: uint32, pExclusiveScissors: ptr VkRect2D): VkPipelineViewportExclusiveScissorStateCreateInfoNV =
+proc newVkPipelineViewportExclusiveScissorStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportExclusiveScissorStateCreateInfoNV, pNext: pointer = nil, exclusiveScissors: openarray[VkRect2D]): VkPipelineViewportExclusiveScissorStateCreateInfoNV =
   result = VkPipelineViewportExclusiveScissorStateCreateInfoNV(
     sType: sType,
     pNext: pNext,
-    exclusiveScissorCount: exclusiveScissorCount,
-    pExclusiveScissors: pExclusiveScissors,
+    exclusiveScissorCount: len(exclusiveScissors).uint32,
+    pExclusiveScissors: if len(exclusiveScissors) == 0: nil else: cast[ptr VkRect2D](exclusiveScissors),
   )
 
 proc newVkPhysicalDeviceCornerSampledImageFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCornerSampledImageFeaturesNV, pNext: pointer = nil, cornerSampledImage: VkBool32): VkPhysicalDeviceCornerSampledImageFeaturesNV =
@@ -17562,19 +17562,19 @@ proc newVkPhysicalDeviceMemoryDecompressionPropertiesNV*(sType: VkStructureType 
     maxDecompressionIndirectCount: maxDecompressionIndirectCount,
   )
 
-proc newVkShadingRatePaletteNV*(shadingRatePaletteEntryCount: uint32, pShadingRatePaletteEntries: ptr VkShadingRatePaletteEntryNV): VkShadingRatePaletteNV =
+proc newVkShadingRatePaletteNV*(shadingRatePaletteEntries: openarray[VkShadingRatePaletteEntryNV]): VkShadingRatePaletteNV =
   result = VkShadingRatePaletteNV(
-    shadingRatePaletteEntryCount: shadingRatePaletteEntryCount,
-    pShadingRatePaletteEntries: pShadingRatePaletteEntries,
+    shadingRatePaletteEntryCount: len(shadingRatePaletteEntries).uint32,
+    pShadingRatePaletteEntries: if len(shadingRatePaletteEntries) == 0: nil else: cast[ptr VkShadingRatePaletteEntryNV](shadingRatePaletteEntries),
   )
 
-proc newVkPipelineViewportShadingRateImageStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportShadingRateImageStateCreateInfoNV, pNext: pointer = nil, shadingRateImageEnable: VkBool32, viewportCount: uint32, pShadingRatePalettes: ptr VkShadingRatePaletteNV): VkPipelineViewportShadingRateImageStateCreateInfoNV =
+proc newVkPipelineViewportShadingRateImageStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportShadingRateImageStateCreateInfoNV, pNext: pointer = nil, shadingRateImageEnable: VkBool32, shadingRatePalettes: openarray[VkShadingRatePaletteNV]): VkPipelineViewportShadingRateImageStateCreateInfoNV =
   result = VkPipelineViewportShadingRateImageStateCreateInfoNV(
     sType: sType,
     pNext: pNext,
     shadingRateImageEnable: shadingRateImageEnable,
-    viewportCount: viewportCount,
-    pShadingRatePalettes: pShadingRatePalettes,
+    viewportCount: len(shadingRatePalettes).uint32,
+    pShadingRatePalettes: if len(shadingRatePalettes) == 0: nil else: cast[ptr VkShadingRatePaletteNV](shadingRatePalettes),
   )
 
 proc newVkPhysicalDeviceShadingRateImageFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceShadingRateImageFeaturesNV, pNext: pointer = nil, shadingRateImage: VkBool32, shadingRateCoarseSampleOrder: VkBool32): VkPhysicalDeviceShadingRateImageFeaturesNV =
@@ -17608,21 +17608,21 @@ proc newVkCoarseSampleLocationNV*(pixelX: uint32, pixelY: uint32, sample: uint32
     sample: sample,
   )
 
-proc newVkCoarseSampleOrderCustomNV*(shadingRate: VkShadingRatePaletteEntryNV, sampleCount: uint32, sampleLocationCount: uint32, pSampleLocations: ptr VkCoarseSampleLocationNV): VkCoarseSampleOrderCustomNV =
+proc newVkCoarseSampleOrderCustomNV*(shadingRate: VkShadingRatePaletteEntryNV, sampleCount: uint32, sampleLocations: openarray[VkCoarseSampleLocationNV]): VkCoarseSampleOrderCustomNV =
   result = VkCoarseSampleOrderCustomNV(
     shadingRate: shadingRate,
     sampleCount: sampleCount,
-    sampleLocationCount: sampleLocationCount,
-    pSampleLocations: pSampleLocations,
+    sampleLocationCount: len(sampleLocations).uint32,
+    pSampleLocations: if len(sampleLocations) == 0: nil else: cast[ptr VkCoarseSampleLocationNV](sampleLocations),
   )
 
-proc newVkPipelineViewportCoarseSampleOrderStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportCoarseSampleOrderStateCreateInfoNV, pNext: pointer = nil, sampleOrderType: VkCoarseSampleOrderTypeNV, customSampleOrderCount: uint32, pCustomSampleOrders: ptr VkCoarseSampleOrderCustomNV): VkPipelineViewportCoarseSampleOrderStateCreateInfoNV =
+proc newVkPipelineViewportCoarseSampleOrderStateCreateInfoNV*(sType: VkStructureType = VkStructureType.PipelineViewportCoarseSampleOrderStateCreateInfoNV, pNext: pointer = nil, sampleOrderType: VkCoarseSampleOrderTypeNV, customSampleOrders: openarray[VkCoarseSampleOrderCustomNV]): VkPipelineViewportCoarseSampleOrderStateCreateInfoNV =
   result = VkPipelineViewportCoarseSampleOrderStateCreateInfoNV(
     sType: sType,
     pNext: pNext,
     sampleOrderType: sampleOrderType,
-    customSampleOrderCount: customSampleOrderCount,
-    pCustomSampleOrders: pCustomSampleOrders,
+    customSampleOrderCount: len(customSampleOrders).uint32,
+    pCustomSampleOrders: if len(customSampleOrders) == 0: nil else: cast[ptr VkCoarseSampleOrderCustomNV](customSampleOrders),
   )
 
 proc newVkPhysicalDeviceMeshShaderFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceMeshShaderFeaturesNV, pNext: pointer = nil, taskShader: VkBool32, meshShader: VkBool32): VkPhysicalDeviceMeshShaderFeaturesNV =
@@ -17733,30 +17733,30 @@ proc newVkRayTracingShaderGroupCreateInfoKHR*(sType: VkStructureType = VkStructu
     pShaderGroupCaptureReplayHandle: pShaderGroupCaptureReplayHandle,
   )
 
-proc newVkRayTracingPipelineCreateInfoNV*(sType: VkStructureType = VkStructureType.RayTracingPipelineCreateInfoNV, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, groupCount: uint32, pGroups: ptr VkRayTracingShaderGroupCreateInfoNV, maxRecursionDepth: uint32, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkRayTracingPipelineCreateInfoNV =
+proc newVkRayTracingPipelineCreateInfoNV*(sType: VkStructureType = VkStructureType.RayTracingPipelineCreateInfoNV, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stages: openarray[VkPipelineShaderStageCreateInfo], groups: openarray[VkRayTracingShaderGroupCreateInfoNV], maxRecursionDepth: uint32, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkRayTracingPipelineCreateInfoNV =
   result = VkRayTracingPipelineCreateInfoNV(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    stageCount: stageCount,
-    pStages: pStages,
-    groupCount: groupCount,
-    pGroups: pGroups,
+    stageCount: len(stages).uint32,
+    pStages: if len(stages) == 0: nil else: cast[ptr VkPipelineShaderStageCreateInfo](stages),
+    groupCount: len(groups).uint32,
+    pGroups: if len(groups) == 0: nil else: cast[ptr VkRayTracingShaderGroupCreateInfoNV](groups),
     maxRecursionDepth: maxRecursionDepth,
     layout: layout,
     basePipelineHandle: basePipelineHandle,
     basePipelineIndex: basePipelineIndex,
   )
 
-proc newVkRayTracingPipelineCreateInfoKHR*(sType: VkStructureType = VkStructureType.RayTracingPipelineCreateInfoKHR, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, groupCount: uint32, pGroups: ptr VkRayTracingShaderGroupCreateInfoKHR, maxPipelineRayRecursionDepth: uint32, pLibraryInfo: ptr VkPipelineLibraryCreateInfoKHR, pLibraryInterface: ptr VkRayTracingPipelineInterfaceCreateInfoKHR, pDynamicState: ptr VkPipelineDynamicStateCreateInfo, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkRayTracingPipelineCreateInfoKHR =
+proc newVkRayTracingPipelineCreateInfoKHR*(sType: VkStructureType = VkStructureType.RayTracingPipelineCreateInfoKHR, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stages: openarray[VkPipelineShaderStageCreateInfo], groups: openarray[VkRayTracingShaderGroupCreateInfoKHR], maxPipelineRayRecursionDepth: uint32, pLibraryInfo: ptr VkPipelineLibraryCreateInfoKHR, pLibraryInterface: ptr VkRayTracingPipelineInterfaceCreateInfoKHR, pDynamicState: ptr VkPipelineDynamicStateCreateInfo, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkRayTracingPipelineCreateInfoKHR =
   result = VkRayTracingPipelineCreateInfoKHR(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    stageCount: stageCount,
-    pStages: pStages,
-    groupCount: groupCount,
-    pGroups: pGroups,
+    stageCount: len(stages).uint32,
+    pStages: if len(stages) == 0: nil else: cast[ptr VkPipelineShaderStageCreateInfo](stages),
+    groupCount: len(groups).uint32,
+    pGroups: if len(groups) == 0: nil else: cast[ptr VkRayTracingShaderGroupCreateInfoKHR](groups),
     maxPipelineRayRecursionDepth: maxPipelineRayRecursionDepth,
     pLibraryInfo: pLibraryInfo,
     pLibraryInterface: pLibraryInterface,
@@ -17808,15 +17808,15 @@ proc newVkGeometryNV*(sType: VkStructureType = VkStructureType.GeometryNV, pNext
     flags: flags,
   )
 
-proc newVkAccelerationStructureInfoNV*(sType: VkStructureType = VkStructureType.AccelerationStructureInfoNV, pNext: pointer = nil, `type`: VkAccelerationStructureTypeNV, flags: VkBuildAccelerationStructureFlagsNV = 0.VkBuildAccelerationStructureFlagsNV, instanceCount: uint32, geometryCount: uint32, pGeometries: ptr VkGeometryNV): VkAccelerationStructureInfoNV =
+proc newVkAccelerationStructureInfoNV*(sType: VkStructureType = VkStructureType.AccelerationStructureInfoNV, pNext: pointer = nil, `type`: VkAccelerationStructureTypeNV, flags: VkBuildAccelerationStructureFlagsNV = 0.VkBuildAccelerationStructureFlagsNV, instanceCount: uint32, geometries: openarray[VkGeometryNV]): VkAccelerationStructureInfoNV =
   result = VkAccelerationStructureInfoNV(
     sType: sType,
     pNext: pNext,
     `type`: `type`,
     flags: flags,
     instanceCount: instanceCount,
-    geometryCount: geometryCount,
-    pGeometries: pGeometries,
+    geometryCount: len(geometries).uint32,
+    pGeometries: if len(geometries) == 0: nil else: cast[ptr VkGeometryNV](geometries),
   )
 
 proc newVkAccelerationStructureCreateInfoNV*(sType: VkStructureType = VkStructureType.AccelerationStructureCreateInfoNV, pNext: pointer = nil, compactedSize: VkDeviceSize, info: VkAccelerationStructureInfoNV): VkAccelerationStructureCreateInfoNV =
@@ -17827,31 +17827,31 @@ proc newVkAccelerationStructureCreateInfoNV*(sType: VkStructureType = VkStructur
     info: info,
   )
 
-proc newVkBindAccelerationStructureMemoryInfoNV*(sType: VkStructureType = VkStructureType.BindAccelerationStructureMemoryInfoNV, pNext: pointer = nil, accelerationStructure: VkAccelerationStructureNV, memory: VkDeviceMemory, memoryOffset: VkDeviceSize, deviceIndexCount: uint32, pDeviceIndices: ptr uint32): VkBindAccelerationStructureMemoryInfoNV =
+proc newVkBindAccelerationStructureMemoryInfoNV*(sType: VkStructureType = VkStructureType.BindAccelerationStructureMemoryInfoNV, pNext: pointer = nil, accelerationStructure: VkAccelerationStructureNV, memory: VkDeviceMemory, memoryOffset: VkDeviceSize, deviceIndices: openarray[uint32]): VkBindAccelerationStructureMemoryInfoNV =
   result = VkBindAccelerationStructureMemoryInfoNV(
     sType: sType,
     pNext: pNext,
     accelerationStructure: accelerationStructure,
     memory: memory,
     memoryOffset: memoryOffset,
-    deviceIndexCount: deviceIndexCount,
-    pDeviceIndices: pDeviceIndices,
+    deviceIndexCount: len(deviceIndices).uint32,
+    pDeviceIndices: if len(deviceIndices) == 0: nil else: cast[ptr uint32](deviceIndices),
   )
 
-proc newVkWriteDescriptorSetAccelerationStructureKHR*(sType: VkStructureType = VkStructureType.WriteDescriptorSetAccelerationStructureKHR, pNext: pointer = nil, accelerationStructureCount: uint32, pAccelerationStructures: ptr VkAccelerationStructureKHR): VkWriteDescriptorSetAccelerationStructureKHR =
+proc newVkWriteDescriptorSetAccelerationStructureKHR*(sType: VkStructureType = VkStructureType.WriteDescriptorSetAccelerationStructureKHR, pNext: pointer = nil, accelerationStructures: openarray[VkAccelerationStructureKHR]): VkWriteDescriptorSetAccelerationStructureKHR =
   result = VkWriteDescriptorSetAccelerationStructureKHR(
     sType: sType,
     pNext: pNext,
-    accelerationStructureCount: accelerationStructureCount,
-    pAccelerationStructures: pAccelerationStructures,
+    accelerationStructureCount: len(accelerationStructures).uint32,
+    pAccelerationStructures: if len(accelerationStructures) == 0: nil else: cast[ptr VkAccelerationStructureKHR](accelerationStructures),
   )
 
-proc newVkWriteDescriptorSetAccelerationStructureNV*(sType: VkStructureType = VkStructureType.WriteDescriptorSetAccelerationStructureNV, pNext: pointer = nil, accelerationStructureCount: uint32, pAccelerationStructures: ptr VkAccelerationStructureNV): VkWriteDescriptorSetAccelerationStructureNV =
+proc newVkWriteDescriptorSetAccelerationStructureNV*(sType: VkStructureType = VkStructureType.WriteDescriptorSetAccelerationStructureNV, pNext: pointer = nil, accelerationStructures: openarray[VkAccelerationStructureNV]): VkWriteDescriptorSetAccelerationStructureNV =
   result = VkWriteDescriptorSetAccelerationStructureNV(
     sType: sType,
     pNext: pNext,
-    accelerationStructureCount: accelerationStructureCount,
-    pAccelerationStructures: pAccelerationStructures,
+    accelerationStructureCount: len(accelerationStructures).uint32,
+    pAccelerationStructures: if len(accelerationStructures) == 0: nil else: cast[ptr VkAccelerationStructureNV](accelerationStructures),
   )
 
 proc newVkAccelerationStructureMemoryRequirementsInfoNV*(sType: VkStructureType = VkStructureType.AccelerationStructureMemoryRequirementsInfoNV, pNext: pointer = nil, `type`: VkAccelerationStructureMemoryRequirementsTypeNV, accelerationStructure: VkAccelerationStructureNV): VkAccelerationStructureMemoryRequirementsInfoNV =
@@ -17973,12 +17973,12 @@ proc newVkPhysicalDeviceRayTracingMaintenance1FeaturesKHR*(sType: VkStructureTyp
     rayTracingPipelineTraceRaysIndirect2: rayTracingPipelineTraceRaysIndirect2,
   )
 
-proc newVkDrmFormatModifierPropertiesListEXT*(sType: VkStructureType = VkStructureType.DrmFormatModifierPropertiesListEXT, pNext: pointer = nil, drmFormatModifierCount: uint32, pDrmFormatModifierProperties: ptr VkDrmFormatModifierPropertiesEXT): VkDrmFormatModifierPropertiesListEXT =
+proc newVkDrmFormatModifierPropertiesListEXT*(sType: VkStructureType = VkStructureType.DrmFormatModifierPropertiesListEXT, pNext: pointer = nil, drmFormatModifierProperties: openarray[VkDrmFormatModifierPropertiesEXT]): VkDrmFormatModifierPropertiesListEXT =
   result = VkDrmFormatModifierPropertiesListEXT(
     sType: sType,
     pNext: pNext,
-    drmFormatModifierCount: drmFormatModifierCount,
-    pDrmFormatModifierProperties: pDrmFormatModifierProperties,
+    drmFormatModifierCount: len(drmFormatModifierProperties).uint32,
+    pDrmFormatModifierProperties: if len(drmFormatModifierProperties) == 0: nil else: cast[ptr VkDrmFormatModifierPropertiesEXT](drmFormatModifierProperties),
   )
 
 proc newVkDrmFormatModifierPropertiesEXT*(drmFormatModifier: uint64, drmFormatModifierPlaneCount: uint32, drmFormatModifierTilingFeatures: VkFormatFeatureFlags): VkDrmFormatModifierPropertiesEXT =
@@ -17988,31 +17988,31 @@ proc newVkDrmFormatModifierPropertiesEXT*(drmFormatModifier: uint64, drmFormatMo
     drmFormatModifierTilingFeatures: drmFormatModifierTilingFeatures,
   )
 
-proc newVkPhysicalDeviceImageDrmFormatModifierInfoEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceImageDrmFormatModifierInfoEXT, pNext: pointer = nil, drmFormatModifier: uint64, sharingMode: VkSharingMode, queueFamilyIndexCount: uint32, pQueueFamilyIndices: ptr uint32): VkPhysicalDeviceImageDrmFormatModifierInfoEXT =
+proc newVkPhysicalDeviceImageDrmFormatModifierInfoEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceImageDrmFormatModifierInfoEXT, pNext: pointer = nil, drmFormatModifier: uint64, sharingMode: VkSharingMode, queueFamilyIndices: openarray[uint32]): VkPhysicalDeviceImageDrmFormatModifierInfoEXT =
   result = VkPhysicalDeviceImageDrmFormatModifierInfoEXT(
     sType: sType,
     pNext: pNext,
     drmFormatModifier: drmFormatModifier,
     sharingMode: sharingMode,
-    queueFamilyIndexCount: queueFamilyIndexCount,
-    pQueueFamilyIndices: pQueueFamilyIndices,
+    queueFamilyIndexCount: len(queueFamilyIndices).uint32,
+    pQueueFamilyIndices: if len(queueFamilyIndices) == 0: nil else: cast[ptr uint32](queueFamilyIndices),
   )
 
-proc newVkImageDrmFormatModifierListCreateInfoEXT*(sType: VkStructureType = VkStructureType.ImageDrmFormatModifierListCreateInfoEXT, pNext: pointer = nil, drmFormatModifierCount: uint32, pDrmFormatModifiers: ptr uint64): VkImageDrmFormatModifierListCreateInfoEXT =
+proc newVkImageDrmFormatModifierListCreateInfoEXT*(sType: VkStructureType = VkStructureType.ImageDrmFormatModifierListCreateInfoEXT, pNext: pointer = nil, drmFormatModifiers: openarray[uint64]): VkImageDrmFormatModifierListCreateInfoEXT =
   result = VkImageDrmFormatModifierListCreateInfoEXT(
     sType: sType,
     pNext: pNext,
-    drmFormatModifierCount: drmFormatModifierCount,
-    pDrmFormatModifiers: pDrmFormatModifiers,
+    drmFormatModifierCount: len(drmFormatModifiers).uint32,
+    pDrmFormatModifiers: if len(drmFormatModifiers) == 0: nil else: cast[ptr uint64](drmFormatModifiers),
   )
 
-proc newVkImageDrmFormatModifierExplicitCreateInfoEXT*(sType: VkStructureType = VkStructureType.ImageDrmFormatModifierExplicitCreateInfoEXT, pNext: pointer = nil, drmFormatModifier: uint64, drmFormatModifierPlaneCount: uint32, pPlaneLayouts: ptr VkSubresourceLayout): VkImageDrmFormatModifierExplicitCreateInfoEXT =
+proc newVkImageDrmFormatModifierExplicitCreateInfoEXT*(sType: VkStructureType = VkStructureType.ImageDrmFormatModifierExplicitCreateInfoEXT, pNext: pointer = nil, drmFormatModifier: uint64, planeLayouts: openarray[VkSubresourceLayout]): VkImageDrmFormatModifierExplicitCreateInfoEXT =
   result = VkImageDrmFormatModifierExplicitCreateInfoEXT(
     sType: sType,
     pNext: pNext,
     drmFormatModifier: drmFormatModifier,
-    drmFormatModifierPlaneCount: drmFormatModifierPlaneCount,
-    pPlaneLayouts: pPlaneLayouts,
+    drmFormatModifierPlaneCount: len(planeLayouts).uint32,
+    pPlaneLayouts: if len(planeLayouts) == 0: nil else: cast[ptr VkSubresourceLayout](planeLayouts),
   )
 
 proc newVkImageDrmFormatModifierPropertiesEXT*(sType: VkStructureType = VkStructureType.ImageDrmFormatModifierPropertiesEXT, pNext: pointer = nil, drmFormatModifier: uint64): VkImageDrmFormatModifierPropertiesEXT =
@@ -18092,12 +18092,12 @@ proc newVkRenderPassFragmentDensityMapCreateInfoEXT*(sType: VkStructureType = Vk
     fragmentDensityMapAttachment: fragmentDensityMapAttachment,
   )
 
-proc newVkSubpassFragmentDensityMapOffsetEndInfoQCOM*(sType: VkStructureType = VkStructureType.SubpassFragmentDensityMapOffsetEndInfoQCOM, pNext: pointer = nil, fragmentDensityOffsetCount: uint32, pFragmentDensityOffsets: ptr VkOffset2D): VkSubpassFragmentDensityMapOffsetEndInfoQCOM =
+proc newVkSubpassFragmentDensityMapOffsetEndInfoQCOM*(sType: VkStructureType = VkStructureType.SubpassFragmentDensityMapOffsetEndInfoQCOM, pNext: pointer = nil, fragmentDensityOffsets: openarray[VkOffset2D]): VkSubpassFragmentDensityMapOffsetEndInfoQCOM =
   result = VkSubpassFragmentDensityMapOffsetEndInfoQCOM(
     sType: sType,
     pNext: pNext,
-    fragmentDensityOffsetCount: fragmentDensityOffsetCount,
-    pFragmentDensityOffsets: pFragmentDensityOffsets,
+    fragmentDensityOffsetCount: len(fragmentDensityOffsets).uint32,
+    pFragmentDensityOffsets: if len(fragmentDensityOffsets) == 0: nil else: cast[ptr VkOffset2D](fragmentDensityOffsets),
   )
 
 proc newVkPhysicalDeviceScalarBlockLayoutFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceScalarBlockLayoutFeatures, pNext: pointer = nil, scalarBlockLayout: VkBool32): VkPhysicalDeviceScalarBlockLayoutFeatures =
@@ -18226,15 +18226,15 @@ proc newVkPhysicalDeviceImagelessFramebufferFeatures*(sType: VkStructureType = V
     imagelessFramebuffer: imagelessFramebuffer,
   )
 
-proc newVkFramebufferAttachmentsCreateInfo*(sType: VkStructureType = VkStructureType.FramebufferAttachmentsCreateInfo, pNext: pointer = nil, attachmentImageInfoCount: uint32, pAttachmentImageInfos: ptr VkFramebufferAttachmentImageInfo): VkFramebufferAttachmentsCreateInfo =
+proc newVkFramebufferAttachmentsCreateInfo*(sType: VkStructureType = VkStructureType.FramebufferAttachmentsCreateInfo, pNext: pointer = nil, attachmentImageInfos: openarray[VkFramebufferAttachmentImageInfo]): VkFramebufferAttachmentsCreateInfo =
   result = VkFramebufferAttachmentsCreateInfo(
     sType: sType,
     pNext: pNext,
-    attachmentImageInfoCount: attachmentImageInfoCount,
-    pAttachmentImageInfos: pAttachmentImageInfos,
+    attachmentImageInfoCount: len(attachmentImageInfos).uint32,
+    pAttachmentImageInfos: if len(attachmentImageInfos) == 0: nil else: cast[ptr VkFramebufferAttachmentImageInfo](attachmentImageInfos),
   )
 
-proc newVkFramebufferAttachmentImageInfo*(sType: VkStructureType = VkStructureType.FramebufferAttachmentImageInfo, pNext: pointer = nil, flags: VkImageCreateFlags = 0.VkImageCreateFlags, usage: VkImageUsageFlags, width: uint32, height: uint32, layerCount: uint32, viewFormatCount: uint32, pViewFormats: ptr VkFormat): VkFramebufferAttachmentImageInfo =
+proc newVkFramebufferAttachmentImageInfo*(sType: VkStructureType = VkStructureType.FramebufferAttachmentImageInfo, pNext: pointer = nil, flags: VkImageCreateFlags = 0.VkImageCreateFlags, usage: VkImageUsageFlags, width: uint32, height: uint32, layerCount: uint32, viewFormats: openarray[VkFormat]): VkFramebufferAttachmentImageInfo =
   result = VkFramebufferAttachmentImageInfo(
     sType: sType,
     pNext: pNext,
@@ -18243,16 +18243,16 @@ proc newVkFramebufferAttachmentImageInfo*(sType: VkStructureType = VkStructureTy
     width: width,
     height: height,
     layerCount: layerCount,
-    viewFormatCount: viewFormatCount,
-    pViewFormats: pViewFormats,
+    viewFormatCount: len(viewFormats).uint32,
+    pViewFormats: if len(viewFormats) == 0: nil else: cast[ptr VkFormat](viewFormats),
   )
 
-proc newVkRenderPassAttachmentBeginInfo*(sType: VkStructureType = VkStructureType.RenderPassAttachmentBeginInfo, pNext: pointer = nil, attachmentCount: uint32, pAttachments: ptr VkImageView): VkRenderPassAttachmentBeginInfo =
+proc newVkRenderPassAttachmentBeginInfo*(sType: VkStructureType = VkStructureType.RenderPassAttachmentBeginInfo, pNext: pointer = nil, attachments: openarray[VkImageView]): VkRenderPassAttachmentBeginInfo =
   result = VkRenderPassAttachmentBeginInfo(
     sType: sType,
     pNext: pNext,
-    attachmentCount: attachmentCount,
-    pAttachments: pAttachments,
+    attachmentCount: len(attachments).uint32,
+    pAttachments: if len(attachments) == 0: nil else: cast[ptr VkImageView](attachments),
   )
 
 proc newVkPhysicalDeviceTextureCompressionASTCHDRFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceTextureCompressionASTCHDRFeatures, pNext: pointer = nil, textureCompressionASTC_HDR: VkBool32): VkPhysicalDeviceTextureCompressionASTCHDRFeatures =
@@ -18328,13 +18328,13 @@ proc newVkPipelineCreationFeedback*(flags: VkPipelineCreationFeedbackFlags = 0.V
     duration: duration,
   )
 
-proc newVkPipelineCreationFeedbackCreateInfo*(sType: VkStructureType = VkStructureType.PipelineCreationFeedbackCreateInfo, pNext: pointer = nil, pPipelineCreationFeedback: ptr VkPipelineCreationFeedback, pipelineStageCreationFeedbackCount: uint32, pPipelineStageCreationFeedbacks: ptr ptr VkPipelineCreationFeedback): VkPipelineCreationFeedbackCreateInfo =
+proc newVkPipelineCreationFeedbackCreateInfo*(sType: VkStructureType = VkStructureType.PipelineCreationFeedbackCreateInfo, pNext: pointer = nil, pPipelineCreationFeedback: ptr VkPipelineCreationFeedback, pipelineStageCreationFeedbacks: openarray[ptr VkPipelineCreationFeedback]): VkPipelineCreationFeedbackCreateInfo =
   result = VkPipelineCreationFeedbackCreateInfo(
     sType: sType,
     pNext: pNext,
     pPipelineCreationFeedback: pPipelineCreationFeedback,
-    pipelineStageCreationFeedbackCount: pipelineStageCreationFeedbackCount,
-    pPipelineStageCreationFeedbacks: pPipelineStageCreationFeedbacks,
+    pipelineStageCreationFeedbackCount: len(pipelineStageCreationFeedbacks).uint32,
+    pPipelineStageCreationFeedbacks: if len(pipelineStageCreationFeedbacks) == 0: nil else: cast[ptr ptr VkPipelineCreationFeedback](pipelineStageCreationFeedbacks),
   )
 
 proc newVkSurfaceFullScreenExclusiveInfoEXT*(sType: VkStructureType = VkStructureType.SurfaceFullScreenExclusiveInfoEXT, pNext: pointer = nil, fullScreenExclusive: VkFullScreenExclusiveEXT): VkSurfaceFullScreenExclusiveInfoEXT =
@@ -18414,13 +18414,13 @@ proc newVkPerformanceCounterDescriptionKHR*(sType: VkStructureType = VkStructure
     description: description,
   )
 
-proc newVkQueryPoolPerformanceCreateInfoKHR*(sType: VkStructureType = VkStructureType.QueryPoolPerformanceCreateInfoKHR, pNext: pointer = nil, queueFamilyIndex: uint32, counterIndexCount: uint32, pCounterIndices: ptr uint32): VkQueryPoolPerformanceCreateInfoKHR =
+proc newVkQueryPoolPerformanceCreateInfoKHR*(sType: VkStructureType = VkStructureType.QueryPoolPerformanceCreateInfoKHR, pNext: pointer = nil, queueFamilyIndex: uint32, counterIndices: openarray[uint32]): VkQueryPoolPerformanceCreateInfoKHR =
   result = VkQueryPoolPerformanceCreateInfoKHR(
     sType: sType,
     pNext: pNext,
     queueFamilyIndex: queueFamilyIndex,
-    counterIndexCount: counterIndexCount,
-    pCounterIndices: pCounterIndices,
+    counterIndexCount: len(counterIndices).uint32,
+    pCounterIndices: if len(counterIndices) == 0: nil else: cast[ptr uint32](counterIndices),
   )
 
 proc newVkAcquireProfilingLockInfoKHR*(sType: VkStructureType = VkStructureType.AcquireProfilingLockInfoKHR, pNext: pointer = nil, flags: VkAcquireProfilingLockFlagsKHR = 0.VkAcquireProfilingLockFlagsKHR, timeout: uint64): VkAcquireProfilingLockInfoKHR =
@@ -19024,12 +19024,12 @@ proc newVkFaultData*(sType: VkStructureType = VkStructureType.FaultData, pNext: 
     faultType: faultType,
   )
 
-proc newVkFaultCallbackInfo*(sType: VkStructureType = VkStructureType.FaultCallbackInfo, pNext: pointer = nil, faultCount: uint32, pFaults: ptr VkFaultData, pfnFaultCallback: PFN_vkFaultCallbackFunction): VkFaultCallbackInfo =
+proc newVkFaultCallbackInfo*(sType: VkStructureType = VkStructureType.FaultCallbackInfo, pNext: pointer = nil, faults: openarray[VkFaultData], pfnFaultCallback: PFN_vkFaultCallbackFunction): VkFaultCallbackInfo =
   result = VkFaultCallbackInfo(
     sType: sType,
     pNext: pNext,
-    faultCount: faultCount,
-    pFaults: pFaults,
+    faultCount: len(faults).uint32,
+    pFaults: if len(faults) == 0: nil else: cast[ptr VkFaultData](faults),
     pfnFaultCallback: pfnFaultCallback,
   )
 
@@ -19230,12 +19230,12 @@ proc newVkRayTracingPipelineInterfaceCreateInfoKHR*(sType: VkStructureType = VkS
     maxPipelineRayHitAttributeSize: maxPipelineRayHitAttributeSize,
   )
 
-proc newVkPipelineLibraryCreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineLibraryCreateInfoKHR, pNext: pointer = nil, libraryCount: uint32, pLibraries: ptr VkPipeline): VkPipelineLibraryCreateInfoKHR =
+proc newVkPipelineLibraryCreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineLibraryCreateInfoKHR, pNext: pointer = nil, libraries: openarray[VkPipeline]): VkPipelineLibraryCreateInfoKHR =
   result = VkPipelineLibraryCreateInfoKHR(
     sType: sType,
     pNext: pNext,
-    libraryCount: libraryCount,
-    pLibraries: pLibraries,
+    libraryCount: len(libraries).uint32,
+    pLibraries: if len(libraries) == 0: nil else: cast[ptr VkPipeline](libraries),
   )
 
 proc newVkRefreshObjectKHR*(objectType: VkObjectType, objectHandle: uint64, flags: VkRefreshObjectFlagsKHR = 0.VkRefreshObjectFlagsKHR): VkRefreshObjectKHR =
@@ -19245,12 +19245,12 @@ proc newVkRefreshObjectKHR*(objectType: VkObjectType, objectHandle: uint64, flag
     flags: flags,
   )
 
-proc newVkRefreshObjectListKHR*(sType: VkStructureType = VkStructureType.RefreshObjectListKHR, pNext: pointer = nil, objectCount: uint32, pObjects: ptr VkRefreshObjectKHR): VkRefreshObjectListKHR =
+proc newVkRefreshObjectListKHR*(sType: VkStructureType = VkStructureType.RefreshObjectListKHR, pNext: pointer = nil, objects: openarray[VkRefreshObjectKHR]): VkRefreshObjectListKHR =
   result = VkRefreshObjectListKHR(
     sType: sType,
     pNext: pNext,
-    objectCount: objectCount,
-    pObjects: pObjects,
+    objectCount: len(objects).uint32,
+    pObjects: if len(objects) == 0: nil else: cast[ptr VkRefreshObjectKHR](objects),
   )
 
 proc newVkPhysicalDeviceExtendedDynamicStateFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceExtendedDynamicStateFeaturesEXT, pNext: pointer = nil, extendedDynamicState: VkBool32): VkPhysicalDeviceExtendedDynamicStateFeaturesEXT =
@@ -19536,17 +19536,17 @@ proc newVkImageResolve2*(sType: VkStructureType = VkStructureType.ImageResolve2,
     extent: extent,
   )
 
-proc newVkCopyBufferInfo2*(sType: VkStructureType = VkStructureType.CopyBufferInfo2, pNext: pointer = nil, srcBuffer: VkBuffer, dstBuffer: VkBuffer, regionCount: uint32, pRegions: ptr VkBufferCopy2): VkCopyBufferInfo2 =
+proc newVkCopyBufferInfo2*(sType: VkStructureType = VkStructureType.CopyBufferInfo2, pNext: pointer = nil, srcBuffer: VkBuffer, dstBuffer: VkBuffer, regions: openarray[VkBufferCopy2]): VkCopyBufferInfo2 =
   result = VkCopyBufferInfo2(
     sType: sType,
     pNext: pNext,
     srcBuffer: srcBuffer,
     dstBuffer: dstBuffer,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkBufferCopy2](regions),
   )
 
-proc newVkCopyImageInfo2*(sType: VkStructureType = VkStructureType.CopyImageInfo2, pNext: pointer = nil, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageCopy2): VkCopyImageInfo2 =
+proc newVkCopyImageInfo2*(sType: VkStructureType = VkStructureType.CopyImageInfo2, pNext: pointer = nil, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkImageCopy2]): VkCopyImageInfo2 =
   result = VkCopyImageInfo2(
     sType: sType,
     pNext: pNext,
@@ -19554,11 +19554,11 @@ proc newVkCopyImageInfo2*(sType: VkStructureType = VkStructureType.CopyImageInfo
     srcImageLayout: srcImageLayout,
     dstImage: dstImage,
     dstImageLayout: dstImageLayout,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkImageCopy2](regions),
   )
 
-proc newVkBlitImageInfo2*(sType: VkStructureType = VkStructureType.BlitImageInfo2, pNext: pointer = nil, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageBlit2, filter: VkFilter): VkBlitImageInfo2 =
+proc newVkBlitImageInfo2*(sType: VkStructureType = VkStructureType.BlitImageInfo2, pNext: pointer = nil, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkImageBlit2], filter: VkFilter): VkBlitImageInfo2 =
   result = VkBlitImageInfo2(
     sType: sType,
     pNext: pNext,
@@ -19566,34 +19566,34 @@ proc newVkBlitImageInfo2*(sType: VkStructureType = VkStructureType.BlitImageInfo
     srcImageLayout: srcImageLayout,
     dstImage: dstImage,
     dstImageLayout: dstImageLayout,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkImageBlit2](regions),
     filter: filter,
   )
 
-proc newVkCopyBufferToImageInfo2*(sType: VkStructureType = VkStructureType.CopyBufferToImageInfo2, pNext: pointer = nil, srcBuffer: VkBuffer, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkBufferImageCopy2): VkCopyBufferToImageInfo2 =
+proc newVkCopyBufferToImageInfo2*(sType: VkStructureType = VkStructureType.CopyBufferToImageInfo2, pNext: pointer = nil, srcBuffer: VkBuffer, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkBufferImageCopy2]): VkCopyBufferToImageInfo2 =
   result = VkCopyBufferToImageInfo2(
     sType: sType,
     pNext: pNext,
     srcBuffer: srcBuffer,
     dstImage: dstImage,
     dstImageLayout: dstImageLayout,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkBufferImageCopy2](regions),
   )
 
-proc newVkCopyImageToBufferInfo2*(sType: VkStructureType = VkStructureType.CopyImageToBufferInfo2, pNext: pointer = nil, srcImage: VkImage, srcImageLayout: VkImageLayout, dstBuffer: VkBuffer, regionCount: uint32, pRegions: ptr VkBufferImageCopy2): VkCopyImageToBufferInfo2 =
+proc newVkCopyImageToBufferInfo2*(sType: VkStructureType = VkStructureType.CopyImageToBufferInfo2, pNext: pointer = nil, srcImage: VkImage, srcImageLayout: VkImageLayout, dstBuffer: VkBuffer, regions: openarray[VkBufferImageCopy2]): VkCopyImageToBufferInfo2 =
   result = VkCopyImageToBufferInfo2(
     sType: sType,
     pNext: pNext,
     srcImage: srcImage,
     srcImageLayout: srcImageLayout,
     dstBuffer: dstBuffer,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkBufferImageCopy2](regions),
   )
 
-proc newVkResolveImageInfo2*(sType: VkStructureType = VkStructureType.ResolveImageInfo2, pNext: pointer = nil, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageResolve2): VkResolveImageInfo2 =
+proc newVkResolveImageInfo2*(sType: VkStructureType = VkStructureType.ResolveImageInfo2, pNext: pointer = nil, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkImageResolve2]): VkResolveImageInfo2 =
   result = VkResolveImageInfo2(
     sType: sType,
     pNext: pNext,
@@ -19601,8 +19601,8 @@ proc newVkResolveImageInfo2*(sType: VkStructureType = VkStructureType.ResolveIma
     srcImageLayout: srcImageLayout,
     dstImage: dstImage,
     dstImageLayout: dstImageLayout,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkImageResolve2](regions),
   )
 
 proc newVkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderImageAtomicInt64FeaturesEXT, pNext: pointer = nil, shaderImageInt64Atomics: VkBool32, sparseImageInt64Atomics: VkBool32): VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT =
@@ -19739,18 +19739,18 @@ proc newVkPhysicalDeviceMutableDescriptorTypeFeaturesEXT*(sType: VkStructureType
     mutableDescriptorType: mutableDescriptorType,
   )
 
-proc newVkMutableDescriptorTypeListEXT*(descriptorTypeCount: uint32, pDescriptorTypes: ptr VkDescriptorType): VkMutableDescriptorTypeListEXT =
+proc newVkMutableDescriptorTypeListEXT*(descriptorTypes: openarray[VkDescriptorType]): VkMutableDescriptorTypeListEXT =
   result = VkMutableDescriptorTypeListEXT(
-    descriptorTypeCount: descriptorTypeCount,
-    pDescriptorTypes: pDescriptorTypes,
+    descriptorTypeCount: len(descriptorTypes).uint32,
+    pDescriptorTypes: if len(descriptorTypes) == 0: nil else: cast[ptr VkDescriptorType](descriptorTypes),
   )
 
-proc newVkMutableDescriptorTypeCreateInfoEXT*(sType: VkStructureType = VkStructureType.MutableDescriptorTypeCreateInfoEXT, pNext: pointer = nil, mutableDescriptorTypeListCount: uint32, pMutableDescriptorTypeLists: ptr VkMutableDescriptorTypeListEXT): VkMutableDescriptorTypeCreateInfoEXT =
+proc newVkMutableDescriptorTypeCreateInfoEXT*(sType: VkStructureType = VkStructureType.MutableDescriptorTypeCreateInfoEXT, pNext: pointer = nil, mutableDescriptorTypeLists: openarray[VkMutableDescriptorTypeListEXT]): VkMutableDescriptorTypeCreateInfoEXT =
   result = VkMutableDescriptorTypeCreateInfoEXT(
     sType: sType,
     pNext: pNext,
-    mutableDescriptorTypeListCount: mutableDescriptorTypeListCount,
-    pMutableDescriptorTypeLists: pMutableDescriptorTypeLists,
+    mutableDescriptorTypeListCount: len(mutableDescriptorTypeLists).uint32,
+    pMutableDescriptorTypeLists: if len(mutableDescriptorTypeLists) == 0: nil else: cast[ptr VkMutableDescriptorTypeListEXT](mutableDescriptorTypeLists),
   )
 
 proc newVkPhysicalDeviceDepthClipControlFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDepthClipControlFeaturesEXT, pNext: pointer = nil, depthClipControl: VkBool32): VkPhysicalDeviceDepthClipControlFeaturesEXT =
@@ -19808,12 +19808,12 @@ proc newVkPhysicalDeviceColorWriteEnableFeaturesEXT*(sType: VkStructureType = Vk
     colorWriteEnable: colorWriteEnable,
   )
 
-proc newVkPipelineColorWriteCreateInfoEXT*(sType: VkStructureType = VkStructureType.PipelineColorWriteCreateInfoEXT, pNext: pointer = nil, attachmentCount: uint32, pColorWriteEnables: ptr VkBool32): VkPipelineColorWriteCreateInfoEXT =
+proc newVkPipelineColorWriteCreateInfoEXT*(sType: VkStructureType = VkStructureType.PipelineColorWriteCreateInfoEXT, pNext: pointer = nil, colorWriteEnables: openarray[VkBool32]): VkPipelineColorWriteCreateInfoEXT =
   result = VkPipelineColorWriteCreateInfoEXT(
     sType: sType,
     pNext: pNext,
-    attachmentCount: attachmentCount,
-    pColorWriteEnables: pColorWriteEnables,
+    attachmentCount: len(colorWriteEnables).uint32,
+    pColorWriteEnables: if len(colorWriteEnables) == 0: nil else: cast[ptr VkBool32](colorWriteEnables),
   )
 
 proc newVkMemoryBarrier2*(sType: VkStructureType = VkStructureType.MemoryBarrier2, pNext: pointer = nil, srcStageMask: VkPipelineStageFlags2, srcAccessMask: VkAccessFlags2, dstStageMask: VkPipelineStageFlags2, dstAccessMask: VkAccessFlags2): VkMemoryBarrier2 =
@@ -19857,17 +19857,17 @@ proc newVkBufferMemoryBarrier2*(sType: VkStructureType = VkStructureType.BufferM
     size: size,
   )
 
-proc newVkDependencyInfo*(sType: VkStructureType = VkStructureType.DependencyInfo, pNext: pointer = nil, dependencyFlags: VkDependencyFlags, memoryBarrierCount: uint32, pMemoryBarriers: ptr VkMemoryBarrier2, bufferMemoryBarrierCount: uint32, pBufferMemoryBarriers: ptr VkBufferMemoryBarrier2, imageMemoryBarrierCount: uint32, pImageMemoryBarriers: ptr VkImageMemoryBarrier2): VkDependencyInfo =
+proc newVkDependencyInfo*(sType: VkStructureType = VkStructureType.DependencyInfo, pNext: pointer = nil, dependencyFlags: VkDependencyFlags, memoryBarriers: openarray[VkMemoryBarrier2], bufferMemoryBarriers: openarray[VkBufferMemoryBarrier2], imageMemoryBarriers: openarray[VkImageMemoryBarrier2]): VkDependencyInfo =
   result = VkDependencyInfo(
     sType: sType,
     pNext: pNext,
     dependencyFlags: dependencyFlags,
-    memoryBarrierCount: memoryBarrierCount,
-    pMemoryBarriers: pMemoryBarriers,
-    bufferMemoryBarrierCount: bufferMemoryBarrierCount,
-    pBufferMemoryBarriers: pBufferMemoryBarriers,
-    imageMemoryBarrierCount: imageMemoryBarrierCount,
-    pImageMemoryBarriers: pImageMemoryBarriers,
+    memoryBarrierCount: len(memoryBarriers).uint32,
+    pMemoryBarriers: if len(memoryBarriers) == 0: nil else: cast[ptr VkMemoryBarrier2](memoryBarriers),
+    bufferMemoryBarrierCount: len(bufferMemoryBarriers).uint32,
+    pBufferMemoryBarriers: if len(bufferMemoryBarriers) == 0: nil else: cast[ptr VkBufferMemoryBarrier2](bufferMemoryBarriers),
+    imageMemoryBarrierCount: len(imageMemoryBarriers).uint32,
+    pImageMemoryBarriers: if len(imageMemoryBarriers) == 0: nil else: cast[ptr VkImageMemoryBarrier2](imageMemoryBarriers),
   )
 
 proc newVkSemaphoreSubmitInfo*(sType: VkStructureType = VkStructureType.SemaphoreSubmitInfo, pNext: pointer = nil, semaphore: VkSemaphore, value: uint64, stageMask: VkPipelineStageFlags2, deviceIndex: uint32): VkSemaphoreSubmitInfo =
@@ -19888,17 +19888,17 @@ proc newVkCommandBufferSubmitInfo*(sType: VkStructureType = VkStructureType.Comm
     deviceMask: deviceMask,
   )
 
-proc newVkSubmitInfo2*(sType: VkStructureType = VkStructureType.SubmitInfo2, pNext: pointer = nil, flags: VkSubmitFlags = 0.VkSubmitFlags, waitSemaphoreInfoCount: uint32, pWaitSemaphoreInfos: ptr VkSemaphoreSubmitInfo, commandBufferInfoCount: uint32, pCommandBufferInfos: ptr VkCommandBufferSubmitInfo, signalSemaphoreInfoCount: uint32, pSignalSemaphoreInfos: ptr VkSemaphoreSubmitInfo): VkSubmitInfo2 =
+proc newVkSubmitInfo2*(sType: VkStructureType = VkStructureType.SubmitInfo2, pNext: pointer = nil, flags: VkSubmitFlags = 0.VkSubmitFlags, waitSemaphoreInfos: openarray[VkSemaphoreSubmitInfo], commandBufferInfos: openarray[VkCommandBufferSubmitInfo], signalSemaphoreInfos: openarray[VkSemaphoreSubmitInfo]): VkSubmitInfo2 =
   result = VkSubmitInfo2(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    waitSemaphoreInfoCount: waitSemaphoreInfoCount,
-    pWaitSemaphoreInfos: pWaitSemaphoreInfos,
-    commandBufferInfoCount: commandBufferInfoCount,
-    pCommandBufferInfos: pCommandBufferInfos,
-    signalSemaphoreInfoCount: signalSemaphoreInfoCount,
-    pSignalSemaphoreInfos: pSignalSemaphoreInfos,
+    waitSemaphoreInfoCount: len(waitSemaphoreInfos).uint32,
+    pWaitSemaphoreInfos: if len(waitSemaphoreInfos) == 0: nil else: cast[ptr VkSemaphoreSubmitInfo](waitSemaphoreInfos),
+    commandBufferInfoCount: len(commandBufferInfos).uint32,
+    pCommandBufferInfos: if len(commandBufferInfos) == 0: nil else: cast[ptr VkCommandBufferSubmitInfo](commandBufferInfos),
+    signalSemaphoreInfoCount: len(signalSemaphoreInfos).uint32,
+    pSignalSemaphoreInfos: if len(signalSemaphoreInfos) == 0: nil else: cast[ptr VkSemaphoreSubmitInfo](signalSemaphoreInfos),
   )
 
 proc newVkQueueFamilyCheckpointProperties2NV*(sType: VkStructureType = VkStructureType.QueueFamilyCheckpointProperties2NV, pNext: pointer = nil, checkpointExecutionStageMask: VkPipelineStageFlags2): VkQueueFamilyCheckpointProperties2NV =
@@ -19930,14 +19930,14 @@ proc newVkPhysicalDeviceHostImageCopyFeaturesEXT*(sType: VkStructureType = VkStr
     hostImageCopy: hostImageCopy,
   )
 
-proc newVkPhysicalDeviceHostImageCopyPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceHostImageCopyPropertiesEXT, pNext: pointer = nil, copySrcLayoutCount: uint32, pCopySrcLayouts: ptr VkImageLayout, copyDstLayoutCount: uint32, pCopyDstLayouts: ptr VkImageLayout, optimalTilingLayoutUUID: array[VK_UUID_SIZE, uint8], identicalMemoryTypeRequirements: VkBool32): VkPhysicalDeviceHostImageCopyPropertiesEXT =
+proc newVkPhysicalDeviceHostImageCopyPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceHostImageCopyPropertiesEXT, pNext: pointer = nil, copySrcLayouts: openarray[VkImageLayout], copyDstLayouts: openarray[VkImageLayout], optimalTilingLayoutUUID: array[VK_UUID_SIZE, uint8], identicalMemoryTypeRequirements: VkBool32): VkPhysicalDeviceHostImageCopyPropertiesEXT =
   result = VkPhysicalDeviceHostImageCopyPropertiesEXT(
     sType: sType,
     pNext: pNext,
-    copySrcLayoutCount: copySrcLayoutCount,
-    pCopySrcLayouts: pCopySrcLayouts,
-    copyDstLayoutCount: copyDstLayoutCount,
-    pCopyDstLayouts: pCopyDstLayouts,
+    copySrcLayoutCount: len(copySrcLayouts).uint32,
+    pCopySrcLayouts: if len(copySrcLayouts) == 0: nil else: cast[ptr VkImageLayout](copySrcLayouts),
+    copyDstLayoutCount: len(copyDstLayouts).uint32,
+    pCopyDstLayouts: if len(copyDstLayouts) == 0: nil else: cast[ptr VkImageLayout](copyDstLayouts),
     optimalTilingLayoutUUID: optimalTilingLayoutUUID,
     identicalMemoryTypeRequirements: identicalMemoryTypeRequirements,
   )
@@ -19966,29 +19966,29 @@ proc newVkImageToMemoryCopyEXT*(sType: VkStructureType = VkStructureType.ImageTo
     imageExtent: imageExtent,
   )
 
-proc newVkCopyMemoryToImageInfoEXT*(sType: VkStructureType = VkStructureType.CopyMemoryToImageInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkMemoryToImageCopyEXT): VkCopyMemoryToImageInfoEXT =
+proc newVkCopyMemoryToImageInfoEXT*(sType: VkStructureType = VkStructureType.CopyMemoryToImageInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkMemoryToImageCopyEXT]): VkCopyMemoryToImageInfoEXT =
   result = VkCopyMemoryToImageInfoEXT(
     sType: sType,
     pNext: pNext,
     flags: flags,
     dstImage: dstImage,
     dstImageLayout: dstImageLayout,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkMemoryToImageCopyEXT](regions),
   )
 
-proc newVkCopyImageToMemoryInfoEXT*(sType: VkStructureType = VkStructureType.CopyImageToMemoryInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, srcImage: VkImage, srcImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageToMemoryCopyEXT): VkCopyImageToMemoryInfoEXT =
+proc newVkCopyImageToMemoryInfoEXT*(sType: VkStructureType = VkStructureType.CopyImageToMemoryInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, srcImage: VkImage, srcImageLayout: VkImageLayout, regions: openarray[VkImageToMemoryCopyEXT]): VkCopyImageToMemoryInfoEXT =
   result = VkCopyImageToMemoryInfoEXT(
     sType: sType,
     pNext: pNext,
     flags: flags,
     srcImage: srcImage,
     srcImageLayout: srcImageLayout,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkImageToMemoryCopyEXT](regions),
   )
 
-proc newVkCopyImageToImageInfoEXT*(sType: VkStructureType = VkStructureType.CopyImageToImageInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageCopy2): VkCopyImageToImageInfoEXT =
+proc newVkCopyImageToImageInfoEXT*(sType: VkStructureType = VkStructureType.CopyImageToImageInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkImageCopy2]): VkCopyImageToImageInfoEXT =
   result = VkCopyImageToImageInfoEXT(
     sType: sType,
     pNext: pNext,
@@ -19997,8 +19997,8 @@ proc newVkCopyImageToImageInfoEXT*(sType: VkStructureType = VkStructureType.Copy
     srcImageLayout: srcImageLayout,
     dstImage: dstImage,
     dstImageLayout: dstImageLayout,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkImageCopy2](regions),
   )
 
 proc newVkHostImageLayoutTransitionInfoEXT*(sType: VkStructureType = VkStructureType.HostImageLayoutTransitionInfoEXT, pNext: pointer = nil, image: VkImage, oldLayout: VkImageLayout, newLayout: VkImageLayout, subresourceRange: VkImageSubresourceRange): VkHostImageLayoutTransitionInfoEXT =
@@ -20058,14 +20058,14 @@ proc newVkPipelinePoolSize*(sType: VkStructureType = VkStructureType.PipelinePoo
     poolEntryCount: poolEntryCount,
   )
 
-proc newVkDeviceObjectReservationCreateInfo*(sType: VkStructureType = VkStructureType.DeviceObjectReservationCreateInfo, pNext: pointer = nil, pipelineCacheCreateInfoCount: uint32, pPipelineCacheCreateInfos: ptr VkPipelineCacheCreateInfo, pipelinePoolSizeCount: uint32, pPipelinePoolSizes: ptr VkPipelinePoolSize, semaphoreRequestCount: uint32, commandBufferRequestCount: uint32, fenceRequestCount: uint32, deviceMemoryRequestCount: uint32, bufferRequestCount: uint32, imageRequestCount: uint32, eventRequestCount: uint32, queryPoolRequestCount: uint32, bufferViewRequestCount: uint32, imageViewRequestCount: uint32, layeredImageViewRequestCount: uint32, pipelineCacheRequestCount: uint32, pipelineLayoutRequestCount: uint32, renderPassRequestCount: uint32, graphicsPipelineRequestCount: uint32, computePipelineRequestCount: uint32, descriptorSetLayoutRequestCount: uint32, samplerRequestCount: uint32, descriptorPoolRequestCount: uint32, descriptorSetRequestCount: uint32, framebufferRequestCount: uint32, commandPoolRequestCount: uint32, samplerYcbcrConversionRequestCount: uint32, surfaceRequestCount: uint32, swapchainRequestCount: uint32, displayModeRequestCount: uint32, subpassDescriptionRequestCount: uint32, attachmentDescriptionRequestCount: uint32, descriptorSetLayoutBindingRequestCount: uint32, descriptorSetLayoutBindingLimit: uint32, maxImageViewMipLevels: uint32, maxImageViewArrayLayers: uint32, maxLayeredImageViewMipLevels: uint32, maxOcclusionQueriesPerPool: uint32, maxPipelineStatisticsQueriesPerPool: uint32, maxTimestampQueriesPerPool: uint32, maxImmutableSamplersPerDescriptorSetLayout: uint32): VkDeviceObjectReservationCreateInfo =
+proc newVkDeviceObjectReservationCreateInfo*(sType: VkStructureType = VkStructureType.DeviceObjectReservationCreateInfo, pNext: pointer = nil, pipelineCacheCreateInfos: openarray[VkPipelineCacheCreateInfo], pipelinePoolSizes: openarray[VkPipelinePoolSize], semaphoreRequestCount: uint32, commandBufferRequestCount: uint32, fenceRequestCount: uint32, deviceMemoryRequestCount: uint32, bufferRequestCount: uint32, imageRequestCount: uint32, eventRequestCount: uint32, queryPoolRequestCount: uint32, bufferViewRequestCount: uint32, imageViewRequestCount: uint32, layeredImageViewRequestCount: uint32, pipelineCacheRequestCount: uint32, pipelineLayoutRequestCount: uint32, renderPassRequestCount: uint32, graphicsPipelineRequestCount: uint32, computePipelineRequestCount: uint32, descriptorSetLayoutRequestCount: uint32, samplerRequestCount: uint32, descriptorPoolRequestCount: uint32, descriptorSetRequestCount: uint32, framebufferRequestCount: uint32, commandPoolRequestCount: uint32, samplerYcbcrConversionRequestCount: uint32, surfaceRequestCount: uint32, swapchainRequestCount: uint32, displayModeRequestCount: uint32, subpassDescriptionRequestCount: uint32, attachmentDescriptionRequestCount: uint32, descriptorSetLayoutBindingRequestCount: uint32, descriptorSetLayoutBindingLimit: uint32, maxImageViewMipLevels: uint32, maxImageViewArrayLayers: uint32, maxLayeredImageViewMipLevels: uint32, maxOcclusionQueriesPerPool: uint32, maxPipelineStatisticsQueriesPerPool: uint32, maxTimestampQueriesPerPool: uint32, maxImmutableSamplersPerDescriptorSetLayout: uint32): VkDeviceObjectReservationCreateInfo =
   result = VkDeviceObjectReservationCreateInfo(
     sType: sType,
     pNext: pNext,
-    pipelineCacheCreateInfoCount: pipelineCacheCreateInfoCount,
-    pPipelineCacheCreateInfos: pPipelineCacheCreateInfos,
-    pipelinePoolSizeCount: pipelinePoolSizeCount,
-    pPipelinePoolSizes: pPipelinePoolSizes,
+    pipelineCacheCreateInfoCount: len(pipelineCacheCreateInfos).uint32,
+    pPipelineCacheCreateInfos: if len(pipelineCacheCreateInfos) == 0: nil else: cast[ptr VkPipelineCacheCreateInfo](pipelineCacheCreateInfos),
+    pipelinePoolSizeCount: len(pipelinePoolSizes).uint32,
+    pPipelinePoolSizes: if len(pipelinePoolSizes) == 0: nil else: cast[ptr VkPipelinePoolSize](pipelinePoolSizes),
     semaphoreRequestCount: semaphoreRequestCount,
     commandBufferRequestCount: commandBufferRequestCount,
     fenceRequestCount: fenceRequestCount,
@@ -20188,12 +20188,12 @@ proc newVkQueueFamilyQueryResultStatusPropertiesKHR*(sType: VkStructureType = Vk
     queryResultStatusSupport: queryResultStatusSupport,
   )
 
-proc newVkVideoProfileListInfoKHR*(sType: VkStructureType = VkStructureType.VideoProfileListInfoKHR, pNext: pointer = nil, profileCount: uint32, pProfiles: ptr VkVideoProfileInfoKHR): VkVideoProfileListInfoKHR =
+proc newVkVideoProfileListInfoKHR*(sType: VkStructureType = VkStructureType.VideoProfileListInfoKHR, pNext: pointer = nil, profiles: openarray[VkVideoProfileInfoKHR]): VkVideoProfileListInfoKHR =
   result = VkVideoProfileListInfoKHR(
     sType: sType,
     pNext: pNext,
-    profileCount: profileCount,
-    pProfiles: pProfiles,
+    profileCount: len(profiles).uint32,
+    pProfiles: if len(profiles) == 0: nil else: cast[ptr VkVideoProfileInfoKHR](profiles),
   )
 
 proc newVkPhysicalDeviceVideoFormatInfoKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVideoFormatInfoKHR, pNext: pointer = nil, imageUsage: VkImageUsageFlags): VkPhysicalDeviceVideoFormatInfoKHR =
@@ -20290,7 +20290,7 @@ proc newVkVideoDecodeUsageInfoKHR*(sType: VkStructureType = VkStructureType.Vide
     videoUsageHints: videoUsageHints,
   )
 
-proc newVkVideoDecodeInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeInfoKHR, pNext: pointer = nil, flags: VkVideoDecodeFlagsKHR = 0.VkVideoDecodeFlagsKHR, srcBuffer: VkBuffer, srcBufferOffset: VkDeviceSize, srcBufferRange: VkDeviceSize, dstPictureResource: VkVideoPictureResourceInfoKHR, pSetupReferenceSlot: ptr VkVideoReferenceSlotInfoKHR, referenceSlotCount: uint32, pReferenceSlots: ptr VkVideoReferenceSlotInfoKHR): VkVideoDecodeInfoKHR =
+proc newVkVideoDecodeInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeInfoKHR, pNext: pointer = nil, flags: VkVideoDecodeFlagsKHR = 0.VkVideoDecodeFlagsKHR, srcBuffer: VkBuffer, srcBufferOffset: VkDeviceSize, srcBufferRange: VkDeviceSize, dstPictureResource: VkVideoPictureResourceInfoKHR, pSetupReferenceSlot: ptr VkVideoReferenceSlotInfoKHR, referenceSlots: openarray[VkVideoReferenceSlotInfoKHR]): VkVideoDecodeInfoKHR =
   result = VkVideoDecodeInfoKHR(
     sType: sType,
     pNext: pNext,
@@ -20300,8 +20300,8 @@ proc newVkVideoDecodeInfoKHR*(sType: VkStructureType = VkStructureType.VideoDeco
     srcBufferRange: srcBufferRange,
     dstPictureResource: dstPictureResource,
     pSetupReferenceSlot: pSetupReferenceSlot,
-    referenceSlotCount: referenceSlotCount,
-    pReferenceSlots: pReferenceSlots,
+    referenceSlotCount: len(referenceSlots).uint32,
+    pReferenceSlots: if len(referenceSlots) == 0: nil else: cast[ptr VkVideoReferenceSlotInfoKHR](referenceSlots),
   )
 
 proc newVkPhysicalDeviceVideoMaintenance1FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVideoMaintenance1FeaturesKHR, pNext: pointer = nil, videoMaintenance1: VkBool32): VkPhysicalDeviceVideoMaintenance1FeaturesKHR =
@@ -20336,14 +20336,14 @@ proc newVkVideoDecodeH264CapabilitiesKHR*(sType: VkStructureType = VkStructureTy
     fieldOffsetGranularity: fieldOffsetGranularity,
   )
 
-proc newVkVideoDecodeH264SessionParametersAddInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH264SessionParametersAddInfoKHR, pNext: pointer = nil, stdSPSCount: uint32, pStdSPSs: ptr StdVideoH264SequenceParameterSet, stdPPSCount: uint32, pStdPPSs: ptr StdVideoH264PictureParameterSet): VkVideoDecodeH264SessionParametersAddInfoKHR =
+proc newVkVideoDecodeH264SessionParametersAddInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH264SessionParametersAddInfoKHR, pNext: pointer = nil, stdSPSs: openarray[StdVideoH264SequenceParameterSet], stdPPSs: openarray[StdVideoH264PictureParameterSet]): VkVideoDecodeH264SessionParametersAddInfoKHR =
   result = VkVideoDecodeH264SessionParametersAddInfoKHR(
     sType: sType,
     pNext: pNext,
-    stdSPSCount: stdSPSCount,
-    pStdSPSs: pStdSPSs,
-    stdPPSCount: stdPPSCount,
-    pStdPPSs: pStdPPSs,
+    stdSPSCount: len(stdSPSs).uint32,
+    pStdSPSs: if len(stdSPSs) == 0: nil else: cast[ptr StdVideoH264SequenceParameterSet](stdSPSs),
+    stdPPSCount: len(stdPPSs).uint32,
+    pStdPPSs: if len(stdPPSs) == 0: nil else: cast[ptr StdVideoH264PictureParameterSet](stdPPSs),
   )
 
 proc newVkVideoDecodeH264SessionParametersCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH264SessionParametersCreateInfoKHR, pNext: pointer = nil, maxStdSPSCount: uint32, maxStdPPSCount: uint32, pParametersAddInfo: ptr VkVideoDecodeH264SessionParametersAddInfoKHR): VkVideoDecodeH264SessionParametersCreateInfoKHR =
@@ -20355,13 +20355,13 @@ proc newVkVideoDecodeH264SessionParametersCreateInfoKHR*(sType: VkStructureType 
     pParametersAddInfo: pParametersAddInfo,
   )
 
-proc newVkVideoDecodeH264PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH264PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeH264PictureInfo, sliceCount: uint32, pSliceOffsets: ptr uint32): VkVideoDecodeH264PictureInfoKHR =
+proc newVkVideoDecodeH264PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH264PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeH264PictureInfo, sliceOffsets: openarray[uint32]): VkVideoDecodeH264PictureInfoKHR =
   result = VkVideoDecodeH264PictureInfoKHR(
     sType: sType,
     pNext: pNext,
     pStdPictureInfo: pStdPictureInfo,
-    sliceCount: sliceCount,
-    pSliceOffsets: pSliceOffsets,
+    sliceCount: len(sliceOffsets).uint32,
+    pSliceOffsets: if len(sliceOffsets) == 0: nil else: cast[ptr uint32](sliceOffsets),
   )
 
 proc newVkVideoDecodeH264DpbSlotInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH264DpbSlotInfoKHR, pNext: pointer = nil, pStdReferenceInfo: ptr StdVideoDecodeH264ReferenceInfo): VkVideoDecodeH264DpbSlotInfoKHR =
@@ -20385,16 +20385,16 @@ proc newVkVideoDecodeH265CapabilitiesKHR*(sType: VkStructureType = VkStructureTy
     maxLevelIdc: maxLevelIdc,
   )
 
-proc newVkVideoDecodeH265SessionParametersAddInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH265SessionParametersAddInfoKHR, pNext: pointer = nil, stdVPSCount: uint32, pStdVPSs: ptr StdVideoH265VideoParameterSet, stdSPSCount: uint32, pStdSPSs: ptr StdVideoH265SequenceParameterSet, stdPPSCount: uint32, pStdPPSs: ptr StdVideoH265PictureParameterSet): VkVideoDecodeH265SessionParametersAddInfoKHR =
+proc newVkVideoDecodeH265SessionParametersAddInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH265SessionParametersAddInfoKHR, pNext: pointer = nil, stdVPSs: openarray[StdVideoH265VideoParameterSet], stdSPSs: openarray[StdVideoH265SequenceParameterSet], stdPPSs: openarray[StdVideoH265PictureParameterSet]): VkVideoDecodeH265SessionParametersAddInfoKHR =
   result = VkVideoDecodeH265SessionParametersAddInfoKHR(
     sType: sType,
     pNext: pNext,
-    stdVPSCount: stdVPSCount,
-    pStdVPSs: pStdVPSs,
-    stdSPSCount: stdSPSCount,
-    pStdSPSs: pStdSPSs,
-    stdPPSCount: stdPPSCount,
-    pStdPPSs: pStdPPSs,
+    stdVPSCount: len(stdVPSs).uint32,
+    pStdVPSs: if len(stdVPSs) == 0: nil else: cast[ptr StdVideoH265VideoParameterSet](stdVPSs),
+    stdSPSCount: len(stdSPSs).uint32,
+    pStdSPSs: if len(stdSPSs) == 0: nil else: cast[ptr StdVideoH265SequenceParameterSet](stdSPSs),
+    stdPPSCount: len(stdPPSs).uint32,
+    pStdPPSs: if len(stdPPSs) == 0: nil else: cast[ptr StdVideoH265PictureParameterSet](stdPPSs),
   )
 
 proc newVkVideoDecodeH265SessionParametersCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH265SessionParametersCreateInfoKHR, pNext: pointer = nil, maxStdVPSCount: uint32, maxStdSPSCount: uint32, maxStdPPSCount: uint32, pParametersAddInfo: ptr VkVideoDecodeH265SessionParametersAddInfoKHR): VkVideoDecodeH265SessionParametersCreateInfoKHR =
@@ -20407,13 +20407,13 @@ proc newVkVideoDecodeH265SessionParametersCreateInfoKHR*(sType: VkStructureType 
     pParametersAddInfo: pParametersAddInfo,
   )
 
-proc newVkVideoDecodeH265PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH265PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeH265PictureInfo, sliceSegmentCount: uint32, pSliceSegmentOffsets: ptr uint32): VkVideoDecodeH265PictureInfoKHR =
+proc newVkVideoDecodeH265PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH265PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeH265PictureInfo, sliceSegmentOffsets: openarray[uint32]): VkVideoDecodeH265PictureInfoKHR =
   result = VkVideoDecodeH265PictureInfoKHR(
     sType: sType,
     pNext: pNext,
     pStdPictureInfo: pStdPictureInfo,
-    sliceSegmentCount: sliceSegmentCount,
-    pSliceSegmentOffsets: pSliceSegmentOffsets,
+    sliceSegmentCount: len(sliceSegmentOffsets).uint32,
+    pSliceSegmentOffsets: if len(sliceSegmentOffsets) == 0: nil else: cast[ptr uint32](sliceSegmentOffsets),
   )
 
 proc newVkVideoDecodeH265DpbSlotInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH265DpbSlotInfoKHR, pNext: pointer = nil, pStdReferenceInfo: ptr StdVideoDecodeH265ReferenceInfo): VkVideoDecodeH265DpbSlotInfoKHR =
@@ -20445,16 +20445,16 @@ proc newVkVideoDecodeAV1SessionParametersCreateInfoKHR*(sType: VkStructureType =
     pStdSequenceHeader: pStdSequenceHeader,
   )
 
-proc newVkVideoDecodeAV1PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeAV1PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeAV1PictureInfo, referenceNameSlotIndices: array[VK_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR, int32], frameHeaderOffset: uint32, tileCount: uint32, pTileOffsets: ptr uint32, pTileSizes: ptr uint32): VkVideoDecodeAV1PictureInfoKHR =
+proc newVkVideoDecodeAV1PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeAV1PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeAV1PictureInfo, referenceNameSlotIndices: array[VK_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR, int32], frameHeaderOffset: uint32, tileOffsets: openarray[uint32], tileSizes: openarray[uint32]): VkVideoDecodeAV1PictureInfoKHR =
   result = VkVideoDecodeAV1PictureInfoKHR(
     sType: sType,
     pNext: pNext,
     pStdPictureInfo: pStdPictureInfo,
     referenceNameSlotIndices: referenceNameSlotIndices,
     frameHeaderOffset: frameHeaderOffset,
-    tileCount: tileCount,
-    pTileOffsets: pTileOffsets,
-    pTileSizes: pTileSizes,
+    tileCount: len(tileOffsets).uint32,
+    pTileOffsets: if len(tileOffsets) == 0: nil else: cast[ptr uint32](tileOffsets),
+    pTileSizes: if len(tileSizes) == 0: nil else: cast[ptr uint32](tileSizes),
   )
 
 proc newVkVideoDecodeAV1DpbSlotInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeAV1DpbSlotInfoKHR, pNext: pointer = nil, pStdReferenceInfo: ptr StdVideoDecodeAV1ReferenceInfo): VkVideoDecodeAV1DpbSlotInfoKHR =
@@ -20509,15 +20509,15 @@ proc newVkVideoEncodeSessionParametersFeedbackInfoKHR*(sType: VkStructureType = 
     hasOverrides: hasOverrides,
   )
 
-proc newVkVideoBeginCodingInfoKHR*(sType: VkStructureType = VkStructureType.VideoBeginCodingInfoKHR, pNext: pointer = nil, flags: VkVideoBeginCodingFlagsKHR = 0.VkVideoBeginCodingFlagsKHR, videoSession: VkVideoSessionKHR, videoSessionParameters: VkVideoSessionParametersKHR, referenceSlotCount: uint32, pReferenceSlots: ptr VkVideoReferenceSlotInfoKHR): VkVideoBeginCodingInfoKHR =
+proc newVkVideoBeginCodingInfoKHR*(sType: VkStructureType = VkStructureType.VideoBeginCodingInfoKHR, pNext: pointer = nil, flags: VkVideoBeginCodingFlagsKHR = 0.VkVideoBeginCodingFlagsKHR, videoSession: VkVideoSessionKHR, videoSessionParameters: VkVideoSessionParametersKHR, referenceSlots: openarray[VkVideoReferenceSlotInfoKHR]): VkVideoBeginCodingInfoKHR =
   result = VkVideoBeginCodingInfoKHR(
     sType: sType,
     pNext: pNext,
     flags: flags,
     videoSession: videoSession,
     videoSessionParameters: videoSessionParameters,
-    referenceSlotCount: referenceSlotCount,
-    pReferenceSlots: pReferenceSlots,
+    referenceSlotCount: len(referenceSlots).uint32,
+    pReferenceSlots: if len(referenceSlots) == 0: nil else: cast[ptr VkVideoReferenceSlotInfoKHR](referenceSlots),
   )
 
 proc newVkVideoEndCodingInfoKHR*(sType: VkStructureType = VkStructureType.VideoEndCodingInfoKHR, pNext: pointer = nil, flags: VkVideoEndCodingFlagsKHR = 0.VkVideoEndCodingFlagsKHR): VkVideoEndCodingInfoKHR =
@@ -20543,7 +20543,7 @@ proc newVkVideoEncodeUsageInfoKHR*(sType: VkStructureType = VkStructureType.Vide
     tuningMode: tuningMode,
   )
 
-proc newVkVideoEncodeInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeInfoKHR, pNext: pointer = nil, flags: VkVideoEncodeFlagsKHR = 0.VkVideoEncodeFlagsKHR, dstBuffer: VkBuffer, dstBufferOffset: VkDeviceSize, dstBufferRange: VkDeviceSize, srcPictureResource: VkVideoPictureResourceInfoKHR, pSetupReferenceSlot: ptr VkVideoReferenceSlotInfoKHR, referenceSlotCount: uint32, pReferenceSlots: ptr VkVideoReferenceSlotInfoKHR, precedingExternallyEncodedBytes: uint32): VkVideoEncodeInfoKHR =
+proc newVkVideoEncodeInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeInfoKHR, pNext: pointer = nil, flags: VkVideoEncodeFlagsKHR = 0.VkVideoEncodeFlagsKHR, dstBuffer: VkBuffer, dstBufferOffset: VkDeviceSize, dstBufferRange: VkDeviceSize, srcPictureResource: VkVideoPictureResourceInfoKHR, pSetupReferenceSlot: ptr VkVideoReferenceSlotInfoKHR, referenceSlots: openarray[VkVideoReferenceSlotInfoKHR], precedingExternallyEncodedBytes: uint32): VkVideoEncodeInfoKHR =
   result = VkVideoEncodeInfoKHR(
     sType: sType,
     pNext: pNext,
@@ -20553,8 +20553,8 @@ proc newVkVideoEncodeInfoKHR*(sType: VkStructureType = VkStructureType.VideoEnco
     dstBufferRange: dstBufferRange,
     srcPictureResource: srcPictureResource,
     pSetupReferenceSlot: pSetupReferenceSlot,
-    referenceSlotCount: referenceSlotCount,
-    pReferenceSlots: pReferenceSlots,
+    referenceSlotCount: len(referenceSlots).uint32,
+    pReferenceSlots: if len(referenceSlots) == 0: nil else: cast[ptr VkVideoReferenceSlotInfoKHR](referenceSlots),
     precedingExternallyEncodedBytes: precedingExternallyEncodedBytes,
   )
 
@@ -20588,14 +20588,14 @@ proc newVkVideoEncodeQualityLevelPropertiesKHR*(sType: VkStructureType = VkStruc
     preferredRateControlLayerCount: preferredRateControlLayerCount,
   )
 
-proc newVkVideoEncodeRateControlInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeRateControlInfoKHR, pNext: pointer = nil, flags: VkVideoEncodeRateControlFlagsKHR = 0.VkVideoEncodeRateControlFlagsKHR, rateControlMode: VkVideoEncodeRateControlModeFlagBitsKHR, layerCount: uint32, pLayers: ptr VkVideoEncodeRateControlLayerInfoKHR, virtualBufferSizeInMs: uint32, initialVirtualBufferSizeInMs: uint32): VkVideoEncodeRateControlInfoKHR =
+proc newVkVideoEncodeRateControlInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeRateControlInfoKHR, pNext: pointer = nil, flags: VkVideoEncodeRateControlFlagsKHR = 0.VkVideoEncodeRateControlFlagsKHR, rateControlMode: VkVideoEncodeRateControlModeFlagBitsKHR, layers: openarray[VkVideoEncodeRateControlLayerInfoKHR], virtualBufferSizeInMs: uint32, initialVirtualBufferSizeInMs: uint32): VkVideoEncodeRateControlInfoKHR =
   result = VkVideoEncodeRateControlInfoKHR(
     sType: sType,
     pNext: pNext,
     flags: flags,
     rateControlMode: rateControlMode,
-    layerCount: layerCount,
-    pLayers: pLayers,
+    layerCount: len(layers).uint32,
+    pLayers: if len(layers) == 0: nil else: cast[ptr VkVideoEncodeRateControlLayerInfoKHR](layers),
     virtualBufferSizeInMs: virtualBufferSizeInMs,
     initialVirtualBufferSizeInMs: initialVirtualBufferSizeInMs,
   )
@@ -20665,14 +20665,14 @@ proc newVkVideoEncodeH264SessionCreateInfoKHR*(sType: VkStructureType = VkStruct
     maxLevelIdc: maxLevelIdc,
   )
 
-proc newVkVideoEncodeH264SessionParametersAddInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH264SessionParametersAddInfoKHR, pNext: pointer = nil, stdSPSCount: uint32, pStdSPSs: ptr StdVideoH264SequenceParameterSet, stdPPSCount: uint32, pStdPPSs: ptr StdVideoH264PictureParameterSet): VkVideoEncodeH264SessionParametersAddInfoKHR =
+proc newVkVideoEncodeH264SessionParametersAddInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH264SessionParametersAddInfoKHR, pNext: pointer = nil, stdSPSs: openarray[StdVideoH264SequenceParameterSet], stdPPSs: openarray[StdVideoH264PictureParameterSet]): VkVideoEncodeH264SessionParametersAddInfoKHR =
   result = VkVideoEncodeH264SessionParametersAddInfoKHR(
     sType: sType,
     pNext: pNext,
-    stdSPSCount: stdSPSCount,
-    pStdSPSs: pStdSPSs,
-    stdPPSCount: stdPPSCount,
-    pStdPPSs: pStdPPSs,
+    stdSPSCount: len(stdSPSs).uint32,
+    pStdSPSs: if len(stdSPSs) == 0: nil else: cast[ptr StdVideoH264SequenceParameterSet](stdSPSs),
+    stdPPSCount: len(stdPPSs).uint32,
+    pStdPPSs: if len(stdPPSs) == 0: nil else: cast[ptr StdVideoH264PictureParameterSet](stdPPSs),
   )
 
 proc newVkVideoEncodeH264SessionParametersCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH264SessionParametersCreateInfoKHR, pNext: pointer = nil, maxStdSPSCount: uint32, maxStdPPSCount: uint32, pParametersAddInfo: ptr VkVideoEncodeH264SessionParametersAddInfoKHR): VkVideoEncodeH264SessionParametersCreateInfoKHR =
@@ -20709,12 +20709,12 @@ proc newVkVideoEncodeH264DpbSlotInfoKHR*(sType: VkStructureType = VkStructureTyp
     pStdReferenceInfo: pStdReferenceInfo,
   )
 
-proc newVkVideoEncodeH264PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH264PictureInfoKHR, pNext: pointer = nil, naluSliceEntryCount: uint32, pNaluSliceEntries: ptr VkVideoEncodeH264NaluSliceInfoKHR, pStdPictureInfo: ptr StdVideoEncodeH264PictureInfo, generatePrefixNalu: VkBool32): VkVideoEncodeH264PictureInfoKHR =
+proc newVkVideoEncodeH264PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH264PictureInfoKHR, pNext: pointer = nil, naluSliceEntries: openarray[VkVideoEncodeH264NaluSliceInfoKHR], pStdPictureInfo: ptr StdVideoEncodeH264PictureInfo, generatePrefixNalu: VkBool32): VkVideoEncodeH264PictureInfoKHR =
   result = VkVideoEncodeH264PictureInfoKHR(
     sType: sType,
     pNext: pNext,
-    naluSliceEntryCount: naluSliceEntryCount,
-    pNaluSliceEntries: pNaluSliceEntries,
+    naluSliceEntryCount: len(naluSliceEntries).uint32,
+    pNaluSliceEntries: if len(naluSliceEntries) == 0: nil else: cast[ptr VkVideoEncodeH264NaluSliceInfoKHR](naluSliceEntries),
     pStdPictureInfo: pStdPictureInfo,
     generatePrefixNalu: generatePrefixNalu,
   )
@@ -20825,16 +20825,16 @@ proc newVkVideoEncodeH265SessionCreateInfoKHR*(sType: VkStructureType = VkStruct
     maxLevelIdc: maxLevelIdc,
   )
 
-proc newVkVideoEncodeH265SessionParametersAddInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH265SessionParametersAddInfoKHR, pNext: pointer = nil, stdVPSCount: uint32, pStdVPSs: ptr StdVideoH265VideoParameterSet, stdSPSCount: uint32, pStdSPSs: ptr StdVideoH265SequenceParameterSet, stdPPSCount: uint32, pStdPPSs: ptr StdVideoH265PictureParameterSet): VkVideoEncodeH265SessionParametersAddInfoKHR =
+proc newVkVideoEncodeH265SessionParametersAddInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH265SessionParametersAddInfoKHR, pNext: pointer = nil, stdVPSs: openarray[StdVideoH265VideoParameterSet], stdSPSs: openarray[StdVideoH265SequenceParameterSet], stdPPSs: openarray[StdVideoH265PictureParameterSet]): VkVideoEncodeH265SessionParametersAddInfoKHR =
   result = VkVideoEncodeH265SessionParametersAddInfoKHR(
     sType: sType,
     pNext: pNext,
-    stdVPSCount: stdVPSCount,
-    pStdVPSs: pStdVPSs,
-    stdSPSCount: stdSPSCount,
-    pStdSPSs: pStdSPSs,
-    stdPPSCount: stdPPSCount,
-    pStdPPSs: pStdPPSs,
+    stdVPSCount: len(stdVPSs).uint32,
+    pStdVPSs: if len(stdVPSs) == 0: nil else: cast[ptr StdVideoH265VideoParameterSet](stdVPSs),
+    stdSPSCount: len(stdSPSs).uint32,
+    pStdSPSs: if len(stdSPSs) == 0: nil else: cast[ptr StdVideoH265SequenceParameterSet](stdSPSs),
+    stdPPSCount: len(stdPPSs).uint32,
+    pStdPPSs: if len(stdPPSs) == 0: nil else: cast[ptr StdVideoH265PictureParameterSet](stdPPSs),
   )
 
 proc newVkVideoEncodeH265SessionParametersCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH265SessionParametersCreateInfoKHR, pNext: pointer = nil, maxStdVPSCount: uint32, maxStdSPSCount: uint32, maxStdPPSCount: uint32, pParametersAddInfo: ptr VkVideoEncodeH265SessionParametersAddInfoKHR): VkVideoEncodeH265SessionParametersCreateInfoKHR =
@@ -20868,12 +20868,12 @@ proc newVkVideoEncodeH265SessionParametersFeedbackInfoKHR*(sType: VkStructureTyp
     hasStdPPSOverrides: hasStdPPSOverrides,
   )
 
-proc newVkVideoEncodeH265PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH265PictureInfoKHR, pNext: pointer = nil, naluSliceSegmentEntryCount: uint32, pNaluSliceSegmentEntries: ptr VkVideoEncodeH265NaluSliceSegmentInfoKHR, pStdPictureInfo: ptr StdVideoEncodeH265PictureInfo): VkVideoEncodeH265PictureInfoKHR =
+proc newVkVideoEncodeH265PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH265PictureInfoKHR, pNext: pointer = nil, naluSliceSegmentEntries: openarray[VkVideoEncodeH265NaluSliceSegmentInfoKHR], pStdPictureInfo: ptr StdVideoEncodeH265PictureInfo): VkVideoEncodeH265PictureInfoKHR =
   result = VkVideoEncodeH265PictureInfoKHR(
     sType: sType,
     pNext: pNext,
-    naluSliceSegmentEntryCount: naluSliceSegmentEntryCount,
-    pNaluSliceSegmentEntries: pNaluSliceSegmentEntries,
+    naluSliceSegmentEntryCount: len(naluSliceSegmentEntries).uint32,
+    pNaluSliceSegmentEntries: if len(naluSliceSegmentEntries) == 0: nil else: cast[ptr VkVideoEncodeH265NaluSliceSegmentInfoKHR](naluSliceSegmentEntries),
     pStdPictureInfo: pStdPictureInfo,
   )
 
@@ -20953,13 +20953,13 @@ proc newVkPhysicalDeviceInheritedViewportScissorFeaturesNV*(sType: VkStructureTy
     inheritedViewportScissor2D: inheritedViewportScissor2D,
   )
 
-proc newVkCommandBufferInheritanceViewportScissorInfoNV*(sType: VkStructureType = VkStructureType.CommandBufferInheritanceViewportScissorInfoNV, pNext: pointer = nil, viewportScissor2D: VkBool32, viewportDepthCount: uint32, pViewportDepths: ptr VkViewport): VkCommandBufferInheritanceViewportScissorInfoNV =
+proc newVkCommandBufferInheritanceViewportScissorInfoNV*(sType: VkStructureType = VkStructureType.CommandBufferInheritanceViewportScissorInfoNV, pNext: pointer = nil, viewportScissor2D: VkBool32, viewportDepths: openarray[VkViewport]): VkCommandBufferInheritanceViewportScissorInfoNV =
   result = VkCommandBufferInheritanceViewportScissorInfoNV(
     sType: sType,
     pNext: pNext,
     viewportScissor2D: viewportScissor2D,
-    viewportDepthCount: viewportDepthCount,
-    pViewportDepths: pViewportDepths,
+    viewportDepthCount: len(viewportDepths).uint32,
+    pViewportDepths: if len(viewportDepths) == 0: nil else: cast[ptr VkViewport](viewportDepths),
   )
 
 proc newVkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT, pNext: pointer = nil, ycbcr2plane444Formats: VkBool32): VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT =
@@ -21008,7 +21008,7 @@ proc newVkCuFunctionCreateInfoNVX*(sType: VkStructureType = VkStructureType.CuFu
     pName: pName,
   )
 
-proc newVkCuLaunchInfoNVX*(sType: VkStructureType = VkStructureType.CuLaunchInfoNVX, pNext: pointer = nil, function: VkCuFunctionNVX, gridDimX: uint32, gridDimY: uint32, gridDimZ: uint32, blockDimX: uint32, blockDimY: uint32, blockDimZ: uint32, sharedMemBytes: uint32, paramCount: uint, pParams: ptr pointer, extraCount: uint, pExtras: ptr pointer): VkCuLaunchInfoNVX =
+proc newVkCuLaunchInfoNVX*(sType: VkStructureType = VkStructureType.CuLaunchInfoNVX, pNext: pointer = nil, function: VkCuFunctionNVX, gridDimX: uint32, gridDimY: uint32, gridDimZ: uint32, blockDimX: uint32, blockDimY: uint32, blockDimZ: uint32, sharedMemBytes: uint32, params: openarray[pointer], extras: openarray[pointer]): VkCuLaunchInfoNVX =
   result = VkCuLaunchInfoNVX(
     sType: sType,
     pNext: pNext,
@@ -21020,10 +21020,10 @@ proc newVkCuLaunchInfoNVX*(sType: VkStructureType = VkStructureType.CuLaunchInfo
     blockDimY: blockDimY,
     blockDimZ: blockDimZ,
     sharedMemBytes: sharedMemBytes,
-    paramCount: paramCount,
-    pParams: pParams,
-    extraCount: extraCount,
-    pExtras: pExtras,
+    paramCount: len(params).uint,
+    pParams: if len(params) == 0: nil else: cast[ptr pointer](params),
+    extraCount: len(extras).uint,
+    pExtras: if len(extras) == 0: nil else: cast[ptr pointer](extras),
   )
 
 proc newVkPhysicalDeviceDescriptorBufferFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDescriptorBufferFeaturesEXT, pNext: pointer = nil, descriptorBuffer: VkBool32, descriptorBufferCaptureReplay: VkBool32, descriptorBufferImageLayoutIgnored: VkBool32, descriptorBufferPushDescriptors: VkBool32): VkPhysicalDeviceDescriptorBufferFeaturesEXT =
@@ -21370,7 +21370,7 @@ proc newVkSysmemColorSpaceFUCHSIA*(sType: VkStructureType = VkStructureType.Sysm
     colorSpace: colorSpace,
   )
 
-proc newVkImageFormatConstraintsInfoFUCHSIA*(sType: VkStructureType = VkStructureType.ImageFormatConstraintsInfoFUCHSIA, pNext: pointer = nil, imageCreateInfo: VkImageCreateInfo, requiredFormatFeatures: VkFormatFeatureFlags, flags: VkImageFormatConstraintsFlagsFUCHSIA = 0.VkImageFormatConstraintsFlagsFUCHSIA, sysmemPixelFormat: uint64, colorSpaceCount: uint32, pColorSpaces: ptr VkSysmemColorSpaceFUCHSIA): VkImageFormatConstraintsInfoFUCHSIA =
+proc newVkImageFormatConstraintsInfoFUCHSIA*(sType: VkStructureType = VkStructureType.ImageFormatConstraintsInfoFUCHSIA, pNext: pointer = nil, imageCreateInfo: VkImageCreateInfo, requiredFormatFeatures: VkFormatFeatureFlags, flags: VkImageFormatConstraintsFlagsFUCHSIA = 0.VkImageFormatConstraintsFlagsFUCHSIA, sysmemPixelFormat: uint64, colorSpaces: openarray[VkSysmemColorSpaceFUCHSIA]): VkImageFormatConstraintsInfoFUCHSIA =
   result = VkImageFormatConstraintsInfoFUCHSIA(
     sType: sType,
     pNext: pNext,
@@ -21378,16 +21378,16 @@ proc newVkImageFormatConstraintsInfoFUCHSIA*(sType: VkStructureType = VkStructur
     requiredFormatFeatures: requiredFormatFeatures,
     flags: flags,
     sysmemPixelFormat: sysmemPixelFormat,
-    colorSpaceCount: colorSpaceCount,
-    pColorSpaces: pColorSpaces,
+    colorSpaceCount: len(colorSpaces).uint32,
+    pColorSpaces: if len(colorSpaces) == 0: nil else: cast[ptr VkSysmemColorSpaceFUCHSIA](colorSpaces),
   )
 
-proc newVkImageConstraintsInfoFUCHSIA*(sType: VkStructureType = VkStructureType.ImageConstraintsInfoFUCHSIA, pNext: pointer = nil, formatConstraintsCount: uint32, pFormatConstraints: ptr VkImageFormatConstraintsInfoFUCHSIA, bufferCollectionConstraints: VkBufferCollectionConstraintsInfoFUCHSIA, flags: VkImageConstraintsInfoFlagsFUCHSIA = 0.VkImageConstraintsInfoFlagsFUCHSIA): VkImageConstraintsInfoFUCHSIA =
+proc newVkImageConstraintsInfoFUCHSIA*(sType: VkStructureType = VkStructureType.ImageConstraintsInfoFUCHSIA, pNext: pointer = nil, formatConstraints: openarray[VkImageFormatConstraintsInfoFUCHSIA], bufferCollectionConstraints: VkBufferCollectionConstraintsInfoFUCHSIA, flags: VkImageConstraintsInfoFlagsFUCHSIA = 0.VkImageConstraintsInfoFlagsFUCHSIA): VkImageConstraintsInfoFUCHSIA =
   result = VkImageConstraintsInfoFUCHSIA(
     sType: sType,
     pNext: pNext,
-    formatConstraintsCount: formatConstraintsCount,
-    pFormatConstraints: pFormatConstraints,
+    formatConstraintsCount: len(formatConstraints).uint32,
+    pFormatConstraints: if len(formatConstraints) == 0: nil else: cast[ptr VkImageFormatConstraintsInfoFUCHSIA](formatConstraints),
     bufferCollectionConstraints: bufferCollectionConstraints,
     flags: flags,
   )
@@ -21419,7 +21419,7 @@ proc newVkCudaFunctionCreateInfoNV*(sType: VkStructureType = VkStructureType.Cud
     pName: pName,
   )
 
-proc newVkCudaLaunchInfoNV*(sType: VkStructureType = VkStructureType.CudaLaunchInfoNV, pNext: pointer = nil, function: VkCudaFunctionNV, gridDimX: uint32, gridDimY: uint32, gridDimZ: uint32, blockDimX: uint32, blockDimY: uint32, blockDimZ: uint32, sharedMemBytes: uint32, paramCount: uint, pParams: ptr pointer, extraCount: uint, pExtras: ptr pointer): VkCudaLaunchInfoNV =
+proc newVkCudaLaunchInfoNV*(sType: VkStructureType = VkStructureType.CudaLaunchInfoNV, pNext: pointer = nil, function: VkCudaFunctionNV, gridDimX: uint32, gridDimY: uint32, gridDimZ: uint32, blockDimX: uint32, blockDimY: uint32, blockDimZ: uint32, sharedMemBytes: uint32, params: openarray[pointer], extras: openarray[pointer]): VkCudaLaunchInfoNV =
   result = VkCudaLaunchInfoNV(
     sType: sType,
     pNext: pNext,
@@ -21431,10 +21431,10 @@ proc newVkCudaLaunchInfoNV*(sType: VkStructureType = VkStructureType.CudaLaunchI
     blockDimY: blockDimY,
     blockDimZ: blockDimZ,
     sharedMemBytes: sharedMemBytes,
-    paramCount: paramCount,
-    pParams: pParams,
-    extraCount: extraCount,
-    pExtras: pExtras,
+    paramCount: len(params).uint,
+    pParams: if len(params) == 0: nil else: cast[ptr pointer](params),
+    extraCount: len(extras).uint,
+    pExtras: if len(extras) == 0: nil else: cast[ptr pointer](extras),
   )
 
 proc newVkPhysicalDeviceRGBA10X6FormatsFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceRGBA10X6FormatsFeaturesEXT, pNext: pointer = nil, formatRgba10x6WithoutYCbCrSampler: VkBool32): VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT =
@@ -21453,12 +21453,12 @@ proc newVkFormatProperties3*(sType: VkStructureType = VkStructureType.FormatProp
     bufferFeatures: bufferFeatures,
   )
 
-proc newVkDrmFormatModifierPropertiesList2EXT*(sType: VkStructureType = VkStructureType.DrmFormatModifierPropertiesList2EXT, pNext: pointer = nil, drmFormatModifierCount: uint32, pDrmFormatModifierProperties: ptr VkDrmFormatModifierProperties2EXT): VkDrmFormatModifierPropertiesList2EXT =
+proc newVkDrmFormatModifierPropertiesList2EXT*(sType: VkStructureType = VkStructureType.DrmFormatModifierPropertiesList2EXT, pNext: pointer = nil, drmFormatModifierProperties: openarray[VkDrmFormatModifierProperties2EXT]): VkDrmFormatModifierPropertiesList2EXT =
   result = VkDrmFormatModifierPropertiesList2EXT(
     sType: sType,
     pNext: pNext,
-    drmFormatModifierCount: drmFormatModifierCount,
-    pDrmFormatModifierProperties: pDrmFormatModifierProperties,
+    drmFormatModifierCount: len(drmFormatModifierProperties).uint32,
+    pDrmFormatModifierProperties: if len(drmFormatModifierProperties) == 0: nil else: cast[ptr VkDrmFormatModifierProperties2EXT](drmFormatModifierProperties),
   )
 
 proc newVkDrmFormatModifierProperties2EXT*(drmFormatModifier: uint64, drmFormatModifierPlaneCount: uint32, drmFormatModifierTilingFeatures: VkFormatFeatureFlags2): VkDrmFormatModifierProperties2EXT =
@@ -21482,18 +21482,18 @@ proc newVkAndroidHardwareBufferFormatProperties2ANDROID*(sType: VkStructureType 
     suggestedYChromaOffset: suggestedYChromaOffset,
   )
 
-proc newVkPipelineRenderingCreateInfo*(sType: VkStructureType = VkStructureType.PipelineRenderingCreateInfo, pNext: pointer = nil, viewMask: uint32, colorAttachmentCount: uint32, pColorAttachmentFormats: ptr VkFormat, depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat): VkPipelineRenderingCreateInfo =
+proc newVkPipelineRenderingCreateInfo*(sType: VkStructureType = VkStructureType.PipelineRenderingCreateInfo, pNext: pointer = nil, viewMask: uint32, colorAttachmentFormats: openarray[VkFormat], depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat): VkPipelineRenderingCreateInfo =
   result = VkPipelineRenderingCreateInfo(
     sType: sType,
     pNext: pNext,
     viewMask: viewMask,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachmentFormats: pColorAttachmentFormats,
+    colorAttachmentCount: len(colorAttachmentFormats).uint32,
+    pColorAttachmentFormats: if len(colorAttachmentFormats) == 0: nil else: cast[ptr VkFormat](colorAttachmentFormats),
     depthAttachmentFormat: depthAttachmentFormat,
     stencilAttachmentFormat: stencilAttachmentFormat,
   )
 
-proc newVkRenderingInfo*(sType: VkStructureType = VkStructureType.RenderingInfo, pNext: pointer = nil, flags: VkRenderingFlags = 0.VkRenderingFlags, renderArea: VkRect2D, layerCount: uint32, viewMask: uint32, colorAttachmentCount: uint32, pColorAttachments: ptr VkRenderingAttachmentInfo, pDepthAttachment: ptr VkRenderingAttachmentInfo, pStencilAttachment: ptr VkRenderingAttachmentInfo): VkRenderingInfo =
+proc newVkRenderingInfo*(sType: VkStructureType = VkStructureType.RenderingInfo, pNext: pointer = nil, flags: VkRenderingFlags = 0.VkRenderingFlags, renderArea: VkRect2D, layerCount: uint32, viewMask: uint32, colorAttachments: openarray[VkRenderingAttachmentInfo], pDepthAttachment: ptr VkRenderingAttachmentInfo, pStencilAttachment: ptr VkRenderingAttachmentInfo): VkRenderingInfo =
   result = VkRenderingInfo(
     sType: sType,
     pNext: pNext,
@@ -21501,8 +21501,8 @@ proc newVkRenderingInfo*(sType: VkStructureType = VkStructureType.RenderingInfo,
     renderArea: renderArea,
     layerCount: layerCount,
     viewMask: viewMask,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachments: pColorAttachments,
+    colorAttachmentCount: len(colorAttachments).uint32,
+    pColorAttachments: if len(colorAttachments) == 0: nil else: cast[ptr VkRenderingAttachmentInfo](colorAttachments),
     pDepthAttachment: pDepthAttachment,
     pStencilAttachment: pStencilAttachment,
   )
@@ -21545,25 +21545,25 @@ proc newVkPhysicalDeviceDynamicRenderingFeatures*(sType: VkStructureType = VkStr
     dynamicRendering: dynamicRendering,
   )
 
-proc newVkCommandBufferInheritanceRenderingInfo*(sType: VkStructureType = VkStructureType.CommandBufferInheritanceRenderingInfo, pNext: pointer = nil, flags: VkRenderingFlags = 0.VkRenderingFlags, viewMask: uint32, colorAttachmentCount: uint32, pColorAttachmentFormats: ptr VkFormat, depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat, rasterizationSamples: VkSampleCountFlagBits): VkCommandBufferInheritanceRenderingInfo =
+proc newVkCommandBufferInheritanceRenderingInfo*(sType: VkStructureType = VkStructureType.CommandBufferInheritanceRenderingInfo, pNext: pointer = nil, flags: VkRenderingFlags = 0.VkRenderingFlags, viewMask: uint32, colorAttachmentFormats: openarray[VkFormat], depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat, rasterizationSamples: VkSampleCountFlagBits): VkCommandBufferInheritanceRenderingInfo =
   result = VkCommandBufferInheritanceRenderingInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     viewMask: viewMask,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachmentFormats: pColorAttachmentFormats,
+    colorAttachmentCount: len(colorAttachmentFormats).uint32,
+    pColorAttachmentFormats: if len(colorAttachmentFormats) == 0: nil else: cast[ptr VkFormat](colorAttachmentFormats),
     depthAttachmentFormat: depthAttachmentFormat,
     stencilAttachmentFormat: stencilAttachmentFormat,
     rasterizationSamples: rasterizationSamples,
   )
 
-proc newVkAttachmentSampleCountInfoAMD*(sType: VkStructureType = VkStructureType.AttachmentSampleCountInfoAMD, pNext: pointer = nil, colorAttachmentCount: uint32, pColorAttachmentSamples: ptr VkSampleCountFlagBits, depthStencilAttachmentSamples: VkSampleCountFlagBits): VkAttachmentSampleCountInfoAMD =
+proc newVkAttachmentSampleCountInfoAMD*(sType: VkStructureType = VkStructureType.AttachmentSampleCountInfoAMD, pNext: pointer = nil, colorAttachmentSamples: openarray[VkSampleCountFlagBits], depthStencilAttachmentSamples: VkSampleCountFlagBits): VkAttachmentSampleCountInfoAMD =
   result = VkAttachmentSampleCountInfoAMD(
     sType: sType,
     pNext: pNext,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachmentSamples: pColorAttachmentSamples,
+    colorAttachmentCount: len(colorAttachmentSamples).uint32,
+    pColorAttachmentSamples: if len(colorAttachmentSamples) == 0: nil else: cast[ptr VkSampleCountFlagBits](colorAttachmentSamples),
     depthStencilAttachmentSamples: depthStencilAttachmentSamples,
   )
 
@@ -21696,13 +21696,13 @@ proc newVkShaderModuleIdentifierEXT*(sType: VkStructureType = VkStructureType.Sh
     identifier: identifier,
   )
 
-proc newVkImageCompressionControlEXT*(sType: VkStructureType = VkStructureType.ImageCompressionControlEXT, pNext: pointer = nil, flags: VkImageCompressionFlagsEXT = 0.VkImageCompressionFlagsEXT, compressionControlPlaneCount: uint32, pFixedRateFlags: ptr VkImageCompressionFixedRateFlagsEXT): VkImageCompressionControlEXT =
+proc newVkImageCompressionControlEXT*(sType: VkStructureType = VkStructureType.ImageCompressionControlEXT, pNext: pointer = nil, flags: VkImageCompressionFlagsEXT = 0.VkImageCompressionFlagsEXT, fixedRateFlags: openarray[VkImageCompressionFixedRateFlagsEXT]): VkImageCompressionControlEXT =
   result = VkImageCompressionControlEXT(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    compressionControlPlaneCount: compressionControlPlaneCount,
-    pFixedRateFlags: pFixedRateFlags,
+    compressionControlPlaneCount: len(fixedRateFlags).uint32,
+    pFixedRateFlags: if len(fixedRateFlags) == 0: nil else: cast[ptr VkImageCompressionFixedRateFlagsEXT](fixedRateFlags),
   )
 
 proc newVkPhysicalDeviceImageCompressionControlFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceImageCompressionControlFeaturesEXT, pNext: pointer = nil, imageCompressionControl: VkBool32): VkPhysicalDeviceImageCompressionControlFeaturesEXT =
@@ -22241,13 +22241,13 @@ proc newVkOpticalFlowSessionCreatePrivateDataInfoNV*(sType: VkStructureType = Vk
     pPrivateData: pPrivateData,
   )
 
-proc newVkOpticalFlowExecuteInfoNV*(sType: VkStructureType = VkStructureType.OpticalFlowExecuteInfoNV, pNext: pointer = nil, flags: VkOpticalFlowExecuteFlagsNV = 0.VkOpticalFlowExecuteFlagsNV, regionCount: uint32, pRegions: ptr VkRect2D): VkOpticalFlowExecuteInfoNV =
+proc newVkOpticalFlowExecuteInfoNV*(sType: VkStructureType = VkStructureType.OpticalFlowExecuteInfoNV, pNext: pointer = nil, flags: VkOpticalFlowExecuteFlagsNV = 0.VkOpticalFlowExecuteFlagsNV, regions: openarray[VkRect2D]): VkOpticalFlowExecuteInfoNV =
   result = VkOpticalFlowExecuteInfoNV(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    regionCount: regionCount,
-    pRegions: pRegions,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkRect2D](regions),
   )
 
 proc newVkPhysicalDeviceFaultFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceFaultFeaturesEXT, pNext: pointer = nil, deviceFault: VkBool32, deviceFaultVendorBinary: VkBool32): VkPhysicalDeviceFaultFeaturesEXT =
@@ -22355,16 +22355,16 @@ proc newVkPhysicalDeviceShaderCoreBuiltinsFeaturesARM*(sType: VkStructureType = 
     shaderCoreBuiltins: shaderCoreBuiltins,
   )
 
-proc newVkFrameBoundaryEXT*(sType: VkStructureType = VkStructureType.FrameBoundaryEXT, pNext: pointer = nil, flags: VkFrameBoundaryFlagsEXT = 0.VkFrameBoundaryFlagsEXT, frameID: uint64, imageCount: uint32, pImages: ptr VkImage, bufferCount: uint32, pBuffers: ptr VkBuffer, tagName: uint64, tagSize: uint, pTag: pointer = nil): VkFrameBoundaryEXT =
+proc newVkFrameBoundaryEXT*(sType: VkStructureType = VkStructureType.FrameBoundaryEXT, pNext: pointer = nil, flags: VkFrameBoundaryFlagsEXT = 0.VkFrameBoundaryFlagsEXT, frameID: uint64, images: openarray[VkImage], buffers: openarray[VkBuffer], tagName: uint64, tagSize: uint, pTag: pointer = nil): VkFrameBoundaryEXT =
   result = VkFrameBoundaryEXT(
     sType: sType,
     pNext: pNext,
     flags: flags,
     frameID: frameID,
-    imageCount: imageCount,
-    pImages: pImages,
-    bufferCount: bufferCount,
-    pBuffers: pBuffers,
+    imageCount: len(images).uint32,
+    pImages: if len(images) == 0: nil else: cast[ptr VkImage](images),
+    bufferCount: len(buffers).uint32,
+    pBuffers: if len(buffers) == 0: nil else: cast[ptr VkBuffer](buffers),
     tagName: tagName,
     tagSize: tagSize,
     pTag: pTag,
@@ -22402,12 +22402,12 @@ proc newVkSurfacePresentScalingCapabilitiesEXT*(sType: VkStructureType = VkStruc
     maxScaledImageExtent: maxScaledImageExtent,
   )
 
-proc newVkSurfacePresentModeCompatibilityEXT*(sType: VkStructureType = VkStructureType.SurfacePresentModeCompatibilityEXT, pNext: pointer = nil, presentModeCount: uint32, pPresentModes: ptr VkPresentModeKHR): VkSurfacePresentModeCompatibilityEXT =
+proc newVkSurfacePresentModeCompatibilityEXT*(sType: VkStructureType = VkStructureType.SurfacePresentModeCompatibilityEXT, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSurfacePresentModeCompatibilityEXT =
   result = VkSurfacePresentModeCompatibilityEXT(
     sType: sType,
     pNext: pNext,
-    presentModeCount: presentModeCount,
-    pPresentModes: pPresentModes,
+    presentModeCount: len(presentModes).uint32,
+    pPresentModes: if len(presentModes) == 0: nil else: cast[ptr VkPresentModeKHR](presentModes),
   )
 
 proc newVkPhysicalDeviceSwapchainMaintenance1FeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceSwapchainMaintenance1FeaturesEXT, pNext: pointer = nil, swapchainMaintenance1: VkBool32): VkPhysicalDeviceSwapchainMaintenance1FeaturesEXT =
@@ -22417,28 +22417,28 @@ proc newVkPhysicalDeviceSwapchainMaintenance1FeaturesEXT*(sType: VkStructureType
     swapchainMaintenance1: swapchainMaintenance1,
   )
 
-proc newVkSwapchainPresentFenceInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentFenceInfoEXT, pNext: pointer = nil, swapchainCount: uint32, pFences: ptr VkFence): VkSwapchainPresentFenceInfoEXT =
+proc newVkSwapchainPresentFenceInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentFenceInfoEXT, pNext: pointer = nil, fences: openarray[VkFence]): VkSwapchainPresentFenceInfoEXT =
   result = VkSwapchainPresentFenceInfoEXT(
     sType: sType,
     pNext: pNext,
-    swapchainCount: swapchainCount,
-    pFences: pFences,
+    swapchainCount: len(fences).uint32,
+    pFences: if len(fences) == 0: nil else: cast[ptr VkFence](fences),
   )
 
-proc newVkSwapchainPresentModesCreateInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentModesCreateInfoEXT, pNext: pointer = nil, presentModeCount: uint32, pPresentModes: ptr VkPresentModeKHR): VkSwapchainPresentModesCreateInfoEXT =
+proc newVkSwapchainPresentModesCreateInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentModesCreateInfoEXT, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSwapchainPresentModesCreateInfoEXT =
   result = VkSwapchainPresentModesCreateInfoEXT(
     sType: sType,
     pNext: pNext,
-    presentModeCount: presentModeCount,
-    pPresentModes: pPresentModes,
+    presentModeCount: len(presentModes).uint32,
+    pPresentModes: if len(presentModes) == 0: nil else: cast[ptr VkPresentModeKHR](presentModes),
   )
 
-proc newVkSwapchainPresentModeInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentModeInfoEXT, pNext: pointer = nil, swapchainCount: uint32, pPresentModes: ptr VkPresentModeKHR): VkSwapchainPresentModeInfoEXT =
+proc newVkSwapchainPresentModeInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentModeInfoEXT, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSwapchainPresentModeInfoEXT =
   result = VkSwapchainPresentModeInfoEXT(
     sType: sType,
     pNext: pNext,
-    swapchainCount: swapchainCount,
-    pPresentModes: pPresentModes,
+    swapchainCount: len(presentModes).uint32,
+    pPresentModes: if len(presentModes) == 0: nil else: cast[ptr VkPresentModeKHR](presentModes),
   )
 
 proc newVkSwapchainPresentScalingCreateInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentScalingCreateInfoEXT, pNext: pointer = nil, scalingBehavior: VkPresentScalingFlagsEXT, presentGravityX: VkPresentGravityFlagsEXT, presentGravityY: VkPresentGravityFlagsEXT): VkSwapchainPresentScalingCreateInfoEXT =
@@ -22450,13 +22450,13 @@ proc newVkSwapchainPresentScalingCreateInfoEXT*(sType: VkStructureType = VkStruc
     presentGravityY: presentGravityY,
   )
 
-proc newVkReleaseSwapchainImagesInfoEXT*(sType: VkStructureType = VkStructureType.ReleaseSwapchainImagesInfoEXT, pNext: pointer = nil, swapchain: VkSwapchainKHR, imageIndexCount: uint32, pImageIndices: ptr uint32): VkReleaseSwapchainImagesInfoEXT =
+proc newVkReleaseSwapchainImagesInfoEXT*(sType: VkStructureType = VkStructureType.ReleaseSwapchainImagesInfoEXT, pNext: pointer = nil, swapchain: VkSwapchainKHR, imageIndices: openarray[uint32]): VkReleaseSwapchainImagesInfoEXT =
   result = VkReleaseSwapchainImagesInfoEXT(
     sType: sType,
     pNext: pNext,
     swapchain: swapchain,
-    imageIndexCount: imageIndexCount,
-    pImageIndices: pImageIndices,
+    imageIndexCount: len(imageIndices).uint32,
+    pImageIndices: if len(imageIndices) == 0: nil else: cast[ptr uint32](imageIndices),
   )
 
 proc newVkPhysicalDeviceDepthBiasControlFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDepthBiasControlFeaturesEXT, pNext: pointer = nil, depthBiasControl: VkBool32, leastRepresentableValueForceUnormRepresentation: VkBool32, floatRepresentation: VkBool32, depthBiasExact: VkBool32): VkPhysicalDeviceDepthBiasControlFeaturesEXT =
@@ -22507,13 +22507,13 @@ proc newVkDirectDriverLoadingInfoLUNARG*(sType: VkStructureType = VkStructureTyp
     pfnGetInstanceProcAddr: pfnGetInstanceProcAddr,
   )
 
-proc newVkDirectDriverLoadingListLUNARG*(sType: VkStructureType = VkStructureType.DirectDriverLoadingListLUNARG, pNext: pointer = nil, mode: VkDirectDriverLoadingModeLUNARG, driverCount: uint32, pDrivers: ptr VkDirectDriverLoadingInfoLUNARG): VkDirectDriverLoadingListLUNARG =
+proc newVkDirectDriverLoadingListLUNARG*(sType: VkStructureType = VkStructureType.DirectDriverLoadingListLUNARG, pNext: pointer = nil, mode: VkDirectDriverLoadingModeLUNARG, drivers: openarray[VkDirectDriverLoadingInfoLUNARG]): VkDirectDriverLoadingListLUNARG =
   result = VkDirectDriverLoadingListLUNARG(
     sType: sType,
     pNext: pNext,
     mode: mode,
-    driverCount: driverCount,
-    pDrivers: pDrivers,
+    driverCount: len(drivers).uint32,
+    pDrivers: if len(drivers) == 0: nil else: cast[ptr VkDirectDriverLoadingInfoLUNARG](drivers),
   )
 
 proc newVkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM, pNext: pointer = nil, multiviewPerViewViewports: VkBool32): VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM =
@@ -22554,12 +22554,12 @@ proc newVkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM*(sType: VkStruct
     multiviewPerViewRenderAreas: multiviewPerViewRenderAreas,
   )
 
-proc newVkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM*(sType: VkStructureType = VkStructureType.MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM, pNext: pointer = nil, perViewRenderAreaCount: uint32, pPerViewRenderAreas: ptr VkRect2D): VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM =
+proc newVkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM*(sType: VkStructureType = VkStructureType.MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM, pNext: pointer = nil, perViewRenderAreas: openarray[VkRect2D]): VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM =
   result = VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM(
     sType: sType,
     pNext: pNext,
-    perViewRenderAreaCount: perViewRenderAreaCount,
-    pPerViewRenderAreas: pPerViewRenderAreas,
+    perViewRenderAreaCount: len(perViewRenderAreas).uint32,
+    pPerViewRenderAreas: if len(perViewRenderAreas) == 0: nil else: cast[ptr VkRect2D](perViewRenderAreas),
   )
 
 proc newVkQueryLowLatencySupportNV*(sType: VkStructureType = VkStructureType.QueryLowLatencySupportNV, pNext: pointer = nil, pQueriedLowLatencyData: pointer = nil): VkQueryLowLatencySupportNV =
@@ -22602,7 +22602,7 @@ proc newVkPhysicalDeviceShaderObjectPropertiesEXT*(sType: VkStructureType = VkSt
     shaderBinaryVersion: shaderBinaryVersion,
   )
 
-proc newVkShaderCreateInfoEXT*(sType: VkStructureType = VkStructureType.ShaderCreateInfoEXT, pNext: pointer = nil, flags: VkShaderCreateFlagsEXT = 0.VkShaderCreateFlagsEXT, stage: VkShaderStageFlagBits, nextStage: VkShaderStageFlags, codeType: VkShaderCodeTypeEXT, codeSize: uint, pCode: pointer = nil, pName: cstring, setLayoutCount: uint32, pSetLayouts: ptr VkDescriptorSetLayout, pushConstantRangeCount: uint32, pPushConstantRanges: ptr VkPushConstantRange, pSpecializationInfo: ptr VkSpecializationInfo): VkShaderCreateInfoEXT =
+proc newVkShaderCreateInfoEXT*(sType: VkStructureType = VkStructureType.ShaderCreateInfoEXT, pNext: pointer = nil, flags: VkShaderCreateFlagsEXT = 0.VkShaderCreateFlagsEXT, stage: VkShaderStageFlagBits, nextStage: VkShaderStageFlags, codeType: VkShaderCodeTypeEXT, codeSize: uint, pCode: pointer = nil, pName: cstring, setLayouts: openarray[VkDescriptorSetLayout], pushConstantRanges: openarray[VkPushConstantRange], pSpecializationInfo: ptr VkSpecializationInfo): VkShaderCreateInfoEXT =
   result = VkShaderCreateInfoEXT(
     sType: sType,
     pNext: pNext,
@@ -22613,10 +22613,10 @@ proc newVkShaderCreateInfoEXT*(sType: VkStructureType = VkStructureType.ShaderCr
     codeSize: codeSize,
     pCode: pCode,
     pName: pName,
-    setLayoutCount: setLayoutCount,
-    pSetLayouts: pSetLayouts,
-    pushConstantRangeCount: pushConstantRangeCount,
-    pPushConstantRanges: pPushConstantRanges,
+    setLayoutCount: len(setLayouts).uint32,
+    pSetLayouts: if len(setLayouts) == 0: nil else: cast[ptr VkDescriptorSetLayout](setLayouts),
+    pushConstantRangeCount: len(pushConstantRanges).uint32,
+    pPushConstantRanges: if len(pushConstantRanges) == 0: nil else: cast[ptr VkPushConstantRange](pushConstantRanges),
     pSpecializationInfo: pSpecializationInfo,
   )
 
@@ -22730,13 +22730,13 @@ proc newVkPhysicalDeviceShaderEnqueueFeaturesAMDX*(sType: VkStructureType = VkSt
     shaderEnqueue: shaderEnqueue,
   )
 
-proc newVkExecutionGraphPipelineCreateInfoAMDX*(sType: VkStructureType = VkStructureType.ExecutionGraphPipelineCreateInfoAMDX, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stageCount: uint32, pStages: ptr VkPipelineShaderStageCreateInfo, pLibraryInfo: ptr VkPipelineLibraryCreateInfoKHR, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkExecutionGraphPipelineCreateInfoAMDX =
+proc newVkExecutionGraphPipelineCreateInfoAMDX*(sType: VkStructureType = VkStructureType.ExecutionGraphPipelineCreateInfoAMDX, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stages: openarray[VkPipelineShaderStageCreateInfo], pLibraryInfo: ptr VkPipelineLibraryCreateInfoKHR, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkExecutionGraphPipelineCreateInfoAMDX =
   result = VkExecutionGraphPipelineCreateInfoAMDX(
     sType: sType,
     pNext: pNext,
     flags: flags,
-    stageCount: stageCount,
-    pStages: pStages,
+    stageCount: len(stages).uint32,
+    pStages: if len(stages) == 0: nil else: cast[ptr VkPipelineShaderStageCreateInfo](stages),
     pLibraryInfo: pLibraryInfo,
     layout: layout,
     basePipelineHandle: basePipelineHandle,
@@ -22780,17 +22780,17 @@ proc newVkBindMemoryStatusKHR*(sType: VkStructureType = VkStructureType.BindMemo
     pResult: pResult,
   )
 
-proc newVkBindDescriptorSetsInfoKHR*(sType: VkStructureType = VkStructureType.BindDescriptorSetsInfoKHR, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, firstSet: uint32, descriptorSetCount: uint32, pDescriptorSets: ptr VkDescriptorSet, dynamicOffsetCount: uint32, pDynamicOffsets: ptr uint32): VkBindDescriptorSetsInfoKHR =
+proc newVkBindDescriptorSetsInfoKHR*(sType: VkStructureType = VkStructureType.BindDescriptorSetsInfoKHR, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, firstSet: uint32, descriptorSets: openarray[VkDescriptorSet], dynamicOffsets: openarray[uint32]): VkBindDescriptorSetsInfoKHR =
   result = VkBindDescriptorSetsInfoKHR(
     sType: sType,
     pNext: pNext,
     stageFlags: stageFlags,
     layout: layout,
     firstSet: firstSet,
-    descriptorSetCount: descriptorSetCount,
-    pDescriptorSets: pDescriptorSets,
-    dynamicOffsetCount: dynamicOffsetCount,
-    pDynamicOffsets: pDynamicOffsets,
+    descriptorSetCount: len(descriptorSets).uint32,
+    pDescriptorSets: if len(descriptorSets) == 0: nil else: cast[ptr VkDescriptorSet](descriptorSets),
+    dynamicOffsetCount: len(dynamicOffsets).uint32,
+    pDynamicOffsets: if len(dynamicOffsets) == 0: nil else: cast[ptr uint32](dynamicOffsets),
   )
 
 proc newVkPushConstantsInfoKHR*(sType: VkStructureType = VkStructureType.PushConstantsInfoKHR, pNext: pointer = nil, layout: VkPipelineLayout, stageFlags: VkShaderStageFlags, offset: uint32, size: uint32, pValues: pointer = nil): VkPushConstantsInfoKHR =
@@ -22804,15 +22804,15 @@ proc newVkPushConstantsInfoKHR*(sType: VkStructureType = VkStructureType.PushCon
     pValues: pValues,
   )
 
-proc newVkPushDescriptorSetInfoKHR*(sType: VkStructureType = VkStructureType.PushDescriptorSetInfoKHR, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, set: uint32, descriptorWriteCount: uint32, pDescriptorWrites: ptr VkWriteDescriptorSet): VkPushDescriptorSetInfoKHR =
+proc newVkPushDescriptorSetInfoKHR*(sType: VkStructureType = VkStructureType.PushDescriptorSetInfoKHR, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, set: uint32, descriptorWrites: openarray[VkWriteDescriptorSet]): VkPushDescriptorSetInfoKHR =
   result = VkPushDescriptorSetInfoKHR(
     sType: sType,
     pNext: pNext,
     stageFlags: stageFlags,
     layout: layout,
     set: set,
-    descriptorWriteCount: descriptorWriteCount,
-    pDescriptorWrites: pDescriptorWrites,
+    descriptorWriteCount: len(descriptorWrites).uint32,
+    pDescriptorWrites: if len(descriptorWrites) == 0: nil else: cast[ptr VkWriteDescriptorSet](descriptorWrites),
   )
 
 proc newVkPushDescriptorSetWithTemplateInfoKHR*(sType: VkStructureType = VkStructureType.PushDescriptorSetWithTemplateInfoKHR, pNext: pointer = nil, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer = nil): VkPushDescriptorSetWithTemplateInfoKHR =
@@ -22825,16 +22825,16 @@ proc newVkPushDescriptorSetWithTemplateInfoKHR*(sType: VkStructureType = VkStruc
     pData: pData,
   )
 
-proc newVkSetDescriptorBufferOffsetsInfoEXT*(sType: VkStructureType = VkStructureType.SetDescriptorBufferOffsetsInfoEXT, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, firstSet: uint32, setCount: uint32, pBufferIndices: ptr uint32, pOffsets: ptr VkDeviceSize): VkSetDescriptorBufferOffsetsInfoEXT =
+proc newVkSetDescriptorBufferOffsetsInfoEXT*(sType: VkStructureType = VkStructureType.SetDescriptorBufferOffsetsInfoEXT, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, firstSet: uint32, bufferIndices: openarray[uint32], offsets: openarray[VkDeviceSize]): VkSetDescriptorBufferOffsetsInfoEXT =
   result = VkSetDescriptorBufferOffsetsInfoEXT(
     sType: sType,
     pNext: pNext,
     stageFlags: stageFlags,
     layout: layout,
     firstSet: firstSet,
-    setCount: setCount,
-    pBufferIndices: pBufferIndices,
-    pOffsets: pOffsets,
+    setCount: len(bufferIndices).uint32,
+    pBufferIndices: if len(bufferIndices) == 0: nil else: cast[ptr uint32](bufferIndices),
+    pOffsets: if len(offsets) == 0: nil else: cast[ptr VkDeviceSize](offsets),
   )
 
 proc newVkBindDescriptorBufferEmbeddedSamplersInfoEXT*(sType: VkStructureType = VkStructureType.BindDescriptorBufferEmbeddedSamplersInfoEXT, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, set: uint32): VkBindDescriptorBufferEmbeddedSamplersInfoEXT =
@@ -22981,12 +22981,12 @@ proc newVkSetLatencyMarkerInfoNV*(sType: VkStructureType = VkStructureType.SetLa
     marker: marker,
   )
 
-proc newVkGetLatencyMarkerInfoNV*(sType: VkStructureType = VkStructureType.GetLatencyMarkerInfoNV, pNext: pointer = nil, timingCount: uint32, pTimings: ptr VkLatencyTimingsFrameReportNV): VkGetLatencyMarkerInfoNV =
+proc newVkGetLatencyMarkerInfoNV*(sType: VkStructureType = VkStructureType.GetLatencyMarkerInfoNV, pNext: pointer = nil, timings: openarray[VkLatencyTimingsFrameReportNV]): VkGetLatencyMarkerInfoNV =
   result = VkGetLatencyMarkerInfoNV(
     sType: sType,
     pNext: pNext,
-    timingCount: timingCount,
-    pTimings: pTimings,
+    timingCount: len(timings).uint32,
+    pTimings: if len(timings) == 0: nil else: cast[ptr VkLatencyTimingsFrameReportNV](timings),
   )
 
 proc newVkLatencyTimingsFrameReportNV*(sType: VkStructureType = VkStructureType.LatencyTimingsFrameReportNV, pNext: pointer = nil, presentID: uint64, inputSampleTimeUs: uint64, simStartTimeUs: uint64, simEndTimeUs: uint64, renderSubmitStartTimeUs: uint64, renderSubmitEndTimeUs: uint64, presentStartTimeUs: uint64, presentEndTimeUs: uint64, driverStartTimeUs: uint64, driverEndTimeUs: uint64, osRenderQueueStartTimeUs: uint64, osRenderQueueEndTimeUs: uint64, gpuRenderStartTimeUs: uint64, gpuRenderEndTimeUs: uint64): VkLatencyTimingsFrameReportNV =
@@ -23030,12 +23030,12 @@ proc newVkSwapchainLatencyCreateInfoNV*(sType: VkStructureType = VkStructureType
     latencyModeEnable: latencyModeEnable,
   )
 
-proc newVkLatencySurfaceCapabilitiesNV*(sType: VkStructureType = VkStructureType.LatencySurfaceCapabilitiesNV, pNext: pointer = nil, presentModeCount: uint32, pPresentModes: ptr VkPresentModeKHR): VkLatencySurfaceCapabilitiesNV =
+proc newVkLatencySurfaceCapabilitiesNV*(sType: VkStructureType = VkStructureType.LatencySurfaceCapabilitiesNV, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkLatencySurfaceCapabilitiesNV =
   result = VkLatencySurfaceCapabilitiesNV(
     sType: sType,
     pNext: pNext,
-    presentModeCount: presentModeCount,
-    pPresentModes: pPresentModes,
+    presentModeCount: len(presentModes).uint32,
+    pPresentModes: if len(presentModes) == 0: nil else: cast[ptr VkPresentModeKHR](presentModes),
   )
 
 proc newVkPhysicalDeviceCudaKernelLaunchFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCudaKernelLaunchFeaturesNV, pNext: pointer = nil, cudaKernelLaunchFeatures: VkBool32): VkPhysicalDeviceCudaKernelLaunchFeaturesNV =
@@ -23103,20 +23103,20 @@ proc newVkRenderPassStripeInfoARM*(sType: VkStructureType = VkStructureType.Rend
     stripeArea: stripeArea,
   )
 
-proc newVkRenderPassStripeBeginInfoARM*(sType: VkStructureType = VkStructureType.RenderPassStripeBeginInfoARM, pNext: pointer = nil, stripeInfoCount: uint32, pStripeInfos: ptr VkRenderPassStripeInfoARM): VkRenderPassStripeBeginInfoARM =
+proc newVkRenderPassStripeBeginInfoARM*(sType: VkStructureType = VkStructureType.RenderPassStripeBeginInfoARM, pNext: pointer = nil, stripeInfos: openarray[VkRenderPassStripeInfoARM]): VkRenderPassStripeBeginInfoARM =
   result = VkRenderPassStripeBeginInfoARM(
     sType: sType,
     pNext: pNext,
-    stripeInfoCount: stripeInfoCount,
-    pStripeInfos: pStripeInfos,
+    stripeInfoCount: len(stripeInfos).uint32,
+    pStripeInfos: if len(stripeInfos) == 0: nil else: cast[ptr VkRenderPassStripeInfoARM](stripeInfos),
   )
 
-proc newVkRenderPassStripeSubmitInfoARM*(sType: VkStructureType = VkStructureType.RenderPassStripeSubmitInfoARM, pNext: pointer = nil, stripeSemaphoreInfoCount: uint32, pStripeSemaphoreInfos: ptr VkSemaphoreSubmitInfo): VkRenderPassStripeSubmitInfoARM =
+proc newVkRenderPassStripeSubmitInfoARM*(sType: VkStructureType = VkStructureType.RenderPassStripeSubmitInfoARM, pNext: pointer = nil, stripeSemaphoreInfos: openarray[VkSemaphoreSubmitInfo]): VkRenderPassStripeSubmitInfoARM =
   result = VkRenderPassStripeSubmitInfoARM(
     sType: sType,
     pNext: pNext,
-    stripeSemaphoreInfoCount: stripeSemaphoreInfoCount,
-    pStripeSemaphoreInfos: pStripeSemaphoreInfos,
+    stripeSemaphoreInfoCount: len(stripeSemaphoreInfos).uint32,
+    pStripeSemaphoreInfos: if len(stripeSemaphoreInfos) == 0: nil else: cast[ptr VkSemaphoreSubmitInfo](stripeSemaphoreInfos),
   )
 
 proc newVkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR, pNext: pointer = nil, shaderMaximalReconvergence: VkBool32): VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR =
@@ -23155,20 +23155,20 @@ proc newVkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR*(sType: VkStructure
     dynamicRenderingLocalRead: dynamicRenderingLocalRead,
   )
 
-proc newVkRenderingAttachmentLocationInfoKHR*(sType: VkStructureType = VkStructureType.RenderingAttachmentLocationInfoKHR, pNext: pointer = nil, colorAttachmentCount: uint32, pColorAttachmentLocations: ptr uint32): VkRenderingAttachmentLocationInfoKHR =
+proc newVkRenderingAttachmentLocationInfoKHR*(sType: VkStructureType = VkStructureType.RenderingAttachmentLocationInfoKHR, pNext: pointer = nil, colorAttachmentLocations: openarray[uint32]): VkRenderingAttachmentLocationInfoKHR =
   result = VkRenderingAttachmentLocationInfoKHR(
     sType: sType,
     pNext: pNext,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachmentLocations: pColorAttachmentLocations,
+    colorAttachmentCount: len(colorAttachmentLocations).uint32,
+    pColorAttachmentLocations: if len(colorAttachmentLocations) == 0: nil else: cast[ptr uint32](colorAttachmentLocations),
   )
 
-proc newVkRenderingInputAttachmentIndexInfoKHR*(sType: VkStructureType = VkStructureType.RenderingInputAttachmentIndexInfoKHR, pNext: pointer = nil, colorAttachmentCount: uint32, pColorAttachmentInputIndices: ptr uint32, pDepthInputAttachmentIndex: ptr uint32, pStencilInputAttachmentIndex: ptr uint32): VkRenderingInputAttachmentIndexInfoKHR =
+proc newVkRenderingInputAttachmentIndexInfoKHR*(sType: VkStructureType = VkStructureType.RenderingInputAttachmentIndexInfoKHR, pNext: pointer = nil, colorAttachmentInputIndices: openarray[uint32], pDepthInputAttachmentIndex: ptr uint32, pStencilInputAttachmentIndex: ptr uint32): VkRenderingInputAttachmentIndexInfoKHR =
   result = VkRenderingInputAttachmentIndexInfoKHR(
     sType: sType,
     pNext: pNext,
-    colorAttachmentCount: colorAttachmentCount,
-    pColorAttachmentInputIndices: pColorAttachmentInputIndices,
+    colorAttachmentCount: len(colorAttachmentInputIndices).uint32,
+    pColorAttachmentInputIndices: if len(colorAttachmentInputIndices) == 0: nil else: cast[ptr uint32](colorAttachmentInputIndices),
     pDepthInputAttachmentIndex: pDepthInputAttachmentIndex,
     pStencilInputAttachmentIndex: pStencilInputAttachmentIndex,
   )

@@ -237,7 +237,7 @@ proc genTypes(node: XmlNode, output: var string) =
           let val = t.attr("alias")
           output.add(&"\n  {name}* = {val}\n")
           continue
-        output.add(&"\n  {name}* = object\n")
+        output.add(&"\n  {name}* {{.byref.}} = object\n")
         for member in t.findAll("member"):
           if member.attr("api") == "vulkansc":
             continue
@@ -284,7 +284,7 @@ proc genTypes(node: XmlNode, output: var string) =
         let name = t.attr("name")
         if name == "VkBaseOutStructure" or name == "VkBaseInStructure":
           continue
-        output.add(&"\n  {name}* {{.union.}} = object\n")
+        output.add(&"\n  {name}* {{.union, byref.}} = object\n")
         for member in t.findAll("member"):
           var memberName = member.child("name").innerText
           if isKeyword(memberName):
@@ -581,6 +581,33 @@ proc genExtensions(node: XmlNode, output: var string) =
           output.add(&"): {vkProc.rVal}")
         output.add(&" {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n")
 
+proc isPlural(x: string): bool =
+  # Determine if an identifier is plural
+  x.endsWith("es") or (not x.endsWith("ss") and x.endsWith('s')) or
+      endsWith(x.normalize, "data") or endsWith(x.normalize, "code")
+
+proc isArray(x: VkArg): bool =
+  x.name.isPlural() and x.name.startsWith('p') and x.argType.startsWith("ptr")
+
+proc isCounter(x: string): bool =
+  let x = x.normalize
+  endsWith(x, "count") or endsWith(x, "size")
+
+proc uncapitalizeAscii*(s: string): string =
+  if s.len == 0: result = ""
+  else: result = toLowerAscii(s[0]) & substr(s, 1)
+
+proc toArgName(x: string): string =
+  result = x
+  result.removePrefix("p")
+  result = uncapitalizeAscii(result)
+
+proc isException(x: string): bool =
+  x in ["VkAccelerationStructureBuildGeometryInfoKHR",
+        "VkMicromapBuildInfoEXT",
+        "VkAccelerationStructureTrianglesOpacityMicromapEXT",
+        "VkAccelerationStructureTrianglesDisplacementMicromapNV"]
+
 proc genConstructors(node: XmlNode, output: var string) =
   echo "Generating and Adding Constructors..."
   output.add("\n# Constructors\n")
@@ -588,10 +615,20 @@ proc genConstructors(node: XmlNode, output: var string) =
     if s.members.len == 0:
       continue
     output.add(&"\nproc new{s.name}*(")
-    for m in s.members:
+    var foundMany = false
+    for i, m in s.members:
+      if not isException(s.name) and m.name.isCounter() and
+          i < s.members.high and s.members[i+1].isArray():
+        foundMany = true
+        continue
       if not output.endsWith('('):
         output.add(", ")
-      output.add(&"{m.name}: {m.argType}")
+      if foundMany:
+        var argType = m.argType
+        argType.removePrefix("ptr ")
+        output.add(&"{m.name.toArgName}: openarray[{argType}]")
+      else:
+        output.add(&"{m.name}: {m.argType}")
       if m.name.contains("flags"):
         output.add(&" = 0.{m.argType}")
       if m.name == "sType":
@@ -599,12 +636,26 @@ proc genConstructors(node: XmlNode, output: var string) =
           let styp = s.name.substr(2)
           if structType.cmpIgnoreStyle(styp) == 0:
             output.add(&" = VkStructureType.{styp}")
-      if m.argType == "pointer":
+      if not foundMany and m.argType == "pointer":
         output.add(" = nil")
+      if foundMany and (i >= s.members.high or not s.members[i+1].isArray()):
+        foundMany = false
     output.add(&"): {s.name} =\n")
     output.add(&"  result = {s.name}(\n")
-    for m in s.members:
-      output.add(&"    {m.name}: {m.name},\n")
+    foundMany = false
+    for i, m in s.members:
+      output.add("    ")
+      if not isException(s.name) and m.name.isCounter and
+          i < s.members.high and s.members[i+1].isArray():
+        output.add(&"{m.name}: len({s.members[i+1].name.toArgName}).{m.argType},\n")
+        foundMany = true
+        continue
+      if foundMany:
+        output.add(&"{m.name}: if len({m.name.toArgName}) == 0: nil else: cast[{m.argType}]({m.name.toArgName}),\n")
+      else:
+        output.add(&"{m.name}: {m.name},\n")
+      if foundMany and (i >= s.members.high or not s.members[i+1].isArray()):
+        foundMany = false
     output.add("  )\n")
 
 proc main() =
