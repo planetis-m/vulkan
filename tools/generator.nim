@@ -461,6 +461,21 @@ proc genEnums(node: XmlNode, output: var string) =
     output.add("\n")
 
 proc genHelpers(output: var string) =
+  output.add("\n# VkDeviceSize helpers\n")
+  output.add("""
+proc `==`*(x, y: VkDeviceSize): bool {.borrow.}
+proc `<=`*(x, y: VkDeviceSize): bool {.borrow.}
+proc `< `*(x, y: VkDeviceSize): bool {.borrow.}
+proc `+`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `-`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `*`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `not`*(x: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `div`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `and`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+#proc `shl`*(x: VkDeviceSize; y: SomeInteger): VkDeviceSize {.borrow.}
+#proc `shr`*(x: VkDeviceSize; y: SomeInteger): VkDeviceSize {.borrow.}
+
+""")
   echo "Generating Handle helpers..."
   output.add("\n# Handle helpers\n")
   for handle in vkHandleTypes.items:

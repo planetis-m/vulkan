@@ -24881,6 +24881,19 @@ proc loadVK_KHR_maintenance6*() =
   vkCmdSetDescriptorBufferOffsets2EXT = cast[proc (commandBuffer: VkCommandBuffer, pSetDescriptorBufferOffsetsInfo: ptr VkSetDescriptorBufferOffsetsInfoEXT) {.stdcall.}](vkGetProc("vkCmdSetDescriptorBufferOffsets2EXT"))
   vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = cast[proc (commandBuffer: VkCommandBuffer, pBindDescriptorBufferEmbeddedSamplersInfo: ptr VkBindDescriptorBufferEmbeddedSamplersInfoEXT) {.stdcall.}](vkGetProc("vkCmdBindDescriptorBufferEmbeddedSamplers2EXT"))
 
+# VkDeviceSize helpers
+proc `==`*(x, y: VkDeviceSize): bool {.borrow.}
+proc `<=`*(x, y: VkDeviceSize): bool {.borrow.}
+proc `< `*(x, y: VkDeviceSize): bool {.borrow.}
+proc `+`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `-`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `*`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `not`*(x: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `div`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+proc `and`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
+# proc `shl`*(x: VkDeviceSize; y: SomeInteger): VkDeviceSize {.borrow.}
+# proc `shr`*(x: VkDeviceSize; y: SomeInteger): VkDeviceSize {.borrow.}
+
 # Handle helpers
 proc `==`*(x, y: VkInstance): bool {.borrow.}
 proc `==`*(x, y: VkPhysicalDevice): bool {.borrow.}
