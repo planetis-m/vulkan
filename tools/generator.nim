@@ -602,11 +602,14 @@ proc toArgName(x: string): string =
   result.removePrefix("p")
   result = uncapitalizeAscii(result)
 
-proc isException(x: string): bool =
-  x in ["VkAccelerationStructureBuildGeometryInfoKHR",
+proc isException(x: VkStruct): bool =
+  x.name in ["VkAccelerationStructureBuildGeometryInfoKHR",
         "VkMicromapBuildInfoEXT",
         "VkAccelerationStructureTrianglesOpacityMicromapEXT",
         "VkAccelerationStructureTrianglesDisplacementMicromapNV"]
+
+proc isException(x: VkArg): bool =
+  x.name in ["pWaitDstStageMask"]
 
 proc genConstructors(node: XmlNode, output: var string) =
   echo "Generating and Adding Constructors..."
@@ -617,7 +620,7 @@ proc genConstructors(node: XmlNode, output: var string) =
     output.add(&"\nproc new{s.name}*(")
     var foundMany = false
     for i, m in s.members:
-      if not isException(s.name) and m.name.isCounter() and
+      if not isException(s) and m.name.isCounter() and
           i < s.members.high and s.members[i+1].isArray():
         foundMany = true
         continue
@@ -640,14 +643,14 @@ proc genConstructors(node: XmlNode, output: var string) =
       if not foundMany and m.argType == "pointer":
         output.add(" = nil")
       if foundMany and (i >= s.members.high or not (s.members[i+1].isArray() or
-          s.members[i+1].name == "pWaitDstStageMask")):
+          s.members[i+1].isException)):
         foundMany = false
     output.add(&"): {s.name} =\n")
     output.add(&"  result = {s.name}(\n")
     foundMany = false
     for i, m in s.members:
       output.add("    ")
-      if not isException(s.name) and m.name.isCounter and
+      if not isException(s) and m.name.isCounter and
           i < s.members.high and s.members[i+1].isArray():
         output.add(&"{m.name}: len({s.members[i+1].name.toArgName}).{m.argType},\n")
         foundMany = true
@@ -657,7 +660,7 @@ proc genConstructors(node: XmlNode, output: var string) =
       else:
         output.add(&"{m.name}: {m.name},\n")
       if foundMany and (i >= s.members.high or not (s.members[i+1].isArray() or
-          s.members[i+1].name == "pWaitDstStageMask")):
+          s.members[i+1].isException)):
         foundMany = false
     output.add("  )\n")
 
