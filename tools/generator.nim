@@ -475,7 +475,19 @@ macro flagsImpl(base: typed, args: varargs[untyped]): untyped =
     output.add(&"""
 template `{{}}`*(t: typedesc[{flags.name}]; args: varargs[{flags.flagbits}]): untyped =
   t(flagsImpl({flags.bType}, args))
+
+proc `==`(x: {flags.name}; y: {flags.name}): bool {{.inline.}} =
+  x.{flags.bType} == y.{flags.bType}
+proc `<=`(x: {flags.name}; y: {flags.name}): bool {{.inline.}} =
+  (x.{flags.bType} and not y.{flags.bType}) == 0
+proc contains(x: {flags.name}; y: {flags.flagbits}): bool {{.inline.}} =
+  (x.{flags.bType} and y.{flags.bType}) != 0
+
 """)
+# proc incl(x: var {flags.name}; y: {flags.flagbits}) {{.inline.}} =
+#   x = {flags.name}(x.{flags.bType} or y.{flags.bType})
+# proc excl(x: var {flags.name}; y: {flags.flagbits}) {{.inline.}} =
+#   x = {flags.name}(x.{flags.bType} and not y.{flags.bType})
 
 proc genProcs(node: XmlNode, output: var string) =
   echo "Generating Procedures..."
@@ -665,7 +677,8 @@ proc genConstructors(node: XmlNode, output: var string) =
         foundMany = true
         continue
       if foundMany:
-        output.add(&"{m.name}: if len({m.name.toArgName}) == 0: nil else: cast[{m.argType}]({m.name.toArgName}),\n")
+        output.add(&"{m.name}: if len({m.name.toArgName}) == 0: nil ")
+        output.add(&"else: cast[{m.argType}]({m.name.toArgName}),\n")
       else:
         output.add(&"{m.name}: {m.name},\n")
       if foundMany and (i >= s.members.high or not (s.members[i+1].isArray() or

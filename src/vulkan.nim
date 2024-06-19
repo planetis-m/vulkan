@@ -24891,266 +24891,1314 @@ macro flagsImpl(base: typed, args: varargs[untyped]): untyped =
 
 template `{}`*(t: typedesc[VkFramebufferCreateFlags]; args: varargs[VkFramebufferCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkFramebufferCreateFlags; y: VkFramebufferCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkFramebufferCreateFlags; y: VkFramebufferCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkFramebufferCreateFlags; y: VkFramebufferCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkRenderPassCreateFlags]; args: varargs[VkRenderPassCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkRenderPassCreateFlags; y: VkRenderPassCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkRenderPassCreateFlags; y: VkRenderPassCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkRenderPassCreateFlags; y: VkRenderPassCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSamplerCreateFlags]; args: varargs[VkSamplerCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSamplerCreateFlags; y: VkSamplerCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSamplerCreateFlags; y: VkSamplerCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSamplerCreateFlags; y: VkSamplerCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineLayoutCreateFlags]; args: varargs[VkPipelineLayoutCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineLayoutCreateFlags; y: VkPipelineLayoutCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineLayoutCreateFlags; y: VkPipelineLayoutCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineLayoutCreateFlags; y: VkPipelineLayoutCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineCacheCreateFlags]; args: varargs[VkPipelineCacheCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineCacheCreateFlags; y: VkPipelineCacheCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineCacheCreateFlags; y: VkPipelineCacheCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineCacheCreateFlags; y: VkPipelineCacheCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineDepthStencilStateCreateFlags]; args: varargs[VkPipelineDepthStencilStateCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineDepthStencilStateCreateFlags; y: VkPipelineDepthStencilStateCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineDepthStencilStateCreateFlags; y: VkPipelineDepthStencilStateCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineDepthStencilStateCreateFlags; y: VkPipelineDepthStencilStateCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineColorBlendStateCreateFlags]; args: varargs[VkPipelineColorBlendStateCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineColorBlendStateCreateFlags; y: VkPipelineColorBlendStateCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineColorBlendStateCreateFlags; y: VkPipelineColorBlendStateCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineColorBlendStateCreateFlags; y: VkPipelineColorBlendStateCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineShaderStageCreateFlags]; args: varargs[VkPipelineShaderStageCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineShaderStageCreateFlags; y: VkPipelineShaderStageCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineShaderStageCreateFlags; y: VkPipelineShaderStageCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineShaderStageCreateFlags; y: VkPipelineShaderStageCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDescriptorSetLayoutCreateFlags]; args: varargs[VkDescriptorSetLayoutCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDescriptorSetLayoutCreateFlags; y: VkDescriptorSetLayoutCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDescriptorSetLayoutCreateFlags; y: VkDescriptorSetLayoutCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDescriptorSetLayoutCreateFlags; y: VkDescriptorSetLayoutCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkInstanceCreateFlags]; args: varargs[VkInstanceCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkInstanceCreateFlags; y: VkInstanceCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkInstanceCreateFlags; y: VkInstanceCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkInstanceCreateFlags; y: VkInstanceCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDeviceQueueCreateFlags]; args: varargs[VkDeviceQueueCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDeviceQueueCreateFlags; y: VkDeviceQueueCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDeviceQueueCreateFlags; y: VkDeviceQueueCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDeviceQueueCreateFlags; y: VkDeviceQueueCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkQueueFlags]; args: varargs[VkQueueFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkQueueFlags; y: VkQueueFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkQueueFlags; y: VkQueueFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkQueueFlags; y: VkQueueFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkMemoryPropertyFlags]; args: varargs[VkMemoryPropertyFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkMemoryPropertyFlags; y: VkMemoryPropertyFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkMemoryPropertyFlags; y: VkMemoryPropertyFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkMemoryPropertyFlags; y: VkMemoryPropertyFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkMemoryHeapFlags]; args: varargs[VkMemoryHeapFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkMemoryHeapFlags; y: VkMemoryHeapFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkMemoryHeapFlags; y: VkMemoryHeapFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkMemoryHeapFlags; y: VkMemoryHeapFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkAccessFlags]; args: varargs[VkAccessFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkAccessFlags; y: VkAccessFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkAccessFlags; y: VkAccessFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkAccessFlags; y: VkAccessFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkBufferUsageFlags]; args: varargs[VkBufferUsageFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkBufferUsageFlags; y: VkBufferUsageFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkBufferUsageFlags; y: VkBufferUsageFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkBufferUsageFlags; y: VkBufferUsageFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkBufferCreateFlags]; args: varargs[VkBufferCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkBufferCreateFlags; y: VkBufferCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkBufferCreateFlags; y: VkBufferCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkBufferCreateFlags; y: VkBufferCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkShaderStageFlags]; args: varargs[VkShaderStageFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkShaderStageFlags; y: VkShaderStageFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkShaderStageFlags; y: VkShaderStageFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkShaderStageFlags; y: VkShaderStageFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkImageUsageFlags]; args: varargs[VkImageUsageFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkImageUsageFlags; y: VkImageUsageFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkImageUsageFlags; y: VkImageUsageFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkImageUsageFlags; y: VkImageUsageFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkImageCreateFlags]; args: varargs[VkImageCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkImageCreateFlags; y: VkImageCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkImageCreateFlags; y: VkImageCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkImageCreateFlags; y: VkImageCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkImageViewCreateFlags]; args: varargs[VkImageViewCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkImageViewCreateFlags; y: VkImageViewCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkImageViewCreateFlags; y: VkImageViewCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkImageViewCreateFlags; y: VkImageViewCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineCreateFlags]; args: varargs[VkPipelineCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineCreateFlags; y: VkPipelineCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineCreateFlags; y: VkPipelineCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineCreateFlags; y: VkPipelineCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkColorComponentFlags]; args: varargs[VkColorComponentFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkColorComponentFlags; y: VkColorComponentFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkColorComponentFlags; y: VkColorComponentFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkColorComponentFlags; y: VkColorComponentFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkFenceCreateFlags]; args: varargs[VkFenceCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkFenceCreateFlags; y: VkFenceCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkFenceCreateFlags; y: VkFenceCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkFenceCreateFlags; y: VkFenceCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkFormatFeatureFlags]; args: varargs[VkFormatFeatureFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkFormatFeatureFlags; y: VkFormatFeatureFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkFormatFeatureFlags; y: VkFormatFeatureFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkFormatFeatureFlags; y: VkFormatFeatureFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkQueryControlFlags]; args: varargs[VkQueryControlFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkQueryControlFlags; y: VkQueryControlFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkQueryControlFlags; y: VkQueryControlFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkQueryControlFlags; y: VkQueryControlFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkQueryResultFlags]; args: varargs[VkQueryResultFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkQueryResultFlags; y: VkQueryResultFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkQueryResultFlags; y: VkQueryResultFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkQueryResultFlags; y: VkQueryResultFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkEventCreateFlags]; args: varargs[VkEventCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkEventCreateFlags; y: VkEventCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkEventCreateFlags; y: VkEventCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkEventCreateFlags; y: VkEventCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkCommandPoolCreateFlags]; args: varargs[VkCommandPoolCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkCommandPoolCreateFlags; y: VkCommandPoolCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkCommandPoolCreateFlags; y: VkCommandPoolCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkCommandPoolCreateFlags; y: VkCommandPoolCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkCommandPoolResetFlags]; args: varargs[VkCommandPoolResetFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkCommandPoolResetFlags; y: VkCommandPoolResetFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkCommandPoolResetFlags; y: VkCommandPoolResetFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkCommandPoolResetFlags; y: VkCommandPoolResetFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkCommandBufferResetFlags]; args: varargs[VkCommandBufferResetFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkCommandBufferResetFlags; y: VkCommandBufferResetFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkCommandBufferResetFlags; y: VkCommandBufferResetFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkCommandBufferResetFlags; y: VkCommandBufferResetFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkCommandBufferUsageFlags]; args: varargs[VkCommandBufferUsageFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkCommandBufferUsageFlags; y: VkCommandBufferUsageFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkCommandBufferUsageFlags; y: VkCommandBufferUsageFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkCommandBufferUsageFlags; y: VkCommandBufferUsageFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkQueryPipelineStatisticFlags]; args: varargs[VkQueryPipelineStatisticFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkQueryPipelineStatisticFlags; y: VkQueryPipelineStatisticFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkQueryPipelineStatisticFlags; y: VkQueryPipelineStatisticFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkQueryPipelineStatisticFlags; y: VkQueryPipelineStatisticFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkMemoryMapFlags]; args: varargs[VkMemoryMapFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkMemoryMapFlags; y: VkMemoryMapFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkMemoryMapFlags; y: VkMemoryMapFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkMemoryMapFlags; y: VkMemoryMapFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkMemoryUnmapFlagsKHR]; args: varargs[VkMemoryUnmapFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkMemoryUnmapFlagsKHR; y: VkMemoryUnmapFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkMemoryUnmapFlagsKHR; y: VkMemoryUnmapFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkMemoryUnmapFlagsKHR; y: VkMemoryUnmapFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkImageAspectFlags]; args: varargs[VkImageAspectFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkImageAspectFlags; y: VkImageAspectFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkImageAspectFlags; y: VkImageAspectFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkImageAspectFlags; y: VkImageAspectFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSparseMemoryBindFlags]; args: varargs[VkSparseMemoryBindFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSparseMemoryBindFlags; y: VkSparseMemoryBindFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSparseMemoryBindFlags; y: VkSparseMemoryBindFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSparseMemoryBindFlags; y: VkSparseMemoryBindFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSparseImageFormatFlags]; args: varargs[VkSparseImageFormatFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSparseImageFormatFlags; y: VkSparseImageFormatFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSparseImageFormatFlags; y: VkSparseImageFormatFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSparseImageFormatFlags; y: VkSparseImageFormatFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSubpassDescriptionFlags]; args: varargs[VkSubpassDescriptionFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSubpassDescriptionFlags; y: VkSubpassDescriptionFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSubpassDescriptionFlags; y: VkSubpassDescriptionFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSubpassDescriptionFlags; y: VkSubpassDescriptionFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineStageFlags]; args: varargs[VkPipelineStageFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineStageFlags; y: VkPipelineStageFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineStageFlags; y: VkPipelineStageFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineStageFlags; y: VkPipelineStageFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSampleCountFlags]; args: varargs[VkSampleCountFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSampleCountFlags; y: VkSampleCountFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSampleCountFlags; y: VkSampleCountFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSampleCountFlags; y: VkSampleCountFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkAttachmentDescriptionFlags]; args: varargs[VkAttachmentDescriptionFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkAttachmentDescriptionFlags; y: VkAttachmentDescriptionFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkAttachmentDescriptionFlags; y: VkAttachmentDescriptionFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkAttachmentDescriptionFlags; y: VkAttachmentDescriptionFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkStencilFaceFlags]; args: varargs[VkStencilFaceFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkStencilFaceFlags; y: VkStencilFaceFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkStencilFaceFlags; y: VkStencilFaceFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkStencilFaceFlags; y: VkStencilFaceFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkCullModeFlags]; args: varargs[VkCullModeFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkCullModeFlags; y: VkCullModeFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkCullModeFlags; y: VkCullModeFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkCullModeFlags; y: VkCullModeFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDescriptorPoolCreateFlags]; args: varargs[VkDescriptorPoolCreateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDescriptorPoolCreateFlags; y: VkDescriptorPoolCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDescriptorPoolCreateFlags; y: VkDescriptorPoolCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDescriptorPoolCreateFlags; y: VkDescriptorPoolCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDependencyFlags]; args: varargs[VkDependencyFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDependencyFlags; y: VkDependencyFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDependencyFlags; y: VkDependencyFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDependencyFlags; y: VkDependencyFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSubgroupFeatureFlags]; args: varargs[VkSubgroupFeatureFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSubgroupFeatureFlags; y: VkSubgroupFeatureFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSubgroupFeatureFlags; y: VkSubgroupFeatureFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSubgroupFeatureFlags; y: VkSubgroupFeatureFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkIndirectCommandsLayoutUsageFlagsNV]; args: varargs[VkIndirectCommandsLayoutUsageFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkIndirectCommandsLayoutUsageFlagsNV; y: VkIndirectCommandsLayoutUsageFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkIndirectCommandsLayoutUsageFlagsNV; y: VkIndirectCommandsLayoutUsageFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkIndirectCommandsLayoutUsageFlagsNV; y: VkIndirectCommandsLayoutUsageFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkIndirectStateFlagsNV]; args: varargs[VkIndirectStateFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkIndirectStateFlagsNV; y: VkIndirectStateFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkIndirectStateFlagsNV; y: VkIndirectStateFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkIndirectStateFlagsNV; y: VkIndirectStateFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkGeometryFlagsKHR]; args: varargs[VkGeometryFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkGeometryFlagsKHR; y: VkGeometryFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkGeometryFlagsKHR; y: VkGeometryFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkGeometryFlagsKHR; y: VkGeometryFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkGeometryInstanceFlagsKHR]; args: varargs[VkGeometryInstanceFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkGeometryInstanceFlagsKHR; y: VkGeometryInstanceFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkGeometryInstanceFlagsKHR; y: VkGeometryInstanceFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkGeometryInstanceFlagsKHR; y: VkGeometryInstanceFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkBuildAccelerationStructureFlagsKHR]; args: varargs[VkBuildAccelerationStructureFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkBuildAccelerationStructureFlagsKHR; y: VkBuildAccelerationStructureFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkBuildAccelerationStructureFlagsKHR; y: VkBuildAccelerationStructureFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkBuildAccelerationStructureFlagsKHR; y: VkBuildAccelerationStructureFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkAccelerationStructureCreateFlagsKHR]; args: varargs[VkAccelerationStructureCreateFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkAccelerationStructureCreateFlagsKHR; y: VkAccelerationStructureCreateFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkAccelerationStructureCreateFlagsKHR; y: VkAccelerationStructureCreateFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkAccelerationStructureCreateFlagsKHR; y: VkAccelerationStructureCreateFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineCreationFeedbackFlags]; args: varargs[VkPipelineCreationFeedbackFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineCreationFeedbackFlags; y: VkPipelineCreationFeedbackFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineCreationFeedbackFlags; y: VkPipelineCreationFeedbackFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineCreationFeedbackFlags; y: VkPipelineCreationFeedbackFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPerformanceCounterDescriptionFlagsKHR]; args: varargs[VkPerformanceCounterDescriptionFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPerformanceCounterDescriptionFlagsKHR; y: VkPerformanceCounterDescriptionFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPerformanceCounterDescriptionFlagsKHR; y: VkPerformanceCounterDescriptionFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPerformanceCounterDescriptionFlagsKHR; y: VkPerformanceCounterDescriptionFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSemaphoreWaitFlags]; args: varargs[VkSemaphoreWaitFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSemaphoreWaitFlags; y: VkSemaphoreWaitFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSemaphoreWaitFlags; y: VkSemaphoreWaitFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSemaphoreWaitFlags; y: VkSemaphoreWaitFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDeviceDiagnosticsConfigFlagsNV]; args: varargs[VkDeviceDiagnosticsConfigFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDeviceDiagnosticsConfigFlagsNV; y: VkDeviceDiagnosticsConfigFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDeviceDiagnosticsConfigFlagsNV; y: VkDeviceDiagnosticsConfigFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDeviceDiagnosticsConfigFlagsNV; y: VkDeviceDiagnosticsConfigFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkAccessFlags2]; args: varargs[VkAccessFlagBits2]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkAccessFlags2; y: VkAccessFlags2): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkAccessFlags2; y: VkAccessFlags2): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkAccessFlags2; y: VkAccessFlagBits2): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineStageFlags2]; args: varargs[VkPipelineStageFlagBits2]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineStageFlags2; y: VkPipelineStageFlags2): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineStageFlags2; y: VkPipelineStageFlags2): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineStageFlags2; y: VkPipelineStageFlagBits2): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkFormatFeatureFlags2]; args: varargs[VkFormatFeatureFlagBits2]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkFormatFeatureFlags2; y: VkFormatFeatureFlags2): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkFormatFeatureFlags2; y: VkFormatFeatureFlags2): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkFormatFeatureFlags2; y: VkFormatFeatureFlagBits2): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkRenderingFlags]; args: varargs[VkRenderingFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkRenderingFlags; y: VkRenderingFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkRenderingFlags; y: VkRenderingFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkRenderingFlags; y: VkRenderingFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkMemoryDecompressionMethodFlagsNV]; args: varargs[VkMemoryDecompressionMethodFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkMemoryDecompressionMethodFlagsNV; y: VkMemoryDecompressionMethodFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkMemoryDecompressionMethodFlagsNV; y: VkMemoryDecompressionMethodFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkMemoryDecompressionMethodFlagsNV; y: VkMemoryDecompressionMethodFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkBuildMicromapFlagsEXT]; args: varargs[VkBuildMicromapFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkBuildMicromapFlagsEXT; y: VkBuildMicromapFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkBuildMicromapFlagsEXT; y: VkBuildMicromapFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkBuildMicromapFlagsEXT; y: VkBuildMicromapFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkMicromapCreateFlagsEXT]; args: varargs[VkMicromapCreateFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkMicromapCreateFlagsEXT; y: VkMicromapCreateFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkMicromapCreateFlagsEXT; y: VkMicromapCreateFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkMicromapCreateFlagsEXT; y: VkMicromapCreateFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPipelineCreateFlags2KHR]; args: varargs[VkPipelineCreateFlagBits2KHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPipelineCreateFlags2KHR; y: VkPipelineCreateFlags2KHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPipelineCreateFlags2KHR; y: VkPipelineCreateFlags2KHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPipelineCreateFlags2KHR; y: VkPipelineCreateFlagBits2KHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkBufferUsageFlags2KHR]; args: varargs[VkBufferUsageFlagBits2KHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkBufferUsageFlags2KHR; y: VkBufferUsageFlags2KHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkBufferUsageFlags2KHR; y: VkBufferUsageFlags2KHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkBufferUsageFlags2KHR; y: VkBufferUsageFlagBits2KHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkCompositeAlphaFlagsKHR]; args: varargs[VkCompositeAlphaFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkCompositeAlphaFlagsKHR; y: VkCompositeAlphaFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkCompositeAlphaFlagsKHR; y: VkCompositeAlphaFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkCompositeAlphaFlagsKHR; y: VkCompositeAlphaFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDisplayPlaneAlphaFlagsKHR]; args: varargs[VkDisplayPlaneAlphaFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDisplayPlaneAlphaFlagsKHR; y: VkDisplayPlaneAlphaFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDisplayPlaneAlphaFlagsKHR; y: VkDisplayPlaneAlphaFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDisplayPlaneAlphaFlagsKHR; y: VkDisplayPlaneAlphaFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSurfaceTransformFlagsKHR]; args: varargs[VkSurfaceTransformFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSurfaceTransformFlagsKHR; y: VkSurfaceTransformFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSurfaceTransformFlagsKHR; y: VkSurfaceTransformFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSurfaceTransformFlagsKHR; y: VkSurfaceTransformFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSwapchainCreateFlagsKHR]; args: varargs[VkSwapchainCreateFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSwapchainCreateFlagsKHR; y: VkSwapchainCreateFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSwapchainCreateFlagsKHR; y: VkSwapchainCreateFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSwapchainCreateFlagsKHR; y: VkSwapchainCreateFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPeerMemoryFeatureFlags]; args: varargs[VkPeerMemoryFeatureFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPeerMemoryFeatureFlags; y: VkPeerMemoryFeatureFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPeerMemoryFeatureFlags; y: VkPeerMemoryFeatureFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPeerMemoryFeatureFlags; y: VkPeerMemoryFeatureFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkMemoryAllocateFlags]; args: varargs[VkMemoryAllocateFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkMemoryAllocateFlags; y: VkMemoryAllocateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkMemoryAllocateFlags; y: VkMemoryAllocateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkMemoryAllocateFlags; y: VkMemoryAllocateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDeviceGroupPresentModeFlagsKHR]; args: varargs[VkDeviceGroupPresentModeFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDeviceGroupPresentModeFlagsKHR; y: VkDeviceGroupPresentModeFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDeviceGroupPresentModeFlagsKHR; y: VkDeviceGroupPresentModeFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDeviceGroupPresentModeFlagsKHR; y: VkDeviceGroupPresentModeFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDebugReportFlagsEXT]; args: varargs[VkDebugReportFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDebugReportFlagsEXT; y: VkDebugReportFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDebugReportFlagsEXT; y: VkDebugReportFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDebugReportFlagsEXT; y: VkDebugReportFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExternalMemoryHandleTypeFlagsNV]; args: varargs[VkExternalMemoryHandleTypeFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExternalMemoryHandleTypeFlagsNV; y: VkExternalMemoryHandleTypeFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExternalMemoryHandleTypeFlagsNV; y: VkExternalMemoryHandleTypeFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExternalMemoryHandleTypeFlagsNV; y: VkExternalMemoryHandleTypeFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExternalMemoryFeatureFlagsNV]; args: varargs[VkExternalMemoryFeatureFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExternalMemoryFeatureFlagsNV; y: VkExternalMemoryFeatureFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExternalMemoryFeatureFlagsNV; y: VkExternalMemoryFeatureFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExternalMemoryFeatureFlagsNV; y: VkExternalMemoryFeatureFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExternalMemoryHandleTypeFlags]; args: varargs[VkExternalMemoryHandleTypeFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExternalMemoryHandleTypeFlags; y: VkExternalMemoryHandleTypeFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExternalMemoryHandleTypeFlags; y: VkExternalMemoryHandleTypeFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExternalMemoryHandleTypeFlags; y: VkExternalMemoryHandleTypeFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExternalMemoryFeatureFlags]; args: varargs[VkExternalMemoryFeatureFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExternalMemoryFeatureFlags; y: VkExternalMemoryFeatureFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExternalMemoryFeatureFlags; y: VkExternalMemoryFeatureFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExternalMemoryFeatureFlags; y: VkExternalMemoryFeatureFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExternalSemaphoreHandleTypeFlags]; args: varargs[VkExternalSemaphoreHandleTypeFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExternalSemaphoreHandleTypeFlags; y: VkExternalSemaphoreHandleTypeFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExternalSemaphoreHandleTypeFlags; y: VkExternalSemaphoreHandleTypeFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExternalSemaphoreHandleTypeFlags; y: VkExternalSemaphoreHandleTypeFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExternalSemaphoreFeatureFlags]; args: varargs[VkExternalSemaphoreFeatureFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExternalSemaphoreFeatureFlags; y: VkExternalSemaphoreFeatureFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExternalSemaphoreFeatureFlags; y: VkExternalSemaphoreFeatureFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExternalSemaphoreFeatureFlags; y: VkExternalSemaphoreFeatureFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSemaphoreImportFlags]; args: varargs[VkSemaphoreImportFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSemaphoreImportFlags; y: VkSemaphoreImportFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSemaphoreImportFlags; y: VkSemaphoreImportFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSemaphoreImportFlags; y: VkSemaphoreImportFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExternalFenceHandleTypeFlags]; args: varargs[VkExternalFenceHandleTypeFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExternalFenceHandleTypeFlags; y: VkExternalFenceHandleTypeFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExternalFenceHandleTypeFlags; y: VkExternalFenceHandleTypeFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExternalFenceHandleTypeFlags; y: VkExternalFenceHandleTypeFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExternalFenceFeatureFlags]; args: varargs[VkExternalFenceFeatureFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExternalFenceFeatureFlags; y: VkExternalFenceFeatureFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExternalFenceFeatureFlags; y: VkExternalFenceFeatureFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExternalFenceFeatureFlags; y: VkExternalFenceFeatureFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkFenceImportFlags]; args: varargs[VkFenceImportFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkFenceImportFlags; y: VkFenceImportFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkFenceImportFlags; y: VkFenceImportFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkFenceImportFlags; y: VkFenceImportFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSurfaceCounterFlagsEXT]; args: varargs[VkSurfaceCounterFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSurfaceCounterFlagsEXT; y: VkSurfaceCounterFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSurfaceCounterFlagsEXT; y: VkSurfaceCounterFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSurfaceCounterFlagsEXT; y: VkSurfaceCounterFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDebugUtilsMessageSeverityFlagsEXT]; args: varargs[VkDebugUtilsMessageSeverityFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDebugUtilsMessageSeverityFlagsEXT; y: VkDebugUtilsMessageSeverityFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDebugUtilsMessageSeverityFlagsEXT; y: VkDebugUtilsMessageSeverityFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDebugUtilsMessageSeverityFlagsEXT; y: VkDebugUtilsMessageSeverityFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDebugUtilsMessageTypeFlagsEXT]; args: varargs[VkDebugUtilsMessageTypeFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDebugUtilsMessageTypeFlagsEXT; y: VkDebugUtilsMessageTypeFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDebugUtilsMessageTypeFlagsEXT; y: VkDebugUtilsMessageTypeFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDebugUtilsMessageTypeFlagsEXT; y: VkDebugUtilsMessageTypeFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDescriptorBindingFlags]; args: varargs[VkDescriptorBindingFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDescriptorBindingFlags; y: VkDescriptorBindingFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDescriptorBindingFlags; y: VkDescriptorBindingFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDescriptorBindingFlags; y: VkDescriptorBindingFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkConditionalRenderingFlagsEXT]; args: varargs[VkConditionalRenderingFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkConditionalRenderingFlagsEXT; y: VkConditionalRenderingFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkConditionalRenderingFlagsEXT; y: VkConditionalRenderingFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkConditionalRenderingFlagsEXT; y: VkConditionalRenderingFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkResolveModeFlags]; args: varargs[VkResolveModeFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkResolveModeFlags; y: VkResolveModeFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkResolveModeFlags; y: VkResolveModeFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkResolveModeFlags; y: VkResolveModeFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSwapchainImageUsageFlagsANDROID]; args: varargs[VkSwapchainImageUsageFlagBitsANDROID]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSwapchainImageUsageFlagsANDROID; y: VkSwapchainImageUsageFlagsANDROID): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSwapchainImageUsageFlagsANDROID; y: VkSwapchainImageUsageFlagsANDROID): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSwapchainImageUsageFlagsANDROID; y: VkSwapchainImageUsageFlagBitsANDROID): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkToolPurposeFlags]; args: varargs[VkToolPurposeFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkToolPurposeFlags; y: VkToolPurposeFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkToolPurposeFlags; y: VkToolPurposeFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkToolPurposeFlags; y: VkToolPurposeFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkSubmitFlags]; args: varargs[VkSubmitFlagBits]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkSubmitFlags; y: VkSubmitFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkSubmitFlags; y: VkSubmitFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkSubmitFlags; y: VkSubmitFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkHostImageCopyFlagsEXT]; args: varargs[VkHostImageCopyFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkHostImageCopyFlagsEXT; y: VkHostImageCopyFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkHostImageCopyFlagsEXT; y: VkHostImageCopyFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkHostImageCopyFlagsEXT; y: VkHostImageCopyFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkImageConstraintsInfoFlagsFUCHSIA]; args: varargs[VkImageConstraintsInfoFlagBitsFUCHSIA]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkImageConstraintsInfoFlagsFUCHSIA; y: VkImageConstraintsInfoFlagsFUCHSIA): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkImageConstraintsInfoFlagsFUCHSIA; y: VkImageConstraintsInfoFlagsFUCHSIA): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkImageConstraintsInfoFlagsFUCHSIA; y: VkImageConstraintsInfoFlagBitsFUCHSIA): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkGraphicsPipelineLibraryFlagsEXT]; args: varargs[VkGraphicsPipelineLibraryFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkGraphicsPipelineLibraryFlagsEXT; y: VkGraphicsPipelineLibraryFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkGraphicsPipelineLibraryFlagsEXT; y: VkGraphicsPipelineLibraryFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkGraphicsPipelineLibraryFlagsEXT; y: VkGraphicsPipelineLibraryFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkImageCompressionFlagsEXT]; args: varargs[VkImageCompressionFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkImageCompressionFlagsEXT; y: VkImageCompressionFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkImageCompressionFlagsEXT; y: VkImageCompressionFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkImageCompressionFlagsEXT; y: VkImageCompressionFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkImageCompressionFixedRateFlagsEXT]; args: varargs[VkImageCompressionFixedRateFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkImageCompressionFixedRateFlagsEXT; y: VkImageCompressionFixedRateFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkImageCompressionFixedRateFlagsEXT; y: VkImageCompressionFixedRateFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkImageCompressionFixedRateFlagsEXT; y: VkImageCompressionFixedRateFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkExportMetalObjectTypeFlagsEXT]; args: varargs[VkExportMetalObjectTypeFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkExportMetalObjectTypeFlagsEXT; y: VkExportMetalObjectTypeFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkExportMetalObjectTypeFlagsEXT; y: VkExportMetalObjectTypeFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkExportMetalObjectTypeFlagsEXT; y: VkExportMetalObjectTypeFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkDeviceAddressBindingFlagsEXT]; args: varargs[VkDeviceAddressBindingFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkDeviceAddressBindingFlagsEXT; y: VkDeviceAddressBindingFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkDeviceAddressBindingFlagsEXT; y: VkDeviceAddressBindingFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkDeviceAddressBindingFlagsEXT; y: VkDeviceAddressBindingFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkOpticalFlowGridSizeFlagsNV]; args: varargs[VkOpticalFlowGridSizeFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkOpticalFlowGridSizeFlagsNV; y: VkOpticalFlowGridSizeFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkOpticalFlowGridSizeFlagsNV; y: VkOpticalFlowGridSizeFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkOpticalFlowGridSizeFlagsNV; y: VkOpticalFlowGridSizeFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkOpticalFlowUsageFlagsNV]; args: varargs[VkOpticalFlowUsageFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkOpticalFlowUsageFlagsNV; y: VkOpticalFlowUsageFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkOpticalFlowUsageFlagsNV; y: VkOpticalFlowUsageFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkOpticalFlowUsageFlagsNV; y: VkOpticalFlowUsageFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkOpticalFlowSessionCreateFlagsNV]; args: varargs[VkOpticalFlowSessionCreateFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkOpticalFlowSessionCreateFlagsNV; y: VkOpticalFlowSessionCreateFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkOpticalFlowSessionCreateFlagsNV; y: VkOpticalFlowSessionCreateFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkOpticalFlowSessionCreateFlagsNV; y: VkOpticalFlowSessionCreateFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkOpticalFlowExecuteFlagsNV]; args: varargs[VkOpticalFlowExecuteFlagBitsNV]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkOpticalFlowExecuteFlagsNV; y: VkOpticalFlowExecuteFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkOpticalFlowExecuteFlagsNV; y: VkOpticalFlowExecuteFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkOpticalFlowExecuteFlagsNV; y: VkOpticalFlowExecuteFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkFrameBoundaryFlagsEXT]; args: varargs[VkFrameBoundaryFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkFrameBoundaryFlagsEXT; y: VkFrameBoundaryFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkFrameBoundaryFlagsEXT; y: VkFrameBoundaryFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkFrameBoundaryFlagsEXT; y: VkFrameBoundaryFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPresentScalingFlagsEXT]; args: varargs[VkPresentScalingFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPresentScalingFlagsEXT; y: VkPresentScalingFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPresentScalingFlagsEXT; y: VkPresentScalingFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPresentScalingFlagsEXT; y: VkPresentScalingFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPresentGravityFlagsEXT]; args: varargs[VkPresentGravityFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPresentGravityFlagsEXT; y: VkPresentGravityFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPresentGravityFlagsEXT; y: VkPresentGravityFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPresentGravityFlagsEXT; y: VkPresentGravityFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkShaderCreateFlagsEXT]; args: varargs[VkShaderCreateFlagBitsEXT]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkShaderCreateFlagsEXT; y: VkShaderCreateFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkShaderCreateFlagsEXT; y: VkShaderCreateFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkShaderCreateFlagsEXT; y: VkShaderCreateFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPhysicalDeviceSchedulingControlsFlagsARM]; args: varargs[VkPhysicalDeviceSchedulingControlsFlagBitsARM]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkPhysicalDeviceSchedulingControlsFlagsARM; y: VkPhysicalDeviceSchedulingControlsFlagsARM): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkPhysicalDeviceSchedulingControlsFlagsARM; y: VkPhysicalDeviceSchedulingControlsFlagsARM): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkPhysicalDeviceSchedulingControlsFlagsARM; y: VkPhysicalDeviceSchedulingControlsFlagBitsARM): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoCodecOperationFlagsKHR]; args: varargs[VkVideoCodecOperationFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoCodecOperationFlagsKHR; y: VkVideoCodecOperationFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoCodecOperationFlagsKHR; y: VkVideoCodecOperationFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoCodecOperationFlagsKHR; y: VkVideoCodecOperationFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoCapabilityFlagsKHR]; args: varargs[VkVideoCapabilityFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoCapabilityFlagsKHR; y: VkVideoCapabilityFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoCapabilityFlagsKHR; y: VkVideoCapabilityFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoCapabilityFlagsKHR; y: VkVideoCapabilityFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoSessionCreateFlagsKHR]; args: varargs[VkVideoSessionCreateFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoSessionCreateFlagsKHR; y: VkVideoSessionCreateFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoSessionCreateFlagsKHR; y: VkVideoSessionCreateFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoSessionCreateFlagsKHR; y: VkVideoSessionCreateFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoCodingControlFlagsKHR]; args: varargs[VkVideoCodingControlFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoCodingControlFlagsKHR; y: VkVideoCodingControlFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoCodingControlFlagsKHR; y: VkVideoCodingControlFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoCodingControlFlagsKHR; y: VkVideoCodingControlFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoDecodeUsageFlagsKHR]; args: varargs[VkVideoDecodeUsageFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoDecodeUsageFlagsKHR; y: VkVideoDecodeUsageFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoDecodeUsageFlagsKHR; y: VkVideoDecodeUsageFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoDecodeUsageFlagsKHR; y: VkVideoDecodeUsageFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoDecodeCapabilityFlagsKHR]; args: varargs[VkVideoDecodeCapabilityFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoDecodeCapabilityFlagsKHR; y: VkVideoDecodeCapabilityFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoDecodeCapabilityFlagsKHR; y: VkVideoDecodeCapabilityFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoDecodeCapabilityFlagsKHR; y: VkVideoDecodeCapabilityFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoDecodeH264PictureLayoutFlagsKHR]; args: varargs[VkVideoDecodeH264PictureLayoutFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoDecodeH264PictureLayoutFlagsKHR; y: VkVideoDecodeH264PictureLayoutFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoDecodeH264PictureLayoutFlagsKHR; y: VkVideoDecodeH264PictureLayoutFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoDecodeH264PictureLayoutFlagsKHR; y: VkVideoDecodeH264PictureLayoutFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeUsageFlagsKHR]; args: varargs[VkVideoEncodeUsageFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeUsageFlagsKHR; y: VkVideoEncodeUsageFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeUsageFlagsKHR; y: VkVideoEncodeUsageFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeUsageFlagsKHR; y: VkVideoEncodeUsageFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeContentFlagsKHR]; args: varargs[VkVideoEncodeContentFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeContentFlagsKHR; y: VkVideoEncodeContentFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeContentFlagsKHR; y: VkVideoEncodeContentFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeContentFlagsKHR; y: VkVideoEncodeContentFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeCapabilityFlagsKHR]; args: varargs[VkVideoEncodeCapabilityFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeCapabilityFlagsKHR; y: VkVideoEncodeCapabilityFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeCapabilityFlagsKHR; y: VkVideoEncodeCapabilityFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeCapabilityFlagsKHR; y: VkVideoEncodeCapabilityFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeFeedbackFlagsKHR]; args: varargs[VkVideoEncodeFeedbackFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeFeedbackFlagsKHR; y: VkVideoEncodeFeedbackFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeFeedbackFlagsKHR; y: VkVideoEncodeFeedbackFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeFeedbackFlagsKHR; y: VkVideoEncodeFeedbackFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeRateControlModeFlagsKHR]; args: varargs[VkVideoEncodeRateControlModeFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeRateControlModeFlagsKHR; y: VkVideoEncodeRateControlModeFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeRateControlModeFlagsKHR; y: VkVideoEncodeRateControlModeFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeRateControlModeFlagsKHR; y: VkVideoEncodeRateControlModeFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoChromaSubsamplingFlagsKHR]; args: varargs[VkVideoChromaSubsamplingFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoChromaSubsamplingFlagsKHR; y: VkVideoChromaSubsamplingFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoChromaSubsamplingFlagsKHR; y: VkVideoChromaSubsamplingFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoChromaSubsamplingFlagsKHR; y: VkVideoChromaSubsamplingFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoComponentBitDepthFlagsKHR]; args: varargs[VkVideoComponentBitDepthFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoComponentBitDepthFlagsKHR; y: VkVideoComponentBitDepthFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoComponentBitDepthFlagsKHR; y: VkVideoComponentBitDepthFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoComponentBitDepthFlagsKHR; y: VkVideoComponentBitDepthFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeH264CapabilityFlagsKHR]; args: varargs[VkVideoEncodeH264CapabilityFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeH264CapabilityFlagsKHR; y: VkVideoEncodeH264CapabilityFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeH264CapabilityFlagsKHR; y: VkVideoEncodeH264CapabilityFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeH264CapabilityFlagsKHR; y: VkVideoEncodeH264CapabilityFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeH264StdFlagsKHR]; args: varargs[VkVideoEncodeH264StdFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeH264StdFlagsKHR; y: VkVideoEncodeH264StdFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeH264StdFlagsKHR; y: VkVideoEncodeH264StdFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeH264StdFlagsKHR; y: VkVideoEncodeH264StdFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeH264RateControlFlagsKHR]; args: varargs[VkVideoEncodeH264RateControlFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeH264RateControlFlagsKHR; y: VkVideoEncodeH264RateControlFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeH264RateControlFlagsKHR; y: VkVideoEncodeH264RateControlFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeH264RateControlFlagsKHR; y: VkVideoEncodeH264RateControlFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeH265CapabilityFlagsKHR]; args: varargs[VkVideoEncodeH265CapabilityFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeH265CapabilityFlagsKHR; y: VkVideoEncodeH265CapabilityFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeH265CapabilityFlagsKHR; y: VkVideoEncodeH265CapabilityFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeH265CapabilityFlagsKHR; y: VkVideoEncodeH265CapabilityFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeH265StdFlagsKHR]; args: varargs[VkVideoEncodeH265StdFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeH265StdFlagsKHR; y: VkVideoEncodeH265StdFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeH265StdFlagsKHR; y: VkVideoEncodeH265StdFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeH265StdFlagsKHR; y: VkVideoEncodeH265StdFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeH265RateControlFlagsKHR]; args: varargs[VkVideoEncodeH265RateControlFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeH265RateControlFlagsKHR; y: VkVideoEncodeH265RateControlFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeH265RateControlFlagsKHR; y: VkVideoEncodeH265RateControlFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeH265RateControlFlagsKHR; y: VkVideoEncodeH265RateControlFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeH265CtbSizeFlagsKHR]; args: varargs[VkVideoEncodeH265CtbSizeFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeH265CtbSizeFlagsKHR; y: VkVideoEncodeH265CtbSizeFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeH265CtbSizeFlagsKHR; y: VkVideoEncodeH265CtbSizeFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeH265CtbSizeFlagsKHR; y: VkVideoEncodeH265CtbSizeFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkVideoEncodeH265TransformBlockSizeFlagsKHR]; args: varargs[VkVideoEncodeH265TransformBlockSizeFlagBitsKHR]): untyped =
   t(flagsImpl(uint32, args))
+
+proc `==`(x: VkVideoEncodeH265TransformBlockSizeFlagsKHR; y: VkVideoEncodeH265TransformBlockSizeFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`(x: VkVideoEncodeH265TransformBlockSizeFlagsKHR; y: VkVideoEncodeH265TransformBlockSizeFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains(x: VkVideoEncodeH265TransformBlockSizeFlagsKHR; y: VkVideoEncodeH265TransformBlockSizeFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 
 var
   vkCreateInstance*: proc (pCreateInfo: ptr VkInstanceCreateInfo, pAllocator: ptr VkAllocationCallbacks, pInstance: ptr VkInstance): VkResult {.stdcall.}
