@@ -13467,30 +13467,30 @@ proc newVkDeviceQueueCreateInfo*(sType: VkStructureType = VkStructureType.Device
     pQueuePriorities: if len(queuePriorities) == 0: nil else: cast[ptr float32](queuePriorities),
   )
 
-proc newVkDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceCreateInfo, pNext: pointer = nil, flags: VkDeviceCreateFlags = 0.VkDeviceCreateFlags, queueCreateInfos: openarray[VkDeviceQueueCreateInfo], pEnabledLayerNames: openarray[cstring], pEnabledExtensionNames: openarray[cstring], enabledFeatures: openarray[VkPhysicalDeviceFeatures]): VkDeviceCreateInfo =
+proc newVkDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceCreateInfo, pNext: pointer = nil, flags: VkDeviceCreateFlags = 0.VkDeviceCreateFlags, queueCreateInfos: openarray[VkDeviceQueueCreateInfo], enabledLayerNames: openarray[cstring], enabledExtensionNames: openarray[cstring], enabledFeatures: openarray[VkPhysicalDeviceFeatures]): VkDeviceCreateInfo =
   result = VkDeviceCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     queueCreateInfoCount: len(queueCreateInfos).uint32,
     pQueueCreateInfos: if len(queueCreateInfos) == 0: nil else: cast[ptr VkDeviceQueueCreateInfo](queueCreateInfos),
-    enabledLayerCount: len(pEnabledLayerNames).uint32,
-    ppEnabledLayerNames: if len(pEnabledLayerNames) == 0: nil else: cast[cstringArray](pEnabledLayerNames),
-    enabledExtensionCount: len(pEnabledExtensionNames).uint32,
-    ppEnabledExtensionNames: if len(pEnabledExtensionNames) == 0: nil else: cast[cstringArray](pEnabledExtensionNames),
+    enabledLayerCount: len(enabledLayerNames).uint32,
+    ppEnabledLayerNames: if len(enabledLayerNames) == 0: nil else: cast[cstringArray](enabledLayerNames),
+    enabledExtensionCount: len(enabledExtensionNames).uint32,
+    ppEnabledExtensionNames: if len(enabledExtensionNames) == 0: nil else: cast[cstringArray](enabledExtensionNames),
     pEnabledFeatures: if len(enabledFeatures) == 0: nil else: cast[ptr VkPhysicalDeviceFeatures](enabledFeatures),
   )
 
-proc newVkInstanceCreateInfo*(sType: VkStructureType = VkStructureType.InstanceCreateInfo, pNext: pointer = nil, flags: VkInstanceCreateFlags = 0.VkInstanceCreateFlags, pApplicationInfo: ptr VkApplicationInfo, pEnabledLayerNames: openarray[cstring], pEnabledExtensionNames: openarray[cstring]): VkInstanceCreateInfo =
+proc newVkInstanceCreateInfo*(sType: VkStructureType = VkStructureType.InstanceCreateInfo, pNext: pointer = nil, flags: VkInstanceCreateFlags = 0.VkInstanceCreateFlags, pApplicationInfo: ptr VkApplicationInfo, enabledLayerNames: openarray[cstring], enabledExtensionNames: openarray[cstring]): VkInstanceCreateInfo =
   result = VkInstanceCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     pApplicationInfo: pApplicationInfo,
-    enabledLayerCount: len(pEnabledLayerNames).uint32,
-    ppEnabledLayerNames: if len(pEnabledLayerNames) == 0: nil else: cast[cstringArray](pEnabledLayerNames),
-    enabledExtensionCount: len(pEnabledExtensionNames).uint32,
-    ppEnabledExtensionNames: if len(pEnabledExtensionNames) == 0: nil else: cast[cstringArray](pEnabledExtensionNames),
+    enabledLayerCount: len(enabledLayerNames).uint32,
+    ppEnabledLayerNames: if len(enabledLayerNames) == 0: nil else: cast[cstringArray](enabledLayerNames),
+    enabledExtensionCount: len(enabledExtensionNames).uint32,
+    ppEnabledExtensionNames: if len(enabledExtensionNames) == 0: nil else: cast[cstringArray](enabledExtensionNames),
   )
 
 proc newVkQueueFamilyProperties*(queueFlags: VkQueueFlags, queueCount: uint32, timestampValidBits: uint32, minImageTransferGranularity: VkExtent3D): VkQueueFamilyProperties =

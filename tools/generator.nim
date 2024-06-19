@@ -600,7 +600,7 @@ proc uncapitalizeAscii*(s: string): string =
 
 proc toArgName(x: string): string =
   result = x
-  result.removePrefix("p")
+  result.removePrefix('p')
   result = uncapitalizeAscii(result)
 
 proc isException(x: VkStruct): bool =
