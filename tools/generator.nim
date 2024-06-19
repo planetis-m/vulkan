@@ -476,17 +476,17 @@ macro flagsImpl(base: typed, args: varargs[untyped]): untyped =
 template `{{}}`*(t: typedesc[{flags.name}]; args: varargs[{flags.flagbits}]): untyped =
   t(flagsImpl({flags.bType}, args))
 
-proc `==`(x: {flags.name}; y: {flags.name}): bool {{.inline.}} =
+proc `==`*(x: {flags.name}; y: {flags.name}): bool {{.inline.}} =
   x.{flags.bType} == y.{flags.bType}
-proc `<=`(x: {flags.name}; y: {flags.name}): bool {{.inline.}} =
+proc `<=`*(x: {flags.name}; y: {flags.name}): bool {{.inline.}} =
   (x.{flags.bType} and not y.{flags.bType}) == 0
-proc contains(x: {flags.name}; y: {flags.flagbits}): bool {{.inline.}} =
+proc contains*(x: {flags.name}; y: {flags.flagbits}): bool {{.inline.}} =
   (x.{flags.bType} and y.{flags.bType}) != 0
 
 """)
-# proc incl(x: var {flags.name}; y: {flags.flagbits}) {{.inline.}} =
+# proc incl*(x: var {flags.name}; y: {flags.flagbits}) {{.inline.}} =
 #   x = {flags.name}(x.{flags.bType} or y.{flags.bType})
-# proc excl(x: var {flags.name}; y: {flags.flagbits}) {{.inline.}} =
+# proc excl*(x: var {flags.name}; y: {flags.flagbits}) {{.inline.}} =
 #   x = {flags.name}(x.{flags.bType} and not y.{flags.bType})
 
 proc genProcs(node: XmlNode, output: var string) =
