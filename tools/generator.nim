@@ -587,7 +587,8 @@ proc isPlural(x: string): bool =
       endsWith(x.normalize, "data") or endsWith(x.normalize, "code")
 
 proc isArray(x: VkArg): bool =
-  x.name.isPlural() and x.name.startsWith('p') and x.argType.startsWith("ptr")
+  x.name.isPlural() and x.name.startsWith('p') and
+    (x.argType.startsWith("ptr") or x.argType == "cstringArray")
 
 proc isCounter(x: string): bool =
   let x = x.normalize
@@ -630,6 +631,7 @@ proc genConstructors(node: XmlNode, output: var string) =
         var argType = m.argType
         argType.removePrefix("ptr ")
         if m.name == "pCode": argType = "char"
+        if argType == "cstringArray": argType = "cstring"
         output.add(&"{m.name.toArgName}: openarray[{argType}]")
       else:
         output.add(&"{m.name}: {m.argType}")
