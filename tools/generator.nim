@@ -237,7 +237,7 @@ proc genTypes(node: XmlNode, output: var string) =
           let val = t.attr("alias")
           output.add(&"\n  {name}* = {val}\n")
           continue
-        output.add(&"\n  {name}* {{.byref.}} = object\n")
+        output.add(&"\n  {name}* = object\n")
         for member in t.findAll("member"):
           if member.attr("api") == "vulkansc":
             continue
@@ -284,7 +284,7 @@ proc genTypes(node: XmlNode, output: var string) =
         let name = t.attr("name")
         if name == "VkBaseOutStructure" or name == "VkBaseInStructure":
           continue
-        output.add(&"\n  {name}* {{.union, byref.}} = object\n")
+        output.add(&"\n  {name}* {{.union.}} = object\n")
         for member in t.findAll("member"):
           var memberName = member.child("name").innerText
           if isKeyword(memberName):
