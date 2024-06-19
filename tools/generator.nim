@@ -626,6 +626,7 @@ proc genConstructors(node: XmlNode, output: var string) =
       if foundMany:
         var argType = m.argType
         argType.removePrefix("ptr ")
+        if m.name == "pCode": argType = "char"
         output.add(&"{m.name.toArgName}: openarray[{argType}]")
       else:
         output.add(&"{m.name}: {m.argType}")

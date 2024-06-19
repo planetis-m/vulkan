@@ -13863,7 +13863,7 @@ proc newVkImageResolve*(srcSubresource: VkImageSubresourceLayers, srcOffset: VkO
     extent: extent,
   )
 
-proc newVkShaderModuleCreateInfo*(sType: VkStructureType = VkStructureType.ShaderModuleCreateInfo, pNext: pointer = nil, flags: VkShaderModuleCreateFlags = 0.VkShaderModuleCreateFlags, code: openarray[uint32]): VkShaderModuleCreateInfo =
+proc newVkShaderModuleCreateInfo*(sType: VkStructureType = VkStructureType.ShaderModuleCreateInfo, pNext: pointer = nil, flags: VkShaderModuleCreateFlags = 0.VkShaderModuleCreateFlags, code: openarray[char]): VkShaderModuleCreateInfo =
   result = VkShaderModuleCreateInfo(
     sType: sType,
     pNext: pNext,
