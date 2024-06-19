@@ -639,7 +639,8 @@ proc genConstructors(node: XmlNode, output: var string) =
             output.add(&" = VkStructureType.{styp}")
       if not foundMany and m.argType == "pointer":
         output.add(" = nil")
-      if foundMany and (i >= s.members.high or not s.members[i+1].isArray()):
+      if foundMany and (i >= s.members.high or not (s.members[i+1].isArray() or
+          s.members[i+1].name == "pWaitDstStageMask")):
         foundMany = false
     output.add(&"): {s.name} =\n")
     output.add(&"  result = {s.name}(\n")
@@ -655,7 +656,8 @@ proc genConstructors(node: XmlNode, output: var string) =
         output.add(&"{m.name}: if len({m.name.toArgName}) == 0: nil else: cast[{m.argType}]({m.name.toArgName}),\n")
       else:
         output.add(&"{m.name}: {m.name},\n")
-      if foundMany and (i >= s.members.high or not s.members[i+1].isArray()):
+      if foundMany and (i >= s.members.high or not (s.members[i+1].isArray() or
+          s.members[i+1].name == "pWaitDstStageMask")):
         foundMany = false
     output.add("  )\n")
 

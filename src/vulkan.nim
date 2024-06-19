@@ -14597,13 +14597,13 @@ proc newVkMultiDrawIndexedInfoEXT*(firstIndex: uint32, indexCount: uint32, verte
     vertexOffset: vertexOffset,
   )
 
-proc newVkSubmitInfo*(sType: VkStructureType = VkStructureType.SubmitInfo, pNext: pointer = nil, waitSemaphores: openarray[VkSemaphore], pWaitDstStageMask: ptr VkPipelineStageFlags, commandBuffers: openarray[VkCommandBuffer], signalSemaphores: openarray[VkSemaphore]): VkSubmitInfo =
+proc newVkSubmitInfo*(sType: VkStructureType = VkStructureType.SubmitInfo, pNext: pointer = nil, waitSemaphores: openarray[VkSemaphore], waitDstStageMask: openarray[VkPipelineStageFlags], commandBuffers: openarray[VkCommandBuffer], signalSemaphores: openarray[VkSemaphore]): VkSubmitInfo =
   result = VkSubmitInfo(
     sType: sType,
     pNext: pNext,
     waitSemaphoreCount: len(waitSemaphores).uint32,
     pWaitSemaphores: if len(waitSemaphores) == 0: nil else: cast[ptr VkSemaphore](waitSemaphores),
-    pWaitDstStageMask: pWaitDstStageMask,
+    pWaitDstStageMask: if len(waitDstStageMask) == 0: nil else: cast[ptr VkPipelineStageFlags](waitDstStageMask),
     commandBufferCount: len(commandBuffers).uint32,
     pCommandBuffers: if len(commandBuffers) == 0: nil else: cast[ptr VkCommandBuffer](commandBuffers),
     signalSemaphoreCount: len(signalSemaphores).uint32,
