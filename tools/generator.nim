@@ -24,6 +24,7 @@ var vkStructs: seq[VkStruct]
 var vkStructureTypes: seq[string]
 var vkFlagsTypes: seq[VkFlags]
 var vkFlagBitsTypes: seq[string]
+var vkHandleTypes: seq[VkFlags]
 
 proc camelCaseAscii*(s: string): string =
   ## Converts snake_case to CamelCase
@@ -184,6 +185,7 @@ proc genTypes(node: XmlNode, output: var string) =
           bType = t.child("type").innerText
         bType = bType.translateType()
         if not alias:
+          vkHandleTypes.add(VkFlags(name: name, bType: bType))
           bType = "distinct " & bType
         output.add(&"  {name}* = {bType}\n")
         continue
@@ -458,8 +460,14 @@ proc genEnums(node: XmlNode, output: var string) =
       prev = enumValue
     output.add("\n")
 
-proc genFlags(output: var string) =
-  echo "Generating Flags helpers..."
+proc genHelpers(output: var string) =
+  echo "Generating Handle helpers..."
+  output.add("\n# Handle helpers\n")
+  for handle in vkHandleTypes.items:
+    output.add(&"""
+proc `==`*(x, y: {handle.name}): bool {{.borrow.}}
+""")
+  echo "Generating Flag helpers..."
   output.add("\n# Flags helpers\n")
   output.add("""
 import std/macros
@@ -476,9 +484,9 @@ macro flagsImpl(base: typed, args: varargs[untyped]): untyped =
 template `{{}}`*(t: typedesc[{flags.name}]; args: varargs[{flags.flagbits}]): untyped =
   t(flagsImpl({flags.bType}, args))
 
-proc `==`*(x: {flags.name}; y: {flags.name}): bool {{.inline.}} =
+proc `==`*(x, y: {flags.name}): bool {{.inline.}} =
   x.{flags.bType} == y.{flags.bType}
-proc `<=`*(x: {flags.name}; y: {flags.name}): bool {{.inline.}} =
+proc `<=`*(x, y: {flags.name}): bool {{.inline.}} =
   (x.{flags.bType} and not y.{flags.bType}) == 0
 proc contains*(x: {flags.name}; y: {flags.flagbits}): bool {{.inline.}} =
   (x.{flags.bType} and y.{flags.bType}) != 0
@@ -701,7 +709,7 @@ proc main() =
   xml.genProcs(output)
   xml.genFeatures(output)
   xml.genExtensions(output)
-  genFlags(output)
+  genHelpers(output)
 
   output.add("\n" & vkInit)
 
