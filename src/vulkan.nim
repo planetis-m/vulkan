@@ -13467,30 +13467,30 @@ proc newVkDeviceQueueCreateInfo*(sType: VkStructureType = VkStructureType.Device
     pQueuePriorities: if len(queuePriorities) == 0: nil else: cast[ptr float32](queuePriorities),
   )
 
-proc newVkDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceCreateInfo, pNext: pointer = nil, flags: VkDeviceCreateFlags = 0.VkDeviceCreateFlags, queueCreateInfos: openarray[VkDeviceQueueCreateInfo], enabledLayerNames: openarray[cstring], enabledExtensionNames: openarray[cstring], enabledFeatures: openarray[VkPhysicalDeviceFeatures]): VkDeviceCreateInfo =
+proc newVkDeviceCreateInfo*(sType: VkStructureType = VkStructureType.DeviceCreateInfo, pNext: pointer = nil, flags: VkDeviceCreateFlags = 0.VkDeviceCreateFlags, queueCreateInfos: openarray[VkDeviceQueueCreateInfo], pEnabledLayerNames: openarray[cstring], pEnabledExtensionNames: openarray[cstring], enabledFeatures: openarray[VkPhysicalDeviceFeatures]): VkDeviceCreateInfo =
   result = VkDeviceCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     queueCreateInfoCount: len(queueCreateInfos).uint32,
     pQueueCreateInfos: if len(queueCreateInfos) == 0: nil else: cast[ptr VkDeviceQueueCreateInfo](queueCreateInfos),
-    enabledLayerCount: len(enabledLayerNames).uint32,
-    ppEnabledLayerNames: if len(enabledLayerNames) == 0: nil else: cast[cstringArray](enabledLayerNames),
-    enabledExtensionCount: len(enabledExtensionNames).uint32,
-    ppEnabledExtensionNames: if len(enabledExtensionNames) == 0: nil else: cast[cstringArray](enabledExtensionNames),
+    enabledLayerCount: len(pEnabledLayerNames).uint32,
+    ppEnabledLayerNames: if len(pEnabledLayerNames) == 0: nil else: cast[cstringArray](pEnabledLayerNames),
+    enabledExtensionCount: len(pEnabledExtensionNames).uint32,
+    ppEnabledExtensionNames: if len(pEnabledExtensionNames) == 0: nil else: cast[cstringArray](pEnabledExtensionNames),
     pEnabledFeatures: if len(enabledFeatures) == 0: nil else: cast[ptr VkPhysicalDeviceFeatures](enabledFeatures),
   )
 
-proc newVkInstanceCreateInfo*(sType: VkStructureType = VkStructureType.InstanceCreateInfo, pNext: pointer = nil, flags: VkInstanceCreateFlags = 0.VkInstanceCreateFlags, pApplicationInfo: ptr VkApplicationInfo, enabledLayerNames: openarray[cstring], enabledExtensionNames: openarray[cstring]): VkInstanceCreateInfo =
+proc newVkInstanceCreateInfo*(sType: VkStructureType = VkStructureType.InstanceCreateInfo, pNext: pointer = nil, flags: VkInstanceCreateFlags = 0.VkInstanceCreateFlags, pApplicationInfo: ptr VkApplicationInfo, pEnabledLayerNames: openarray[cstring], pEnabledExtensionNames: openarray[cstring]): VkInstanceCreateInfo =
   result = VkInstanceCreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     pApplicationInfo: pApplicationInfo,
-    enabledLayerCount: len(enabledLayerNames).uint32,
-    ppEnabledLayerNames: if len(enabledLayerNames) == 0: nil else: cast[cstringArray](enabledLayerNames),
-    enabledExtensionCount: len(enabledExtensionNames).uint32,
-    ppEnabledExtensionNames: if len(enabledExtensionNames) == 0: nil else: cast[cstringArray](enabledExtensionNames),
+    enabledLayerCount: len(pEnabledLayerNames).uint32,
+    ppEnabledLayerNames: if len(pEnabledLayerNames) == 0: nil else: cast[cstringArray](pEnabledLayerNames),
+    enabledExtensionCount: len(pEnabledExtensionNames).uint32,
+    ppEnabledExtensionNames: if len(pEnabledExtensionNames) == 0: nil else: cast[cstringArray](pEnabledExtensionNames),
   )
 
 proc newVkQueueFamilyProperties*(queueFlags: VkQueueFlags, queueCount: uint32, timestampValidBits: uint32, minImageTransferGranularity: VkExtent3D): VkQueueFamilyProperties =
@@ -19121,7 +19121,7 @@ proc newVkAccelerationStructureGeometryKHR*(sType: VkStructureType = VkStructure
     flags: flags,
   )
 
-proc newVkAccelerationStructureBuildGeometryInfoKHR*(sType: VkStructureType = VkStructureType.AccelerationStructureBuildGeometryInfoKHR, pNext: pointer = nil, `type`: VkAccelerationStructureTypeKHR, flags: VkBuildAccelerationStructureFlagsKHR = 0.VkBuildAccelerationStructureFlagsKHR, mode: VkBuildAccelerationStructureModeKHR, srcAccelerationStructure: VkAccelerationStructureKHR, dstAccelerationStructure: VkAccelerationStructureKHR, geometryCount: uint32, pGeometries: ptr VkAccelerationStructureGeometryKHR, ppGeometries: ptr ptr VkAccelerationStructureGeometryKHR, scratchData: VkDeviceOrHostAddressKHR): VkAccelerationStructureBuildGeometryInfoKHR =
+proc newVkAccelerationStructureBuildGeometryInfoKHR*(sType: VkStructureType = VkStructureType.AccelerationStructureBuildGeometryInfoKHR, pNext: pointer = nil, `type`: VkAccelerationStructureTypeKHR, flags: VkBuildAccelerationStructureFlagsKHR = 0.VkBuildAccelerationStructureFlagsKHR, mode: VkBuildAccelerationStructureModeKHR, srcAccelerationStructure: VkAccelerationStructureKHR, dstAccelerationStructure: VkAccelerationStructureKHR, geometries: openarray[VkAccelerationStructureGeometryKHR], pGeometries: openarray[ptr VkAccelerationStructureGeometryKHR], scratchData: VkDeviceOrHostAddressKHR): VkAccelerationStructureBuildGeometryInfoKHR =
   result = VkAccelerationStructureBuildGeometryInfoKHR(
     sType: sType,
     pNext: pNext,
@@ -19130,9 +19130,9 @@ proc newVkAccelerationStructureBuildGeometryInfoKHR*(sType: VkStructureType = Vk
     mode: mode,
     srcAccelerationStructure: srcAccelerationStructure,
     dstAccelerationStructure: dstAccelerationStructure,
-    geometryCount: geometryCount,
-    pGeometries: pGeometries,
-    ppGeometries: ppGeometries,
+    geometryCount: if len(geometries) == 0: len(pGeometries).uint32 else: len(geometries).uint32,
+    pGeometries: if len(geometries) == 0: nil else: cast[ptr VkAccelerationStructureGeometryKHR](geometries),
+    ppGeometries: if len(pGeometries) == 0: nil else: cast[ptr ptr VkAccelerationStructureGeometryKHR](pGeometries),
     scratchData: scratchData,
   )
 
@@ -21781,7 +21781,7 @@ proc newVkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT*(sType: VkStructureType 
     subpassMergeFeedback: subpassMergeFeedback,
   )
 
-proc newVkMicromapBuildInfoEXT*(sType: VkStructureType = VkStructureType.MicromapBuildInfoEXT, pNext: pointer = nil, `type`: VkMicromapTypeEXT, flags: VkBuildMicromapFlagsEXT = 0.VkBuildMicromapFlagsEXT, mode: VkBuildMicromapModeEXT, dstMicromap: VkMicromapEXT, usageCountsCount: uint32, pUsageCounts: ptr VkMicromapUsageEXT, ppUsageCounts: ptr ptr VkMicromapUsageEXT, data: VkDeviceOrHostAddressConstKHR, scratchData: VkDeviceOrHostAddressKHR, triangleArray: VkDeviceOrHostAddressConstKHR, triangleArrayStride: VkDeviceSize): VkMicromapBuildInfoEXT =
+proc newVkMicromapBuildInfoEXT*(sType: VkStructureType = VkStructureType.MicromapBuildInfoEXT, pNext: pointer = nil, `type`: VkMicromapTypeEXT, flags: VkBuildMicromapFlagsEXT = 0.VkBuildMicromapFlagsEXT, mode: VkBuildMicromapModeEXT, dstMicromap: VkMicromapEXT, usageCounts: openarray[VkMicromapUsageEXT], pUsageCounts: openarray[ptr VkMicromapUsageEXT], data: VkDeviceOrHostAddressConstKHR, scratchData: VkDeviceOrHostAddressKHR, triangleArray: VkDeviceOrHostAddressConstKHR, triangleArrayStride: VkDeviceSize): VkMicromapBuildInfoEXT =
   result = VkMicromapBuildInfoEXT(
     sType: sType,
     pNext: pNext,
@@ -21789,9 +21789,9 @@ proc newVkMicromapBuildInfoEXT*(sType: VkStructureType = VkStructureType.Microma
     flags: flags,
     mode: mode,
     dstMicromap: dstMicromap,
-    usageCountsCount: usageCountsCount,
-    pUsageCounts: pUsageCounts,
-    ppUsageCounts: ppUsageCounts,
+    usageCountsCount: if len(usageCounts) == 0: len(pUsageCounts).uint32 else: len(usageCounts).uint32,
+    pUsageCounts: if len(usageCounts) == 0: nil else: cast[ptr VkMicromapUsageEXT](usageCounts),
+    ppUsageCounts: if len(pUsageCounts) == 0: nil else: cast[ptr ptr VkMicromapUsageEXT](pUsageCounts),
     data: data,
     scratchData: scratchData,
     triangleArray: triangleArray,
@@ -21884,7 +21884,7 @@ proc newVkPhysicalDeviceOpacityMicromapPropertiesEXT*(sType: VkStructureType = V
     maxOpacity4StateSubdivisionLevel: maxOpacity4StateSubdivisionLevel,
   )
 
-proc newVkAccelerationStructureTrianglesOpacityMicromapEXT*(sType: VkStructureType = VkStructureType.AccelerationStructureTrianglesOpacityMicromapEXT, pNext: pointer = nil, indexType: VkIndexType, indexBuffer: VkDeviceOrHostAddressConstKHR, indexStride: VkDeviceSize, baseTriangle: uint32, usageCountsCount: uint32, pUsageCounts: ptr VkMicromapUsageEXT, ppUsageCounts: ptr ptr VkMicromapUsageEXT, micromap: VkMicromapEXT): VkAccelerationStructureTrianglesOpacityMicromapEXT =
+proc newVkAccelerationStructureTrianglesOpacityMicromapEXT*(sType: VkStructureType = VkStructureType.AccelerationStructureTrianglesOpacityMicromapEXT, pNext: pointer = nil, indexType: VkIndexType, indexBuffer: VkDeviceOrHostAddressConstKHR, indexStride: VkDeviceSize, baseTriangle: uint32, usageCounts: openarray[VkMicromapUsageEXT], pUsageCounts: openarray[ptr VkMicromapUsageEXT], micromap: VkMicromapEXT): VkAccelerationStructureTrianglesOpacityMicromapEXT =
   result = VkAccelerationStructureTrianglesOpacityMicromapEXT(
     sType: sType,
     pNext: pNext,
@@ -21892,9 +21892,9 @@ proc newVkAccelerationStructureTrianglesOpacityMicromapEXT*(sType: VkStructureTy
     indexBuffer: indexBuffer,
     indexStride: indexStride,
     baseTriangle: baseTriangle,
-    usageCountsCount: usageCountsCount,
-    pUsageCounts: pUsageCounts,
-    ppUsageCounts: ppUsageCounts,
+    usageCountsCount: if len(usageCounts) == 0: len(pUsageCounts).uint32 else: len(usageCounts).uint32,
+    pUsageCounts: if len(usageCounts) == 0: nil else: cast[ptr VkMicromapUsageEXT](usageCounts),
+    ppUsageCounts: if len(pUsageCounts) == 0: nil else: cast[ptr ptr VkMicromapUsageEXT](pUsageCounts),
     micromap: micromap,
   )
 
@@ -21912,7 +21912,7 @@ proc newVkPhysicalDeviceDisplacementMicromapPropertiesNV*(sType: VkStructureType
     maxDisplacementMicromapSubdivisionLevel: maxDisplacementMicromapSubdivisionLevel,
   )
 
-proc newVkAccelerationStructureTrianglesDisplacementMicromapNV*(sType: VkStructureType = VkStructureType.AccelerationStructureTrianglesDisplacementMicromapNV, pNext: pointer = nil, displacementBiasAndScaleFormat: VkFormat, displacementVectorFormat: VkFormat, displacementBiasAndScaleBuffer: VkDeviceOrHostAddressConstKHR, displacementBiasAndScaleStride: VkDeviceSize, displacementVectorBuffer: VkDeviceOrHostAddressConstKHR, displacementVectorStride: VkDeviceSize, displacedMicromapPrimitiveFlags: VkDeviceOrHostAddressConstKHR, displacedMicromapPrimitiveFlagsStride: VkDeviceSize, indexType: VkIndexType, indexBuffer: VkDeviceOrHostAddressConstKHR, indexStride: VkDeviceSize, baseTriangle: uint32, usageCountsCount: uint32, pUsageCounts: ptr VkMicromapUsageEXT, ppUsageCounts: ptr ptr VkMicromapUsageEXT, micromap: VkMicromapEXT): VkAccelerationStructureTrianglesDisplacementMicromapNV =
+proc newVkAccelerationStructureTrianglesDisplacementMicromapNV*(sType: VkStructureType = VkStructureType.AccelerationStructureTrianglesDisplacementMicromapNV, pNext: pointer = nil, displacementBiasAndScaleFormat: VkFormat, displacementVectorFormat: VkFormat, displacementBiasAndScaleBuffer: VkDeviceOrHostAddressConstKHR, displacementBiasAndScaleStride: VkDeviceSize, displacementVectorBuffer: VkDeviceOrHostAddressConstKHR, displacementVectorStride: VkDeviceSize, displacedMicromapPrimitiveFlags: VkDeviceOrHostAddressConstKHR, displacedMicromapPrimitiveFlagsStride: VkDeviceSize, indexType: VkIndexType, indexBuffer: VkDeviceOrHostAddressConstKHR, indexStride: VkDeviceSize, baseTriangle: uint32, usageCounts: openarray[VkMicromapUsageEXT], pUsageCounts: openarray[ptr VkMicromapUsageEXT], micromap: VkMicromapEXT): VkAccelerationStructureTrianglesDisplacementMicromapNV =
   result = VkAccelerationStructureTrianglesDisplacementMicromapNV(
     sType: sType,
     pNext: pNext,
@@ -21928,9 +21928,9 @@ proc newVkAccelerationStructureTrianglesDisplacementMicromapNV*(sType: VkStructu
     indexBuffer: indexBuffer,
     indexStride: indexStride,
     baseTriangle: baseTriangle,
-    usageCountsCount: usageCountsCount,
-    pUsageCounts: pUsageCounts,
-    ppUsageCounts: ppUsageCounts,
+    usageCountsCount: if len(usageCounts) == 0: len(pUsageCounts).uint32 else: len(usageCounts).uint32,
+    pUsageCounts: if len(usageCounts) == 0: nil else: cast[ptr VkMicromapUsageEXT](usageCounts),
+    ppUsageCounts: if len(pUsageCounts) == 0: nil else: cast[ptr ptr VkMicromapUsageEXT](pUsageCounts),
     micromap: micromap,
   )
 

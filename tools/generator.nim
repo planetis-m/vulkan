@@ -600,10 +600,10 @@ proc uncapitalizeAscii*(s: string): string =
 
 proc toArgName(x: string): string =
   result = x
-  result.removePrefix('p')
+  result.removePrefix("p")
   result = uncapitalizeAscii(result)
 
-proc isException(x: VkStruct): bool =
+proc isSpecialCase(x: VkStruct): bool =
   x.name in ["VkAccelerationStructureBuildGeometryInfoKHR",
         "VkMicromapBuildInfoEXT",
         "VkAccelerationStructureTrianglesOpacityMicromapEXT",
@@ -618,10 +618,11 @@ proc genConstructors(node: XmlNode, output: var string) =
   for s in vkStructs:
     if s.members.len == 0:
       continue
+    let isSpecialCase = isSpecialCase(s)
     output.add(&"\nproc new{s.name}*(")
     var foundMany = false
     for i, m in s.members:
-      if not isException(s) and m.name.isCounter() and
+      if m.name.isCounter() and
           i < s.members.high and s.members[i+1].isArray():
         foundMany = true
         continue
@@ -652,9 +653,15 @@ proc genConstructors(node: XmlNode, output: var string) =
     foundMany = false
     for i, m in s.members:
       output.add("    ")
-      if not isException(s) and m.name.isCounter and
+      if m.name.isCounter and
           i < s.members.high and s.members[i+1].isArray():
-        output.add(&"{m.name}: len({s.members[i+1].name.toArgName}).{m.argType},\n")
+        output.add(&"{m.name}: ")
+        if isSpecialCase:
+          output.add(&"if len({s.members[i+1].name.toArgName}) == 0: ")
+          output.add(&"len({s.members[i+2].name.toArgName}).{m.argType} ")
+          output.add(&"else: len({s.members[i+1].name.toArgName}).{m.argType},\n")
+        else:
+          output.add(&"len({s.members[i+1].name.toArgName}).{m.argType},\n")
         foundMany = true
         continue
       if foundMany:
