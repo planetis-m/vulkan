@@ -472,8 +472,8 @@ proc `*`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
 proc `not`*(x: VkDeviceSize): VkDeviceSize {.borrow.}
 proc `div`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
 proc `and`*(x, y: VkDeviceSize): VkDeviceSize {.borrow.}
-#proc `shl`*(x: VkDeviceSize; y: SomeInteger): VkDeviceSize {.borrow.}
-#proc `shr`*(x: VkDeviceSize; y: SomeInteger): VkDeviceSize {.borrow.}
+proc `shl`*(x: VkDeviceSize; y: uint64): VkDeviceSize {.borrow.}
+proc `shr`*(x: VkDeviceSize; y: uint64): VkDeviceSize {.borrow.}
 
 """)
   echo "Generating Handle helpers..."
@@ -487,17 +487,17 @@ proc `==`*(x, y: {handle.name}): bool {{.borrow.}}
   output.add("""
 import std/macros
 
-macro flagsImpl(base: typed, args: varargs[untyped]): untyped =
+macro flagsImpl(base, bits: typed, args: varargs[untyped]): untyped =
   let arr = newNimNode(nnkBracketExpr)
-  for n in args: arr.add newCall(base, n)
+  for n in args: arr.add newCall(base, newDotExpr(bits, n))
   result = nestList(bindSym"or", arr)
 
 """)
   for flags in vkFlagsTypes.items:
     if not vkFlagBitsTypes.anyIt(it == flags.flagbits): continue
     output.add(&"""
-template `{{}}`*(t: typedesc[{flags.name}]; args: varargs[{flags.flagbits}]): untyped =
-  t(flagsImpl({flags.bType}, args))
+template `{{}}`*(t: typedesc[{flags.name}]; args: varargs[untyped]): untyped =
+  t(flagsImpl({flags.bType}, {flags.flagbits}, args))
 
 proc `==`*(x, y: {flags.name}): bool {{.inline.}} =
   x.{flags.bType} == y.{flags.bType}
