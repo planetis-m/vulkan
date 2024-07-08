@@ -24953,7 +24953,7 @@ import std/macros
 
 macro flagsImpl(base, bits: typed, args: varargs[untyped]): untyped =
   let arr = newNimNode(nnkBracketExpr)
-  for n in args: arr.add newCall(base, newDotExpr(bits, n))
+  for n in args: arr.add newCall(base, if n.kind == nnkDotExpr: n else: newDotExpr(bits, n))
   result = nestList(bindSym"or", arr)
 
 template `{}`*(t: typedesc[VkFramebufferCreateFlags]; args: varargs[untyped]): untyped =
