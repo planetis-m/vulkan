@@ -47,1165 +47,1196 @@ type
 
 # Enums
 const
-  VK_MAX_PHYSICAL_DEVICE_NAME_SIZE* = 256
-  VK_UUID_SIZE* = 16
-  VK_LUID_SIZE* = 8
-  VK_LUID_SIZE_KHR* = VK_LUID_SIZE
-  VK_MAX_EXTENSION_NAME_SIZE* = 256
-  VK_MAX_DESCRIPTION_SIZE* = 256
-  VK_MAX_MEMORY_TYPES* = 32
-  VK_MAX_MEMORY_HEAPS* = 16
-  VK_LOD_CLAMP_NONE* = 1000.0F
-  VK_REMAINING_MIP_LEVELS* = (not 0'u32)
-  VK_REMAINING_ARRAY_LAYERS* = (not 0'u32)
-  VK_REMAINING_3D_SLICES_EXT* = (not 0'u32)
-  VK_WHOLE_SIZE* = (not 0'u64)
-  VK_ATTACHMENT_UNUSED* = (not 0'u32)
-  VK_TRUE* = 1
-  VK_FALSE* = 0
-  VK_QUEUE_FAMILY_IGNORED* = (not 0'u32)
-  VK_QUEUE_FAMILY_EXTERNAL* = (not 1'u32)
-  VK_QUEUE_FAMILY_EXTERNAL_KHR* = VK_QUEUE_FAMILY_EXTERNAL
-  VK_QUEUE_FAMILY_FOREIGN_EXT* = (not 2'u32)
-  VK_SUBPASS_EXTERNAL* = (not 0'u32)
-  VK_MAX_DEVICE_GROUP_SIZE* = 32
-  VK_MAX_DEVICE_GROUP_SIZE_KHR* = VK_MAX_DEVICE_GROUP_SIZE
-  VK_MAX_DRIVER_NAME_SIZE* = 256
-  VK_MAX_DRIVER_NAME_SIZE_KHR* = VK_MAX_DRIVER_NAME_SIZE
-  VK_MAX_DRIVER_INFO_SIZE* = 256
-  VK_MAX_DRIVER_INFO_SIZE_KHR* = VK_MAX_DRIVER_INFO_SIZE
-  VK_SHADER_UNUSED_KHR* = (not 0'u32)
-  VK_SHADER_UNUSED_NV* = VK_SHADER_UNUSED_KHR
-  VK_MAX_GLOBAL_PRIORITY_SIZE_KHR* = 16
-  VK_MAX_GLOBAL_PRIORITY_SIZE_EXT* = VK_MAX_GLOBAL_PRIORITY_SIZE_KHR
-  VK_MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT* = 32
-  VK_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR* = 7
-  VK_SHADER_INDEX_UNUSED_AMDX* = (not 0'u32)
+  VkMaxPhysicalDeviceNameSize* = 256
+  VkUuidSize* = 16
+  VkLuidSize* = 8
+  VkLuidSizeKhr* = VkLuidSize
+  VkMaxExtensionNameSize* = 256
+  VkMaxDescriptionSize* = 256
+  VkMaxMemoryTypes* = 32
+  VkMaxMemoryHeaps* = 16
+  VkLodClampNone* = 1000.0f
+  VkRemainingMipLevels* = (not 0'u32)
+  VkRemainingArrayLayers* = (not 0'u32)
+  VkRemaining3dSlicesExt* = (not 0'u32)
+  VkWholeSize* = (not 0'u64)
+  VkAttachmentUnused* = (not 0'u32)
+  VkTrue* = 1
+  VkFalse* = 0
+  VkQueueFamilyIgnored* = (not 0'u32)
+  VkQueueFamilyExternal* = (not 1'u32)
+  VkQueueFamilyExternalKhr* = VkQueueFamilyExternal
+  VkQueueFamilyForeignExt* = (not 2'u32)
+  VkSubpassExternal* = (not 0'u32)
+  VkMaxDeviceGroupSize* = 32
+  VkMaxDeviceGroupSizeKhr* = VkMaxDeviceGroupSize
+  VkMaxDriverNameSize* = 256
+  VkMaxDriverNameSizeKhr* = VkMaxDriverNameSize
+  VkMaxDriverInfoSize* = 256
+  VkMaxDriverInfoSizeKhr* = VkMaxDriverInfoSize
+  VkShaderUnusedKhr* = (not 0'u32)
+  VkShaderUnusedNv* = VkShaderUnusedKhr
+  VkMaxGlobalPrioritySizeKhr* = 16
+  VkMaxGlobalPrioritySizeExt* = VkMaxGlobalPrioritySizeKhr
+  VkMaxShaderModuleIdentifierSizeExt* = 32
+  VkMaxPipelineBinaryKeySizeKhr* = 32
+  VkMaxVideoAv1ReferencesPerFrameKhr* = 7
+  VkShaderIndexUnusedAmdx* = (not 0'u32)
   # Extension: VK_KHR_surface
-  VK_KHR_SURFACE_SPEC_VERSION* = 25
-  VK_KHR_SURFACE_EXTENSION_NAME* = "VK_KHR_surface"
+  VkKhrSurfaceSpecVersion* = 25
+  VkKhrSurfaceExtensionName* = "VK_KHR_surface"
   # Extension: VK_KHR_swapchain
-  VK_KHR_SWAPCHAIN_SPEC_VERSION* = 70
-  VK_KHR_SWAPCHAIN_EXTENSION_NAME* = "VK_KHR_swapchain"
+  VkKhrSwapchainSpecVersion* = 70
+  VkKhrSwapchainExtensionName* = "VK_KHR_swapchain"
   # Extension: VK_KHR_display
-  VK_KHR_DISPLAY_SPEC_VERSION* = 23
-  VK_KHR_DISPLAY_EXTENSION_NAME* = "VK_KHR_display"
+  VkKhrDisplaySpecVersion* = 23
+  VkKhrDisplayExtensionName* = "VK_KHR_display"
   # Extension: VK_KHR_display_swapchain
-  VK_KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION* = 10
-  VK_KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME* = "VK_KHR_display_swapchain"
+  VkKhrDisplaySwapchainSpecVersion* = 10
+  VkKhrDisplaySwapchainExtensionName* = "VK_KHR_display_swapchain"
   # Extension: VK_KHR_xlib_surface
-  VK_KHR_XLIB_SURFACE_SPEC_VERSION* = 6
-  VK_KHR_XLIB_SURFACE_EXTENSION_NAME* = "VK_KHR_xlib_surface"
+  VkKhrXlibSurfaceSpecVersion* = 6
+  VkKhrXlibSurfaceExtensionName* = "VK_KHR_xlib_surface"
   # Extension: VK_KHR_xcb_surface
-  VK_KHR_XCB_SURFACE_SPEC_VERSION* = 6
-  VK_KHR_XCB_SURFACE_EXTENSION_NAME* = "VK_KHR_xcb_surface"
+  VkKhrXcbSurfaceSpecVersion* = 6
+  VkKhrXcbSurfaceExtensionName* = "VK_KHR_xcb_surface"
   # Extension: VK_KHR_wayland_surface
-  VK_KHR_WAYLAND_SURFACE_SPEC_VERSION* = 6
-  VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME* = "VK_KHR_wayland_surface"
+  VkKhrWaylandSurfaceSpecVersion* = 6
+  VkKhrWaylandSurfaceExtensionName* = "VK_KHR_wayland_surface"
   # Extension: VK_KHR_android_surface
-  VK_KHR_ANDROID_SURFACE_SPEC_VERSION* = 6
-  VK_KHR_ANDROID_SURFACE_EXTENSION_NAME* = "VK_KHR_android_surface"
+  VkKhrAndroidSurfaceSpecVersion* = 6
+  VkKhrAndroidSurfaceExtensionName* = "VK_KHR_android_surface"
   # Extension: VK_KHR_win32_surface
-  VK_KHR_WIN32_SURFACE_SPEC_VERSION* = 6
-  VK_KHR_WIN32_SURFACE_EXTENSION_NAME* = "VK_KHR_win32_surface"
+  VkKhrWin32SurfaceSpecVersion* = 6
+  VkKhrWin32SurfaceExtensionName* = "VK_KHR_win32_surface"
   # Extension: VK_EXT_debug_report
-  VK_EXT_DEBUG_REPORT_SPEC_VERSION* = 10
-  VK_EXT_DEBUG_REPORT_EXTENSION_NAME* = "VK_EXT_debug_report"
+  VkExtDebugReportSpecVersion* = 10
+  VkExtDebugReportExtensionName* = "VK_EXT_debug_report"
   # Extension: VK_NV_glsl_shader
-  VK_NV_GLSL_SHADER_SPEC_VERSION* = 1
-  VK_NV_GLSL_SHADER_EXTENSION_NAME* = "VK_NV_glsl_shader"
+  VkNvGlslShaderSpecVersion* = 1
+  VkNvGlslShaderExtensionName* = "VK_NV_glsl_shader"
   # Extension: VK_EXT_depth_range_unrestricted
-  VK_EXT_DEPTH_RANGE_UNRESTRICTED_SPEC_VERSION* = 1
-  VK_EXT_DEPTH_RANGE_UNRESTRICTED_EXTENSION_NAME* = "VK_EXT_depth_range_unrestricted"
+  VkExtDepthRangeUnrestrictedSpecVersion* = 1
+  VkExtDepthRangeUnrestrictedExtensionName* = "VK_EXT_depth_range_unrestricted"
   # Extension: VK_KHR_sampler_mirror_clamp_to_edge
-  VK_KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_SPEC_VERSION* = 3
-  VK_KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_EXTENSION_NAME* = "VK_KHR_sampler_mirror_clamp_to_edge"
+  VkKhrSamplerMirrorClampToEdgeSpecVersion* = 3
+  VkKhrSamplerMirrorClampToEdgeExtensionName* = "VK_KHR_sampler_mirror_clamp_to_edge"
   # Extension: VK_IMG_filter_cubic
-  VK_IMG_FILTER_CUBIC_SPEC_VERSION* = 1
-  VK_IMG_FILTER_CUBIC_EXTENSION_NAME* = "VK_IMG_filter_cubic"
+  VkImgFilterCubicSpecVersion* = 1
+  VkImgFilterCubicExtensionName* = "VK_IMG_filter_cubic"
   # Extension: VK_AMD_rasterization_order
-  VK_AMD_RASTERIZATION_ORDER_SPEC_VERSION* = 1
-  VK_AMD_RASTERIZATION_ORDER_EXTENSION_NAME* = "VK_AMD_rasterization_order"
+  VkAmdRasterizationOrderSpecVersion* = 1
+  VkAmdRasterizationOrderExtensionName* = "VK_AMD_rasterization_order"
   # Extension: VK_AMD_shader_trinary_minmax
-  VK_AMD_SHADER_TRINARY_MINMAX_SPEC_VERSION* = 1
-  VK_AMD_SHADER_TRINARY_MINMAX_EXTENSION_NAME* = "VK_AMD_shader_trinary_minmax"
+  VkAmdShaderTrinaryMinmaxSpecVersion* = 1
+  VkAmdShaderTrinaryMinmaxExtensionName* = "VK_AMD_shader_trinary_minmax"
   # Extension: VK_AMD_shader_explicit_vertex_parameter
-  VK_AMD_SHADER_EXPLICIT_VERTEX_PARAMETER_SPEC_VERSION* = 1
-  VK_AMD_SHADER_EXPLICIT_VERTEX_PARAMETER_EXTENSION_NAME* = "VK_AMD_shader_explicit_vertex_parameter"
+  VkAmdShaderExplicitVertexParameterSpecVersion* = 1
+  VkAmdShaderExplicitVertexParameterExtensionName* = "VK_AMD_shader_explicit_vertex_parameter"
   # Extension: VK_EXT_debug_marker
-  VK_EXT_DEBUG_MARKER_SPEC_VERSION* = 4
-  VK_EXT_DEBUG_MARKER_EXTENSION_NAME* = "VK_EXT_debug_marker"
+  VkExtDebugMarkerSpecVersion* = 4
+  VkExtDebugMarkerExtensionName* = "VK_EXT_debug_marker"
   # Extension: VK_KHR_video_queue
-  VK_KHR_VIDEO_QUEUE_SPEC_VERSION* = 8
-  VK_KHR_VIDEO_QUEUE_EXTENSION_NAME* = "VK_KHR_video_queue"
+  VkKhrVideoQueueSpecVersion* = 8
+  VkKhrVideoQueueExtensionName* = "VK_KHR_video_queue"
   # Extension: VK_KHR_video_decode_queue
-  VK_KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION* = 8
-  VK_KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME* = "VK_KHR_video_decode_queue"
+  VkKhrVideoDecodeQueueSpecVersion* = 8
+  VkKhrVideoDecodeQueueExtensionName* = "VK_KHR_video_decode_queue"
   # Extension: VK_AMD_gcn_shader
-  VK_AMD_GCN_SHADER_SPEC_VERSION* = 1
-  VK_AMD_GCN_SHADER_EXTENSION_NAME* = "VK_AMD_gcn_shader"
+  VkAmdGcnShaderSpecVersion* = 1
+  VkAmdGcnShaderExtensionName* = "VK_AMD_gcn_shader"
   # Extension: VK_NV_dedicated_allocation
-  VK_NV_DEDICATED_ALLOCATION_SPEC_VERSION* = 1
-  VK_NV_DEDICATED_ALLOCATION_EXTENSION_NAME* = "VK_NV_dedicated_allocation"
+  VkNvDedicatedAllocationSpecVersion* = 1
+  VkNvDedicatedAllocationExtensionName* = "VK_NV_dedicated_allocation"
   # Extension: VK_EXT_transform_feedback
-  VK_EXT_TRANSFORM_FEEDBACK_SPEC_VERSION* = 1
-  VK_EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME* = "VK_EXT_transform_feedback"
+  VkExtTransformFeedbackSpecVersion* = 1
+  VkExtTransformFeedbackExtensionName* = "VK_EXT_transform_feedback"
   # Extension: VK_NVX_binary_import
-  VK_NVX_BINARY_IMPORT_SPEC_VERSION* = 1
-  VK_NVX_BINARY_IMPORT_EXTENSION_NAME* = "VK_NVX_binary_import"
+  VkNvxBinaryImportSpecVersion* = 1
+  VkNvxBinaryImportExtensionName* = "VK_NVX_binary_import"
   # Extension: VK_NVX_image_view_handle
-  VK_NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION* = 2
-  VK_NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME* = "VK_NVX_image_view_handle"
+  VkNvxImageViewHandleSpecVersion* = 2
+  VkNvxImageViewHandleExtensionName* = "VK_NVX_image_view_handle"
   # Extension: VK_AMD_draw_indirect_count
-  VK_AMD_DRAW_INDIRECT_COUNT_SPEC_VERSION* = 2
-  VK_AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME* = "VK_AMD_draw_indirect_count"
+  VkAmdDrawIndirectCountSpecVersion* = 2
+  VkAmdDrawIndirectCountExtensionName* = "VK_AMD_draw_indirect_count"
   # Extension: VK_AMD_negative_viewport_height
-  VK_AMD_NEGATIVE_VIEWPORT_HEIGHT_SPEC_VERSION* = 1
-  VK_AMD_NEGATIVE_VIEWPORT_HEIGHT_EXTENSION_NAME* = "VK_AMD_negative_viewport_height"
+  VkAmdNegativeViewportHeightSpecVersion* = 1
+  VkAmdNegativeViewportHeightExtensionName* = "VK_AMD_negative_viewport_height"
   # Extension: VK_AMD_gpu_shader_half_float
-  VK_AMD_GPU_SHADER_HALF_FLOAT_SPEC_VERSION* = 2
-  VK_AMD_GPU_SHADER_HALF_FLOAT_EXTENSION_NAME* = "VK_AMD_gpu_shader_half_float"
+  VkAmdGpuShaderHalfFloatSpecVersion* = 2
+  VkAmdGpuShaderHalfFloatExtensionName* = "VK_AMD_gpu_shader_half_float"
   # Extension: VK_AMD_shader_ballot
-  VK_AMD_SHADER_BALLOT_SPEC_VERSION* = 1
-  VK_AMD_SHADER_BALLOT_EXTENSION_NAME* = "VK_AMD_shader_ballot"
+  VkAmdShaderBallotSpecVersion* = 1
+  VkAmdShaderBallotExtensionName* = "VK_AMD_shader_ballot"
   # Extension: VK_KHR_video_encode_h264
-  VK_KHR_VIDEO_ENCODE_H264_SPEC_VERSION* = 14
-  VK_KHR_VIDEO_ENCODE_H264_EXTENSION_NAME* = "VK_KHR_video_encode_h264"
+  VkKhrVideoEncodeH264SpecVersion* = 14
+  VkKhrVideoEncodeH264ExtensionName* = "VK_KHR_video_encode_h264"
   # Extension: VK_KHR_video_encode_h265
-  VK_KHR_VIDEO_ENCODE_H265_SPEC_VERSION* = 14
-  VK_KHR_VIDEO_ENCODE_H265_EXTENSION_NAME* = "VK_KHR_video_encode_h265"
+  VkKhrVideoEncodeH265SpecVersion* = 14
+  VkKhrVideoEncodeH265ExtensionName* = "VK_KHR_video_encode_h265"
   # Extension: VK_KHR_video_decode_h264
-  VK_KHR_VIDEO_DECODE_H264_SPEC_VERSION* = 9
-  VK_KHR_VIDEO_DECODE_H264_EXTENSION_NAME* = "VK_KHR_video_decode_h264"
+  VkKhrVideoDecodeH264SpecVersion* = 9
+  VkKhrVideoDecodeH264ExtensionName* = "VK_KHR_video_decode_h264"
   # Extension: VK_AMD_texture_gather_bias_lod
-  VK_AMD_TEXTURE_GATHER_BIAS_LOD_SPEC_VERSION* = 1
-  VK_AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME* = "VK_AMD_texture_gather_bias_lod"
+  VkAmdTextureGatherBiasLodSpecVersion* = 1
+  VkAmdTextureGatherBiasLodExtensionName* = "VK_AMD_texture_gather_bias_lod"
   # Extension: VK_AMD_shader_info
-  VK_AMD_SHADER_INFO_SPEC_VERSION* = 1
-  VK_AMD_SHADER_INFO_EXTENSION_NAME* = "VK_AMD_shader_info"
+  VkAmdShaderInfoSpecVersion* = 1
+  VkAmdShaderInfoExtensionName* = "VK_AMD_shader_info"
   # Extension: VK_KHR_dynamic_rendering
-  VK_KHR_DYNAMIC_RENDERING_SPEC_VERSION* = 1
-  VK_KHR_DYNAMIC_RENDERING_EXTENSION_NAME* = "VK_KHR_dynamic_rendering"
+  VkKhrDynamicRenderingSpecVersion* = 1
+  VkKhrDynamicRenderingExtensionName* = "VK_KHR_dynamic_rendering"
   # Extension: VK_AMD_shader_image_load_store_lod
-  VK_AMD_SHADER_IMAGE_LOAD_STORE_LOD_SPEC_VERSION* = 1
-  VK_AMD_SHADER_IMAGE_LOAD_STORE_LOD_EXTENSION_NAME* = "VK_AMD_shader_image_load_store_lod"
+  VkAmdShaderImageLoadStoreLodSpecVersion* = 1
+  VkAmdShaderImageLoadStoreLodExtensionName* = "VK_AMD_shader_image_load_store_lod"
   # Extension: VK_GGP_stream_descriptor_surface
-  VK_GGP_STREAM_DESCRIPTOR_SURFACE_SPEC_VERSION* = 1
-  VK_GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME* = "VK_GGP_stream_descriptor_surface"
+  VkGgpStreamDescriptorSurfaceSpecVersion* = 1
+  VkGgpStreamDescriptorSurfaceExtensionName* = "VK_GGP_stream_descriptor_surface"
   # Extension: VK_NV_corner_sampled_image
-  VK_NV_CORNER_SAMPLED_IMAGE_SPEC_VERSION* = 2
-  VK_NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME* = "VK_NV_corner_sampled_image"
+  VkNvCornerSampledImageSpecVersion* = 2
+  VkNvCornerSampledImageExtensionName* = "VK_NV_corner_sampled_image"
   # Extension: VK_NV_private_vendor_info
-  VK_NV_PRIVATE_VENDOR_INFO_SPEC_VERSION* = 2
-  VK_NV_PRIVATE_VENDOR_INFO_EXTENSION_NAME* = "VK_NV_private_vendor_info"
+  VkNvPrivateVendorInfoSpecVersion* = 2
+  VkNvPrivateVendorInfoExtensionName* = "VK_NV_private_vendor_info"
   # Extension: VK_KHR_multiview
-  VK_KHR_MULTIVIEW_SPEC_VERSION* = 1
-  VK_KHR_MULTIVIEW_EXTENSION_NAME* = "VK_KHR_multiview"
+  VkKhrMultiviewSpecVersion* = 1
+  VkKhrMultiviewExtensionName* = "VK_KHR_multiview"
   # Extension: VK_IMG_format_pvrtc
-  VK_IMG_FORMAT_PVRTC_SPEC_VERSION* = 1
-  VK_IMG_FORMAT_PVRTC_EXTENSION_NAME* = "VK_IMG_format_pvrtc"
+  VkImgFormatPvrtcSpecVersion* = 1
+  VkImgFormatPvrtcExtensionName* = "VK_IMG_format_pvrtc"
   # Extension: VK_NV_external_memory_capabilities
-  VK_NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION* = 1
-  VK_NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME* = "VK_NV_external_memory_capabilities"
+  VkNvExternalMemoryCapabilitiesSpecVersion* = 1
+  VkNvExternalMemoryCapabilitiesExtensionName* = "VK_NV_external_memory_capabilities"
   # Extension: VK_NV_external_memory
-  VK_NV_EXTERNAL_MEMORY_SPEC_VERSION* = 1
-  VK_NV_EXTERNAL_MEMORY_EXTENSION_NAME* = "VK_NV_external_memory"
+  VkNvExternalMemorySpecVersion* = 1
+  VkNvExternalMemoryExtensionName* = "VK_NV_external_memory"
   # Extension: VK_NV_external_memory_win32
-  VK_NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION* = 1
-  VK_NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME* = "VK_NV_external_memory_win32"
+  VkNvExternalMemoryWin32SpecVersion* = 1
+  VkNvExternalMemoryWin32ExtensionName* = "VK_NV_external_memory_win32"
   # Extension: VK_NV_win32_keyed_mutex
-  VK_NV_WIN32_KEYED_MUTEX_SPEC_VERSION* = 2
-  VK_NV_WIN32_KEYED_MUTEX_EXTENSION_NAME* = "VK_NV_win32_keyed_mutex"
+  VkNvWin32KeyedMutexSpecVersion* = 2
+  VkNvWin32KeyedMutexExtensionName* = "VK_NV_win32_keyed_mutex"
   # Extension: VK_KHR_get_physical_device_properties2
-  VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION* = 2
-  VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME* = "VK_KHR_get_physical_device_properties2"
+  VkKhrGetPhysicalDeviceProperties2SpecVersion* = 2
+  VkKhrGetPhysicalDeviceProperties2ExtensionName* = "VK_KHR_get_physical_device_properties2"
   # Extension: VK_KHR_device_group
-  VK_KHR_DEVICE_GROUP_SPEC_VERSION* = 4
-  VK_KHR_DEVICE_GROUP_EXTENSION_NAME* = "VK_KHR_device_group"
+  VkKhrDeviceGroupSpecVersion* = 4
+  VkKhrDeviceGroupExtensionName* = "VK_KHR_device_group"
   # Extension: VK_EXT_validation_flags
-  VK_EXT_VALIDATION_FLAGS_SPEC_VERSION* = 3
-  VK_EXT_VALIDATION_FLAGS_EXTENSION_NAME* = "VK_EXT_validation_flags"
+  VkExtValidationFlagsSpecVersion* = 3
+  VkExtValidationFlagsExtensionName* = "VK_EXT_validation_flags"
   # Extension: VK_NN_vi_surface
-  VK_NN_VI_SURFACE_SPEC_VERSION* = 1
-  VK_NN_VI_SURFACE_EXTENSION_NAME* = "VK_NN_vi_surface"
+  VkNnViSurfaceSpecVersion* = 1
+  VkNnViSurfaceExtensionName* = "VK_NN_vi_surface"
   # Extension: VK_KHR_shader_draw_parameters
-  VK_KHR_SHADER_DRAW_PARAMETERS_SPEC_VERSION* = 1
-  VK_KHR_SHADER_DRAW_PARAMETERS_EXTENSION_NAME* = "VK_KHR_shader_draw_parameters"
+  VkKhrShaderDrawParametersSpecVersion* = 1
+  VkKhrShaderDrawParametersExtensionName* = "VK_KHR_shader_draw_parameters"
   # Extension: VK_EXT_shader_subgroup_ballot
-  VK_EXT_SHADER_SUBGROUP_BALLOT_SPEC_VERSION* = 1
-  VK_EXT_SHADER_SUBGROUP_BALLOT_EXTENSION_NAME* = "VK_EXT_shader_subgroup_ballot"
+  VkExtShaderSubgroupBallotSpecVersion* = 1
+  VkExtShaderSubgroupBallotExtensionName* = "VK_EXT_shader_subgroup_ballot"
   # Extension: VK_EXT_shader_subgroup_vote
-  VK_EXT_SHADER_SUBGROUP_VOTE_SPEC_VERSION* = 1
-  VK_EXT_SHADER_SUBGROUP_VOTE_EXTENSION_NAME* = "VK_EXT_shader_subgroup_vote"
+  VkExtShaderSubgroupVoteSpecVersion* = 1
+  VkExtShaderSubgroupVoteExtensionName* = "VK_EXT_shader_subgroup_vote"
   # Extension: VK_EXT_texture_compression_astc_hdr
-  VK_EXT_TEXTURE_COMPRESSION_ASTC_HDR_SPEC_VERSION* = 1
-  VK_EXT_TEXTURE_COMPRESSION_ASTC_HDR_EXTENSION_NAME* = "VK_EXT_texture_compression_astc_hdr"
+  VkExtTextureCompressionAstcHdrSpecVersion* = 1
+  VkExtTextureCompressionAstcHdrExtensionName* = "VK_EXT_texture_compression_astc_hdr"
   # Extension: VK_EXT_astc_decode_mode
-  VK_EXT_ASTC_DECODE_MODE_SPEC_VERSION* = 1
-  VK_EXT_ASTC_DECODE_MODE_EXTENSION_NAME* = "VK_EXT_astc_decode_mode"
+  VkExtAstcDecodeModeSpecVersion* = 1
+  VkExtAstcDecodeModeExtensionName* = "VK_EXT_astc_decode_mode"
   # Extension: VK_EXT_pipeline_robustness
-  VK_EXT_PIPELINE_ROBUSTNESS_SPEC_VERSION* = 1
-  VK_EXT_PIPELINE_ROBUSTNESS_EXTENSION_NAME* = "VK_EXT_pipeline_robustness"
+  VkExtPipelineRobustnessSpecVersion* = 1
+  VkExtPipelineRobustnessExtensionName* = "VK_EXT_pipeline_robustness"
   # Extension: VK_KHR_maintenance1
-  VK_KHR_MAINTENANCE_1_SPEC_VERSION* = 2
-  VK_KHR_MAINTENANCE_1_EXTENSION_NAME* = "VK_KHR_maintenance1"
+  VkKhrMaintenance1SpecVersion* = 2
+  VkKhrMaintenance1ExtensionName* = "VK_KHR_maintenance1"
   # Extension: VK_KHR_device_group_creation
-  VK_KHR_DEVICE_GROUP_CREATION_SPEC_VERSION* = 1
-  VK_KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME* = "VK_KHR_device_group_creation"
+  VkKhrDeviceGroupCreationSpecVersion* = 1
+  VkKhrDeviceGroupCreationExtensionName* = "VK_KHR_device_group_creation"
   # Extension: VK_KHR_external_memory_capabilities
-  VK_KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME* = "VK_KHR_external_memory_capabilities"
+  VkKhrExternalMemoryCapabilitiesSpecVersion* = 1
+  VkKhrExternalMemoryCapabilitiesExtensionName* = "VK_KHR_external_memory_capabilities"
   # Extension: VK_KHR_external_memory
-  VK_KHR_EXTERNAL_MEMORY_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_MEMORY_EXTENSION_NAME* = "VK_KHR_external_memory"
+  VkKhrExternalMemorySpecVersion* = 1
+  VkKhrExternalMemoryExtensionName* = "VK_KHR_external_memory"
   # Extension: VK_KHR_external_memory_win32
-  VK_KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME* = "VK_KHR_external_memory_win32"
+  VkKhrExternalMemoryWin32SpecVersion* = 1
+  VkKhrExternalMemoryWin32ExtensionName* = "VK_KHR_external_memory_win32"
   # Extension: VK_KHR_external_memory_fd
-  VK_KHR_EXTERNAL_MEMORY_FD_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME* = "VK_KHR_external_memory_fd"
+  VkKhrExternalMemoryFdSpecVersion* = 1
+  VkKhrExternalMemoryFdExtensionName* = "VK_KHR_external_memory_fd"
   # Extension: VK_KHR_win32_keyed_mutex
-  VK_KHR_WIN32_KEYED_MUTEX_SPEC_VERSION* = 1
-  VK_KHR_WIN32_KEYED_MUTEX_EXTENSION_NAME* = "VK_KHR_win32_keyed_mutex"
+  VkKhrWin32KeyedMutexSpecVersion* = 1
+  VkKhrWin32KeyedMutexExtensionName* = "VK_KHR_win32_keyed_mutex"
   # Extension: VK_KHR_external_semaphore_capabilities
-  VK_KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME* = "VK_KHR_external_semaphore_capabilities"
+  VkKhrExternalSemaphoreCapabilitiesSpecVersion* = 1
+  VkKhrExternalSemaphoreCapabilitiesExtensionName* = "VK_KHR_external_semaphore_capabilities"
   # Extension: VK_KHR_external_semaphore
-  VK_KHR_EXTERNAL_SEMAPHORE_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_SEMAPHORE_EXTENSION_NAME* = "VK_KHR_external_semaphore"
+  VkKhrExternalSemaphoreSpecVersion* = 1
+  VkKhrExternalSemaphoreExtensionName* = "VK_KHR_external_semaphore"
   # Extension: VK_KHR_external_semaphore_win32
-  VK_KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME* = "VK_KHR_external_semaphore_win32"
+  VkKhrExternalSemaphoreWin32SpecVersion* = 1
+  VkKhrExternalSemaphoreWin32ExtensionName* = "VK_KHR_external_semaphore_win32"
   # Extension: VK_KHR_external_semaphore_fd
-  VK_KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME* = "VK_KHR_external_semaphore_fd"
+  VkKhrExternalSemaphoreFdSpecVersion* = 1
+  VkKhrExternalSemaphoreFdExtensionName* = "VK_KHR_external_semaphore_fd"
   # Extension: VK_KHR_push_descriptor
-  VK_KHR_PUSH_DESCRIPTOR_SPEC_VERSION* = 2
-  VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME* = "VK_KHR_push_descriptor"
+  VkKhrPushDescriptorSpecVersion* = 2
+  VkKhrPushDescriptorExtensionName* = "VK_KHR_push_descriptor"
   # Extension: VK_EXT_conditional_rendering
-  VK_EXT_CONDITIONAL_RENDERING_SPEC_VERSION* = 2
-  VK_EXT_CONDITIONAL_RENDERING_EXTENSION_NAME* = "VK_EXT_conditional_rendering"
+  VkExtConditionalRenderingSpecVersion* = 2
+  VkExtConditionalRenderingExtensionName* = "VK_EXT_conditional_rendering"
   # Extension: VK_KHR_shader_float16_int8
-  VK_KHR_SHADER_FLOAT16_INT8_SPEC_VERSION* = 1
-  VK_KHR_SHADER_FLOAT16_INT8_EXTENSION_NAME* = "VK_KHR_shader_float16_int8"
+  VkKhrShaderFloat16Int8SpecVersion* = 1
+  VkKhrShaderFloat16Int8ExtensionName* = "VK_KHR_shader_float16_int8"
   # Extension: VK_KHR_16bit_storage
-  VK_KHR_16BIT_STORAGE_SPEC_VERSION* = 1
-  VK_KHR_16BIT_STORAGE_EXTENSION_NAME* = "VK_KHR_16bit_storage"
+  VkKhr16bitStorageSpecVersion* = 1
+  VkKhr16bitStorageExtensionName* = "VK_KHR_16bit_storage"
   # Extension: VK_KHR_incremental_present
-  VK_KHR_INCREMENTAL_PRESENT_SPEC_VERSION* = 2
-  VK_KHR_INCREMENTAL_PRESENT_EXTENSION_NAME* = "VK_KHR_incremental_present"
+  VkKhrIncrementalPresentSpecVersion* = 2
+  VkKhrIncrementalPresentExtensionName* = "VK_KHR_incremental_present"
   # Extension: VK_KHR_descriptor_update_template
-  VK_KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION* = 1
-  VK_KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME* = "VK_KHR_descriptor_update_template"
+  VkKhrDescriptorUpdateTemplateSpecVersion* = 1
+  VkKhrDescriptorUpdateTemplateExtensionName* = "VK_KHR_descriptor_update_template"
   # Extension: VK_NV_clip_space_w_scaling
-  VK_NV_CLIP_SPACE_W_SCALING_SPEC_VERSION* = 1
-  VK_NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME* = "VK_NV_clip_space_w_scaling"
+  VkNvClipSpaceWScalingSpecVersion* = 1
+  VkNvClipSpaceWScalingExtensionName* = "VK_NV_clip_space_w_scaling"
   # Extension: VK_EXT_direct_mode_display
-  VK_EXT_DIRECT_MODE_DISPLAY_SPEC_VERSION* = 1
-  VK_EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME* = "VK_EXT_direct_mode_display"
+  VkExtDirectModeDisplaySpecVersion* = 1
+  VkExtDirectModeDisplayExtensionName* = "VK_EXT_direct_mode_display"
   # Extension: VK_EXT_acquire_xlib_display
-  VK_EXT_ACQUIRE_XLIB_DISPLAY_SPEC_VERSION* = 1
-  VK_EXT_ACQUIRE_XLIB_DISPLAY_EXTENSION_NAME* = "VK_EXT_acquire_xlib_display"
+  VkExtAcquireXlibDisplaySpecVersion* = 1
+  VkExtAcquireXlibDisplayExtensionName* = "VK_EXT_acquire_xlib_display"
   # Extension: VK_EXT_display_surface_counter
-  VK_EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION* = 1
-  VK_EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME* = "VK_EXT_display_surface_counter"
+  VkExtDisplaySurfaceCounterSpecVersion* = 1
+  VkExtDisplaySurfaceCounterExtensionName* = "VK_EXT_display_surface_counter"
   # Extension: VK_EXT_display_control
-  VK_EXT_DISPLAY_CONTROL_SPEC_VERSION* = 1
-  VK_EXT_DISPLAY_CONTROL_EXTENSION_NAME* = "VK_EXT_display_control"
+  VkExtDisplayControlSpecVersion* = 1
+  VkExtDisplayControlExtensionName* = "VK_EXT_display_control"
   # Extension: VK_GOOGLE_display_timing
-  VK_GOOGLE_DISPLAY_TIMING_SPEC_VERSION* = 1
-  VK_GOOGLE_DISPLAY_TIMING_EXTENSION_NAME* = "VK_GOOGLE_display_timing"
+  VkGoogleDisplayTimingSpecVersion* = 1
+  VkGoogleDisplayTimingExtensionName* = "VK_GOOGLE_display_timing"
   # Extension: VK_NV_sample_mask_override_coverage
-  VK_NV_SAMPLE_MASK_OVERRIDE_COVERAGE_SPEC_VERSION* = 1
-  VK_NV_SAMPLE_MASK_OVERRIDE_COVERAGE_EXTENSION_NAME* = "VK_NV_sample_mask_override_coverage"
+  VkNvSampleMaskOverrideCoverageSpecVersion* = 1
+  VkNvSampleMaskOverrideCoverageExtensionName* = "VK_NV_sample_mask_override_coverage"
   # Extension: VK_NV_geometry_shader_passthrough
-  VK_NV_GEOMETRY_SHADER_PASSTHROUGH_SPEC_VERSION* = 1
-  VK_NV_GEOMETRY_SHADER_PASSTHROUGH_EXTENSION_NAME* = "VK_NV_geometry_shader_passthrough"
+  VkNvGeometryShaderPassthroughSpecVersion* = 1
+  VkNvGeometryShaderPassthroughExtensionName* = "VK_NV_geometry_shader_passthrough"
   # Extension: VK_NV_viewport_array2
-  VK_NV_VIEWPORT_ARRAY_2_SPEC_VERSION* = 1
-  VK_NV_VIEWPORT_ARRAY_2_EXTENSION_NAME* = "VK_NV_viewport_array2"
+  VkNvViewportArray2SpecVersion* = 1
+  VkNvViewportArray2ExtensionName* = "VK_NV_viewport_array2"
   # Extension: VK_NVX_multiview_per_view_attributes
-  VK_NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_SPEC_VERSION* = 1
-  VK_NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_EXTENSION_NAME* = "VK_NVX_multiview_per_view_attributes"
+  VkNvxMultiviewPerViewAttributesSpecVersion* = 1
+  VkNvxMultiviewPerViewAttributesExtensionName* = "VK_NVX_multiview_per_view_attributes"
   # Extension: VK_NV_viewport_swizzle
-  VK_NV_VIEWPORT_SWIZZLE_SPEC_VERSION* = 1
-  VK_NV_VIEWPORT_SWIZZLE_EXTENSION_NAME* = "VK_NV_viewport_swizzle"
+  VkNvViewportSwizzleSpecVersion* = 1
+  VkNvViewportSwizzleExtensionName* = "VK_NV_viewport_swizzle"
   # Extension: VK_EXT_discard_rectangles
-  VK_EXT_DISCARD_RECTANGLES_SPEC_VERSION* = 2
-  VK_EXT_DISCARD_RECTANGLES_EXTENSION_NAME* = "VK_EXT_discard_rectangles"
+  VkExtDiscardRectanglesSpecVersion* = 2
+  VkExtDiscardRectanglesExtensionName* = "VK_EXT_discard_rectangles"
   # Extension: VK_EXT_conservative_rasterization
-  VK_EXT_CONSERVATIVE_RASTERIZATION_SPEC_VERSION* = 1
-  VK_EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME* = "VK_EXT_conservative_rasterization"
+  VkExtConservativeRasterizationSpecVersion* = 1
+  VkExtConservativeRasterizationExtensionName* = "VK_EXT_conservative_rasterization"
   # Extension: VK_EXT_depth_clip_enable
-  VK_EXT_DEPTH_CLIP_ENABLE_SPEC_VERSION* = 1
-  VK_EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME* = "VK_EXT_depth_clip_enable"
+  VkExtDepthClipEnableSpecVersion* = 1
+  VkExtDepthClipEnableExtensionName* = "VK_EXT_depth_clip_enable"
   # Extension: VK_EXT_swapchain_colorspace
-  VK_EXT_SWAPCHAIN_COLOR_SPACE_SPEC_VERSION* = 4
-  VK_EXT_SWAPCHAIN_COLOR_SPACE_EXTENSION_NAME* = "VK_EXT_swapchain_colorspace"
+  VkExtSwapchainColorSpaceSpecVersion* = 5
+  VkExtSwapchainColorSpaceExtensionName* = "VK_EXT_swapchain_colorspace"
   # Extension: VK_EXT_hdr_metadata
-  VK_EXT_HDR_METADATA_SPEC_VERSION* = 2
-  VK_EXT_HDR_METADATA_EXTENSION_NAME* = "VK_EXT_hdr_metadata"
+  VkExtHdrMetadataSpecVersion* = 3
+  VkExtHdrMetadataExtensionName* = "VK_EXT_hdr_metadata"
   # Extension: VK_KHR_imageless_framebuffer
-  VK_KHR_IMAGELESS_FRAMEBUFFER_SPEC_VERSION* = 1
-  VK_KHR_IMAGELESS_FRAMEBUFFER_EXTENSION_NAME* = "VK_KHR_imageless_framebuffer"
+  VkKhrImagelessFramebufferSpecVersion* = 1
+  VkKhrImagelessFramebufferExtensionName* = "VK_KHR_imageless_framebuffer"
   # Extension: VK_KHR_create_renderpass2
-  VK_KHR_CREATE_RENDERPASS_2_SPEC_VERSION* = 1
-  VK_KHR_CREATE_RENDERPASS_2_EXTENSION_NAME* = "VK_KHR_create_renderpass2"
+  VkKhrCreateRenderpass2SpecVersion* = 1
+  VkKhrCreateRenderpass2ExtensionName* = "VK_KHR_create_renderpass2"
   # Extension: VK_IMG_relaxed_line_rasterization
-  VK_IMG_RELAXED_LINE_RASTERIZATION_SPEC_VERSION* = 1
-  VK_IMG_RELAXED_LINE_RASTERIZATION_EXTENSION_NAME* = "VK_IMG_relaxed_line_rasterization"
+  VkImgRelaxedLineRasterizationSpecVersion* = 1
+  VkImgRelaxedLineRasterizationExtensionName* = "VK_IMG_relaxed_line_rasterization"
   # Extension: VK_KHR_shared_presentable_image
-  VK_KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION* = 1
-  VK_KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME* = "VK_KHR_shared_presentable_image"
+  VkKhrSharedPresentableImageSpecVersion* = 1
+  VkKhrSharedPresentableImageExtensionName* = "VK_KHR_shared_presentable_image"
   # Extension: VK_KHR_external_fence_capabilities
-  VK_KHR_EXTERNAL_FENCE_CAPABILITIES_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_FENCE_CAPABILITIES_EXTENSION_NAME* = "VK_KHR_external_fence_capabilities"
+  VkKhrExternalFenceCapabilitiesSpecVersion* = 1
+  VkKhrExternalFenceCapabilitiesExtensionName* = "VK_KHR_external_fence_capabilities"
   # Extension: VK_KHR_external_fence
-  VK_KHR_EXTERNAL_FENCE_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_FENCE_EXTENSION_NAME* = "VK_KHR_external_fence"
+  VkKhrExternalFenceSpecVersion* = 1
+  VkKhrExternalFenceExtensionName* = "VK_KHR_external_fence"
   # Extension: VK_KHR_external_fence_win32
-  VK_KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME* = "VK_KHR_external_fence_win32"
+  VkKhrExternalFenceWin32SpecVersion* = 1
+  VkKhrExternalFenceWin32ExtensionName* = "VK_KHR_external_fence_win32"
   # Extension: VK_KHR_external_fence_fd
-  VK_KHR_EXTERNAL_FENCE_FD_SPEC_VERSION* = 1
-  VK_KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME* = "VK_KHR_external_fence_fd"
+  VkKhrExternalFenceFdSpecVersion* = 1
+  VkKhrExternalFenceFdExtensionName* = "VK_KHR_external_fence_fd"
   # Extension: VK_KHR_performance_query
-  VK_KHR_PERFORMANCE_QUERY_SPEC_VERSION* = 1
-  VK_KHR_PERFORMANCE_QUERY_EXTENSION_NAME* = "VK_KHR_performance_query"
+  VkKhrPerformanceQuerySpecVersion* = 1
+  VkKhrPerformanceQueryExtensionName* = "VK_KHR_performance_query"
   # Extension: VK_KHR_maintenance2
-  VK_KHR_MAINTENANCE_2_SPEC_VERSION* = 1
-  VK_KHR_MAINTENANCE_2_EXTENSION_NAME* = "VK_KHR_maintenance2"
+  VkKhrMaintenance2SpecVersion* = 1
+  VkKhrMaintenance2ExtensionName* = "VK_KHR_maintenance2"
   # Extension: VK_KHR_get_surface_capabilities2
-  VK_KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION* = 1
-  VK_KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME* = "VK_KHR_get_surface_capabilities2"
+  VkKhrGetSurfaceCapabilities2SpecVersion* = 1
+  VkKhrGetSurfaceCapabilities2ExtensionName* = "VK_KHR_get_surface_capabilities2"
   # Extension: VK_KHR_variable_pointers
-  VK_KHR_VARIABLE_POINTERS_SPEC_VERSION* = 1
-  VK_KHR_VARIABLE_POINTERS_EXTENSION_NAME* = "VK_KHR_variable_pointers"
+  VkKhrVariablePointersSpecVersion* = 1
+  VkKhrVariablePointersExtensionName* = "VK_KHR_variable_pointers"
   # Extension: VK_KHR_get_display_properties2
-  VK_KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION* = 1
-  VK_KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME* = "VK_KHR_get_display_properties2"
+  VkKhrGetDisplayProperties2SpecVersion* = 1
+  VkKhrGetDisplayProperties2ExtensionName* = "VK_KHR_get_display_properties2"
   # Extension: VK_MVK_ios_surface
-  VK_MVK_IOS_SURFACE_SPEC_VERSION* = 3
-  VK_MVK_IOS_SURFACE_EXTENSION_NAME* = "VK_MVK_ios_surface"
+  VkMvkIosSurfaceSpecVersion* = 3
+  VkMvkIosSurfaceExtensionName* = "VK_MVK_ios_surface"
   # Extension: VK_MVK_macos_surface
-  VK_MVK_MACOS_SURFACE_SPEC_VERSION* = 3
-  VK_MVK_MACOS_SURFACE_EXTENSION_NAME* = "VK_MVK_macos_surface"
+  VkMvkMacosSurfaceSpecVersion* = 3
+  VkMvkMacosSurfaceExtensionName* = "VK_MVK_macos_surface"
   # Extension: VK_EXT_external_memory_dma_buf
-  VK_EXT_EXTERNAL_MEMORY_DMA_BUF_SPEC_VERSION* = 1
-  VK_EXT_EXTERNAL_MEMORY_DMA_BUF_EXTENSION_NAME* = "VK_EXT_external_memory_dma_buf"
+  VkExtExternalMemoryDmaBufSpecVersion* = 1
+  VkExtExternalMemoryDmaBufExtensionName* = "VK_EXT_external_memory_dma_buf"
   # Extension: VK_EXT_queue_family_foreign
-  VK_EXT_QUEUE_FAMILY_FOREIGN_SPEC_VERSION* = 1
-  VK_EXT_QUEUE_FAMILY_FOREIGN_EXTENSION_NAME* = "VK_EXT_queue_family_foreign"
+  VkExtQueueFamilyForeignSpecVersion* = 1
+  VkExtQueueFamilyForeignExtensionName* = "VK_EXT_queue_family_foreign"
   # Extension: VK_KHR_dedicated_allocation
-  VK_KHR_DEDICATED_ALLOCATION_SPEC_VERSION* = 3
-  VK_KHR_DEDICATED_ALLOCATION_EXTENSION_NAME* = "VK_KHR_dedicated_allocation"
+  VkKhrDedicatedAllocationSpecVersion* = 3
+  VkKhrDedicatedAllocationExtensionName* = "VK_KHR_dedicated_allocation"
   # Extension: VK_EXT_debug_utils
-  VK_EXT_DEBUG_UTILS_SPEC_VERSION* = 2
-  VK_EXT_DEBUG_UTILS_EXTENSION_NAME* = "VK_EXT_debug_utils"
+  VkExtDebugUtilsSpecVersion* = 2
+  VkExtDebugUtilsExtensionName* = "VK_EXT_debug_utils"
   # Extension: VK_ANDROID_external_memory_android_hardware_buffer
-  VK_ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION* = 5
-  VK_ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME* = "VK_ANDROID_external_memory_android_hardware_buffer"
+  VkAndroidExternalMemoryAndroidHardwareBufferSpecVersion* = 5
+  VkAndroidExternalMemoryAndroidHardwareBufferExtensionName* = "VK_ANDROID_external_memory_android_hardware_buffer"
   # Extension: VK_EXT_sampler_filter_minmax
-  VK_EXT_SAMPLER_FILTER_MINMAX_SPEC_VERSION* = 2
-  VK_EXT_SAMPLER_FILTER_MINMAX_EXTENSION_NAME* = "VK_EXT_sampler_filter_minmax"
+  VkExtSamplerFilterMinmaxSpecVersion* = 2
+  VkExtSamplerFilterMinmaxExtensionName* = "VK_EXT_sampler_filter_minmax"
   # Extension: VK_KHR_storage_buffer_storage_class
-  VK_KHR_STORAGE_BUFFER_STORAGE_CLASS_SPEC_VERSION* = 1
-  VK_KHR_STORAGE_BUFFER_STORAGE_CLASS_EXTENSION_NAME* = "VK_KHR_storage_buffer_storage_class"
+  VkKhrStorageBufferStorageClassSpecVersion* = 1
+  VkKhrStorageBufferStorageClassExtensionName* = "VK_KHR_storage_buffer_storage_class"
   # Extension: VK_AMD_gpu_shader_int16
-  VK_AMD_GPU_SHADER_INT16_SPEC_VERSION* = 2
-  VK_AMD_GPU_SHADER_INT16_EXTENSION_NAME* = "VK_AMD_gpu_shader_int16"
+  VkAmdGpuShaderInt16SpecVersion* = 2
+  VkAmdGpuShaderInt16ExtensionName* = "VK_AMD_gpu_shader_int16"
   # Extension: VK_AMDX_shader_enqueue
-  VK_AMDX_SHADER_ENQUEUE_SPEC_VERSION* = 1
-  VK_AMDX_SHADER_ENQUEUE_EXTENSION_NAME* = "VK_AMDX_shader_enqueue"
+  VkAmdxShaderEnqueueSpecVersion* = 1
+  VkAmdxShaderEnqueueExtensionName* = "VK_AMDX_shader_enqueue"
   # Extension: VK_AMD_mixed_attachment_samples
-  VK_AMD_MIXED_ATTACHMENT_SAMPLES_SPEC_VERSION* = 1
-  VK_AMD_MIXED_ATTACHMENT_SAMPLES_EXTENSION_NAME* = "VK_AMD_mixed_attachment_samples"
+  VkAmdMixedAttachmentSamplesSpecVersion* = 1
+  VkAmdMixedAttachmentSamplesExtensionName* = "VK_AMD_mixed_attachment_samples"
   # Extension: VK_AMD_shader_fragment_mask
-  VK_AMD_SHADER_FRAGMENT_MASK_SPEC_VERSION* = 1
-  VK_AMD_SHADER_FRAGMENT_MASK_EXTENSION_NAME* = "VK_AMD_shader_fragment_mask"
+  VkAmdShaderFragmentMaskSpecVersion* = 1
+  VkAmdShaderFragmentMaskExtensionName* = "VK_AMD_shader_fragment_mask"
   # Extension: VK_EXT_inline_uniform_block
-  VK_EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION* = 1
-  VK_EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME* = "VK_EXT_inline_uniform_block"
+  VkExtInlineUniformBlockSpecVersion* = 1
+  VkExtInlineUniformBlockExtensionName* = "VK_EXT_inline_uniform_block"
   # Extension: VK_EXT_shader_stencil_export
-  VK_EXT_SHADER_STENCIL_EXPORT_SPEC_VERSION* = 1
-  VK_EXT_SHADER_STENCIL_EXPORT_EXTENSION_NAME* = "VK_EXT_shader_stencil_export"
+  VkExtShaderStencilExportSpecVersion* = 1
+  VkExtShaderStencilExportExtensionName* = "VK_EXT_shader_stencil_export"
   # Extension: VK_EXT_sample_locations
-  VK_EXT_SAMPLE_LOCATIONS_SPEC_VERSION* = 1
-  VK_EXT_SAMPLE_LOCATIONS_EXTENSION_NAME* = "VK_EXT_sample_locations"
+  VkExtSampleLocationsSpecVersion* = 1
+  VkExtSampleLocationsExtensionName* = "VK_EXT_sample_locations"
   # Extension: VK_KHR_relaxed_block_layout
-  VK_KHR_RELAXED_BLOCK_LAYOUT_SPEC_VERSION* = 1
-  VK_KHR_RELAXED_BLOCK_LAYOUT_EXTENSION_NAME* = "VK_KHR_relaxed_block_layout"
+  VkKhrRelaxedBlockLayoutSpecVersion* = 1
+  VkKhrRelaxedBlockLayoutExtensionName* = "VK_KHR_relaxed_block_layout"
   # Extension: VK_KHR_get_memory_requirements2
-  VK_KHR_GET_MEMORY_REQUIREMENTS_2_SPEC_VERSION* = 1
-  VK_KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME* = "VK_KHR_get_memory_requirements2"
+  VkKhrGetMemoryRequirements2SpecVersion* = 1
+  VkKhrGetMemoryRequirements2ExtensionName* = "VK_KHR_get_memory_requirements2"
   # Extension: VK_KHR_image_format_list
-  VK_KHR_IMAGE_FORMAT_LIST_SPEC_VERSION* = 1
-  VK_KHR_IMAGE_FORMAT_LIST_EXTENSION_NAME* = "VK_KHR_image_format_list"
+  VkKhrImageFormatListSpecVersion* = 1
+  VkKhrImageFormatListExtensionName* = "VK_KHR_image_format_list"
   # Extension: VK_EXT_blend_operation_advanced
-  VK_EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION* = 2
-  VK_EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME* = "VK_EXT_blend_operation_advanced"
+  VkExtBlendOperationAdvancedSpecVersion* = 2
+  VkExtBlendOperationAdvancedExtensionName* = "VK_EXT_blend_operation_advanced"
   # Extension: VK_NV_fragment_coverage_to_color
-  VK_NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION* = 1
-  VK_NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME* = "VK_NV_fragment_coverage_to_color"
+  VkNvFragmentCoverageToColorSpecVersion* = 1
+  VkNvFragmentCoverageToColorExtensionName* = "VK_NV_fragment_coverage_to_color"
   # Extension: VK_KHR_acceleration_structure
-  VK_KHR_ACCELERATION_STRUCTURE_SPEC_VERSION* = 13
-  VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME* = "VK_KHR_acceleration_structure"
+  VkKhrAccelerationStructureSpecVersion* = 13
+  VkKhrAccelerationStructureExtensionName* = "VK_KHR_acceleration_structure"
   # Extension: VK_KHR_ray_tracing_pipeline
-  VK_KHR_RAY_TRACING_PIPELINE_SPEC_VERSION* = 1
-  VK_KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME* = "VK_KHR_ray_tracing_pipeline"
+  VkKhrRayTracingPipelineSpecVersion* = 1
+  VkKhrRayTracingPipelineExtensionName* = "VK_KHR_ray_tracing_pipeline"
   # Extension: VK_KHR_ray_query
-  VK_KHR_RAY_QUERY_SPEC_VERSION* = 1
-  VK_KHR_RAY_QUERY_EXTENSION_NAME* = "VK_KHR_ray_query"
+  VkKhrRayQuerySpecVersion* = 1
+  VkKhrRayQueryExtensionName* = "VK_KHR_ray_query"
   # Extension: VK_NV_framebuffer_mixed_samples
-  VK_NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION* = 1
-  VK_NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME* = "VK_NV_framebuffer_mixed_samples"
+  VkNvFramebufferMixedSamplesSpecVersion* = 1
+  VkNvFramebufferMixedSamplesExtensionName* = "VK_NV_framebuffer_mixed_samples"
   # Extension: VK_NV_fill_rectangle
-  VK_NV_FILL_RECTANGLE_SPEC_VERSION* = 1
-  VK_NV_FILL_RECTANGLE_EXTENSION_NAME* = "VK_NV_fill_rectangle"
+  VkNvFillRectangleSpecVersion* = 1
+  VkNvFillRectangleExtensionName* = "VK_NV_fill_rectangle"
   # Extension: VK_NV_shader_sm_builtins
-  VK_NV_SHADER_SM_BUILTINS_SPEC_VERSION* = 1
-  VK_NV_SHADER_SM_BUILTINS_EXTENSION_NAME* = "VK_NV_shader_sm_builtins"
+  VkNvShaderSmBuiltinsSpecVersion* = 1
+  VkNvShaderSmBuiltinsExtensionName* = "VK_NV_shader_sm_builtins"
   # Extension: VK_EXT_post_depth_coverage
-  VK_EXT_POST_DEPTH_COVERAGE_SPEC_VERSION* = 1
-  VK_EXT_POST_DEPTH_COVERAGE_EXTENSION_NAME* = "VK_EXT_post_depth_coverage"
+  VkExtPostDepthCoverageSpecVersion* = 1
+  VkExtPostDepthCoverageExtensionName* = "VK_EXT_post_depth_coverage"
   # Extension: VK_KHR_sampler_ycbcr_conversion
-  VK_KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION* = 14
-  VK_KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME* = "VK_KHR_sampler_ycbcr_conversion"
+  VkKhrSamplerYcbcrConversionSpecVersion* = 14
+  VkKhrSamplerYcbcrConversionExtensionName* = "VK_KHR_sampler_ycbcr_conversion"
   # Extension: VK_KHR_bind_memory2
-  VK_KHR_BIND_MEMORY_2_SPEC_VERSION* = 1
-  VK_KHR_BIND_MEMORY_2_EXTENSION_NAME* = "VK_KHR_bind_memory2"
+  VkKhrBindMemory2SpecVersion* = 1
+  VkKhrBindMemory2ExtensionName* = "VK_KHR_bind_memory2"
   # Extension: VK_EXT_image_drm_format_modifier
-  VK_EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION* = 2
-  VK_EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME* = "VK_EXT_image_drm_format_modifier"
+  VkExtImageDrmFormatModifierSpecVersion* = 2
+  VkExtImageDrmFormatModifierExtensionName* = "VK_EXT_image_drm_format_modifier"
   # Extension: VK_EXT_validation_cache
-  VK_EXT_VALIDATION_CACHE_SPEC_VERSION* = 1
-  VK_EXT_VALIDATION_CACHE_EXTENSION_NAME* = "VK_EXT_validation_cache"
+  VkExtValidationCacheSpecVersion* = 1
+  VkExtValidationCacheExtensionName* = "VK_EXT_validation_cache"
   # Extension: VK_EXT_descriptor_indexing
-  VK_EXT_DESCRIPTOR_INDEXING_SPEC_VERSION* = 2
-  VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME* = "VK_EXT_descriptor_indexing"
+  VkExtDescriptorIndexingSpecVersion* = 2
+  VkExtDescriptorIndexingExtensionName* = "VK_EXT_descriptor_indexing"
   # Extension: VK_EXT_shader_viewport_index_layer
-  VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_SPEC_VERSION* = 1
-  VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME* = "VK_EXT_shader_viewport_index_layer"
+  VkExtShaderViewportIndexLayerSpecVersion* = 1
+  VkExtShaderViewportIndexLayerExtensionName* = "VK_EXT_shader_viewport_index_layer"
   # Extension: VK_KHR_portability_subset
-  VK_KHR_PORTABILITY_SUBSET_SPEC_VERSION* = 1
-  VK_KHR_PORTABILITY_SUBSET_EXTENSION_NAME* = "VK_KHR_portability_subset"
+  VkKhrPortabilitySubsetSpecVersion* = 1
+  VkKhrPortabilitySubsetExtensionName* = "VK_KHR_portability_subset"
   # Extension: VK_NV_shading_rate_image
-  VK_NV_SHADING_RATE_IMAGE_SPEC_VERSION* = 3
-  VK_NV_SHADING_RATE_IMAGE_EXTENSION_NAME* = "VK_NV_shading_rate_image"
+  VkNvShadingRateImageSpecVersion* = 3
+  VkNvShadingRateImageExtensionName* = "VK_NV_shading_rate_image"
   # Extension: VK_NV_ray_tracing
-  VK_NV_RAY_TRACING_SPEC_VERSION* = 3
-  VK_NV_RAY_TRACING_EXTENSION_NAME* = "VK_NV_ray_tracing"
+  VkNvRayTracingSpecVersion* = 3
+  VkNvRayTracingExtensionName* = "VK_NV_ray_tracing"
   # Extension: VK_NV_representative_fragment_test
-  VK_NV_REPRESENTATIVE_FRAGMENT_TEST_SPEC_VERSION* = 2
-  VK_NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME* = "VK_NV_representative_fragment_test"
+  VkNvRepresentativeFragmentTestSpecVersion* = 2
+  VkNvRepresentativeFragmentTestExtensionName* = "VK_NV_representative_fragment_test"
   # Extension: VK_KHR_maintenance3
-  VK_KHR_MAINTENANCE_3_SPEC_VERSION* = 1
-  VK_KHR_MAINTENANCE_3_EXTENSION_NAME* = "VK_KHR_maintenance3"
+  VkKhrMaintenance3SpecVersion* = 1
+  VkKhrMaintenance3ExtensionName* = "VK_KHR_maintenance3"
   # Extension: VK_KHR_draw_indirect_count
-  VK_KHR_DRAW_INDIRECT_COUNT_SPEC_VERSION* = 1
-  VK_KHR_DRAW_INDIRECT_COUNT_EXTENSION_NAME* = "VK_KHR_draw_indirect_count"
+  VkKhrDrawIndirectCountSpecVersion* = 1
+  VkKhrDrawIndirectCountExtensionName* = "VK_KHR_draw_indirect_count"
   # Extension: VK_EXT_filter_cubic
-  VK_EXT_FILTER_CUBIC_SPEC_VERSION* = 3
-  VK_EXT_FILTER_CUBIC_EXTENSION_NAME* = "VK_EXT_filter_cubic"
+  VkExtFilterCubicSpecVersion* = 3
+  VkExtFilterCubicExtensionName* = "VK_EXT_filter_cubic"
   # Extension: VK_QCOM_render_pass_shader_resolve
-  VK_QCOM_RENDER_PASS_SHADER_RESOLVE_SPEC_VERSION* = 4
-  VK_QCOM_RENDER_PASS_SHADER_RESOLVE_EXTENSION_NAME* = "VK_QCOM_render_pass_shader_resolve"
+  VkQcomRenderPassShaderResolveSpecVersion* = 4
+  VkQcomRenderPassShaderResolveExtensionName* = "VK_QCOM_render_pass_shader_resolve"
   # Extension: VK_EXT_global_priority
-  VK_EXT_GLOBAL_PRIORITY_SPEC_VERSION* = 2
-  VK_EXT_GLOBAL_PRIORITY_EXTENSION_NAME* = "VK_EXT_global_priority"
+  VkExtGlobalPrioritySpecVersion* = 2
+  VkExtGlobalPriorityExtensionName* = "VK_EXT_global_priority"
   # Extension: VK_KHR_shader_subgroup_extended_types
-  VK_KHR_SHADER_SUBGROUP_EXTENDED_TYPES_SPEC_VERSION* = 1
-  VK_KHR_SHADER_SUBGROUP_EXTENDED_TYPES_EXTENSION_NAME* = "VK_KHR_shader_subgroup_extended_types"
+  VkKhrShaderSubgroupExtendedTypesSpecVersion* = 1
+  VkKhrShaderSubgroupExtendedTypesExtensionName* = "VK_KHR_shader_subgroup_extended_types"
   # Extension: VK_KHR_8bit_storage
-  VK_KHR_8BIT_STORAGE_SPEC_VERSION* = 1
-  VK_KHR_8BIT_STORAGE_EXTENSION_NAME* = "VK_KHR_8bit_storage"
+  VkKhr8bitStorageSpecVersion* = 1
+  VkKhr8bitStorageExtensionName* = "VK_KHR_8bit_storage"
   # Extension: VK_EXT_external_memory_host
-  VK_EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION* = 1
-  VK_EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME* = "VK_EXT_external_memory_host"
+  VkExtExternalMemoryHostSpecVersion* = 1
+  VkExtExternalMemoryHostExtensionName* = "VK_EXT_external_memory_host"
   # Extension: VK_AMD_buffer_marker
-  VK_AMD_BUFFER_MARKER_SPEC_VERSION* = 1
-  VK_AMD_BUFFER_MARKER_EXTENSION_NAME* = "VK_AMD_buffer_marker"
+  VkAmdBufferMarkerSpecVersion* = 1
+  VkAmdBufferMarkerExtensionName* = "VK_AMD_buffer_marker"
   # Extension: VK_KHR_shader_atomic_int64
-  VK_KHR_SHADER_ATOMIC_INT64_SPEC_VERSION* = 1
-  VK_KHR_SHADER_ATOMIC_INT64_EXTENSION_NAME* = "VK_KHR_shader_atomic_int64"
+  VkKhrShaderAtomicInt64SpecVersion* = 1
+  VkKhrShaderAtomicInt64ExtensionName* = "VK_KHR_shader_atomic_int64"
   # Extension: VK_KHR_shader_clock
-  VK_KHR_SHADER_CLOCK_SPEC_VERSION* = 1
-  VK_KHR_SHADER_CLOCK_EXTENSION_NAME* = "VK_KHR_shader_clock"
+  VkKhrShaderClockSpecVersion* = 1
+  VkKhrShaderClockExtensionName* = "VK_KHR_shader_clock"
   # Extension: VK_AMD_pipeline_compiler_control
-  VK_AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION* = 1
-  VK_AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME* = "VK_AMD_pipeline_compiler_control"
+  VkAmdPipelineCompilerControlSpecVersion* = 1
+  VkAmdPipelineCompilerControlExtensionName* = "VK_AMD_pipeline_compiler_control"
   # Extension: VK_EXT_calibrated_timestamps
-  VK_EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION* = 2
-  VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME* = "VK_EXT_calibrated_timestamps"
+  VkExtCalibratedTimestampsSpecVersion* = 2
+  VkExtCalibratedTimestampsExtensionName* = "VK_EXT_calibrated_timestamps"
   # Extension: VK_AMD_shader_core_properties
-  VK_AMD_SHADER_CORE_PROPERTIES_SPEC_VERSION* = 2
-  VK_AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME* = "VK_AMD_shader_core_properties"
+  VkAmdShaderCorePropertiesSpecVersion* = 2
+  VkAmdShaderCorePropertiesExtensionName* = "VK_AMD_shader_core_properties"
   # Extension: VK_KHR_video_decode_h265
-  VK_KHR_VIDEO_DECODE_H265_SPEC_VERSION* = 8
-  VK_KHR_VIDEO_DECODE_H265_EXTENSION_NAME* = "VK_KHR_video_decode_h265"
+  VkKhrVideoDecodeH265SpecVersion* = 8
+  VkKhrVideoDecodeH265ExtensionName* = "VK_KHR_video_decode_h265"
   # Extension: VK_KHR_global_priority
-  VK_KHR_GLOBAL_PRIORITY_SPEC_VERSION* = 1
-  VK_KHR_GLOBAL_PRIORITY_EXTENSION_NAME* = "VK_KHR_global_priority"
+  VkKhrGlobalPrioritySpecVersion* = 1
+  VkKhrGlobalPriorityExtensionName* = "VK_KHR_global_priority"
   # Extension: VK_AMD_memory_overallocation_behavior
-  VK_AMD_MEMORY_OVERALLOCATION_BEHAVIOR_SPEC_VERSION* = 1
-  VK_AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME* = "VK_AMD_memory_overallocation_behavior"
+  VkAmdMemoryOverallocationBehaviorSpecVersion* = 1
+  VkAmdMemoryOverallocationBehaviorExtensionName* = "VK_AMD_memory_overallocation_behavior"
   # Extension: VK_EXT_vertex_attribute_divisor
-  VK_EXT_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION* = 3
-  VK_EXT_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME* = "VK_EXT_vertex_attribute_divisor"
+  VkExtVertexAttributeDivisorSpecVersion* = 3
+  VkExtVertexAttributeDivisorExtensionName* = "VK_EXT_vertex_attribute_divisor"
   # Extension: VK_GGP_frame_token
-  VK_GGP_FRAME_TOKEN_SPEC_VERSION* = 1
-  VK_GGP_FRAME_TOKEN_EXTENSION_NAME* = "VK_GGP_frame_token"
+  VkGgpFrameTokenSpecVersion* = 1
+  VkGgpFrameTokenExtensionName* = "VK_GGP_frame_token"
   # Extension: VK_EXT_pipeline_creation_feedback
-  VK_EXT_PIPELINE_CREATION_FEEDBACK_SPEC_VERSION* = 1
-  VK_EXT_PIPELINE_CREATION_FEEDBACK_EXTENSION_NAME* = "VK_EXT_pipeline_creation_feedback"
+  VkExtPipelineCreationFeedbackSpecVersion* = 1
+  VkExtPipelineCreationFeedbackExtensionName* = "VK_EXT_pipeline_creation_feedback"
   # Extension: VK_KHR_driver_properties
-  VK_KHR_DRIVER_PROPERTIES_SPEC_VERSION* = 1
-  VK_KHR_DRIVER_PROPERTIES_EXTENSION_NAME* = "VK_KHR_driver_properties"
+  VkKhrDriverPropertiesSpecVersion* = 1
+  VkKhrDriverPropertiesExtensionName* = "VK_KHR_driver_properties"
   # Extension: VK_KHR_shader_float_controls
-  VK_KHR_SHADER_FLOAT_CONTROLS_SPEC_VERSION* = 4
-  VK_KHR_SHADER_FLOAT_CONTROLS_EXTENSION_NAME* = "VK_KHR_shader_float_controls"
+  VkKhrShaderFloatControlsSpecVersion* = 4
+  VkKhrShaderFloatControlsExtensionName* = "VK_KHR_shader_float_controls"
   # Extension: VK_NV_shader_subgroup_partitioned
-  VK_NV_SHADER_SUBGROUP_PARTITIONED_SPEC_VERSION* = 1
-  VK_NV_SHADER_SUBGROUP_PARTITIONED_EXTENSION_NAME* = "VK_NV_shader_subgroup_partitioned"
+  VkNvShaderSubgroupPartitionedSpecVersion* = 1
+  VkNvShaderSubgroupPartitionedExtensionName* = "VK_NV_shader_subgroup_partitioned"
   # Extension: VK_KHR_depth_stencil_resolve
-  VK_KHR_DEPTH_STENCIL_RESOLVE_SPEC_VERSION* = 1
-  VK_KHR_DEPTH_STENCIL_RESOLVE_EXTENSION_NAME* = "VK_KHR_depth_stencil_resolve"
+  VkKhrDepthStencilResolveSpecVersion* = 1
+  VkKhrDepthStencilResolveExtensionName* = "VK_KHR_depth_stencil_resolve"
   # Extension: VK_KHR_swapchain_mutable_format
-  VK_KHR_SWAPCHAIN_MUTABLE_FORMAT_SPEC_VERSION* = 1
-  VK_KHR_SWAPCHAIN_MUTABLE_FORMAT_EXTENSION_NAME* = "VK_KHR_swapchain_mutable_format"
+  VkKhrSwapchainMutableFormatSpecVersion* = 1
+  VkKhrSwapchainMutableFormatExtensionName* = "VK_KHR_swapchain_mutable_format"
   # Extension: VK_NV_compute_shader_derivatives
-  VK_NV_COMPUTE_SHADER_DERIVATIVES_SPEC_VERSION* = 1
-  VK_NV_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME* = "VK_NV_compute_shader_derivatives"
+  VkNvComputeShaderDerivativesSpecVersion* = 1
+  VkNvComputeShaderDerivativesExtensionName* = "VK_NV_compute_shader_derivatives"
   # Extension: VK_NV_mesh_shader
-  VK_NV_MESH_SHADER_SPEC_VERSION* = 1
-  VK_NV_MESH_SHADER_EXTENSION_NAME* = "VK_NV_mesh_shader"
+  VkNvMeshShaderSpecVersion* = 1
+  VkNvMeshShaderExtensionName* = "VK_NV_mesh_shader"
   # Extension: VK_NV_fragment_shader_barycentric
-  VK_NV_FRAGMENT_SHADER_BARYCENTRIC_SPEC_VERSION* = 1
-  VK_NV_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME* = "VK_NV_fragment_shader_barycentric"
+  VkNvFragmentShaderBarycentricSpecVersion* = 1
+  VkNvFragmentShaderBarycentricExtensionName* = "VK_NV_fragment_shader_barycentric"
   # Extension: VK_NV_shader_image_footprint
-  VK_NV_SHADER_IMAGE_FOOTPRINT_SPEC_VERSION* = 2
-  VK_NV_SHADER_IMAGE_FOOTPRINT_EXTENSION_NAME* = "VK_NV_shader_image_footprint"
+  VkNvShaderImageFootprintSpecVersion* = 2
+  VkNvShaderImageFootprintExtensionName* = "VK_NV_shader_image_footprint"
   # Extension: VK_NV_scissor_exclusive
-  VK_NV_SCISSOR_EXCLUSIVE_SPEC_VERSION* = 2
-  VK_NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME* = "VK_NV_scissor_exclusive"
+  VkNvScissorExclusiveSpecVersion* = 2
+  VkNvScissorExclusiveExtensionName* = "VK_NV_scissor_exclusive"
   # Extension: VK_NV_device_diagnostic_checkpoints
-  VK_NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION* = 2
-  VK_NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME* = "VK_NV_device_diagnostic_checkpoints"
+  VkNvDeviceDiagnosticCheckpointsSpecVersion* = 2
+  VkNvDeviceDiagnosticCheckpointsExtensionName* = "VK_NV_device_diagnostic_checkpoints"
   # Extension: VK_KHR_timeline_semaphore
-  VK_KHR_TIMELINE_SEMAPHORE_SPEC_VERSION* = 2
-  VK_KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME* = "VK_KHR_timeline_semaphore"
+  VkKhrTimelineSemaphoreSpecVersion* = 2
+  VkKhrTimelineSemaphoreExtensionName* = "VK_KHR_timeline_semaphore"
   # Extension: VK_INTEL_shader_integer_functions2
-  VK_INTEL_SHADER_INTEGER_FUNCTIONS_2_SPEC_VERSION* = 1
-  VK_INTEL_SHADER_INTEGER_FUNCTIONS_2_EXTENSION_NAME* = "VK_INTEL_shader_integer_functions2"
+  VkIntelShaderIntegerFunctions2SpecVersion* = 1
+  VkIntelShaderIntegerFunctions2ExtensionName* = "VK_INTEL_shader_integer_functions2"
   # Extension: VK_INTEL_performance_query
-  VK_INTEL_PERFORMANCE_QUERY_SPEC_VERSION* = 2
-  VK_INTEL_PERFORMANCE_QUERY_EXTENSION_NAME* = "VK_INTEL_performance_query"
+  VkIntelPerformanceQuerySpecVersion* = 2
+  VkIntelPerformanceQueryExtensionName* = "VK_INTEL_performance_query"
   # Extension: VK_KHR_vulkan_memory_model
-  VK_KHR_VULKAN_MEMORY_MODEL_SPEC_VERSION* = 3
-  VK_KHR_VULKAN_MEMORY_MODEL_EXTENSION_NAME* = "VK_KHR_vulkan_memory_model"
+  VkKhrVulkanMemoryModelSpecVersion* = 3
+  VkKhrVulkanMemoryModelExtensionName* = "VK_KHR_vulkan_memory_model"
   # Extension: VK_EXT_pci_bus_info
-  VK_EXT_PCI_BUS_INFO_SPEC_VERSION* = 2
-  VK_EXT_PCI_BUS_INFO_EXTENSION_NAME* = "VK_EXT_pci_bus_info"
+  VkExtPciBusInfoSpecVersion* = 2
+  VkExtPciBusInfoExtensionName* = "VK_EXT_pci_bus_info"
   # Extension: VK_AMD_display_native_hdr
-  VK_AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION* = 1
-  VK_AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME* = "VK_AMD_display_native_hdr"
+  VkAmdDisplayNativeHdrSpecVersion* = 1
+  VkAmdDisplayNativeHdrExtensionName* = "VK_AMD_display_native_hdr"
   # Extension: VK_FUCHSIA_imagepipe_surface
-  VK_FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION* = 1
-  VK_FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME* = "VK_FUCHSIA_imagepipe_surface"
+  VkFuchsiaImagepipeSurfaceSpecVersion* = 1
+  VkFuchsiaImagepipeSurfaceExtensionName* = "VK_FUCHSIA_imagepipe_surface"
   # Extension: VK_KHR_shader_terminate_invocation
-  VK_KHR_SHADER_TERMINATE_INVOCATION_SPEC_VERSION* = 1
-  VK_KHR_SHADER_TERMINATE_INVOCATION_EXTENSION_NAME* = "VK_KHR_shader_terminate_invocation"
+  VkKhrShaderTerminateInvocationSpecVersion* = 1
+  VkKhrShaderTerminateInvocationExtensionName* = "VK_KHR_shader_terminate_invocation"
   # Extension: VK_EXT_metal_surface
-  VK_EXT_METAL_SURFACE_SPEC_VERSION* = 1
-  VK_EXT_METAL_SURFACE_EXTENSION_NAME* = "VK_EXT_metal_surface"
+  VkExtMetalSurfaceSpecVersion* = 1
+  VkExtMetalSurfaceExtensionName* = "VK_EXT_metal_surface"
   # Extension: VK_EXT_fragment_density_map
-  VK_EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION* = 2
-  VK_EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME* = "VK_EXT_fragment_density_map"
+  VkExtFragmentDensityMapSpecVersion* = 2
+  VkExtFragmentDensityMapExtensionName* = "VK_EXT_fragment_density_map"
   # Extension: VK_EXT_scalar_block_layout
-  VK_EXT_SCALAR_BLOCK_LAYOUT_SPEC_VERSION* = 1
-  VK_EXT_SCALAR_BLOCK_LAYOUT_EXTENSION_NAME* = "VK_EXT_scalar_block_layout"
+  VkExtScalarBlockLayoutSpecVersion* = 1
+  VkExtScalarBlockLayoutExtensionName* = "VK_EXT_scalar_block_layout"
   # Extension: VK_GOOGLE_hlsl_functionality1
-  VK_GOOGLE_HLSL_FUNCTIONALITY_1_SPEC_VERSION* = 1
-  VK_GOOGLE_HLSL_FUNCTIONALITY_1_EXTENSION_NAME* = "VK_GOOGLE_hlsl_functionality1"
+  VkGoogleHlslFunctionality1SpecVersion* = 1
+  VkGoogleHlslFunctionality1ExtensionName* = "VK_GOOGLE_hlsl_functionality1"
   # Extension: VK_GOOGLE_decorate_string
-  VK_GOOGLE_DECORATE_STRING_SPEC_VERSION* = 1
-  VK_GOOGLE_DECORATE_STRING_EXTENSION_NAME* = "VK_GOOGLE_decorate_string"
+  VkGoogleDecorateStringSpecVersion* = 1
+  VkGoogleDecorateStringExtensionName* = "VK_GOOGLE_decorate_string"
   # Extension: VK_EXT_subgroup_size_control
-  VK_EXT_SUBGROUP_SIZE_CONTROL_SPEC_VERSION* = 2
-  VK_EXT_SUBGROUP_SIZE_CONTROL_EXTENSION_NAME* = "VK_EXT_subgroup_size_control"
+  VkExtSubgroupSizeControlSpecVersion* = 2
+  VkExtSubgroupSizeControlExtensionName* = "VK_EXT_subgroup_size_control"
   # Extension: VK_KHR_fragment_shading_rate
-  VK_KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION* = 2
-  VK_KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME* = "VK_KHR_fragment_shading_rate"
+  VkKhrFragmentShadingRateSpecVersion* = 2
+  VkKhrFragmentShadingRateExtensionName* = "VK_KHR_fragment_shading_rate"
   # Extension: VK_AMD_shader_core_properties2
-  VK_AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION* = 1
-  VK_AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME* = "VK_AMD_shader_core_properties2"
+  VkAmdShaderCoreProperties2SpecVersion* = 1
+  VkAmdShaderCoreProperties2ExtensionName* = "VK_AMD_shader_core_properties2"
   # Extension: VK_AMD_device_coherent_memory
-  VK_AMD_DEVICE_COHERENT_MEMORY_SPEC_VERSION* = 1
-  VK_AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME* = "VK_AMD_device_coherent_memory"
+  VkAmdDeviceCoherentMemorySpecVersion* = 1
+  VkAmdDeviceCoherentMemoryExtensionName* = "VK_AMD_device_coherent_memory"
   # Extension: VK_KHR_dynamic_rendering_local_read
-  VK_KHR_DYNAMIC_RENDERING_LOCAL_READ_SPEC_VERSION* = 1
-  VK_KHR_DYNAMIC_RENDERING_LOCAL_READ_EXTENSION_NAME* = "VK_KHR_dynamic_rendering_local_read"
+  VkKhrDynamicRenderingLocalReadSpecVersion* = 1
+  VkKhrDynamicRenderingLocalReadExtensionName* = "VK_KHR_dynamic_rendering_local_read"
   # Extension: VK_EXT_shader_image_atomic_int64
-  VK_EXT_SHADER_IMAGE_ATOMIC_INT64_SPEC_VERSION* = 1
-  VK_EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME* = "VK_EXT_shader_image_atomic_int64"
+  VkExtShaderImageAtomicInt64SpecVersion* = 1
+  VkExtShaderImageAtomicInt64ExtensionName* = "VK_EXT_shader_image_atomic_int64"
   # Extension: VK_KHR_shader_quad_control
-  VK_KHR_SHADER_QUAD_CONTROL_SPEC_VERSION* = 1
-  VK_KHR_SHADER_QUAD_CONTROL_EXTENSION_NAME* = "VK_KHR_shader_quad_control"
+  VkKhrShaderQuadControlSpecVersion* = 1
+  VkKhrShaderQuadControlExtensionName* = "VK_KHR_shader_quad_control"
   # Extension: VK_KHR_spirv_1_4
-  VK_KHR_SPIRV_1_4_SPEC_VERSION* = 1
-  VK_KHR_SPIRV_1_4_EXTENSION_NAME* = "VK_KHR_spirv_1_4"
+  VkKhrSpirv14SpecVersion* = 1
+  VkKhrSpirv14ExtensionName* = "VK_KHR_spirv_1_4"
   # Extension: VK_EXT_memory_budget
-  VK_EXT_MEMORY_BUDGET_SPEC_VERSION* = 1
-  VK_EXT_MEMORY_BUDGET_EXTENSION_NAME* = "VK_EXT_memory_budget"
+  VkExtMemoryBudgetSpecVersion* = 1
+  VkExtMemoryBudgetExtensionName* = "VK_EXT_memory_budget"
   # Extension: VK_EXT_memory_priority
-  VK_EXT_MEMORY_PRIORITY_SPEC_VERSION* = 1
-  VK_EXT_MEMORY_PRIORITY_EXTENSION_NAME* = "VK_EXT_memory_priority"
+  VkExtMemoryPrioritySpecVersion* = 1
+  VkExtMemoryPriorityExtensionName* = "VK_EXT_memory_priority"
   # Extension: VK_KHR_surface_protected_capabilities
-  VK_KHR_SURFACE_PROTECTED_CAPABILITIES_SPEC_VERSION* = 1
-  VK_KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME* = "VK_KHR_surface_protected_capabilities"
+  VkKhrSurfaceProtectedCapabilitiesSpecVersion* = 1
+  VkKhrSurfaceProtectedCapabilitiesExtensionName* = "VK_KHR_surface_protected_capabilities"
   # Extension: VK_NV_dedicated_allocation_image_aliasing
-  VK_NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_SPEC_VERSION* = 1
-  VK_NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME* = "VK_NV_dedicated_allocation_image_aliasing"
+  VkNvDedicatedAllocationImageAliasingSpecVersion* = 1
+  VkNvDedicatedAllocationImageAliasingExtensionName* = "VK_NV_dedicated_allocation_image_aliasing"
   # Extension: VK_KHR_separate_depth_stencil_layouts
-  VK_KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_SPEC_VERSION* = 1
-  VK_KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_EXTENSION_NAME* = "VK_KHR_separate_depth_stencil_layouts"
+  VkKhrSeparateDepthStencilLayoutsSpecVersion* = 1
+  VkKhrSeparateDepthStencilLayoutsExtensionName* = "VK_KHR_separate_depth_stencil_layouts"
   # Extension: VK_EXT_buffer_device_address
-  VK_EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION* = 2
-  VK_EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME* = "VK_EXT_buffer_device_address"
+  VkExtBufferDeviceAddressSpecVersion* = 2
+  VkExtBufferDeviceAddressExtensionName* = "VK_EXT_buffer_device_address"
   # Extension: VK_EXT_tooling_info
-  VK_EXT_TOOLING_INFO_SPEC_VERSION* = 1
-  VK_EXT_TOOLING_INFO_EXTENSION_NAME* = "VK_EXT_tooling_info"
+  VkExtToolingInfoSpecVersion* = 1
+  VkExtToolingInfoExtensionName* = "VK_EXT_tooling_info"
   # Extension: VK_EXT_separate_stencil_usage
-  VK_EXT_SEPARATE_STENCIL_USAGE_SPEC_VERSION* = 1
-  VK_EXT_SEPARATE_STENCIL_USAGE_EXTENSION_NAME* = "VK_EXT_separate_stencil_usage"
+  VkExtSeparateStencilUsageSpecVersion* = 1
+  VkExtSeparateStencilUsageExtensionName* = "VK_EXT_separate_stencil_usage"
   # Extension: VK_EXT_validation_features
-  VK_EXT_VALIDATION_FEATURES_SPEC_VERSION* = 6
-  VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME* = "VK_EXT_validation_features"
+  VkExtValidationFeaturesSpecVersion* = 6
+  VkExtValidationFeaturesExtensionName* = "VK_EXT_validation_features"
   # Extension: VK_KHR_present_wait
-  VK_KHR_PRESENT_WAIT_SPEC_VERSION* = 1
-  VK_KHR_PRESENT_WAIT_EXTENSION_NAME* = "VK_KHR_present_wait"
+  VkKhrPresentWaitSpecVersion* = 1
+  VkKhrPresentWaitExtensionName* = "VK_KHR_present_wait"
   # Extension: VK_NV_cooperative_matrix
-  VK_NV_COOPERATIVE_MATRIX_SPEC_VERSION* = 1
-  VK_NV_COOPERATIVE_MATRIX_EXTENSION_NAME* = "VK_NV_cooperative_matrix"
+  VkNvCooperativeMatrixSpecVersion* = 1
+  VkNvCooperativeMatrixExtensionName* = "VK_NV_cooperative_matrix"
   # Extension: VK_NV_coverage_reduction_mode
-  VK_NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION* = 1
-  VK_NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME* = "VK_NV_coverage_reduction_mode"
+  VkNvCoverageReductionModeSpecVersion* = 1
+  VkNvCoverageReductionModeExtensionName* = "VK_NV_coverage_reduction_mode"
   # Extension: VK_EXT_fragment_shader_interlock
-  VK_EXT_FRAGMENT_SHADER_INTERLOCK_SPEC_VERSION* = 1
-  VK_EXT_FRAGMENT_SHADER_INTERLOCK_EXTENSION_NAME* = "VK_EXT_fragment_shader_interlock"
+  VkExtFragmentShaderInterlockSpecVersion* = 1
+  VkExtFragmentShaderInterlockExtensionName* = "VK_EXT_fragment_shader_interlock"
   # Extension: VK_EXT_ycbcr_image_arrays
-  VK_EXT_YCBCR_IMAGE_ARRAYS_SPEC_VERSION* = 1
-  VK_EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME* = "VK_EXT_ycbcr_image_arrays"
+  VkExtYcbcrImageArraysSpecVersion* = 1
+  VkExtYcbcrImageArraysExtensionName* = "VK_EXT_ycbcr_image_arrays"
   # Extension: VK_KHR_uniform_buffer_standard_layout
-  VK_KHR_UNIFORM_BUFFER_STANDARD_LAYOUT_SPEC_VERSION* = 1
-  VK_KHR_UNIFORM_BUFFER_STANDARD_LAYOUT_EXTENSION_NAME* = "VK_KHR_uniform_buffer_standard_layout"
+  VkKhrUniformBufferStandardLayoutSpecVersion* = 1
+  VkKhrUniformBufferStandardLayoutExtensionName* = "VK_KHR_uniform_buffer_standard_layout"
   # Extension: VK_EXT_provoking_vertex
-  VK_EXT_PROVOKING_VERTEX_SPEC_VERSION* = 1
-  VK_EXT_PROVOKING_VERTEX_EXTENSION_NAME* = "VK_EXT_provoking_vertex"
+  VkExtProvokingVertexSpecVersion* = 1
+  VkExtProvokingVertexExtensionName* = "VK_EXT_provoking_vertex"
   # Extension: VK_EXT_full_screen_exclusive
-  VK_EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION* = 4
-  VK_EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME* = "VK_EXT_full_screen_exclusive"
+  VkExtFullScreenExclusiveSpecVersion* = 4
+  VkExtFullScreenExclusiveExtensionName* = "VK_EXT_full_screen_exclusive"
   # Extension: VK_EXT_headless_surface
-  VK_EXT_HEADLESS_SURFACE_SPEC_VERSION* = 1
-  VK_EXT_HEADLESS_SURFACE_EXTENSION_NAME* = "VK_EXT_headless_surface"
+  VkExtHeadlessSurfaceSpecVersion* = 1
+  VkExtHeadlessSurfaceExtensionName* = "VK_EXT_headless_surface"
   # Extension: VK_KHR_buffer_device_address
-  VK_KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION* = 1
-  VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME* = "VK_KHR_buffer_device_address"
+  VkKhrBufferDeviceAddressSpecVersion* = 1
+  VkKhrBufferDeviceAddressExtensionName* = "VK_KHR_buffer_device_address"
   # Extension: VK_EXT_line_rasterization
-  VK_EXT_LINE_RASTERIZATION_SPEC_VERSION* = 1
-  VK_EXT_LINE_RASTERIZATION_EXTENSION_NAME* = "VK_EXT_line_rasterization"
+  VkExtLineRasterizationSpecVersion* = 1
+  VkExtLineRasterizationExtensionName* = "VK_EXT_line_rasterization"
   # Extension: VK_EXT_shader_atomic_float
-  VK_EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION* = 1
-  VK_EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME* = "VK_EXT_shader_atomic_float"
+  VkExtShaderAtomicFloatSpecVersion* = 1
+  VkExtShaderAtomicFloatExtensionName* = "VK_EXT_shader_atomic_float"
   # Extension: VK_EXT_host_query_reset
-  VK_EXT_HOST_QUERY_RESET_SPEC_VERSION* = 1
-  VK_EXT_HOST_QUERY_RESET_EXTENSION_NAME* = "VK_EXT_host_query_reset"
+  VkExtHostQueryResetSpecVersion* = 1
+  VkExtHostQueryResetExtensionName* = "VK_EXT_host_query_reset"
   # Extension: VK_EXT_index_type_uint8
-  VK_EXT_INDEX_TYPE_UINT8_SPEC_VERSION* = 1
-  VK_EXT_INDEX_TYPE_UINT8_EXTENSION_NAME* = "VK_EXT_index_type_uint8"
+  VkExtIndexTypeUint8SpecVersion* = 1
+  VkExtIndexTypeUint8ExtensionName* = "VK_EXT_index_type_uint8"
   # Extension: VK_EXT_extended_dynamic_state
-  VK_EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION* = 1
-  VK_EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME* = "VK_EXT_extended_dynamic_state"
+  VkExtExtendedDynamicStateSpecVersion* = 1
+  VkExtExtendedDynamicStateExtensionName* = "VK_EXT_extended_dynamic_state"
   # Extension: VK_KHR_deferred_host_operations
-  VK_KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION* = 4
-  VK_KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME* = "VK_KHR_deferred_host_operations"
+  VkKhrDeferredHostOperationsSpecVersion* = 4
+  VkKhrDeferredHostOperationsExtensionName* = "VK_KHR_deferred_host_operations"
   # Extension: VK_KHR_pipeline_executable_properties
-  VK_KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION* = 1
-  VK_KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME* = "VK_KHR_pipeline_executable_properties"
+  VkKhrPipelineExecutablePropertiesSpecVersion* = 1
+  VkKhrPipelineExecutablePropertiesExtensionName* = "VK_KHR_pipeline_executable_properties"
   # Extension: VK_EXT_host_image_copy
-  VK_EXT_HOST_IMAGE_COPY_SPEC_VERSION* = 1
-  VK_EXT_HOST_IMAGE_COPY_EXTENSION_NAME* = "VK_EXT_host_image_copy"
+  VkExtHostImageCopySpecVersion* = 1
+  VkExtHostImageCopyExtensionName* = "VK_EXT_host_image_copy"
   # Extension: VK_KHR_map_memory2
-  VK_KHR_MAP_MEMORY_2_SPEC_VERSION* = 1
-  VK_KHR_MAP_MEMORY_2_EXTENSION_NAME* = "VK_KHR_map_memory2"
+  VkKhrMapMemory2SpecVersion* = 1
+  VkKhrMapMemory2ExtensionName* = "VK_KHR_map_memory2"
   # Extension: VK_EXT_map_memory_placed
-  VK_EXT_MAP_MEMORY_PLACED_SPEC_VERSION* = 1
-  VK_EXT_MAP_MEMORY_PLACED_EXTENSION_NAME* = "VK_EXT_map_memory_placed"
+  VkExtMapMemoryPlacedSpecVersion* = 1
+  VkExtMapMemoryPlacedExtensionName* = "VK_EXT_map_memory_placed"
   # Extension: VK_EXT_shader_atomic_float2
-  VK_EXT_SHADER_ATOMIC_FLOAT_2_SPEC_VERSION* = 1
-  VK_EXT_SHADER_ATOMIC_FLOAT_2_EXTENSION_NAME* = "VK_EXT_shader_atomic_float2"
+  VkExtShaderAtomicFloat2SpecVersion* = 1
+  VkExtShaderAtomicFloat2ExtensionName* = "VK_EXT_shader_atomic_float2"
   # Extension: VK_EXT_surface_maintenance1
-  VK_EXT_SURFACE_MAINTENANCE_1_SPEC_VERSION* = 1
-  VK_EXT_SURFACE_MAINTENANCE_1_EXTENSION_NAME* = "VK_EXT_surface_maintenance1"
+  VkExtSurfaceMaintenance1SpecVersion* = 1
+  VkExtSurfaceMaintenance1ExtensionName* = "VK_EXT_surface_maintenance1"
   # Extension: VK_EXT_swapchain_maintenance1
-  VK_EXT_SWAPCHAIN_MAINTENANCE_1_SPEC_VERSION* = 1
-  VK_EXT_SWAPCHAIN_MAINTENANCE_1_EXTENSION_NAME* = "VK_EXT_swapchain_maintenance1"
+  VkExtSwapchainMaintenance1SpecVersion* = 1
+  VkExtSwapchainMaintenance1ExtensionName* = "VK_EXT_swapchain_maintenance1"
   # Extension: VK_EXT_shader_demote_to_helper_invocation
-  VK_EXT_SHADER_DEMOTE_TO_HELPER_INVOCATION_SPEC_VERSION* = 1
-  VK_EXT_SHADER_DEMOTE_TO_HELPER_INVOCATION_EXTENSION_NAME* = "VK_EXT_shader_demote_to_helper_invocation"
+  VkExtShaderDemoteToHelperInvocationSpecVersion* = 1
+  VkExtShaderDemoteToHelperInvocationExtensionName* = "VK_EXT_shader_demote_to_helper_invocation"
   # Extension: VK_NV_device_generated_commands
-  VK_NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION* = 3
-  VK_NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME* = "VK_NV_device_generated_commands"
+  VkNvDeviceGeneratedCommandsSpecVersion* = 3
+  VkNvDeviceGeneratedCommandsExtensionName* = "VK_NV_device_generated_commands"
   # Extension: VK_NV_inherited_viewport_scissor
-  VK_NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION* = 1
-  VK_NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME* = "VK_NV_inherited_viewport_scissor"
+  VkNvInheritedViewportScissorSpecVersion* = 1
+  VkNvInheritedViewportScissorExtensionName* = "VK_NV_inherited_viewport_scissor"
   # Extension: VK_KHR_shader_integer_dot_product
-  VK_KHR_SHADER_INTEGER_DOT_PRODUCT_SPEC_VERSION* = 1
-  VK_KHR_SHADER_INTEGER_DOT_PRODUCT_EXTENSION_NAME* = "VK_KHR_shader_integer_dot_product"
+  VkKhrShaderIntegerDotProductSpecVersion* = 1
+  VkKhrShaderIntegerDotProductExtensionName* = "VK_KHR_shader_integer_dot_product"
   # Extension: VK_EXT_texel_buffer_alignment
-  VK_EXT_TEXEL_BUFFER_ALIGNMENT_SPEC_VERSION* = 1
-  VK_EXT_TEXEL_BUFFER_ALIGNMENT_EXTENSION_NAME* = "VK_EXT_texel_buffer_alignment"
+  VkExtTexelBufferAlignmentSpecVersion* = 1
+  VkExtTexelBufferAlignmentExtensionName* = "VK_EXT_texel_buffer_alignment"
   # Extension: VK_QCOM_render_pass_transform
-  VK_QCOM_RENDER_PASS_TRANSFORM_SPEC_VERSION* = 4
-  VK_QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME* = "VK_QCOM_render_pass_transform"
+  VkQcomRenderPassTransformSpecVersion* = 4
+  VkQcomRenderPassTransformExtensionName* = "VK_QCOM_render_pass_transform"
   # Extension: VK_EXT_depth_bias_control
-  VK_EXT_DEPTH_BIAS_CONTROL_SPEC_VERSION* = 1
-  VK_EXT_DEPTH_BIAS_CONTROL_EXTENSION_NAME* = "VK_EXT_depth_bias_control"
+  VkExtDepthBiasControlSpecVersion* = 1
+  VkExtDepthBiasControlExtensionName* = "VK_EXT_depth_bias_control"
   # Extension: VK_EXT_device_memory_report
-  VK_EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION* = 2
-  VK_EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME* = "VK_EXT_device_memory_report"
+  VkExtDeviceMemoryReportSpecVersion* = 2
+  VkExtDeviceMemoryReportExtensionName* = "VK_EXT_device_memory_report"
   # Extension: VK_EXT_acquire_drm_display
-  VK_EXT_ACQUIRE_DRM_DISPLAY_SPEC_VERSION* = 1
-  VK_EXT_ACQUIRE_DRM_DISPLAY_EXTENSION_NAME* = "VK_EXT_acquire_drm_display"
+  VkExtAcquireDrmDisplaySpecVersion* = 1
+  VkExtAcquireDrmDisplayExtensionName* = "VK_EXT_acquire_drm_display"
   # Extension: VK_EXT_robustness2
-  VK_EXT_ROBUSTNESS_2_SPEC_VERSION* = 1
-  VK_EXT_ROBUSTNESS_2_EXTENSION_NAME* = "VK_EXT_robustness2"
+  VkExtRobustness2SpecVersion* = 1
+  VkExtRobustness2ExtensionName* = "VK_EXT_robustness2"
   # Extension: VK_EXT_custom_border_color
-  VK_EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION* = 12
-  VK_EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME* = "VK_EXT_custom_border_color"
+  VkExtCustomBorderColorSpecVersion* = 12
+  VkExtCustomBorderColorExtensionName* = "VK_EXT_custom_border_color"
   # Extension: VK_GOOGLE_user_type
-  VK_GOOGLE_USER_TYPE_SPEC_VERSION* = 1
-  VK_GOOGLE_USER_TYPE_EXTENSION_NAME* = "VK_GOOGLE_user_type"
+  VkGoogleUserTypeSpecVersion* = 1
+  VkGoogleUserTypeExtensionName* = "VK_GOOGLE_user_type"
   # Extension: VK_KHR_pipeline_library
-  VK_KHR_PIPELINE_LIBRARY_SPEC_VERSION* = 1
-  VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME* = "VK_KHR_pipeline_library"
+  VkKhrPipelineLibrarySpecVersion* = 1
+  VkKhrPipelineLibraryExtensionName* = "VK_KHR_pipeline_library"
   # Extension: VK_NV_present_barrier
-  VK_NV_PRESENT_BARRIER_SPEC_VERSION* = 1
-  VK_NV_PRESENT_BARRIER_EXTENSION_NAME* = "VK_NV_present_barrier"
+  VkNvPresentBarrierSpecVersion* = 1
+  VkNvPresentBarrierExtensionName* = "VK_NV_present_barrier"
   # Extension: VK_KHR_shader_non_semantic_info
-  VK_KHR_SHADER_NON_SEMANTIC_INFO_SPEC_VERSION* = 1
-  VK_KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME* = "VK_KHR_shader_non_semantic_info"
+  VkKhrShaderNonSemanticInfoSpecVersion* = 1
+  VkKhrShaderNonSemanticInfoExtensionName* = "VK_KHR_shader_non_semantic_info"
   # Extension: VK_KHR_present_id
-  VK_KHR_PRESENT_ID_SPEC_VERSION* = 1
-  VK_KHR_PRESENT_ID_EXTENSION_NAME* = "VK_KHR_present_id"
+  VkKhrPresentIdSpecVersion* = 1
+  VkKhrPresentIdExtensionName* = "VK_KHR_present_id"
   # Extension: VK_EXT_private_data
-  VK_EXT_PRIVATE_DATA_SPEC_VERSION* = 1
-  VK_EXT_PRIVATE_DATA_EXTENSION_NAME* = "VK_EXT_private_data"
+  VkExtPrivateDataSpecVersion* = 1
+  VkExtPrivateDataExtensionName* = "VK_EXT_private_data"
   # Extension: VK_EXT_pipeline_creation_cache_control
-  VK_EXT_PIPELINE_CREATION_CACHE_CONTROL_SPEC_VERSION* = 3
-  VK_EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME* = "VK_EXT_pipeline_creation_cache_control"
+  VkExtPipelineCreationCacheControlSpecVersion* = 3
+  VkExtPipelineCreationCacheControlExtensionName* = "VK_EXT_pipeline_creation_cache_control"
   # Extension: VK_KHR_video_encode_queue
-  VK_KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION* = 12
-  VK_KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME* = "VK_KHR_video_encode_queue"
+  VkKhrVideoEncodeQueueSpecVersion* = 12
+  VkKhrVideoEncodeQueueExtensionName* = "VK_KHR_video_encode_queue"
   # Extension: VK_NV_device_diagnostics_config
-  VK_NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION* = 2
-  VK_NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME* = "VK_NV_device_diagnostics_config"
+  VkNvDeviceDiagnosticsConfigSpecVersion* = 2
+  VkNvDeviceDiagnosticsConfigExtensionName* = "VK_NV_device_diagnostics_config"
   # Extension: VK_QCOM_render_pass_store_ops
-  VK_QCOM_RENDER_PASS_STORE_OPS_SPEC_VERSION* = 2
-  VK_QCOM_RENDER_PASS_STORE_OPS_EXTENSION_NAME* = "VK_QCOM_render_pass_store_ops"
+  VkQcomRenderPassStoreOpsSpecVersion* = 2
+  VkQcomRenderPassStoreOpsExtensionName* = "VK_QCOM_render_pass_store_ops"
   # Extension: VK_NV_cuda_kernel_launch
-  VK_NV_CUDA_KERNEL_LAUNCH_SPEC_VERSION* = 2
-  VK_NV_CUDA_KERNEL_LAUNCH_EXTENSION_NAME* = "VK_NV_cuda_kernel_launch"
+  VkNvCudaKernelLaunchSpecVersion* = 2
+  VkNvCudaKernelLaunchExtensionName* = "VK_NV_cuda_kernel_launch"
   # Extension: VK_KHR_object_refresh
-  VK_KHR_OBJECT_REFRESH_SPEC_VERSION* = 1
-  VK_KHR_OBJECT_REFRESH_EXTENSION_NAME* = "VK_KHR_object_refresh"
+  VkKhrObjectRefreshSpecVersion* = 1
+  VkKhrObjectRefreshExtensionName* = "VK_KHR_object_refresh"
   # Extension: VK_NV_low_latency
-  VK_NV_LOW_LATENCY_SPEC_VERSION* = 1
-  VK_NV_LOW_LATENCY_EXTENSION_NAME* = "VK_NV_low_latency"
+  VkNvLowLatencySpecVersion* = 1
+  VkNvLowLatencyExtensionName* = "VK_NV_low_latency"
   # Extension: VK_EXT_metal_objects
-  VK_EXT_METAL_OBJECTS_SPEC_VERSION* = 1
-  VK_EXT_METAL_OBJECTS_EXTENSION_NAME* = "VK_EXT_metal_objects"
+  VkExtMetalObjectsSpecVersion* = 2
+  VkExtMetalObjectsExtensionName* = "VK_EXT_metal_objects"
   # Extension: VK_KHR_synchronization2
-  VK_KHR_SYNCHRONIZATION_2_SPEC_VERSION* = 1
-  VK_KHR_SYNCHRONIZATION_2_EXTENSION_NAME* = "VK_KHR_synchronization2"
+  VkKhrSynchronization2SpecVersion* = 1
+  VkKhrSynchronization2ExtensionName* = "VK_KHR_synchronization2"
   # Extension: VK_EXT_descriptor_buffer
-  VK_EXT_DESCRIPTOR_BUFFER_SPEC_VERSION* = 1
-  VK_EXT_DESCRIPTOR_BUFFER_EXTENSION_NAME* = "VK_EXT_descriptor_buffer"
+  VkExtDescriptorBufferSpecVersion* = 1
+  VkExtDescriptorBufferExtensionName* = "VK_EXT_descriptor_buffer"
   # Extension: VK_EXT_graphics_pipeline_library
-  VK_EXT_GRAPHICS_PIPELINE_LIBRARY_SPEC_VERSION* = 1
-  VK_EXT_GRAPHICS_PIPELINE_LIBRARY_EXTENSION_NAME* = "VK_EXT_graphics_pipeline_library"
+  VkExtGraphicsPipelineLibrarySpecVersion* = 1
+  VkExtGraphicsPipelineLibraryExtensionName* = "VK_EXT_graphics_pipeline_library"
   # Extension: VK_AMD_shader_early_and_late_fragment_tests
-  VK_AMD_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_SPEC_VERSION* = 1
-  VK_AMD_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_EXTENSION_NAME* = "VK_AMD_shader_early_and_late_fragment_tests"
+  VkAmdShaderEarlyAndLateFragmentTestsSpecVersion* = 1
+  VkAmdShaderEarlyAndLateFragmentTestsExtensionName* = "VK_AMD_shader_early_and_late_fragment_tests"
   # Extension: VK_KHR_fragment_shader_barycentric
-  VK_KHR_FRAGMENT_SHADER_BARYCENTRIC_SPEC_VERSION* = 1
-  VK_KHR_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME* = "VK_KHR_fragment_shader_barycentric"
+  VkKhrFragmentShaderBarycentricSpecVersion* = 1
+  VkKhrFragmentShaderBarycentricExtensionName* = "VK_KHR_fragment_shader_barycentric"
   # Extension: VK_KHR_shader_subgroup_uniform_control_flow
-  VK_KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_SPEC_VERSION* = 1
-  VK_KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME* = "VK_KHR_shader_subgroup_uniform_control_flow"
+  VkKhrShaderSubgroupUniformControlFlowSpecVersion* = 1
+  VkKhrShaderSubgroupUniformControlFlowExtensionName* = "VK_KHR_shader_subgroup_uniform_control_flow"
   # Extension: VK_KHR_zero_initialize_workgroup_memory
-  VK_KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_SPEC_VERSION* = 1
-  VK_KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_EXTENSION_NAME* = "VK_KHR_zero_initialize_workgroup_memory"
+  VkKhrZeroInitializeWorkgroupMemorySpecVersion* = 1
+  VkKhrZeroInitializeWorkgroupMemoryExtensionName* = "VK_KHR_zero_initialize_workgroup_memory"
   # Extension: VK_NV_fragment_shading_rate_enums
-  VK_NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION* = 1
-  VK_NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME* = "VK_NV_fragment_shading_rate_enums"
+  VkNvFragmentShadingRateEnumsSpecVersion* = 1
+  VkNvFragmentShadingRateEnumsExtensionName* = "VK_NV_fragment_shading_rate_enums"
   # Extension: VK_NV_ray_tracing_motion_blur
-  VK_NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION* = 1
-  VK_NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME* = "VK_NV_ray_tracing_motion_blur"
+  VkNvRayTracingMotionBlurSpecVersion* = 1
+  VkNvRayTracingMotionBlurExtensionName* = "VK_NV_ray_tracing_motion_blur"
   # Extension: VK_EXT_mesh_shader
-  VK_EXT_MESH_SHADER_SPEC_VERSION* = 1
-  VK_EXT_MESH_SHADER_EXTENSION_NAME* = "VK_EXT_mesh_shader"
+  VkExtMeshShaderSpecVersion* = 1
+  VkExtMeshShaderExtensionName* = "VK_EXT_mesh_shader"
   # Extension: VK_EXT_ycbcr_2plane_444_formats
-  VK_EXT_YCBCR_2PLANE_444_FORMATS_SPEC_VERSION* = 1
-  VK_EXT_YCBCR_2PLANE_444_FORMATS_EXTENSION_NAME* = "VK_EXT_ycbcr_2plane_444_formats"
+  VkExtYcbcr2plane444FormatsSpecVersion* = 1
+  VkExtYcbcr2plane444FormatsExtensionName* = "VK_EXT_ycbcr_2plane_444_formats"
   # Extension: VK_EXT_fragment_density_map2
-  VK_EXT_FRAGMENT_DENSITY_MAP_2_SPEC_VERSION* = 1
-  VK_EXT_FRAGMENT_DENSITY_MAP_2_EXTENSION_NAME* = "VK_EXT_fragment_density_map2"
+  VkExtFragmentDensityMap2SpecVersion* = 1
+  VkExtFragmentDensityMap2ExtensionName* = "VK_EXT_fragment_density_map2"
   # Extension: VK_QCOM_rotated_copy_commands
-  VK_QCOM_ROTATED_COPY_COMMANDS_SPEC_VERSION* = 2
-  VK_QCOM_ROTATED_COPY_COMMANDS_EXTENSION_NAME* = "VK_QCOM_rotated_copy_commands"
+  VkQcomRotatedCopyCommandsSpecVersion* = 2
+  VkQcomRotatedCopyCommandsExtensionName* = "VK_QCOM_rotated_copy_commands"
   # Extension: VK_EXT_image_robustness
-  VK_EXT_IMAGE_ROBUSTNESS_SPEC_VERSION* = 1
-  VK_EXT_IMAGE_ROBUSTNESS_EXTENSION_NAME* = "VK_EXT_image_robustness"
+  VkExtImageRobustnessSpecVersion* = 1
+  VkExtImageRobustnessExtensionName* = "VK_EXT_image_robustness"
   # Extension: VK_KHR_workgroup_memory_explicit_layout
-  VK_KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_SPEC_VERSION* = 1
-  VK_KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME* = "VK_KHR_workgroup_memory_explicit_layout"
+  VkKhrWorkgroupMemoryExplicitLayoutSpecVersion* = 1
+  VkKhrWorkgroupMemoryExplicitLayoutExtensionName* = "VK_KHR_workgroup_memory_explicit_layout"
   # Extension: VK_KHR_copy_commands2
-  VK_KHR_COPY_COMMANDS_2_SPEC_VERSION* = 1
-  VK_KHR_COPY_COMMANDS_2_EXTENSION_NAME* = "VK_KHR_copy_commands2"
+  VkKhrCopyCommands2SpecVersion* = 1
+  VkKhrCopyCommands2ExtensionName* = "VK_KHR_copy_commands2"
   # Extension: VK_EXT_image_compression_control
-  VK_EXT_IMAGE_COMPRESSION_CONTROL_SPEC_VERSION* = 1
-  VK_EXT_IMAGE_COMPRESSION_CONTROL_EXTENSION_NAME* = "VK_EXT_image_compression_control"
+  VkExtImageCompressionControlSpecVersion* = 1
+  VkExtImageCompressionControlExtensionName* = "VK_EXT_image_compression_control"
   # Extension: VK_EXT_attachment_feedback_loop_layout
-  VK_EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_SPEC_VERSION* = 2
-  VK_EXT_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_EXTENSION_NAME* = "VK_EXT_attachment_feedback_loop_layout"
+  VkExtAttachmentFeedbackLoopLayoutSpecVersion* = 2
+  VkExtAttachmentFeedbackLoopLayoutExtensionName* = "VK_EXT_attachment_feedback_loop_layout"
   # Extension: VK_EXT_4444_formats
-  VK_EXT_4444_FORMATS_SPEC_VERSION* = 1
-  VK_EXT_4444_FORMATS_EXTENSION_NAME* = "VK_EXT_4444_formats"
+  VkExt4444FormatsSpecVersion* = 1
+  VkExt4444FormatsExtensionName* = "VK_EXT_4444_formats"
   # Extension: VK_EXT_device_fault
-  VK_EXT_DEVICE_FAULT_SPEC_VERSION* = 2
-  VK_EXT_DEVICE_FAULT_EXTENSION_NAME* = "VK_EXT_device_fault"
+  VkExtDeviceFaultSpecVersion* = 2
+  VkExtDeviceFaultExtensionName* = "VK_EXT_device_fault"
   # Extension: VK_ARM_rasterization_order_attachment_access
-  VK_ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION* = 1
-  VK_ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME* = "VK_ARM_rasterization_order_attachment_access"
+  VkArmRasterizationOrderAttachmentAccessSpecVersion* = 1
+  VkArmRasterizationOrderAttachmentAccessExtensionName* = "VK_ARM_rasterization_order_attachment_access"
   # Extension: VK_EXT_rgba10x6_formats
-  VK_EXT_RGBA10X6_FORMATS_SPEC_VERSION* = 1
-  VK_EXT_RGBA10X6_FORMATS_EXTENSION_NAME* = "VK_EXT_rgba10x6_formats"
+  VkExtRgba10x6FormatsSpecVersion* = 1
+  VkExtRgba10x6FormatsExtensionName* = "VK_EXT_rgba10x6_formats"
   # Extension: VK_NV_acquire_winrt_display
-  VK_NV_ACQUIRE_WINRT_DISPLAY_SPEC_VERSION* = 1
-  VK_NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME* = "VK_NV_acquire_winrt_display"
+  VkNvAcquireWinrtDisplaySpecVersion* = 1
+  VkNvAcquireWinrtDisplayExtensionName* = "VK_NV_acquire_winrt_display"
   # Extension: VK_EXT_directfb_surface
-  VK_EXT_DIRECTFB_SURFACE_SPEC_VERSION* = 1
-  VK_EXT_DIRECTFB_SURFACE_EXTENSION_NAME* = "VK_EXT_directfb_surface"
+  VkExtDirectfbSurfaceSpecVersion* = 1
+  VkExtDirectfbSurfaceExtensionName* = "VK_EXT_directfb_surface"
   # Extension: VK_VALVE_mutable_descriptor_type
-  VK_VALVE_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION* = 1
-  VK_VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME* = "VK_VALVE_mutable_descriptor_type"
+  VkValveMutableDescriptorTypeSpecVersion* = 1
+  VkValveMutableDescriptorTypeExtensionName* = "VK_VALVE_mutable_descriptor_type"
   # Extension: VK_EXT_vertex_input_dynamic_state
-  VK_EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION* = 2
-  VK_EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME* = "VK_EXT_vertex_input_dynamic_state"
+  VkExtVertexInputDynamicStateSpecVersion* = 2
+  VkExtVertexInputDynamicStateExtensionName* = "VK_EXT_vertex_input_dynamic_state"
   # Extension: VK_EXT_physical_device_drm
-  VK_EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION* = 1
-  VK_EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME* = "VK_EXT_physical_device_drm"
+  VkExtPhysicalDeviceDrmSpecVersion* = 1
+  VkExtPhysicalDeviceDrmExtensionName* = "VK_EXT_physical_device_drm"
   # Extension: VK_EXT_device_address_binding_report
-  VK_EXT_DEVICE_ADDRESS_BINDING_REPORT_SPEC_VERSION* = 1
-  VK_EXT_DEVICE_ADDRESS_BINDING_REPORT_EXTENSION_NAME* = "VK_EXT_device_address_binding_report"
+  VkExtDeviceAddressBindingReportSpecVersion* = 1
+  VkExtDeviceAddressBindingReportExtensionName* = "VK_EXT_device_address_binding_report"
   # Extension: VK_EXT_depth_clip_control
-  VK_EXT_DEPTH_CLIP_CONTROL_SPEC_VERSION* = 1
-  VK_EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME* = "VK_EXT_depth_clip_control"
+  VkExtDepthClipControlSpecVersion* = 1
+  VkExtDepthClipControlExtensionName* = "VK_EXT_depth_clip_control"
   # Extension: VK_EXT_primitive_topology_list_restart
-  VK_EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_SPEC_VERSION* = 1
-  VK_EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME* = "VK_EXT_primitive_topology_list_restart"
+  VkExtPrimitiveTopologyListRestartSpecVersion* = 1
+  VkExtPrimitiveTopologyListRestartExtensionName* = "VK_EXT_primitive_topology_list_restart"
   # Extension: VK_KHR_format_feature_flags2
-  VK_KHR_FORMAT_FEATURE_FLAGS_2_SPEC_VERSION* = 2
-  VK_KHR_FORMAT_FEATURE_FLAGS_2_EXTENSION_NAME* = "VK_KHR_format_feature_flags2"
+  VkKhrFormatFeatureFlags2SpecVersion* = 2
+  VkKhrFormatFeatureFlags2ExtensionName* = "VK_KHR_format_feature_flags2"
   # Extension: VK_FUCHSIA_external_memory
-  VK_FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION* = 1
-  VK_FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME* = "VK_FUCHSIA_external_memory"
+  VkFuchsiaExternalMemorySpecVersion* = 1
+  VkFuchsiaExternalMemoryExtensionName* = "VK_FUCHSIA_external_memory"
   # Extension: VK_FUCHSIA_external_semaphore
-  VK_FUCHSIA_EXTERNAL_SEMAPHORE_SPEC_VERSION* = 1
-  VK_FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME* = "VK_FUCHSIA_external_semaphore"
+  VkFuchsiaExternalSemaphoreSpecVersion* = 1
+  VkFuchsiaExternalSemaphoreExtensionName* = "VK_FUCHSIA_external_semaphore"
   # Extension: VK_FUCHSIA_buffer_collection
-  VK_FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION* = 2
-  VK_FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME* = "VK_FUCHSIA_buffer_collection"
+  VkFuchsiaBufferCollectionSpecVersion* = 2
+  VkFuchsiaBufferCollectionExtensionName* = "VK_FUCHSIA_buffer_collection"
   # Extension: VK_HUAWEI_subpass_shading
-  VK_HUAWEI_SUBPASS_SHADING_SPEC_VERSION* = 3
-  VK_HUAWEI_SUBPASS_SHADING_EXTENSION_NAME* = "VK_HUAWEI_subpass_shading"
+  VkHuaweiSubpassShadingSpecVersion* = 3
+  VkHuaweiSubpassShadingExtensionName* = "VK_HUAWEI_subpass_shading"
   # Extension: VK_HUAWEI_invocation_mask
-  VK_HUAWEI_INVOCATION_MASK_SPEC_VERSION* = 1
-  VK_HUAWEI_INVOCATION_MASK_EXTENSION_NAME* = "VK_HUAWEI_invocation_mask"
+  VkHuaweiInvocationMaskSpecVersion* = 1
+  VkHuaweiInvocationMaskExtensionName* = "VK_HUAWEI_invocation_mask"
   # Extension: VK_NV_external_memory_rdma
-  VK_NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION* = 1
-  VK_NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME* = "VK_NV_external_memory_rdma"
+  VkNvExternalMemoryRdmaSpecVersion* = 1
+  VkNvExternalMemoryRdmaExtensionName* = "VK_NV_external_memory_rdma"
   # Extension: VK_EXT_pipeline_properties
-  VK_EXT_PIPELINE_PROPERTIES_SPEC_VERSION* = 1
-  VK_EXT_PIPELINE_PROPERTIES_EXTENSION_NAME* = "VK_EXT_pipeline_properties"
+  VkExtPipelinePropertiesSpecVersion* = 1
+  VkExtPipelinePropertiesExtensionName* = "VK_EXT_pipeline_properties"
   # Extension: VK_NV_external_sci_sync
-  VK_NV_EXTERNAL_SCI_SYNC_SPEC_VERSION* = 2
-  VK_NV_EXTERNAL_SCI_SYNC_EXTENSION_NAME* = "VK_NV_external_sci_sync"
+  VkNvExternalSciSyncSpecVersion* = 2
+  VkNvExternalSciSyncExtensionName* = "VK_NV_external_sci_sync"
   # Extension: VK_NV_external_memory_sci_buf
-  VK_NV_EXTERNAL_MEMORY_SCI_BUF_SPEC_VERSION* = 2
-  VK_NV_EXTERNAL_MEMORY_SCI_BUF_EXTENSION_NAME* = "VK_NV_external_memory_sci_buf"
+  VkNvExternalMemorySciBufSpecVersion* = 2
+  VkNvExternalMemorySciBufExtensionName* = "VK_NV_external_memory_sci_buf"
   # Extension: VK_EXT_frame_boundary
-  VK_EXT_FRAME_BOUNDARY_SPEC_VERSION* = 1
-  VK_EXT_FRAME_BOUNDARY_EXTENSION_NAME* = "VK_EXT_frame_boundary"
+  VkExtFrameBoundarySpecVersion* = 1
+  VkExtFrameBoundaryExtensionName* = "VK_EXT_frame_boundary"
   # Extension: VK_EXT_multisampled_render_to_single_sampled
-  VK_EXT_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_SPEC_VERSION* = 1
-  VK_EXT_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_EXTENSION_NAME* = "VK_EXT_multisampled_render_to_single_sampled"
+  VkExtMultisampledRenderToSingleSampledSpecVersion* = 1
+  VkExtMultisampledRenderToSingleSampledExtensionName* = "VK_EXT_multisampled_render_to_single_sampled"
   # Extension: VK_EXT_extended_dynamic_state2
-  VK_EXT_EXTENDED_DYNAMIC_STATE_2_SPEC_VERSION* = 1
-  VK_EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME* = "VK_EXT_extended_dynamic_state2"
+  VkExtExtendedDynamicState2SpecVersion* = 1
+  VkExtExtendedDynamicState2ExtensionName* = "VK_EXT_extended_dynamic_state2"
   # Extension: VK_QNX_screen_surface
-  VK_QNX_SCREEN_SURFACE_SPEC_VERSION* = 1
-  VK_QNX_SCREEN_SURFACE_EXTENSION_NAME* = "VK_QNX_screen_surface"
+  VkQnxScreenSurfaceSpecVersion* = 1
+  VkQnxScreenSurfaceExtensionName* = "VK_QNX_screen_surface"
   # Extension: VK_EXT_color_write_enable
-  VK_EXT_COLOR_WRITE_ENABLE_SPEC_VERSION* = 1
-  VK_EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME* = "VK_EXT_color_write_enable"
+  VkExtColorWriteEnableSpecVersion* = 1
+  VkExtColorWriteEnableExtensionName* = "VK_EXT_color_write_enable"
   # Extension: VK_EXT_primitives_generated_query
-  VK_EXT_PRIMITIVES_GENERATED_QUERY_SPEC_VERSION* = 1
-  VK_EXT_PRIMITIVES_GENERATED_QUERY_EXTENSION_NAME* = "VK_EXT_primitives_generated_query"
+  VkExtPrimitivesGeneratedQuerySpecVersion* = 1
+  VkExtPrimitivesGeneratedQueryExtensionName* = "VK_EXT_primitives_generated_query"
   # Extension: VK_KHR_ray_tracing_maintenance1
-  VK_KHR_RAY_TRACING_MAINTENANCE_1_SPEC_VERSION* = 1
-  VK_KHR_RAY_TRACING_MAINTENANCE_1_EXTENSION_NAME* = "VK_KHR_ray_tracing_maintenance1"
+  VkKhrRayTracingMaintenance1SpecVersion* = 1
+  VkKhrRayTracingMaintenance1ExtensionName* = "VK_KHR_ray_tracing_maintenance1"
   # Extension: VK_EXT_global_priority_query
-  VK_EXT_GLOBAL_PRIORITY_QUERY_SPEC_VERSION* = 1
-  VK_EXT_GLOBAL_PRIORITY_QUERY_EXTENSION_NAME* = "VK_EXT_global_priority_query"
+  VkExtGlobalPriorityQuerySpecVersion* = 1
+  VkExtGlobalPriorityQueryExtensionName* = "VK_EXT_global_priority_query"
   # Extension: VK_EXT_image_view_min_lod
-  VK_EXT_IMAGE_VIEW_MIN_LOD_SPEC_VERSION* = 1
-  VK_EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME* = "VK_EXT_image_view_min_lod"
+  VkExtImageViewMinLodSpecVersion* = 1
+  VkExtImageViewMinLodExtensionName* = "VK_EXT_image_view_min_lod"
   # Extension: VK_EXT_multi_draw
-  VK_EXT_MULTI_DRAW_SPEC_VERSION* = 1
-  VK_EXT_MULTI_DRAW_EXTENSION_NAME* = "VK_EXT_multi_draw"
+  VkExtMultiDrawSpecVersion* = 1
+  VkExtMultiDrawExtensionName* = "VK_EXT_multi_draw"
   # Extension: VK_EXT_image_2d_view_of_3d
-  VK_EXT_IMAGE_2D_VIEW_OF_3D_SPEC_VERSION* = 1
-  VK_EXT_IMAGE_2D_VIEW_OF_3D_EXTENSION_NAME* = "VK_EXT_image_2d_view_of_3d"
+  VkExtImage2dViewOf3dSpecVersion* = 1
+  VkExtImage2dViewOf3dExtensionName* = "VK_EXT_image_2d_view_of_3d"
   # Extension: VK_KHR_portability_enumeration
-  VK_KHR_PORTABILITY_ENUMERATION_SPEC_VERSION* = 1
-  VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME* = "VK_KHR_portability_enumeration"
+  VkKhrPortabilityEnumerationSpecVersion* = 1
+  VkKhrPortabilityEnumerationExtensionName* = "VK_KHR_portability_enumeration"
   # Extension: VK_EXT_shader_tile_image
-  VK_EXT_SHADER_TILE_IMAGE_SPEC_VERSION* = 1
-  VK_EXT_SHADER_TILE_IMAGE_EXTENSION_NAME* = "VK_EXT_shader_tile_image"
+  VkExtShaderTileImageSpecVersion* = 1
+  VkExtShaderTileImageExtensionName* = "VK_EXT_shader_tile_image"
   # Extension: VK_EXT_opacity_micromap
-  VK_EXT_OPACITY_MICROMAP_SPEC_VERSION* = 2
-  VK_EXT_OPACITY_MICROMAP_EXTENSION_NAME* = "VK_EXT_opacity_micromap"
+  VkExtOpacityMicromapSpecVersion* = 2
+  VkExtOpacityMicromapExtensionName* = "VK_EXT_opacity_micromap"
   # Extension: VK_NV_displacement_micromap
-  VK_NV_DISPLACEMENT_MICROMAP_SPEC_VERSION* = 2
-  VK_NV_DISPLACEMENT_MICROMAP_EXTENSION_NAME* = "VK_NV_displacement_micromap"
+  VkNvDisplacementMicromapSpecVersion* = 2
+  VkNvDisplacementMicromapExtensionName* = "VK_NV_displacement_micromap"
   # Extension: VK_EXT_load_store_op_none
-  VK_EXT_LOAD_STORE_OP_NONE_SPEC_VERSION* = 1
-  VK_EXT_LOAD_STORE_OP_NONE_EXTENSION_NAME* = "VK_EXT_load_store_op_none"
+  VkExtLoadStoreOpNoneSpecVersion* = 1
+  VkExtLoadStoreOpNoneExtensionName* = "VK_EXT_load_store_op_none"
   # Extension: VK_HUAWEI_cluster_culling_shader
-  VK_HUAWEI_CLUSTER_CULLING_SHADER_SPEC_VERSION* = 3
-  VK_HUAWEI_CLUSTER_CULLING_SHADER_EXTENSION_NAME* = "VK_HUAWEI_cluster_culling_shader"
+  VkHuaweiClusterCullingShaderSpecVersion* = 3
+  VkHuaweiClusterCullingShaderExtensionName* = "VK_HUAWEI_cluster_culling_shader"
   # Extension: VK_EXT_border_color_swizzle
-  VK_EXT_BORDER_COLOR_SWIZZLE_SPEC_VERSION* = 1
-  VK_EXT_BORDER_COLOR_SWIZZLE_EXTENSION_NAME* = "VK_EXT_border_color_swizzle"
+  VkExtBorderColorSwizzleSpecVersion* = 1
+  VkExtBorderColorSwizzleExtensionName* = "VK_EXT_border_color_swizzle"
   # Extension: VK_EXT_pageable_device_local_memory
-  VK_EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_SPEC_VERSION* = 1
-  VK_EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME* = "VK_EXT_pageable_device_local_memory"
+  VkExtPageableDeviceLocalMemorySpecVersion* = 1
+  VkExtPageableDeviceLocalMemoryExtensionName* = "VK_EXT_pageable_device_local_memory"
   # Extension: VK_KHR_maintenance4
-  VK_KHR_MAINTENANCE_4_SPEC_VERSION* = 2
-  VK_KHR_MAINTENANCE_4_EXTENSION_NAME* = "VK_KHR_maintenance4"
+  VkKhrMaintenance4SpecVersion* = 2
+  VkKhrMaintenance4ExtensionName* = "VK_KHR_maintenance4"
   # Extension: VK_ARM_shader_core_properties
-  VK_ARM_SHADER_CORE_PROPERTIES_SPEC_VERSION* = 1
-  VK_ARM_SHADER_CORE_PROPERTIES_EXTENSION_NAME* = "VK_ARM_shader_core_properties"
+  VkArmShaderCorePropertiesSpecVersion* = 1
+  VkArmShaderCorePropertiesExtensionName* = "VK_ARM_shader_core_properties"
   # Extension: VK_KHR_shader_subgroup_rotate
-  VK_KHR_SHADER_SUBGROUP_ROTATE_SPEC_VERSION* = 2
-  VK_KHR_SHADER_SUBGROUP_ROTATE_EXTENSION_NAME* = "VK_KHR_shader_subgroup_rotate"
+  VkKhrShaderSubgroupRotateSpecVersion* = 2
+  VkKhrShaderSubgroupRotateExtensionName* = "VK_KHR_shader_subgroup_rotate"
   # Extension: VK_ARM_scheduling_controls
-  VK_ARM_SCHEDULING_CONTROLS_SPEC_VERSION* = 1
-  VK_ARM_SCHEDULING_CONTROLS_EXTENSION_NAME* = "VK_ARM_scheduling_controls"
+  VkArmSchedulingControlsSpecVersion* = 1
+  VkArmSchedulingControlsExtensionName* = "VK_ARM_scheduling_controls"
   # Extension: VK_EXT_image_sliced_view_of_3d
-  VK_EXT_IMAGE_SLICED_VIEW_OF_3D_SPEC_VERSION* = 1
-  VK_EXT_IMAGE_SLICED_VIEW_OF_3D_EXTENSION_NAME* = "VK_EXT_image_sliced_view_of_3d"
+  VkExtImageSlicedViewOf3dSpecVersion* = 1
+  VkExtImageSlicedViewOf3dExtensionName* = "VK_EXT_image_sliced_view_of_3d"
   # Extension: VK_VALVE_descriptor_set_host_mapping
-  VK_VALVE_DESCRIPTOR_SET_HOST_MAPPING_SPEC_VERSION* = 1
-  VK_VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME* = "VK_VALVE_descriptor_set_host_mapping"
+  VkValveDescriptorSetHostMappingSpecVersion* = 1
+  VkValveDescriptorSetHostMappingExtensionName* = "VK_VALVE_descriptor_set_host_mapping"
   # Extension: VK_EXT_depth_clamp_zero_one
-  VK_EXT_DEPTH_CLAMP_ZERO_ONE_SPEC_VERSION* = 1
-  VK_EXT_DEPTH_CLAMP_ZERO_ONE_EXTENSION_NAME* = "VK_EXT_depth_clamp_zero_one"
+  VkExtDepthClampZeroOneSpecVersion* = 1
+  VkExtDepthClampZeroOneExtensionName* = "VK_EXT_depth_clamp_zero_one"
   # Extension: VK_EXT_non_seamless_cube_map
-  VK_EXT_NON_SEAMLESS_CUBE_MAP_SPEC_VERSION* = 1
-  VK_EXT_NON_SEAMLESS_CUBE_MAP_EXTENSION_NAME* = "VK_EXT_non_seamless_cube_map"
+  VkExtNonSeamlessCubeMapSpecVersion* = 1
+  VkExtNonSeamlessCubeMapExtensionName* = "VK_EXT_non_seamless_cube_map"
   # Extension: VK_ARM_render_pass_striped
-  VK_ARM_RENDER_PASS_STRIPED_SPEC_VERSION* = 1
-  VK_ARM_RENDER_PASS_STRIPED_EXTENSION_NAME* = "VK_ARM_render_pass_striped"
+  VkArmRenderPassStripedSpecVersion* = 1
+  VkArmRenderPassStripedExtensionName* = "VK_ARM_render_pass_striped"
   # Extension: VK_QCOM_fragment_density_map_offset
-  VK_QCOM_FRAGMENT_DENSITY_MAP_OFFSET_SPEC_VERSION* = 1
-  VK_QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME* = "VK_QCOM_fragment_density_map_offset"
+  VkQcomFragmentDensityMapOffsetSpecVersion* = 2
+  VkQcomFragmentDensityMapOffsetExtensionName* = "VK_QCOM_fragment_density_map_offset"
   # Extension: VK_NV_copy_memory_indirect
-  VK_NV_COPY_MEMORY_INDIRECT_SPEC_VERSION* = 1
-  VK_NV_COPY_MEMORY_INDIRECT_EXTENSION_NAME* = "VK_NV_copy_memory_indirect"
+  VkNvCopyMemoryIndirectSpecVersion* = 1
+  VkNvCopyMemoryIndirectExtensionName* = "VK_NV_copy_memory_indirect"
   # Extension: VK_NV_memory_decompression
-  VK_NV_MEMORY_DECOMPRESSION_SPEC_VERSION* = 1
-  VK_NV_MEMORY_DECOMPRESSION_EXTENSION_NAME* = "VK_NV_memory_decompression"
+  VkNvMemoryDecompressionSpecVersion* = 1
+  VkNvMemoryDecompressionExtensionName* = "VK_NV_memory_decompression"
   # Extension: VK_NV_device_generated_commands_compute
-  VK_NV_DEVICE_GENERATED_COMMANDS_COMPUTE_SPEC_VERSION* = 2
-  VK_NV_DEVICE_GENERATED_COMMANDS_COMPUTE_EXTENSION_NAME* = "VK_NV_device_generated_commands_compute"
+  VkNvDeviceGeneratedCommandsComputeSpecVersion* = 2
+  VkNvDeviceGeneratedCommandsComputeExtensionName* = "VK_NV_device_generated_commands_compute"
   # Extension: VK_NV_linear_color_attachment
-  VK_NV_LINEAR_COLOR_ATTACHMENT_SPEC_VERSION* = 1
-  VK_NV_LINEAR_COLOR_ATTACHMENT_EXTENSION_NAME* = "VK_NV_linear_color_attachment"
+  VkNvLinearColorAttachmentSpecVersion* = 1
+  VkNvLinearColorAttachmentExtensionName* = "VK_NV_linear_color_attachment"
   # Extension: VK_GOOGLE_surfaceless_query
-  VK_GOOGLE_SURFACELESS_QUERY_SPEC_VERSION* = 2
-  VK_GOOGLE_SURFACELESS_QUERY_EXTENSION_NAME* = "VK_GOOGLE_surfaceless_query"
+  VkGoogleSurfacelessQuerySpecVersion* = 2
+  VkGoogleSurfacelessQueryExtensionName* = "VK_GOOGLE_surfaceless_query"
   # Extension: VK_KHR_shader_maximal_reconvergence
-  VK_KHR_SHADER_MAXIMAL_RECONVERGENCE_SPEC_VERSION* = 1
-  VK_KHR_SHADER_MAXIMAL_RECONVERGENCE_EXTENSION_NAME* = "VK_KHR_shader_maximal_reconvergence"
+  VkKhrShaderMaximalReconvergenceSpecVersion* = 1
+  VkKhrShaderMaximalReconvergenceExtensionName* = "VK_KHR_shader_maximal_reconvergence"
   # Extension: VK_EXT_application_parameters
-  VK_EXT_APPLICATION_PARAMETERS_SPEC_VERSION* = 1
-  VK_EXT_APPLICATION_PARAMETERS_EXTENSION_NAME* = "VK_EXT_application_parameters"
+  VkExtApplicationParametersSpecVersion* = 1
+  VkExtApplicationParametersExtensionName* = "VK_EXT_application_parameters"
   # Extension: VK_EXT_image_compression_control_swapchain
-  VK_EXT_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_SPEC_VERSION* = 1
-  VK_EXT_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_EXTENSION_NAME* = "VK_EXT_image_compression_control_swapchain"
+  VkExtImageCompressionControlSwapchainSpecVersion* = 1
+  VkExtImageCompressionControlSwapchainExtensionName* = "VK_EXT_image_compression_control_swapchain"
   # Extension: VK_QCOM_image_processing
-  VK_QCOM_IMAGE_PROCESSING_SPEC_VERSION* = 1
-  VK_QCOM_IMAGE_PROCESSING_EXTENSION_NAME* = "VK_QCOM_image_processing"
+  VkQcomImageProcessingSpecVersion* = 1
+  VkQcomImageProcessingExtensionName* = "VK_QCOM_image_processing"
   # Extension: VK_EXT_nested_command_buffer
-  VK_EXT_NESTED_COMMAND_BUFFER_SPEC_VERSION* = 1
-  VK_EXT_NESTED_COMMAND_BUFFER_EXTENSION_NAME* = "VK_EXT_nested_command_buffer"
+  VkExtNestedCommandBufferSpecVersion* = 1
+  VkExtNestedCommandBufferExtensionName* = "VK_EXT_nested_command_buffer"
   # Extension: VK_EXT_external_memory_acquire_unmodified
-  VK_EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_SPEC_VERSION* = 1
-  VK_EXT_EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXTENSION_NAME* = "VK_EXT_external_memory_acquire_unmodified"
+  VkExtExternalMemoryAcquireUnmodifiedSpecVersion* = 1
+  VkExtExternalMemoryAcquireUnmodifiedExtensionName* = "VK_EXT_external_memory_acquire_unmodified"
   # Extension: VK_EXT_extended_dynamic_state3
-  VK_EXT_EXTENDED_DYNAMIC_STATE_3_SPEC_VERSION* = 2
-  VK_EXT_EXTENDED_DYNAMIC_STATE_3_EXTENSION_NAME* = "VK_EXT_extended_dynamic_state3"
+  VkExtExtendedDynamicState3SpecVersion* = 2
+  VkExtExtendedDynamicState3ExtensionName* = "VK_EXT_extended_dynamic_state3"
   # Extension: VK_EXT_subpass_merge_feedback
-  VK_EXT_SUBPASS_MERGE_FEEDBACK_SPEC_VERSION* = 2
-  VK_EXT_SUBPASS_MERGE_FEEDBACK_EXTENSION_NAME* = "VK_EXT_subpass_merge_feedback"
+  VkExtSubpassMergeFeedbackSpecVersion* = 2
+  VkExtSubpassMergeFeedbackExtensionName* = "VK_EXT_subpass_merge_feedback"
   # Extension: VK_LUNARG_direct_driver_loading
-  VK_LUNARG_DIRECT_DRIVER_LOADING_SPEC_VERSION* = 1
-  VK_LUNARG_DIRECT_DRIVER_LOADING_EXTENSION_NAME* = "VK_LUNARG_direct_driver_loading"
+  VkLunargDirectDriverLoadingSpecVersion* = 1
+  VkLunargDirectDriverLoadingExtensionName* = "VK_LUNARG_direct_driver_loading"
   # Extension: VK_EXT_shader_module_identifier
-  VK_EXT_SHADER_MODULE_IDENTIFIER_SPEC_VERSION* = 1
-  VK_EXT_SHADER_MODULE_IDENTIFIER_EXTENSION_NAME* = "VK_EXT_shader_module_identifier"
+  VkExtShaderModuleIdentifierSpecVersion* = 1
+  VkExtShaderModuleIdentifierExtensionName* = "VK_EXT_shader_module_identifier"
   # Extension: VK_EXT_rasterization_order_attachment_access
-  VK_EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION* = 1
-  VK_EXT_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME* = "VK_EXT_rasterization_order_attachment_access"
+  VkExtRasterizationOrderAttachmentAccessSpecVersion* = 1
+  VkExtRasterizationOrderAttachmentAccessExtensionName* = "VK_EXT_rasterization_order_attachment_access"
   # Extension: VK_NV_optical_flow
-  VK_NV_OPTICAL_FLOW_SPEC_VERSION* = 1
-  VK_NV_OPTICAL_FLOW_EXTENSION_NAME* = "VK_NV_optical_flow"
+  VkNvOpticalFlowSpecVersion* = 1
+  VkNvOpticalFlowExtensionName* = "VK_NV_optical_flow"
   # Extension: VK_EXT_legacy_dithering
-  VK_EXT_LEGACY_DITHERING_SPEC_VERSION* = 1
-  VK_EXT_LEGACY_DITHERING_EXTENSION_NAME* = "VK_EXT_legacy_dithering"
+  VkExtLegacyDitheringSpecVersion* = 2
+  VkExtLegacyDitheringExtensionName* = "VK_EXT_legacy_dithering"
   # Extension: VK_EXT_pipeline_protected_access
-  VK_EXT_PIPELINE_PROTECTED_ACCESS_SPEC_VERSION* = 1
-  VK_EXT_PIPELINE_PROTECTED_ACCESS_EXTENSION_NAME* = "VK_EXT_pipeline_protected_access"
+  VkExtPipelineProtectedAccessSpecVersion* = 1
+  VkExtPipelineProtectedAccessExtensionName* = "VK_EXT_pipeline_protected_access"
   # Extension: VK_ANDROID_external_format_resolve
-  VK_ANDROID_EXTERNAL_FORMAT_RESOLVE_SPEC_VERSION* = 1
-  VK_ANDROID_EXTERNAL_FORMAT_RESOLVE_EXTENSION_NAME* = "VK_ANDROID_external_format_resolve"
+  VkAndroidExternalFormatResolveSpecVersion* = 1
+  VkAndroidExternalFormatResolveExtensionName* = "VK_ANDROID_external_format_resolve"
   # Extension: VK_KHR_maintenance5
-  VK_KHR_MAINTENANCE_5_SPEC_VERSION* = 1
-  VK_KHR_MAINTENANCE_5_EXTENSION_NAME* = "VK_KHR_maintenance5"
+  VkKhrMaintenance5SpecVersion* = 1
+  VkKhrMaintenance5ExtensionName* = "VK_KHR_maintenance5"
+  # Extension: VK_AMD_anti_lag
+  VkAmdAntiLagSpecVersion* = 1
+  VkAmdAntiLagExtensionName* = "VK_AMD_anti_lag"
   # Extension: VK_KHR_ray_tracing_position_fetch
-  VK_KHR_RAY_TRACING_POSITION_FETCH_SPEC_VERSION* = 1
-  VK_KHR_RAY_TRACING_POSITION_FETCH_EXTENSION_NAME* = "VK_KHR_ray_tracing_position_fetch"
+  VkKhrRayTracingPositionFetchSpecVersion* = 1
+  VkKhrRayTracingPositionFetchExtensionName* = "VK_KHR_ray_tracing_position_fetch"
   # Extension: VK_EXT_shader_object
-  VK_EXT_SHADER_OBJECT_SPEC_VERSION* = 1
-  VK_EXT_SHADER_OBJECT_EXTENSION_NAME* = "VK_EXT_shader_object"
+  VkExtShaderObjectSpecVersion* = 1
+  VkExtShaderObjectExtensionName* = "VK_EXT_shader_object"
+  # Extension: VK_KHR_pipeline_binary
+  VkKhrPipelineBinarySpecVersion* = 1
+  VkKhrPipelineBinaryExtensionName* = "VK_KHR_pipeline_binary"
   # Extension: VK_QCOM_tile_properties
-  VK_QCOM_TILE_PROPERTIES_SPEC_VERSION* = 1
-  VK_QCOM_TILE_PROPERTIES_EXTENSION_NAME* = "VK_QCOM_tile_properties"
+  VkQcomTilePropertiesSpecVersion* = 1
+  VkQcomTilePropertiesExtensionName* = "VK_QCOM_tile_properties"
   # Extension: VK_SEC_amigo_profiling
-  VK_SEC_AMIGO_PROFILING_SPEC_VERSION* = 1
-  VK_SEC_AMIGO_PROFILING_EXTENSION_NAME* = "VK_SEC_amigo_profiling"
+  VkSecAmigoProfilingSpecVersion* = 1
+  VkSecAmigoProfilingExtensionName* = "VK_SEC_amigo_profiling"
   # Extension: VK_QCOM_multiview_per_view_viewports
-  VK_QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_SPEC_VERSION* = 1
-  VK_QCOM_MULTIVIEW_PER_VIEW_VIEWPORTS_EXTENSION_NAME* = "VK_QCOM_multiview_per_view_viewports"
+  VkQcomMultiviewPerViewViewportsSpecVersion* = 1
+  VkQcomMultiviewPerViewViewportsExtensionName* = "VK_QCOM_multiview_per_view_viewports"
   # Extension: VK_NV_external_sci_sync2
-  VK_NV_EXTERNAL_SCI_SYNC_2_SPEC_VERSION* = 1
-  VK_NV_EXTERNAL_SCI_SYNC_2_EXTENSION_NAME* = "VK_NV_external_sci_sync2"
+  VkNvExternalSciSync2SpecVersion* = 1
+  VkNvExternalSciSync2ExtensionName* = "VK_NV_external_sci_sync2"
   # Extension: VK_NV_ray_tracing_invocation_reorder
-  VK_NV_RAY_TRACING_INVOCATION_REORDER_SPEC_VERSION* = 1
-  VK_NV_RAY_TRACING_INVOCATION_REORDER_EXTENSION_NAME* = "VK_NV_ray_tracing_invocation_reorder"
+  VkNvRayTracingInvocationReorderSpecVersion* = 1
+  VkNvRayTracingInvocationReorderExtensionName* = "VK_NV_ray_tracing_invocation_reorder"
   # Extension: VK_NV_extended_sparse_address_space
-  VK_NV_EXTENDED_SPARSE_ADDRESS_SPACE_SPEC_VERSION* = 1
-  VK_NV_EXTENDED_SPARSE_ADDRESS_SPACE_EXTENSION_NAME* = "VK_NV_extended_sparse_address_space"
+  VkNvExtendedSparseAddressSpaceSpecVersion* = 1
+  VkNvExtendedSparseAddressSpaceExtensionName* = "VK_NV_extended_sparse_address_space"
   # Extension: VK_EXT_mutable_descriptor_type
-  VK_EXT_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION* = 1
-  VK_EXT_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME* = "VK_EXT_mutable_descriptor_type"
+  VkExtMutableDescriptorTypeSpecVersion* = 1
+  VkExtMutableDescriptorTypeExtensionName* = "VK_EXT_mutable_descriptor_type"
+  # Extension: VK_EXT_legacy_vertex_attributes
+  VkExtLegacyVertexAttributesSpecVersion* = 1
+  VkExtLegacyVertexAttributesExtensionName* = "VK_EXT_legacy_vertex_attributes"
   # Extension: VK_EXT_layer_settings
-  VK_EXT_LAYER_SETTINGS_SPEC_VERSION* = 2
-  VK_EXT_LAYER_SETTINGS_EXTENSION_NAME* = "VK_EXT_layer_settings"
+  VkExtLayerSettingsSpecVersion* = 2
+  VkExtLayerSettingsExtensionName* = "VK_EXT_layer_settings"
   # Extension: VK_ARM_shader_core_builtins
-  VK_ARM_SHADER_CORE_BUILTINS_SPEC_VERSION* = 2
-  VK_ARM_SHADER_CORE_BUILTINS_EXTENSION_NAME* = "VK_ARM_shader_core_builtins"
+  VkArmShaderCoreBuiltinsSpecVersion* = 2
+  VkArmShaderCoreBuiltinsExtensionName* = "VK_ARM_shader_core_builtins"
   # Extension: VK_EXT_pipeline_library_group_handles
-  VK_EXT_PIPELINE_LIBRARY_GROUP_HANDLES_SPEC_VERSION* = 1
-  VK_EXT_PIPELINE_LIBRARY_GROUP_HANDLES_EXTENSION_NAME* = "VK_EXT_pipeline_library_group_handles"
+  VkExtPipelineLibraryGroupHandlesSpecVersion* = 1
+  VkExtPipelineLibraryGroupHandlesExtensionName* = "VK_EXT_pipeline_library_group_handles"
   # Extension: VK_EXT_dynamic_rendering_unused_attachments
-  VK_EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_SPEC_VERSION* = 1
-  VK_EXT_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_EXTENSION_NAME* = "VK_EXT_dynamic_rendering_unused_attachments"
+  VkExtDynamicRenderingUnusedAttachmentsSpecVersion* = 1
+  VkExtDynamicRenderingUnusedAttachmentsExtensionName* = "VK_EXT_dynamic_rendering_unused_attachments"
   # Extension: VK_NV_low_latency2
-  VK_NV_LOW_LATENCY_2_SPEC_VERSION* = 2
-  VK_NV_LOW_LATENCY_2_EXTENSION_NAME* = "VK_NV_low_latency2"
+  VkNvLowLatency2SpecVersion* = 2
+  VkNvLowLatency2ExtensionName* = "VK_NV_low_latency2"
   # Extension: VK_KHR_cooperative_matrix
-  VK_KHR_COOPERATIVE_MATRIX_SPEC_VERSION* = 2
-  VK_KHR_COOPERATIVE_MATRIX_EXTENSION_NAME* = "VK_KHR_cooperative_matrix"
+  VkKhrCooperativeMatrixSpecVersion* = 2
+  VkKhrCooperativeMatrixExtensionName* = "VK_KHR_cooperative_matrix"
   # Extension: VK_QCOM_multiview_per_view_render_areas
-  VK_QCOM_MULTIVIEW_PER_VIEW_RENDER_AREAS_SPEC_VERSION* = 1
-  VK_QCOM_MULTIVIEW_PER_VIEW_RENDER_AREAS_EXTENSION_NAME* = "VK_QCOM_multiview_per_view_render_areas"
+  VkQcomMultiviewPerViewRenderAreasSpecVersion* = 1
+  VkQcomMultiviewPerViewRenderAreasExtensionName* = "VK_QCOM_multiview_per_view_render_areas"
+  # Extension: VK_KHR_compute_shader_derivatives
+  VkKhrComputeShaderDerivativesSpecVersion* = 1
+  VkKhrComputeShaderDerivativesExtensionName* = "VK_KHR_compute_shader_derivatives"
   # Extension: VK_KHR_video_decode_av1
-  VK_KHR_VIDEO_DECODE_AV1_SPEC_VERSION* = 1
-  VK_KHR_VIDEO_DECODE_AV1_EXTENSION_NAME* = "VK_KHR_video_decode_av1"
+  VkKhrVideoDecodeAv1SpecVersion* = 1
+  VkKhrVideoDecodeAv1ExtensionName* = "VK_KHR_video_decode_av1"
   # Extension: VK_KHR_video_maintenance1
-  VK_KHR_VIDEO_MAINTENANCE_1_SPEC_VERSION* = 1
-  VK_KHR_VIDEO_MAINTENANCE_1_EXTENSION_NAME* = "VK_KHR_video_maintenance1"
+  VkKhrVideoMaintenance1SpecVersion* = 1
+  VkKhrVideoMaintenance1ExtensionName* = "VK_KHR_video_maintenance1"
   # Extension: VK_NV_per_stage_descriptor_set
-  VK_NV_PER_STAGE_DESCRIPTOR_SET_SPEC_VERSION* = 1
-  VK_NV_PER_STAGE_DESCRIPTOR_SET_EXTENSION_NAME* = "VK_NV_per_stage_descriptor_set"
+  VkNvPerStageDescriptorSetSpecVersion* = 1
+  VkNvPerStageDescriptorSetExtensionName* = "VK_NV_per_stage_descriptor_set"
   # Extension: VK_QCOM_image_processing2
-  VK_QCOM_IMAGE_PROCESSING_2_SPEC_VERSION* = 1
-  VK_QCOM_IMAGE_PROCESSING_2_EXTENSION_NAME* = "VK_QCOM_image_processing2"
+  VkQcomImageProcessing2SpecVersion* = 1
+  VkQcomImageProcessing2ExtensionName* = "VK_QCOM_image_processing2"
   # Extension: VK_QCOM_filter_cubic_weights
-  VK_QCOM_FILTER_CUBIC_WEIGHTS_SPEC_VERSION* = 1
-  VK_QCOM_FILTER_CUBIC_WEIGHTS_EXTENSION_NAME* = "VK_QCOM_filter_cubic_weights"
+  VkQcomFilterCubicWeightsSpecVersion* = 1
+  VkQcomFilterCubicWeightsExtensionName* = "VK_QCOM_filter_cubic_weights"
   # Extension: VK_QCOM_ycbcr_degamma
-  VK_QCOM_YCBCR_DEGAMMA_SPEC_VERSION* = 1
-  VK_QCOM_YCBCR_DEGAMMA_EXTENSION_NAME* = "VK_QCOM_ycbcr_degamma"
+  VkQcomYcbcrDegammaSpecVersion* = 1
+  VkQcomYcbcrDegammaExtensionName* = "VK_QCOM_ycbcr_degamma"
   # Extension: VK_QCOM_filter_cubic_clamp
-  VK_QCOM_FILTER_CUBIC_CLAMP_SPEC_VERSION* = 1
-  VK_QCOM_FILTER_CUBIC_CLAMP_EXTENSION_NAME* = "VK_QCOM_filter_cubic_clamp"
+  VkQcomFilterCubicClampSpecVersion* = 1
+  VkQcomFilterCubicClampExtensionName* = "VK_QCOM_filter_cubic_clamp"
   # Extension: VK_EXT_attachment_feedback_loop_dynamic_state
-  VK_EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_SPEC_VERSION* = 1
-  VK_EXT_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_EXTENSION_NAME* = "VK_EXT_attachment_feedback_loop_dynamic_state"
+  VkExtAttachmentFeedbackLoopDynamicStateSpecVersion* = 1
+  VkExtAttachmentFeedbackLoopDynamicStateExtensionName* = "VK_EXT_attachment_feedback_loop_dynamic_state"
   # Extension: VK_KHR_vertex_attribute_divisor
-  VK_KHR_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION* = 1
-  VK_KHR_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME* = "VK_KHR_vertex_attribute_divisor"
+  VkKhrVertexAttributeDivisorSpecVersion* = 1
+  VkKhrVertexAttributeDivisorExtensionName* = "VK_KHR_vertex_attribute_divisor"
   # Extension: VK_KHR_load_store_op_none
-  VK_KHR_LOAD_STORE_OP_NONE_SPEC_VERSION* = 1
-  VK_KHR_LOAD_STORE_OP_NONE_EXTENSION_NAME* = "VK_KHR_load_store_op_none"
+  VkKhrLoadStoreOpNoneSpecVersion* = 1
+  VkKhrLoadStoreOpNoneExtensionName* = "VK_KHR_load_store_op_none"
   # Extension: VK_KHR_shader_float_controls2
-  VK_KHR_SHADER_FLOAT_CONTROLS_2_SPEC_VERSION* = 1
-  VK_KHR_SHADER_FLOAT_CONTROLS_2_EXTENSION_NAME* = "VK_KHR_shader_float_controls2"
+  VkKhrShaderFloatControls2SpecVersion* = 1
+  VkKhrShaderFloatControls2ExtensionName* = "VK_KHR_shader_float_controls2"
   # Extension: VK_QNX_external_memory_screen_buffer
-  VK_QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_SPEC_VERSION* = 1
-  VK_QNX_EXTERNAL_MEMORY_SCREEN_BUFFER_EXTENSION_NAME* = "VK_QNX_external_memory_screen_buffer"
+  VkQnxExternalMemoryScreenBufferSpecVersion* = 1
+  VkQnxExternalMemoryScreenBufferExtensionName* = "VK_QNX_external_memory_screen_buffer"
   # Extension: VK_MSFT_layered_driver
-  VK_MSFT_LAYERED_DRIVER_SPEC_VERSION* = 1
-  VK_MSFT_LAYERED_DRIVER_EXTENSION_NAME* = "VK_MSFT_layered_driver"
+  VkMsftLayeredDriverSpecVersion* = 1
+  VkMsftLayeredDriverExtensionName* = "VK_MSFT_layered_driver"
   # Extension: VK_KHR_index_type_uint8
-  VK_KHR_INDEX_TYPE_UINT8_SPEC_VERSION* = 1
-  VK_KHR_INDEX_TYPE_UINT8_EXTENSION_NAME* = "VK_KHR_index_type_uint8"
+  VkKhrIndexTypeUint8SpecVersion* = 1
+  VkKhrIndexTypeUint8ExtensionName* = "VK_KHR_index_type_uint8"
   # Extension: VK_KHR_line_rasterization
-  VK_KHR_LINE_RASTERIZATION_SPEC_VERSION* = 1
-  VK_KHR_LINE_RASTERIZATION_EXTENSION_NAME* = "VK_KHR_line_rasterization"
+  VkKhrLineRasterizationSpecVersion* = 1
+  VkKhrLineRasterizationExtensionName* = "VK_KHR_line_rasterization"
   # Extension: VK_KHR_calibrated_timestamps
-  VK_KHR_CALIBRATED_TIMESTAMPS_SPEC_VERSION* = 1
-  VK_KHR_CALIBRATED_TIMESTAMPS_EXTENSION_NAME* = "VK_KHR_calibrated_timestamps"
+  VkKhrCalibratedTimestampsSpecVersion* = 1
+  VkKhrCalibratedTimestampsExtensionName* = "VK_KHR_calibrated_timestamps"
   # Extension: VK_KHR_shader_expect_assume
-  VK_KHR_SHADER_EXPECT_ASSUME_SPEC_VERSION* = 1
-  VK_KHR_SHADER_EXPECT_ASSUME_EXTENSION_NAME* = "VK_KHR_shader_expect_assume"
+  VkKhrShaderExpectAssumeSpecVersion* = 1
+  VkKhrShaderExpectAssumeExtensionName* = "VK_KHR_shader_expect_assume"
   # Extension: VK_KHR_maintenance6
-  VK_KHR_MAINTENANCE_6_SPEC_VERSION* = 1
-  VK_KHR_MAINTENANCE_6_EXTENSION_NAME* = "VK_KHR_maintenance6"
+  VkKhrMaintenance6SpecVersion* = 1
+  VkKhrMaintenance6ExtensionName* = "VK_KHR_maintenance6"
   # Extension: VK_NV_descriptor_pool_overallocation
-  VK_NV_DESCRIPTOR_POOL_OVERALLOCATION_SPEC_VERSION* = 1
-  VK_NV_DESCRIPTOR_POOL_OVERALLOCATION_EXTENSION_NAME* = "VK_NV_descriptor_pool_overallocation"
+  VkNvDescriptorPoolOverallocationSpecVersion* = 1
+  VkNvDescriptorPoolOverallocationExtensionName* = "VK_NV_descriptor_pool_overallocation"
   # Extension: VK_NV_raw_access_chains
-  VK_NV_RAW_ACCESS_CHAINS_SPEC_VERSION* = 1
-  VK_NV_RAW_ACCESS_CHAINS_EXTENSION_NAME* = "VK_NV_raw_access_chains"
+  VkNvRawAccessChainsSpecVersion* = 1
+  VkNvRawAccessChainsExtensionName* = "VK_NV_raw_access_chains"
+  # Extension: VK_KHR_shader_relaxed_extended_instruction
+  VkKhrShaderRelaxedExtendedInstructionSpecVersion* = 1
+  VkKhrShaderRelaxedExtendedInstructionExtensionName* = "VK_KHR_shader_relaxed_extended_instruction"
+  # Extension: VK_NV_command_buffer_inheritance
+  VkNvCommandBufferInheritanceSpecVersion* = 1
+  VkNvCommandBufferInheritanceExtensionName* = "VK_NV_command_buffer_inheritance"
+  # Extension: VK_KHR_maintenance7
+  VkKhrMaintenance7SpecVersion* = 1
+  VkKhrMaintenance7ExtensionName* = "VK_KHR_maintenance7"
   # Extension: VK_NV_shader_atomic_float16_vector
-  VK_NV_SHADER_ATOMIC_FLOAT16_VECTOR_SPEC_VERSION* = 1
-  VK_NV_SHADER_ATOMIC_FLOAT16_VECTOR_EXTENSION_NAME* = "VK_NV_shader_atomic_float16_vector"
+  VkNvShaderAtomicFloat16VectorSpecVersion* = 1
+  VkNvShaderAtomicFloat16VectorExtensionName* = "VK_NV_shader_atomic_float16_vector"
+  # Extension: VK_EXT_shader_replicated_composites
+  VkExtShaderReplicatedCompositesSpecVersion* = 1
+  VkExtShaderReplicatedCompositesExtensionName* = "VK_EXT_shader_replicated_composites"
+  # Extension: VK_NV_ray_tracing_validation
+  VkNvRayTracingValidationSpecVersion* = 1
+  VkNvRayTracingValidationExtensionName* = "VK_NV_ray_tracing_validation"
+  # Extension: VK_MESA_image_alignment_control
+  VkMesaImageAlignmentControlSpecVersion* = 1
+  VkMesaImageAlignmentControlExtensionName* = "VK_MESA_image_alignment_control"
 
 type
   VkImageLayout* {.size: sizeof(int32).} = enum
@@ -1776,7 +1807,7 @@ type
     G16B16r162plane444Unorm
     A4r4g4b4UnormPack16 = 1000340000
     A4b4g4r4UnormPack16
-    R16g16S105Nv = 1000464000
+    R16g16Sfixed5Nv = 1000464000
     A1b5g5r5UnormPack16Khr = 1000470000
     A8UnormKhr
 
@@ -2200,7 +2231,7 @@ type
     PhysicalDeviceFloatControlsProperties = 1000197000
     PhysicalDeviceDepthStencilResolveProperties = 1000199000
     SubpassDescriptionDepthStencilResolve
-    PhysicalDeviceComputeShaderDerivativesFeaturesNv = 1000201000
+    PhysicalDeviceComputeShaderDerivativesFeaturesKhr = 1000201000
     PhysicalDeviceMeshShaderFeaturesNv = 1000202000
     PhysicalDeviceMeshShaderPropertiesNv
     PhysicalDeviceFragmentShaderBarycentricFeaturesKhr = 1000203000
@@ -2629,10 +2660,23 @@ type
     DeviceImageSubresourceInfoKhr
     PipelineCreateFlags2CreateInfoKhr
     BufferUsageFlags2CreateInfoKhr
+    PhysicalDeviceAntiLagFeaturesAmd = 1000476000
+    AntiLagDataAmd
+    AntiLagPresentationInfoAmd
     PhysicalDeviceRayTracingPositionFetchFeaturesKhr = 1000481000
     PhysicalDeviceShaderObjectFeaturesExt = 1000482000
     PhysicalDeviceShaderObjectPropertiesExt
     ShaderCreateInfoExt
+    PhysicalDevicePipelineBinaryFeaturesKhr = 1000483000
+    PipelineBinaryCreateInfoKhr
+    PipelineBinaryInfoKhr
+    PipelineBinaryKeyKhr
+    PhysicalDevicePipelineBinaryPropertiesKhr
+    ReleaseCapturedPipelineDataInfoKhr
+    PipelineBinaryDataInfoKhr
+    PipelineCreateInfoKhr
+    DevicePipelineBinaryInternalCacheControlKhr
+    PipelineBinaryHandlesInfoKhr
     PhysicalDeviceTilePropertiesFeaturesQcom = 1000484000
     TilePropertiesQcom
     PhysicalDeviceAmigoProfilingFeaturesSec = 1000485000
@@ -2646,6 +2690,8 @@ type
     PhysicalDeviceRayTracingInvocationReorderPropertiesNv
     PhysicalDeviceExtendedSparseAddressSpaceFeaturesNv = 1000492000
     PhysicalDeviceExtendedSparseAddressSpacePropertiesNv
+    PhysicalDeviceLegacyVertexAttributesFeaturesExt = 1000495000
+    PhysicalDeviceLegacyVertexAttributesPropertiesExt
     LayerSettingsCreateInfoExt = 1000496000
     PhysicalDeviceShaderCoreBuiltinsFeaturesArm = 1000497000
     PhysicalDeviceShaderCoreBuiltinsPropertiesArm
@@ -2665,6 +2711,7 @@ type
     PhysicalDeviceCooperativeMatrixPropertiesKhr
     PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQcom = 1000510000
     MultiviewPerViewRenderAreasRenderPassBeginInfoQcom
+    PhysicalDeviceComputeShaderDerivativesPropertiesKhr = 1000511000
     VideoDecodeAv1CapabilitiesKhr = 1000512000
     VideoDecodeAv1PictureInfoKhr
     VideoDecodeAv1ProfileInfoKhr = 1000512003
@@ -2703,14 +2750,27 @@ type
     BindDescriptorBufferEmbeddedSamplersInfoExt
     PhysicalDeviceDescriptorPoolOverallocationFeaturesNv = 1000546000
     PhysicalDeviceRawAccessChainsFeaturesNv = 1000555000
+    PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKhr = 1000558000
+    PhysicalDeviceCommandBufferInheritanceFeaturesNv = 1000559000
+    PhysicalDeviceMaintenance7FeaturesKhr = 1000562000
+    PhysicalDeviceMaintenance7PropertiesKhr
+    PhysicalDeviceLayeredApiPropertiesListKhr
+    PhysicalDeviceLayeredApiPropertiesKhr
+    PhysicalDeviceLayeredApiVulkanPropertiesKhr
     PhysicalDeviceShaderAtomicFloat16VectorFeaturesNv = 1000563000
+    PhysicalDeviceShaderReplicatedCompositesFeaturesExt = 1000564000
+    PhysicalDeviceRayTracingValidationFeaturesNv = 1000568000
+    PhysicalDeviceImageAlignmentControlFeaturesMesa = 1000575000
+    PhysicalDeviceImageAlignmentControlPropertiesMesa
+    ImageAlignmentControlCreateInfoMesa
 
   VkSubpassContents* {.size: sizeof(int32).} = enum
     Inline
     SecondaryCommandBuffers
-    InlineAndSecondaryCommandBuffersExt = 1000451000
+    InlineAndSecondaryCommandBuffersKhr = 1000451000
 
   VkResult* {.size: sizeof(int32).} = enum
+    VkErrorNotEnoughSpaceKhr = -1000483000
     VkErrorCompressionExhaustedExt = -1000338000
     VkErrorInvalidVideoStdParametersKhr = -1000299000
     VkErrorNoPipelineMatch = -1000298001
@@ -2760,6 +2820,7 @@ type
     VkOperationNotDeferredKhr
     VkPipelineCompileRequired = 1000297000
     VkIncompatibleShaderBinaryExt = 1000482000
+    VkPipelineBinaryMissingKhr = 1000483000
 
   VkDynamicState* {.size: sizeof(int32).} = enum
     Viewport
@@ -2891,6 +2952,7 @@ type
     MicromapExt = 1000396000
     OpticalFlowSessionNv = 1000464000
     ShaderExt = 1000482000
+    PipelineBinaryKhr = 1000483000
     SemaphoreSciSyncPoolNv = 1000489000
 
   VkRayTracingInvocationReorderModeNV* {.size: sizeof(int32).} = enum
@@ -2900,6 +2962,15 @@ type
   VkDirectDriverLoadingModeLUNARG* {.size: sizeof(int32).} = enum
     Exclusive
     Inclusive
+
+  VkAntiLagModeAMD* {.size: sizeof(int32).} = enum
+    DriverControl
+    On
+    Off
+
+  VkAntiLagStageAMD* {.size: sizeof(int32).} = enum
+    Input
+    Present
 
   VkQueueFlagBits* {.size: sizeof(int32).} = enum
     GraphicsBit = 1
@@ -3177,6 +3248,8 @@ type
     RayTracingDisplacementMicromapBitNv = 268435456
     DescriptorBufferBitExt = 536870912
     ProtectedAccessOnlyBitExt = 1073741824
+    CaptureDataBit = 2147483648
+    EnableLegacyDitheringBitExt = 17179869184
 
   VkPipelineShaderStageCreateFlagBits* {.size: sizeof(int32).} = enum
     AllowVaryingSubgroupSizeBit = 1
@@ -3375,8 +3448,7 @@ type
     Bt709NonlinearExt
     Bt2020LinearExt
     Hdr10St2084Ext
-    DolbyvisionExt
-    Hdr10HlgExt
+    Hdr10HlgExt = 1000104010
     AdobergbLinearExt
     AdobergbNonlinearExt
     PassThroughExt
@@ -3757,7 +3829,8 @@ type
     VariableDescriptorCountBit = 8
 
   VkVendorId* {.size: sizeof(int32).} = enum
-    Viv = 65537
+    Khronos = 65536
+    Viv
     Vsi
     Kazan
     Codeplay
@@ -3791,7 +3864,8 @@ type
     MesaDozen
     MesaNvk
     ImaginationOpenSourceMesa
-    MesaAgxv
+    MesaHoneykrisp
+    Reserved27
 
   VkConditionalRenderingFlagBitsEXT* {.size: sizeof(int32).} = enum
     InvertedBit = 1
@@ -4412,7 +4486,7 @@ type
     SuspendingBit
     ResumingBit = 4
     EnableLegacyDitheringBitExt = 8
-    ContentsInlineBitExt = 16
+    ContentsInlineBitKhr = 16
 
   VkVideoEncodeH265CapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     HrdComplianceBit = 1
@@ -4660,6 +4734,13 @@ type
     Min
     Max
 
+  VkPhysicalDeviceLayeredApiKHR* {.size: sizeof(int32).} = enum
+    Vulkan
+    D3d12
+    Metal
+    Opengl
+    Opengles
+
   VkLayeredDriverUnderlyingApiMSFT* {.size: sizeof(int32).} = enum
     None
     D3d12
@@ -4738,7 +4819,7 @@ const vkApiVersion1_0* = vkMakeVersion(0, 1, 0, 0)
 const vkApiVersion1_1* = vkMakeVersion(0, 1, 1, 0)
 const vkApiVersion1_2* = vkMakeVersion(0, 1, 2, 0)
 const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)
-const vkHeaderVersion* = 279
+const vkHeaderVersion* = 295
 const vkHeaderVersionComplete* = vkMakeVersion(0, 1, 3, vkHeaderVersion)
 
 type
@@ -4988,6 +5069,7 @@ type
   VkFramebuffer* = distinct VkNonDispatchableHandle
   VkRenderPass* = distinct VkNonDispatchableHandle
   VkPipelineCache* = distinct VkNonDispatchableHandle
+  VkPipelineBinaryKHR* = distinct VkNonDispatchableHandle
   VkIndirectCommandsLayoutNV* = distinct VkNonDispatchableHandle
   VkDescriptorUpdateTemplate* = distinct VkNonDispatchableHandle
   VkDescriptorUpdateTemplateKHR* = VkDescriptorUpdateTemplate
@@ -5735,6 +5817,54 @@ type
     stageFlags*: VkShaderStageFlags
     offset*: uint32
     size*: uint32
+
+  VkPipelineBinaryCreateInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pKeysAndDataInfo*: ptr VkPipelineBinaryKeysAndDataKHR
+    pipeline*: VkPipeline
+    pPipelineCreateInfo*: ptr VkPipelineCreateInfoKHR
+
+  VkPipelineBinaryHandlesInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pipelineBinaryCount*: uint32
+    pPipelineBinaries*: ptr VkPipelineBinaryKHR
+
+  VkPipelineBinaryDataKHR* = object
+    dataSize*: uint
+    pData*: pointer
+
+  VkPipelineBinaryKeysAndDataKHR* = object
+    binaryCount*: uint32
+    pPipelineBinaryKeys*: ptr VkPipelineBinaryKeyKHR
+    pPipelineBinaryData*: ptr VkPipelineBinaryDataKHR
+
+  VkPipelineBinaryKeyKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    keySize*: uint32
+    key*: array[VK_MAX_PIPELINE_BINARY_KEY_SIZE_KHR, uint8]
+
+  VkPipelineBinaryInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    binaryCount*: uint32
+    pPipelineBinaries*: ptr VkPipelineBinaryKHR
+
+  VkReleaseCapturedPipelineDataInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pipeline*: VkPipeline
+
+  VkPipelineBinaryDataInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pipelineBinary*: VkPipelineBinaryKHR
+
+  VkPipelineCreateInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
 
   VkPipelineLayoutCreateInfo* = object
     sType*: VkStructureType
@@ -7873,6 +8003,42 @@ type
     maxCombinedImageSamplerDescriptorCount*: uint32
     fragmentShadingRateClampCombinerInputs*: VkBool32
 
+  VkPhysicalDeviceMaintenance7FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maintenance7*: VkBool32
+
+  VkPhysicalDeviceMaintenance7PropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    robustFragmentShadingRateAttachmentAccess*: VkBool32
+    separateDepthStencilAttachmentAccess*: VkBool32
+    maxDescriptorSetTotalUniformBuffersDynamic*: uint32
+    maxDescriptorSetTotalStorageBuffersDynamic*: uint32
+    maxDescriptorSetTotalBuffersDynamic*: uint32
+    maxDescriptorSetUpdateAfterBindTotalUniformBuffersDynamic*: uint32
+    maxDescriptorSetUpdateAfterBindTotalStorageBuffersDynamic*: uint32
+    maxDescriptorSetUpdateAfterBindTotalBuffersDynamic*: uint32
+
+  VkPhysicalDeviceLayeredApiPropertiesListKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    layeredApiCount*: uint32
+    pLayeredApis*: ptr VkPhysicalDeviceLayeredApiPropertiesKHR
+
+  VkPhysicalDeviceLayeredApiPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    vendorID*: uint32
+    deviceID*: uint32
+    layeredAPI*: VkPhysicalDeviceLayeredApiKHR
+    deviceName*: array[VK_MAX_PHYSICAL_DEVICE_NAME_SIZE, char]
+
+  VkPhysicalDeviceLayeredApiVulkanPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    properties*: VkPhysicalDeviceProperties2
+
   VkRenderingAreaInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -8583,11 +8749,18 @@ type
     pNext*: pointer
     cornerSampledImage*: VkBool32
 
-  VkPhysicalDeviceComputeShaderDerivativesFeaturesNV* = object
+  VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     computeDerivativeGroupQuads*: VkBool32
     computeDerivativeGroupLinear*: VkBool32
+
+  VkPhysicalDeviceComputeShaderDerivativesFeaturesNV* = VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR
+
+  VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    meshAndTaskShaderDerivatives*: VkBool32
 
   VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV* = VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR
 
@@ -10484,6 +10657,16 @@ type
     pNext*: pointer
     attachmentFeedbackLoopDynamicState*: VkBool32
 
+  VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    legacyVertexAttributes*: VkBool32
+
+  VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    nativeUnalignedPerformance*: VkBool32
+
   VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -10524,6 +10707,11 @@ type
     sType*: VkStructureType
     pNext*: pointer
     externalMemoryRDMA*: VkBool32
+
+  VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderRelaxedExtendedInstruction*: VkBool32
 
   VkVertexInputBindingDescription2EXT* = object
     sType*: VkStructureType
@@ -10977,26 +11165,8 @@ type
     queryCount*: uint32
   StdVideoH264ProfileIdc* {.nodecl.} = object
   StdVideoH264LevelIdc* {.nodecl.} = object
-  StdVideoH264ChromaFormatIdc* {.nodecl.} = object
-  StdVideoH264PocType* {.nodecl.} = object
-  StdVideoH264SpsFlags* {.nodecl.} = object
-  StdVideoH264ScalingLists* {.nodecl.} = object
-  StdVideoH264SequenceParameterSetVui* {.nodecl.} = object
-  StdVideoH264AspectRatioIdc* {.nodecl.} = object
-  StdVideoH264HrdParameters* {.nodecl.} = object
-  StdVideoH264SpsVuiFlags* {.nodecl.} = object
-  StdVideoH264WeightedBipredIdc* {.nodecl.} = object
-  StdVideoH264PpsFlags* {.nodecl.} = object
-  StdVideoH264SliceType* {.nodecl.} = object
-  StdVideoH264CabacInitIdc* {.nodecl.} = object
-  StdVideoH264DisableDeblockingFilterIdc* {.nodecl.} = object
-  StdVideoH264PictureType* {.nodecl.} = object
-  StdVideoH264ModificationOfPicNumsIdc* {.nodecl.} = object
-  StdVideoH264MemMgmtControlOp* {.nodecl.} = object
   StdVideoDecodeH264PictureInfo* {.nodecl.} = object
   StdVideoDecodeH264ReferenceInfo* {.nodecl.} = object
-  StdVideoDecodeH264PictureInfoFlags* {.nodecl.} = object
-  StdVideoDecodeH264ReferenceInfoFlags* {.nodecl.} = object
 
   VkVideoDecodeH264ProfileInfoKHR* = object
     sType*: VkStructureType
@@ -11042,24 +11212,9 @@ type
   StdVideoH265VideoParameterSet* {.nodecl.} = object
   StdVideoH265SequenceParameterSet* {.nodecl.} = object
   StdVideoH265PictureParameterSet* {.nodecl.} = object
-  StdVideoH265DecPicBufMgr* {.nodecl.} = object
-  StdVideoH265HrdParameters* {.nodecl.} = object
-  StdVideoH265VpsFlags* {.nodecl.} = object
   StdVideoH265LevelIdc* {.nodecl.} = object
-  StdVideoH265SpsFlags* {.nodecl.} = object
-  StdVideoH265ScalingLists* {.nodecl.} = object
-  StdVideoH265SequenceParameterSetVui* {.nodecl.} = object
-  StdVideoH265PredictorPaletteEntries* {.nodecl.} = object
-  StdVideoH265PpsFlags* {.nodecl.} = object
-  StdVideoH265SubLayerHrdParameters* {.nodecl.} = object
-  StdVideoH265HrdFlags* {.nodecl.} = object
-  StdVideoH265SpsVuiFlags* {.nodecl.} = object
-  StdVideoH265SliceType* {.nodecl.} = object
-  StdVideoH265PictureType* {.nodecl.} = object
   StdVideoDecodeH265PictureInfo* {.nodecl.} = object
   StdVideoDecodeH265ReferenceInfo* {.nodecl.} = object
-  StdVideoDecodeH265PictureInfoFlags* {.nodecl.} = object
-  StdVideoDecodeH265ReferenceInfoFlags* {.nodecl.} = object
 
   VkVideoDecodeH265ProfileInfoKHR* = object
     sType*: VkStructureType
@@ -11294,13 +11449,6 @@ type
   StdVideoEncodeH264SliceHeader* {.nodecl.} = object
   StdVideoEncodeH264PictureInfo* {.nodecl.} = object
   StdVideoEncodeH264ReferenceInfo* {.nodecl.} = object
-  StdVideoEncodeH264SliceHeaderFlags* {.nodecl.} = object
-  StdVideoEncodeH264ReferenceListsInfo* {.nodecl.} = object
-  StdVideoEncodeH264PictureInfoFlags* {.nodecl.} = object
-  StdVideoEncodeH264ReferenceInfoFlags* {.nodecl.} = object
-  StdVideoEncodeH264RefMgmtFlags* {.nodecl.} = object
-  StdVideoEncodeH264RefListModEntry* {.nodecl.} = object
-  StdVideoEncodeH264RefPicMarkingEntry* {.nodecl.} = object
 
   VkVideoEncodeH264SessionCreateInfoKHR* = object
     sType*: VkStructureType
@@ -11429,14 +11577,9 @@ type
     preferredConstantQp*: VkVideoEncodeH265QpKHR
     preferredMaxL0ReferenceCount*: uint32
     preferredMaxL1ReferenceCount*: uint32
-  StdVideoEncodeH265PictureInfoFlags* {.nodecl.} = object
   StdVideoEncodeH265PictureInfo* {.nodecl.} = object
   StdVideoEncodeH265SliceSegmentHeader* {.nodecl.} = object
   StdVideoEncodeH265ReferenceInfo* {.nodecl.} = object
-  StdVideoEncodeH265ReferenceListsInfo* {.nodecl.} = object
-  StdVideoEncodeH265SliceSegmentHeaderFlags* {.nodecl.} = object
-  StdVideoEncodeH265ReferenceInfoFlags* {.nodecl.} = object
-  StdVideoEncodeH265ReferenceModificationFlags* {.nodecl.} = object
 
   VkVideoEncodeH265SessionCreateInfoKHR* = object
     sType*: VkStructureType
@@ -11787,6 +11930,11 @@ type
     rayTracingMotionBlur*: VkBool32
     rayTracingMotionBlurPipelineTraceRaysIndirect*: VkBool32
 
+  VkPhysicalDeviceRayTracingValidationFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    rayTracingValidation*: VkBool32
+
   VkAccelerationStructureGeometryMotionTrianglesDataNV* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -12110,6 +12258,25 @@ type
     sType*: VkStructureType
     pNext*: pointer
     graphicsPipelineLibrary*: VkBool32
+
+  VkPhysicalDevicePipelineBinaryFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pipelineBinaries*: VkBool32
+
+  VkDevicePipelineBinaryInternalCacheControlKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    disableInternalCache*: VkBool32
+
+  VkPhysicalDevicePipelineBinaryPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pipelineBinaryInternalCache*: VkBool32
+    pipelineBinaryInternalCacheControl*: VkBool32
+    pipelineBinaryPrefersInternalCache*: VkBool32
+    pipelineBinaryPrecompiledInternalCache*: VkBool32
+    pipelineBinaryCompressedData*: VkBool32
 
   VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT* = object
     sType*: VkStructureType
@@ -13004,6 +13171,24 @@ type
     infos*: VkDeviceOrHostAddressConstAMDX
     stride*: uint64
 
+  VkPhysicalDeviceAntiLagFeaturesAMD* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    antiLag*: VkBool32
+
+  VkAntiLagDataAMD* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    mode*: VkAntiLagModeAMD
+    maxFPS*: uint32
+    pPresentationInfo*: ptr VkAntiLagPresentationInfoAMD
+
+  VkAntiLagPresentationInfoAMD* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    stage*: VkAntiLagStageAMD
+    frameIndex*: uint64
+
   VkBindMemoryStatusKHR* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -13337,6 +13522,31 @@ type
     sType*: VkStructureType
     pNext*: pointer
     shaderRawAccessChains*: VkBool32
+
+  VkPhysicalDeviceCommandBufferInheritanceFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    commandBufferInheritance*: VkBool32
+
+  VkPhysicalDeviceImageAlignmentControlFeaturesMESA* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    imageAlignmentControl*: VkBool32
+
+  VkPhysicalDeviceImageAlignmentControlPropertiesMESA* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    supportedImageAlignmentMask*: uint32
+
+  VkImageAlignmentControlCreateInfoMESA* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maximumRequestedAlignment*: uint32
+
+  VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderReplicatedComposites*: VkBool32
 
 # Constructors
 
@@ -14185,6 +14395,72 @@ proc newVkPushConstantRange*(stageFlags: VkShaderStageFlags, offset: uint32, siz
     stageFlags: stageFlags,
     offset: offset,
     size: size,
+  )
+
+proc newVkPipelineBinaryCreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineBinaryCreateInfoKHR, pNext: pointer = nil, pKeysAndDataInfo: ptr VkPipelineBinaryKeysAndDataKHR, pipeline: VkPipeline, pPipelineCreateInfo: ptr VkPipelineCreateInfoKHR): VkPipelineBinaryCreateInfoKHR =
+  result = VkPipelineBinaryCreateInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pKeysAndDataInfo: pKeysAndDataInfo,
+    pipeline: pipeline,
+    pPipelineCreateInfo: pPipelineCreateInfo,
+  )
+
+proc newVkPipelineBinaryHandlesInfoKHR*(sType: VkStructureType = VkStructureType.PipelineBinaryHandlesInfoKHR, pNext: pointer = nil, pipelineBinaries: openarray[VkPipelineBinaryKHR]): VkPipelineBinaryHandlesInfoKHR =
+  result = VkPipelineBinaryHandlesInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pipelineBinaryCount: len(pipelineBinaries).uint32,
+    pPipelineBinaries: if len(pipelineBinaries) == 0: nil else: cast[ptr VkPipelineBinaryKHR](pipelineBinaries),
+  )
+
+proc newVkPipelineBinaryDataKHR*(dataSize: uint, pData: pointer = nil): VkPipelineBinaryDataKHR =
+  result = VkPipelineBinaryDataKHR(
+    dataSize: dataSize,
+    pData: pData,
+  )
+
+proc newVkPipelineBinaryKeysAndDataKHR*(pipelineBinaryKeys: openarray[VkPipelineBinaryKeyKHR], pipelineBinaryData: openarray[VkPipelineBinaryDataKHR]): VkPipelineBinaryKeysAndDataKHR =
+  result = VkPipelineBinaryKeysAndDataKHR(
+    binaryCount: len(pipelineBinaryKeys).uint32,
+    pPipelineBinaryKeys: if len(pipelineBinaryKeys) == 0: nil else: cast[ptr VkPipelineBinaryKeyKHR](pipelineBinaryKeys),
+    pPipelineBinaryData: if len(pipelineBinaryData) == 0: nil else: cast[ptr VkPipelineBinaryDataKHR](pipelineBinaryData),
+  )
+
+proc newVkPipelineBinaryKeyKHR*(sType: VkStructureType = VkStructureType.PipelineBinaryKeyKHR, pNext: pointer = nil, keySize: uint32, key: array[VK_MAX_PIPELINE_BINARY_KEY_SIZE_KHR, uint8]): VkPipelineBinaryKeyKHR =
+  result = VkPipelineBinaryKeyKHR(
+    sType: sType,
+    pNext: pNext,
+    keySize: keySize,
+    key: key,
+  )
+
+proc newVkPipelineBinaryInfoKHR*(sType: VkStructureType = VkStructureType.PipelineBinaryInfoKHR, pNext: pointer = nil, pipelineBinaries: openarray[VkPipelineBinaryKHR]): VkPipelineBinaryInfoKHR =
+  result = VkPipelineBinaryInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    binaryCount: len(pipelineBinaries).uint32,
+    pPipelineBinaries: if len(pipelineBinaries) == 0: nil else: cast[ptr VkPipelineBinaryKHR](pipelineBinaries),
+  )
+
+proc newVkReleaseCapturedPipelineDataInfoKHR*(sType: VkStructureType = VkStructureType.ReleaseCapturedPipelineDataInfoKHR, pNext: pointer = nil, pipeline: VkPipeline): VkReleaseCapturedPipelineDataInfoKHR =
+  result = VkReleaseCapturedPipelineDataInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pipeline: pipeline,
+  )
+
+proc newVkPipelineBinaryDataInfoKHR*(sType: VkStructureType = VkStructureType.PipelineBinaryDataInfoKHR, pNext: pointer = nil, pipelineBinary: VkPipelineBinaryKHR): VkPipelineBinaryDataInfoKHR =
+  result = VkPipelineBinaryDataInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pipelineBinary: pipelineBinary,
+  )
+
+proc newVkPipelineCreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineCreateInfoKHR, pNext: pointer = nil): VkPipelineCreateInfoKHR =
+  result = VkPipelineCreateInfoKHR(
+    sType: sType,
+    pNext: pNext,
   )
 
 proc newVkPipelineLayoutCreateInfo*(sType: VkStructureType = VkStructureType.PipelineLayoutCreateInfo, pNext: pointer = nil, flags: VkPipelineLayoutCreateFlags = 0.VkPipelineLayoutCreateFlags, setLayouts: openarray[VkDescriptorSetLayout], pushConstantRanges: openarray[VkPushConstantRange]): VkPipelineLayoutCreateInfo =
@@ -16709,6 +16985,52 @@ proc newVkPhysicalDeviceMaintenance6PropertiesKHR*(sType: VkStructureType = VkSt
     fragmentShadingRateClampCombinerInputs: fragmentShadingRateClampCombinerInputs,
   )
 
+proc newVkPhysicalDeviceMaintenance7FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance7FeaturesKHR, pNext: pointer = nil, maintenance7: VkBool32): VkPhysicalDeviceMaintenance7FeaturesKHR =
+  result = VkPhysicalDeviceMaintenance7FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    maintenance7: maintenance7,
+  )
+
+proc newVkPhysicalDeviceMaintenance7PropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance7PropertiesKHR, pNext: pointer = nil, robustFragmentShadingRateAttachmentAccess: VkBool32, separateDepthStencilAttachmentAccess: VkBool32, maxDescriptorSetTotalUniformBuffersDynamic: uint32, maxDescriptorSetTotalStorageBuffersDynamic: uint32, maxDescriptorSetTotalBuffersDynamic: uint32, maxDescriptorSetUpdateAfterBindTotalUniformBuffersDynamic: uint32, maxDescriptorSetUpdateAfterBindTotalStorageBuffersDynamic: uint32, maxDescriptorSetUpdateAfterBindTotalBuffersDynamic: uint32): VkPhysicalDeviceMaintenance7PropertiesKHR =
+  result = VkPhysicalDeviceMaintenance7PropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    robustFragmentShadingRateAttachmentAccess: robustFragmentShadingRateAttachmentAccess,
+    separateDepthStencilAttachmentAccess: separateDepthStencilAttachmentAccess,
+    maxDescriptorSetTotalUniformBuffersDynamic: maxDescriptorSetTotalUniformBuffersDynamic,
+    maxDescriptorSetTotalStorageBuffersDynamic: maxDescriptorSetTotalStorageBuffersDynamic,
+    maxDescriptorSetTotalBuffersDynamic: maxDescriptorSetTotalBuffersDynamic,
+    maxDescriptorSetUpdateAfterBindTotalUniformBuffersDynamic: maxDescriptorSetUpdateAfterBindTotalUniformBuffersDynamic,
+    maxDescriptorSetUpdateAfterBindTotalStorageBuffersDynamic: maxDescriptorSetUpdateAfterBindTotalStorageBuffersDynamic,
+    maxDescriptorSetUpdateAfterBindTotalBuffersDynamic: maxDescriptorSetUpdateAfterBindTotalBuffersDynamic,
+  )
+
+proc newVkPhysicalDeviceLayeredApiPropertiesListKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceLayeredApiPropertiesListKHR, pNext: pointer = nil, layeredApis: openarray[VkPhysicalDeviceLayeredApiPropertiesKHR]): VkPhysicalDeviceLayeredApiPropertiesListKHR =
+  result = VkPhysicalDeviceLayeredApiPropertiesListKHR(
+    sType: sType,
+    pNext: pNext,
+    layeredApiCount: len(layeredApis).uint32,
+    pLayeredApis: if len(layeredApis) == 0: nil else: cast[ptr VkPhysicalDeviceLayeredApiPropertiesKHR](layeredApis),
+  )
+
+proc newVkPhysicalDeviceLayeredApiPropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceLayeredApiPropertiesKHR, pNext: pointer = nil, vendorID: uint32, deviceID: uint32, layeredAPI: VkPhysicalDeviceLayeredApiKHR, deviceName: array[VK_MAX_PHYSICAL_DEVICE_NAME_SIZE, char]): VkPhysicalDeviceLayeredApiPropertiesKHR =
+  result = VkPhysicalDeviceLayeredApiPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    vendorID: vendorID,
+    deviceID: deviceID,
+    layeredAPI: layeredAPI,
+    deviceName: deviceName,
+  )
+
+proc newVkPhysicalDeviceLayeredApiVulkanPropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceLayeredApiVulkanPropertiesKHR, pNext: pointer = nil, properties: VkPhysicalDeviceProperties2): VkPhysicalDeviceLayeredApiVulkanPropertiesKHR =
+  result = VkPhysicalDeviceLayeredApiVulkanPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    properties: properties,
+  )
+
 proc newVkRenderingAreaInfoKHR*(sType: VkStructureType = VkStructureType.RenderingAreaInfoKHR, pNext: pointer = nil, viewMask: uint32, colorAttachmentFormats: openarray[VkFormat], depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat): VkRenderingAreaInfoKHR =
   result = VkRenderingAreaInfoKHR(
     sType: sType,
@@ -17511,12 +17833,19 @@ proc newVkPhysicalDeviceCornerSampledImageFeaturesNV*(sType: VkStructureType = V
     cornerSampledImage: cornerSampledImage,
   )
 
-proc newVkPhysicalDeviceComputeShaderDerivativesFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceComputeShaderDerivativesFeaturesNV, pNext: pointer = nil, computeDerivativeGroupQuads: VkBool32, computeDerivativeGroupLinear: VkBool32): VkPhysicalDeviceComputeShaderDerivativesFeaturesNV =
-  result = VkPhysicalDeviceComputeShaderDerivativesFeaturesNV(
+proc newVkPhysicalDeviceComputeShaderDerivativesFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceComputeShaderDerivativesFeaturesKHR, pNext: pointer = nil, computeDerivativeGroupQuads: VkBool32, computeDerivativeGroupLinear: VkBool32): VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR =
+  result = VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR(
     sType: sType,
     pNext: pNext,
     computeDerivativeGroupQuads: computeDerivativeGroupQuads,
     computeDerivativeGroupLinear: computeDerivativeGroupLinear,
+  )
+
+proc newVkPhysicalDeviceComputeShaderDerivativesPropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceComputeShaderDerivativesPropertiesKHR, pNext: pointer = nil, meshAndTaskShaderDerivatives: VkBool32): VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR =
+  result = VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    meshAndTaskShaderDerivatives: meshAndTaskShaderDerivatives,
   )
 
 proc newVkPhysicalDeviceShaderImageFootprintFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderImageFootprintFeaturesNV, pNext: pointer = nil, imageFootprint: VkBool32): VkPhysicalDeviceShaderImageFootprintFeaturesNV =
@@ -19732,6 +20061,20 @@ proc newVkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT*(sType: Vk
     attachmentFeedbackLoopDynamicState: attachmentFeedbackLoopDynamicState,
   )
 
+proc newVkPhysicalDeviceLegacyVertexAttributesFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceLegacyVertexAttributesFeaturesEXT, pNext: pointer = nil, legacyVertexAttributes: VkBool32): VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT =
+  result = VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    legacyVertexAttributes: legacyVertexAttributes,
+  )
+
+proc newVkPhysicalDeviceLegacyVertexAttributesPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceLegacyVertexAttributesPropertiesEXT, pNext: pointer = nil, nativeUnalignedPerformance: VkBool32): VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT =
+  result = VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    nativeUnalignedPerformance: nativeUnalignedPerformance,
+  )
+
 proc newVkPhysicalDeviceMutableDescriptorTypeFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceMutableDescriptorTypeFeaturesEXT, pNext: pointer = nil, mutableDescriptorType: VkBool32): VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT =
   result = VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT(
     sType: sType,
@@ -19779,6 +20122,13 @@ proc newVkPhysicalDeviceExternalMemoryRDMAFeaturesNV*(sType: VkStructureType = V
     sType: sType,
     pNext: pNext,
     externalMemoryRDMA: externalMemoryRDMA,
+  )
+
+proc newVkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR, pNext: pointer = nil, shaderRelaxedExtendedInstruction: VkBool32): VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR =
+  result = VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    shaderRelaxedExtendedInstruction: shaderRelaxedExtendedInstruction,
   )
 
 proc newVkVertexInputBindingDescription2EXT*(sType: VkStructureType = VkStructureType.VertexInputBindingDescription2EXT, pNext: pointer = nil, binding: uint32, stride: uint32, inputRate: VkVertexInputRate, divisor: uint32): VkVertexInputBindingDescription2EXT =
@@ -21234,6 +21584,13 @@ proc newVkPhysicalDeviceRayTracingMotionBlurFeaturesNV*(sType: VkStructureType =
     rayTracingMotionBlurPipelineTraceRaysIndirect: rayTracingMotionBlurPipelineTraceRaysIndirect,
   )
 
+proc newVkPhysicalDeviceRayTracingValidationFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceRayTracingValidationFeaturesNV, pNext: pointer = nil, rayTracingValidation: VkBool32): VkPhysicalDeviceRayTracingValidationFeaturesNV =
+  result = VkPhysicalDeviceRayTracingValidationFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    rayTracingValidation: rayTracingValidation,
+  )
+
 proc newVkAccelerationStructureGeometryMotionTrianglesDataNV*(sType: VkStructureType = VkStructureType.AccelerationStructureGeometryMotionTrianglesDataNV, pNext: pointer = nil, vertexData: VkDeviceOrHostAddressConstKHR): VkAccelerationStructureGeometryMotionTrianglesDataNV =
   result = VkAccelerationStructureGeometryMotionTrianglesDataNV(
     sType: sType,
@@ -21610,6 +21967,31 @@ proc newVkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT*(sType: VkStructureTy
     sType: sType,
     pNext: pNext,
     graphicsPipelineLibrary: graphicsPipelineLibrary,
+  )
+
+proc newVkPhysicalDevicePipelineBinaryFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineBinaryFeaturesKHR, pNext: pointer = nil, pipelineBinaries: VkBool32): VkPhysicalDevicePipelineBinaryFeaturesKHR =
+  result = VkPhysicalDevicePipelineBinaryFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    pipelineBinaries: pipelineBinaries,
+  )
+
+proc newVkDevicePipelineBinaryInternalCacheControlKHR*(sType: VkStructureType = VkStructureType.DevicePipelineBinaryInternalCacheControlKHR, pNext: pointer = nil, disableInternalCache: VkBool32): VkDevicePipelineBinaryInternalCacheControlKHR =
+  result = VkDevicePipelineBinaryInternalCacheControlKHR(
+    sType: sType,
+    pNext: pNext,
+    disableInternalCache: disableInternalCache,
+  )
+
+proc newVkPhysicalDevicePipelineBinaryPropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineBinaryPropertiesKHR, pNext: pointer = nil, pipelineBinaryInternalCache: VkBool32, pipelineBinaryInternalCacheControl: VkBool32, pipelineBinaryPrefersInternalCache: VkBool32, pipelineBinaryPrecompiledInternalCache: VkBool32, pipelineBinaryCompressedData: VkBool32): VkPhysicalDevicePipelineBinaryPropertiesKHR =
+  result = VkPhysicalDevicePipelineBinaryPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    pipelineBinaryInternalCache: pipelineBinaryInternalCache,
+    pipelineBinaryInternalCacheControl: pipelineBinaryInternalCacheControl,
+    pipelineBinaryPrefersInternalCache: pipelineBinaryPrefersInternalCache,
+    pipelineBinaryPrecompiledInternalCache: pipelineBinaryPrecompiledInternalCache,
+    pipelineBinaryCompressedData: pipelineBinaryCompressedData,
   )
 
 proc newVkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT, pNext: pointer = nil, graphicsPipelineLibraryFastLinking: VkBool32, graphicsPipelineLibraryIndependentInterpolationDecoration: VkBool32): VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT =
@@ -22773,6 +23155,30 @@ proc newVkDispatchGraphCountInfoAMDX*(count: uint32, infos: VkDeviceOrHostAddres
     stride: stride,
   )
 
+proc newVkPhysicalDeviceAntiLagFeaturesAMD*(sType: VkStructureType = VkStructureType.PhysicalDeviceAntiLagFeaturesAMD, pNext: pointer = nil, antiLag: VkBool32): VkPhysicalDeviceAntiLagFeaturesAMD =
+  result = VkPhysicalDeviceAntiLagFeaturesAMD(
+    sType: sType,
+    pNext: pNext,
+    antiLag: antiLag,
+  )
+
+proc newVkAntiLagDataAMD*(sType: VkStructureType = VkStructureType.AntiLagDataAMD, pNext: pointer = nil, mode: VkAntiLagModeAMD, maxFPS: uint32, pPresentationInfo: ptr VkAntiLagPresentationInfoAMD): VkAntiLagDataAMD =
+  result = VkAntiLagDataAMD(
+    sType: sType,
+    pNext: pNext,
+    mode: mode,
+    maxFPS: maxFPS,
+    pPresentationInfo: pPresentationInfo,
+  )
+
+proc newVkAntiLagPresentationInfoAMD*(sType: VkStructureType = VkStructureType.AntiLagPresentationInfoAMD, pNext: pointer = nil, stage: VkAntiLagStageAMD, frameIndex: uint64): VkAntiLagPresentationInfoAMD =
+  result = VkAntiLagPresentationInfoAMD(
+    sType: sType,
+    pNext: pNext,
+    stage: stage,
+    frameIndex: frameIndex,
+  )
+
 proc newVkBindMemoryStatusKHR*(sType: VkStructureType = VkStructureType.BindMemoryStatusKHR, pNext: pointer = nil, pResult: ptr VkResult): VkBindMemoryStatusKHR =
   result = VkBindMemoryStatusKHR(
     sType: sType,
@@ -23217,6 +23623,41 @@ proc newVkPhysicalDeviceRawAccessChainsFeaturesNV*(sType: VkStructureType = VkSt
     shaderRawAccessChains: shaderRawAccessChains,
   )
 
+proc newVkPhysicalDeviceCommandBufferInheritanceFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCommandBufferInheritanceFeaturesNV, pNext: pointer = nil, commandBufferInheritance: VkBool32): VkPhysicalDeviceCommandBufferInheritanceFeaturesNV =
+  result = VkPhysicalDeviceCommandBufferInheritanceFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    commandBufferInheritance: commandBufferInheritance,
+  )
+
+proc newVkPhysicalDeviceImageAlignmentControlFeaturesMESA*(sType: VkStructureType = VkStructureType.PhysicalDeviceImageAlignmentControlFeaturesMESA, pNext: pointer = nil, imageAlignmentControl: VkBool32): VkPhysicalDeviceImageAlignmentControlFeaturesMESA =
+  result = VkPhysicalDeviceImageAlignmentControlFeaturesMESA(
+    sType: sType,
+    pNext: pNext,
+    imageAlignmentControl: imageAlignmentControl,
+  )
+
+proc newVkPhysicalDeviceImageAlignmentControlPropertiesMESA*(sType: VkStructureType = VkStructureType.PhysicalDeviceImageAlignmentControlPropertiesMESA, pNext: pointer = nil, supportedImageAlignmentMask: uint32): VkPhysicalDeviceImageAlignmentControlPropertiesMESA =
+  result = VkPhysicalDeviceImageAlignmentControlPropertiesMESA(
+    sType: sType,
+    pNext: pNext,
+    supportedImageAlignmentMask: supportedImageAlignmentMask,
+  )
+
+proc newVkImageAlignmentControlCreateInfoMESA*(sType: VkStructureType = VkStructureType.ImageAlignmentControlCreateInfoMESA, pNext: pointer = nil, maximumRequestedAlignment: uint32): VkImageAlignmentControlCreateInfoMESA =
+  result = VkImageAlignmentControlCreateInfoMESA(
+    sType: sType,
+    pNext: pNext,
+    maximumRequestedAlignment: maximumRequestedAlignment,
+  )
+
+proc newVkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderReplicatedCompositesFeaturesEXT, pNext: pointer = nil, shaderReplicatedComposites: VkBool32): VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT =
+  result = VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    shaderReplicatedComposites: shaderReplicatedComposites,
+  )
+
 # Procs
 var
   vkDestroyInstance*: proc (instance: VkInstance, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
@@ -23282,6 +23723,11 @@ var
   vkDestroyPipelineCache*: proc (device: VkDevice, pipelineCache: VkPipelineCache, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
   vkGetPipelineCacheData*: proc (device: VkDevice, pipelineCache: VkPipelineCache, pDataSize: ptr uint, pData: pointer): VkResult {.stdcall.}
   vkMergePipelineCaches*: proc (device: VkDevice, dstCache: VkPipelineCache, srcCacheCount: uint32, pSrcCaches: ptr VkPipelineCache): VkResult {.stdcall.}
+  vkCreatePipelineBinariesKHR*: proc (device: VkDevice, pCreateInfo: ptr VkPipelineBinaryCreateInfoKHR, pAllocator: ptr VkAllocationCallbacks, pBinaries: ptr VkPipelineBinaryHandlesInfoKHR): VkResult {.stdcall.}
+  vkDestroyPipelineBinaryKHR*: proc (device: VkDevice, pipelineBinary: VkPipelineBinaryKHR, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
+  vkGetPipelineKeyKHR*: proc (device: VkDevice, pPipelineCreateInfo: ptr VkPipelineCreateInfoKHR, pPipelineKey: ptr VkPipelineBinaryKeyKHR): VkResult {.stdcall.}
+  vkGetPipelineBinaryDataKHR*: proc (device: VkDevice, pInfo: ptr VkPipelineBinaryDataInfoKHR, pPipelineBinaryKey: ptr VkPipelineBinaryKeyKHR, pPipelineBinaryDataSize: ptr uint, pPipelineBinaryData: pointer): VkResult {.stdcall.}
+  vkReleaseCapturedPipelineDataKHR*: proc (device: VkDevice, pInfo: ptr VkReleaseCapturedPipelineDataInfoKHR, pAllocator: ptr VkAllocationCallbacks): VkResult {.stdcall.}
   vkCreateGraphicsPipelines*: proc (device: VkDevice, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkGraphicsPipelineCreateInfo, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}
   vkCreateComputePipelines*: proc (device: VkDevice, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkComputePipelineCreateInfo, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}
   vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI*: proc (device: VkDevice, renderpass: VkRenderPass, pMaxWorkgroupSize: ptr VkExtent2D): VkResult {.stdcall.}
@@ -23640,6 +24086,7 @@ var
   vkDeferredOperationJoinKHR*: proc (device: VkDevice, operation: VkDeferredOperationKHR): VkResult {.stdcall.}
   vkGetPipelineIndirectMemoryRequirementsNV*: proc (device: VkDevice, pCreateInfo: ptr VkComputePipelineCreateInfo, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}
   vkGetPipelineIndirectDeviceAddressNV*: proc (device: VkDevice, pInfo: ptr VkPipelineIndirectDeviceAddressInfoNV): VkDeviceAddress {.stdcall.}
+  vkAntiLagUpdateAMD*: proc (device: VkDevice, pData: ptr VkAntiLagDataAMD) {.stdcall.}
   vkCmdSetCullMode*: proc (commandBuffer: VkCommandBuffer, cullMode: VkCullModeFlags) {.stdcall.}
   vkCmdSetFrontFace*: proc (commandBuffer: VkCommandBuffer, frontFace: VkFrontFace) {.stdcall.}
   vkCmdSetPrimitiveTopology*: proc (commandBuffer: VkCommandBuffer, primitiveTopology: VkPrimitiveTopology) {.stdcall.}
@@ -23830,7 +24277,7 @@ var
   vkGetLatencyTimingsNV*: proc (device: VkDevice, swapchain: VkSwapchainKHR, pLatencyMarkerInfo: ptr VkGetLatencyMarkerInfoNV) {.stdcall.}
   vkQueueNotifyOutOfBandNV*: proc (queue: VkQueue, pQueueTypeInfo: ptr VkOutOfBandQueueTypeInfoNV) {.stdcall.}
   vkCmdSetRenderingAttachmentLocationsKHR*: proc (commandBuffer: VkCommandBuffer, pLocationInfo: ptr VkRenderingAttachmentLocationInfoKHR) {.stdcall.}
-  vkCmdSetRenderingInputAttachmentIndicesKHR*: proc (commandBuffer: VkCommandBuffer, pLocationInfo: ptr VkRenderingInputAttachmentIndexInfoKHR) {.stdcall.}
+  vkCmdSetRenderingInputAttachmentIndicesKHR*: proc (commandBuffer: VkCommandBuffer, pInputAttachmentIndexInfo: ptr VkRenderingInputAttachmentIndexInfoKHR) {.stdcall.}
 
 # Vulkan 1_0
 proc vkLoad1_0*() =
@@ -24226,7 +24673,6 @@ proc loadVK_KHR_external_semaphore_fd*() =
 proc loadVK_KHR_push_descriptor*() =
   vkCmdPushDescriptorSetKHR = cast[proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, layout: VkPipelineLayout, set: uint32, descriptorWriteCount: uint32, pDescriptorWrites: ptr VkWriteDescriptorSet) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetKHR"))
   vkCmdPushDescriptorSetWithTemplateKHR = cast[proc (commandBuffer: VkCommandBuffer, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetWithTemplateKHR"))
-  vkCmdPushDescriptorSetWithTemplateKHR = cast[proc (commandBuffer: VkCommandBuffer, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetWithTemplateKHR"))
 
 # Load VK_EXT_conditional_rendering
 proc loadVK_EXT_conditional_rendering*() =
@@ -24467,7 +24913,7 @@ proc loadVK_KHR_fragment_shading_rate*() =
 # Load VK_KHR_dynamic_rendering_local_read
 proc loadVK_KHR_dynamic_rendering_local_read*() =
   vkCmdSetRenderingAttachmentLocationsKHR = cast[proc (commandBuffer: VkCommandBuffer, pLocationInfo: ptr VkRenderingAttachmentLocationInfoKHR) {.stdcall.}](vkGetProc("vkCmdSetRenderingAttachmentLocationsKHR"))
-  vkCmdSetRenderingInputAttachmentIndicesKHR = cast[proc (commandBuffer: VkCommandBuffer, pLocationInfo: ptr VkRenderingInputAttachmentIndexInfoKHR) {.stdcall.}](vkGetProc("vkCmdSetRenderingInputAttachmentIndicesKHR"))
+  vkCmdSetRenderingInputAttachmentIndicesKHR = cast[proc (commandBuffer: VkCommandBuffer, pInputAttachmentIndexInfo: ptr VkRenderingInputAttachmentIndexInfoKHR) {.stdcall.}](vkGetProc("vkCmdSetRenderingInputAttachmentIndicesKHR"))
 
 # Load VK_KHR_present_wait
 proc loadVK_KHR_present_wait*() =
@@ -24486,7 +24932,6 @@ proc loadVK_EXT_full_screen_exclusive*() =
   vkGetPhysicalDeviceSurfacePresentModes2EXT = cast[proc (physicalDevice: VkPhysicalDevice, pSurfaceInfo: ptr VkPhysicalDeviceSurfaceInfo2KHR, pPresentModeCount: ptr uint32, pPresentModes: ptr VkPresentModeKHR): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceSurfacePresentModes2EXT"))
   vkAcquireFullScreenExclusiveModeEXT = cast[proc (device: VkDevice, swapchain: VkSwapchainKHR): VkResult {.stdcall.}](vkGetProc("vkAcquireFullScreenExclusiveModeEXT"))
   vkReleaseFullScreenExclusiveModeEXT = cast[proc (device: VkDevice, swapchain: VkSwapchainKHR): VkResult {.stdcall.}](vkGetProc("vkReleaseFullScreenExclusiveModeEXT"))
-  vkGetDeviceGroupSurfacePresentModes2EXT = cast[proc (device: VkDevice, pSurfaceInfo: ptr VkPhysicalDeviceSurfaceInfo2KHR, pModes: ptr VkDeviceGroupPresentModeFlagsKHR): VkResult {.stdcall.}](vkGetProc("vkGetDeviceGroupSurfacePresentModes2EXT"))
   vkGetDeviceGroupSurfacePresentModes2EXT = cast[proc (device: VkDevice, pSurfaceInfo: ptr VkPhysicalDeviceSurfaceInfo2KHR, pModes: ptr VkDeviceGroupPresentModeFlagsKHR): VkResult {.stdcall.}](vkGetProc("vkGetDeviceGroupSurfacePresentModes2EXT"))
 
 # Load VK_EXT_headless_surface
@@ -24787,6 +25232,10 @@ proc loadVK_KHR_maintenance5*() =
   vkGetDeviceImageSubresourceLayoutKHR = cast[proc (device: VkDevice, pInfo: ptr VkDeviceImageSubresourceInfoKHR, pLayout: ptr VkSubresourceLayout2KHR) {.stdcall.}](vkGetProc("vkGetDeviceImageSubresourceLayoutKHR"))
   vkGetImageSubresourceLayout2KHR = cast[proc (device: VkDevice, image: VkImage, pSubresource: ptr VkImageSubresource2KHR, pLayout: ptr VkSubresourceLayout2KHR) {.stdcall.}](vkGetProc("vkGetImageSubresourceLayout2KHR"))
 
+# Load VK_AMD_anti_lag
+proc loadVK_AMD_anti_lag*() =
+  vkAntiLagUpdateAMD = cast[proc (device: VkDevice, pData: ptr VkAntiLagDataAMD) {.stdcall.}](vkGetProc("vkAntiLagUpdateAMD"))
+
 # Load VK_EXT_shader_object
 proc loadVK_EXT_shader_object*() =
   vkCreateShadersEXT = cast[proc (device: VkDevice, createInfoCount: uint32, pCreateInfos: ptr VkShaderCreateInfoEXT, pAllocator: ptr VkAllocationCallbacks, pShaders: ptr VkShaderEXT): VkResult {.stdcall.}](vkGetProc("vkCreateShadersEXT"))
@@ -24827,6 +25276,14 @@ proc loadVK_EXT_shader_object*() =
   vkCmdSetShadingRateImageEnableNV = cast[proc (commandBuffer: VkCommandBuffer, shadingRateImageEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetShadingRateImageEnableNV"))
   vkCmdSetRepresentativeFragmentTestEnableNV = cast[proc (commandBuffer: VkCommandBuffer, representativeFragmentTestEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetRepresentativeFragmentTestEnableNV"))
   vkCmdSetCoverageReductionModeNV = cast[proc (commandBuffer: VkCommandBuffer, coverageReductionMode: VkCoverageReductionModeNV) {.stdcall.}](vkGetProc("vkCmdSetCoverageReductionModeNV"))
+
+# Load VK_KHR_pipeline_binary
+proc loadVK_KHR_pipeline_binary*() =
+  vkCreatePipelineBinariesKHR = cast[proc (device: VkDevice, pCreateInfo: ptr VkPipelineBinaryCreateInfoKHR, pAllocator: ptr VkAllocationCallbacks, pBinaries: ptr VkPipelineBinaryHandlesInfoKHR): VkResult {.stdcall.}](vkGetProc("vkCreatePipelineBinariesKHR"))
+  vkDestroyPipelineBinaryKHR = cast[proc (device: VkDevice, pipelineBinary: VkPipelineBinaryKHR, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyPipelineBinaryKHR"))
+  vkGetPipelineKeyKHR = cast[proc (device: VkDevice, pPipelineCreateInfo: ptr VkPipelineCreateInfoKHR, pPipelineKey: ptr VkPipelineBinaryKeyKHR): VkResult {.stdcall.}](vkGetProc("vkGetPipelineKeyKHR"))
+  vkGetPipelineBinaryDataKHR = cast[proc (device: VkDevice, pInfo: ptr VkPipelineBinaryDataInfoKHR, pPipelineBinaryKey: ptr VkPipelineBinaryKeyKHR, pPipelineBinaryDataSize: ptr uint, pPipelineBinaryData: pointer): VkResult {.stdcall.}](vkGetProc("vkGetPipelineBinaryDataKHR"))
+  vkReleaseCapturedPipelineDataKHR = cast[proc (device: VkDevice, pInfo: ptr VkReleaseCapturedPipelineDataInfoKHR, pAllocator: ptr VkAllocationCallbacks): VkResult {.stdcall.}](vkGetProc("vkReleaseCapturedPipelineDataKHR"))
 
 # Load VK_QCOM_tile_properties
 proc loadVK_QCOM_tile_properties*() =
@@ -24921,6 +25378,7 @@ proc `==`*(x, y: VkQueryPool): bool {.borrow.}
 proc `==`*(x, y: VkFramebuffer): bool {.borrow.}
 proc `==`*(x, y: VkRenderPass): bool {.borrow.}
 proc `==`*(x, y: VkPipelineCache): bool {.borrow.}
+proc `==`*(x, y: VkPipelineBinaryKHR): bool {.borrow.}
 proc `==`*(x, y: VkIndirectCommandsLayoutNV): bool {.borrow.}
 proc `==`*(x, y: VkDescriptorUpdateTemplate): bool {.borrow.}
 proc `==`*(x, y: VkSamplerYcbcrConversion): bool {.borrow.}

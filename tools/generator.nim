@@ -130,7 +130,7 @@ proc genTypes(node: XmlNode, output: var string) =
         elif name == "VK_API_VERSION_1_3":
           output.add("const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)\n")
         elif name == "VK_HEADER_VERSION":
-          output.add("const vkHeaderVersion* = 279\n")
+          output.add("const vkHeaderVersion* = 295\n")
         elif name == "VK_HEADER_VERSION_COMPLETE":
           output.add("const vkHeaderVersionComplete* = vkMakeVersion(0, 1, 3, vkHeaderVersion)\n")
         else:
@@ -390,7 +390,11 @@ proc genEnums(node: XmlNode, output: var string) =
           enumValue = "VK_QUEUE_FAMILY_EXTERNAL"
         elif enumName == "VK_MAX_DEVICE_GROUP_SIZE_KHR":
           enumValue = "VK_MAX_DEVICE_GROUP_SIZE"
-        output.add(&"  {enumName}* = {enumValue}\n")
+        # elif enumName == "VK_TRUE":
+        #   enumValue = "VK_BOOL32(1)"
+        # elif enumName == "VK_FALSE":
+        #   enumValue = "VK_BOOL32(0)"
+        output.add(&"  {enumName.camelCaseAscii()}* = {enumValue.camelCaseAscii()}\n")
   for extOrFeat in extOrFeature.items:
     if extOrFeat.tag == "feature": continue
     let name = extOrFeat.attr("name")
@@ -406,7 +410,7 @@ proc genEnums(node: XmlNode, output: var string) =
         let enumName = e.attr("name")
         if not enumName.endsWith("EXTENSION_NAME") and not enumName.endsWith("SPEC_VERSION"): continue
         var enumValue = e.attr("value")
-        output.add(&"  {enumName}* = {enumValue}\n")
+        output.add(&"  {enumName.camelCaseAscii()}* = {enumValue}\n")
   for enums in node.findAll("enums"):
     let name = enums.attr("name")
     if name == "API Constants": continue
@@ -570,6 +574,7 @@ proc genFeatures(node: XmlNode, output: var string) =
     # if feature.attr("supported") == "disabled": continue
     if feature.attr("api") == "vulkansc": continue
     let number = feature.attr("number").replace(".", "_")
+    if feature.attr("api") == "": continue
     output.add(&"\n# Vulkan {number}\n")
     output.add(&"proc vkLoad{number}*() =\n")
     for command in feature.findAll("command"):
