@@ -26754,3 +26754,6 @@ proc vkInit*(instance: VkInstance, load1_0 = true, load1_1: bool = true, load1_2
   when not defined(macosx):
     if load1_3:
       vkLoad1_3()
+
+# Header-style constants for compatibility with C Vulkan headers.
+include "vulkan/headers"
