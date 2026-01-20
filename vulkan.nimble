@@ -8,7 +8,6 @@ srcDir      = "src"
 skipDirs    = @["tests"]
 
 # Dependencies
-
 requires "nim >= 1.0.0"
 
 feature "examples":
