@@ -1,10 +1,6 @@
 # Package
 
-<<<<<<< HEAD
-version     = "1.4.336"
-=======
 version     = "1.3.295"
->>>>>>> planetis/master
 author      = "Leonardo Mariscal"
 description = "Vulkan bindings for Nim"
 license     = "MIT"
