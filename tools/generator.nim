@@ -129,10 +129,12 @@ proc genTypes(node: XmlNode, output: var string) =
           output.add("const vkApiVersion1_2* = vkMakeVersion(0, 1, 2, 0)\n")
         elif name == "VK_API_VERSION_1_3":
           output.add("const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)\n")
+        elif name == "VK_API_VERSION_1_4":
+          output.add("const vkApiVersion1_4* = vkMakeVersion(0, 1, 4, 0)\n")
         elif name == "VK_HEADER_VERSION":
-          output.add("const vkHeaderVersion* = 295\n")
+          output.add("const vkHeaderVersion* = 344\n")
         elif name == "VK_HEADER_VERSION_COMPLETE":
-          output.add("const vkHeaderVersionComplete* = vkMakeVersion(0, 1, 3, vkHeaderVersion)\n")
+          output.add("const vkHeaderVersionComplete* = vkMakeVersion(0, 1, 4, vkHeaderVersion)\n")
         else:
           echo &"category:define not found {name}"
         continue
@@ -148,6 +150,13 @@ proc genTypes(node: XmlNode, output: var string) =
           bType = bType.translateType()
           if name == "VkRemoteAddressNV": bType = "pointer"
           output.add(&"  {name}* = distinct {bType}\n")
+        elif t.innerText.contains("struct"):
+          # Forward-declared struct typedef (e.g. OHNativeWindow)
+          # Skip types already defined in srcHeader
+          if name notin ["ANativeWindow", "AHardwareBuffer", "CAMetalLayer",
+              "MTLDevice_id", "MTLCommandQueue_id", "MTLBuffer_id",
+              "MTLTexture_id", "MTLSharedEvent_id", "IOSurfaceRef"]:
+            output.add(&"  {name}* {{.nodecl.}} = object\n")
         continue
 
       # Bitmask category
@@ -203,7 +212,11 @@ proc genTypes(node: XmlNode, output: var string) =
 
       # Funcpointer category
       if t.attr("category") == "funcpointer":
-        let name = t.child("name").innerText
+        let nameNode = if t.child("name") != nil: t.child("name")
+                       elif t.child("proto") != nil: t.child("proto").child("name")
+                       else: nil
+        if nameNode == nil: continue
+        let name = nameNode.innerText
         if name == "PFN_vkInternalAllocationNotification":
           output.add("  PFN_vkInternalAllocationNotification* = proc (pUserData: pointer; size: uint; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}\n")
         elif name == "PFN_vkInternalFreeNotification":
@@ -570,18 +583,44 @@ proc genProcs(node: XmlNode, output: var string) =
 
 proc genFeatures(node: XmlNode, output: var string) =
   echo "Generating and Adding Features..."
+
+  # Collect all commands from internal sub-features into their parent version
+  # New vk.xml splits 1.0-1.4 into BASE/COMPUTE/GRAPHICS sub-features
+  var versionCommands: OrderedTable[string, seq[string]]
   for feature in node.findAll("feature"):
-    # if feature.attr("supported") == "disabled": continue
-    if feature.attr("api") == "vulkansc": continue
+    let api = feature.attr("api")
+    if api == "" or api == "vulkansc": continue
+    let name = feature.attr("name")
     let number = feature.attr("number").replace(".", "_")
-    if feature.attr("api") == "": continue
+    var cmds: seq[string]
+    for command in feature.findAll("command"):
+      let cmdName = command.attr("name")
+      if cmdName != "":
+        cmds.add(cmdName)
+    if name.startsWith("VK_VERSION_"):
+      if not versionCommands.hasKey(number):
+        versionCommands[number] = @[]
+      for c in cmds:
+        versionCommands[number].add(c)
+    elif name.startsWith("VK_BASE_VERSION_") or
+         name.startsWith("VK_COMPUTE_VERSION_") or
+         name.startsWith("VK_GRAPHICS_VERSION_"):
+      # Internal sub-feature — merge commands into the parent VK_VERSION_
+      if not versionCommands.hasKey(number):
+        versionCommands[number] = @[]
+      for c in cmds:
+        versionCommands[number].add(c)
+    # Skip other feature types (e.g. vulkansc-only)
+
+  for number, cmds in versionCommands:
     output.add(&"\n# Vulkan {number}\n")
     output.add(&"proc vkLoad{number}*() =\n")
-    for command in feature.findAll("command"):
-      let name = command.attr("name")
+    var found = false
+    for cmdName in cmds:
       for vkProc in vkProcs:
-        if name == vkProc.name:
-          output.add(&"  {name} = cast[proc (")
+        if cmdName == vkProc.name:
+          found = true
+          output.add(&"  {cmdName} = cast[proc (")
           for arg in vkProc.args:
             if not output.endsWith("("):
               output.add(", ")
@@ -591,6 +630,8 @@ proc genFeatures(node: XmlNode, output: var string) =
           else:
             output.add(&"): {vkProc.rVal}")
           output.add(&" {{.stdcall.}}](vkGetProc(\"{vkProc.name}\"))\n")
+    if not found:
+      output.add("  discard\n")
 
 proc genExtensions(node: XmlNode, output: var string) =
   echo "Generating and Adding Extensions..."
@@ -732,6 +773,7 @@ proc main() =
   genHelpers(output)
 
   output.add("\n" & vkInit)
+  output.add("\ninclude vulkan/headers\n")
 
   writeFile("../src/vulkan.nim", output)
 
