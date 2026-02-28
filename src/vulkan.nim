@@ -50,7 +50,6 @@ const
   VkMaxPhysicalDeviceNameSize* = 256
   VkUuidSize* = 16
   VkLuidSize* = 8
-  VkLuidSizeKhr* = VkLuidSize
   VkMaxExtensionNameSize* = 256
   VkMaxDescriptionSize* = 256
   VkMaxMemoryTypes* = 32
@@ -65,23 +64,26 @@ const
   VkFalse* = 0
   VkQueueFamilyIgnored* = (not 0'u32)
   VkQueueFamilyExternal* = (not 1'u32)
-  VkQueueFamilyExternalKhr* = VkQueueFamilyExternal
   VkQueueFamilyForeignExt* = (not 2'u32)
   VkSubpassExternal* = (not 0'u32)
   VkMaxDeviceGroupSize* = 32
-  VkMaxDeviceGroupSizeKhr* = VkMaxDeviceGroupSize
   VkMaxDriverNameSize* = 256
-  VkMaxDriverNameSizeKhr* = VkMaxDriverNameSize
   VkMaxDriverInfoSize* = 256
-  VkMaxDriverInfoSizeKhr* = VkMaxDriverInfoSize
   VkShaderUnusedKhr* = (not 0'u32)
-  VkShaderUnusedNv* = VkShaderUnusedKhr
-  VkMaxGlobalPrioritySizeKhr* = 16
-  VkMaxGlobalPrioritySizeExt* = VkMaxGlobalPrioritySizeKhr
+  VkMaxGlobalPrioritySize* = 16
   VkMaxShaderModuleIdentifierSizeExt* = 32
   VkMaxPipelineBinaryKeySizeKhr* = 32
   VkMaxVideoAv1ReferencesPerFrameKhr* = 7
+  VkMaxVideoVp9ReferencesPerFrameKhr* = 3
   VkShaderIndexUnusedAmdx* = (not 0'u32)
+  VkPartitionedAccelerationStructurePartitionIndexGlobalNv* = (not 0'u32)
+  VkCompressedTriangleFormatDgf1ByteAlignmentAmdx* = 128
+  VkCompressedTriangleFormatDgf1ByteStrideAmdx* = 128
+  VkMaxPhysicalDeviceDataGraphOperationSetNameSizeArm* = 128
+  VkDataGraphModelToolchainVersionLengthQcom* = 3
+  VkComputeOccupancyPriorityLowNv* = 0.25f
+  VkComputeOccupancyPriorityNormalNv* = 0.50f
+  VkComputeOccupancyPriorityHighNv* = 0.75f
   # Extension: VK_KHR_surface
   VkKhrSurfaceSpecVersion* = 25
   VkKhrSurfaceExtensionName* = "VK_KHR_surface"
@@ -152,10 +154,10 @@ const
   VkExtTransformFeedbackSpecVersion* = 1
   VkExtTransformFeedbackExtensionName* = "VK_EXT_transform_feedback"
   # Extension: VK_NVX_binary_import
-  VkNvxBinaryImportSpecVersion* = 1
+  VkNvxBinaryImportSpecVersion* = 2
   VkNvxBinaryImportExtensionName* = "VK_NVX_binary_import"
   # Extension: VK_NVX_image_view_handle
-  VkNvxImageViewHandleSpecVersion* = 2
+  VkNvxImageViewHandleSpecVersion* = 4
   VkNvxImageViewHandleExtensionName* = "VK_NVX_image_view_handle"
   # Extension: VK_AMD_draw_indirect_count
   VkAmdDrawIndirectCountSpecVersion* = 2
@@ -416,8 +418,11 @@ const
   VkAmdGpuShaderInt16SpecVersion* = 2
   VkAmdGpuShaderInt16ExtensionName* = "VK_AMD_gpu_shader_int16"
   # Extension: VK_AMDX_shader_enqueue
-  VkAmdxShaderEnqueueSpecVersion* = 1
+  VkAmdxShaderEnqueueSpecVersion* = 2
   VkAmdxShaderEnqueueExtensionName* = "VK_AMDX_shader_enqueue"
+  # Extension: VK_EXT_descriptor_heap
+  VkExtDescriptorHeapSpecVersion* = 1
+  VkExtDescriptorHeapExtensionName* = "VK_EXT_descriptor_heap"
   # Extension: VK_AMD_mixed_attachment_samples
   VkAmdMixedAttachmentSamplesSpecVersion* = 1
   VkAmdMixedAttachmentSamplesExtensionName* = "VK_AMD_mixed_attachment_samples"
@@ -430,6 +435,9 @@ const
   # Extension: VK_EXT_shader_stencil_export
   VkExtShaderStencilExportSpecVersion* = 1
   VkExtShaderStencilExportExtensionName* = "VK_EXT_shader_stencil_export"
+  # Extension: VK_KHR_shader_bfloat16
+  VkKhrShaderBfloat16SpecVersion* = 1
+  VkKhrShaderBfloat16ExtensionName* = "VK_KHR_shader_bfloat16"
   # Extension: VK_EXT_sample_locations
   VkExtSampleLocationsSpecVersion* = 1
   VkExtSampleLocationsExtensionName* = "VK_EXT_sample_locations"
@@ -511,6 +519,9 @@ const
   # Extension: VK_QCOM_render_pass_shader_resolve
   VkQcomRenderPassShaderResolveSpecVersion* = 4
   VkQcomRenderPassShaderResolveExtensionName* = "VK_QCOM_render_pass_shader_resolve"
+  # Extension: VK_QCOM_cooperative_matrix_conversion
+  VkQcomCooperativeMatrixConversionSpecVersion* = 1
+  VkQcomCooperativeMatrixConversionExtensionName* = "VK_QCOM_cooperative_matrix_conversion"
   # Extension: VK_EXT_global_priority
   VkExtGlobalPrioritySpecVersion* = 2
   VkExtGlobalPriorityExtensionName* = "VK_EXT_global_priority"
@@ -595,6 +606,9 @@ const
   # Extension: VK_KHR_timeline_semaphore
   VkKhrTimelineSemaphoreSpecVersion* = 2
   VkKhrTimelineSemaphoreExtensionName* = "VK_KHR_timeline_semaphore"
+  # Extension: VK_EXT_present_timing
+  VkExtPresentTimingSpecVersion* = 3
+  VkExtPresentTimingExtensionName* = "VK_EXT_present_timing"
   # Extension: VK_INTEL_shader_integer_functions2
   VkIntelShaderIntegerFunctions2SpecVersion* = 1
   VkIntelShaderIntegerFunctions2ExtensionName* = "VK_INTEL_shader_integer_functions2"
@@ -620,7 +634,7 @@ const
   VkExtMetalSurfaceSpecVersion* = 1
   VkExtMetalSurfaceExtensionName* = "VK_EXT_metal_surface"
   # Extension: VK_EXT_fragment_density_map
-  VkExtFragmentDensityMapSpecVersion* = 2
+  VkExtFragmentDensityMapSpecVersion* = 3
   VkExtFragmentDensityMapExtensionName* = "VK_EXT_fragment_density_map"
   # Extension: VK_EXT_scalar_block_layout
   VkExtScalarBlockLayoutSpecVersion* = 1
@@ -767,7 +781,7 @@ const
   VkExtTexelBufferAlignmentSpecVersion* = 1
   VkExtTexelBufferAlignmentExtensionName* = "VK_EXT_texel_buffer_alignment"
   # Extension: VK_QCOM_render_pass_transform
-  VkQcomRenderPassTransformSpecVersion* = 4
+  VkQcomRenderPassTransformSpecVersion* = 5
   VkQcomRenderPassTransformExtensionName* = "VK_QCOM_render_pass_transform"
   # Extension: VK_EXT_depth_bias_control
   VkExtDepthBiasControlSpecVersion* = 1
@@ -784,6 +798,9 @@ const
   # Extension: VK_EXT_custom_border_color
   VkExtCustomBorderColorSpecVersion* = 12
   VkExtCustomBorderColorExtensionName* = "VK_EXT_custom_border_color"
+  # Extension: VK_EXT_texture_compression_astc_3d
+  VkExtTextureCompressionAstc3dSpecVersion* = 1
+  VkExtTextureCompressionAstc3dExtensionName* = "VK_EXT_texture_compression_astc_3d"
   # Extension: VK_GOOGLE_user_type
   VkGoogleUserTypeSpecVersion* = 1
   VkGoogleUserTypeExtensionName* = "VK_GOOGLE_user_type"
@@ -820,6 +837,9 @@ const
   # Extension: VK_KHR_object_refresh
   VkKhrObjectRefreshSpecVersion* = 1
   VkKhrObjectRefreshExtensionName* = "VK_KHR_object_refresh"
+  # Extension: VK_QCOM_tile_shading
+  VkQcomTileShadingSpecVersion* = 2
+  VkQcomTileShadingExtensionName* = "VK_QCOM_tile_shading"
   # Extension: VK_NV_low_latency
   VkNvLowLatencySpecVersion* = 1
   VkNvLowLatencyExtensionName* = "VK_NV_low_latency"
@@ -919,6 +939,9 @@ const
   # Extension: VK_KHR_format_feature_flags2
   VkKhrFormatFeatureFlags2SpecVersion* = 2
   VkKhrFormatFeatureFlags2ExtensionName* = "VK_KHR_format_feature_flags2"
+  # Extension: VK_EXT_present_mode_fifo_latest_ready
+  VkExtPresentModeFifoLatestReadySpecVersion* = 1
+  VkExtPresentModeFifoLatestReadyExtensionName* = "VK_EXT_present_mode_fifo_latest_ready"
   # Extension: VK_FUCHSIA_external_memory
   VkFuchsiaExternalMemorySpecVersion* = 1
   VkFuchsiaExternalMemoryExtensionName* = "VK_FUCHSIA_external_memory"
@@ -967,9 +990,15 @@ const
   # Extension: VK_KHR_ray_tracing_maintenance1
   VkKhrRayTracingMaintenance1SpecVersion* = 1
   VkKhrRayTracingMaintenance1ExtensionName* = "VK_KHR_ray_tracing_maintenance1"
+  # Extension: VK_KHR_shader_untyped_pointers
+  VkKhrShaderUntypedPointersSpecVersion* = 1
+  VkKhrShaderUntypedPointersExtensionName* = "VK_KHR_shader_untyped_pointers"
   # Extension: VK_EXT_global_priority_query
   VkExtGlobalPriorityQuerySpecVersion* = 1
   VkExtGlobalPriorityQueryExtensionName* = "VK_EXT_global_priority_query"
+  # Extension: VK_VALVE_video_encode_rgb_conversion
+  VkValveVideoEncodeRgbConversionSpecVersion* = 1
+  VkValveVideoEncodeRgbConversionExtensionName* = "VK_VALVE_video_encode_rgb_conversion"
   # Extension: VK_EXT_image_view_min_lod
   VkExtImageViewMinLodSpecVersion* = 1
   VkExtImageViewMinLodExtensionName* = "VK_EXT_image_view_min_lod"
@@ -1031,7 +1060,7 @@ const
   VkArmRenderPassStripedSpecVersion* = 1
   VkArmRenderPassStripedExtensionName* = "VK_ARM_render_pass_striped"
   # Extension: VK_QCOM_fragment_density_map_offset
-  VkQcomFragmentDensityMapOffsetSpecVersion* = 2
+  VkQcomFragmentDensityMapOffsetSpecVersion* = 3
   VkQcomFragmentDensityMapOffsetExtensionName* = "VK_QCOM_fragment_density_map_offset"
   # Extension: VK_NV_copy_memory_indirect
   VkNvCopyMemoryIndirectSpecVersion* = 1
@@ -1042,6 +1071,9 @@ const
   # Extension: VK_NV_device_generated_commands_compute
   VkNvDeviceGeneratedCommandsComputeSpecVersion* = 2
   VkNvDeviceGeneratedCommandsComputeExtensionName* = "VK_NV_device_generated_commands_compute"
+  # Extension: VK_NV_ray_tracing_linear_swept_spheres
+  VkNvRayTracingLinearSweptSpheresSpecVersion* = 1
+  VkNvRayTracingLinearSweptSpheresExtensionName* = "VK_NV_ray_tracing_linear_swept_spheres"
   # Extension: VK_NV_linear_color_attachment
   VkNvLinearColorAttachmentSpecVersion* = 1
   VkNvLinearColorAttachmentExtensionName* = "VK_NV_linear_color_attachment"
@@ -1063,6 +1095,9 @@ const
   # Extension: VK_EXT_nested_command_buffer
   VkExtNestedCommandBufferSpecVersion* = 1
   VkExtNestedCommandBufferExtensionName* = "VK_EXT_nested_command_buffer"
+  # Extension: VK_OHOS_external_memory
+  VkOhosExternalMemorySpecVersion* = 1
+  VkOhosExternalMemoryExtensionName* = "VK_OHOS_external_memory"
   # Extension: VK_EXT_external_memory_acquire_unmodified
   VkExtExternalMemoryAcquireUnmodifiedSpecVersion* = 1
   VkExtExternalMemoryAcquireUnmodifiedExtensionName* = "VK_EXT_external_memory_acquire_unmodified"
@@ -1075,6 +1110,9 @@ const
   # Extension: VK_LUNARG_direct_driver_loading
   VkLunargDirectDriverLoadingSpecVersion* = 1
   VkLunargDirectDriverLoadingExtensionName* = "VK_LUNARG_direct_driver_loading"
+  # Extension: VK_ARM_tensors
+  VkArmTensorsSpecVersion* = 2
+  VkArmTensorsExtensionName* = "VK_ARM_tensors"
   # Extension: VK_EXT_shader_module_identifier
   VkExtShaderModuleIdentifierSpecVersion* = 1
   VkExtShaderModuleIdentifierExtensionName* = "VK_EXT_shader_module_identifier"
@@ -1099,6 +1137,15 @@ const
   # Extension: VK_AMD_anti_lag
   VkAmdAntiLagSpecVersion* = 1
   VkAmdAntiLagExtensionName* = "VK_AMD_anti_lag"
+  # Extension: VK_AMDX_dense_geometry_format
+  VkAmdxDenseGeometryFormatSpecVersion* = 1
+  VkAmdxDenseGeometryFormatExtensionName* = "VK_AMDX_dense_geometry_format"
+  # Extension: VK_KHR_present_id2
+  VkKhrPresentId2SpecVersion* = 1
+  VkKhrPresentId2ExtensionName* = "VK_KHR_present_id2"
+  # Extension: VK_KHR_present_wait2
+  VkKhrPresentWait2SpecVersion* = 1
+  VkKhrPresentWait2ExtensionName* = "VK_KHR_present_wait2"
   # Extension: VK_KHR_ray_tracing_position_fetch
   VkKhrRayTracingPositionFetchSpecVersion* = 1
   VkKhrRayTracingPositionFetchExtensionName* = "VK_KHR_ray_tracing_position_fetch"
@@ -1114,6 +1161,12 @@ const
   # Extension: VK_SEC_amigo_profiling
   VkSecAmigoProfilingSpecVersion* = 1
   VkSecAmigoProfilingExtensionName* = "VK_SEC_amigo_profiling"
+  # Extension: VK_KHR_surface_maintenance1
+  VkKhrSurfaceMaintenance1SpecVersion* = 1
+  VkKhrSurfaceMaintenance1ExtensionName* = "VK_KHR_surface_maintenance1"
+  # Extension: VK_KHR_swapchain_maintenance1
+  VkKhrSwapchainMaintenance1SpecVersion* = 1
+  VkKhrSwapchainMaintenance1ExtensionName* = "VK_KHR_swapchain_maintenance1"
   # Extension: VK_QCOM_multiview_per_view_viewports
   VkQcomMultiviewPerViewViewportsSpecVersion* = 1
   VkQcomMultiviewPerViewViewportsExtensionName* = "VK_QCOM_multiview_per_view_viewports"
@@ -1123,6 +1176,9 @@ const
   # Extension: VK_NV_ray_tracing_invocation_reorder
   VkNvRayTracingInvocationReorderSpecVersion* = 1
   VkNvRayTracingInvocationReorderExtensionName* = "VK_NV_ray_tracing_invocation_reorder"
+  # Extension: VK_NV_cooperative_vector
+  VkNvCooperativeVectorSpecVersion* = 4
+  VkNvCooperativeVectorExtensionName* = "VK_NV_cooperative_vector"
   # Extension: VK_NV_extended_sparse_address_space
   VkNvExtendedSparseAddressSpaceSpecVersion* = 1
   VkNvExtendedSparseAddressSpaceExtensionName* = "VK_NV_extended_sparse_address_space"
@@ -1144,12 +1200,18 @@ const
   # Extension: VK_EXT_dynamic_rendering_unused_attachments
   VkExtDynamicRenderingUnusedAttachmentsSpecVersion* = 1
   VkExtDynamicRenderingUnusedAttachmentsExtensionName* = "VK_EXT_dynamic_rendering_unused_attachments"
+  # Extension: VK_KHR_internally_synchronized_queues
+  VkKhrInternallySynchronizedQueuesSpecVersion* = 1
+  VkKhrInternallySynchronizedQueuesExtensionName* = "VK_KHR_internally_synchronized_queues"
   # Extension: VK_NV_low_latency2
   VkNvLowLatency2SpecVersion* = 2
   VkNvLowLatency2ExtensionName* = "VK_NV_low_latency2"
   # Extension: VK_KHR_cooperative_matrix
   VkKhrCooperativeMatrixSpecVersion* = 2
   VkKhrCooperativeMatrixExtensionName* = "VK_KHR_cooperative_matrix"
+  # Extension: VK_ARM_data_graph
+  VkArmDataGraphSpecVersion* = 1
+  VkArmDataGraphExtensionName* = "VK_ARM_data_graph"
   # Extension: VK_QCOM_multiview_per_view_render_areas
   VkQcomMultiviewPerViewRenderAreasSpecVersion* = 1
   VkQcomMultiviewPerViewRenderAreasExtensionName* = "VK_QCOM_multiview_per_view_render_areas"
@@ -1159,6 +1221,12 @@ const
   # Extension: VK_KHR_video_decode_av1
   VkKhrVideoDecodeAv1SpecVersion* = 1
   VkKhrVideoDecodeAv1ExtensionName* = "VK_KHR_video_decode_av1"
+  # Extension: VK_KHR_video_encode_av1
+  VkKhrVideoEncodeAv1SpecVersion* = 1
+  VkKhrVideoEncodeAv1ExtensionName* = "VK_KHR_video_encode_av1"
+  # Extension: VK_KHR_video_decode_vp9
+  VkKhrVideoDecodeVp9SpecVersion* = 1
+  VkKhrVideoDecodeVp9ExtensionName* = "VK_KHR_video_decode_vp9"
   # Extension: VK_KHR_video_maintenance1
   VkKhrVideoMaintenance1SpecVersion* = 1
   VkKhrVideoMaintenance1ExtensionName* = "VK_KHR_video_maintenance1"
@@ -1186,6 +1254,9 @@ const
   # Extension: VK_KHR_load_store_op_none
   VkKhrLoadStoreOpNoneSpecVersion* = 1
   VkKhrLoadStoreOpNoneExtensionName* = "VK_KHR_load_store_op_none"
+  # Extension: VK_KHR_unified_image_layouts
+  VkKhrUnifiedImageLayoutsSpecVersion* = 1
+  VkKhrUnifiedImageLayoutsExtensionName* = "VK_KHR_unified_image_layouts"
   # Extension: VK_KHR_shader_float_controls2
   VkKhrShaderFloatControls2SpecVersion* = 1
   VkKhrShaderFloatControls2ExtensionName* = "VK_KHR_shader_float_controls2"
@@ -1213,9 +1284,30 @@ const
   # Extension: VK_NV_descriptor_pool_overallocation
   VkNvDescriptorPoolOverallocationSpecVersion* = 1
   VkNvDescriptorPoolOverallocationExtensionName* = "VK_NV_descriptor_pool_overallocation"
+  # Extension: VK_QCOM_tile_memory_heap
+  VkQcomTileMemoryHeapSpecVersion* = 1
+  VkQcomTileMemoryHeapExtensionName* = "VK_QCOM_tile_memory_heap"
+  # Extension: VK_KHR_copy_memory_indirect
+  VkKhrCopyMemoryIndirectSpecVersion* = 1
+  VkKhrCopyMemoryIndirectExtensionName* = "VK_KHR_copy_memory_indirect"
+  # Extension: VK_EXT_memory_decompression
+  VkExtMemoryDecompressionSpecVersion* = 1
+  VkExtMemoryDecompressionExtensionName* = "VK_EXT_memory_decompression"
+  # Extension: VK_NV_display_stereo
+  VkNvDisplayStereoSpecVersion* = 1
+  VkNvDisplayStereoExtensionName* = "VK_NV_display_stereo"
+  # Extension: VK_KHR_video_encode_intra_refresh
+  VkKhrVideoEncodeIntraRefreshSpecVersion* = 1
+  VkKhrVideoEncodeIntraRefreshExtensionName* = "VK_KHR_video_encode_intra_refresh"
+  # Extension: VK_KHR_video_encode_quantization_map
+  VkKhrVideoEncodeQuantizationMapSpecVersion* = 2
+  VkKhrVideoEncodeQuantizationMapExtensionName* = "VK_KHR_video_encode_quantization_map"
   # Extension: VK_NV_raw_access_chains
   VkNvRawAccessChainsSpecVersion* = 1
   VkNvRawAccessChainsExtensionName* = "VK_NV_raw_access_chains"
+  # Extension: VK_NV_external_compute_queue
+  VkNvExternalComputeQueueSpecVersion* = 1
+  VkNvExternalComputeQueueExtensionName* = "VK_NV_external_compute_queue"
   # Extension: VK_KHR_shader_relaxed_extended_instruction
   VkKhrShaderRelaxedExtendedInstructionSpecVersion* = 1
   VkKhrShaderRelaxedExtendedInstructionExtensionName* = "VK_KHR_shader_relaxed_extended_instruction"
@@ -1231,12 +1323,123 @@ const
   # Extension: VK_EXT_shader_replicated_composites
   VkExtShaderReplicatedCompositesSpecVersion* = 1
   VkExtShaderReplicatedCompositesExtensionName* = "VK_EXT_shader_replicated_composites"
+  # Extension: VK_EXT_shader_float8
+  VkExtShaderFloat8SpecVersion* = 1
+  VkExtShaderFloat8ExtensionName* = "VK_EXT_shader_float8"
   # Extension: VK_NV_ray_tracing_validation
   VkNvRayTracingValidationSpecVersion* = 1
   VkNvRayTracingValidationExtensionName* = "VK_NV_ray_tracing_validation"
+  # Extension: VK_NV_cluster_acceleration_structure
+  VkNvClusterAccelerationStructureSpecVersion* = 4
+  VkNvClusterAccelerationStructureExtensionName* = "VK_NV_cluster_acceleration_structure"
+  # Extension: VK_NV_partitioned_acceleration_structure
+  VkNvPartitionedAccelerationStructureSpecVersion* = 1
+  VkNvPartitionedAccelerationStructureExtensionName* = "VK_NV_partitioned_acceleration_structure"
+  # Extension: VK_EXT_device_generated_commands
+  VkExtDeviceGeneratedCommandsSpecVersion* = 1
+  VkExtDeviceGeneratedCommandsExtensionName* = "VK_EXT_device_generated_commands"
+  # Extension: VK_KHR_maintenance8
+  VkKhrMaintenance8SpecVersion* = 1
+  VkKhrMaintenance8ExtensionName* = "VK_KHR_maintenance8"
   # Extension: VK_MESA_image_alignment_control
   VkMesaImageAlignmentControlSpecVersion* = 1
   VkMesaImageAlignmentControlExtensionName* = "VK_MESA_image_alignment_control"
+  # Extension: VK_KHR_shader_fma
+  VkKhrShaderFmaSpecVersion* = 1
+  VkKhrShaderFmaExtensionName* = "VK_KHR_shader_fma"
+  # Extension: VK_NV_push_constant_bank
+  VkNvPushConstantBankSpecVersion* = 1
+  VkNvPushConstantBankExtensionName* = "VK_NV_push_constant_bank"
+  # Extension: VK_EXT_ray_tracing_invocation_reorder
+  VkExtRayTracingInvocationReorderSpecVersion* = 1
+  VkExtRayTracingInvocationReorderExtensionName* = "VK_EXT_ray_tracing_invocation_reorder"
+  # Extension: VK_EXT_depth_clamp_control
+  VkExtDepthClampControlSpecVersion* = 1
+  VkExtDepthClampControlExtensionName* = "VK_EXT_depth_clamp_control"
+  # Extension: VK_KHR_maintenance9
+  VkKhrMaintenance9SpecVersion* = 1
+  VkKhrMaintenance9ExtensionName* = "VK_KHR_maintenance9"
+  # Extension: VK_KHR_video_maintenance2
+  VkKhrVideoMaintenance2SpecVersion* = 1
+  VkKhrVideoMaintenance2ExtensionName* = "VK_KHR_video_maintenance2"
+  # Extension: VK_OHOS_surface
+  VkOhosSurfaceSpecVersion* = 1
+  VkOhosSurfaceExtensionName* = "VK_OHOS_surface"
+  # Extension: VK_HUAWEI_hdr_vivid
+  VkHuaweiHdrVividSpecVersion* = 1
+  VkHuaweiHdrVividExtensionName* = "VK_HUAWEI_hdr_vivid"
+  # Extension: VK_NV_cooperative_matrix2
+  VkNvCooperativeMatrix2SpecVersion* = 1
+  VkNvCooperativeMatrix2ExtensionName* = "VK_NV_cooperative_matrix2"
+  # Extension: VK_ARM_pipeline_opacity_micromap
+  VkArmPipelineOpacityMicromapSpecVersion* = 1
+  VkArmPipelineOpacityMicromapExtensionName* = "VK_ARM_pipeline_opacity_micromap"
+  # Extension: VK_EXT_external_memory_metal
+  VkExtExternalMemoryMetalSpecVersion* = 1
+  VkExtExternalMemoryMetalExtensionName* = "VK_EXT_external_memory_metal"
+  # Extension: VK_KHR_depth_clamp_zero_one
+  VkKhrDepthClampZeroOneSpecVersion* = 1
+  VkKhrDepthClampZeroOneExtensionName* = "VK_KHR_depth_clamp_zero_one"
+  # Extension: VK_ARM_performance_counters_by_region
+  VkArmPerformanceCountersByRegionSpecVersion* = 1
+  VkArmPerformanceCountersByRegionExtensionName* = "VK_ARM_performance_counters_by_region"
+  # Extension: VK_EXT_vertex_attribute_robustness
+  VkExtVertexAttributeRobustnessSpecVersion* = 1
+  VkExtVertexAttributeRobustnessExtensionName* = "VK_EXT_vertex_attribute_robustness"
+  # Extension: VK_ARM_format_pack
+  VkArmFormatPackSpecVersion* = 1
+  VkArmFormatPackExtensionName* = "VK_ARM_format_pack"
+  # Extension: VK_VALVE_fragment_density_map_layered
+  VkValveFragmentDensityMapLayeredSpecVersion* = 1
+  VkValveFragmentDensityMapLayeredExtensionName* = "VK_VALVE_fragment_density_map_layered"
+  # Extension: VK_KHR_robustness2
+  VkKhrRobustness2SpecVersion* = 1
+  VkKhrRobustness2ExtensionName* = "VK_KHR_robustness2"
+  # Extension: VK_NV_present_metering
+  VkNvPresentMeteringSpecVersion* = 1
+  VkNvPresentMeteringExtensionName* = "VK_NV_present_metering"
+  # Extension: VK_EXT_fragment_density_map_offset
+  VkExtFragmentDensityMapOffsetSpecVersion* = 1
+  VkExtFragmentDensityMapOffsetExtensionName* = "VK_EXT_fragment_density_map_offset"
+  # Extension: VK_EXT_zero_initialize_device_memory
+  VkExtZeroInitializeDeviceMemorySpecVersion* = 1
+  VkExtZeroInitializeDeviceMemoryExtensionName* = "VK_EXT_zero_initialize_device_memory"
+  # Extension: VK_KHR_present_mode_fifo_latest_ready
+  VkKhrPresentModeFifoLatestReadySpecVersion* = 1
+  VkKhrPresentModeFifoLatestReadyExtensionName* = "VK_KHR_present_mode_fifo_latest_ready"
+  # Extension: VK_EXT_shader_64bit_indexing
+  VkExtShader64bitIndexingSpecVersion* = 1
+  VkExtShader64bitIndexingExtensionName* = "VK_EXT_shader_64bit_indexing"
+  # Extension: VK_EXT_custom_resolve
+  VkExtCustomResolveSpecVersion* = 1
+  VkExtCustomResolveExtensionName* = "VK_EXT_custom_resolve"
+  # Extension: VK_QCOM_data_graph_model
+  VkQcomDataGraphModelSpecVersion* = 1
+  VkQcomDataGraphModelExtensionName* = "VK_QCOM_data_graph_model"
+  # Extension: VK_KHR_maintenance10
+  VkKhrMaintenance10SpecVersion* = 1
+  VkKhrMaintenance10ExtensionName* = "VK_KHR_maintenance10"
+  # Extension: VK_EXT_shader_long_vector
+  VkExtShaderLongVectorSpecVersion* = 1
+  VkExtShaderLongVectorExtensionName* = "VK_EXT_shader_long_vector"
+  # Extension: VK_SEC_pipeline_cache_incremental_mode
+  VkSecPipelineCacheIncrementalModeSpecVersion* = 1
+  VkSecPipelineCacheIncrementalModeExtensionName* = "VK_SEC_pipeline_cache_incremental_mode"
+  # Extension: VK_EXT_shader_uniform_buffer_unsized_array
+  VkExtShaderUniformBufferUnsizedArraySpecVersion* = 1
+  VkExtShaderUniformBufferUnsizedArrayExtensionName* = "VK_EXT_shader_uniform_buffer_unsized_array"
+  # Extension: VK_NV_compute_occupancy_priority
+  VkNvComputeOccupancyPrioritySpecVersion* = 1
+  VkNvComputeOccupancyPriorityExtensionName* = "VK_NV_compute_occupancy_priority"
+  # Extension: VK_EXT_shader_subgroup_partitioned
+  VkExtShaderSubgroupPartitionedSpecVersion* = 1
+  VkExtShaderSubgroupPartitionedExtensionName* = "VK_EXT_shader_subgroup_partitioned"
+  # Extension: VK_SEC_ubm_surface
+  VkSecUbmSurfaceSpecVersion* = 1
+  VkSecUbmSurfaceExtensionName* = "VK_SEC_ubm_surface"
+  # Extension: VK_VALVE_shader_mixed_float_dot_product
+  VkValveShaderMixedFloatDotProductSpecVersion* = 1
+  VkValveShaderMixedFloatDotProductExtensionName* = "VK_VALVE_shader_mixed_float_dot_product"
 
 type
   VkImageLayout* {.size: sizeof(int32).} = enum
@@ -1258,7 +1461,7 @@ type
     DepthAttachmentStencilReadOnlyOptimal
     FragmentShadingRateAttachmentOptimalKhr = 1000164003
     FragmentDensityMapOptimalExt = 1000218000
-    RenderingLocalReadKhr = 1000232000
+    RenderingLocalRead = 1000232000
     DepthAttachmentOptimal = 1000241000
     DepthReadOnlyOptimal
     StencilAttachmentOptimal
@@ -1269,12 +1472,15 @@ type
     ReadOnlyOptimal = 1000314000
     AttachmentOptimal
     AttachmentFeedbackLoopOptimalExt = 1000339000
+    TensorAliasingArm = 1000460000
+    VideoEncodeQuantizationMapKhr = 1000553000
+    ZeroInitializedExt = 1000620000
 
   VkAttachmentLoadOp* {.size: sizeof(int32).} = enum
     Load
     Clear
     DontCare
-    NoneKhr = 1000400000
+    None = 1000400000
 
   VkAttachmentStoreOp* {.size: sizeof(int32).} = enum
     Store
@@ -1331,6 +1537,8 @@ type
     MutableExt = 1000351000
     SampleWeightImageQcom = 1000440000
     BlockMatchImageQcom
+    TensorArm = 1000460000
+    PartitionedAccelerationStructureNv = 1000570000
 
   VkQueryType* {.size: sizeof(int32).} = enum
     Occlusion
@@ -1367,15 +1575,18 @@ type
     ExecutionGraphAmdx = 1000134000
     RayTracingKhr = 1000165000
     SubpassShadingHuawei = 1000369003
+    DataGraphArm = 1000507000
 
   VkPipelineCacheHeaderVersion* {.size: sizeof(int32).} = enum
     One = 1
     SafetyCriticalOne = 1000298001
+    DataGraphQcom = 1000629000
 
   VkPipelineCacheCreateFlagBits* {.size: sizeof(int32).} = enum
     ExternallySynchronizedBit = 1
     ReadOnlyBit
     UseApplicationStorageBit = 4
+    InternallySynchronizedMergeBitKhr = 8
 
   VkPrimitiveTopology* {.size: sizeof(int32).} = enum
     PointList
@@ -1398,7 +1609,7 @@ type
     Uint16
     Uint32
     NoneKhr = 1000165000
-    Uint8Khr = 1000265000
+    Uint8 = 1000265000
 
   VkFilter* {.size: sizeof(int32).} = enum
     Nearest
@@ -1801,15 +2012,63 @@ type
     G16B16R163plane422Unorm
     G16B16r162plane422Unorm
     G16B16R163plane444Unorm
+    Astc3x3x3UnormBlockExt = 1000288000
+    Astc3x3x3SrgbBlockExt
+    Astc3x3x3SfloatBlockExt
+    Astc4x3x3UnormBlockExt
+    Astc4x3x3SrgbBlockExt
+    Astc4x3x3SfloatBlockExt
+    Astc4x4x3UnormBlockExt
+    Astc4x4x3SrgbBlockExt
+    Astc4x4x3SfloatBlockExt
+    Astc4x4x4UnormBlockExt
+    Astc4x4x4SrgbBlockExt
+    Astc4x4x4SfloatBlockExt
+    Astc5x4x4UnormBlockExt
+    Astc5x4x4SrgbBlockExt
+    Astc5x4x4SfloatBlockExt
+    Astc5x5x4UnormBlockExt
+    Astc5x5x4SrgbBlockExt
+    Astc5x5x4SfloatBlockExt
+    Astc5x5x5UnormBlockExt
+    Astc5x5x5SrgbBlockExt
+    Astc5x5x5SfloatBlockExt
+    Astc6x5x5UnormBlockExt
+    Astc6x5x5SrgbBlockExt
+    Astc6x5x5SfloatBlockExt
+    Astc6x6x5UnormBlockExt
+    Astc6x6x5SrgbBlockExt
+    Astc6x6x5SfloatBlockExt
+    Astc6x6x6UnormBlockExt
+    Astc6x6x6SrgbBlockExt
+    Astc6x6x6SfloatBlockExt
     G8B8r82plane444Unorm = 1000330000
     G10x6B10x6r10x62plane444Unorm3pack16
     G12x4B12x4r12x42plane444Unorm3pack16
     G16B16r162plane444Unorm
     A4r4g4b4UnormPack16 = 1000340000
     A4b4g4r4UnormPack16
+    R8BoolArm = 1000460000
+    R16SfloatFpencodingBfloat16Arm
+    R8SfloatFpencodingFloat8e4m3Arm
+    R8SfloatFpencodingFloat8e5m2Arm
     R16g16Sfixed5Nv = 1000464000
-    A1b5g5r5UnormPack16Khr = 1000470000
-    A8UnormKhr
+    A1b5g5r5UnormPack16 = 1000470000
+    A8Unorm
+    R10x6UintPack16Arm = 1000609000
+    R10x6g10x6Uint2pack16Arm
+    R10x6g10x6b10x6a10x6Uint4pack16Arm
+    R12x4UintPack16Arm
+    R12x4g12x4Uint2pack16Arm
+    R12x4g12x4b12x4a12x4Uint4pack16Arm
+    R14x2UintPack16Arm
+    R14x2g14x2Uint2pack16Arm
+    R14x2g14x2b14x2a14x2Uint4pack16Arm
+    R14x2UnormPack16Arm
+    R14x2g14x2Unorm2pack16Arm
+    R14x2g14x2b14x2a14x2Unorm4pack16Arm
+    G14x2B14x2r14x22plane420Unorm3pack16Arm
+    G14x2B14x2r14x22plane422Unorm3pack16Arm
 
   VkStructureType* {.size: sizeof(int32).} = enum
     ApplicationInfo
@@ -1867,6 +2126,8 @@ type
     PhysicalDeviceVulkan12Properties
     PhysicalDeviceVulkan13Features
     PhysicalDeviceVulkan13Properties
+    PhysicalDeviceVulkan14Features
+    PhysicalDeviceVulkan14Properties
     SwapchainCreateInfoKhr = 1000001000
     PresentInfoKhr
     DisplayModeCreateInfoKhr = 1000002000
@@ -1911,6 +2172,7 @@ type
     CuModuleCreateInfoNvx = 1000029000
     CuFunctionCreateInfoNvx
     CuLaunchInfoNvx
+    CuModuleTexturingModeCreateInfoNvx = 1000029004
     ImageViewHandleInfoNvx = 1000030000
     ImageViewAddressPropertiesNvx
     VideoEncodeH264CapabilitiesKhr = 1000038000
@@ -1996,9 +2258,9 @@ type
     PhysicalDeviceTextureCompressionAstcHdrFeatures = 1000066000
     ImageViewAstcDecodeModeExt = 1000067000
     PhysicalDeviceAstcDecodeFeaturesExt
-    PipelineRobustnessCreateInfoExt = 1000068000
-    PhysicalDevicePipelineRobustnessFeaturesExt
-    PhysicalDevicePipelineRobustnessPropertiesExt
+    PipelineRobustnessCreateInfo = 1000068000
+    PhysicalDevicePipelineRobustnessFeatures
+    PhysicalDevicePipelineRobustnessProperties
     PhysicalDeviceGroupProperties = 1000070000
     DeviceGroupDeviceCreateInfo
     PhysicalDeviceExternalImageFormatInfo = 1000071000
@@ -2026,7 +2288,7 @@ type
     SemaphoreGetWin32HandleInfoKhr
     ImportSemaphoreFdInfoKhr = 1000079000
     SemaphoreGetFdInfoKhr
-    PhysicalDevicePushDescriptorPropertiesKhr = 1000080000
+    PhysicalDevicePushDescriptorProperties = 1000080000
     CommandBufferInheritanceConditionalRenderingInfoExt = 1000081000
     PhysicalDeviceConditionalRenderingFeaturesExt
     ConditionalRenderingBeginInfoExt
@@ -2116,10 +2378,26 @@ type
     ExecutionGraphPipelineScratchSizeAmdx
     ExecutionGraphPipelineCreateInfoAmdx
     PipelineShaderStageNodeCreateInfoAmdx
+    TexelBufferDescriptorInfoExt = 1000135000
+    ImageDescriptorInfoExt
+    ResourceDescriptorInfoExt
+    BindHeapInfoExt
+    PushDataInfoExt
+    DescriptorSetAndBindingMappingExt
+    ShaderDescriptorSetAndBindingMappingInfoExt
+    OpaqueCaptureDataCreateInfoExt
+    PhysicalDeviceDescriptorHeapPropertiesExt
+    PhysicalDeviceDescriptorHeapFeaturesExt
+    CommandBufferInheritanceDescriptorHeapInfoExt
+    SamplerCustomBorderColorIndexCreateInfoExt
+    IndirectCommandsLayoutPushDataTokenNv
+    SubsampledImageFormatPropertiesExt
+    PhysicalDeviceDescriptorHeapTensorPropertiesArm
     PhysicalDeviceInlineUniformBlockFeatures = 1000138000
     PhysicalDeviceInlineUniformBlockProperties
     WriteDescriptorSetInlineUniformBlock
     DescriptorPoolInlineUniformBlockCreateInfo
+    PhysicalDeviceShaderBfloat16FeaturesKhr = 1000141000
     SampleLocationsInfoExt = 1000143000
     RenderPassSampleLocationsBeginInfoExt
     PipelineSampleLocationsStateCreateInfoExt
@@ -2204,7 +2482,8 @@ type
     DescriptorSetLayoutSupport
     PhysicalDeviceImageViewImageFormatInfoExt = 1000170000
     FilterCubicImageViewImageFormatPropertiesExt
-    DeviceQueueGlobalPriorityCreateInfoKhr = 1000174000
+    PhysicalDeviceCooperativeMatrixConversionFeaturesQcom = 1000172000
+    DeviceQueueGlobalPriorityCreateInfo = 1000174000
     PhysicalDeviceShaderSubgroupExtendedTypesFeatures = 1000175000
     PhysicalDevice8bitStorageFeatures = 1000177000
     ImportMemoryHostPointerInfoExt = 1000178000
@@ -2223,8 +2502,8 @@ type
     VideoDecodeH265DpbSlotInfoKhr
     DeviceMemoryOverallocationCreateInfoAmd = 1000189000
     PhysicalDeviceVertexAttributeDivisorPropertiesExt = 1000190000
-    PipelineVertexInputDivisorStateCreateInfoKhr
-    PhysicalDeviceVertexAttributeDivisorFeaturesKhr
+    PipelineVertexInputDivisorStateCreateInfo
+    PhysicalDeviceVertexAttributeDivisorFeatures
     PresentFrameTokenGgp = 1000191000
     PipelineCreationFeedbackCreateInfo = 1000192000
     PhysicalDeviceDriverProperties = 1000196000
@@ -2246,6 +2525,16 @@ type
     TimelineSemaphoreSubmitInfo
     SemaphoreWaitInfo
     SemaphoreSignalInfo
+    PhysicalDevicePresentTimingFeaturesExt = 1000208000
+    SwapchainTimingPropertiesExt
+    SwapchainTimeDomainPropertiesExt
+    PresentTimingsInfoExt
+    PresentTimingInfoExt
+    PastPresentationTimingInfoExt
+    PastPresentationTimingPropertiesExt
+    PastPresentationTimingExt
+    PresentTimingSurfaceCapabilitiesExt
+    SwapchainCalibratedTimestampInfoExt
     PhysicalDeviceShaderIntegerFunctions2FeaturesIntel = 1000209000
     QueryPoolPerformanceQueryCreateInfoIntel = 1000210000
     InitializePerformanceApiInfoIntel
@@ -2274,9 +2563,9 @@ type
     PhysicalDeviceFragmentShadingRateKhr
     PhysicalDeviceShaderCoreProperties2Amd = 1000227000
     PhysicalDeviceCoherentMemoryFeaturesAmd = 1000229000
-    PhysicalDeviceDynamicRenderingLocalReadFeaturesKhr = 1000232000
-    RenderingAttachmentLocationInfoKhr
-    RenderingInputAttachmentIndexInfoKhr
+    PhysicalDeviceDynamicRenderingLocalReadFeatures = 1000232000
+    RenderingAttachmentLocationInfo
+    RenderingInputAttachmentIndexInfo
     PhysicalDeviceShaderImageAtomicInt64FeaturesExt = 1000234000
     PhysicalDeviceShaderQuadControlFeaturesKhr = 1000235000
     PhysicalDeviceMemoryBudgetPropertiesExt = 1000237000
@@ -2314,12 +2603,12 @@ type
     BufferOpaqueCaptureAddressCreateInfo = 1000257002
     MemoryOpaqueCaptureAddressAllocateInfo
     DeviceMemoryOpaqueCaptureAddressInfo
-    PhysicalDeviceLineRasterizationFeaturesKhr = 1000259000
-    PipelineRasterizationLineStateCreateInfoKhr
-    PhysicalDeviceLineRasterizationPropertiesKhr
+    PhysicalDeviceLineRasterizationFeatures = 1000259000
+    PipelineRasterizationLineStateCreateInfo
+    PhysicalDeviceLineRasterizationProperties
     PhysicalDeviceShaderAtomicFloatFeaturesExt = 1000260000
     PhysicalDeviceHostQueryResetFeatures = 1000261000
-    PhysicalDeviceIndexTypeUint8FeaturesKhr = 1000265000
+    PhysicalDeviceIndexTypeUint8Features = 1000265000
     PhysicalDeviceExtendedDynamicStateFeaturesExt = 1000267000
     PhysicalDevicePipelineExecutablePropertiesFeaturesKhr = 1000269000
     PipelineInfoKhr
@@ -2327,31 +2616,31 @@ type
     PipelineExecutableInfoKhr
     PipelineExecutableStatisticKhr
     PipelineExecutableInternalRepresentationKhr
-    PhysicalDeviceHostImageCopyFeaturesExt = 1000270000
-    PhysicalDeviceHostImageCopyPropertiesExt
-    MemoryToImageCopyExt
-    ImageToMemoryCopyExt
-    CopyImageToMemoryInfoExt
-    CopyMemoryToImageInfoExt
-    HostImageLayoutTransitionInfoExt
-    CopyImageToImageInfoExt
-    SubresourceHostMemcpySizeExt
-    HostImageCopyDevicePerformanceQueryExt
-    MemoryMapInfoKhr = 1000271000
-    MemoryUnmapInfoKhr
+    PhysicalDeviceHostImageCopyFeatures = 1000270000
+    PhysicalDeviceHostImageCopyProperties
+    MemoryToImageCopy
+    ImageToMemoryCopy
+    CopyImageToMemoryInfo
+    CopyMemoryToImageInfo
+    HostImageLayoutTransitionInfo
+    CopyImageToImageInfo
+    SubresourceHostMemcpySize
+    HostImageCopyDevicePerformanceQuery
+    MemoryMapInfo = 1000271000
+    MemoryUnmapInfo
     PhysicalDeviceMapMemoryPlacedFeaturesExt = 1000272000
     PhysicalDeviceMapMemoryPlacedPropertiesExt
     MemoryMapPlacedInfoExt
     PhysicalDeviceShaderAtomicFloat2FeaturesExt = 1000273000
-    SurfacePresentModeExt = 1000274000
-    SurfacePresentScalingCapabilitiesExt
-    SurfacePresentModeCompatibilityExt
-    PhysicalDeviceSwapchainMaintenance1FeaturesExt = 1000275000
-    SwapchainPresentFenceInfoExt
-    SwapchainPresentModesCreateInfoExt
-    SwapchainPresentModeInfoExt
-    SwapchainPresentScalingCreateInfoExt
-    ReleaseSwapchainImagesInfoExt
+    SurfacePresentModeKhr = 1000274000
+    SurfacePresentScalingCapabilitiesKhr
+    SurfacePresentModeCompatibilityKhr
+    PhysicalDeviceSwapchainMaintenance1FeaturesKhr = 1000275000
+    SwapchainPresentFenceInfoKhr
+    SwapchainPresentModesCreateInfoKhr
+    SwapchainPresentModeInfoKhr
+    SwapchainPresentScalingCreateInfoKhr
+    ReleaseSwapchainImagesInfoKhr
     PhysicalDeviceShaderDemoteToHelperInvocationFeatures = 1000276000
     PhysicalDeviceDeviceGeneratedCommandsPropertiesNv = 1000277000
     GraphicsShaderGroupCreateInfoNv
@@ -2375,11 +2664,12 @@ type
     PhysicalDeviceDeviceMemoryReportFeaturesExt = 1000284000
     DeviceDeviceMemoryReportCreateInfoExt
     DeviceMemoryReportCallbackDataExt
-    PhysicalDeviceRobustness2FeaturesExt = 1000286000
-    PhysicalDeviceRobustness2PropertiesExt
+    PhysicalDeviceRobustness2FeaturesKhr = 1000286000
+    PhysicalDeviceRobustness2PropertiesKhr
     SamplerCustomBorderColorCreateInfoExt = 1000287000
     PhysicalDeviceCustomBorderColorPropertiesExt
     PhysicalDeviceCustomBorderColorFeaturesExt
+    PhysicalDeviceTextureCompressionAstc3dFeaturesExt = 1000288000
     PipelineLibraryCreateInfoKhr = 1000290000
     PhysicalDevicePresentBarrierFeaturesNv = 1000292000
     SurfaceCapabilitiesPresentBarrierNv
@@ -2418,6 +2708,12 @@ type
     PhysicalDeviceCudaKernelLaunchFeaturesNv
     PhysicalDeviceCudaKernelLaunchPropertiesNv
     RefreshObjectListKhr = 1000308000
+    PhysicalDeviceTileShadingFeaturesQcom = 1000309000
+    PhysicalDeviceTileShadingPropertiesQcom
+    RenderPassTileShadingCreateInfoQcom
+    PerTileBeginInfoQcom
+    PerTileEndInfoQcom
+    DispatchTileInfoQcom
     QueryLowLatencySupportNv = 1000310000
     ExportMetalObjectCreateInfoExt = 1000311000
     ExportMetalObjectsInfoExt
@@ -2488,8 +2784,8 @@ type
     ImageResolve2
     PhysicalDeviceImageCompressionControlFeaturesExt = 1000338000
     ImageCompressionControlExt
-    SubresourceLayout2Khr
-    ImageSubresource2Khr
+    SubresourceLayout2
+    ImageSubresource2
     ImageCompressionPropertiesExt
     PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesExt = 1000339000
     PhysicalDevice4444FormatsFeaturesExt = 1000340000
@@ -2514,6 +2810,7 @@ type
     PipelineViewportDepthClipControlCreateInfoExt
     PhysicalDevicePrimitiveTopologyListRestartFeaturesExt = 1000356000
     FormatProperties3 = 1000360000
+    PhysicalDevicePresentModeFifoLatestReadyFeaturesKhr = 1000361000
     ImportMemoryZirconHandleInfoFuchsia = 1000364000
     MemoryZirconHandlePropertiesFuchsia
     MemoryGetZirconHandleInfoFuchsia
@@ -2561,8 +2858,13 @@ type
     PipelineColorWriteCreateInfoExt
     PhysicalDevicePrimitivesGeneratedQueryFeaturesExt = 1000382000
     PhysicalDeviceRayTracingMaintenance1FeaturesKhr = 1000386000
-    PhysicalDeviceGlobalPriorityQueryFeaturesKhr = 1000388000
-    QueueFamilyGlobalPriorityPropertiesKhr
+    PhysicalDeviceShaderUntypedPointersFeaturesKhr = 1000387000
+    PhysicalDeviceGlobalPriorityQueryFeatures = 1000388000
+    QueueFamilyGlobalPriorityProperties
+    PhysicalDeviceVideoEncodeRgbConversionFeaturesValve = 1000390000
+    VideoEncodeRgbConversionCapabilitiesValve
+    VideoEncodeProfileRgbConversionInfoValve
+    VideoEncodeSessionRgbConversionCreateInfoValve
     PhysicalDeviceImageViewMinLodFeaturesExt = 1000391000
     ImageViewMinLodCreateInfoExt
     PhysicalDeviceMultiDrawFeaturesExt = 1000392000
@@ -2594,7 +2896,7 @@ type
     DeviceBufferMemoryRequirements
     DeviceImageMemoryRequirements
     PhysicalDeviceShaderCorePropertiesArm = 1000415000
-    PhysicalDeviceShaderSubgroupRotateFeaturesKhr = 1000416000
+    PhysicalDeviceShaderSubgroupRotateFeatures = 1000416000
     DeviceQueueShaderCoreControlCreateInfoArm = 1000417000
     PhysicalDeviceSchedulingControlsFeaturesArm
     PhysicalDeviceSchedulingControlsPropertiesArm
@@ -2603,23 +2905,26 @@ type
     PhysicalDeviceDescriptorSetHostMappingFeaturesValve = 1000420000
     DescriptorSetBindingReferenceValve
     DescriptorSetLayoutHostMappingInfoValve
-    PhysicalDeviceDepthClampZeroOneFeaturesExt = 1000421000
+    PhysicalDeviceDepthClampZeroOneFeaturesKhr = 1000421000
     PhysicalDeviceNonSeamlessCubeMapFeaturesExt = 1000422000
     PhysicalDeviceRenderPassStripedFeaturesArm = 1000424000
     PhysicalDeviceRenderPassStripedPropertiesArm
     RenderPassStripeBeginInfoArm
     RenderPassStripeInfoArm
     RenderPassStripeSubmitInfoArm
-    PhysicalDeviceFragmentDensityMapOffsetFeaturesQcom = 1000425000
-    PhysicalDeviceFragmentDensityMapOffsetPropertiesQcom
-    SubpassFragmentDensityMapOffsetEndInfoQcom
+    PhysicalDeviceFragmentDensityMapOffsetFeaturesExt = 1000425000
+    PhysicalDeviceFragmentDensityMapOffsetPropertiesExt
+    RenderPassFragmentDensityMapOffsetEndInfoExt
     PhysicalDeviceCopyMemoryIndirectFeaturesNv = 1000426000
-    PhysicalDeviceCopyMemoryIndirectPropertiesNv
-    PhysicalDeviceMemoryDecompressionFeaturesNv = 1000427000
-    PhysicalDeviceMemoryDecompressionPropertiesNv
+    PhysicalDeviceCopyMemoryIndirectPropertiesKhr
+    PhysicalDeviceMemoryDecompressionFeaturesExt = 1000427000
+    PhysicalDeviceMemoryDecompressionPropertiesExt
     PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNv = 1000428000
     ComputePipelineIndirectBufferInfoNv
     PipelineIndirectDeviceAddressInfoNv
+    PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNv = 1000429008
+    AccelerationStructureGeometryLinearSweptSpheresDataNv
+    AccelerationStructureGeometrySpheresDataNv
     PhysicalDeviceLinearColorAttachmentFeaturesNv = 1000430000
     PhysicalDeviceShaderMaximalReconvergenceFeaturesKhr = 1000434000
     ApplicationParametersExt = 1000435000
@@ -2629,6 +2934,12 @@ type
     ImageViewSampleWeightCreateInfoQcom
     PhysicalDeviceNestedCommandBufferFeaturesExt = 1000451000
     PhysicalDeviceNestedCommandBufferPropertiesExt
+    NativeBufferUsageOhos = 1000452000
+    NativeBufferPropertiesOhos
+    NativeBufferFormatPropertiesOhos
+    ImportNativeBufferInfoOhos
+    MemoryGetNativeBufferInfoOhos
+    ExternalFormatOhos
     ExternalMemoryAcquireUnmodifiedExt = 1000453000
     PhysicalDeviceExtendedDynamicState3FeaturesExt = 1000455000
     PhysicalDeviceExtendedDynamicState3PropertiesExt
@@ -2638,6 +2949,30 @@ type
     RenderPassSubpassFeedbackCreateInfoExt
     DirectDriverLoadingInfoLunarg = 1000459000
     DirectDriverLoadingListLunarg
+    TensorCreateInfoArm = 1000460000
+    TensorViewCreateInfoArm
+    BindTensorMemoryInfoArm
+    WriteDescriptorSetTensorArm
+    PhysicalDeviceTensorPropertiesArm
+    TensorFormatPropertiesArm
+    TensorDescriptionArm
+    TensorMemoryRequirementsInfoArm
+    TensorMemoryBarrierArm
+    PhysicalDeviceTensorFeaturesArm
+    DeviceTensorMemoryRequirementsArm
+    CopyTensorInfoArm
+    TensorCopyArm
+    TensorDependencyInfoArm
+    MemoryDedicatedAllocateInfoTensorArm
+    PhysicalDeviceExternalTensorInfoArm
+    ExternalTensorPropertiesArm
+    ExternalMemoryTensorCreateInfoArm
+    PhysicalDeviceDescriptorBufferTensorFeaturesArm
+    PhysicalDeviceDescriptorBufferTensorPropertiesArm
+    DescriptorGetTensorInfoArm
+    TensorCaptureDescriptorDataInfoArm
+    TensorViewCaptureDescriptorDataInfoArm
+    FrameBoundaryTensorsArm
     PhysicalDeviceShaderModuleIdentifierFeaturesExt = 1000462000
     PhysicalDeviceShaderModuleIdentifierPropertiesExt
     PipelineShaderStageModuleIdentifierCreateInfoExt
@@ -2650,19 +2985,27 @@ type
     OpticalFlowExecuteInfoNv
     OpticalFlowSessionCreatePrivateDataInfoNv = 1000464010
     PhysicalDeviceLegacyDitheringFeaturesExt = 1000465000
-    PhysicalDevicePipelineProtectedAccessFeaturesExt = 1000466000
+    PhysicalDevicePipelineProtectedAccessFeatures = 1000466000
     PhysicalDeviceExternalFormatResolveFeaturesAndroid = 1000468000
     PhysicalDeviceExternalFormatResolvePropertiesAndroid
     AndroidHardwareBufferFormatResolvePropertiesAndroid
-    PhysicalDeviceMaintenance5FeaturesKhr = 1000470000
-    PhysicalDeviceMaintenance5PropertiesKhr
-    RenderingAreaInfoKhr = 1000470003
-    DeviceImageSubresourceInfoKhr
-    PipelineCreateFlags2CreateInfoKhr
-    BufferUsageFlags2CreateInfoKhr
+    PhysicalDeviceMaintenance5Features = 1000470000
+    PhysicalDeviceMaintenance5Properties
+    RenderingAreaInfo = 1000470003
+    DeviceImageSubresourceInfo
+    PipelineCreateFlags2CreateInfo
+    BufferUsageFlags2CreateInfo
     PhysicalDeviceAntiLagFeaturesAmd = 1000476000
     AntiLagDataAmd
     AntiLagPresentationInfoAmd
+    PhysicalDeviceDenseGeometryFormatFeaturesAmdx = 1000478000
+    AccelerationStructureDenseGeometryFormatTrianglesDataAmdx
+    SurfaceCapabilitiesPresentId2Khr = 1000479000
+    PresentId2Khr
+    PhysicalDevicePresentId2FeaturesKhr
+    SurfaceCapabilitiesPresentWait2Khr = 1000480000
+    PhysicalDevicePresentWait2FeaturesKhr
+    PresentWait2InfoKhr
     PhysicalDeviceRayTracingPositionFetchFeaturesKhr = 1000481000
     PhysicalDeviceShaderObjectFeaturesExt = 1000482000
     PhysicalDeviceShaderObjectPropertiesExt
@@ -2688,6 +3031,10 @@ type
     DeviceSemaphoreSciSyncPoolReservationCreateInfoNv
     PhysicalDeviceRayTracingInvocationReorderFeaturesNv = 1000490000
     PhysicalDeviceRayTracingInvocationReorderPropertiesNv
+    PhysicalDeviceCooperativeVectorFeaturesNv = 1000491000
+    PhysicalDeviceCooperativeVectorPropertiesNv
+    CooperativeVectorPropertiesNv
+    ConvertCooperativeVectorMatrixInfoNv = 1000491004
     PhysicalDeviceExtendedSparseAddressSpaceFeaturesNv = 1000492000
     PhysicalDeviceExtendedSparseAddressSpacePropertiesNv
     PhysicalDeviceLegacyVertexAttributesFeaturesExt = 1000495000
@@ -2697,6 +3044,7 @@ type
     PhysicalDeviceShaderCoreBuiltinsPropertiesArm
     PhysicalDevicePipelineLibraryGroupHandlesFeaturesExt = 1000498000
     PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesExt = 1000499000
+    PhysicalDeviceInternallySynchronizedQueuesFeaturesKhr = 1000504000
     LatencySleepModeInfoNv = 1000505000
     LatencySleepInfoNv
     SetLatencyMarkerInfoNv
@@ -2709,6 +3057,26 @@ type
     PhysicalDeviceCooperativeMatrixFeaturesKhr = 1000506000
     CooperativeMatrixPropertiesKhr
     PhysicalDeviceCooperativeMatrixPropertiesKhr
+    DataGraphPipelineCreateInfoArm = 1000507000
+    DataGraphPipelineSessionCreateInfoArm
+    DataGraphPipelineResourceInfoArm
+    DataGraphPipelineConstantArm
+    DataGraphPipelineSessionMemoryRequirementsInfoArm
+    BindDataGraphPipelineSessionMemoryInfoArm
+    PhysicalDeviceDataGraphFeaturesArm
+    DataGraphPipelineShaderModuleCreateInfoArm
+    DataGraphPipelinePropertyQueryResultArm
+    DataGraphPipelineInfoArm
+    DataGraphPipelineCompilerControlCreateInfoArm
+    DataGraphPipelineSessionBindPointRequirementsInfoArm
+    DataGraphPipelineSessionBindPointRequirementArm
+    DataGraphPipelineIdentifierCreateInfoArm
+    DataGraphPipelineDispatchInfoArm
+    DataGraphPipelineConstantTensorSemiStructuredSparsityInfoArm
+    DataGraphProcessingEngineCreateInfoArm
+    QueueFamilyDataGraphProcessingEnginePropertiesArm
+    QueueFamilyDataGraphPropertiesArm
+    PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoArm
     PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQcom = 1000510000
     MultiviewPerViewRenderAreasRenderPassBeginInfoQcom
     PhysicalDeviceComputeShaderDerivativesPropertiesKhr = 1000511000
@@ -2717,6 +3085,21 @@ type
     VideoDecodeAv1ProfileInfoKhr = 1000512003
     VideoDecodeAv1SessionParametersCreateInfoKhr
     VideoDecodeAv1DpbSlotInfoKhr
+    VideoEncodeAv1CapabilitiesKhr = 1000513000
+    VideoEncodeAv1SessionParametersCreateInfoKhr
+    VideoEncodeAv1PictureInfoKhr
+    VideoEncodeAv1DpbSlotInfoKhr
+    PhysicalDeviceVideoEncodeAv1FeaturesKhr
+    VideoEncodeAv1ProfileInfoKhr
+    VideoEncodeAv1RateControlInfoKhr
+    VideoEncodeAv1RateControlLayerInfoKhr
+    VideoEncodeAv1QualityLevelPropertiesKhr
+    VideoEncodeAv1SessionCreateInfoKhr
+    VideoEncodeAv1GopRemainingFrameInfoKhr
+    PhysicalDeviceVideoDecodeVp9FeaturesKhr = 1000514000
+    VideoDecodeVp9CapabilitiesKhr
+    VideoDecodeVp9PictureInfoKhr
+    VideoDecodeVp9ProfileInfoKhr
     PhysicalDeviceVideoMaintenance1FeaturesKhr = 1000515000
     VideoInlineQueryInfoKhr
     PhysicalDevicePerStageDescriptorSetFeaturesNv = 1000516000
@@ -2730,26 +3113,58 @@ type
     SamplerYcbcrConversionYcbcrDegammaCreateInfoQcom
     PhysicalDeviceCubicClampFeaturesQcom = 1000521000
     PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesExt = 1000524000
-    PhysicalDeviceVertexAttributeDivisorPropertiesKhr = 1000525000
-    PhysicalDeviceShaderFloatControls2FeaturesKhr = 1000528000
+    PhysicalDeviceVertexAttributeDivisorProperties = 1000525000
+    PhysicalDeviceUnifiedImageLayoutsFeaturesKhr = 1000527000
+    AttachmentFeedbackLoopInfoExt
+    PhysicalDeviceShaderFloatControls2Features = 1000528000
     ScreenBufferPropertiesQnx = 1000529000
     ScreenBufferFormatPropertiesQnx
     ImportScreenBufferInfoQnx
     ExternalFormatQnx
     PhysicalDeviceExternalMemoryScreenBufferFeaturesQnx
     PhysicalDeviceLayeredDriverPropertiesMsft = 1000530000
-    PhysicalDeviceShaderExpectAssumeFeaturesKhr = 1000544000
-    PhysicalDeviceMaintenance6FeaturesKhr = 1000545000
-    PhysicalDeviceMaintenance6PropertiesKhr
-    BindMemoryStatusKhr
-    BindDescriptorSetsInfoKhr
-    PushConstantsInfoKhr
-    PushDescriptorSetInfoKhr
-    PushDescriptorSetWithTemplateInfoKhr
+    PhysicalDeviceShaderExpectAssumeFeatures = 1000544000
+    PhysicalDeviceMaintenance6Features = 1000545000
+    PhysicalDeviceMaintenance6Properties
+    BindMemoryStatus
+    BindDescriptorSetsInfo
+    PushConstantsInfo
+    PushDescriptorSetInfo
+    PushDescriptorSetWithTemplateInfo
     SetDescriptorBufferOffsetsInfoExt
     BindDescriptorBufferEmbeddedSamplersInfoExt
     PhysicalDeviceDescriptorPoolOverallocationFeaturesNv = 1000546000
+    PhysicalDeviceTileMemoryHeapFeaturesQcom = 1000547000
+    PhysicalDeviceTileMemoryHeapPropertiesQcom
+    TileMemoryRequirementsQcom
+    TileMemoryBindInfoQcom
+    TileMemorySizeInfoQcom
+    PhysicalDeviceCopyMemoryIndirectFeaturesKhr = 1000549000
+    CopyMemoryIndirectInfoKhr = 1000549002
+    CopyMemoryToImageIndirectInfoKhr
+    DecompressMemoryInfoExt = 1000550002
+    DisplaySurfaceStereoCreateInfoNv = 1000551000
+    DisplayModeStereoPropertiesNv
+    VideoEncodeIntraRefreshCapabilitiesKhr = 1000552000
+    VideoEncodeSessionIntraRefreshCreateInfoKhr
+    VideoEncodeIntraRefreshInfoKhr
+    VideoReferenceIntraRefreshInfoKhr
+    PhysicalDeviceVideoEncodeIntraRefreshFeaturesKhr
+    VideoEncodeQuantizationMapCapabilitiesKhr = 1000553000
+    VideoFormatQuantizationMapPropertiesKhr
+    VideoEncodeQuantizationMapInfoKhr
+    VideoEncodeH264QuantizationMapCapabilitiesKhr
+    VideoEncodeH265QuantizationMapCapabilitiesKhr
+    VideoEncodeQuantizationMapSessionParametersCreateInfoKhr
+    VideoFormatH265QuantizationMapPropertiesKhr
+    VideoEncodeAv1QuantizationMapCapabilitiesKhr
+    VideoFormatAv1QuantizationMapPropertiesKhr
+    PhysicalDeviceVideoEncodeQuantizationMapFeaturesKhr
     PhysicalDeviceRawAccessChainsFeaturesNv = 1000555000
+    ExternalComputeQueueDeviceCreateInfoNv = 1000556000
+    ExternalComputeQueueCreateInfoNv
+    ExternalComputeQueueDataParamsNv
+    PhysicalDeviceExternalComputeQueuePropertiesNv
     PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKhr = 1000558000
     PhysicalDeviceCommandBufferInheritanceFeaturesNv = 1000559000
     PhysicalDeviceMaintenance7FeaturesKhr = 1000562000
@@ -2759,10 +3174,99 @@ type
     PhysicalDeviceLayeredApiVulkanPropertiesKhr
     PhysicalDeviceShaderAtomicFloat16VectorFeaturesNv = 1000563000
     PhysicalDeviceShaderReplicatedCompositesFeaturesExt = 1000564000
+    PhysicalDeviceShaderFloat8FeaturesExt = 1000567000
     PhysicalDeviceRayTracingValidationFeaturesNv = 1000568000
+    PhysicalDeviceClusterAccelerationStructureFeaturesNv = 1000569000
+    PhysicalDeviceClusterAccelerationStructurePropertiesNv
+    ClusterAccelerationStructureClustersBottomLevelInputNv
+    ClusterAccelerationStructureTriangleClusterInputNv
+    ClusterAccelerationStructureMoveObjectsInputNv
+    ClusterAccelerationStructureInputInfoNv
+    ClusterAccelerationStructureCommandsInfoNv
+    RayTracingPipelineClusterAccelerationStructureCreateInfoNv
+    PhysicalDevicePartitionedAccelerationStructureFeaturesNv = 1000570000
+    PhysicalDevicePartitionedAccelerationStructurePropertiesNv
+    WriteDescriptorSetPartitionedAccelerationStructureNv
+    PartitionedAccelerationStructureInstancesInputNv
+    BuildPartitionedAccelerationStructureInfoNv
+    PartitionedAccelerationStructureFlagsNv
+    PhysicalDeviceDeviceGeneratedCommandsFeaturesExt = 1000572000
+    PhysicalDeviceDeviceGeneratedCommandsPropertiesExt
+    GeneratedCommandsMemoryRequirementsInfoExt
+    IndirectExecutionSetCreateInfoExt
+    GeneratedCommandsInfoExt
+    IndirectCommandsLayoutCreateInfoExt = 1000572006
+    IndirectCommandsLayoutTokenExt
+    WriteIndirectExecutionSetPipelineExt
+    WriteIndirectExecutionSetShaderExt
+    IndirectExecutionSetPipelineInfoExt
+    IndirectExecutionSetShaderInfoExt
+    IndirectExecutionSetShaderLayoutInfoExt
+    GeneratedCommandsPipelineInfoExt
+    GeneratedCommandsShaderInfoExt
+    PhysicalDeviceMaintenance8FeaturesKhr = 1000574000
+    MemoryBarrierAccessFlags3Khr = 1000574002
     PhysicalDeviceImageAlignmentControlFeaturesMesa = 1000575000
     PhysicalDeviceImageAlignmentControlPropertiesMesa
     ImageAlignmentControlCreateInfoMesa
+    PhysicalDeviceShaderFmaFeaturesKhr = 1000579000
+    PushConstantBankInfoNv = 1000580000
+    PhysicalDevicePushConstantBankFeaturesNv
+    PhysicalDevicePushConstantBankPropertiesNv
+    PhysicalDeviceRayTracingInvocationReorderFeaturesExt = 1000581000
+    PhysicalDeviceRayTracingInvocationReorderPropertiesExt
+    PhysicalDeviceDepthClampControlFeaturesExt = 1000582000
+    PipelineViewportDepthClampControlCreateInfoExt
+    PhysicalDeviceMaintenance9FeaturesKhr = 1000584000
+    PhysicalDeviceMaintenance9PropertiesKhr
+    QueueFamilyOwnershipTransferPropertiesKhr
+    PhysicalDeviceVideoMaintenance2FeaturesKhr = 1000586000
+    VideoDecodeH264InlineSessionParametersInfoKhr
+    VideoDecodeH265InlineSessionParametersInfoKhr
+    VideoDecodeAv1InlineSessionParametersInfoKhr
+    PhysicalDeviceHdrVividFeaturesHuawei = 1000590000
+    HdrVividDynamicMetadataHuawei
+    PhysicalDeviceCooperativeMatrix2FeaturesNv = 1000593000
+    CooperativeMatrixFlexibleDimensionsPropertiesNv
+    PhysicalDeviceCooperativeMatrix2PropertiesNv
+    PhysicalDevicePipelineOpacityMicromapFeaturesArm = 1000596000
+    ImportMemoryMetalHandleInfoExt = 1000602000
+    MemoryMetalHandlePropertiesExt
+    MemoryGetMetalHandleInfoExt
+    PhysicalDevicePerformanceCountersByRegionFeaturesArm = 1000605000
+    PhysicalDevicePerformanceCountersByRegionPropertiesArm
+    PerformanceCounterArm
+    PerformanceCounterDescriptionArm
+    RenderPassPerformanceCountersByRegionBeginInfoArm
+    PhysicalDeviceVertexAttributeRobustnessFeaturesExt = 1000608000
+    PhysicalDeviceFormatPackFeaturesArm = 1000609000
+    PhysicalDeviceFragmentDensityMapLayeredFeaturesValve = 1000611000
+    PhysicalDeviceFragmentDensityMapLayeredPropertiesValve
+    PipelineFragmentDensityMapLayeredCreateInfoValve
+    SetPresentConfigNv = 1000613000
+    PhysicalDevicePresentMeteringFeaturesNv
+    RenderingEndInfoKhr = 1000619003
+    PhysicalDeviceZeroInitializeDeviceMemoryFeaturesExt = 1000620000
+    PhysicalDeviceShader64BitIndexingFeaturesExt = 1000627000
+    PhysicalDeviceCustomResolveFeaturesExt = 1000628000
+    BeginCustomResolveInfoExt
+    CustomResolveCreateInfoExt
+    PhysicalDeviceDataGraphModelFeaturesQcom = 1000629000
+    DataGraphPipelineBuiltinModelCreateInfoQcom
+    PhysicalDeviceMaintenance10FeaturesKhr = 1000630000
+    PhysicalDeviceMaintenance10PropertiesKhr
+    RenderingAttachmentFlagsInfoKhr
+    ResolveImageModeInfoKhr = 1000630004
+    PhysicalDeviceShaderLongVectorFeaturesExt = 1000635000
+    PhysicalDeviceShaderLongVectorPropertiesExt
+    PhysicalDevicePipelineCacheIncrementalModeFeaturesSec = 1000637000
+    PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesExt = 1000642000
+    ComputeOccupancyPriorityParametersNv = 1000645000
+    PhysicalDeviceComputeOccupancyPriorityFeaturesNv
+    PhysicalDeviceShaderSubgroupPartitionedFeaturesExt = 1000662000
+    UbmSurfaceCreateInfoSec = 1000664000
+    PhysicalDeviceShaderMixedFloatDotProductFeaturesValve = 1000673000
+    SurfaceCreateInfoOhos = 1000685000
 
   VkSubpassContents* {.size: sizeof(int32).} = enum
     Inline
@@ -2777,7 +3281,8 @@ type
     VkErrorInvalidPipelineCacheData
     VkErrorInvalidOpaqueCaptureAddress = -1000257000
     VkErrorFullScreenExclusiveModeLostExt = -1000255000
-    VkErrorNotPermittedKhr = -1000174001
+    VkErrorPresentTimingQueueFullExt = -1000208000
+    VkErrorNotPermitted = -1000174001
     VkErrorFragmentation = -1000161000
     VkErrorInvalidDrmFormatModifierPlaneLayoutExt = -1000158000
     VkErrorInvalidExternalHandle = -1000072003
@@ -2789,7 +3294,7 @@ type
     VkErrorVideoPictureLayoutNotSupportedKhr
     VkErrorImageUsageNotSupportedKhr
     VkErrorInvalidShaderNv = -1000012000
-    VkErrorValidationFailedExt = -1000011001
+    VkErrorValidationFailed = -1000011001
     VkErrorIncompatibleDisplayKhr = -1000003001
     VkErrorOutOfDateKhr = -1000001004
     VkErrorNativeWindowInUseKhr = -1000000001
@@ -2842,7 +3347,7 @@ type
     ExclusiveScissorEnableNv = 1000205000
     ExclusiveScissorNv
     FragmentShadingRateKhr = 1000226000
-    LineStippleKhr = 1000259000
+    LineStipple = 1000259000
     CullMode = 1000267000
     FrontFace
     PrimitiveTopology
@@ -2895,10 +3400,11 @@ type
     RepresentativeFragmentTestEnableNv
     CoverageReductionModeNv
     AttachmentFeedbackLoopEnableExt = 1000524000
+    DepthClampRangeExt = 1000582000
 
   VkDescriptorUpdateTemplateType* {.size: sizeof(int32).} = enum
     DescriptorSet
-    PushDescriptorsKhr
+    PushDescriptors
 
   VkObjectType* {.size: sizeof(int32).} = enum
     Unknown
@@ -2950,14 +3456,28 @@ type
     CudaFunctionNv
     BufferCollectionFuchsia = 1000366000
     MicromapExt = 1000396000
+    TensorArm = 1000460000
+    TensorViewArm
     OpticalFlowSessionNv = 1000464000
     ShaderExt = 1000482000
     PipelineBinaryKhr = 1000483000
     SemaphoreSciSyncPoolNv = 1000489000
+    DataGraphPipelineSessionArm = 1000507000
+    ExternalComputeQueueNv = 1000556000
+    IndirectCommandsLayoutExt = 1000572000
+    IndirectExecutionSetExt
 
-  VkRayTracingInvocationReorderModeNV* {.size: sizeof(int32).} = enum
+  VkRayTracingInvocationReorderModeEXT* {.size: sizeof(int32).} = enum
     None
     Reorder
+
+  VkRayTracingLssIndexingModeNV* {.size: sizeof(int32).} = enum
+    List
+    Successive
+
+  VkRayTracingLssPrimitiveEndCapsModeNV* {.size: sizeof(int32).} = enum
+    None
+    Chained
 
   VkDirectDriverLoadingModeLUNARG* {.size: sizeof(int32).} = enum
     Exclusive
@@ -2981,6 +3501,7 @@ type
     VideoDecodeBitKhr = 32
     VideoEncodeBitKhr = 64
     OpticalFlowBitNv = 256
+    DataGraphBitArm = 1024
 
   VkCullModeFlagBits* {.size: sizeof(int32).} = enum
     None
@@ -2990,9 +3511,11 @@ type
 
   VkRenderPassCreateFlagBits* {.size: sizeof(int32).} = enum
     TransformBitQcom = 2
+    PerLayerFragmentDensityBitValve = 4
 
   VkDeviceQueueCreateFlagBits* {.size: sizeof(int32).} = enum
     ProtectedBit = 1
+    InternallySynchronizedBitKhr = 4
 
   VkMemoryPropertyFlagBits* {.size: sizeof(int32).} = enum
     DeviceLocalBit = 1
@@ -3009,6 +3532,7 @@ type
     DeviceLocalBit = 1
     MultiInstanceBit
     SeuSafeBit = 4
+    TileMemoryBitQcom = 8
 
   VkAccessFlagBits* {.size: sizeof(int32).} = enum
     None
@@ -3029,8 +3553,8 @@ type
     HostWriteBit = 16384
     MemoryReadBit = 32768
     MemoryWriteBit = 65536
-    CommandPreprocessReadBitNv = 131072
-    CommandPreprocessWriteBitNv = 262144
+    CommandPreprocessReadBitExt = 131072
+    CommandPreprocessWriteBitExt = 262144
     ColorAttachmentReadNoncoherentBitExt = 524288
     ConditionalRenderingReadBitExt = 1048576
     AccelerationStructureReadBitKhr = 2097152
@@ -3068,8 +3592,10 @@ type
     MicromapStorageBitExt = 16777216
     ExecutionGraphScratchBitAmdx = 33554432
     PushDescriptorsDescriptorBufferBitExt = 67108864
+    TileMemoryBitQcom = 134217728
+    DescriptorHeapBitExt = 268435456
 
-  VkBufferUsageFlagBits2KHR* {.size: sizeof(int32).} = enum
+  VkBufferUsageFlagBits2* {.size: sizeof(int32).} = enum
     TransferSrcBit = 1
     TransferDstBit
     UniformTexelBufferBit = 4
@@ -3080,22 +3606,28 @@ type
     VertexBufferBit = 128
     IndirectBufferBit = 256
     ConditionalRenderingBitExt = 512
-    ShaderBindingTableBit = 1024
+    ShaderBindingTableBitKhr = 1024
     TransformFeedbackBufferBitExt = 2048
     TransformFeedbackCounterBufferBitExt = 4096
-    VideoDecodeSrcBit = 8192
-    VideoDecodeDstBit = 16384
-    VideoEncodeDstBit = 32768
-    VideoEncodeSrcBit = 65536
+    VideoDecodeSrcBitKhr = 8192
+    VideoDecodeDstBitKhr = 16384
+    VideoEncodeDstBitKhr = 32768
+    VideoEncodeSrcBitKhr = 65536
     ShaderDeviceAddressBit = 131072
-    AccelerationStructureBuildInputReadOnlyBit = 524288
-    AccelerationStructureStorageBit = 1048576
+    AccelerationStructureBuildInputReadOnlyBitKhr = 524288
+    AccelerationStructureStorageBitKhr = 1048576
     SamplerDescriptorBufferBitExt = 2097152
     ResourceDescriptorBufferBitExt = 4194304
     MicromapBuildInputReadOnlyBitExt = 8388608
     MicromapStorageBitExt = 16777216
     ExecutionGraphScratchBitAmdx = 33554432
     PushDescriptorsDescriptorBufferBitExt = 67108864
+    TileMemoryBitQcom = 134217728
+    DescriptorHeapBitExt = 268435456
+    DataGraphForeignDescriptorBitArm = 536870912
+    PreprocessBufferBitExt = 2147483648
+    MemoryDecompressionBitExt = 4294967296
+    CompressedDataDgf1BitAmdx = 8589934592
 
   VkBufferCreateFlagBits* {.size: sizeof(int32).} = enum
     SparseBindingBit = 1
@@ -3147,7 +3679,11 @@ type
     AttachmentFeedbackLoopBitExt = 524288
     SampleWeightBitQcom = 1048576
     SampleBlockMatchBitQcom = 2097152
-    HostTransferBitExt = 4194304
+    HostTransferBit = 4194304
+    TensorAliasingBitArm = 8388608
+    VideoEncodeQuantizationDeltaMapBitKhr = 33554432
+    VideoEncodeEmphasisMapBitKhr = 67108864
+    TileMemoryBitQcom = 134217728
 
   VkImageCreateFlagBits* {.size: sizeof(int32).} = enum
     SparseBindingBit = 1
@@ -3165,8 +3701,8 @@ type
     SampleLocationsCompatibleDepthBitExt = 4096
     CornerSampledBitNv = 8192
     SubsampledBitExt = 16384
-    FragmentDensityMapOffsetBitQcom = 32768
-    DescriptorBufferCaptureReplayBitExt = 65536
+    FragmentDensityMapOffsetBitExt = 32768
+    DescriptorHeapCaptureReplayBitExt = 65536
     N2dViewCompatibleBitExt = 131072
     MultisampledRenderToSingleSampledBitExt = 262144
     VideoProfileIndependentBitKhr = 1048576
@@ -3211,45 +3747,52 @@ type
     RayTracingOpacityMicromapBitExt = 16777216
     ColorAttachmentFeedbackLoopBitExt = 33554432
     DepthStencilAttachmentFeedbackLoopBitExt = 67108864
-    NoProtectedAccessBitExt = 134217728
+    NoProtectedAccessBit = 134217728
     RayTracingDisplacementMicromapBitNv = 268435456
     DescriptorBufferBitExt = 536870912
-    ProtectedAccessOnlyBitExt = 1073741824
+    ProtectedAccessOnlyBit = 1073741824
 
-  VkPipelineCreateFlagBits2KHR* {.size: sizeof(int32).} = enum
+  VkPipelineCreateFlagBits2* {.size: sizeof(int32).} = enum
     DisableOptimizationBit = 1
     AllowDerivativesBit
     DerivativeBit = 4
     ViewIndexFromDeviceIndexBit = 8
     DispatchBaseBit = 16
     DeferCompileBitNv = 32
-    CaptureStatisticsBit = 64
-    CaptureInternalRepresentationsBit = 128
+    CaptureStatisticsBitKhr = 64
+    CaptureInternalRepresentationsBitKhr = 128
     FailOnPipelineCompileRequiredBit = 256
     EarlyReturnOnFailureBit = 512
     LinkTimeOptimizationBitExt = 1024
-    LibraryBit = 2048
-    RayTracingSkipTrianglesBit = 4096
-    RayTracingSkipAabbsBit = 8192
-    RayTracingNoNullAnyHitShadersBit = 16384
-    RayTracingNoNullClosestHitShadersBit = 32768
-    RayTracingNoNullMissShadersBit = 65536
-    RayTracingNoNullIntersectionShadersBit = 131072
+    LibraryBitKhr = 2048
+    RayTracingSkipTrianglesBitKhr = 4096
+    RayTracingSkipAabbsBitKhr = 8192
+    RayTracingNoNullAnyHitShadersBitKhr = 16384
+    RayTracingNoNullClosestHitShadersBitKhr = 32768
+    RayTracingNoNullMissShadersBitKhr = 65536
+    RayTracingNoNullIntersectionShadersBitKhr = 131072
     IndirectBindableBitNv = 262144
-    RayTracingShaderGroupHandleCaptureReplayBit = 524288
+    RayTracingShaderGroupHandleCaptureReplayBitKhr = 524288
     RayTracingAllowMotionBitNv = 1048576
-    RenderingFragmentShadingRateAttachmentBit = 2097152
+    RenderingFragmentShadingRateAttachmentBitKhr = 2097152
     RenderingFragmentDensityMapAttachmentBitExt = 4194304
     RetainLinkTimeOptimizationInfoBitExt = 8388608
     RayTracingOpacityMicromapBitExt = 16777216
     ColorAttachmentFeedbackLoopBitExt = 33554432
     DepthStencilAttachmentFeedbackLoopBitExt = 67108864
-    NoProtectedAccessBitExt = 134217728
+    NoProtectedAccessBit = 134217728
     RayTracingDisplacementMicromapBitNv = 268435456
     DescriptorBufferBitExt = 536870912
-    ProtectedAccessOnlyBitExt = 1073741824
-    CaptureDataBit = 2147483648
+    ProtectedAccessOnlyBit = 1073741824
+    CaptureDataBitKhr = 2147483648
+    ExecutionGraphBitAmdx = 4294967296
+    RayTracingAllowSpheresAndLinearSweptSpheresBitNv = 8589934592
     EnableLegacyDitheringBitExt = 17179869184
+    DescriptorHeapBitExt = 68719476736
+    DisallowOpacityMicromapBitArm = 137438953472
+    IndirectBindableBitExt = 274877906944
+    PerLayerFragmentDensityBitValve = 1099511627776
+    N64BitIndexingBitExt = 8796093022208
 
   VkPipelineShaderStageCreateFlagBits* {.size: sizeof(int32).} = enum
     AllowVaryingSubgroupSizeBit = 1
@@ -3372,7 +3915,7 @@ type
     HostBit = 16384
     AllGraphicsBit = 32768
     AllCommandsBit = 65536
-    CommandPreprocessBitNv = 131072
+    CommandPreprocessBitExt = 131072
     ConditionalRenderingBitExt = 262144
     TaskShaderBitExt = 524288
     MeshShaderBitExt = 1048576
@@ -3404,6 +3947,8 @@ type
 
   VkAttachmentDescriptionFlagBits* {.size: sizeof(int32).} = enum
     MayAliasBit = 1
+    ResolveSkipTransferFunctionBitKhr
+    ResolveEnableTransferFunctionBitKhr = 4
 
   VkStencilFaceFlagBits* {.size: sizeof(int32).} = enum
     FrontBit = 1
@@ -3422,6 +3967,8 @@ type
     ViewLocalBit
     DeviceGroupBit = 4
     FeedbackLoopBitExt = 8
+    QueueFamilyOwnershipTransferUseAllStagesBitKhr = 32
+    AsymmetricEventBitKhr = 64
 
   VkSemaphoreType* {.size: sizeof(int32).} = enum
     Binary
@@ -3437,6 +3984,7 @@ type
     FifoRelaxed
     SharedDemandRefresh = 1000111000
     SharedContinuousRefresh
+    FifoLatestReady = 1000361000
 
   VkColorSpaceKHR* {.size: sizeof(int32).} = enum
     SrgbNonlinear
@@ -3478,6 +4026,12 @@ type
     HorizontalMirrorRotate270Bit = 128
     InheritBit = 256
 
+  VkDisplaySurfaceStereoTypeNV* {.size: sizeof(int32).} = enum
+    None
+    OnboardDin
+    Hdmi3d
+    InbandDisplayport
+
   VkSwapchainImageUsageFlagBitsANDROID* {.size: sizeof(int32).} = enum
     SharedBit = 1
 
@@ -3486,6 +4040,8 @@ type
     ClockMonotonic
     ClockMonotonicRaw
     QueryPerformanceCounter
+    PresentStageLocalExt = 1000208000
+    SwapchainLocalExt
 
   VkDebugReportFlagBitsEXT* {.size: sizeof(int32).} = enum
     InformationBit = 1
@@ -3559,6 +4115,46 @@ type
     ExportableBit
     ImportableBit = 4
 
+  VkClusterAccelerationStructureIndexFormatFlagBitsNV* {.size: sizeof(int32).} = enum
+    N8bit = 1
+    N16bit
+    N32bit = 4
+
+  VkClusterAccelerationStructureTypeNV* {.size: sizeof(int32).} = enum
+    ClustersBottomLevel
+    TriangleCluster
+    TriangleClusterTemplate
+
+  VkClusterAccelerationStructureOpTypeNV* {.size: sizeof(int32).} = enum
+    MoveObjects
+    BuildClustersBottomLevel
+    BuildTriangleCluster
+    BuildTriangleClusterTemplate
+    InstantiateTriangleCluster
+    GetClusterTemplateIndices
+
+  VkClusterAccelerationStructureOpModeNV* {.size: sizeof(int32).} = enum
+    ImplicitDestinations
+    ExplicitDestinations
+    ComputeSizes
+
+  VkClusterAccelerationStructureClusterFlagBitsNV* {.size: sizeof(int32).} = enum
+    AllowDisableOpacityMicromaps = 1
+
+  VkClusterAccelerationStructureGeometryFlagBitsNV* {.size: sizeof(int32).} = enum
+    CullDisableBit = 1
+    NoDuplicateAnyhitInvocationBit
+    OpaqueBit = 4
+
+  VkClusterAccelerationStructureAddressResolutionFlagBitsNV* {.size: sizeof(int32).} = enum
+    None
+    IndirectedDstImplicitDataBit
+    IndirectedScratchDataBit
+    IndirectedDstAddressArrayBit = 4
+    IndirectedDstSizesArrayBit = 8
+    IndirectedSrcInfosArrayBit = 16
+    IndirectedSrcInfosCountBit = 32
+
   VkValidationCheckEXT* {.size: sizeof(int32).} = enum
     All
     Shaders
@@ -3599,9 +4195,9 @@ type
     ShuffleRelativeBit = 32
     ClusteredBit = 64
     QuadBit = 128
-    PartitionedBitNv = 256
-    RotateBitKhr = 512
-    RotateClusteredBitKhr = 1024
+    PartitionedBitExt = 256
+    RotateBit = 512
+    RotateClusteredBit = 1024
 
   VkIndirectCommandsLayoutUsageFlagBitsNV* {.size: sizeof(int32).} = enum
     ExplicitPreprocessBit = 1
@@ -3620,12 +4216,13 @@ type
     DrawIndexed
     Draw
     DrawTasks
+    PushData = 1000135000
     DrawMeshTasks = 1000328000
     Pipeline = 1000428003
     Dispatch
 
   VkDescriptorSetLayoutCreateFlagBits* {.size: sizeof(int32).} = enum
-    PushDescriptorBitKhr = 1
+    PushDescriptorBit = 1
     UpdateAfterBindPoolBit
     HostOnlyPoolBitExt = 4
     DescriptorBufferBitExt = 16
@@ -3649,6 +4246,10 @@ type
     RdmaAddressBitNv = 4096
     SciBufBitNv = 8192
     ScreenBufferBitQnx = 16384
+    OhNativeBufferBitOhos = 32768
+    MtlbufferBitExt = 65536
+    MtltextureBitExt = 131072
+    MtlheapBitExt = 262144
 
   VkExternalMemoryFeatureFlagBits* {.size: sizeof(int32).} = enum
     DedicatedOnlyBit = 1
@@ -3710,6 +4311,7 @@ type
     DeviceMaskBit = 1
     DeviceAddressBit
     DeviceAddressCaptureReplayBit = 4
+    ZeroInitializeBitExt = 8
 
   VkDeviceGroupPresentModeFlagBitsKHR* {.size: sizeof(int32).} = enum
     LocalBit = 1
@@ -3721,7 +4323,10 @@ type
     SplitInstanceBindRegionsBit = 1
     ProtectedBit
     MutableFormatBit = 4
-    DeferredMemoryAllocationBitExt = 8
+    DeferredMemoryAllocationBit = 8
+    PresentId2Bit = 64
+    PresentWait2Bit = 128
+    PresentTimingBitExt = 512
 
   VkViewportCoordinateSwizzleNV* {.size: sizeof(int32).} = enum
     PositiveX
@@ -3740,12 +4345,13 @@ type
   VkSubpassDescriptionFlagBits* {.size: sizeof(int32).} = enum
     PerViewAttributesBitNvx = 1
     PerViewPositionXOnlyBitNvx
-    FragmentRegionBitQcom = 4
-    ShaderResolveBitQcom = 8
+    FragmentRegionBitExt = 4
+    CustomResolveBitExt = 8
     RasterizationOrderAttachmentColorAccessBitExt = 16
     RasterizationOrderAttachmentDepthAccessBitExt = 32
     RasterizationOrderAttachmentStencilAccessBitExt = 64
     EnableLegacyDitheringBitExt = 128
+    TileShadingApronBitQcom = 256
 
   VkPointClippingBehavior* {.size: sizeof(int32).} = enum
     AllClipPlanes
@@ -3799,7 +4405,7 @@ type
     Binary
     Disassembly
 
-  VkQueueGlobalPriorityKHR* {.size: sizeof(int32).} = enum
+  VkQueueGlobalPriority* {.size: sizeof(int32).} = enum
     Low = 128
     Medium = 256
     High = 512
@@ -3865,7 +4471,8 @@ type
     MesaNvk
     ImaginationOpenSourceMesa
     MesaHoneykrisp
-    Reserved27
+    VulkanScEmulationOnVulkan
+    MesaKosmickrisp
 
   VkConditionalRenderingFlagBitsEXT* {.size: sizeof(int32).} = enum
     InvertedBit = 1
@@ -3876,7 +4483,8 @@ type
     AverageBit
     MinBit = 4
     MaxBit = 8
-    ExternalFormatDownsampleAndroid = 16
+    ExternalFormatDownsampleBitAndroid = 16
+    CustomBitExt = 32
 
   VkShadingRatePaletteEntryNV* {.size: sizeof(int32).} = enum
     NoInvocations
@@ -3903,8 +4511,8 @@ type
     TriangleFlipFacingBit
     ForceOpaqueBit = 4
     ForceNoOpaqueBit = 8
-    ForceOpacityMicromap2StateExt = 16
-    DisableOpacityMicromapsExt = 32
+    ForceOpacityMicromap2StateBitExt = 16
+    DisableOpacityMicromapsBitExt = 32
 
   VkGeometryFlagBitsKHR* {.size: sizeof(int32).} = enum
     OpaqueBit = 1
@@ -3917,11 +4525,12 @@ type
     PreferFastBuildBit = 8
     LowMemoryBit = 16
     MotionBitNv = 32
-    AllowOpacityMicromapUpdateExt = 64
-    AllowDisableOpacityMicromapsExt = 128
-    AllowOpacityMicromapDataUpdateExt = 256
-    AllowDisplacementMicromapUpdateNv = 512
-    AllowDataAccess = 2048
+    AllowOpacityMicromapUpdateBitExt = 64
+    AllowDisableOpacityMicromapsBitExt = 128
+    AllowOpacityMicromapDataUpdateBitExt = 256
+    AllowDisplacementMicromapUpdateBitNv = 512
+    AllowDataAccessBit = 2048
+    AllowClusterOpacityMicromapsBitNv = 4096
 
   VkAccelerationStructureCreateFlagBitsKHR* {.size: sizeof(int32).} = enum
     DeviceAddressCaptureReplayBit = 1
@@ -3947,6 +4556,9 @@ type
     Triangles
     Aabbs
     Instances
+    SpheresNv = 1000429004
+    LinearSweptSpheresNv
+    DenseGeometryFormatTrianglesAmdx = 1000478000
 
   VkAccelerationStructureMemoryRequirementsTypeNV* {.size: sizeof(int32).} = enum
     Object
@@ -3981,6 +4593,9 @@ type
   VkFramebufferCreateFlagBits* {.size: sizeof(int32).} = enum
     ImagelessBit = 1
 
+  VkQueryPoolCreateFlagBits* {.size: sizeof(int32).} = enum
+    ResetBitKhr = 1
+
   VkDeviceDiagnosticsConfigFlagBitsNV* {.size: sizeof(int32).} = enum
     EnableShaderDebugInfoBit = 1
     EnableResourceTrackingBit
@@ -4003,7 +4618,7 @@ type
     RenderPass
     Command
 
-  VkMemoryDecompressionMethodFlagBitsNV* {.size: sizeof(int32).} = enum
+  VkMemoryDecompressionMethodFlagBitsEXT* {.size: sizeof(int32).} = enum
     Gdeflate10Bit = 1
 
   VkPerformanceCounterUnitKHR* {.size: sizeof(int32).} = enum
@@ -4063,7 +4678,7 @@ type
     Uint64
     Float64
 
-  VkLineRasterizationModeKHR* {.size: sizeof(int32).} = enum
+  VkLineRasterizationMode* {.size: sizeof(int32).} = enum
     Default
     Rectangular
     Bresenham
@@ -4159,8 +4774,8 @@ type
     HostWriteBit = 16384
     MemoryReadBit = 32768
     MemoryWriteBit = 65536
-    CommandPreprocessReadBitNv = 131072
-    CommandPreprocessWriteBitNv = 262144
+    CommandPreprocessReadBitExt = 131072
+    CommandPreprocessWriteBitExt = 262144
     ColorAttachmentReadNoncoherentBitExt = 524288
     ConditionalRenderingReadBitExt = 1048576
     AccelerationStructureReadBitKhr = 2097152
@@ -4184,6 +4799,14 @@ type
     OpticalFlowWriteBitNv = 8796093022208
     MicromapReadBitExt = 17592186044416
     MicromapWriteBitExt = 35184372088832
+    DataGraphReadBitArm = 140737488355328
+    DataGraphWriteBitArm = 281474976710656
+    ShaderTileAttachmentReadBitQcom = 2251799813685248
+    ShaderTileAttachmentWriteBitQcom = 4503599627370496
+    MemoryDecompressionReadBitExt = 36028797018963968
+    MemoryDecompressionWriteBitExt = 72057594037927936
+    SamplerHeapReadBitExt = 144115188075855872
+    ResourceHeapReadBitExt = 288230376151711744
 
   VkPipelineStageFlagBits2* {.size: sizeof(int32).} = enum
     None
@@ -4204,7 +4827,7 @@ type
     HostBit = 16384
     AllGraphicsBit = 32768
     AllCommandsBit = 65536
-    CommandPreprocessBitNv = 131072
+    CommandPreprocessBitExt = 131072
     ConditionalRenderingBitExt = 262144
     TaskShaderBitExt = 524288
     MeshShaderBitExt = 1048576
@@ -4228,6 +4851,10 @@ type
     SubpassShaderBitHuawei = 549755813888
     InvocationMaskBitHuawei = 1099511627776
     ClusterCullingShaderBitHuawei = 2199023255552
+    DataGraphBitArm = 4398046511104
+    ConvertCooperativeVectorMatrixBitNv = 17592186044416
+    MemoryDecompressionBitExt = 35184372088832
+    CopyIndirectBitKhr = 70368744177664
 
   VkSubmitFlagBits* {.size: sizeof(int32).} = enum
     ProtectedBit = 1
@@ -4272,6 +4899,15 @@ type
     FragmentShaderBit = 4
     FragmentOutputInterfaceBit = 8
 
+  VkRenderingAttachmentFlagBitsKHR* {.size: sizeof(int32).} = enum
+    InputAttachmentFeedbackBit = 1
+    ResolveSkipTransferFunctionBit
+    ResolveEnableTransferFunctionBit = 4
+
+  VkResolveImageFlagBitsKHR* {.size: sizeof(int32).} = enum
+    SkipTransferFunctionBit = 1
+    EnableTransferFunctionBit
+
   VkDeviceAddressBindingFlagBitsEXT* {.size: sizeof(int32).} = enum
     InternalObjectBit = 1
 
@@ -4282,12 +4918,12 @@ type
   VkFrameBoundaryFlagBitsEXT* {.size: sizeof(int32).} = enum
     FrameEndBit = 1
 
-  VkPresentScalingFlagBitsEXT* {.size: sizeof(int32).} = enum
+  VkPresentScalingFlagBitsKHR* {.size: sizeof(int32).} = enum
     OneToOneBit = 1
     AspectRatioStretchBit
     StretchBit = 4
 
-  VkPresentGravityFlagBitsEXT* {.size: sizeof(int32).} = enum
+  VkPresentGravityFlagBitsKHR* {.size: sizeof(int32).} = enum
     MinBit = 1
     MaxBit
     CenteredBit = 4
@@ -4295,13 +4931,29 @@ type
   VkPhysicalDeviceSchedulingControlsFlagBitsARM* {.size: sizeof(int32).} = enum
     ShaderCoreCount = 1
 
+  VkPresentStageFlagBitsEXT* {.size: sizeof(int32).} = enum
+    QueueOperationsEndBit = 1
+    RequestDequeuedBit
+    ImageFirstPixelOutBit = 4
+    ImageFirstPixelVisibleBit = 8
+
+  VkPastPresentationTimingFlagBitsEXT* {.size: sizeof(int32).} = enum
+    AllowPartialResultsBit = 1
+    AllowOutOfOrderResultsBit
+
+  VkPresentTimingInfoFlagBitsEXT* {.size: sizeof(int32).} = enum
+    PresentAtRelativeTimeBit = 1
+    PresentAtNearestRefreshCycleBit
+
   VkVideoCodecOperationFlagBitsKHR* {.size: sizeof(int32).} = enum
     None
     DecodeH264Bit
     DecodeH265Bit
     DecodeAv1Bit = 4
+    DecodeVp9Bit = 8
     EncodeH264Bit = 65536
     EncodeH265Bit = 131072
+    EncodeAv1Bit = 262144
 
   VkVideoChromaSubsamplingFlagBitsKHR* {.size: sizeof(int32).} = enum
     Invalid
@@ -4324,6 +4976,12 @@ type
     ProtectedContentBit = 1
     AllowEncodeParameterOptimizationsBit
     InlineQueriesBit = 4
+    AllowEncodeQuantizationDeltaMapBit = 8
+    AllowEncodeEmphasisMapBit = 16
+    InlineSessionParametersBit = 32
+
+  VkVideoSessionParametersCreateFlagBitsKHR* {.size: sizeof(int32).} = enum
+    QuantizationMapCompatibleBit = 1
 
   VkVideoDecodeH264PictureLayoutFlagBitsKHR* {.size: sizeof(int32).} = enum
     Progressive
@@ -4351,6 +5009,11 @@ type
     DpbAndOutputCoincideBit = 1
     DpbAndOutputDistinctBit
 
+  VkVideoEncodeFlagBitsKHR* {.size: sizeof(int32).} = enum
+    WithQuantizationDeltaMapBit = 1
+    WithEmphasisMapBit
+    IntraRefreshBit = 4
+
   VkVideoEncodeUsageFlagBitsKHR* {.size: sizeof(int32).} = enum
     Default
     TranscodingBit
@@ -4374,6 +5037,8 @@ type
   VkVideoEncodeCapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     PrecedingExternallyEncodedBytesBit = 1
     InsufficientBitstreamBufferRangeDetectionBit
+    QuantizationDeltaMapBit = 4
+    EmphasisMapBit = 8
 
   VkVideoEncodeFeedbackFlagBitsKHR* {.size: sizeof(int32).} = enum
     BitstreamBufferOffsetBit = 1
@@ -4386,6 +5051,13 @@ type
     CbrBit
     VbrBit = 4
 
+  VkVideoEncodeIntraRefreshModeFlagBitsKHR* {.size: sizeof(int32).} = enum
+    None
+    PerPicturePartitionBit
+    BlockBasedBit
+    BlockRowBasedBit = 4
+    BlockColumnBasedBit = 8
+
   VkVideoEncodeH264CapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     HrdComplianceBit = 1
     PredictionWeightTableGeneratedBit
@@ -4396,6 +5068,8 @@ type
     PerPictureTypeMinMaxQpBit = 64
     PerSliceConstantQpBit = 128
     GeneratePrefixNaluBit = 256
+    MbQpDiffWraparoundBit = 512
+    BPictureIntraRefreshBit = 1024
 
   VkVideoEncodeH264StdFlagBitsKHR* {.size: sizeof(int32).} = enum
     SeparateColorPlaneFlagSetBit = 1
@@ -4426,8 +5100,20 @@ type
     ReferencePatternDyadicBit = 8
     TemporalLayerPatternDyadicBit = 16
 
-  VkHostImageCopyFlagBitsEXT* {.size: sizeof(int32).} = enum
-    Memcpy = 1
+  VkHostImageCopyFlagBits* {.size: sizeof(int32).} = enum
+    MemcpyBit = 1
+
+  VkPartitionedAccelerationStructureOpTypeNV* {.size: sizeof(int32).} = enum
+    WriteInstance
+    UpdateInstance
+    WritePartitionTranslation
+
+  VkPartitionedAccelerationStructureInstanceFlagBitsNV* {.size: sizeof(int32).} = enum
+    FlagTriangleFacingCullDisableBit = 1
+    FlagTriangleFlipFacingBit
+    FlagForceOpaqueBit = 4
+    FlagForceNoOpaqueBit = 8
+    FlagEnableExplicitBoundingBox = 16
 
   VkImageConstraintsInfoFlagBitsFUCHSIA* {.size: sizeof(int32).} = enum
     VkImageConstraintsInfoCpuReadRarelyFuchsia = 1
@@ -4476,10 +5162,21 @@ type
     BlockMatchingBitQcom = 68719476736
     BoxFilterSampledBitQcom = 137438953472
     LinearColorAttachmentBitNv = 274877906944
+    TensorShaderBitArm = 549755813888
     OpticalFlowImageBitNv = 1099511627776
     OpticalFlowVectorBitNv = 2199023255552
     OpticalFlowCostBitNv = 4398046511104
-    HostImageTransferBitExt = 70368744177664
+    TensorImageAliasingBitArm = 8796093022208
+    HostImageTransferBit = 70368744177664
+    TensorDataGraphBitArm = 281474976710656
+    VideoEncodeQuantizationDeltaMapBitKhr = 562949953421312
+    VideoEncodeEmphasisMapBitKhr = 1125899906842624
+    AccelerationStructureRadiusBufferBitNv = 2251799813685248
+    DepthCopyOnComputeQueueBitKhr = 4503599627370496
+    DepthCopyOnTransferQueueBitKhr = 9007199254740992
+    StencilCopyOnComputeQueueBitKhr = 18014398509481984
+    StencilCopyOnTransferQueueBitKhr = 36028797018963968
+    CopyImageIndirectDstBitKhr = 576460752303423488
 
   VkRenderingFlagBits* {.size: sizeof(int32).} = enum
     ContentsSecondaryCommandBuffersBit = 1
@@ -4487,6 +5184,10 @@ type
     ResumingBit = 4
     EnableLegacyDitheringBitExt = 8
     ContentsInlineBitKhr = 16
+    PerLayerFragmentDensityBitValve = 32
+    FragmentRegionBitExt = 64
+    CustomResolveBitExt = 128
+    LocalReadConcurrentAccessControlBitKhr = 256
 
   VkVideoEncodeH265CapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
     HrdComplianceBit = 1
@@ -4499,6 +5200,8 @@ type
     PerSliceSegmentConstantQpBit = 128
     MultipleTilesPerSliceSegmentBit = 256
     MultipleSliceSegmentsPerTileBit = 512
+    CuQpDiffWraparoundBit = 1024
+    BPictureIntraRefreshBit = 2048
 
   VkVideoEncodeH265StdFlagBitsKHR* {.size: sizeof(int32).} = enum
     SeparateColorPlaneFlagSetBit = 1
@@ -4540,6 +5243,41 @@ type
     N8Bit
     N16Bit = 4
     N32Bit = 8
+
+  VkVideoEncodeAV1CapabilityFlagBitsKHR* {.size: sizeof(int32).} = enum
+    VkVideoEncodeAv1CapabilityPerRateControlGroupMinMaxQIndexBit = 1
+    VkVideoEncodeAv1CapabilityGenerateObuExtensionHeaderBit
+    VkVideoEncodeAv1CapabilityPrimaryReferenceCdfOnlyBit = 4
+    VkVideoEncodeAv1CapabilityFrameSizeOverrideBit = 8
+    VkVideoEncodeAv1CapabilityMotionVectorScalingBit = 16
+    VkVideoEncodeAv1CapabilityCompoundPredictionIntraRefreshBit = 32
+
+  VkVideoEncodeAV1StdFlagBitsKHR* {.size: sizeof(int32).} = enum
+    VkVideoEncodeAv1StdUniformTileSpacingFlagSetBit = 1
+    VkVideoEncodeAv1StdSkipModePresentUnsetBit
+    VkVideoEncodeAv1StdPrimaryRefFrameBit = 4
+    VkVideoEncodeAv1StdDeltaQBit = 8
+
+  VkVideoEncodeAV1RateControlFlagBitsKHR* {.size: sizeof(int32).} = enum
+    VkVideoEncodeAv1RateControlRegularGopBit = 1
+    VkVideoEncodeAv1RateControlTemporalLayerPatternDyadicBit
+    VkVideoEncodeAv1RateControlReferencePatternFlatBit = 4
+    VkVideoEncodeAv1RateControlReferencePatternDyadicBit = 8
+
+  VkVideoEncodeAV1SuperblockSizeFlagBitsKHR* {.size: sizeof(int32).} = enum
+    VkVideoEncodeAv1SuperblockSize64Bit = 1
+    VkVideoEncodeAv1SuperblockSize128Bit
+
+  VkVideoEncodeAV1PredictionModeKHR* {.size: sizeof(int32).} = enum
+    VkVideoEncodeAv1PredictionModeIntraOnly
+    VkVideoEncodeAv1PredictionModeSingleReference
+    VkVideoEncodeAv1PredictionModeUnidirectionalCompound
+    VkVideoEncodeAv1PredictionModeBidirectionalCompound
+
+  VkVideoEncodeAV1RateControlGroupKHR* {.size: sizeof(int32).} = enum
+    VkVideoEncodeAv1RateControlGroupIntra
+    VkVideoEncodeAv1RateControlGroupPredictive
+    VkVideoEncodeAv1RateControlGroupBipredictive
 
   VkExportMetalObjectTypeFlagBitsEXT* {.size: sizeof(int32).} = enum
     MetalDeviceBit = 1
@@ -4585,13 +5323,13 @@ type
     N23bpcBit = 4194304
     N24bpcBit = 8388608
 
-  VkPipelineRobustnessBufferBehaviorEXT* {.size: sizeof(int32).} = enum
+  VkPipelineRobustnessBufferBehavior* {.size: sizeof(int32).} = enum
     DeviceDefault
     Disabled
     RobustBufferAccess
     RobustBufferAccess2
 
-  VkPipelineRobustnessImageBehaviorEXT* {.size: sizeof(int32).} = enum
+  VkPipelineRobustnessImageBehavior* {.size: sizeof(int32).} = enum
     DeviceDefault
     Disabled
     RobustImageAccess
@@ -4665,7 +5403,8 @@ type
     N4State
 
   VkOpacityMicromapSpecialIndexEXT* {.size: sizeof(int32).} = enum
-    FullyUnknownOpaque = -4
+    ClusterGeometryDisableOpacityMicromapNv = -5
+    FullyUnknownOpaque
     FullyUnknownTransparent
     FullyOpaque
     FullyTransparent
@@ -4687,6 +5426,37 @@ type
   VkDeviceFaultVendorBinaryHeaderVersionEXT* {.size: sizeof(int32).} = enum
     One = 1
 
+  VkIndirectCommandsLayoutUsageFlagBitsEXT* {.size: sizeof(int32).} = enum
+    ExplicitPreprocessBit = 1
+    UnorderedSequencesBit
+
+  VkIndirectExecutionSetInfoTypeEXT* {.size: sizeof(int32).} = enum
+    Pipelines
+    ShaderObjects
+
+  VkIndirectCommandsInputModeFlagBitsEXT* {.size: sizeof(int32).} = enum
+    VulkanIndexBuffer = 1
+    DxgiIndexBuffer
+
+  VkIndirectCommandsTokenTypeEXT* {.size: sizeof(int32).} = enum
+    ExecutionSet
+    PushConstant
+    SequenceIndex
+    IndexBuffer
+    VertexBuffer
+    DrawIndexed
+    Draw
+    DrawIndexedCount
+    DrawCount
+    Dispatch
+    PushData = 1000135000
+    PushDataSequenceIndex
+    DrawMeshTasksNv = 1000202002
+    DrawMeshTasksCountNv
+    DrawMeshTasks = 1000328000
+    DrawMeshTasksCount
+    TraceRays2 = 1000386004
+
   VkDisplacementMicromapFormatNV* {.size: sizeof(int32).} = enum
     N64Triangles64Bytes = 1
     N256Triangles128Bytes
@@ -4700,6 +5470,9 @@ type
     DispatchBaseBit = 16
     FragmentShadingRateAttachmentBit = 32
     FragmentDensityMapAttachmentBit = 64
+    IndirectBindableBit = 128
+    DescriptorHeapBit = 1024
+    N64BitIndexingBit = 32768
 
   VkShaderCodeTypeEXT* {.size: sizeof(int32).} = enum
     Binary
@@ -4723,6 +5496,11 @@ type
     Uint16
     Uint32
     Uint64
+    Bfloat16 = 1000141000
+    Sint8PackedNv = 1000491000
+    Uint8PackedNv
+    Float8E4m3Ext
+    Float8E5m2Ext
 
   VkCubicFilterWeightsQCOM* {.size: sizeof(int32).} = enum
     CatmullRom
@@ -4763,8 +5541,127 @@ type
     Render
     Present
 
-  VkMemoryUnmapFlagBitsKHR* {.size: sizeof(int32).} = enum
+  VkMemoryUnmapFlagBits* {.size: sizeof(int32).} = enum
     ReserveBitExt = 1
+
+  VkCompressedTriangleFormatAMDX* {.size: sizeof(int32).} = enum
+    VkCompressedTriangleFormatDgf1Amdx
+
+  VkDepthClampModeEXT* {.size: sizeof(int32).} = enum
+    ViewportRange
+    UserDefinedRange
+
+  VkAccessFlagBits3KHR* {.size: sizeof(int32).} = enum
+    None
+
+  VkTileShadingRenderPassFlagBitsQCOM* {.size: sizeof(int32).} = enum
+    EnableBit = 1
+    PerTileExecutionBit
+
+  VkCooperativeVectorMatrixLayoutNV* {.size: sizeof(int32).} = enum
+    RowMajor
+    ColumnMajor
+    InferencingOptimal
+    TrainingOptimal
+
+  VkAddressCopyFlagBitsKHR* {.size: sizeof(int32).} = enum
+    DeviceLocalBit = 1
+    SparseBit
+    ProtectedBit = 4
+
+  VkTensorCreateFlagBitsARM* {.size: sizeof(int32).} = enum
+    MutableFormatBit = 1
+    ProtectedBit
+    DescriptorBufferCaptureReplayBit = 4
+    DescriptorHeapCaptureReplayBit = 8
+
+  VkTensorUsageFlagBitsARM* {.size: sizeof(int32).} = enum
+    ShaderBit = 2
+    TransferSrcBit = 4
+    TransferDstBit = 8
+    ImageAliasingBit = 16
+    DataGraphBit = 32
+
+  VkTensorTilingARM* {.size: sizeof(int32).} = enum
+    Optimal
+    Linear
+
+  VkTensorViewCreateFlagBitsARM* {.size: sizeof(int32).} = enum
+    DescriptorBufferCaptureReplayBit = 1
+
+  VkDefaultVertexAttributeValueKHR* {.size: sizeof(int32).} = enum
+    ZeroZeroZeroZero
+    ZeroZeroZeroOne
+
+  VkDataGraphPipelineSessionCreateFlagBitsARM* {.size: sizeof(int32).} = enum
+    ProtectedBit = 1
+
+  VkDataGraphPipelineSessionBindPointARM* {.size: sizeof(int32).} = enum
+    Transient
+
+  VkDataGraphPipelineSessionBindPointTypeARM* {.size: sizeof(int32).} = enum
+    Memory
+
+  VkDataGraphPipelinePropertyARM* {.size: sizeof(int32).} = enum
+    CreationLog
+    Identifier
+
+  VkPhysicalDeviceDataGraphProcessingEngineTypeARM* {.size: sizeof(int32).} = enum
+    Default
+    NeuralQcom = 1000629000
+    ComputeQcom
+
+  VkPhysicalDeviceDataGraphOperationTypeARM* {.size: sizeof(int32).} = enum
+    SpirvExtendedInstructionSet
+    NeuralModelQcom = 1000629000
+    BuiltinModelQcom
+
+  VkDataGraphModelCacheTypeQCOM* {.size: sizeof(int32).} = enum
+    GenericBinary
+
+  VkVideoEncodeRgbModelConversionFlagBitsVALVE* {.size: sizeof(int32).} = enum
+    VkVideoEncodeRgbModelConversionRgbIdentityBitValve = 1
+    VkVideoEncodeRgbModelConversionYcbcrIdentityBitValve
+    VkVideoEncodeRgbModelConversionYcbcr709BitValve = 4
+    VkVideoEncodeRgbModelConversionYcbcr601BitValve = 8
+    VkVideoEncodeRgbModelConversionYcbcr2020BitValve = 16
+
+  VkVideoEncodeRgbRangeCompressionFlagBitsVALVE* {.size: sizeof(int32).} = enum
+    VkVideoEncodeRgbRangeCompressionFullRangeBitValve = 1
+    VkVideoEncodeRgbRangeCompressionNarrowRangeBitValve
+
+  VkVideoEncodeRgbChromaOffsetFlagBitsVALVE* {.size: sizeof(int32).} = enum
+    VkVideoEncodeRgbChromaOffsetCositedEvenBitValve = 1
+    VkVideoEncodeRgbChromaOffsetMidpointBitValve
+
+  VkSwapchainImageUsageFlagBitsOHOS* {.size: sizeof(int32).} = enum
+    VkSwapchainImageUsageSharedBitOhos = 1
+
+  VkDescriptorMappingSourceEXT* {.size: sizeof(int32).} = enum
+    HeapWithConstantOffset
+    HeapWithPushIndex
+    HeapWithIndirectIndex
+    HeapWithIndirectIndexArray
+    ResourceHeapData
+    PushData
+    PushAddress
+    IndirectAddress
+    HeapWithShaderRecordIndex
+    ShaderRecordData
+    ShaderRecordAddress
+
+  VkSpirvResourceTypeFlagBitsEXT* {.size: sizeof(int32).} = enum
+    SamplerBit = 1
+    SampledImageBit
+    ReadOnlyImageBit = 4
+    ReadWriteImageBit = 8
+    CombinedSampledImageBit = 16
+    UniformBufferBit = 32
+    ReadOnlyStorageBufferBit = 64
+    ReadWriteStorageBufferBit = 128
+    AccelerationStructureBit = 256
+    TensorBitArm = 512
+    All = 2147483647
 
 
 # Types
@@ -4776,6 +5673,8 @@ type
   RROutput* {.nodecl.} = object
   wl_display* {.nodecl.} = object
   wl_surface* {.nodecl.} = object
+  ubm_device* {.nodecl.} = object
+  ubm_surface* {.nodecl.} = object
   HINSTANCE* {.nodecl.} = object
   HWND* {.nodecl.} = object
   HMONITOR* {.nodecl.} = object
@@ -4819,8 +5718,9 @@ const vkApiVersion1_0* = vkMakeVersion(0, 1, 0, 0)
 const vkApiVersion1_1* = vkMakeVersion(0, 1, 1, 0)
 const vkApiVersion1_2* = vkMakeVersion(0, 1, 2, 0)
 const vkApiVersion1_3* = vkMakeVersion(0, 1, 3, 0)
-const vkHeaderVersion* = 295
-const vkHeaderVersionComplete* = vkMakeVersion(0, 1, 3, vkHeaderVersion)
+const vkApiVersion1_4* = vkMakeVersion(0, 1, 4, 0)
+const vkHeaderVersion* = 344
+const vkHeaderVersionComplete* = vkMakeVersion(0, 1, 4, vkHeaderVersion)
 
 type
   VkSampleMask* = distinct uint32
@@ -4829,6 +5729,9 @@ type
   VkFlags64* = distinct uint64
   VkDeviceSize* = distinct uint64
   VkDeviceAddress* = distinct uint64
+  OHNativeWindow* {.nodecl.} = object
+  OHBufferHandle* {.nodecl.} = object
+  OH_NativeBuffer* {.nodecl.} = object
   VkFramebufferCreateFlags* = distinct VkFlags
   VkQueryPoolCreateFlags* = distinct VkFlags
   VkRenderPassCreateFlags* = distinct VkFlags
@@ -4875,7 +5778,8 @@ type
   VkCommandBufferUsageFlags* = distinct VkFlags
   VkQueryPipelineStatisticFlags* = distinct VkFlags
   VkMemoryMapFlags* = distinct VkFlags
-  VkMemoryUnmapFlagsKHR* = distinct VkFlags
+  VkMemoryUnmapFlags* = distinct VkFlags
+  VkMemoryUnmapFlagsKHR* = VkMemoryUnmapFlags
   VkImageAspectFlags* = distinct VkFlags
   VkSparseMemoryBindFlags* = distinct VkFlags
   VkSparseImageFormatFlags* = distinct VkFlags
@@ -4895,6 +5799,9 @@ type
   VkGeometryFlagsNV* = VkGeometryFlagsKHR
   VkGeometryInstanceFlagsKHR* = distinct VkFlags
   VkGeometryInstanceFlagsNV* = VkGeometryInstanceFlagsKHR
+  VkClusterAccelerationStructureGeometryFlagsNV* = distinct VkFlags
+  VkClusterAccelerationStructureClusterFlagsNV* = distinct VkFlags
+  VkClusterAccelerationStructureAddressResolutionFlagsNV* = distinct VkFlags
   VkBuildAccelerationStructureFlagsKHR* = distinct VkFlags
   VkBuildAccelerationStructureFlagsNV* = VkBuildAccelerationStructureFlagsKHR
   VkPrivateDataSlotCreateFlags* = distinct VkFlags
@@ -4921,13 +5828,28 @@ type
   VkFormatFeatureFlags2* = distinct VkFlags64
   VkFormatFeatureFlags2KHR* = VkFormatFeatureFlags2
   VkRenderingFlags* = distinct VkFlags
-  VkMemoryDecompressionMethodFlagsNV* = distinct VkFlags64
+  VkMemoryDecompressionMethodFlagsEXT* = distinct VkFlags64
+  VkMemoryDecompressionMethodFlagsNV* = VkMemoryDecompressionMethodFlagsEXT
   VkRenderingFlagsKHR* = VkRenderingFlags
   VkBuildMicromapFlagsEXT* = distinct VkFlags
   VkMicromapCreateFlagsEXT* = distinct VkFlags
+  VkIndirectCommandsLayoutUsageFlagsEXT* = distinct VkFlags
+  VkIndirectCommandsInputModeFlagsEXT* = distinct VkFlags
   VkDirectDriverLoadingFlagsLUNARG* = distinct VkFlags
-  VkPipelineCreateFlags2KHR* = distinct VkFlags64
-  VkBufferUsageFlags2KHR* = distinct VkFlags64
+  VkPipelineCreateFlags2* = distinct VkFlags64
+  VkPipelineCreateFlags2KHR* = VkPipelineCreateFlags2
+  VkBufferUsageFlags2* = distinct VkFlags64
+  VkBufferUsageFlags2KHR* = VkBufferUsageFlags2
+  VkAddressCopyFlagsKHR* = distinct VkFlags
+  VkTensorCreateFlagsARM* = distinct VkFlags64
+  VkTensorUsageFlagsARM* = distinct VkFlags64
+  VkTensorViewCreateFlagsARM* = distinct VkFlags64
+  VkDataGraphPipelineSessionCreateFlagsARM* = distinct VkFlags64
+  VkDataGraphPipelineDispatchFlagsARM* = distinct VkFlags64
+  VkVideoEncodeRgbModelConversionFlagsVALVE* = distinct VkFlags
+  VkVideoEncodeRgbRangeCompressionFlagsVALVE* = distinct VkFlags
+  VkVideoEncodeRgbChromaOffsetFlagsVALVE* = distinct VkFlags
+  VkSpirvResourceTypeFlagsEXT* = distinct VkFlags
   VkCompositeAlphaFlagsKHR* = distinct VkFlags
   VkDisplayPlaneAlphaFlagsKHR* = distinct VkFlags
   VkSurfaceTransformFlagsKHR* = distinct VkFlags
@@ -4937,6 +5859,7 @@ type
   VkAndroidSurfaceCreateFlagsKHR* = distinct VkFlags
   VkViSurfaceCreateFlagsNN* = distinct VkFlags
   VkWaylandSurfaceCreateFlagsKHR* = distinct VkFlags
+  VkUbmSurfaceCreateFlagsSEC* = distinct VkFlags
   VkWin32SurfaceCreateFlagsKHR* = distinct VkFlags
   VkXlibSurfaceCreateFlagsKHR* = distinct VkFlags
   VkXcbSurfaceCreateFlagsKHR* = distinct VkFlags
@@ -4957,6 +5880,7 @@ type
   VkCommandPoolTrimFlags* = distinct VkFlags
   VkCommandPoolTrimFlagsKHR* = VkCommandPoolTrimFlags
   VkExternalMemoryHandleTypeFlagsNV* = distinct VkFlags
+  VkClusterAccelerationStructureIndexFormatFlagsNV* = distinct VkFlags
   VkExternalMemoryFeatureFlagsNV* = distinct VkFlags
   VkExternalMemoryHandleTypeFlags* = distinct VkFlags
   VkExternalMemoryHandleTypeFlagsKHR* = VkExternalMemoryHandleTypeFlags
@@ -5000,22 +5924,35 @@ type
   VkSubmitFlags* = distinct VkFlags
   VkSubmitFlagsKHR* = VkSubmitFlags
   VkImageFormatConstraintsFlagsFUCHSIA* = distinct VkFlags
-  VkHostImageCopyFlagsEXT* = distinct VkFlags
+  VkHostImageCopyFlags* = distinct VkFlags
+  VkHostImageCopyFlagsEXT* = VkHostImageCopyFlags
+  VkPartitionedAccelerationStructureInstanceFlagsNV* = distinct VkFlags
   VkImageConstraintsInfoFlagsFUCHSIA* = distinct VkFlags
   VkGraphicsPipelineLibraryFlagsEXT* = distinct VkFlags
   VkImageCompressionFlagsEXT* = distinct VkFlags
   VkImageCompressionFixedRateFlagsEXT* = distinct VkFlags
   VkExportMetalObjectTypeFlagsEXT* = distinct VkFlags
+  VkRenderingAttachmentFlagsKHR* = distinct VkFlags
+  VkResolveImageFlagsKHR* = distinct VkFlags
   VkDeviceAddressBindingFlagsEXT* = distinct VkFlags
   VkOpticalFlowGridSizeFlagsNV* = distinct VkFlags
   VkOpticalFlowUsageFlagsNV* = distinct VkFlags
   VkOpticalFlowSessionCreateFlagsNV* = distinct VkFlags
   VkOpticalFlowExecuteFlagsNV* = distinct VkFlags
   VkFrameBoundaryFlagsEXT* = distinct VkFlags
-  VkPresentScalingFlagsEXT* = distinct VkFlags
-  VkPresentGravityFlagsEXT* = distinct VkFlags
+  VkPresentScalingFlagsKHR* = distinct VkFlags
+  VkPresentScalingFlagsEXT* = VkPresentScalingFlagsKHR
+  VkPresentGravityFlagsKHR* = distinct VkFlags
+  VkPresentGravityFlagsEXT* = VkPresentGravityFlagsKHR
   VkShaderCreateFlagsEXT* = distinct VkFlags
+  VkTileShadingRenderPassFlagsQCOM* = distinct VkFlags
   VkPhysicalDeviceSchedulingControlsFlagsARM* = distinct VkFlags64
+  VkSurfaceCreateFlagsOHOS* = distinct VkFlags
+  VkPresentStageFlagsEXT* = distinct VkFlags
+  VkPastPresentationTimingFlagsEXT* = distinct VkFlags
+  VkPresentTimingInfoFlagsEXT* = distinct VkFlags
+  VkSwapchainImageUsageFlagsOHOS* = distinct VkFlags
+  VkPerformanceCounterDescriptionFlagsARM* = distinct VkFlags
   VkVideoCodecOperationFlagsKHR* = distinct VkFlags
   VkVideoCapabilityFlagsKHR* = distinct VkFlags
   VkVideoSessionCreateFlagsKHR* = distinct VkFlags
@@ -5034,6 +5971,7 @@ type
   VkVideoEncodeFeedbackFlagsKHR* = distinct VkFlags
   VkVideoEncodeRateControlFlagsKHR* = distinct VkFlags
   VkVideoEncodeRateControlModeFlagsKHR* = distinct VkFlags
+  VkVideoEncodeIntraRefreshModeFlagsKHR* = distinct VkFlags
   VkVideoChromaSubsamplingFlagsKHR* = distinct VkFlags
   VkVideoComponentBitDepthFlagsKHR* = distinct VkFlags
   VkVideoEncodeH264CapabilityFlagsKHR* = distinct VkFlags
@@ -5044,6 +5982,11 @@ type
   VkVideoEncodeH265RateControlFlagsKHR* = distinct VkFlags
   VkVideoEncodeH265CtbSizeFlagsKHR* = distinct VkFlags
   VkVideoEncodeH265TransformBlockSizeFlagsKHR* = distinct VkFlags
+  VkVideoEncodeAV1CapabilityFlagsKHR* = distinct VkFlags
+  VkVideoEncodeAV1StdFlagsKHR* = distinct VkFlags
+  VkVideoEncodeAV1RateControlFlagsKHR* = distinct VkFlags
+  VkVideoEncodeAV1SuperblockSizeFlagsKHR* = distinct VkFlags
+  VkAccessFlags3KHR* = distinct VkFlags64
   VkInstance* = distinct VkHandle
   VkPhysicalDevice* = distinct VkHandle
   VkDevice* = distinct VkHandle
@@ -5071,6 +6014,8 @@ type
   VkPipelineCache* = distinct VkNonDispatchableHandle
   VkPipelineBinaryKHR* = distinct VkNonDispatchableHandle
   VkIndirectCommandsLayoutNV* = distinct VkNonDispatchableHandle
+  VkIndirectCommandsLayoutEXT* = distinct VkNonDispatchableHandle
+  VkIndirectExecutionSetEXT* = distinct VkNonDispatchableHandle
   VkDescriptorUpdateTemplate* = distinct VkNonDispatchableHandle
   VkDescriptorUpdateTemplateKHR* = VkDescriptorUpdateTemplate
   VkSamplerYcbcrConversion* = distinct VkNonDispatchableHandle
@@ -5088,6 +6033,9 @@ type
   VkOpticalFlowSessionNV* = distinct VkNonDispatchableHandle
   VkMicromapEXT* = distinct VkNonDispatchableHandle
   VkShaderEXT* = distinct VkNonDispatchableHandle
+  VkTensorARM* = distinct VkNonDispatchableHandle
+  VkTensorViewARM* = distinct VkNonDispatchableHandle
+  VkDataGraphPipelineSessionARM* = distinct VkNonDispatchableHandle
   VkDisplayKHR* = distinct VkNonDispatchableHandle
   VkDisplayModeKHR* = distinct VkNonDispatchableHandle
   VkSurfaceKHR* = distinct VkNonDispatchableHandle
@@ -5097,9 +6045,11 @@ type
   VkVideoSessionKHR* = distinct VkNonDispatchableHandle
   VkVideoSessionParametersKHR* = distinct VkNonDispatchableHandle
   VkSemaphoreSciSyncPoolNV* = distinct VkNonDispatchableHandle
+  VkRayTracingInvocationReorderModeNV* = VkRayTracingInvocationReorderModeEXT
   VkDescriptorUpdateTemplateTypeKHR* = VkDescriptorUpdateTemplateType
   VkPointClippingBehaviorKHR* = VkPointClippingBehavior
-  VkQueueGlobalPriorityEXT* = VkQueueGlobalPriorityKHR
+  VkQueueGlobalPriorityKHR* = VkQueueGlobalPriority
+  VkQueueGlobalPriorityEXT* = VkQueueGlobalPriority
   VkTimeDomainEXT* = VkTimeDomainKHR
   VkResolveModeFlagBitsKHR* = VkResolveModeFlagBits
   VkDescriptorBindingFlagBitsEXT* = VkDescriptorBindingFlagBits
@@ -5113,12 +6063,19 @@ type
   VkRayTracingShaderGroupTypeNV* = VkRayTracingShaderGroupTypeKHR
   VkPipelineCreationFeedbackFlagBitsEXT* = VkPipelineCreationFeedbackFlagBits
   VkSemaphoreWaitFlagBitsKHR* = VkSemaphoreWaitFlagBits
-  VkLineRasterizationModeEXT* = VkLineRasterizationModeKHR
+  VkLineRasterizationModeKHR* = VkLineRasterizationMode
+  VkLineRasterizationModeEXT* = VkLineRasterizationMode
   VkToolPurposeFlagBitsEXT* = VkToolPurposeFlagBits
   VkAccessFlagBits2KHR* = VkAccessFlagBits2
   VkPipelineStageFlagBits2KHR* = VkPipelineStageFlagBits2
+  VkHostImageCopyFlagBitsEXT* = VkHostImageCopyFlagBits
   VkFormatFeatureFlagBits2KHR* = VkFormatFeatureFlagBits2
   VkRenderingFlagBitsKHR* = VkRenderingFlagBits
+  VkPipelineRobustnessBufferBehaviorEXT* = VkPipelineRobustnessBufferBehavior
+  VkPipelineRobustnessImageBehaviorEXT* = VkPipelineRobustnessImageBehavior
+  VkMemoryDecompressionMethodFlagBitsNV* = VkMemoryDecompressionMethodFlagBitsEXT
+  VkPipelineCreateFlagBits2KHR* = VkPipelineCreateFlagBits2
+  VkBufferUsageFlagBits2KHR* = VkBufferUsageFlagBits2
   VkScopeNV* = VkScopeKHR
   VkComponentTypeNV* = VkComponentTypeKHR
   VkExternalMemoryHandleTypeFlagBitsKHR* = VkExternalMemoryHandleTypeFlagBits
@@ -5138,6 +6095,9 @@ type
   VkSamplerReductionModeEXT* = VkSamplerReductionMode
   VkShaderFloatControlsIndependenceKHR* = VkShaderFloatControlsIndependence
   VkSubmitFlagBitsKHR* = VkSubmitFlagBits
+  VkPresentScalingFlagBitsEXT* = VkPresentScalingFlagBitsKHR
+  VkPresentGravityFlagBitsEXT* = VkPresentGravityFlagBitsKHR
+  VkMemoryUnmapFlagBitsKHR* = VkMemoryUnmapFlagBits
   VkDriverIdKHR* = VkDriverId
   PFN_vkInternalAllocationNotification* = proc (pUserData: pointer; size: uint; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}
   PFN_vkInternalFreeNotification* = proc (pUserData: pointer; size: uint; allocationType: VkInternalAllocationType; allocationScope: VkSystemAllocationScope) {.cdecl.}
@@ -5363,10 +6323,12 @@ type
     dstArrayElement*: uint32
     descriptorCount*: uint32
 
-  VkBufferUsageFlags2CreateInfoKHR* = object
+  VkBufferUsageFlags2CreateInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    usage*: VkBufferUsageFlags2KHR
+    usage*: VkBufferUsageFlags2
+
+  VkBufferUsageFlags2CreateInfoKHR* = VkBufferUsageFlags2CreateInfo
 
   VkBufferCreateInfo* = object
     sType*: VkStructureType
@@ -5538,18 +6500,45 @@ type
     imageOffset*: VkOffset3D
     imageExtent*: VkExtent3D
 
-  VkCopyMemoryIndirectCommandNV* = object
+  VkStridedDeviceAddressRangeKHR* = object
+    address*: VkDeviceAddress
+    size*: VkDeviceSize
+    stride*: VkDeviceSize
+
+  VkCopyMemoryIndirectCommandKHR* = object
     srcAddress*: VkDeviceAddress
     dstAddress*: VkDeviceAddress
     size*: VkDeviceSize
 
-  VkCopyMemoryToImageIndirectCommandNV* = object
+  VkCopyMemoryIndirectCommandNV* = VkCopyMemoryIndirectCommandKHR
+
+  VkCopyMemoryIndirectInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    srcCopyFlags*: VkAddressCopyFlagsKHR
+    dstCopyFlags*: VkAddressCopyFlagsKHR
+    copyCount*: uint32
+    copyAddressRange*: VkStridedDeviceAddressRangeKHR
+
+  VkCopyMemoryToImageIndirectCommandKHR* = object
     srcAddress*: VkDeviceAddress
     bufferRowLength*: uint32
     bufferImageHeight*: uint32
     imageSubresource*: VkImageSubresourceLayers
     imageOffset*: VkOffset3D
     imageExtent*: VkExtent3D
+
+  VkCopyMemoryToImageIndirectCommandNV* = VkCopyMemoryToImageIndirectCommandKHR
+
+  VkCopyMemoryToImageIndirectInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    srcCopyFlags*: VkAddressCopyFlagsKHR
+    copyCount*: uint32
+    copyAddressRange*: VkStridedDeviceAddressRangeKHR
+    dstImage*: VkImage
+    dstImageLayout*: VkImageLayout
+    pImageSubresources*: ptr VkImageSubresourceLayers
 
   VkImageResolve* = object
     srcSubresource*: VkImageSubresourceLayers
@@ -5634,10 +6623,12 @@ type
     size*: VkDeviceSize
     pipelineDeviceAddressCaptureReplay*: VkDeviceAddress
 
-  VkPipelineCreateFlags2CreateInfoKHR* = object
+  VkPipelineCreateFlags2CreateInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    flags*: VkPipelineCreateFlags2KHR
+    flags*: VkPipelineCreateFlags2
+
+  VkPipelineCreateFlags2CreateInfoKHR* = VkPipelineCreateFlags2CreateInfo
 
   VkVertexInputBindingDescription* = object
     binding*: uint32
@@ -5812,6 +6803,13 @@ type
     pipelineIndexCount*: uint32
     pipelineIndexStride*: uint32
     pipelineIndexOffset*: uint64
+
+  VkPipelineCacheHeaderVersionDataGraphQCOM* = object
+    headerSize*: uint32
+    headerVersion*: VkPipelineCacheHeaderVersion
+    cacheType*: VkDataGraphModelCacheTypeQCOM
+    cacheVersion*: uint32
+    toolchainVersion*: array[VK_DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM, uint32]
 
   VkPushConstantRange* = object
     stageFlags*: VkShaderStageFlags
@@ -6292,6 +7290,11 @@ type
     alphaMode*: VkDisplayPlaneAlphaFlagBitsKHR
     imageExtent*: VkExtent2D
 
+  VkDisplaySurfaceStereoCreateInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    stereoType*: VkDisplaySurfaceStereoTypeNV
+
   VkDisplayPresentInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -6329,6 +7332,13 @@ type
     flags*: VkWaylandSurfaceCreateFlagsKHR
     display*: ptr wl_display
     surface*: ptr wl_surface
+
+  VkUbmSurfaceCreateInfoSEC* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkUbmSurfaceCreateFlagsSEC
+    device*: ptr ubm_device
+    surface*: ptr ubm_surface
 
   VkWin32SurfaceCreateInfoKHR* = object
     sType*: VkStructureType
@@ -6570,6 +7580,24 @@ type
     pNext*: pointer
     deviceGeneratedCommands*: VkBool32
 
+  VkPushConstantBankInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    bank*: uint32
+
+  VkPhysicalDevicePushConstantBankFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pushConstantBank*: VkBool32
+
+  VkPhysicalDevicePushConstantBankPropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxGraphicsPushConstantBanks*: uint32
+    maxComputePushConstantBanks*: uint32
+    maxGraphicsPushDataBanks*: uint32
+    maxComputePushDataBanks*: uint32
+
   VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -6610,6 +7638,145 @@ type
     minSequencesCountBufferOffsetAlignment*: uint32
     minSequencesIndexBufferOffsetAlignment*: uint32
     minIndirectCommandsBufferOffsetAlignment*: uint32
+
+  VkPhysicalDeviceClusterAccelerationStructureFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    clusterAccelerationStructure*: VkBool32
+
+  VkPhysicalDeviceClusterAccelerationStructurePropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxVerticesPerCluster*: uint32
+    maxTrianglesPerCluster*: uint32
+    clusterScratchByteAlignment*: uint32
+    clusterByteAlignment*: uint32
+    clusterTemplateByteAlignment*: uint32
+    clusterBottomLevelByteAlignment*: uint32
+    clusterTemplateBoundsByteAlignment*: uint32
+    maxClusterGeometryIndex*: uint32
+
+  VkStridedDeviceAddressNV* = object
+    startAddress*: VkDeviceAddress
+    strideInBytes*: VkDeviceSize
+
+  VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    allowClusterAccelerationStructure*: VkBool32
+
+  VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV* = object
+    geometryIndex*: uint32
+    reserved*: uint32
+    geometryFlags*: uint32
+
+  VkClusterAccelerationStructureMoveObjectsInfoNV* = object
+    srcAccelerationStructure*: VkDeviceAddress
+
+  VkClusterAccelerationStructureBuildClustersBottomLevelInfoNV* = object
+    clusterReferencesCount*: uint32
+    clusterReferencesStride*: uint32
+    clusterReferences*: VkDeviceAddress
+
+  VkClusterAccelerationStructureGetTemplateIndicesInfoNV* = object
+    clusterTemplateAddress*: VkDeviceAddress
+
+  VkClusterAccelerationStructureBuildTriangleClusterInfoNV* = object
+    clusterID*: uint32
+    clusterFlags*: VkClusterAccelerationStructureClusterFlagsNV
+    triangleCount*: uint32
+    vertexCount*: uint32
+    positionTruncateBitCount*: uint32
+    indexType*: uint32
+    opacityMicromapIndexType*: uint32
+    baseGeometryIndexAndGeometryFlags*: VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV
+    indexBufferStride*: uint16
+    vertexBufferStride*: uint16
+    geometryIndexAndFlagsBufferStride*: uint16
+    opacityMicromapIndexBufferStride*: uint16
+    indexBuffer*: VkDeviceAddress
+    vertexBuffer*: VkDeviceAddress
+    geometryIndexAndFlagsBuffer*: VkDeviceAddress
+    opacityMicromapArray*: VkDeviceAddress
+    opacityMicromapIndexBuffer*: VkDeviceAddress
+
+  VkClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV* = object
+    clusterID*: uint32
+    clusterFlags*: VkClusterAccelerationStructureClusterFlagsNV
+    triangleCount*: uint32
+    vertexCount*: uint32
+    positionTruncateBitCount*: uint32
+    indexType*: uint32
+    opacityMicromapIndexType*: uint32
+    baseGeometryIndexAndGeometryFlags*: VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV
+    indexBufferStride*: uint16
+    vertexBufferStride*: uint16
+    geometryIndexAndFlagsBufferStride*: uint16
+    opacityMicromapIndexBufferStride*: uint16
+    indexBuffer*: VkDeviceAddress
+    vertexBuffer*: VkDeviceAddress
+    geometryIndexAndFlagsBuffer*: VkDeviceAddress
+    opacityMicromapArray*: VkDeviceAddress
+    opacityMicromapIndexBuffer*: VkDeviceAddress
+    instantiationBoundingBoxLimit*: VkDeviceAddress
+
+  VkClusterAccelerationStructureInstantiateClusterInfoNV* = object
+    clusterIdOffset*: uint32
+    geometryIndexOffset*: uint32
+    reserved*: uint32
+    clusterTemplateAddress*: VkDeviceAddress
+    vertexBuffer*: VkStridedDeviceAddressNV
+
+  VkClusterAccelerationStructureClustersBottomLevelInputNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxTotalClusterCount*: uint32
+    maxClusterCountPerAccelerationStructure*: uint32
+
+  VkClusterAccelerationStructureTriangleClusterInputNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    vertexFormat*: VkFormat
+    maxGeometryIndexValue*: uint32
+    maxClusterUniqueGeometryCount*: uint32
+    maxClusterTriangleCount*: uint32
+    maxClusterVertexCount*: uint32
+    maxTotalTriangleCount*: uint32
+    maxTotalVertexCount*: uint32
+    minPositionTruncateBitCount*: uint32
+
+  VkClusterAccelerationStructureMoveObjectsInputNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    `type`*: VkClusterAccelerationStructureTypeNV
+    noMoveOverlap*: VkBool32
+    maxMovedBytes*: VkDeviceSize
+
+  VkClusterAccelerationStructureOpInputNV* {.union.} = object
+    pClustersBottomLevel*: ptr VkClusterAccelerationStructureClustersBottomLevelInputNV
+    pTriangleClusters*: ptr VkClusterAccelerationStructureTriangleClusterInputNV
+    pMoveObjects*: ptr VkClusterAccelerationStructureMoveObjectsInputNV
+
+  VkClusterAccelerationStructureInputInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxAccelerationStructureCount*: uint32
+    flags*: VkBuildAccelerationStructureFlagsKHR
+    opType*: VkClusterAccelerationStructureOpTypeNV
+    opMode*: VkClusterAccelerationStructureOpModeNV
+    opInput*: VkClusterAccelerationStructureOpInputNV
+
+  VkClusterAccelerationStructureCommandsInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    input*: VkClusterAccelerationStructureInputInfoNV
+    dstImplicitData*: VkDeviceAddress
+    scratchData*: VkDeviceAddress
+    dstAddressesArray*: VkStridedDeviceAddressRegionKHR
+    dstSizesArray*: VkStridedDeviceAddressRegionKHR
+    srcInfosArray*: VkStridedDeviceAddressRegionKHR
+    srcInfosCount*: VkDeviceAddress
+    addressResolutionFlags*: VkClusterAccelerationStructureAddressResolutionFlagsNV
 
   VkPhysicalDeviceMultiDrawPropertiesEXT* = object
     sType*: VkStructureType
@@ -6784,10 +7951,12 @@ type
 
   VkPhysicalDeviceSparseImageFormatInfo2KHR* = VkPhysicalDeviceSparseImageFormatInfo2
 
-  VkPhysicalDevicePushDescriptorPropertiesKHR* = object
+  VkPhysicalDevicePushDescriptorProperties* = object
     sType*: VkStructureType
     pNext*: pointer
     maxPushDescriptors*: uint32
+
+  VkPhysicalDevicePushDescriptorPropertiesKHR* = VkPhysicalDevicePushDescriptorProperties
 
   VkConformanceVersion* = object
     major*: uint8
@@ -6972,6 +8141,23 @@ type
     releaseCount*: uint32
     pReleaseSyncs*: ptr VkDeviceMemory
     pReleaseKeys*: ptr uint64
+
+  VkImportMemoryMetalHandleInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    handleType*: VkExternalMemoryHandleTypeFlagBits
+    handle*: pointer
+
+  VkMemoryMetalHandlePropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    memoryTypeBits*: uint32
+
+  VkMemoryGetMetalHandleInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    memory*: VkDeviceMemory
+    handleType*: VkExternalMemoryHandleTypeFlagBits
 
   VkPhysicalDeviceExternalSemaphoreInfo* = object
     sType*: VkStructureType
@@ -7425,10 +8611,111 @@ type
     swapchainCount*: uint32
     pPresentIds*: ptr uint64
 
+  VkPhysicalDevicePresentId2FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentId2*: VkBool32
+
+  VkPresentId2KHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    swapchainCount*: uint32
+    pPresentIds*: ptr uint64
+
+  VkPresentWait2InfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentId*: uint64
+    timeout*: uint64
+
   VkPhysicalDevicePresentWaitFeaturesKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     presentWait*: VkBool32
+
+  VkPhysicalDevicePresentWait2FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentWait2*: VkBool32
+
+  VkPhysicalDevicePresentTimingFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentTiming*: VkBool32
+    presentAtAbsoluteTime*: VkBool32
+    presentAtRelativeTime*: VkBool32
+
+  VkPresentTimingSurfaceCapabilitiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentTimingSupported*: VkBool32
+    presentAtAbsoluteTimeSupported*: VkBool32
+    presentAtRelativeTimeSupported*: VkBool32
+    presentStageQueries*: VkPresentStageFlagsEXT
+
+  VkSwapchainTimingPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    refreshDuration*: uint64
+    refreshInterval*: uint64
+
+  VkSwapchainTimeDomainPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    timeDomainCount*: uint32
+    pTimeDomains*: ptr VkTimeDomainKHR
+    pTimeDomainIds*: ptr uint64
+
+  VkPresentStageTimeEXT* = object
+    stage*: VkPresentStageFlagsEXT
+    time*: uint64
+
+  VkPastPresentationTimingInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkPastPresentationTimingFlagsEXT
+    swapchain*: VkSwapchainKHR
+
+  VkPastPresentationTimingPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    timingPropertiesCounter*: uint64
+    timeDomainsCounter*: uint64
+    presentationTimingCount*: uint32
+    pPresentationTimings*: ptr VkPastPresentationTimingEXT
+
+  VkPastPresentationTimingEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentId*: uint64
+    targetTime*: uint64
+    presentStageCount*: uint32
+    pPresentStages*: ptr VkPresentStageTimeEXT
+    timeDomain*: VkTimeDomainKHR
+    timeDomainId*: uint64
+    reportComplete*: VkBool32
+
+  VkPresentTimingsInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    swapchainCount*: uint32
+    pTimingInfos*: ptr VkPresentTimingInfoEXT
+
+  VkPresentTimingInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkPresentTimingInfoFlagsEXT
+    targetTime*: uint64
+    timeDomainId*: uint64
+    presentStageQueries*: VkPresentStageFlagsEXT
+    targetTimeDomainPresentStage*: VkPresentStageFlagsEXT
+
+  VkSwapchainCalibratedTimestampInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    swapchain*: VkSwapchainKHR
+    presentStage*: VkPresentStageFlagsEXT
+    timeDomainId*: uint64
 
   VkHdrMetadataEXT* = object
     sType*: VkStructureType
@@ -7441,6 +8728,12 @@ type
     minLuminance*: float32
     maxContentLightLevel*: float32
     maxFrameAverageLightLevel*: float32
+
+  VkHdrVividDynamicMetadataHUAWEI* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    dynamicMetadataSize*: uint
+    pDynamicMetadata*: pointer
 
   VkDisplayNativeHdrSurfaceCapabilitiesAMD* = object
     sType*: VkStructureType
@@ -7576,6 +8869,11 @@ type
     sType*: VkStructureType
     pNext*: pointer
     displayModeProperties*: VkDisplayModePropertiesKHR
+
+  VkDisplayModeStereoPropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    hdmi3DSupported*: VkBool32
 
   VkDisplayPlaneInfo2KHR* = object
     sType*: VkStructureType
@@ -7976,12 +9274,14 @@ type
 
   VkPhysicalDeviceMaintenance4PropertiesKHR* = VkPhysicalDeviceMaintenance4Properties
 
-  VkPhysicalDeviceMaintenance5FeaturesKHR* = object
+  VkPhysicalDeviceMaintenance5Features* = object
     sType*: VkStructureType
     pNext*: pointer
     maintenance5*: VkBool32
 
-  VkPhysicalDeviceMaintenance5PropertiesKHR* = object
+  VkPhysicalDeviceMaintenance5FeaturesKHR* = VkPhysicalDeviceMaintenance5Features
+
+  VkPhysicalDeviceMaintenance5Properties* = object
     sType*: VkStructureType
     pNext*: pointer
     earlyFragmentMultisampleCoverageAfterSampleCounting*: VkBool32
@@ -7991,17 +9291,23 @@ type
     nonStrictSinglePixelWideLinesUseParallelogram*: VkBool32
     nonStrictWideLinesUseParallelogram*: VkBool32
 
-  VkPhysicalDeviceMaintenance6FeaturesKHR* = object
+  VkPhysicalDeviceMaintenance5PropertiesKHR* = VkPhysicalDeviceMaintenance5Properties
+
+  VkPhysicalDeviceMaintenance6Features* = object
     sType*: VkStructureType
     pNext*: pointer
     maintenance6*: VkBool32
 
-  VkPhysicalDeviceMaintenance6PropertiesKHR* = object
+  VkPhysicalDeviceMaintenance6FeaturesKHR* = VkPhysicalDeviceMaintenance6Features
+
+  VkPhysicalDeviceMaintenance6Properties* = object
     sType*: VkStructureType
     pNext*: pointer
     blockTexelViewCompatibleMultipleLayers*: VkBool32
     maxCombinedImageSamplerDescriptorCount*: uint32
     fragmentShadingRateClampCombinerInputs*: VkBool32
+
+  VkPhysicalDeviceMaintenance6PropertiesKHR* = VkPhysicalDeviceMaintenance6Properties
 
   VkPhysicalDeviceMaintenance7FeaturesKHR* = object
     sType*: VkStructureType
@@ -8039,7 +9345,40 @@ type
     pNext*: pointer
     properties*: VkPhysicalDeviceProperties2
 
-  VkRenderingAreaInfoKHR* = object
+  VkPhysicalDeviceMaintenance8FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maintenance8*: VkBool32
+
+  VkPhysicalDeviceMaintenance9FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maintenance9*: VkBool32
+
+  VkPhysicalDeviceMaintenance9PropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    image2DViewOf3DSparse*: VkBool32
+    defaultVertexAttributeValue*: VkDefaultVertexAttributeValueKHR
+
+  VkPhysicalDeviceMaintenance10PropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    rgba4OpaqueBlackSwizzled*: VkBool32
+    resolveSrgbFormatAppliesTransferFunction*: VkBool32
+    resolveSrgbFormatSupportsTransferFunctionControl*: VkBool32
+
+  VkPhysicalDeviceMaintenance10FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maintenance10*: VkBool32
+
+  VkQueueFamilyOwnershipTransferPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    optimalImageTransferToQueueFamilies*: uint32
+
+  VkRenderingAreaInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     viewMask*: uint32
@@ -8047,6 +9386,8 @@ type
     pColorAttachmentFormats*: ptr VkFormat
     depthAttachmentFormat*: VkFormat
     stencilAttachmentFormat*: VkFormat
+
+  VkRenderingAreaInfoKHR* = VkRenderingAreaInfo
 
   VkDescriptorSetLayoutSupport* = object
     sType*: VkStructureType
@@ -8141,27 +9482,33 @@ type
     numAvailableSgprs*: uint32
     computeWorkGroupSize*: array[3, uint32]
 
-  VkDeviceQueueGlobalPriorityCreateInfoKHR* = object
+  VkDeviceQueueGlobalPriorityCreateInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    globalPriority*: VkQueueGlobalPriorityKHR
+    globalPriority*: VkQueueGlobalPriority
 
-  VkDeviceQueueGlobalPriorityCreateInfoEXT* = VkDeviceQueueGlobalPriorityCreateInfoKHR
+  VkDeviceQueueGlobalPriorityCreateInfoKHR* = VkDeviceQueueGlobalPriorityCreateInfo
 
-  VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR* = object
+  VkDeviceQueueGlobalPriorityCreateInfoEXT* = VkDeviceQueueGlobalPriorityCreateInfo
+
+  VkPhysicalDeviceGlobalPriorityQueryFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     globalPriorityQuery*: VkBool32
 
-  VkPhysicalDeviceGlobalPriorityQueryFeaturesEXT* = VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR
+  VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR* = VkPhysicalDeviceGlobalPriorityQueryFeatures
 
-  VkQueueFamilyGlobalPriorityPropertiesKHR* = object
+  VkPhysicalDeviceGlobalPriorityQueryFeaturesEXT* = VkPhysicalDeviceGlobalPriorityQueryFeatures
+
+  VkQueueFamilyGlobalPriorityProperties* = object
     sType*: VkStructureType
     pNext*: pointer
     priorityCount*: uint32
-    priorities*: array[VK_MAX_GLOBAL_PRIORITY_SIZE_KHR, VkQueueGlobalPriorityKHR]
+    priorities*: array[VK_MAX_GLOBAL_PRIORITY_SIZE, VkQueueGlobalPriority]
 
-  VkQueueFamilyGlobalPriorityPropertiesEXT* = VkQueueFamilyGlobalPriorityPropertiesKHR
+  VkQueueFamilyGlobalPriorityPropertiesKHR* = VkQueueFamilyGlobalPriorityProperties
+
+  VkQueueFamilyGlobalPriorityPropertiesEXT* = VkQueueFamilyGlobalPriorityProperties
 
   VkDebugUtilsObjectNameInfoEXT* = object
     sType*: VkStructureType
@@ -8509,30 +9856,36 @@ type
 
   VkSemaphoreSignalInfoKHR* = VkSemaphoreSignalInfo
 
-  VkVertexInputBindingDivisorDescriptionKHR* = object
+  VkVertexInputBindingDivisorDescription* = object
     binding*: uint32
     divisor*: uint32
 
-  VkVertexInputBindingDivisorDescriptionEXT* = VkVertexInputBindingDivisorDescriptionKHR
+  VkVertexInputBindingDivisorDescriptionKHR* = VkVertexInputBindingDivisorDescription
 
-  VkPipelineVertexInputDivisorStateCreateInfoKHR* = object
+  VkVertexInputBindingDivisorDescriptionEXT* = VkVertexInputBindingDivisorDescription
+
+  VkPipelineVertexInputDivisorStateCreateInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     vertexBindingDivisorCount*: uint32
-    pVertexBindingDivisors*: ptr VkVertexInputBindingDivisorDescriptionKHR
+    pVertexBindingDivisors*: ptr VkVertexInputBindingDivisorDescription
 
-  VkPipelineVertexInputDivisorStateCreateInfoEXT* = VkPipelineVertexInputDivisorStateCreateInfoKHR
+  VkPipelineVertexInputDivisorStateCreateInfoKHR* = VkPipelineVertexInputDivisorStateCreateInfo
+
+  VkPipelineVertexInputDivisorStateCreateInfoEXT* = VkPipelineVertexInputDivisorStateCreateInfo
 
   VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT* = object
     sType*: VkStructureType
     pNext*: pointer
     maxVertexAttribDivisor*: uint32
 
-  VkPhysicalDeviceVertexAttributeDivisorPropertiesKHR* = object
+  VkPhysicalDeviceVertexAttributeDivisorProperties* = object
     sType*: VkStructureType
     pNext*: pointer
     maxVertexAttribDivisor*: uint32
     supportsNonZeroFirstInstance*: VkBool32
+
+  VkPhysicalDeviceVertexAttributeDivisorPropertiesKHR* = VkPhysicalDeviceVertexAttributeDivisorProperties
 
   VkPhysicalDevicePCIBusInfoPropertiesEXT* = object
     sType*: VkStructureType
@@ -8649,13 +10002,15 @@ type
     shaderImageFloat32AtomicMinMax*: VkBool32
     sparseImageFloat32AtomicMinMax*: VkBool32
 
-  VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR* = object
+  VkPhysicalDeviceVertexAttributeDivisorFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     vertexAttributeInstanceRateDivisor*: VkBool32
     vertexAttributeInstanceRateZeroDivisor*: VkBool32
 
-  VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT* = VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR
+  VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR* = VkPhysicalDeviceVertexAttributeDivisorFeatures
+
+  VkPhysicalDeviceVertexAttributeDivisorFeaturesEXT* = VkPhysicalDeviceVertexAttributeDivisorFeatures
 
   VkQueueFamilyCheckpointPropertiesNV* = object
     sType*: VkStructureType
@@ -8774,26 +10129,38 @@ type
     pNext*: pointer
     dedicatedAllocationImageAliasing*: VkBool32
 
+  VkPhysicalDeviceCopyMemoryIndirectFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    indirectMemoryCopy*: VkBool32
+    indirectMemoryToImageCopy*: VkBool32
+
   VkPhysicalDeviceCopyMemoryIndirectFeaturesNV* = object
     sType*: VkStructureType
     pNext*: pointer
     indirectCopy*: VkBool32
 
-  VkPhysicalDeviceCopyMemoryIndirectPropertiesNV* = object
+  VkPhysicalDeviceCopyMemoryIndirectPropertiesKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     supportedQueues*: VkQueueFlags
 
-  VkPhysicalDeviceMemoryDecompressionFeaturesNV* = object
+  VkPhysicalDeviceCopyMemoryIndirectPropertiesNV* = VkPhysicalDeviceCopyMemoryIndirectPropertiesKHR
+
+  VkPhysicalDeviceMemoryDecompressionFeaturesEXT* = object
     sType*: VkStructureType
     pNext*: pointer
     memoryDecompression*: VkBool32
 
-  VkPhysicalDeviceMemoryDecompressionPropertiesNV* = object
+  VkPhysicalDeviceMemoryDecompressionFeaturesNV* = VkPhysicalDeviceMemoryDecompressionFeaturesEXT
+
+  VkPhysicalDeviceMemoryDecompressionPropertiesEXT* = object
     sType*: VkStructureType
     pNext*: pointer
-    decompressionMethods*: VkMemoryDecompressionMethodFlagsNV
+    decompressionMethods*: VkMemoryDecompressionMethodFlagsEXT
     maxDecompressionIndirectCount*: uint64
+
+  VkPhysicalDeviceMemoryDecompressionPropertiesNV* = VkPhysicalDeviceMemoryDecompressionPropertiesEXT
 
   VkShadingRatePaletteNV* = object
     shadingRatePaletteEntryCount*: uint32
@@ -9191,10 +10558,12 @@ type
     pNext*: pointer
     fragmentDensityMapDeferred*: VkBool32
 
-  VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM* = object
+  VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT* = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityMapOffset*: VkBool32
+
+  VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM* = VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT
 
   VkPhysicalDeviceFragmentDensityMapPropertiesEXT* = object
     sType*: VkStructureType
@@ -9211,21 +10580,25 @@ type
     maxSubsampledArrayLayers*: uint32
     maxDescriptorSetSubsampledSamplers*: uint32
 
-  VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM* = object
+  VkPhysicalDeviceFragmentDensityMapOffsetPropertiesEXT* = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityOffsetGranularity*: VkExtent2D
+
+  VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM* = VkPhysicalDeviceFragmentDensityMapOffsetPropertiesEXT
 
   VkRenderPassFragmentDensityMapCreateInfoEXT* = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityMapAttachment*: VkAttachmentReference
 
-  VkSubpassFragmentDensityMapOffsetEndInfoQCOM* = object
+  VkRenderPassFragmentDensityMapOffsetEndInfoEXT* = object
     sType*: VkStructureType
     pNext*: pointer
     fragmentDensityOffsetCount*: uint32
     pFragmentDensityOffsets*: ptr VkOffset2D
+
+  VkSubpassFragmentDensityMapOffsetEndInfoQCOM* = VkRenderPassFragmentDensityMapOffsetEndInfoEXT
 
   VkPhysicalDeviceScalarBlockLayoutFeatures* = object
     sType*: VkStructureType
@@ -9600,12 +10973,14 @@ type
     shaderSubgroupClock*: VkBool32
     shaderDeviceClock*: VkBool32
 
-  VkPhysicalDeviceIndexTypeUint8FeaturesKHR* = object
+  VkPhysicalDeviceIndexTypeUint8Features* = object
     sType*: VkStructureType
     pNext*: pointer
     indexTypeUint8*: VkBool32
 
-  VkPhysicalDeviceIndexTypeUint8FeaturesEXT* = VkPhysicalDeviceIndexTypeUint8FeaturesKHR
+  VkPhysicalDeviceIndexTypeUint8FeaturesKHR* = VkPhysicalDeviceIndexTypeUint8Features
+
+  VkPhysicalDeviceIndexTypeUint8FeaturesEXT* = VkPhysicalDeviceIndexTypeUint8Features
 
   VkPhysicalDeviceShaderSMBuiltinsPropertiesNV* = object
     sType*: VkStructureType
@@ -9784,7 +11159,7 @@ type
 
   VkDeviceMemoryOpaqueCaptureAddressInfoKHR* = VkDeviceMemoryOpaqueCaptureAddressInfo
 
-  VkPhysicalDeviceLineRasterizationFeaturesKHR* = object
+  VkPhysicalDeviceLineRasterizationFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     rectangularLines*: VkBool32
@@ -9794,24 +11169,30 @@ type
     stippledBresenhamLines*: VkBool32
     stippledSmoothLines*: VkBool32
 
-  VkPhysicalDeviceLineRasterizationFeaturesEXT* = VkPhysicalDeviceLineRasterizationFeaturesKHR
+  VkPhysicalDeviceLineRasterizationFeaturesKHR* = VkPhysicalDeviceLineRasterizationFeatures
 
-  VkPhysicalDeviceLineRasterizationPropertiesKHR* = object
+  VkPhysicalDeviceLineRasterizationFeaturesEXT* = VkPhysicalDeviceLineRasterizationFeatures
+
+  VkPhysicalDeviceLineRasterizationProperties* = object
     sType*: VkStructureType
     pNext*: pointer
     lineSubPixelPrecisionBits*: uint32
 
-  VkPhysicalDeviceLineRasterizationPropertiesEXT* = VkPhysicalDeviceLineRasterizationPropertiesKHR
+  VkPhysicalDeviceLineRasterizationPropertiesKHR* = VkPhysicalDeviceLineRasterizationProperties
 
-  VkPipelineRasterizationLineStateCreateInfoKHR* = object
+  VkPhysicalDeviceLineRasterizationPropertiesEXT* = VkPhysicalDeviceLineRasterizationProperties
+
+  VkPipelineRasterizationLineStateCreateInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    lineRasterizationMode*: VkLineRasterizationModeKHR
+    lineRasterizationMode*: VkLineRasterizationMode
     stippledLineEnable*: VkBool32
     lineStippleFactor*: uint32
     lineStipplePattern*: uint16
 
-  VkPipelineRasterizationLineStateCreateInfoEXT* = VkPipelineRasterizationLineStateCreateInfoKHR
+  VkPipelineRasterizationLineStateCreateInfoKHR* = VkPipelineRasterizationLineStateCreateInfo
+
+  VkPipelineRasterizationLineStateCreateInfoEXT* = VkPipelineRasterizationLineStateCreateInfo
 
   VkPhysicalDevicePipelineCreationCacheControlFeatures* = object
     sType*: VkStructureType
@@ -10030,6 +11411,60 @@ type
     uniformTexelBufferOffsetSingleTexelAlignment*: VkBool32
     maxBufferSize*: VkDeviceSize
 
+  VkPhysicalDeviceVulkan14Features* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    globalPriorityQuery*: VkBool32
+    shaderSubgroupRotate*: VkBool32
+    shaderSubgroupRotateClustered*: VkBool32
+    shaderFloatControls2*: VkBool32
+    shaderExpectAssume*: VkBool32
+    rectangularLines*: VkBool32
+    bresenhamLines*: VkBool32
+    smoothLines*: VkBool32
+    stippledRectangularLines*: VkBool32
+    stippledBresenhamLines*: VkBool32
+    stippledSmoothLines*: VkBool32
+    vertexAttributeInstanceRateDivisor*: VkBool32
+    vertexAttributeInstanceRateZeroDivisor*: VkBool32
+    indexTypeUint8*: VkBool32
+    dynamicRenderingLocalRead*: VkBool32
+    maintenance5*: VkBool32
+    maintenance6*: VkBool32
+    pipelineProtectedAccess*: VkBool32
+    pipelineRobustness*: VkBool32
+    hostImageCopy*: VkBool32
+    pushDescriptor*: VkBool32
+
+  VkPhysicalDeviceVulkan14Properties* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    lineSubPixelPrecisionBits*: uint32
+    maxVertexAttribDivisor*: uint32
+    supportsNonZeroFirstInstance*: VkBool32
+    maxPushDescriptors*: uint32
+    dynamicRenderingLocalReadDepthStencilAttachments*: VkBool32
+    dynamicRenderingLocalReadMultisampledAttachments*: VkBool32
+    earlyFragmentMultisampleCoverageAfterSampleCounting*: VkBool32
+    earlyFragmentSampleMaskTestBeforeSampleCounting*: VkBool32
+    depthStencilSwizzleOneSupport*: VkBool32
+    polygonModePointSize*: VkBool32
+    nonStrictSinglePixelWideLinesUseParallelogram*: VkBool32
+    nonStrictWideLinesUseParallelogram*: VkBool32
+    blockTexelViewCompatibleMultipleLayers*: VkBool32
+    maxCombinedImageSamplerDescriptorCount*: uint32
+    fragmentShadingRateClampCombinerInputs*: VkBool32
+    defaultRobustnessStorageBuffers*: VkPipelineRobustnessBufferBehavior
+    defaultRobustnessUniformBuffers*: VkPipelineRobustnessBufferBehavior
+    defaultRobustnessVertexInputs*: VkPipelineRobustnessBufferBehavior
+    defaultRobustnessImages*: VkPipelineRobustnessImageBehavior
+    copySrcLayoutCount*: uint32
+    pCopySrcLayouts*: ptr VkImageLayout
+    copyDstLayoutCount*: uint32
+    pCopyDstLayouts*: ptr VkImageLayout
+    optimalTilingLayoutUUID*: array[VK_UUID_SIZE, uint8]
+    identicalMemoryTypeRequirements*: VkBool32
+
   VkPipelineCompilerControlCreateInfoAMD* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -10127,6 +11562,34 @@ type
     pNext*: pointer
     arrayOfPointers*: VkBool32
     data*: VkDeviceOrHostAddressConstKHR
+
+  VkAccelerationStructureGeometryLinearSweptSpheresDataNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    vertexFormat*: VkFormat
+    vertexData*: VkDeviceOrHostAddressConstKHR
+    vertexStride*: VkDeviceSize
+    radiusFormat*: VkFormat
+    radiusData*: VkDeviceOrHostAddressConstKHR
+    radiusStride*: VkDeviceSize
+    indexType*: VkIndexType
+    indexData*: VkDeviceOrHostAddressConstKHR
+    indexStride*: VkDeviceSize
+    indexingMode*: VkRayTracingLssIndexingModeNV
+    endCapsMode*: VkRayTracingLssPrimitiveEndCapsModeNV
+
+  VkAccelerationStructureGeometrySpheresDataNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    vertexFormat*: VkFormat
+    vertexData*: VkDeviceOrHostAddressConstKHR
+    vertexStride*: VkDeviceSize
+    radiusFormat*: VkFormat
+    radiusData*: VkDeviceOrHostAddressConstKHR
+    radiusStride*: VkDeviceSize
+    indexType*: VkIndexType
+    indexData*: VkDeviceOrHostAddressConstKHR
+    indexStride*: VkDeviceSize
 
   VkAccelerationStructureGeometryDataKHR* {.union.} = object
     triangles*: VkAccelerationStructureGeometryTrianglesDataKHR
@@ -10331,6 +11794,71 @@ type
     transform*: VkSurfaceTransformFlagBitsKHR
     renderArea*: VkRect2D
 
+  VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    partitionedAccelerationStructure*: VkBool32
+
+  VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxPartitionCount*: uint32
+
+  VkBuildPartitionedAccelerationStructureIndirectCommandNV* = object
+    opType*: VkPartitionedAccelerationStructureOpTypeNV
+    argCount*: uint32
+    argData*: VkStridedDeviceAddressNV
+
+  VkPartitionedAccelerationStructureFlagsNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    enablePartitionTranslation*: VkBool32
+
+  VkPartitionedAccelerationStructureWriteInstanceDataNV* = object
+    transform*: VkTransformMatrixKHR
+    explicitAABB*: array[6, float32]
+    instanceID*: uint32
+    instanceMask*: uint32
+    instanceContributionToHitGroupIndex*: uint32
+    instanceFlags*: VkPartitionedAccelerationStructureInstanceFlagsNV
+    instanceIndex*: uint32
+    partitionIndex*: uint32
+    accelerationStructure*: VkDeviceAddress
+
+  VkPartitionedAccelerationStructureUpdateInstanceDataNV* = object
+    instanceIndex*: uint32
+    instanceContributionToHitGroupIndex*: uint32
+    accelerationStructure*: VkDeviceAddress
+
+  VkPartitionedAccelerationStructureWritePartitionTranslationDataNV* = object
+    partitionIndex*: uint32
+    partitionTranslation*: array[3, float32]
+
+  VkWriteDescriptorSetPartitionedAccelerationStructureNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    accelerationStructureCount*: uint32
+    pAccelerationStructures*: ptr VkDeviceAddress
+
+  VkPartitionedAccelerationStructureInstancesInputNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkBuildAccelerationStructureFlagsKHR
+    instanceCount*: uint32
+    maxInstancePerPartitionCount*: uint32
+    partitionCount*: uint32
+    maxInstanceInGlobalPartitionCount*: uint32
+
+  VkBuildPartitionedAccelerationStructureInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    input*: VkPartitionedAccelerationStructureInstancesInputNV
+    srcAccelerationStructureData*: VkDeviceAddress
+    dstAccelerationStructureData*: VkDeviceAddress
+    scratchData*: VkDeviceAddress
+    srcInfos*: VkDeviceAddress
+    srcInfosCount*: VkDeviceAddress
+
   VkPhysicalDeviceDiagnosticsConfigFeaturesNV* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -10360,18 +11888,22 @@ type
     pNext*: pointer
     shaderSubgroupUniformControlFlow*: VkBool32
 
-  VkPhysicalDeviceRobustness2FeaturesEXT* = object
+  VkPhysicalDeviceRobustness2FeaturesKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     robustBufferAccess2*: VkBool32
     robustImageAccess2*: VkBool32
     nullDescriptor*: VkBool32
 
-  VkPhysicalDeviceRobustness2PropertiesEXT* = object
+  VkPhysicalDeviceRobustness2FeaturesEXT* = VkPhysicalDeviceRobustness2FeaturesKHR
+
+  VkPhysicalDeviceRobustness2PropertiesKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     robustStorageBufferAccessSizeAlignment*: VkDeviceSize
     robustUniformBufferAccessSizeAlignment*: VkDeviceSize
+
+  VkPhysicalDeviceRobustness2PropertiesEXT* = VkPhysicalDeviceRobustness2PropertiesKHR
 
   VkPhysicalDeviceImageRobustnessFeatures* = object
     sType*: VkStructureType
@@ -10693,10 +12225,194 @@ type
     pNext*: pointer
     depthClipControl*: VkBool32
 
+  VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    zeroInitializeDeviceMemory*: VkBool32
+
+  VkBeginCustomResolveInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+
+  VkPhysicalDeviceCustomResolveFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    customResolve*: VkBool32
+
+  VkCustomResolveCreateInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    customResolve*: VkBool32
+    colorAttachmentCount*: uint32
+    pColorAttachmentFormats*: ptr VkFormat
+    depthAttachmentFormat*: VkFormat
+    stencilAttachmentFormat*: VkFormat
+
+  VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    deviceGeneratedCommands*: VkBool32
+    dynamicGeneratedPipelineLayout*: VkBool32
+
+  VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxIndirectPipelineCount*: uint32
+    maxIndirectShaderObjectCount*: uint32
+    maxIndirectSequenceCount*: uint32
+    maxIndirectCommandsTokenCount*: uint32
+    maxIndirectCommandsTokenOffset*: uint32
+    maxIndirectCommandsIndirectStride*: uint32
+    supportedIndirectCommandsInputModes*: VkIndirectCommandsInputModeFlagsEXT
+    supportedIndirectCommandsShaderStages*: VkShaderStageFlags
+    supportedIndirectCommandsShaderStagesPipelineBinding*: VkShaderStageFlags
+    supportedIndirectCommandsShaderStagesShaderBinding*: VkShaderStageFlags
+    deviceGeneratedCommandsTransformFeedback*: VkBool32
+    deviceGeneratedCommandsMultiDrawIndirectCount*: VkBool32
+
+  VkGeneratedCommandsPipelineInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pipeline*: VkPipeline
+
+  VkGeneratedCommandsShaderInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderCount*: uint32
+    pShaders*: ptr VkShaderEXT
+
+  VkGeneratedCommandsMemoryRequirementsInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    indirectExecutionSet*: VkIndirectExecutionSetEXT
+    indirectCommandsLayout*: VkIndirectCommandsLayoutEXT
+    maxSequenceCount*: uint32
+    maxDrawCount*: uint32
+
+  VkIndirectExecutionSetPipelineInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    initialPipeline*: VkPipeline
+    maxPipelineCount*: uint32
+
+  VkIndirectExecutionSetShaderLayoutInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    setLayoutCount*: uint32
+    pSetLayouts*: ptr VkDescriptorSetLayout
+
+  VkIndirectExecutionSetShaderInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderCount*: uint32
+    pInitialShaders*: ptr VkShaderEXT
+    pSetLayoutInfos*: ptr VkIndirectExecutionSetShaderLayoutInfoEXT
+    maxShaderCount*: uint32
+    pushConstantRangeCount*: uint32
+    pPushConstantRanges*: ptr VkPushConstantRange
+
+  VkIndirectExecutionSetInfoEXT* {.union.} = object
+    pPipelineInfo*: ptr VkIndirectExecutionSetPipelineInfoEXT
+    pShaderInfo*: ptr VkIndirectExecutionSetShaderInfoEXT
+
+  VkIndirectExecutionSetCreateInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    `type`*: VkIndirectExecutionSetInfoTypeEXT
+    info*: VkIndirectExecutionSetInfoEXT
+
+  VkGeneratedCommandsInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderStages*: VkShaderStageFlags
+    indirectExecutionSet*: VkIndirectExecutionSetEXT
+    indirectCommandsLayout*: VkIndirectCommandsLayoutEXT
+    indirectAddress*: VkDeviceAddress
+    indirectAddressSize*: VkDeviceSize
+    preprocessAddress*: VkDeviceAddress
+    preprocessSize*: VkDeviceSize
+    maxSequenceCount*: uint32
+    sequenceCountAddress*: VkDeviceAddress
+    maxDrawCount*: uint32
+
+  VkWriteIndirectExecutionSetPipelineEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    index*: uint32
+    pipeline*: VkPipeline
+
+  VkWriteIndirectExecutionSetShaderEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    index*: uint32
+    shader*: VkShaderEXT
+
+  VkIndirectCommandsLayoutCreateInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkIndirectCommandsLayoutUsageFlagsEXT
+    shaderStages*: VkShaderStageFlags
+    indirectStride*: uint32
+    pipelineLayout*: VkPipelineLayout
+    tokenCount*: uint32
+    pTokens*: ptr VkIndirectCommandsLayoutTokenEXT
+
+  VkIndirectCommandsLayoutTokenEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    `type`*: VkIndirectCommandsTokenTypeEXT
+    data*: VkIndirectCommandsTokenDataEXT
+    offset*: uint32
+
+  VkDrawIndirectCountIndirectCommandEXT* = object
+    bufferAddress*: VkDeviceAddress
+    stride*: uint32
+    commandCount*: uint32
+
+  VkIndirectCommandsVertexBufferTokenEXT* = object
+    vertexBindingUnit*: uint32
+
+  VkBindVertexBufferIndirectCommandEXT* = object
+    bufferAddress*: VkDeviceAddress
+    size*: uint32
+    stride*: uint32
+
+  VkIndirectCommandsIndexBufferTokenEXT* = object
+    mode*: VkIndirectCommandsInputModeFlagBitsEXT
+
+  VkBindIndexBufferIndirectCommandEXT* = object
+    bufferAddress*: VkDeviceAddress
+    size*: uint32
+    indexType*: VkIndexType
+
+  VkIndirectCommandsPushConstantTokenEXT* = object
+    updateRange*: VkPushConstantRange
+
+  VkIndirectCommandsExecutionSetTokenEXT* = object
+    `type`*: VkIndirectExecutionSetInfoTypeEXT
+    shaderStages*: VkShaderStageFlags
+
+  VkIndirectCommandsTokenDataEXT* {.union.} = object
+    pPushConstant*: ptr VkIndirectCommandsPushConstantTokenEXT
+    pVertexBuffer*: ptr VkIndirectCommandsVertexBufferTokenEXT
+    pIndexBuffer*: ptr VkIndirectCommandsIndexBufferTokenEXT
+    pExecutionSet*: ptr VkIndirectCommandsExecutionSetTokenEXT
+
   VkPipelineViewportDepthClipControlCreateInfoEXT* = object
     sType*: VkStructureType
     pNext*: pointer
     negativeOneToOne*: VkBool32
+
+  VkPhysicalDeviceDepthClampControlFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    depthClampControl*: VkBool32
+
+  VkPipelineViewportDepthClampControlCreateInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    depthClampMode*: VkDepthClampModeEXT
+    pDepthClampRange*: ptr VkDepthClampRangeEXT
 
   VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT* = object
     sType*: VkStructureType
@@ -10781,6 +12497,12 @@ type
 
   VkBufferMemoryBarrier2KHR* = VkBufferMemoryBarrier2
 
+  VkMemoryBarrierAccessFlags3KHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    srcAccessMask3*: VkAccessFlags3KHR
+    dstAccessMask3*: VkAccessFlags3KHR
+
   VkDependencyInfo* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -10843,12 +12565,20 @@ type
 
   VkPhysicalDeviceSynchronization2FeaturesKHR* = VkPhysicalDeviceSynchronization2Features
 
-  VkPhysicalDeviceHostImageCopyFeaturesEXT* = object
+  VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    unifiedImageLayouts*: VkBool32
+    unifiedImageLayoutsVideo*: VkBool32
+
+  VkPhysicalDeviceHostImageCopyFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     hostImageCopy*: VkBool32
 
-  VkPhysicalDeviceHostImageCopyPropertiesEXT* = object
+  VkPhysicalDeviceHostImageCopyFeaturesEXT* = VkPhysicalDeviceHostImageCopyFeatures
+
+  VkPhysicalDeviceHostImageCopyProperties* = object
     sType*: VkStructureType
     pNext*: pointer
     copySrcLayoutCount*: uint32
@@ -10858,7 +12588,9 @@ type
     optimalTilingLayoutUUID*: array[VK_UUID_SIZE, uint8]
     identicalMemoryTypeRequirements*: VkBool32
 
-  VkMemoryToImageCopyEXT* = object
+  VkPhysicalDeviceHostImageCopyPropertiesEXT* = VkPhysicalDeviceHostImageCopyProperties
+
+  VkMemoryToImageCopy* = object
     sType*: VkStructureType
     pNext*: pointer
     pHostPointer*: pointer
@@ -10868,7 +12600,9 @@ type
     imageOffset*: VkOffset3D
     imageExtent*: VkExtent3D
 
-  VkImageToMemoryCopyEXT* = object
+  VkMemoryToImageCopyEXT* = VkMemoryToImageCopy
+
+  VkImageToMemoryCopy* = object
     sType*: VkStructureType
     pNext*: pointer
     pHostPointer*: pointer
@@ -10878,28 +12612,34 @@ type
     imageOffset*: VkOffset3D
     imageExtent*: VkExtent3D
 
-  VkCopyMemoryToImageInfoEXT* = object
+  VkImageToMemoryCopyEXT* = VkImageToMemoryCopy
+
+  VkCopyMemoryToImageInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    flags*: VkHostImageCopyFlagsEXT
+    flags*: VkHostImageCopyFlags
     dstImage*: VkImage
     dstImageLayout*: VkImageLayout
     regionCount*: uint32
-    pRegions*: ptr VkMemoryToImageCopyEXT
+    pRegions*: ptr VkMemoryToImageCopy
 
-  VkCopyImageToMemoryInfoEXT* = object
+  VkCopyMemoryToImageInfoEXT* = VkCopyMemoryToImageInfo
+
+  VkCopyImageToMemoryInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    flags*: VkHostImageCopyFlagsEXT
+    flags*: VkHostImageCopyFlags
     srcImage*: VkImage
     srcImageLayout*: VkImageLayout
     regionCount*: uint32
-    pRegions*: ptr VkImageToMemoryCopyEXT
+    pRegions*: ptr VkImageToMemoryCopy
 
-  VkCopyImageToImageInfoEXT* = object
+  VkCopyImageToMemoryInfoEXT* = VkCopyImageToMemoryInfo
+
+  VkCopyImageToImageInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    flags*: VkHostImageCopyFlagsEXT
+    flags*: VkHostImageCopyFlags
     srcImage*: VkImage
     srcImageLayout*: VkImageLayout
     dstImage*: VkImage
@@ -10907,7 +12647,9 @@ type
     regionCount*: uint32
     pRegions*: ptr VkImageCopy2
 
-  VkHostImageLayoutTransitionInfoEXT* = object
+  VkCopyImageToImageInfoEXT* = VkCopyImageToImageInfo
+
+  VkHostImageLayoutTransitionInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     image*: VkImage
@@ -10915,16 +12657,22 @@ type
     newLayout*: VkImageLayout
     subresourceRange*: VkImageSubresourceRange
 
-  VkSubresourceHostMemcpySizeEXT* = object
+  VkHostImageLayoutTransitionInfoEXT* = VkHostImageLayoutTransitionInfo
+
+  VkSubresourceHostMemcpySize* = object
     sType*: VkStructureType
     pNext*: pointer
     size*: VkDeviceSize
 
-  VkHostImageCopyDevicePerformanceQueryEXT* = object
+  VkSubresourceHostMemcpySizeEXT* = VkSubresourceHostMemcpySize
+
+  VkHostImageCopyDevicePerformanceQuery* = object
     sType*: VkStructureType
     pNext*: pointer
     optimalDeviceAccess*: VkBool32
     identicalMemoryLayout*: VkBool32
+
+  VkHostImageCopyDevicePerformanceQueryEXT* = VkHostImageCopyDevicePerformanceQuery
 
   VkPhysicalDeviceVulkanSC10Properties* = object
     sType*: VkStructureType
@@ -11034,6 +12782,16 @@ type
     pNext*: pointer
     multisampledRenderToSingleSampled*: VkBool32
 
+  VkSurfaceCapabilitiesPresentId2KHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentId2Supported*: VkBool32
+
+  VkSurfaceCapabilitiesPresentWait2KHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentWait2Supported*: VkBool32
+
   VkSubpassResolvePerformanceQueryEXT* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -11045,10 +12803,12 @@ type
     multisampledRenderToSingleSampledEnable*: VkBool32
     rasterizationSamples*: VkSampleCountFlagBits
 
-  VkPhysicalDevicePipelineProtectedAccessFeaturesEXT* = object
+  VkPhysicalDevicePipelineProtectedAccessFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineProtectedAccess*: VkBool32
+
+  VkPhysicalDevicePipelineProtectedAccessFeaturesEXT* = VkPhysicalDevicePipelineProtectedAccessFeatures
 
   VkQueueFamilyVideoPropertiesKHR* = object
     sType*: VkStructureType
@@ -11080,6 +12840,44 @@ type
     imageType*: VkImageType
     imageTiling*: VkImageTiling
     imageUsageFlags*: VkImageUsageFlags
+
+  VkVideoEncodeQuantizationMapCapabilitiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxQuantizationMapExtent*: VkExtent2D
+
+  VkVideoEncodeH264QuantizationMapCapabilitiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    minQpDelta*: int32
+    maxQpDelta*: int32
+
+  VkVideoEncodeH265QuantizationMapCapabilitiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    minQpDelta*: int32
+    maxQpDelta*: int32
+
+  VkVideoEncodeAV1QuantizationMapCapabilitiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    minQIndexDelta*: int32
+    maxQIndexDelta*: int32
+
+  VkVideoFormatQuantizationMapPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    quantizationMapTexelSize*: VkExtent2D
+
+  VkVideoFormatH265QuantizationMapPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    compatibleCtbSizes*: VkVideoEncodeH265CtbSizeFlagsKHR
+
+  VkVideoFormatAV1QuantizationMapPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    compatibleSuperblockSizes*: VkVideoEncodeAV1SuperblockSizeFlagsKHR
 
   VkVideoProfileInfoKHR* = object
     sType*: VkStructureType
@@ -11157,6 +12955,11 @@ type
     pNext*: pointer
     videoMaintenance1*: VkBool32
 
+  VkPhysicalDeviceVideoMaintenance2FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    videoMaintenance2*: VkBool32
+
   VkVideoInlineQueryInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -11196,6 +12999,12 @@ type
     maxStdSPSCount*: uint32
     maxStdPPSCount*: uint32
     pParametersAddInfo*: ptr VkVideoDecodeH264SessionParametersAddInfoKHR
+
+  VkVideoDecodeH264InlineSessionParametersInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pStdSPS*: ptr StdVideoH264SequenceParameterSet
+    pStdPPS*: ptr StdVideoH264PictureParameterSet
 
   VkVideoDecodeH264PictureInfoKHR* = object
     sType*: VkStructureType
@@ -11244,6 +13053,13 @@ type
     maxStdPPSCount*: uint32
     pParametersAddInfo*: ptr VkVideoDecodeH265SessionParametersAddInfoKHR
 
+  VkVideoDecodeH265InlineSessionParametersInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pStdVPS*: ptr StdVideoH265VideoParameterSet
+    pStdSPS*: ptr StdVideoH265SequenceParameterSet
+    pStdPPS*: ptr StdVideoH265PictureParameterSet
+
   VkVideoDecodeH265PictureInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -11255,6 +13071,33 @@ type
     sType*: VkStructureType
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoDecodeH265ReferenceInfo
+  StdVideoVP9Profile* {.nodecl.} = object
+  StdVideoVP9Level* {.nodecl.} = object
+  StdVideoDecodeVP9PictureInfo* {.nodecl.} = object
+
+  VkPhysicalDeviceVideoDecodeVP9FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    videoDecodeVP9*: VkBool32
+
+  VkVideoDecodeVP9ProfileInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    stdProfile*: StdVideoVP9Profile
+
+  VkVideoDecodeVP9CapabilitiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxLevel*: StdVideoVP9Level
+
+  VkVideoDecodeVP9PictureInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pStdPictureInfo*: ptr StdVideoDecodeVP9PictureInfo
+    referenceNameSlotIndices*: array[VK_MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR, int32]
+    uncompressedHeaderOffset*: uint32
+    compressedHeaderOffset*: uint32
+    tilesOffset*: uint32
   StdVideoAV1Profile* {.nodecl.} = object
   StdVideoAV1Level* {.nodecl.} = object
   StdVideoAV1SequenceHeader* {.nodecl.} = object
@@ -11273,6 +13116,11 @@ type
     maxLevel*: StdVideoAV1Level
 
   VkVideoDecodeAV1SessionParametersCreateInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pStdSequenceHeader*: ptr StdVideoAV1SequenceHeader
+
+  VkVideoDecodeAV1InlineSessionParametersInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     pStdSequenceHeader*: ptr StdVideoAV1SequenceHeader
@@ -11365,6 +13213,22 @@ type
     referenceSlotCount*: uint32
     pReferenceSlots*: ptr VkVideoReferenceSlotInfoKHR
     precedingExternallyEncodedBytes*: uint32
+
+  VkVideoEncodeQuantizationMapInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    quantizationMap*: VkImageView
+    quantizationMapExtent*: VkExtent2D
+
+  VkVideoEncodeQuantizationMapSessionParametersCreateInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    quantizationMapTexelSize*: VkExtent2D
+
+  VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    videoEncodeQuantizationMap*: VkBool32
 
   VkQueryPoolVideoEncodeFeedbackCreateInfoKHR* = object
     sType*: VkStructureType
@@ -11682,6 +13546,135 @@ type
     pNext*: pointer
     pStdReferenceInfo*: ptr StdVideoEncodeH265ReferenceInfo
 
+  VkVideoEncodeAV1CapabilitiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkVideoEncodeAV1CapabilityFlagsKHR
+    maxLevel*: StdVideoAV1Level
+    codedPictureAlignment*: VkExtent2D
+    maxTiles*: VkExtent2D
+    minTileSize*: VkExtent2D
+    maxTileSize*: VkExtent2D
+    superblockSizes*: VkVideoEncodeAV1SuperblockSizeFlagsKHR
+    maxSingleReferenceCount*: uint32
+    singleReferenceNameMask*: uint32
+    maxUnidirectionalCompoundReferenceCount*: uint32
+    maxUnidirectionalCompoundGroup1ReferenceCount*: uint32
+    unidirectionalCompoundReferenceNameMask*: uint32
+    maxBidirectionalCompoundReferenceCount*: uint32
+    maxBidirectionalCompoundGroup1ReferenceCount*: uint32
+    maxBidirectionalCompoundGroup2ReferenceCount*: uint32
+    bidirectionalCompoundReferenceNameMask*: uint32
+    maxTemporalLayerCount*: uint32
+    maxSpatialLayerCount*: uint32
+    maxOperatingPoints*: uint32
+    minQIndex*: uint32
+    maxQIndex*: uint32
+    prefersGopRemainingFrames*: VkBool32
+    requiresGopRemainingFrames*: VkBool32
+    stdSyntaxFlags*: VkVideoEncodeAV1StdFlagsKHR
+
+  VkVideoEncodeAV1QualityLevelPropertiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    preferredRateControlFlags*: VkVideoEncodeAV1RateControlFlagsKHR
+    preferredGopFrameCount*: uint32
+    preferredKeyFramePeriod*: uint32
+    preferredConsecutiveBipredictiveFrameCount*: uint32
+    preferredTemporalLayerCount*: uint32
+    preferredConstantQIndex*: VkVideoEncodeAV1QIndexKHR
+    preferredMaxSingleReferenceCount*: uint32
+    preferredSingleReferenceNameMask*: uint32
+    preferredMaxUnidirectionalCompoundReferenceCount*: uint32
+    preferredMaxUnidirectionalCompoundGroup1ReferenceCount*: uint32
+    preferredUnidirectionalCompoundReferenceNameMask*: uint32
+    preferredMaxBidirectionalCompoundReferenceCount*: uint32
+    preferredMaxBidirectionalCompoundGroup1ReferenceCount*: uint32
+    preferredMaxBidirectionalCompoundGroup2ReferenceCount*: uint32
+    preferredBidirectionalCompoundReferenceNameMask*: uint32
+  StdVideoEncodeAV1ExtensionHeader* {.nodecl.} = object
+  StdVideoEncodeAV1DecoderModelInfo* {.nodecl.} = object
+  StdVideoEncodeAV1OperatingPointInfo* {.nodecl.} = object
+  StdVideoEncodeAV1PictureInfo* {.nodecl.} = object
+  StdVideoEncodeAV1ReferenceInfo* {.nodecl.} = object
+
+  VkPhysicalDeviceVideoEncodeAV1FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    videoEncodeAV1*: VkBool32
+
+  VkVideoEncodeAV1SessionCreateInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    useMaxLevel*: VkBool32
+    maxLevel*: StdVideoAV1Level
+
+  VkVideoEncodeAV1SessionParametersCreateInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pStdSequenceHeader*: ptr StdVideoAV1SequenceHeader
+    pStdDecoderModelInfo*: ptr StdVideoEncodeAV1DecoderModelInfo
+    stdOperatingPointCount*: uint32
+    pStdOperatingPoints*: ptr StdVideoEncodeAV1OperatingPointInfo
+
+  VkVideoEncodeAV1DpbSlotInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pStdReferenceInfo*: ptr StdVideoEncodeAV1ReferenceInfo
+
+  VkVideoEncodeAV1PictureInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    predictionMode*: VkVideoEncodeAV1PredictionModeKHR
+    rateControlGroup*: VkVideoEncodeAV1RateControlGroupKHR
+    constantQIndex*: uint32
+    pStdPictureInfo*: ptr StdVideoEncodeAV1PictureInfo
+    referenceNameSlotIndices*: array[VK_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR, int32]
+    primaryReferenceCdfOnly*: VkBool32
+    generateObuExtensionHeader*: VkBool32
+
+  VkVideoEncodeAV1ProfileInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    stdProfile*: StdVideoAV1Profile
+
+  VkVideoEncodeAV1RateControlInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkVideoEncodeAV1RateControlFlagsKHR
+    gopFrameCount*: uint32
+    keyFramePeriod*: uint32
+    consecutiveBipredictiveFrameCount*: uint32
+    temporalLayerCount*: uint32
+
+  VkVideoEncodeAV1QIndexKHR* = object
+    intraQIndex*: uint32
+    predictiveQIndex*: uint32
+    bipredictiveQIndex*: uint32
+
+  VkVideoEncodeAV1FrameSizeKHR* = object
+    intraFrameSize*: uint32
+    predictiveFrameSize*: uint32
+    bipredictiveFrameSize*: uint32
+
+  VkVideoEncodeAV1GopRemainingFrameInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    useGopRemainingFrames*: VkBool32
+    gopRemainingIntra*: uint32
+    gopRemainingPredictive*: uint32
+    gopRemainingBipredictive*: uint32
+
+  VkVideoEncodeAV1RateControlLayerInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    useMinQIndex*: VkBool32
+    minQIndex*: VkVideoEncodeAV1QIndexKHR
+    useMaxQIndex*: VkBool32
+    maxQIndex*: VkVideoEncodeAV1QIndexKHR
+    useMaxFrameSize*: VkBool32
+    maxFrameSize*: VkVideoEncodeAV1FrameSizeKHR
+
   VkPhysicalDeviceInheritedViewportScissorFeaturesNV* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -11716,11 +13709,46 @@ type
     pNext*: pointer
     provokingVertexMode*: VkProvokingVertexModeEXT
 
+  VkVideoEncodeIntraRefreshCapabilitiesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    intraRefreshModes*: VkVideoEncodeIntraRefreshModeFlagsKHR
+    maxIntraRefreshCycleDuration*: uint32
+    maxIntraRefreshActiveReferencePictures*: uint32
+    partitionIndependentIntraRefreshRegions*: VkBool32
+    nonRectangularIntraRefreshRegions*: VkBool32
+
+  VkVideoEncodeSessionIntraRefreshCreateInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    intraRefreshMode*: VkVideoEncodeIntraRefreshModeFlagBitsKHR
+
+  VkVideoEncodeIntraRefreshInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    intraRefreshCycleDuration*: uint32
+    intraRefreshIndex*: uint32
+
+  VkVideoReferenceIntraRefreshInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    dirtyIntraRefreshRegions*: uint32
+
+  VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    videoEncodeIntraRefresh*: VkBool32
+
   VkCuModuleCreateInfoNVX* = object
     sType*: VkStructureType
     pNext*: pointer
     dataSize*: uint
     pData*: pointer
+
+  VkCuModuleTexturingModeCreateInfoNVX* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    use64bitTexturing*: VkBool32
 
   VkCuFunctionCreateInfoNVX* = object
     sType*: VkStructureType
@@ -11924,6 +13952,13 @@ type
     pNext*: pointer
     triStripVertexOrderIndependentOfProvokingVertex*: VkBool32
 
+  VkPhysicalDeviceShaderFmaFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderFmaFloat16*: VkBool32
+    shaderFmaFloat32*: VkBool32
+    shaderFmaFloat64*: VkBool32
+
   VkPhysicalDeviceRayTracingMotionBlurFeaturesNV* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -11934,6 +13969,12 @@ type
     sType*: VkStructureType
     pNext*: pointer
     rayTracingValidation*: VkBool32
+
+  VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    spheres*: VkBool32
+    linearSweptSpheres*: VkBool32
 
   VkAccelerationStructureGeometryMotionTrianglesDataNV* = object
     sType*: VkStructureType
@@ -12168,6 +14209,12 @@ type
 
   VkRenderingInfoKHR* = VkRenderingInfo
 
+  VkRenderingEndInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+
+  VkRenderingEndInfoEXT* = VkRenderingEndInfoKHR
+
   VkRenderingAttachmentInfo* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -12363,19 +14410,23 @@ type
     pNext*: pointer
     imageCompressionControlSwapchain*: VkBool32
 
-  VkImageSubresource2KHR* = object
+  VkImageSubresource2* = object
     sType*: VkStructureType
     pNext*: pointer
     imageSubresource*: VkImageSubresource
 
-  VkImageSubresource2EXT* = VkImageSubresource2KHR
+  VkImageSubresource2KHR* = VkImageSubresource2
 
-  VkSubresourceLayout2KHR* = object
+  VkImageSubresource2EXT* = VkImageSubresource2
+
+  VkSubresourceLayout2* = object
     sType*: VkStructureType
     pNext*: pointer
     subresourceLayout*: VkSubresourceLayout
 
-  VkSubresourceLayout2EXT* = VkSubresourceLayout2KHR
+  VkSubresourceLayout2KHR* = VkSubresourceLayout2
+
+  VkSubresourceLayout2EXT* = VkSubresourceLayout2
 
   VkRenderPassCreationControlEXT* = object
     sType*: VkStructureType
@@ -12622,26 +14673,32 @@ type
     pNext*: pointer
     nonSeamlessCubeMap*: VkBool32
 
-  VkPhysicalDevicePipelineRobustnessFeaturesEXT* = object
+  VkPhysicalDevicePipelineRobustnessFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     pipelineRobustness*: VkBool32
 
-  VkPipelineRobustnessCreateInfoEXT* = object
-    sType*: VkStructureType
-    pNext*: pointer
-    storageBuffers*: VkPipelineRobustnessBufferBehaviorEXT
-    uniformBuffers*: VkPipelineRobustnessBufferBehaviorEXT
-    vertexInputs*: VkPipelineRobustnessBufferBehaviorEXT
-    images*: VkPipelineRobustnessImageBehaviorEXT
+  VkPhysicalDevicePipelineRobustnessFeaturesEXT* = VkPhysicalDevicePipelineRobustnessFeatures
 
-  VkPhysicalDevicePipelineRobustnessPropertiesEXT* = object
+  VkPipelineRobustnessCreateInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    defaultRobustnessStorageBuffers*: VkPipelineRobustnessBufferBehaviorEXT
-    defaultRobustnessUniformBuffers*: VkPipelineRobustnessBufferBehaviorEXT
-    defaultRobustnessVertexInputs*: VkPipelineRobustnessBufferBehaviorEXT
-    defaultRobustnessImages*: VkPipelineRobustnessImageBehaviorEXT
+    storageBuffers*: VkPipelineRobustnessBufferBehavior
+    uniformBuffers*: VkPipelineRobustnessBufferBehavior
+    vertexInputs*: VkPipelineRobustnessBufferBehavior
+    images*: VkPipelineRobustnessImageBehavior
+
+  VkPipelineRobustnessCreateInfoEXT* = VkPipelineRobustnessCreateInfo
+
+  VkPhysicalDevicePipelineRobustnessProperties* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    defaultRobustnessStorageBuffers*: VkPipelineRobustnessBufferBehavior
+    defaultRobustnessUniformBuffers*: VkPipelineRobustnessBufferBehavior
+    defaultRobustnessVertexInputs*: VkPipelineRobustnessBufferBehavior
+    defaultRobustnessImages*: VkPipelineRobustnessImageBehavior
+
+  VkPhysicalDevicePipelineRobustnessPropertiesEXT* = VkPhysicalDevicePipelineRobustnessProperties
 
   VkImageViewSampleWeightCreateInfoQCOM* = object
     sType*: VkStructureType
@@ -12677,6 +14734,11 @@ type
     apronSize*: VkExtent2D
     origin*: VkOffset2D
 
+  VkTileMemoryBindInfoQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    memory*: VkDeviceMemory
+
   VkPhysicalDeviceAmigoProfilingFeaturesSEC* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -12693,15 +14755,29 @@ type
     pNext*: pointer
     attachmentFeedbackLoopLayout*: VkBool32
 
-  VkPhysicalDeviceDepthClampZeroOneFeaturesEXT* = object
+  VkPhysicalDeviceDepthClampZeroOneFeaturesEXT* = VkPhysicalDeviceDepthClampZeroOneFeaturesKHR
+
+  VkAttachmentFeedbackLoopInfoEXT* = object
     sType*: VkStructureType
     pNext*: pointer
-    depthClampZeroOne*: VkBool32
+    feedbackLoopEnable*: VkBool32
 
   VkPhysicalDeviceAddressBindingReportFeaturesEXT* = object
     sType*: VkStructureType
     pNext*: pointer
     reportAddressBinding*: VkBool32
+
+  VkRenderingAttachmentFlagsInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkRenderingAttachmentFlagsKHR
+
+  VkResolveImageModeInfoKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkResolveImageFlagsKHR
+    resolveMode*: VkResolveModeFlagBits
+    stencilResolveMode*: VkResolveModeFlagBits
 
   VkDeviceAddressBindingCallbackDataEXT* = object
     sType*: VkStructureType
@@ -12837,6 +14913,19 @@ type
     decompressedSize*: VkDeviceSize
     decompressionMethod*: VkMemoryDecompressionMethodFlagsNV
 
+  VkDecompressMemoryRegionEXT* = object
+    srcAddress*: VkDeviceAddress
+    dstAddress*: VkDeviceAddress
+    compressedSize*: VkDeviceSize
+    decompressedSize*: VkDeviceSize
+
+  VkDecompressMemoryInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    decompressionMethod*: VkMemoryDecompressionMethodFlagsEXT
+    regionCount*: uint32
+    pRegions*: ptr VkDecompressMemoryRegionEXT
+
   VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -12872,62 +14961,85 @@ type
     pNext*: pointer
     dynamicRenderingUnusedAttachments*: VkBool32
 
-  VkSurfacePresentModeEXT* = object
+  VkPhysicalDeviceInternallySynchronizedQueuesFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    internallySynchronizedQueues*: VkBool32
+
+  VkSurfacePresentModeKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     presentMode*: VkPresentModeKHR
 
-  VkSurfacePresentScalingCapabilitiesEXT* = object
+  VkSurfacePresentModeEXT* = VkSurfacePresentModeKHR
+
+  VkSurfacePresentScalingCapabilitiesKHR* = object
     sType*: VkStructureType
     pNext*: pointer
-    supportedPresentScaling*: VkPresentScalingFlagsEXT
-    supportedPresentGravityX*: VkPresentGravityFlagsEXT
-    supportedPresentGravityY*: VkPresentGravityFlagsEXT
+    supportedPresentScaling*: VkPresentScalingFlagsKHR
+    supportedPresentGravityX*: VkPresentGravityFlagsKHR
+    supportedPresentGravityY*: VkPresentGravityFlagsKHR
     minScaledImageExtent*: VkExtent2D
     maxScaledImageExtent*: VkExtent2D
 
-  VkSurfacePresentModeCompatibilityEXT* = object
+  VkSurfacePresentScalingCapabilitiesEXT* = VkSurfacePresentScalingCapabilitiesKHR
+
+  VkSurfacePresentModeCompatibilityKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     presentModeCount*: uint32
     pPresentModes*: ptr VkPresentModeKHR
 
-  VkPhysicalDeviceSwapchainMaintenance1FeaturesEXT* = object
+  VkSurfacePresentModeCompatibilityEXT* = VkSurfacePresentModeCompatibilityKHR
+
+  VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainMaintenance1*: VkBool32
 
-  VkSwapchainPresentFenceInfoEXT* = object
+  VkPhysicalDeviceSwapchainMaintenance1FeaturesEXT* = VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR
+
+  VkSwapchainPresentFenceInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainCount*: uint32
     pFences*: ptr VkFence
 
-  VkSwapchainPresentModesCreateInfoEXT* = object
+  VkSwapchainPresentFenceInfoEXT* = VkSwapchainPresentFenceInfoKHR
+
+  VkSwapchainPresentModesCreateInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     presentModeCount*: uint32
     pPresentModes*: ptr VkPresentModeKHR
 
-  VkSwapchainPresentModeInfoEXT* = object
+  VkSwapchainPresentModesCreateInfoEXT* = VkSwapchainPresentModesCreateInfoKHR
+
+  VkSwapchainPresentModeInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     swapchainCount*: uint32
     pPresentModes*: ptr VkPresentModeKHR
 
-  VkSwapchainPresentScalingCreateInfoEXT* = object
+  VkSwapchainPresentModeInfoEXT* = VkSwapchainPresentModeInfoKHR
+
+  VkSwapchainPresentScalingCreateInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
-    scalingBehavior*: VkPresentScalingFlagsEXT
-    presentGravityX*: VkPresentGravityFlagsEXT
-    presentGravityY*: VkPresentGravityFlagsEXT
+    scalingBehavior*: VkPresentScalingFlagsKHR
+    presentGravityX*: VkPresentGravityFlagsKHR
+    presentGravityY*: VkPresentGravityFlagsKHR
 
-  VkReleaseSwapchainImagesInfoEXT* = object
+  VkSwapchainPresentScalingCreateInfoEXT* = VkSwapchainPresentScalingCreateInfoKHR
+
+  VkReleaseSwapchainImagesInfoKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     swapchain*: VkSwapchainKHR
     imageIndexCount*: uint32
     pImageIndices*: ptr uint32
+
+  VkReleaseSwapchainImagesInfoEXT* = VkReleaseSwapchainImagesInfoKHR
 
   VkPhysicalDeviceDepthBiasControlFeaturesEXT* = object
     sType*: VkStructureType
@@ -12937,15 +15049,26 @@ type
     floatRepresentation*: VkBool32
     depthBiasExact*: VkBool32
 
+  VkPhysicalDeviceRayTracingInvocationReorderFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    rayTracingInvocationReorder*: VkBool32
+
   VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV* = object
     sType*: VkStructureType
     pNext*: pointer
     rayTracingInvocationReorder*: VkBool32
 
+  VkPhysicalDeviceRayTracingInvocationReorderPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    rayTracingInvocationReorderReorderingHint*: VkRayTracingInvocationReorderModeEXT
+    maxShaderBindingTableRecordIndex*: uint32
+
   VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV* = object
     sType*: VkStructureType
     pNext*: pointer
-    rayTracingInvocationReorderReorderingHint*: VkRayTracingInvocationReorderModeNV
+    rayTracingInvocationReorderReorderingHint*: VkRayTracingInvocationReorderModeEXT
 
   VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV* = object
     sType*: VkStructureType
@@ -12982,11 +15105,13 @@ type
     pNext*: pointer
     rayTracingPositionFetch*: VkBool32
 
-  VkDeviceImageSubresourceInfoKHR* = object
+  VkDeviceImageSubresourceInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     pCreateInfo*: ptr VkImageCreateInfo
-    pSubresource*: ptr VkImageSubresource2KHR
+    pSubresource*: ptr VkImageSubresource2
+
+  VkDeviceImageSubresourceInfoKHR* = VkDeviceImageSubresourceInfo
 
   VkPhysicalDeviceShaderCorePropertiesARM* = object
     sType*: VkStructureType
@@ -13011,7 +15136,7 @@ type
     pNext*: pointer
     pQueriedLowLatencyData*: pointer
 
-  VkMemoryMapInfoKHR* = object
+  VkMemoryMapInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     flags*: VkMemoryMapFlags
@@ -13019,11 +15144,15 @@ type
     offset*: VkDeviceSize
     size*: VkDeviceSize
 
-  VkMemoryUnmapInfoKHR* = object
+  VkMemoryMapInfoKHR* = VkMemoryMapInfo
+
+  VkMemoryUnmapInfo* = object
     sType*: VkStructureType
     pNext*: pointer
-    flags*: VkMemoryUnmapFlagsKHR
+    flags*: VkMemoryUnmapFlags
     memory*: VkDeviceMemory
+
+  VkMemoryUnmapInfoKHR* = VkMemoryUnmapInfo
 
   VkPhysicalDeviceShaderObjectFeaturesEXT* = object
     sType*: VkStructureType
@@ -13124,6 +15253,11 @@ type
     pNext*: pointer
     cooperativeMatrixSupportedStages*: VkShaderStageFlags
 
+  VkPhysicalDeviceCooperativeMatrixConversionFeaturesQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    cooperativeMatrixConversion*: VkBool32
+
   VkPhysicalDeviceShaderEnqueuePropertiesAMDX* = object
     sType*: VkStructureType
     pNext*: pointer
@@ -13132,11 +15266,14 @@ type
     maxExecutionGraphShaderPayloadSize*: uint32
     maxExecutionGraphShaderPayloadCount*: uint32
     executionGraphDispatchAddressAlignment*: uint32
+    maxExecutionGraphWorkgroupCount*: array[3, uint32]
+    maxExecutionGraphWorkgroups*: uint32
 
   VkPhysicalDeviceShaderEnqueueFeaturesAMDX* = object
     sType*: VkStructureType
     pNext*: pointer
     shaderEnqueue*: VkBool32
+    shaderMeshEnqueue*: VkBool32
 
   VkExecutionGraphPipelineCreateInfoAMDX* = object
     sType*: VkStructureType
@@ -13158,7 +15295,9 @@ type
   VkExecutionGraphPipelineScratchSizeAMDX* = object
     sType*: VkStructureType
     pNext*: pointer
-    size*: VkDeviceSize
+    minSize*: VkDeviceSize
+    maxSize*: VkDeviceSize
+    sizeGranularity*: VkDeviceSize
 
   VkDispatchGraphInfoAMDX* = object
     nodeIndex*: uint32
@@ -13189,12 +15328,36 @@ type
     stage*: VkAntiLagStageAMD
     frameIndex*: uint64
 
-  VkBindMemoryStatusKHR* = object
+  VkBindMemoryStatus* = object
     sType*: VkStructureType
     pNext*: pointer
     pResult*: ptr VkResult
 
-  VkBindDescriptorSetsInfoKHR* = object
+  VkPhysicalDeviceTileMemoryHeapFeaturesQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tileMemoryHeap*: VkBool32
+
+  VkPhysicalDeviceTileMemoryHeapPropertiesQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    queueSubmitBoundary*: VkBool32
+    tileBufferTransfers*: VkBool32
+
+  VkTileMemorySizeInfoQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    size*: VkDeviceSize
+
+  VkTileMemoryRequirementsQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    size*: VkDeviceSize
+    alignment*: VkDeviceSize
+
+  VkBindMemoryStatusKHR* = VkBindMemoryStatus
+
+  VkBindDescriptorSetsInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     stageFlags*: VkShaderStageFlags
@@ -13205,7 +15368,9 @@ type
     dynamicOffsetCount*: uint32
     pDynamicOffsets*: ptr uint32
 
-  VkPushConstantsInfoKHR* = object
+  VkBindDescriptorSetsInfoKHR* = VkBindDescriptorSetsInfo
+
+  VkPushConstantsInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     layout*: VkPipelineLayout
@@ -13214,7 +15379,9 @@ type
     size*: uint32
     pValues*: pointer
 
-  VkPushDescriptorSetInfoKHR* = object
+  VkPushConstantsInfoKHR* = VkPushConstantsInfo
+
+  VkPushDescriptorSetInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     stageFlags*: VkShaderStageFlags
@@ -13223,13 +15390,17 @@ type
     descriptorWriteCount*: uint32
     pDescriptorWrites*: ptr VkWriteDescriptorSet
 
-  VkPushDescriptorSetWithTemplateInfoKHR* = object
+  VkPushDescriptorSetInfoKHR* = VkPushDescriptorSetInfo
+
+  VkPushDescriptorSetWithTemplateInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     descriptorUpdateTemplate*: VkDescriptorUpdateTemplate
     layout*: VkPipelineLayout
     set*: uint32
     pData*: pointer
+
+  VkPushDescriptorSetWithTemplateInfoKHR* = VkPushDescriptorSetWithTemplateInfo
 
   VkSetDescriptorBufferOffsetsInfoEXT* = object
     sType*: VkStructureType
@@ -13451,45 +15622,62 @@ type
     stripeSemaphoreInfoCount*: uint32
     pStripeSemaphoreInfos*: ptr VkSemaphoreSubmitInfo
 
+  VkPhysicalDevicePipelineOpacityMicromapFeaturesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pipelineOpacityMicromap*: VkBool32
+
   VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR* = object
     sType*: VkStructureType
     pNext*: pointer
     shaderMaximalReconvergence*: VkBool32
 
-  VkPhysicalDeviceShaderSubgroupRotateFeaturesKHR* = object
+  VkPhysicalDeviceShaderSubgroupRotateFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     shaderSubgroupRotate*: VkBool32
     shaderSubgroupRotateClustered*: VkBool32
 
-  VkPhysicalDeviceShaderExpectAssumeFeaturesKHR* = object
+  VkPhysicalDeviceShaderSubgroupRotateFeaturesKHR* = VkPhysicalDeviceShaderSubgroupRotateFeatures
+
+  VkPhysicalDeviceShaderExpectAssumeFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     shaderExpectAssume*: VkBool32
 
-  VkPhysicalDeviceShaderFloatControls2FeaturesKHR* = object
+  VkPhysicalDeviceShaderExpectAssumeFeaturesKHR* = VkPhysicalDeviceShaderExpectAssumeFeatures
+
+  VkPhysicalDeviceShaderFloatControls2Features* = object
     sType*: VkStructureType
     pNext*: pointer
     shaderFloatControls2*: VkBool32
 
-  VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR* = object
+  VkPhysicalDeviceShaderFloatControls2FeaturesKHR* = VkPhysicalDeviceShaderFloatControls2Features
+
+  VkPhysicalDeviceDynamicRenderingLocalReadFeatures* = object
     sType*: VkStructureType
     pNext*: pointer
     dynamicRenderingLocalRead*: VkBool32
 
-  VkRenderingAttachmentLocationInfoKHR* = object
+  VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR* = VkPhysicalDeviceDynamicRenderingLocalReadFeatures
+
+  VkRenderingAttachmentLocationInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     colorAttachmentCount*: uint32
     pColorAttachmentLocations*: ptr uint32
 
-  VkRenderingInputAttachmentIndexInfoKHR* = object
+  VkRenderingAttachmentLocationInfoKHR* = VkRenderingAttachmentLocationInfo
+
+  VkRenderingInputAttachmentIndexInfo* = object
     sType*: VkStructureType
     pNext*: pointer
     colorAttachmentCount*: uint32
     pColorAttachmentInputIndices*: ptr uint32
     pDepthInputAttachmentIndex*: ptr uint32
     pStencilInputAttachmentIndex*: ptr uint32
+
+  VkRenderingInputAttachmentIndexInfoKHR* = VkRenderingInputAttachmentIndexInfo
 
   VkPhysicalDeviceShaderQuadControlFeaturesKHR* = object
     sType*: VkStructureType
@@ -13517,6 +15705,13 @@ type
     sType*: VkStructureType
     pNext*: pointer
     pPlacedAddress*: pointer
+
+  VkPhysicalDeviceShaderBfloat16FeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderBFloat16Type*: VkBool32
+    shaderBFloat16DotProduct*: VkBool32
+    shaderBFloat16CooperativeMatrix*: VkBool32
 
   VkPhysicalDeviceRawAccessChainsFeaturesNV* = object
     sType*: VkStructureType
@@ -13547,6 +15742,929 @@ type
     sType*: VkStructureType
     pNext*: pointer
     shaderReplicatedComposites*: VkBool32
+
+  VkPhysicalDevicePresentModeFifoLatestReadyFeaturesEXT* = VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR
+
+  VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentModeFifoLatestReady*: VkBool32
+
+  VkDepthClampRangeEXT* = object
+    minDepthClamp*: float32
+    maxDepthClamp*: float32
+
+  VkPhysicalDeviceCooperativeMatrix2FeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    cooperativeMatrixWorkgroupScope*: VkBool32
+    cooperativeMatrixFlexibleDimensions*: VkBool32
+    cooperativeMatrixReductions*: VkBool32
+    cooperativeMatrixConversions*: VkBool32
+    cooperativeMatrixPerElementOperations*: VkBool32
+    cooperativeMatrixTensorAddressing*: VkBool32
+    cooperativeMatrixBlockLoads*: VkBool32
+
+  VkPhysicalDeviceCooperativeMatrix2PropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    cooperativeMatrixWorkgroupScopeMaxWorkgroupSize*: uint32
+    cooperativeMatrixFlexibleDimensionsMaxDimension*: uint32
+    cooperativeMatrixWorkgroupScopeReservedSharedMemory*: uint32
+
+  VkCooperativeMatrixFlexibleDimensionsPropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    MGranularity*: uint32
+    NGranularity*: uint32
+    KGranularity*: uint32
+    AType*: VkComponentTypeKHR
+    BType*: VkComponentTypeKHR
+    CType*: VkComponentTypeKHR
+    ResultType*: VkComponentTypeKHR
+    saturatingAccumulation*: VkBool32
+    scope*: VkScopeKHR
+    workgroupInvocations*: uint32
+
+  VkPhysicalDeviceHdrVividFeaturesHUAWEI* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    hdrVivid*: VkBool32
+
+  VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    vertexAttributeRobustness*: VkBool32
+
+  VkPhysicalDeviceDenseGeometryFormatFeaturesAMDX* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    denseGeometryFormat*: VkBool32
+
+  VkAccelerationStructureDenseGeometryFormatTrianglesDataAMDX* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    compressedData*: VkDeviceOrHostAddressConstKHR
+    dataSize*: VkDeviceSize
+    numTriangles*: uint32
+    numVertices*: uint32
+    maxPrimitiveIndex*: uint32
+    maxGeometryIndex*: uint32
+    format*: VkCompressedTriangleFormatAMDX
+
+  VkPhysicalDeviceDepthClampZeroOneFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    depthClampZeroOne*: VkBool32
+
+  VkPhysicalDeviceCooperativeVectorFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    cooperativeVector*: VkBool32
+    cooperativeVectorTraining*: VkBool32
+
+  VkCooperativeVectorPropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    inputType*: VkComponentTypeKHR
+    inputInterpretation*: VkComponentTypeKHR
+    matrixInterpretation*: VkComponentTypeKHR
+    biasInterpretation*: VkComponentTypeKHR
+    resultType*: VkComponentTypeKHR
+    transpose*: VkBool32
+
+  VkPhysicalDeviceCooperativeVectorPropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    cooperativeVectorSupportedStages*: VkShaderStageFlags
+    cooperativeVectorTrainingFloat16Accumulation*: VkBool32
+    cooperativeVectorTrainingFloat32Accumulation*: VkBool32
+    maxCooperativeVectorComponents*: uint32
+
+  VkConvertCooperativeVectorMatrixInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    srcSize*: uint
+    srcData*: VkDeviceOrHostAddressConstKHR
+    pDstSize*: ptr uint
+    dstData*: VkDeviceOrHostAddressKHR
+    srcComponentType*: VkComponentTypeKHR
+    dstComponentType*: VkComponentTypeKHR
+    numRows*: uint32
+    numColumns*: uint32
+    srcLayout*: VkCooperativeVectorMatrixLayoutNV
+    srcStride*: uint
+    dstLayout*: VkCooperativeVectorMatrixLayoutNV
+    dstStride*: uint
+
+  VkPhysicalDeviceTileShadingFeaturesQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tileShading*: VkBool32
+    tileShadingFragmentStage*: VkBool32
+    tileShadingColorAttachments*: VkBool32
+    tileShadingDepthAttachments*: VkBool32
+    tileShadingStencilAttachments*: VkBool32
+    tileShadingInputAttachments*: VkBool32
+    tileShadingSampledAttachments*: VkBool32
+    tileShadingPerTileDraw*: VkBool32
+    tileShadingPerTileDispatch*: VkBool32
+    tileShadingDispatchTile*: VkBool32
+    tileShadingApron*: VkBool32
+    tileShadingAnisotropicApron*: VkBool32
+    tileShadingAtomicOps*: VkBool32
+    tileShadingImageProcessing*: VkBool32
+
+  VkPhysicalDeviceTileShadingPropertiesQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxApronSize*: uint32
+    preferNonCoherent*: VkBool32
+    tileGranularity*: VkExtent2D
+    maxTileShadingRate*: VkExtent2D
+
+  VkRenderPassTileShadingCreateInfoQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkTileShadingRenderPassFlagsQCOM
+    tileApronSize*: VkExtent2D
+
+  VkPerTileBeginInfoQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+
+  VkPerTileEndInfoQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+
+  VkDispatchTileInfoQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+
+  VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxFragmentDensityMapLayers*: uint32
+
+  VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    fragmentDensityMapLayered*: VkBool32
+
+  VkPipelineFragmentDensityMapLayeredCreateInfoVALVE* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxFragmentDensityMapLayers*: uint32
+
+  VkSetPresentConfigNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    numFramesPerBatch*: uint32
+    presentConfigFeedback*: uint32
+
+  VkPhysicalDevicePresentMeteringFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    presentMetering*: VkBool32
+
+  VkExternalComputeQueueDeviceCreateInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    reservedExternalQueues*: uint32
+
+  VkExternalComputeQueueCreateInfoNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    preferredQueue*: VkQueue
+
+  VkExternalComputeQueueDataParamsNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    deviceIndex*: uint32
+
+  VkPhysicalDeviceExternalComputeQueuePropertiesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    externalDataSize*: uint32
+    maxExternalQueues*: uint32
+  VkExternalComputeQueueNV* = distinct VkHandle
+
+  VkPhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderUniformBufferUnsizedArray*: VkBool32
+
+  VkPhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderMixedFloatDotProductFloat16AccFloat32*: VkBool32
+    shaderMixedFloatDotProductFloat16AccFloat16*: VkBool32
+    shaderMixedFloatDotProductBFloat16Acc*: VkBool32
+    shaderMixedFloatDotProductFloat8AccFloat32*: VkBool32
+
+  VkPhysicalDeviceFormatPackFeaturesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    formatPack*: VkBool32
+
+  VkTensorDescriptionARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tiling*: VkTensorTilingARM
+    format*: VkFormat
+    dimensionCount*: uint32
+    pDimensions*: ptr int64
+    pStrides*: ptr int64
+    usage*: VkTensorUsageFlagsARM
+
+  VkTensorCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkTensorCreateFlagsARM
+    pDescription*: ptr VkTensorDescriptionARM
+    sharingMode*: VkSharingMode
+    queueFamilyIndexCount*: uint32
+    pQueueFamilyIndices*: ptr uint32
+
+  VkTensorViewCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkTensorViewCreateFlagsARM
+    tensor*: VkTensorARM
+    format*: VkFormat
+
+  VkTensorMemoryRequirementsInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensor*: VkTensorARM
+
+  VkBindTensorMemoryInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensor*: VkTensorARM
+    memory*: VkDeviceMemory
+    memoryOffset*: VkDeviceSize
+
+  VkWriteDescriptorSetTensorARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensorViewCount*: uint32
+    pTensorViews*: ptr VkTensorViewARM
+
+  VkTensorFormatPropertiesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    optimalTilingTensorFeatures*: VkFormatFeatureFlags2
+    linearTilingTensorFeatures*: VkFormatFeatureFlags2
+
+  VkPhysicalDeviceTensorPropertiesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxTensorDimensionCount*: uint32
+    maxTensorElements*: uint64
+    maxPerDimensionTensorElements*: uint64
+    maxTensorStride*: int64
+    maxTensorSize*: uint64
+    maxTensorShaderAccessArrayLength*: uint32
+    maxTensorShaderAccessSize*: uint32
+    maxDescriptorSetStorageTensors*: uint32
+    maxPerStageDescriptorSetStorageTensors*: uint32
+    maxDescriptorSetUpdateAfterBindStorageTensors*: uint32
+    maxPerStageDescriptorUpdateAfterBindStorageTensors*: uint32
+    shaderStorageTensorArrayNonUniformIndexingNative*: VkBool32
+    shaderTensorSupportedStages*: VkShaderStageFlags
+
+  VkTensorMemoryBarrierARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    srcStageMask*: VkPipelineStageFlags2
+    srcAccessMask*: VkAccessFlags2
+    dstStageMask*: VkPipelineStageFlags2
+    dstAccessMask*: VkAccessFlags2
+    srcQueueFamilyIndex*: uint32
+    dstQueueFamilyIndex*: uint32
+    tensor*: VkTensorARM
+
+  VkTensorDependencyInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensorMemoryBarrierCount*: uint32
+    pTensorMemoryBarriers*: ptr VkTensorMemoryBarrierARM
+
+  VkPhysicalDeviceTensorFeaturesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensorNonPacked*: VkBool32
+    shaderTensorAccess*: VkBool32
+    shaderStorageTensorArrayDynamicIndexing*: VkBool32
+    shaderStorageTensorArrayNonUniformIndexing*: VkBool32
+    descriptorBindingStorageTensorUpdateAfterBind*: VkBool32
+    tensors*: VkBool32
+
+  VkDeviceTensorMemoryRequirementsARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pCreateInfo*: ptr VkTensorCreateInfoARM
+
+  VkCopyTensorInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    srcTensor*: VkTensorARM
+    dstTensor*: VkTensorARM
+    regionCount*: uint32
+    pRegions*: ptr VkTensorCopyARM
+
+  VkTensorCopyARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    dimensionCount*: uint32
+    pSrcOffset*: ptr uint64
+    pDstOffset*: ptr uint64
+    pExtent*: ptr uint64
+
+  VkMemoryDedicatedAllocateInfoTensorARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensor*: VkTensorARM
+
+  VkPhysicalDeviceDescriptorBufferTensorPropertiesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensorCaptureReplayDescriptorDataSize*: uint
+    tensorViewCaptureReplayDescriptorDataSize*: uint
+    tensorDescriptorSize*: uint
+
+  VkPhysicalDeviceDescriptorBufferTensorFeaturesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    descriptorBufferTensorDescriptors*: VkBool32
+
+  VkTensorCaptureDescriptorDataInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensor*: VkTensorARM
+
+  VkTensorViewCaptureDescriptorDataInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensorView*: VkTensorViewARM
+
+  VkDescriptorGetTensorInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensorView*: VkTensorViewARM
+
+  VkFrameBoundaryTensorsARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensorCount*: uint32
+    pTensors*: ptr VkTensorARM
+
+  VkPhysicalDeviceExternalTensorInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkTensorCreateFlagsARM
+    pDescription*: ptr VkTensorDescriptionARM
+    handleType*: VkExternalMemoryHandleTypeFlagBits
+
+  VkExternalTensorPropertiesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    externalMemoryProperties*: VkExternalMemoryProperties
+
+  VkExternalMemoryTensorCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    handleTypes*: VkExternalMemoryHandleTypeFlags
+
+  VkPhysicalDeviceShaderFloat8FeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderFloat8*: VkBool32
+    shaderFloat8CooperativeMatrix*: VkBool32
+
+  VkSurfaceCreateInfoOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkSurfaceCreateFlagsOHOS
+    window*: ptr OHNativeWindow
+
+  VkPhysicalDeviceDataGraphFeaturesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    dataGraph*: VkBool32
+    dataGraphUpdateAfterBind*: VkBool32
+    dataGraphSpecializationConstants*: VkBool32
+    dataGraphDescriptorBuffer*: VkBool32
+    dataGraphShaderModule*: VkBool32
+
+  VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    dimension*: uint32
+    zeroCount*: uint32
+    groupSize*: uint32
+
+  VkDataGraphPipelineConstantARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    id*: uint32
+    pConstantData*: pointer
+
+  VkDataGraphPipelineResourceInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    descriptorSet*: uint32
+    binding*: uint32
+    arrayElement*: uint32
+
+  VkDataGraphPipelineCompilerControlCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pVendorOptions*: cstring
+
+  VkDataGraphPipelineCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkPipelineCreateFlags2KHR
+    layout*: VkPipelineLayout
+    resourceInfoCount*: uint32
+    pResourceInfos*: ptr VkDataGraphPipelineResourceInfoARM
+
+  VkDataGraphPipelineShaderModuleCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    module*: VkShaderModule
+    pName*: cstring
+    pSpecializationInfo*: ptr VkSpecializationInfo
+    constantCount*: uint32
+    pConstants*: ptr VkDataGraphPipelineConstantARM
+
+  VkDataGraphPipelineSessionCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkDataGraphPipelineSessionCreateFlagsARM
+    dataGraphPipeline*: VkPipeline
+
+  VkDataGraphPipelineSessionBindPointRequirementsInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    session*: VkDataGraphPipelineSessionARM
+
+  VkDataGraphPipelineSessionBindPointRequirementARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    bindPoint*: VkDataGraphPipelineSessionBindPointARM
+    bindPointType*: VkDataGraphPipelineSessionBindPointTypeARM
+    numObjects*: uint32
+
+  VkDataGraphPipelineSessionMemoryRequirementsInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    session*: VkDataGraphPipelineSessionARM
+    bindPoint*: VkDataGraphPipelineSessionBindPointARM
+    objectIndex*: uint32
+
+  VkBindDataGraphPipelineSessionMemoryInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    session*: VkDataGraphPipelineSessionARM
+    bindPoint*: VkDataGraphPipelineSessionBindPointARM
+    objectIndex*: uint32
+    memory*: VkDeviceMemory
+    memoryOffset*: VkDeviceSize
+
+  VkDataGraphPipelineInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    dataGraphPipeline*: VkPipeline
+
+  VkDataGraphPipelinePropertyQueryResultARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    property*: VkDataGraphPipelinePropertyARM
+    isText*: VkBool32
+    dataSize*: uint
+    pData*: pointer
+
+  VkDataGraphPipelineIdentifierCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    identifierSize*: uint32
+    pIdentifier*: ptr uint8
+
+  VkDataGraphPipelineDispatchInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkDataGraphPipelineDispatchFlagsARM
+
+  VkPhysicalDeviceDataGraphProcessingEngineARM* = object
+    `type`*: VkPhysicalDeviceDataGraphProcessingEngineTypeARM
+    isForeign*: VkBool32
+
+  VkPhysicalDeviceDataGraphOperationSupportARM* = object
+    operationType*: VkPhysicalDeviceDataGraphOperationTypeARM
+    name*: array[VK_MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM, char]
+    version*: uint32
+
+  VkQueueFamilyDataGraphPropertiesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    engine*: VkPhysicalDeviceDataGraphProcessingEngineARM
+    operation*: VkPhysicalDeviceDataGraphOperationSupportARM
+
+  VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    queueFamilyIndex*: uint32
+    engineType*: VkPhysicalDeviceDataGraphProcessingEngineTypeARM
+
+  VkQueueFamilyDataGraphProcessingEnginePropertiesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    foreignSemaphoreHandleTypes*: VkExternalSemaphoreHandleTypeFlags
+    foreignMemoryHandleTypes*: VkExternalMemoryHandleTypeFlags
+
+  VkDataGraphProcessingEngineCreateInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    processingEngineCount*: uint32
+    pProcessingEngines*: ptr VkPhysicalDeviceDataGraphProcessingEngineARM
+
+  VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pipelineCacheIncrementalMode*: VkBool32
+
+  VkDataGraphPipelineBuiltinModelCreateInfoQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pOperation*: ptr VkPhysicalDeviceDataGraphOperationSupportARM
+
+  VkPhysicalDeviceDataGraphModelFeaturesQCOM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    dataGraphModel*: VkBool32
+
+  VkPhysicalDeviceShaderUntypedPointersFeaturesKHR* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderUntypedPointers*: VkBool32
+
+  VkNativeBufferOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    handle*: ptr OHBufferHandle
+
+  VkSwapchainImageCreateInfoOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    usage*: VkSwapchainImageUsageFlagsOHOS
+
+  VkPhysicalDevicePresentationPropertiesOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    sharedImage*: VkBool32
+
+  VkPhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    videoEncodeRgbConversion*: VkBool32
+
+  VkVideoEncodeRgbConversionCapabilitiesVALVE* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    rgbModels*: VkVideoEncodeRgbModelConversionFlagsVALVE
+    rgbRanges*: VkVideoEncodeRgbRangeCompressionFlagsVALVE
+    xChromaOffsets*: VkVideoEncodeRgbChromaOffsetFlagsVALVE
+    yChromaOffsets*: VkVideoEncodeRgbChromaOffsetFlagsVALVE
+
+  VkVideoEncodeProfileRgbConversionInfoVALVE* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    performEncodeRgbConversion*: VkBool32
+
+  VkVideoEncodeSessionRgbConversionCreateInfoVALVE* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    rgbModel*: VkVideoEncodeRgbModelConversionFlagBitsVALVE
+    rgbRange*: VkVideoEncodeRgbRangeCompressionFlagBitsVALVE
+    xChromaOffset*: VkVideoEncodeRgbChromaOffsetFlagBitsVALVE
+    yChromaOffset*: VkVideoEncodeRgbChromaOffsetFlagBitsVALVE
+
+  VkPhysicalDeviceShader64BitIndexingFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shader64BitIndexing*: VkBool32
+
+  VkNativeBufferUsageOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    OHOSNativeBufferUsage*: uint64
+
+  VkNativeBufferPropertiesOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    allocationSize*: VkDeviceSize
+    memoryTypeBits*: uint32
+
+  VkNativeBufferFormatPropertiesOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    format*: VkFormat
+    externalFormat*: uint64
+    formatFeatures*: VkFormatFeatureFlags
+    samplerYcbcrConversionComponents*: VkComponentMapping
+    suggestedYcbcrModel*: VkSamplerYcbcrModelConversion
+    suggestedYcbcrRange*: VkSamplerYcbcrRange
+    suggestedXChromaOffset*: VkChromaLocation
+    suggestedYChromaOffset*: VkChromaLocation
+
+  VkImportNativeBufferInfoOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    buffer*: ptr OH_NativeBuffer
+
+  VkMemoryGetNativeBufferInfoOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    memory*: VkDeviceMemory
+
+  VkExternalFormatOHOS* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    externalFormat*: uint64
+
+  VkPhysicalDevicePerformanceCountersByRegionFeaturesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    performanceCountersByRegion*: VkBool32
+
+  VkPhysicalDevicePerformanceCountersByRegionPropertiesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxPerRegionPerformanceCounters*: uint32
+    performanceCounterRegionSize*: VkExtent2D
+    rowStrideAlignment*: uint32
+    regionAlignment*: uint32
+    identityTransformOrder*: VkBool32
+
+  VkPerformanceCounterARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    counterID*: uint32
+
+  VkPerformanceCounterDescriptionARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    flags*: VkPerformanceCounterDescriptionFlagsARM
+    name*: array[VK_MAX_DESCRIPTION_SIZE, char]
+
+  VkRenderPassPerformanceCountersByRegionBeginInfoARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    counterAddressCount*: uint32
+    pCounterAddresses*: ptr VkDeviceAddress
+    serializeRegions*: VkBool32
+    counterIndexCount*: uint32
+    pCounterIndices*: ptr uint32
+
+  VkComputeOccupancyPriorityParametersNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    occupancyPriority*: float32
+    occupancyThrottling*: float32
+
+  VkPhysicalDeviceComputeOccupancyPriorityFeaturesNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    computeOccupancyPriority*: VkBool32
+
+  VkPhysicalDeviceShaderLongVectorFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    longVector*: VkBool32
+
+  VkPhysicalDeviceShaderLongVectorPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    maxVectorComponents*: uint32
+
+  VkPhysicalDeviceTextureCompressionASTC3DFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    textureCompressionASTC_3D*: VkBool32
+
+  VkPhysicalDeviceShaderSubgroupPartitionedFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    shaderSubgroupPartitioned*: VkBool32
+
+  VkHostAddressRangeEXT* = object
+    address*: pointer
+    size*: uint
+
+  VkHostAddressRangeConstEXT* = object
+    address*: pointer
+    size*: uint
+
+  VkDeviceAddressRangeEXT* = object
+    address*: VkDeviceAddress
+    size*: VkDeviceSize
+
+  VkTexelBufferDescriptorInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    format*: VkFormat
+    addressRange*: VkDeviceAddressRangeEXT
+
+  VkImageDescriptorInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pView*: ptr VkImageViewCreateInfo
+    layout*: VkImageLayout
+
+  VkResourceDescriptorDataEXT* {.union.} = object
+    pImage*: ptr VkImageDescriptorInfoEXT
+    pTexelBuffer*: ptr VkTexelBufferDescriptorInfoEXT
+    pAddressRange*: ptr VkDeviceAddressRangeEXT
+    pTensorARM*: ptr VkTensorViewCreateInfoARM
+
+  VkResourceDescriptorInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    `type`*: VkDescriptorType
+    data*: VkResourceDescriptorDataEXT
+
+  VkBindHeapInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    heapRange*: VkDeviceAddressRangeEXT
+    reservedRangeOffset*: VkDeviceSize
+    reservedRangeSize*: VkDeviceSize
+
+  VkPushDataInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    offset*: uint32
+    data*: VkHostAddressRangeConstEXT
+
+  VkDescriptorMappingSourceConstantOffsetEXT* = object
+    heapOffset*: uint32
+    heapArrayStride*: uint32
+    pEmbeddedSampler*: ptr VkSamplerCreateInfo
+    samplerHeapOffset*: uint32
+    samplerHeapArrayStride*: uint32
+
+  VkDescriptorMappingSourcePushIndexEXT* = object
+    heapOffset*: uint32
+    pushOffset*: uint32
+    heapIndexStride*: uint32
+    heapArrayStride*: uint32
+    pEmbeddedSampler*: ptr VkSamplerCreateInfo
+    useCombinedImageSamplerIndex*: VkBool32
+    samplerHeapOffset*: uint32
+    samplerPushOffset*: uint32
+    samplerHeapIndexStride*: uint32
+    samplerHeapArrayStride*: uint32
+
+  VkDescriptorMappingSourceIndirectIndexEXT* = object
+    heapOffset*: uint32
+    pushOffset*: uint32
+    addressOffset*: uint32
+    heapIndexStride*: uint32
+    heapArrayStride*: uint32
+    pEmbeddedSampler*: ptr VkSamplerCreateInfo
+    useCombinedImageSamplerIndex*: VkBool32
+    samplerHeapOffset*: uint32
+    samplerPushOffset*: uint32
+    samplerAddressOffset*: uint32
+    samplerHeapIndexStride*: uint32
+    samplerHeapArrayStride*: uint32
+
+  VkDescriptorMappingSourceIndirectIndexArrayEXT* = object
+    heapOffset*: uint32
+    pushOffset*: uint32
+    addressOffset*: uint32
+    heapIndexStride*: uint32
+    pEmbeddedSampler*: ptr VkSamplerCreateInfo
+    useCombinedImageSamplerIndex*: VkBool32
+    samplerHeapOffset*: uint32
+    samplerPushOffset*: uint32
+    samplerAddressOffset*: uint32
+    samplerHeapIndexStride*: uint32
+
+  VkDescriptorMappingSourceHeapDataEXT* = object
+    heapOffset*: uint32
+    pushOffset*: uint32
+
+  VkDescriptorMappingSourceShaderRecordIndexEXT* = object
+    heapOffset*: uint32
+    shaderRecordOffset*: uint32
+    heapIndexStride*: uint32
+    heapArrayStride*: uint32
+    pEmbeddedSampler*: ptr VkSamplerCreateInfo
+    useCombinedImageSamplerIndex*: VkBool32
+    samplerHeapOffset*: uint32
+    samplerShaderRecordOffset*: uint32
+    samplerHeapIndexStride*: uint32
+    samplerHeapArrayStride*: uint32
+
+  VkDescriptorMappingSourceIndirectAddressEXT* = object
+    pushOffset*: uint32
+    addressOffset*: uint32
+
+  VkDescriptorMappingSourceDataEXT* {.union.} = object
+    constantOffset*: VkDescriptorMappingSourceConstantOffsetEXT
+    pushIndex*: VkDescriptorMappingSourcePushIndexEXT
+    indirectIndex*: VkDescriptorMappingSourceIndirectIndexEXT
+    indirectIndexArray*: VkDescriptorMappingSourceIndirectIndexArrayEXT
+    heapData*: VkDescriptorMappingSourceHeapDataEXT
+    pushDataOffset*: uint32
+    pushAddressOffset*: uint32
+    indirectAddress*: VkDescriptorMappingSourceIndirectAddressEXT
+    shaderRecordIndex*: VkDescriptorMappingSourceShaderRecordIndexEXT
+    shaderRecordDataOffset*: uint32
+    shaderRecordAddressOffset*: uint32
+
+  VkDescriptorSetAndBindingMappingEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    descriptorSet*: uint32
+    firstBinding*: uint32
+    bindingCount*: uint32
+    resourceMask*: VkSpirvResourceTypeFlagsEXT
+    source*: VkDescriptorMappingSourceEXT
+    sourceData*: VkDescriptorMappingSourceDataEXT
+
+  VkShaderDescriptorSetAndBindingMappingInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    mappingCount*: uint32
+    pMappings*: ptr VkDescriptorSetAndBindingMappingEXT
+
+  VkSamplerCustomBorderColorIndexCreateInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    index*: uint32
+
+  VkOpaqueCaptureDataCreateInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pData*: ptr VkHostAddressRangeConstEXT
+
+  VkIndirectCommandsLayoutPushDataTokenNV* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pushDataOffset*: uint32
+    pushDataSize*: uint32
+
+  VkSubsampledImageFormatPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    subsampledImageDescriptorCount*: uint32
+
+  VkPhysicalDeviceDescriptorHeapFeaturesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    descriptorHeap*: VkBool32
+    descriptorHeapCaptureReplay*: VkBool32
+
+  VkPhysicalDeviceDescriptorHeapPropertiesEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    samplerHeapAlignment*: VkDeviceSize
+    resourceHeapAlignment*: VkDeviceSize
+    maxSamplerHeapSize*: VkDeviceSize
+    maxResourceHeapSize*: VkDeviceSize
+    minSamplerHeapReservedRange*: VkDeviceSize
+    minSamplerHeapReservedRangeWithEmbedded*: VkDeviceSize
+    minResourceHeapReservedRange*: VkDeviceSize
+    samplerDescriptorSize*: VkDeviceSize
+    imageDescriptorSize*: VkDeviceSize
+    bufferDescriptorSize*: VkDeviceSize
+    samplerDescriptorAlignment*: VkDeviceSize
+    imageDescriptorAlignment*: VkDeviceSize
+    bufferDescriptorAlignment*: VkDeviceSize
+    maxPushDataSize*: VkDeviceSize
+    imageCaptureReplayOpaqueDataSize*: uint
+    maxDescriptorHeapEmbeddedSamplers*: uint32
+    samplerYcbcrConversionCount*: uint32
+    sparseDescriptorHeaps*: VkBool32
+    protectedDescriptorHeaps*: VkBool32
+
+  VkCommandBufferInheritanceDescriptorHeapInfoEXT* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    pSamplerHeapBindInfo*: ptr VkBindHeapInfoEXT
+    pResourceHeapBindInfo*: ptr VkBindHeapInfoEXT
+
+  VkPhysicalDeviceDescriptorHeapTensorPropertiesARM* = object
+    sType*: VkStructureType
+    pNext*: pointer
+    tensorDescriptorSize*: VkDeviceSize
+    tensorDescriptorAlignment*: VkDeviceSize
+    tensorCaptureReplayOpaqueDataSize*: uint
 
 # Constructors
 
@@ -13828,8 +16946,8 @@ proc newVkCopyDescriptorSet*(sType: VkStructureType = VkStructureType.CopyDescri
     descriptorCount: descriptorCount,
   )
 
-proc newVkBufferUsageFlags2CreateInfoKHR*(sType: VkStructureType = VkStructureType.BufferUsageFlags2CreateInfoKHR, pNext: pointer = nil, usage: VkBufferUsageFlags2KHR): VkBufferUsageFlags2CreateInfoKHR =
-  result = VkBufferUsageFlags2CreateInfoKHR(
+proc newVkBufferUsageFlags2CreateInfo*(sType: VkStructureType = VkStructureType.BufferUsageFlags2CreateInfo, pNext: pointer = nil, usage: VkBufferUsageFlags2): VkBufferUsageFlags2CreateInfo =
+  result = VkBufferUsageFlags2CreateInfo(
     sType: sType,
     pNext: pNext,
     usage: usage,
@@ -14047,21 +17165,50 @@ proc newVkBufferImageCopy*(bufferOffset: VkDeviceSize, bufferRowLength: uint32, 
     imageExtent: imageExtent,
   )
 
-proc newVkCopyMemoryIndirectCommandNV*(srcAddress: VkDeviceAddress, dstAddress: VkDeviceAddress, size: VkDeviceSize): VkCopyMemoryIndirectCommandNV =
-  result = VkCopyMemoryIndirectCommandNV(
+proc newVkStridedDeviceAddressRangeKHR*(address: VkDeviceAddress, size: VkDeviceSize, stride: VkDeviceSize): VkStridedDeviceAddressRangeKHR =
+  result = VkStridedDeviceAddressRangeKHR(
+    address: address,
+    size: size,
+    stride: stride,
+  )
+
+proc newVkCopyMemoryIndirectCommandKHR*(srcAddress: VkDeviceAddress, dstAddress: VkDeviceAddress, size: VkDeviceSize): VkCopyMemoryIndirectCommandKHR =
+  result = VkCopyMemoryIndirectCommandKHR(
     srcAddress: srcAddress,
     dstAddress: dstAddress,
     size: size,
   )
 
-proc newVkCopyMemoryToImageIndirectCommandNV*(srcAddress: VkDeviceAddress, bufferRowLength: uint32, bufferImageHeight: uint32, imageSubresource: VkImageSubresourceLayers, imageOffset: VkOffset3D, imageExtent: VkExtent3D): VkCopyMemoryToImageIndirectCommandNV =
-  result = VkCopyMemoryToImageIndirectCommandNV(
+proc newVkCopyMemoryIndirectInfoKHR*(sType: VkStructureType = VkStructureType.CopyMemoryIndirectInfoKHR, pNext: pointer = nil, srcCopyFlags: VkAddressCopyFlagsKHR, dstCopyFlags: VkAddressCopyFlagsKHR, copyCount: uint32, copyAddressRange: VkStridedDeviceAddressRangeKHR): VkCopyMemoryIndirectInfoKHR =
+  result = VkCopyMemoryIndirectInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    srcCopyFlags: srcCopyFlags,
+    dstCopyFlags: dstCopyFlags,
+    copyCount: copyCount,
+    copyAddressRange: copyAddressRange,
+  )
+
+proc newVkCopyMemoryToImageIndirectCommandKHR*(srcAddress: VkDeviceAddress, bufferRowLength: uint32, bufferImageHeight: uint32, imageSubresource: VkImageSubresourceLayers, imageOffset: VkOffset3D, imageExtent: VkExtent3D): VkCopyMemoryToImageIndirectCommandKHR =
+  result = VkCopyMemoryToImageIndirectCommandKHR(
     srcAddress: srcAddress,
     bufferRowLength: bufferRowLength,
     bufferImageHeight: bufferImageHeight,
     imageSubresource: imageSubresource,
     imageOffset: imageOffset,
     imageExtent: imageExtent,
+  )
+
+proc newVkCopyMemoryToImageIndirectInfoKHR*(sType: VkStructureType = VkStructureType.CopyMemoryToImageIndirectInfoKHR, pNext: pointer = nil, srcCopyFlags: VkAddressCopyFlagsKHR, copyCount: uint32, copyAddressRange: VkStridedDeviceAddressRangeKHR, dstImage: VkImage, dstImageLayout: VkImageLayout, pImageSubresources: ptr VkImageSubresourceLayers): VkCopyMemoryToImageIndirectInfoKHR =
+  result = VkCopyMemoryToImageIndirectInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    srcCopyFlags: srcCopyFlags,
+    copyCount: copyCount,
+    copyAddressRange: copyAddressRange,
+    dstImage: dstImage,
+    dstImageLayout: dstImageLayout,
+    pImageSubresources: pImageSubresources,
   )
 
 proc newVkImageResolve*(srcSubresource: VkImageSubresourceLayers, srcOffset: VkOffset3D, dstSubresource: VkImageSubresourceLayers, dstOffset: VkOffset3D, extent: VkExtent3D): VkImageResolve =
@@ -14171,8 +17318,8 @@ proc newVkComputePipelineIndirectBufferInfoNV*(sType: VkStructureType = VkStruct
     pipelineDeviceAddressCaptureReplay: pipelineDeviceAddressCaptureReplay,
   )
 
-proc newVkPipelineCreateFlags2CreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineCreateFlags2CreateInfoKHR, pNext: pointer = nil, flags: VkPipelineCreateFlags2KHR = 0.VkPipelineCreateFlags2KHR): VkPipelineCreateFlags2CreateInfoKHR =
-  result = VkPipelineCreateFlags2CreateInfoKHR(
+proc newVkPipelineCreateFlags2CreateInfo*(sType: VkStructureType = VkStructureType.PipelineCreateFlags2CreateInfo, pNext: pointer = nil, flags: VkPipelineCreateFlags2 = 0.VkPipelineCreateFlags2): VkPipelineCreateFlags2CreateInfo =
+  result = VkPipelineCreateFlags2CreateInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
@@ -14388,6 +17535,15 @@ proc newVkPipelineCacheHeaderVersionSafetyCriticalOne*(headerVersionOne: VkPipel
     pipelineIndexCount: pipelineIndexCount,
     pipelineIndexStride: pipelineIndexStride,
     pipelineIndexOffset: pipelineIndexOffset,
+  )
+
+proc newVkPipelineCacheHeaderVersionDataGraphQCOM*(headerSize: uint32, headerVersion: VkPipelineCacheHeaderVersion, cacheType: VkDataGraphModelCacheTypeQCOM, cacheVersion: uint32, toolchainVersion: array[VK_DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM, uint32]): VkPipelineCacheHeaderVersionDataGraphQCOM =
+  result = VkPipelineCacheHeaderVersionDataGraphQCOM(
+    headerSize: headerSize,
+    headerVersion: headerVersion,
+    cacheType: cacheType,
+    cacheVersion: cacheVersion,
+    toolchainVersion: toolchainVersion,
   )
 
 proc newVkPushConstantRange*(stageFlags: VkShaderStageFlags, offset: uint32, size: uint32): VkPushConstantRange =
@@ -14950,6 +18106,13 @@ proc newVkDisplaySurfaceCreateInfoKHR*(sType: VkStructureType = VkStructureType.
     imageExtent: imageExtent,
   )
 
+proc newVkDisplaySurfaceStereoCreateInfoNV*(sType: VkStructureType = VkStructureType.DisplaySurfaceStereoCreateInfoNV, pNext: pointer = nil, stereoType: VkDisplaySurfaceStereoTypeNV): VkDisplaySurfaceStereoCreateInfoNV =
+  result = VkDisplaySurfaceStereoCreateInfoNV(
+    sType: sType,
+    pNext: pNext,
+    stereoType: stereoType,
+  )
+
 proc newVkDisplayPresentInfoKHR*(sType: VkStructureType = VkStructureType.DisplayPresentInfoKHR, pNext: pointer = nil, srcRect: VkRect2D, dstRect: VkRect2D, persistent: VkBool32): VkDisplayPresentInfoKHR =
   result = VkDisplayPresentInfoKHR(
     sType: sType,
@@ -14995,6 +18158,15 @@ proc newVkWaylandSurfaceCreateInfoKHR*(sType: VkStructureType = VkStructureType.
     pNext: pNext,
     flags: flags,
     display: display,
+    surface: surface,
+  )
+
+proc newVkUbmSurfaceCreateInfoSEC*(sType: VkStructureType = VkStructureType.UbmSurfaceCreateInfoSEC, pNext: pointer = nil, flags: VkUbmSurfaceCreateFlagsSEC = 0.VkUbmSurfaceCreateFlagsSEC, device: ptr ubm_device, surface: ptr ubm_surface): VkUbmSurfaceCreateInfoSEC =
+  result = VkUbmSurfaceCreateInfoSEC(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    device: device,
     surface: surface,
   )
 
@@ -15306,6 +18478,30 @@ proc newVkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV*(sType: VkStructureTyp
     deviceGeneratedCommands: deviceGeneratedCommands,
   )
 
+proc newVkPushConstantBankInfoNV*(sType: VkStructureType = VkStructureType.PushConstantBankInfoNV, pNext: pointer = nil, bank: uint32): VkPushConstantBankInfoNV =
+  result = VkPushConstantBankInfoNV(
+    sType: sType,
+    pNext: pNext,
+    bank: bank,
+  )
+
+proc newVkPhysicalDevicePushConstantBankFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDevicePushConstantBankFeaturesNV, pNext: pointer = nil, pushConstantBank: VkBool32): VkPhysicalDevicePushConstantBankFeaturesNV =
+  result = VkPhysicalDevicePushConstantBankFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    pushConstantBank: pushConstantBank,
+  )
+
+proc newVkPhysicalDevicePushConstantBankPropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDevicePushConstantBankPropertiesNV, pNext: pointer = nil, maxGraphicsPushConstantBanks: uint32, maxComputePushConstantBanks: uint32, maxGraphicsPushDataBanks: uint32, maxComputePushDataBanks: uint32): VkPhysicalDevicePushConstantBankPropertiesNV =
+  result = VkPhysicalDevicePushConstantBankPropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    maxGraphicsPushConstantBanks: maxGraphicsPushConstantBanks,
+    maxComputePushConstantBanks: maxComputePushConstantBanks,
+    maxGraphicsPushDataBanks: maxGraphicsPushDataBanks,
+    maxComputePushDataBanks: maxComputePushDataBanks,
+  )
+
 proc newVkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV, pNext: pointer = nil, deviceGeneratedCompute: VkBool32, deviceGeneratedComputePipelines: VkBool32, deviceGeneratedComputeCaptureReplay: VkBool32): VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV =
   result = VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV(
     sType: sType,
@@ -15349,6 +18545,172 @@ proc newVkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV*(sType: VkStructureT
     minSequencesCountBufferOffsetAlignment: minSequencesCountBufferOffsetAlignment,
     minSequencesIndexBufferOffsetAlignment: minSequencesIndexBufferOffsetAlignment,
     minIndirectCommandsBufferOffsetAlignment: minIndirectCommandsBufferOffsetAlignment,
+  )
+
+proc newVkPhysicalDeviceClusterAccelerationStructureFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceClusterAccelerationStructureFeaturesNV, pNext: pointer = nil, clusterAccelerationStructure: VkBool32): VkPhysicalDeviceClusterAccelerationStructureFeaturesNV =
+  result = VkPhysicalDeviceClusterAccelerationStructureFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    clusterAccelerationStructure: clusterAccelerationStructure,
+  )
+
+proc newVkPhysicalDeviceClusterAccelerationStructurePropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceClusterAccelerationStructurePropertiesNV, pNext: pointer = nil, maxVerticesPerCluster: uint32, maxTrianglesPerCluster: uint32, clusterScratchByteAlignment: uint32, clusterByteAlignment: uint32, clusterTemplateByteAlignment: uint32, clusterBottomLevelByteAlignment: uint32, clusterTemplateBoundsByteAlignment: uint32, maxClusterGeometryIndex: uint32): VkPhysicalDeviceClusterAccelerationStructurePropertiesNV =
+  result = VkPhysicalDeviceClusterAccelerationStructurePropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    maxVerticesPerCluster: maxVerticesPerCluster,
+    maxTrianglesPerCluster: maxTrianglesPerCluster,
+    clusterScratchByteAlignment: clusterScratchByteAlignment,
+    clusterByteAlignment: clusterByteAlignment,
+    clusterTemplateByteAlignment: clusterTemplateByteAlignment,
+    clusterBottomLevelByteAlignment: clusterBottomLevelByteAlignment,
+    clusterTemplateBoundsByteAlignment: clusterTemplateBoundsByteAlignment,
+    maxClusterGeometryIndex: maxClusterGeometryIndex,
+  )
+
+proc newVkStridedDeviceAddressNV*(startAddress: VkDeviceAddress, strideInBytes: VkDeviceSize): VkStridedDeviceAddressNV =
+  result = VkStridedDeviceAddressNV(
+    startAddress: startAddress,
+    strideInBytes: strideInBytes,
+  )
+
+proc newVkRayTracingPipelineClusterAccelerationStructureCreateInfoNV*(sType: VkStructureType = VkStructureType.RayTracingPipelineClusterAccelerationStructureCreateInfoNV, pNext: pointer = nil, allowClusterAccelerationStructure: VkBool32): VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV =
+  result = VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV(
+    sType: sType,
+    pNext: pNext,
+    allowClusterAccelerationStructure: allowClusterAccelerationStructure,
+  )
+
+proc newVkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV*(geometryIndex: uint32, reserved: uint32, geometryFlags: uint32): VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV =
+  result = VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV(
+    geometryIndex: geometryIndex,
+    reserved: reserved,
+    geometryFlags: geometryFlags,
+  )
+
+proc newVkClusterAccelerationStructureMoveObjectsInfoNV*(srcAccelerationStructure: VkDeviceAddress): VkClusterAccelerationStructureMoveObjectsInfoNV =
+  result = VkClusterAccelerationStructureMoveObjectsInfoNV(
+    srcAccelerationStructure: srcAccelerationStructure,
+  )
+
+proc newVkClusterAccelerationStructureBuildClustersBottomLevelInfoNV*(clusterReferencesCount: uint32, clusterReferencesStride: uint32, clusterReferences: VkDeviceAddress): VkClusterAccelerationStructureBuildClustersBottomLevelInfoNV =
+  result = VkClusterAccelerationStructureBuildClustersBottomLevelInfoNV(
+    clusterReferencesCount: clusterReferencesCount,
+    clusterReferencesStride: clusterReferencesStride,
+    clusterReferences: clusterReferences,
+  )
+
+proc newVkClusterAccelerationStructureGetTemplateIndicesInfoNV*(clusterTemplateAddress: VkDeviceAddress): VkClusterAccelerationStructureGetTemplateIndicesInfoNV =
+  result = VkClusterAccelerationStructureGetTemplateIndicesInfoNV(
+    clusterTemplateAddress: clusterTemplateAddress,
+  )
+
+proc newVkClusterAccelerationStructureBuildTriangleClusterInfoNV*(clusterID: uint32, clusterFlags: VkClusterAccelerationStructureClusterFlagsNV, triangleCount: uint32, vertexCount: uint32, positionTruncateBitCount: uint32, indexType: uint32, opacityMicromapIndexType: uint32, baseGeometryIndexAndGeometryFlags: VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV, indexBufferStride: uint16, vertexBufferStride: uint16, geometryIndexAndFlagsBufferStride: uint16, opacityMicromapIndexBufferStride: uint16, indexBuffer: VkDeviceAddress, vertexBuffer: VkDeviceAddress, geometryIndexAndFlagsBuffer: VkDeviceAddress, opacityMicromapArray: VkDeviceAddress, opacityMicromapIndexBuffer: VkDeviceAddress): VkClusterAccelerationStructureBuildTriangleClusterInfoNV =
+  result = VkClusterAccelerationStructureBuildTriangleClusterInfoNV(
+    clusterID: clusterID,
+    clusterFlags: clusterFlags,
+    triangleCount: triangleCount,
+    vertexCount: vertexCount,
+    positionTruncateBitCount: positionTruncateBitCount,
+    indexType: indexType,
+    opacityMicromapIndexType: opacityMicromapIndexType,
+    baseGeometryIndexAndGeometryFlags: baseGeometryIndexAndGeometryFlags,
+    indexBufferStride: indexBufferStride,
+    vertexBufferStride: vertexBufferStride,
+    geometryIndexAndFlagsBufferStride: geometryIndexAndFlagsBufferStride,
+    opacityMicromapIndexBufferStride: opacityMicromapIndexBufferStride,
+    indexBuffer: indexBuffer,
+    vertexBuffer: vertexBuffer,
+    geometryIndexAndFlagsBuffer: geometryIndexAndFlagsBuffer,
+    opacityMicromapArray: opacityMicromapArray,
+    opacityMicromapIndexBuffer: opacityMicromapIndexBuffer,
+  )
+
+proc newVkClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV*(clusterID: uint32, clusterFlags: VkClusterAccelerationStructureClusterFlagsNV, triangleCount: uint32, vertexCount: uint32, positionTruncateBitCount: uint32, indexType: uint32, opacityMicromapIndexType: uint32, baseGeometryIndexAndGeometryFlags: VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV, indexBufferStride: uint16, vertexBufferStride: uint16, geometryIndexAndFlagsBufferStride: uint16, opacityMicromapIndexBufferStride: uint16, indexBuffer: VkDeviceAddress, vertexBuffer: VkDeviceAddress, geometryIndexAndFlagsBuffer: VkDeviceAddress, opacityMicromapArray: VkDeviceAddress, opacityMicromapIndexBuffer: VkDeviceAddress, instantiationBoundingBoxLimit: VkDeviceAddress): VkClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV =
+  result = VkClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV(
+    clusterID: clusterID,
+    clusterFlags: clusterFlags,
+    triangleCount: triangleCount,
+    vertexCount: vertexCount,
+    positionTruncateBitCount: positionTruncateBitCount,
+    indexType: indexType,
+    opacityMicromapIndexType: opacityMicromapIndexType,
+    baseGeometryIndexAndGeometryFlags: baseGeometryIndexAndGeometryFlags,
+    indexBufferStride: indexBufferStride,
+    vertexBufferStride: vertexBufferStride,
+    geometryIndexAndFlagsBufferStride: geometryIndexAndFlagsBufferStride,
+    opacityMicromapIndexBufferStride: opacityMicromapIndexBufferStride,
+    indexBuffer: indexBuffer,
+    vertexBuffer: vertexBuffer,
+    geometryIndexAndFlagsBuffer: geometryIndexAndFlagsBuffer,
+    opacityMicromapArray: opacityMicromapArray,
+    opacityMicromapIndexBuffer: opacityMicromapIndexBuffer,
+    instantiationBoundingBoxLimit: instantiationBoundingBoxLimit,
+  )
+
+proc newVkClusterAccelerationStructureInstantiateClusterInfoNV*(clusterIdOffset: uint32, geometryIndexOffset: uint32, reserved: uint32, clusterTemplateAddress: VkDeviceAddress, vertexBuffer: VkStridedDeviceAddressNV): VkClusterAccelerationStructureInstantiateClusterInfoNV =
+  result = VkClusterAccelerationStructureInstantiateClusterInfoNV(
+    clusterIdOffset: clusterIdOffset,
+    geometryIndexOffset: geometryIndexOffset,
+    reserved: reserved,
+    clusterTemplateAddress: clusterTemplateAddress,
+    vertexBuffer: vertexBuffer,
+  )
+
+proc newVkClusterAccelerationStructureClustersBottomLevelInputNV*(sType: VkStructureType = VkStructureType.ClusterAccelerationStructureClustersBottomLevelInputNV, pNext: pointer = nil, maxTotalClusterCount: uint32, maxClusterCountPerAccelerationStructure: uint32): VkClusterAccelerationStructureClustersBottomLevelInputNV =
+  result = VkClusterAccelerationStructureClustersBottomLevelInputNV(
+    sType: sType,
+    pNext: pNext,
+    maxTotalClusterCount: maxTotalClusterCount,
+    maxClusterCountPerAccelerationStructure: maxClusterCountPerAccelerationStructure,
+  )
+
+proc newVkClusterAccelerationStructureTriangleClusterInputNV*(sType: VkStructureType = VkStructureType.ClusterAccelerationStructureTriangleClusterInputNV, pNext: pointer = nil, vertexFormat: VkFormat, maxGeometryIndexValue: uint32, maxClusterUniqueGeometryCount: uint32, maxClusterTriangleCount: uint32, maxClusterVertexCount: uint32, maxTotalTriangleCount: uint32, maxTotalVertexCount: uint32, minPositionTruncateBitCount: uint32): VkClusterAccelerationStructureTriangleClusterInputNV =
+  result = VkClusterAccelerationStructureTriangleClusterInputNV(
+    sType: sType,
+    pNext: pNext,
+    vertexFormat: vertexFormat,
+    maxGeometryIndexValue: maxGeometryIndexValue,
+    maxClusterUniqueGeometryCount: maxClusterUniqueGeometryCount,
+    maxClusterTriangleCount: maxClusterTriangleCount,
+    maxClusterVertexCount: maxClusterVertexCount,
+    maxTotalTriangleCount: maxTotalTriangleCount,
+    maxTotalVertexCount: maxTotalVertexCount,
+    minPositionTruncateBitCount: minPositionTruncateBitCount,
+  )
+
+proc newVkClusterAccelerationStructureMoveObjectsInputNV*(sType: VkStructureType = VkStructureType.ClusterAccelerationStructureMoveObjectsInputNV, pNext: pointer = nil, `type`: VkClusterAccelerationStructureTypeNV, noMoveOverlap: VkBool32, maxMovedBytes: VkDeviceSize): VkClusterAccelerationStructureMoveObjectsInputNV =
+  result = VkClusterAccelerationStructureMoveObjectsInputNV(
+    sType: sType,
+    pNext: pNext,
+    `type`: `type`,
+    noMoveOverlap: noMoveOverlap,
+    maxMovedBytes: maxMovedBytes,
+  )
+
+proc newVkClusterAccelerationStructureInputInfoNV*(sType: VkStructureType = VkStructureType.ClusterAccelerationStructureInputInfoNV, pNext: pointer = nil, maxAccelerationStructureCount: uint32, flags: VkBuildAccelerationStructureFlagsKHR = 0.VkBuildAccelerationStructureFlagsKHR, opType: VkClusterAccelerationStructureOpTypeNV, opMode: VkClusterAccelerationStructureOpModeNV, opInput: VkClusterAccelerationStructureOpInputNV): VkClusterAccelerationStructureInputInfoNV =
+  result = VkClusterAccelerationStructureInputInfoNV(
+    sType: sType,
+    pNext: pNext,
+    maxAccelerationStructureCount: maxAccelerationStructureCount,
+    flags: flags,
+    opType: opType,
+    opMode: opMode,
+    opInput: opInput,
+  )
+
+proc newVkClusterAccelerationStructureCommandsInfoNV*(sType: VkStructureType = VkStructureType.ClusterAccelerationStructureCommandsInfoNV, pNext: pointer = nil, input: VkClusterAccelerationStructureInputInfoNV, dstImplicitData: VkDeviceAddress, scratchData: VkDeviceAddress, dstAddressesArray: VkStridedDeviceAddressRegionKHR, dstSizesArray: VkStridedDeviceAddressRegionKHR, srcInfosArray: VkStridedDeviceAddressRegionKHR, srcInfosCount: VkDeviceAddress, addressResolutionFlags: VkClusterAccelerationStructureAddressResolutionFlagsNV): VkClusterAccelerationStructureCommandsInfoNV =
+  result = VkClusterAccelerationStructureCommandsInfoNV(
+    sType: sType,
+    pNext: pNext,
+    input: input,
+    dstImplicitData: dstImplicitData,
+    scratchData: scratchData,
+    dstAddressesArray: dstAddressesArray,
+    dstSizesArray: dstSizesArray,
+    srcInfosArray: srcInfosArray,
+    srcInfosCount: srcInfosCount,
+    addressResolutionFlags: addressResolutionFlags,
   )
 
 proc newVkPhysicalDeviceMultiDrawPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceMultiDrawPropertiesEXT, pNext: pointer = nil, maxMultiDrawCount: uint32): VkPhysicalDeviceMultiDrawPropertiesEXT =
@@ -15552,8 +18914,8 @@ proc newVkPhysicalDeviceSparseImageFormatInfo2*(sType: VkStructureType = VkStruc
     tiling: tiling,
   )
 
-proc newVkPhysicalDevicePushDescriptorPropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDevicePushDescriptorPropertiesKHR, pNext: pointer = nil, maxPushDescriptors: uint32): VkPhysicalDevicePushDescriptorPropertiesKHR =
-  result = VkPhysicalDevicePushDescriptorPropertiesKHR(
+proc newVkPhysicalDevicePushDescriptorProperties*(sType: VkStructureType = VkStructureType.PhysicalDevicePushDescriptorProperties, pNext: pointer = nil, maxPushDescriptors: uint32): VkPhysicalDevicePushDescriptorProperties =
+  result = VkPhysicalDevicePushDescriptorProperties(
     sType: sType,
     pNext: pNext,
     maxPushDescriptors: maxPushDescriptors,
@@ -15765,6 +19127,29 @@ proc newVkWin32KeyedMutexAcquireReleaseInfoKHR*(sType: VkStructureType = VkStruc
     releaseCount: len(releaseSyncs).uint32,
     pReleaseSyncs: if len(releaseSyncs) == 0: nil else: cast[ptr VkDeviceMemory](releaseSyncs),
     pReleaseKeys: if len(releaseKeys) == 0: nil else: cast[ptr uint64](releaseKeys),
+  )
+
+proc newVkImportMemoryMetalHandleInfoEXT*(sType: VkStructureType = VkStructureType.ImportMemoryMetalHandleInfoEXT, pNext: pointer = nil, handleType: VkExternalMemoryHandleTypeFlagBits, handle: pointer = nil): VkImportMemoryMetalHandleInfoEXT =
+  result = VkImportMemoryMetalHandleInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    handleType: handleType,
+    handle: handle,
+  )
+
+proc newVkMemoryMetalHandlePropertiesEXT*(sType: VkStructureType = VkStructureType.MemoryMetalHandlePropertiesEXT, pNext: pointer = nil, memoryTypeBits: uint32): VkMemoryMetalHandlePropertiesEXT =
+  result = VkMemoryMetalHandlePropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    memoryTypeBits: memoryTypeBits,
+  )
+
+proc newVkMemoryGetMetalHandleInfoEXT*(sType: VkStructureType = VkStructureType.MemoryGetMetalHandleInfoEXT, pNext: pointer = nil, memory: VkDeviceMemory, handleType: VkExternalMemoryHandleTypeFlagBits): VkMemoryGetMetalHandleInfoEXT =
+  result = VkMemoryGetMetalHandleInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    memory: memory,
+    handleType: handleType,
   )
 
 proc newVkPhysicalDeviceExternalSemaphoreInfo*(sType: VkStructureType = VkStructureType.PhysicalDeviceExternalSemaphoreInfo, pNext: pointer = nil, handleType: VkExternalSemaphoreHandleTypeFlagBits): VkPhysicalDeviceExternalSemaphoreInfo =
@@ -16297,11 +19682,142 @@ proc newVkPresentIdKHR*(sType: VkStructureType = VkStructureType.PresentIdKHR, p
     pPresentIds: if len(presentIds) == 0: nil else: cast[ptr uint64](presentIds),
   )
 
+proc newVkPhysicalDevicePresentId2FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDevicePresentId2FeaturesKHR, pNext: pointer = nil, presentId2: VkBool32): VkPhysicalDevicePresentId2FeaturesKHR =
+  result = VkPhysicalDevicePresentId2FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    presentId2: presentId2,
+  )
+
+proc newVkPresentId2KHR*(sType: VkStructureType = VkStructureType.PresentId2KHR, pNext: pointer = nil, presentIds: openarray[uint64]): VkPresentId2KHR =
+  result = VkPresentId2KHR(
+    sType: sType,
+    pNext: pNext,
+    swapchainCount: len(presentIds).uint32,
+    pPresentIds: if len(presentIds) == 0: nil else: cast[ptr uint64](presentIds),
+  )
+
+proc newVkPresentWait2InfoKHR*(sType: VkStructureType = VkStructureType.PresentWait2InfoKHR, pNext: pointer = nil, presentId: uint64, timeout: uint64): VkPresentWait2InfoKHR =
+  result = VkPresentWait2InfoKHR(
+    sType: sType,
+    pNext: pNext,
+    presentId: presentId,
+    timeout: timeout,
+  )
+
 proc newVkPhysicalDevicePresentWaitFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDevicePresentWaitFeaturesKHR, pNext: pointer = nil, presentWait: VkBool32): VkPhysicalDevicePresentWaitFeaturesKHR =
   result = VkPhysicalDevicePresentWaitFeaturesKHR(
     sType: sType,
     pNext: pNext,
     presentWait: presentWait,
+  )
+
+proc newVkPhysicalDevicePresentWait2FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDevicePresentWait2FeaturesKHR, pNext: pointer = nil, presentWait2: VkBool32): VkPhysicalDevicePresentWait2FeaturesKHR =
+  result = VkPhysicalDevicePresentWait2FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    presentWait2: presentWait2,
+  )
+
+proc newVkPhysicalDevicePresentTimingFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDevicePresentTimingFeaturesEXT, pNext: pointer = nil, presentTiming: VkBool32, presentAtAbsoluteTime: VkBool32, presentAtRelativeTime: VkBool32): VkPhysicalDevicePresentTimingFeaturesEXT =
+  result = VkPhysicalDevicePresentTimingFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    presentTiming: presentTiming,
+    presentAtAbsoluteTime: presentAtAbsoluteTime,
+    presentAtRelativeTime: presentAtRelativeTime,
+  )
+
+proc newVkPresentTimingSurfaceCapabilitiesEXT*(sType: VkStructureType = VkStructureType.PresentTimingSurfaceCapabilitiesEXT, pNext: pointer = nil, presentTimingSupported: VkBool32, presentAtAbsoluteTimeSupported: VkBool32, presentAtRelativeTimeSupported: VkBool32, presentStageQueries: VkPresentStageFlagsEXT): VkPresentTimingSurfaceCapabilitiesEXT =
+  result = VkPresentTimingSurfaceCapabilitiesEXT(
+    sType: sType,
+    pNext: pNext,
+    presentTimingSupported: presentTimingSupported,
+    presentAtAbsoluteTimeSupported: presentAtAbsoluteTimeSupported,
+    presentAtRelativeTimeSupported: presentAtRelativeTimeSupported,
+    presentStageQueries: presentStageQueries,
+  )
+
+proc newVkSwapchainTimingPropertiesEXT*(sType: VkStructureType = VkStructureType.SwapchainTimingPropertiesEXT, pNext: pointer = nil, refreshDuration: uint64, refreshInterval: uint64): VkSwapchainTimingPropertiesEXT =
+  result = VkSwapchainTimingPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    refreshDuration: refreshDuration,
+    refreshInterval: refreshInterval,
+  )
+
+proc newVkSwapchainTimeDomainPropertiesEXT*(sType: VkStructureType = VkStructureType.SwapchainTimeDomainPropertiesEXT, pNext: pointer = nil, timeDomains: openarray[VkTimeDomainKHR], timeDomainIds: openarray[uint64]): VkSwapchainTimeDomainPropertiesEXT =
+  result = VkSwapchainTimeDomainPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    timeDomainCount: len(timeDomains).uint32,
+    pTimeDomains: if len(timeDomains) == 0: nil else: cast[ptr VkTimeDomainKHR](timeDomains),
+    pTimeDomainIds: if len(timeDomainIds) == 0: nil else: cast[ptr uint64](timeDomainIds),
+  )
+
+proc newVkPresentStageTimeEXT*(stage: VkPresentStageFlagsEXT, time: uint64): VkPresentStageTimeEXT =
+  result = VkPresentStageTimeEXT(
+    stage: stage,
+    time: time,
+  )
+
+proc newVkPastPresentationTimingInfoEXT*(sType: VkStructureType = VkStructureType.PastPresentationTimingInfoEXT, pNext: pointer = nil, flags: VkPastPresentationTimingFlagsEXT = 0.VkPastPresentationTimingFlagsEXT, swapchain: VkSwapchainKHR): VkPastPresentationTimingInfoEXT =
+  result = VkPastPresentationTimingInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    swapchain: swapchain,
+  )
+
+proc newVkPastPresentationTimingPropertiesEXT*(sType: VkStructureType = VkStructureType.PastPresentationTimingPropertiesEXT, pNext: pointer = nil, timingPropertiesCounter: uint64, timeDomainsCounter: uint64, presentationTimings: openarray[VkPastPresentationTimingEXT]): VkPastPresentationTimingPropertiesEXT =
+  result = VkPastPresentationTimingPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    timingPropertiesCounter: timingPropertiesCounter,
+    timeDomainsCounter: timeDomainsCounter,
+    presentationTimingCount: len(presentationTimings).uint32,
+    pPresentationTimings: if len(presentationTimings) == 0: nil else: cast[ptr VkPastPresentationTimingEXT](presentationTimings),
+  )
+
+proc newVkPastPresentationTimingEXT*(sType: VkStructureType = VkStructureType.PastPresentationTimingEXT, pNext: pointer = nil, presentId: uint64, targetTime: uint64, presentStages: openarray[VkPresentStageTimeEXT], timeDomain: VkTimeDomainKHR, timeDomainId: uint64, reportComplete: VkBool32): VkPastPresentationTimingEXT =
+  result = VkPastPresentationTimingEXT(
+    sType: sType,
+    pNext: pNext,
+    presentId: presentId,
+    targetTime: targetTime,
+    presentStageCount: len(presentStages).uint32,
+    pPresentStages: if len(presentStages) == 0: nil else: cast[ptr VkPresentStageTimeEXT](presentStages),
+    timeDomain: timeDomain,
+    timeDomainId: timeDomainId,
+    reportComplete: reportComplete,
+  )
+
+proc newVkPresentTimingsInfoEXT*(sType: VkStructureType = VkStructureType.PresentTimingsInfoEXT, pNext: pointer = nil, timingInfos: openarray[VkPresentTimingInfoEXT]): VkPresentTimingsInfoEXT =
+  result = VkPresentTimingsInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    swapchainCount: len(timingInfos).uint32,
+    pTimingInfos: if len(timingInfos) == 0: nil else: cast[ptr VkPresentTimingInfoEXT](timingInfos),
+  )
+
+proc newVkPresentTimingInfoEXT*(sType: VkStructureType = VkStructureType.PresentTimingInfoEXT, pNext: pointer = nil, flags: VkPresentTimingInfoFlagsEXT = 0.VkPresentTimingInfoFlagsEXT, targetTime: uint64, timeDomainId: uint64, presentStageQueries: VkPresentStageFlagsEXT, targetTimeDomainPresentStage: VkPresentStageFlagsEXT): VkPresentTimingInfoEXT =
+  result = VkPresentTimingInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    targetTime: targetTime,
+    timeDomainId: timeDomainId,
+    presentStageQueries: presentStageQueries,
+    targetTimeDomainPresentStage: targetTimeDomainPresentStage,
+  )
+
+proc newVkSwapchainCalibratedTimestampInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainCalibratedTimestampInfoEXT, pNext: pointer = nil, swapchain: VkSwapchainKHR, presentStage: VkPresentStageFlagsEXT, timeDomainId: uint64): VkSwapchainCalibratedTimestampInfoEXT =
+  result = VkSwapchainCalibratedTimestampInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    swapchain: swapchain,
+    presentStage: presentStage,
+    timeDomainId: timeDomainId,
   )
 
 proc newVkHdrMetadataEXT*(sType: VkStructureType = VkStructureType.HdrMetadataEXT, pNext: pointer = nil, displayPrimaryRed: VkXYColorEXT, displayPrimaryGreen: VkXYColorEXT, displayPrimaryBlue: VkXYColorEXT, whitePoint: VkXYColorEXT, maxLuminance: float32, minLuminance: float32, maxContentLightLevel: float32, maxFrameAverageLightLevel: float32): VkHdrMetadataEXT =
@@ -16316,6 +19832,14 @@ proc newVkHdrMetadataEXT*(sType: VkStructureType = VkStructureType.HdrMetadataEX
     minLuminance: minLuminance,
     maxContentLightLevel: maxContentLightLevel,
     maxFrameAverageLightLevel: maxFrameAverageLightLevel,
+  )
+
+proc newVkHdrVividDynamicMetadataHUAWEI*(sType: VkStructureType = VkStructureType.HdrVividDynamicMetadataHUAWEI, pNext: pointer = nil, dynamicMetadataSize: uint, pDynamicMetadata: pointer = nil): VkHdrVividDynamicMetadataHUAWEI =
+  result = VkHdrVividDynamicMetadataHUAWEI(
+    sType: sType,
+    pNext: pNext,
+    dynamicMetadataSize: dynamicMetadataSize,
+    pDynamicMetadata: pDynamicMetadata,
   )
 
 proc newVkDisplayNativeHdrSurfaceCapabilitiesAMD*(sType: VkStructureType = VkStructureType.DisplayNativeHdrSurfaceCapabilitiesAMD, pNext: pointer = nil, localDimmingSupport: VkBool32): VkDisplayNativeHdrSurfaceCapabilitiesAMD =
@@ -16495,6 +20019,13 @@ proc newVkDisplayModeProperties2KHR*(sType: VkStructureType = VkStructureType.Di
     sType: sType,
     pNext: pNext,
     displayModeProperties: displayModeProperties,
+  )
+
+proc newVkDisplayModeStereoPropertiesNV*(sType: VkStructureType = VkStructureType.DisplayModeStereoPropertiesNV, pNext: pointer = nil, hdmi3DSupported: VkBool32): VkDisplayModeStereoPropertiesNV =
+  result = VkDisplayModeStereoPropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    hdmi3DSupported: hdmi3DSupported,
   )
 
 proc newVkDisplayPlaneInfo2KHR*(sType: VkStructureType = VkStructureType.DisplayPlaneInfo2KHR, pNext: pointer = nil, mode: VkDisplayModeKHR, planeIndex: uint32): VkDisplayPlaneInfo2KHR =
@@ -16950,15 +20481,15 @@ proc newVkPhysicalDeviceMaintenance4Properties*(sType: VkStructureType = VkStruc
     maxBufferSize: maxBufferSize,
   )
 
-proc newVkPhysicalDeviceMaintenance5FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance5FeaturesKHR, pNext: pointer = nil, maintenance5: VkBool32): VkPhysicalDeviceMaintenance5FeaturesKHR =
-  result = VkPhysicalDeviceMaintenance5FeaturesKHR(
+proc newVkPhysicalDeviceMaintenance5Features*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance5Features, pNext: pointer = nil, maintenance5: VkBool32): VkPhysicalDeviceMaintenance5Features =
+  result = VkPhysicalDeviceMaintenance5Features(
     sType: sType,
     pNext: pNext,
     maintenance5: maintenance5,
   )
 
-proc newVkPhysicalDeviceMaintenance5PropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance5PropertiesKHR, pNext: pointer = nil, earlyFragmentMultisampleCoverageAfterSampleCounting: VkBool32, earlyFragmentSampleMaskTestBeforeSampleCounting: VkBool32, depthStencilSwizzleOneSupport: VkBool32, polygonModePointSize: VkBool32, nonStrictSinglePixelWideLinesUseParallelogram: VkBool32, nonStrictWideLinesUseParallelogram: VkBool32): VkPhysicalDeviceMaintenance5PropertiesKHR =
-  result = VkPhysicalDeviceMaintenance5PropertiesKHR(
+proc newVkPhysicalDeviceMaintenance5Properties*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance5Properties, pNext: pointer = nil, earlyFragmentMultisampleCoverageAfterSampleCounting: VkBool32, earlyFragmentSampleMaskTestBeforeSampleCounting: VkBool32, depthStencilSwizzleOneSupport: VkBool32, polygonModePointSize: VkBool32, nonStrictSinglePixelWideLinesUseParallelogram: VkBool32, nonStrictWideLinesUseParallelogram: VkBool32): VkPhysicalDeviceMaintenance5Properties =
+  result = VkPhysicalDeviceMaintenance5Properties(
     sType: sType,
     pNext: pNext,
     earlyFragmentMultisampleCoverageAfterSampleCounting: earlyFragmentMultisampleCoverageAfterSampleCounting,
@@ -16969,15 +20500,15 @@ proc newVkPhysicalDeviceMaintenance5PropertiesKHR*(sType: VkStructureType = VkSt
     nonStrictWideLinesUseParallelogram: nonStrictWideLinesUseParallelogram,
   )
 
-proc newVkPhysicalDeviceMaintenance6FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance6FeaturesKHR, pNext: pointer = nil, maintenance6: VkBool32): VkPhysicalDeviceMaintenance6FeaturesKHR =
-  result = VkPhysicalDeviceMaintenance6FeaturesKHR(
+proc newVkPhysicalDeviceMaintenance6Features*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance6Features, pNext: pointer = nil, maintenance6: VkBool32): VkPhysicalDeviceMaintenance6Features =
+  result = VkPhysicalDeviceMaintenance6Features(
     sType: sType,
     pNext: pNext,
     maintenance6: maintenance6,
   )
 
-proc newVkPhysicalDeviceMaintenance6PropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance6PropertiesKHR, pNext: pointer = nil, blockTexelViewCompatibleMultipleLayers: VkBool32, maxCombinedImageSamplerDescriptorCount: uint32, fragmentShadingRateClampCombinerInputs: VkBool32): VkPhysicalDeviceMaintenance6PropertiesKHR =
-  result = VkPhysicalDeviceMaintenance6PropertiesKHR(
+proc newVkPhysicalDeviceMaintenance6Properties*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance6Properties, pNext: pointer = nil, blockTexelViewCompatibleMultipleLayers: VkBool32, maxCombinedImageSamplerDescriptorCount: uint32, fragmentShadingRateClampCombinerInputs: VkBool32): VkPhysicalDeviceMaintenance6Properties =
+  result = VkPhysicalDeviceMaintenance6Properties(
     sType: sType,
     pNext: pNext,
     blockTexelViewCompatibleMultipleLayers: blockTexelViewCompatibleMultipleLayers,
@@ -17031,8 +20562,53 @@ proc newVkPhysicalDeviceLayeredApiVulkanPropertiesKHR*(sType: VkStructureType = 
     properties: properties,
   )
 
-proc newVkRenderingAreaInfoKHR*(sType: VkStructureType = VkStructureType.RenderingAreaInfoKHR, pNext: pointer = nil, viewMask: uint32, colorAttachmentFormats: openarray[VkFormat], depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat): VkRenderingAreaInfoKHR =
-  result = VkRenderingAreaInfoKHR(
+proc newVkPhysicalDeviceMaintenance8FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance8FeaturesKHR, pNext: pointer = nil, maintenance8: VkBool32): VkPhysicalDeviceMaintenance8FeaturesKHR =
+  result = VkPhysicalDeviceMaintenance8FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    maintenance8: maintenance8,
+  )
+
+proc newVkPhysicalDeviceMaintenance9FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance9FeaturesKHR, pNext: pointer = nil, maintenance9: VkBool32): VkPhysicalDeviceMaintenance9FeaturesKHR =
+  result = VkPhysicalDeviceMaintenance9FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    maintenance9: maintenance9,
+  )
+
+proc newVkPhysicalDeviceMaintenance9PropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance9PropertiesKHR, pNext: pointer = nil, image2DViewOf3DSparse: VkBool32, defaultVertexAttributeValue: VkDefaultVertexAttributeValueKHR): VkPhysicalDeviceMaintenance9PropertiesKHR =
+  result = VkPhysicalDeviceMaintenance9PropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    image2DViewOf3DSparse: image2DViewOf3DSparse,
+    defaultVertexAttributeValue: defaultVertexAttributeValue,
+  )
+
+proc newVkPhysicalDeviceMaintenance10PropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance10PropertiesKHR, pNext: pointer = nil, rgba4OpaqueBlackSwizzled: VkBool32, resolveSrgbFormatAppliesTransferFunction: VkBool32, resolveSrgbFormatSupportsTransferFunctionControl: VkBool32): VkPhysicalDeviceMaintenance10PropertiesKHR =
+  result = VkPhysicalDeviceMaintenance10PropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    rgba4OpaqueBlackSwizzled: rgba4OpaqueBlackSwizzled,
+    resolveSrgbFormatAppliesTransferFunction: resolveSrgbFormatAppliesTransferFunction,
+    resolveSrgbFormatSupportsTransferFunctionControl: resolveSrgbFormatSupportsTransferFunctionControl,
+  )
+
+proc newVkPhysicalDeviceMaintenance10FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceMaintenance10FeaturesKHR, pNext: pointer = nil, maintenance10: VkBool32): VkPhysicalDeviceMaintenance10FeaturesKHR =
+  result = VkPhysicalDeviceMaintenance10FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    maintenance10: maintenance10,
+  )
+
+proc newVkQueueFamilyOwnershipTransferPropertiesKHR*(sType: VkStructureType = VkStructureType.QueueFamilyOwnershipTransferPropertiesKHR, pNext: pointer = nil, optimalImageTransferToQueueFamilies: uint32): VkQueueFamilyOwnershipTransferPropertiesKHR =
+  result = VkQueueFamilyOwnershipTransferPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    optimalImageTransferToQueueFamilies: optimalImageTransferToQueueFamilies,
+  )
+
+proc newVkRenderingAreaInfo*(sType: VkStructureType = VkStructureType.RenderingAreaInfo, pNext: pointer = nil, viewMask: uint32, colorAttachmentFormats: openarray[VkFormat], depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat): VkRenderingAreaInfo =
+  result = VkRenderingAreaInfo(
     sType: sType,
     pNext: pNext,
     viewMask: viewMask,
@@ -17145,22 +20721,22 @@ proc newVkShaderStatisticsInfoAMD*(shaderStageMask: VkShaderStageFlags, resource
     computeWorkGroupSize: computeWorkGroupSize,
   )
 
-proc newVkDeviceQueueGlobalPriorityCreateInfoKHR*(sType: VkStructureType = VkStructureType.DeviceQueueGlobalPriorityCreateInfoKHR, pNext: pointer = nil, globalPriority: VkQueueGlobalPriorityKHR): VkDeviceQueueGlobalPriorityCreateInfoKHR =
-  result = VkDeviceQueueGlobalPriorityCreateInfoKHR(
+proc newVkDeviceQueueGlobalPriorityCreateInfo*(sType: VkStructureType = VkStructureType.DeviceQueueGlobalPriorityCreateInfo, pNext: pointer = nil, globalPriority: VkQueueGlobalPriority): VkDeviceQueueGlobalPriorityCreateInfo =
+  result = VkDeviceQueueGlobalPriorityCreateInfo(
     sType: sType,
     pNext: pNext,
     globalPriority: globalPriority,
   )
 
-proc newVkPhysicalDeviceGlobalPriorityQueryFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceGlobalPriorityQueryFeaturesKHR, pNext: pointer = nil, globalPriorityQuery: VkBool32): VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR =
-  result = VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR(
+proc newVkPhysicalDeviceGlobalPriorityQueryFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceGlobalPriorityQueryFeatures, pNext: pointer = nil, globalPriorityQuery: VkBool32): VkPhysicalDeviceGlobalPriorityQueryFeatures =
+  result = VkPhysicalDeviceGlobalPriorityQueryFeatures(
     sType: sType,
     pNext: pNext,
     globalPriorityQuery: globalPriorityQuery,
   )
 
-proc newVkQueueFamilyGlobalPriorityPropertiesKHR*(sType: VkStructureType = VkStructureType.QueueFamilyGlobalPriorityPropertiesKHR, pNext: pointer = nil, priorityCount: uint32, priorities: array[VK_MAX_GLOBAL_PRIORITY_SIZE_KHR, VkQueueGlobalPriorityKHR]): VkQueueFamilyGlobalPriorityPropertiesKHR =
-  result = VkQueueFamilyGlobalPriorityPropertiesKHR(
+proc newVkQueueFamilyGlobalPriorityProperties*(sType: VkStructureType = VkStructureType.QueueFamilyGlobalPriorityProperties, pNext: pointer = nil, priorityCount: uint32, priorities: array[VK_MAX_GLOBAL_PRIORITY_SIZE, VkQueueGlobalPriority]): VkQueueFamilyGlobalPriorityProperties =
+  result = VkQueueFamilyGlobalPriorityProperties(
     sType: sType,
     pNext: pNext,
     priorityCount: priorityCount,
@@ -17543,18 +21119,18 @@ proc newVkSemaphoreSignalInfo*(sType: VkStructureType = VkStructureType.Semaphor
     value: value,
   )
 
-proc newVkVertexInputBindingDivisorDescriptionKHR*(binding: uint32, divisor: uint32): VkVertexInputBindingDivisorDescriptionKHR =
-  result = VkVertexInputBindingDivisorDescriptionKHR(
+proc newVkVertexInputBindingDivisorDescription*(binding: uint32, divisor: uint32): VkVertexInputBindingDivisorDescription =
+  result = VkVertexInputBindingDivisorDescription(
     binding: binding,
     divisor: divisor,
   )
 
-proc newVkPipelineVertexInputDivisorStateCreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineVertexInputDivisorStateCreateInfoKHR, pNext: pointer = nil, vertexBindingDivisors: openarray[VkVertexInputBindingDivisorDescriptionKHR]): VkPipelineVertexInputDivisorStateCreateInfoKHR =
-  result = VkPipelineVertexInputDivisorStateCreateInfoKHR(
+proc newVkPipelineVertexInputDivisorStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineVertexInputDivisorStateCreateInfo, pNext: pointer = nil, vertexBindingDivisors: openarray[VkVertexInputBindingDivisorDescription]): VkPipelineVertexInputDivisorStateCreateInfo =
+  result = VkPipelineVertexInputDivisorStateCreateInfo(
     sType: sType,
     pNext: pNext,
     vertexBindingDivisorCount: len(vertexBindingDivisors).uint32,
-    pVertexBindingDivisors: if len(vertexBindingDivisors) == 0: nil else: cast[ptr VkVertexInputBindingDivisorDescriptionKHR](vertexBindingDivisors),
+    pVertexBindingDivisors: if len(vertexBindingDivisors) == 0: nil else: cast[ptr VkVertexInputBindingDivisorDescription](vertexBindingDivisors),
   )
 
 proc newVkPhysicalDeviceVertexAttributeDivisorPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceVertexAttributeDivisorPropertiesEXT, pNext: pointer = nil, maxVertexAttribDivisor: uint32): VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT =
@@ -17564,8 +21140,8 @@ proc newVkPhysicalDeviceVertexAttributeDivisorPropertiesEXT*(sType: VkStructureT
     maxVertexAttribDivisor: maxVertexAttribDivisor,
   )
 
-proc newVkPhysicalDeviceVertexAttributeDivisorPropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVertexAttributeDivisorPropertiesKHR, pNext: pointer = nil, maxVertexAttribDivisor: uint32, supportsNonZeroFirstInstance: VkBool32): VkPhysicalDeviceVertexAttributeDivisorPropertiesKHR =
-  result = VkPhysicalDeviceVertexAttributeDivisorPropertiesKHR(
+proc newVkPhysicalDeviceVertexAttributeDivisorProperties*(sType: VkStructureType = VkStructureType.PhysicalDeviceVertexAttributeDivisorProperties, pNext: pointer = nil, maxVertexAttribDivisor: uint32, supportsNonZeroFirstInstance: VkBool32): VkPhysicalDeviceVertexAttributeDivisorProperties =
+  result = VkPhysicalDeviceVertexAttributeDivisorProperties(
     sType: sType,
     pNext: pNext,
     maxVertexAttribDivisor: maxVertexAttribDivisor,
@@ -17709,8 +21285,8 @@ proc newVkPhysicalDeviceShaderAtomicFloat2FeaturesEXT*(sType: VkStructureType = 
     sparseImageFloat32AtomicMinMax: sparseImageFloat32AtomicMinMax,
   )
 
-proc newVkPhysicalDeviceVertexAttributeDivisorFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVertexAttributeDivisorFeaturesKHR, pNext: pointer = nil, vertexAttributeInstanceRateDivisor: VkBool32, vertexAttributeInstanceRateZeroDivisor: VkBool32): VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR =
-  result = VkPhysicalDeviceVertexAttributeDivisorFeaturesKHR(
+proc newVkPhysicalDeviceVertexAttributeDivisorFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceVertexAttributeDivisorFeatures, pNext: pointer = nil, vertexAttributeInstanceRateDivisor: VkBool32, vertexAttributeInstanceRateZeroDivisor: VkBool32): VkPhysicalDeviceVertexAttributeDivisorFeatures =
+  result = VkPhysicalDeviceVertexAttributeDivisorFeatures(
     sType: sType,
     pNext: pNext,
     vertexAttributeInstanceRateDivisor: vertexAttributeInstanceRateDivisor,
@@ -17862,6 +21438,14 @@ proc newVkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV*(sType: VkStr
     dedicatedAllocationImageAliasing: dedicatedAllocationImageAliasing,
   )
 
+proc newVkPhysicalDeviceCopyMemoryIndirectFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceCopyMemoryIndirectFeaturesKHR, pNext: pointer = nil, indirectMemoryCopy: VkBool32, indirectMemoryToImageCopy: VkBool32): VkPhysicalDeviceCopyMemoryIndirectFeaturesKHR =
+  result = VkPhysicalDeviceCopyMemoryIndirectFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    indirectMemoryCopy: indirectMemoryCopy,
+    indirectMemoryToImageCopy: indirectMemoryToImageCopy,
+  )
+
 proc newVkPhysicalDeviceCopyMemoryIndirectFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCopyMemoryIndirectFeaturesNV, pNext: pointer = nil, indirectCopy: VkBool32): VkPhysicalDeviceCopyMemoryIndirectFeaturesNV =
   result = VkPhysicalDeviceCopyMemoryIndirectFeaturesNV(
     sType: sType,
@@ -17869,22 +21453,22 @@ proc newVkPhysicalDeviceCopyMemoryIndirectFeaturesNV*(sType: VkStructureType = V
     indirectCopy: indirectCopy,
   )
 
-proc newVkPhysicalDeviceCopyMemoryIndirectPropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCopyMemoryIndirectPropertiesNV, pNext: pointer = nil, supportedQueues: VkQueueFlags): VkPhysicalDeviceCopyMemoryIndirectPropertiesNV =
-  result = VkPhysicalDeviceCopyMemoryIndirectPropertiesNV(
+proc newVkPhysicalDeviceCopyMemoryIndirectPropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceCopyMemoryIndirectPropertiesKHR, pNext: pointer = nil, supportedQueues: VkQueueFlags): VkPhysicalDeviceCopyMemoryIndirectPropertiesKHR =
+  result = VkPhysicalDeviceCopyMemoryIndirectPropertiesKHR(
     sType: sType,
     pNext: pNext,
     supportedQueues: supportedQueues,
   )
 
-proc newVkPhysicalDeviceMemoryDecompressionFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceMemoryDecompressionFeaturesNV, pNext: pointer = nil, memoryDecompression: VkBool32): VkPhysicalDeviceMemoryDecompressionFeaturesNV =
-  result = VkPhysicalDeviceMemoryDecompressionFeaturesNV(
+proc newVkPhysicalDeviceMemoryDecompressionFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceMemoryDecompressionFeaturesEXT, pNext: pointer = nil, memoryDecompression: VkBool32): VkPhysicalDeviceMemoryDecompressionFeaturesEXT =
+  result = VkPhysicalDeviceMemoryDecompressionFeaturesEXT(
     sType: sType,
     pNext: pNext,
     memoryDecompression: memoryDecompression,
   )
 
-proc newVkPhysicalDeviceMemoryDecompressionPropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceMemoryDecompressionPropertiesNV, pNext: pointer = nil, decompressionMethods: VkMemoryDecompressionMethodFlagsNV, maxDecompressionIndirectCount: uint64): VkPhysicalDeviceMemoryDecompressionPropertiesNV =
-  result = VkPhysicalDeviceMemoryDecompressionPropertiesNV(
+proc newVkPhysicalDeviceMemoryDecompressionPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceMemoryDecompressionPropertiesEXT, pNext: pointer = nil, decompressionMethods: VkMemoryDecompressionMethodFlagsEXT, maxDecompressionIndirectCount: uint64): VkPhysicalDeviceMemoryDecompressionPropertiesEXT =
+  result = VkPhysicalDeviceMemoryDecompressionPropertiesEXT(
     sType: sType,
     pNext: pNext,
     decompressionMethods: decompressionMethods,
@@ -18381,8 +21965,8 @@ proc newVkPhysicalDeviceFragmentDensityMap2FeaturesEXT*(sType: VkStructureType =
     fragmentDensityMapDeferred: fragmentDensityMapDeferred,
   )
 
-proc newVkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM, pNext: pointer = nil, fragmentDensityMapOffset: VkBool32): VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM =
-  result = VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM(
+proc newVkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT, pNext: pointer = nil, fragmentDensityMapOffset: VkBool32): VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT =
+  result = VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT(
     sType: sType,
     pNext: pNext,
     fragmentDensityMapOffset: fragmentDensityMapOffset,
@@ -18407,8 +21991,8 @@ proc newVkPhysicalDeviceFragmentDensityMap2PropertiesEXT*(sType: VkStructureType
     maxDescriptorSetSubsampledSamplers: maxDescriptorSetSubsampledSamplers,
   )
 
-proc newVkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM, pNext: pointer = nil, fragmentDensityOffsetGranularity: VkExtent2D): VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM =
-  result = VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM(
+proc newVkPhysicalDeviceFragmentDensityMapOffsetPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT, pNext: pointer = nil, fragmentDensityOffsetGranularity: VkExtent2D): VkPhysicalDeviceFragmentDensityMapOffsetPropertiesEXT =
+  result = VkPhysicalDeviceFragmentDensityMapOffsetPropertiesEXT(
     sType: sType,
     pNext: pNext,
     fragmentDensityOffsetGranularity: fragmentDensityOffsetGranularity,
@@ -18421,8 +22005,8 @@ proc newVkRenderPassFragmentDensityMapCreateInfoEXT*(sType: VkStructureType = Vk
     fragmentDensityMapAttachment: fragmentDensityMapAttachment,
   )
 
-proc newVkSubpassFragmentDensityMapOffsetEndInfoQCOM*(sType: VkStructureType = VkStructureType.SubpassFragmentDensityMapOffsetEndInfoQCOM, pNext: pointer = nil, fragmentDensityOffsets: openarray[VkOffset2D]): VkSubpassFragmentDensityMapOffsetEndInfoQCOM =
-  result = VkSubpassFragmentDensityMapOffsetEndInfoQCOM(
+proc newVkRenderPassFragmentDensityMapOffsetEndInfoEXT*(sType: VkStructureType = VkStructureType.RenderPassFragmentDensityMapOffsetEndInfoEXT, pNext: pointer = nil, fragmentDensityOffsets: openarray[VkOffset2D]): VkRenderPassFragmentDensityMapOffsetEndInfoEXT =
+  result = VkRenderPassFragmentDensityMapOffsetEndInfoEXT(
     sType: sType,
     pNext: pNext,
     fragmentDensityOffsetCount: len(fragmentDensityOffsets).uint32,
@@ -18871,8 +22455,8 @@ proc newVkPhysicalDeviceShaderClockFeaturesKHR*(sType: VkStructureType = VkStruc
     shaderDeviceClock: shaderDeviceClock,
   )
 
-proc newVkPhysicalDeviceIndexTypeUint8FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceIndexTypeUint8FeaturesKHR, pNext: pointer = nil, indexTypeUint8: VkBool32): VkPhysicalDeviceIndexTypeUint8FeaturesKHR =
-  result = VkPhysicalDeviceIndexTypeUint8FeaturesKHR(
+proc newVkPhysicalDeviceIndexTypeUint8Features*(sType: VkStructureType = VkStructureType.PhysicalDeviceIndexTypeUint8Features, pNext: pointer = nil, indexTypeUint8: VkBool32): VkPhysicalDeviceIndexTypeUint8Features =
+  result = VkPhysicalDeviceIndexTypeUint8Features(
     sType: sType,
     pNext: pNext,
     indexTypeUint8: indexTypeUint8,
@@ -19073,8 +22657,8 @@ proc newVkDeviceMemoryOpaqueCaptureAddressInfo*(sType: VkStructureType = VkStruc
     memory: memory,
   )
 
-proc newVkPhysicalDeviceLineRasterizationFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceLineRasterizationFeaturesKHR, pNext: pointer = nil, rectangularLines: VkBool32, bresenhamLines: VkBool32, smoothLines: VkBool32, stippledRectangularLines: VkBool32, stippledBresenhamLines: VkBool32, stippledSmoothLines: VkBool32): VkPhysicalDeviceLineRasterizationFeaturesKHR =
-  result = VkPhysicalDeviceLineRasterizationFeaturesKHR(
+proc newVkPhysicalDeviceLineRasterizationFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceLineRasterizationFeatures, pNext: pointer = nil, rectangularLines: VkBool32, bresenhamLines: VkBool32, smoothLines: VkBool32, stippledRectangularLines: VkBool32, stippledBresenhamLines: VkBool32, stippledSmoothLines: VkBool32): VkPhysicalDeviceLineRasterizationFeatures =
+  result = VkPhysicalDeviceLineRasterizationFeatures(
     sType: sType,
     pNext: pNext,
     rectangularLines: rectangularLines,
@@ -19085,15 +22669,15 @@ proc newVkPhysicalDeviceLineRasterizationFeaturesKHR*(sType: VkStructureType = V
     stippledSmoothLines: stippledSmoothLines,
   )
 
-proc newVkPhysicalDeviceLineRasterizationPropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceLineRasterizationPropertiesKHR, pNext: pointer = nil, lineSubPixelPrecisionBits: uint32): VkPhysicalDeviceLineRasterizationPropertiesKHR =
-  result = VkPhysicalDeviceLineRasterizationPropertiesKHR(
+proc newVkPhysicalDeviceLineRasterizationProperties*(sType: VkStructureType = VkStructureType.PhysicalDeviceLineRasterizationProperties, pNext: pointer = nil, lineSubPixelPrecisionBits: uint32): VkPhysicalDeviceLineRasterizationProperties =
+  result = VkPhysicalDeviceLineRasterizationProperties(
     sType: sType,
     pNext: pNext,
     lineSubPixelPrecisionBits: lineSubPixelPrecisionBits,
   )
 
-proc newVkPipelineRasterizationLineStateCreateInfoKHR*(sType: VkStructureType = VkStructureType.PipelineRasterizationLineStateCreateInfoKHR, pNext: pointer = nil, lineRasterizationMode: VkLineRasterizationModeKHR, stippledLineEnable: VkBool32, lineStippleFactor: uint32, lineStipplePattern: uint16): VkPipelineRasterizationLineStateCreateInfoKHR =
-  result = VkPipelineRasterizationLineStateCreateInfoKHR(
+proc newVkPipelineRasterizationLineStateCreateInfo*(sType: VkStructureType = VkStructureType.PipelineRasterizationLineStateCreateInfo, pNext: pointer = nil, lineRasterizationMode: VkLineRasterizationMode, stippledLineEnable: VkBool32, lineStippleFactor: uint32, lineStipplePattern: uint16): VkPipelineRasterizationLineStateCreateInfo =
+  result = VkPipelineRasterizationLineStateCreateInfo(
     sType: sType,
     pNext: pNext,
     lineRasterizationMode: lineRasterizationMode,
@@ -19331,6 +22915,64 @@ proc newVkPhysicalDeviceVulkan13Properties*(sType: VkStructureType = VkStructure
     maxBufferSize: maxBufferSize,
   )
 
+proc newVkPhysicalDeviceVulkan14Features*(sType: VkStructureType = VkStructureType.PhysicalDeviceVulkan14Features, pNext: pointer = nil, globalPriorityQuery: VkBool32, shaderSubgroupRotate: VkBool32, shaderSubgroupRotateClustered: VkBool32, shaderFloatControls2: VkBool32, shaderExpectAssume: VkBool32, rectangularLines: VkBool32, bresenhamLines: VkBool32, smoothLines: VkBool32, stippledRectangularLines: VkBool32, stippledBresenhamLines: VkBool32, stippledSmoothLines: VkBool32, vertexAttributeInstanceRateDivisor: VkBool32, vertexAttributeInstanceRateZeroDivisor: VkBool32, indexTypeUint8: VkBool32, dynamicRenderingLocalRead: VkBool32, maintenance5: VkBool32, maintenance6: VkBool32, pipelineProtectedAccess: VkBool32, pipelineRobustness: VkBool32, hostImageCopy: VkBool32, pushDescriptor: VkBool32): VkPhysicalDeviceVulkan14Features =
+  result = VkPhysicalDeviceVulkan14Features(
+    sType: sType,
+    pNext: pNext,
+    globalPriorityQuery: globalPriorityQuery,
+    shaderSubgroupRotate: shaderSubgroupRotate,
+    shaderSubgroupRotateClustered: shaderSubgroupRotateClustered,
+    shaderFloatControls2: shaderFloatControls2,
+    shaderExpectAssume: shaderExpectAssume,
+    rectangularLines: rectangularLines,
+    bresenhamLines: bresenhamLines,
+    smoothLines: smoothLines,
+    stippledRectangularLines: stippledRectangularLines,
+    stippledBresenhamLines: stippledBresenhamLines,
+    stippledSmoothLines: stippledSmoothLines,
+    vertexAttributeInstanceRateDivisor: vertexAttributeInstanceRateDivisor,
+    vertexAttributeInstanceRateZeroDivisor: vertexAttributeInstanceRateZeroDivisor,
+    indexTypeUint8: indexTypeUint8,
+    dynamicRenderingLocalRead: dynamicRenderingLocalRead,
+    maintenance5: maintenance5,
+    maintenance6: maintenance6,
+    pipelineProtectedAccess: pipelineProtectedAccess,
+    pipelineRobustness: pipelineRobustness,
+    hostImageCopy: hostImageCopy,
+    pushDescriptor: pushDescriptor,
+  )
+
+proc newVkPhysicalDeviceVulkan14Properties*(sType: VkStructureType = VkStructureType.PhysicalDeviceVulkan14Properties, pNext: pointer = nil, lineSubPixelPrecisionBits: uint32, maxVertexAttribDivisor: uint32, supportsNonZeroFirstInstance: VkBool32, maxPushDescriptors: uint32, dynamicRenderingLocalReadDepthStencilAttachments: VkBool32, dynamicRenderingLocalReadMultisampledAttachments: VkBool32, earlyFragmentMultisampleCoverageAfterSampleCounting: VkBool32, earlyFragmentSampleMaskTestBeforeSampleCounting: VkBool32, depthStencilSwizzleOneSupport: VkBool32, polygonModePointSize: VkBool32, nonStrictSinglePixelWideLinesUseParallelogram: VkBool32, nonStrictWideLinesUseParallelogram: VkBool32, blockTexelViewCompatibleMultipleLayers: VkBool32, maxCombinedImageSamplerDescriptorCount: uint32, fragmentShadingRateClampCombinerInputs: VkBool32, defaultRobustnessStorageBuffers: VkPipelineRobustnessBufferBehavior, defaultRobustnessUniformBuffers: VkPipelineRobustnessBufferBehavior, defaultRobustnessVertexInputs: VkPipelineRobustnessBufferBehavior, defaultRobustnessImages: VkPipelineRobustnessImageBehavior, copySrcLayouts: openarray[VkImageLayout], copyDstLayouts: openarray[VkImageLayout], optimalTilingLayoutUUID: array[VK_UUID_SIZE, uint8], identicalMemoryTypeRequirements: VkBool32): VkPhysicalDeviceVulkan14Properties =
+  result = VkPhysicalDeviceVulkan14Properties(
+    sType: sType,
+    pNext: pNext,
+    lineSubPixelPrecisionBits: lineSubPixelPrecisionBits,
+    maxVertexAttribDivisor: maxVertexAttribDivisor,
+    supportsNonZeroFirstInstance: supportsNonZeroFirstInstance,
+    maxPushDescriptors: maxPushDescriptors,
+    dynamicRenderingLocalReadDepthStencilAttachments: dynamicRenderingLocalReadDepthStencilAttachments,
+    dynamicRenderingLocalReadMultisampledAttachments: dynamicRenderingLocalReadMultisampledAttachments,
+    earlyFragmentMultisampleCoverageAfterSampleCounting: earlyFragmentMultisampleCoverageAfterSampleCounting,
+    earlyFragmentSampleMaskTestBeforeSampleCounting: earlyFragmentSampleMaskTestBeforeSampleCounting,
+    depthStencilSwizzleOneSupport: depthStencilSwizzleOneSupport,
+    polygonModePointSize: polygonModePointSize,
+    nonStrictSinglePixelWideLinesUseParallelogram: nonStrictSinglePixelWideLinesUseParallelogram,
+    nonStrictWideLinesUseParallelogram: nonStrictWideLinesUseParallelogram,
+    blockTexelViewCompatibleMultipleLayers: blockTexelViewCompatibleMultipleLayers,
+    maxCombinedImageSamplerDescriptorCount: maxCombinedImageSamplerDescriptorCount,
+    fragmentShadingRateClampCombinerInputs: fragmentShadingRateClampCombinerInputs,
+    defaultRobustnessStorageBuffers: defaultRobustnessStorageBuffers,
+    defaultRobustnessUniformBuffers: defaultRobustnessUniformBuffers,
+    defaultRobustnessVertexInputs: defaultRobustnessVertexInputs,
+    defaultRobustnessImages: defaultRobustnessImages,
+    copySrcLayoutCount: len(copySrcLayouts).uint32,
+    pCopySrcLayouts: if len(copySrcLayouts) == 0: nil else: cast[ptr VkImageLayout](copySrcLayouts),
+    copyDstLayoutCount: len(copyDstLayouts).uint32,
+    pCopyDstLayouts: if len(copyDstLayouts) == 0: nil else: cast[ptr VkImageLayout](copyDstLayouts),
+    optimalTilingLayoutUUID: optimalTilingLayoutUUID,
+    identicalMemoryTypeRequirements: identicalMemoryTypeRequirements,
+  )
+
 proc newVkPipelineCompilerControlCreateInfoAMD*(sType: VkStructureType = VkStructureType.PipelineCompilerControlCreateInfoAMD, pNext: pointer = nil, compilerControlFlags: VkPipelineCompilerControlFlagsAMD): VkPipelineCompilerControlCreateInfoAMD =
   result = VkPipelineCompilerControlCreateInfoAMD(
     sType: sType,
@@ -19439,6 +23081,38 @@ proc newVkAccelerationStructureGeometryInstancesDataKHR*(sType: VkStructureType 
     pNext: pNext,
     arrayOfPointers: arrayOfPointers,
     data: data,
+  )
+
+proc newVkAccelerationStructureGeometryLinearSweptSpheresDataNV*(sType: VkStructureType = VkStructureType.AccelerationStructureGeometryLinearSweptSpheresDataNV, pNext: pointer = nil, vertexFormat: VkFormat, vertexData: VkDeviceOrHostAddressConstKHR, vertexStride: VkDeviceSize, radiusFormat: VkFormat, radiusData: VkDeviceOrHostAddressConstKHR, radiusStride: VkDeviceSize, indexType: VkIndexType, indexData: VkDeviceOrHostAddressConstKHR, indexStride: VkDeviceSize, indexingMode: VkRayTracingLssIndexingModeNV, endCapsMode: VkRayTracingLssPrimitiveEndCapsModeNV): VkAccelerationStructureGeometryLinearSweptSpheresDataNV =
+  result = VkAccelerationStructureGeometryLinearSweptSpheresDataNV(
+    sType: sType,
+    pNext: pNext,
+    vertexFormat: vertexFormat,
+    vertexData: vertexData,
+    vertexStride: vertexStride,
+    radiusFormat: radiusFormat,
+    radiusData: radiusData,
+    radiusStride: radiusStride,
+    indexType: indexType,
+    indexData: indexData,
+    indexStride: indexStride,
+    indexingMode: indexingMode,
+    endCapsMode: endCapsMode,
+  )
+
+proc newVkAccelerationStructureGeometrySpheresDataNV*(sType: VkStructureType = VkStructureType.AccelerationStructureGeometrySpheresDataNV, pNext: pointer = nil, vertexFormat: VkFormat, vertexData: VkDeviceOrHostAddressConstKHR, vertexStride: VkDeviceSize, radiusFormat: VkFormat, radiusData: VkDeviceOrHostAddressConstKHR, radiusStride: VkDeviceSize, indexType: VkIndexType, indexData: VkDeviceOrHostAddressConstKHR, indexStride: VkDeviceSize): VkAccelerationStructureGeometrySpheresDataNV =
+  result = VkAccelerationStructureGeometrySpheresDataNV(
+    sType: sType,
+    pNext: pNext,
+    vertexFormat: vertexFormat,
+    vertexData: vertexData,
+    vertexStride: vertexStride,
+    radiusFormat: radiusFormat,
+    radiusData: radiusData,
+    radiusStride: radiusStride,
+    indexType: indexType,
+    indexData: indexData,
+    indexStride: indexStride,
   )
 
 proc newVkAccelerationStructureGeometryKHR*(sType: VkStructureType = VkStructureType.AccelerationStructureGeometryKHR, pNext: pointer = nil, geometryType: VkGeometryTypeKHR, geometry: VkAccelerationStructureGeometryDataKHR, flags: VkGeometryFlagsKHR = 0.VkGeometryFlagsKHR): VkAccelerationStructureGeometryKHR =
@@ -19683,6 +23357,91 @@ proc newVkCommandBufferInheritanceRenderPassTransformInfoQCOM*(sType: VkStructur
     renderArea: renderArea,
   )
 
+proc newVkPhysicalDevicePartitionedAccelerationStructureFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDevicePartitionedAccelerationStructureFeaturesNV, pNext: pointer = nil, partitionedAccelerationStructure: VkBool32): VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV =
+  result = VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    partitionedAccelerationStructure: partitionedAccelerationStructure,
+  )
+
+proc newVkPhysicalDevicePartitionedAccelerationStructurePropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDevicePartitionedAccelerationStructurePropertiesNV, pNext: pointer = nil, maxPartitionCount: uint32): VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV =
+  result = VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    maxPartitionCount: maxPartitionCount,
+  )
+
+proc newVkBuildPartitionedAccelerationStructureIndirectCommandNV*(opType: VkPartitionedAccelerationStructureOpTypeNV, argCount: uint32, argData: VkStridedDeviceAddressNV): VkBuildPartitionedAccelerationStructureIndirectCommandNV =
+  result = VkBuildPartitionedAccelerationStructureIndirectCommandNV(
+    opType: opType,
+    argCount: argCount,
+    argData: argData,
+  )
+
+proc newVkPartitionedAccelerationStructureFlagsNV*(sType: VkStructureType = VkStructureType.PartitionedAccelerationStructureFlagsNV, pNext: pointer = nil, enablePartitionTranslation: VkBool32): VkPartitionedAccelerationStructureFlagsNV =
+  result = VkPartitionedAccelerationStructureFlagsNV(
+    sType: sType,
+    pNext: pNext,
+    enablePartitionTranslation: enablePartitionTranslation,
+  )
+
+proc newVkPartitionedAccelerationStructureWriteInstanceDataNV*(transform: VkTransformMatrixKHR, explicitAABB: array[6, float32], instanceID: uint32, instanceMask: uint32, instanceContributionToHitGroupIndex: uint32, instanceFlags: VkPartitionedAccelerationStructureInstanceFlagsNV, instanceIndex: uint32, partitionIndex: uint32, accelerationStructure: VkDeviceAddress): VkPartitionedAccelerationStructureWriteInstanceDataNV =
+  result = VkPartitionedAccelerationStructureWriteInstanceDataNV(
+    transform: transform,
+    explicitAABB: explicitAABB,
+    instanceID: instanceID,
+    instanceMask: instanceMask,
+    instanceContributionToHitGroupIndex: instanceContributionToHitGroupIndex,
+    instanceFlags: instanceFlags,
+    instanceIndex: instanceIndex,
+    partitionIndex: partitionIndex,
+    accelerationStructure: accelerationStructure,
+  )
+
+proc newVkPartitionedAccelerationStructureUpdateInstanceDataNV*(instanceIndex: uint32, instanceContributionToHitGroupIndex: uint32, accelerationStructure: VkDeviceAddress): VkPartitionedAccelerationStructureUpdateInstanceDataNV =
+  result = VkPartitionedAccelerationStructureUpdateInstanceDataNV(
+    instanceIndex: instanceIndex,
+    instanceContributionToHitGroupIndex: instanceContributionToHitGroupIndex,
+    accelerationStructure: accelerationStructure,
+  )
+
+proc newVkPartitionedAccelerationStructureWritePartitionTranslationDataNV*(partitionIndex: uint32, partitionTranslation: array[3, float32]): VkPartitionedAccelerationStructureWritePartitionTranslationDataNV =
+  result = VkPartitionedAccelerationStructureWritePartitionTranslationDataNV(
+    partitionIndex: partitionIndex,
+    partitionTranslation: partitionTranslation,
+  )
+
+proc newVkWriteDescriptorSetPartitionedAccelerationStructureNV*(sType: VkStructureType = VkStructureType.WriteDescriptorSetPartitionedAccelerationStructureNV, pNext: pointer = nil, accelerationStructures: openarray[VkDeviceAddress]): VkWriteDescriptorSetPartitionedAccelerationStructureNV =
+  result = VkWriteDescriptorSetPartitionedAccelerationStructureNV(
+    sType: sType,
+    pNext: pNext,
+    accelerationStructureCount: len(accelerationStructures).uint32,
+    pAccelerationStructures: if len(accelerationStructures) == 0: nil else: cast[ptr VkDeviceAddress](accelerationStructures),
+  )
+
+proc newVkPartitionedAccelerationStructureInstancesInputNV*(sType: VkStructureType = VkStructureType.PartitionedAccelerationStructureInstancesInputNV, pNext: pointer = nil, flags: VkBuildAccelerationStructureFlagsKHR = 0.VkBuildAccelerationStructureFlagsKHR, instanceCount: uint32, maxInstancePerPartitionCount: uint32, partitionCount: uint32, maxInstanceInGlobalPartitionCount: uint32): VkPartitionedAccelerationStructureInstancesInputNV =
+  result = VkPartitionedAccelerationStructureInstancesInputNV(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    instanceCount: instanceCount,
+    maxInstancePerPartitionCount: maxInstancePerPartitionCount,
+    partitionCount: partitionCount,
+    maxInstanceInGlobalPartitionCount: maxInstanceInGlobalPartitionCount,
+  )
+
+proc newVkBuildPartitionedAccelerationStructureInfoNV*(sType: VkStructureType = VkStructureType.BuildPartitionedAccelerationStructureInfoNV, pNext: pointer = nil, input: VkPartitionedAccelerationStructureInstancesInputNV, srcAccelerationStructureData: VkDeviceAddress, dstAccelerationStructureData: VkDeviceAddress, scratchData: VkDeviceAddress, srcInfos: VkDeviceAddress, srcInfosCount: VkDeviceAddress): VkBuildPartitionedAccelerationStructureInfoNV =
+  result = VkBuildPartitionedAccelerationStructureInfoNV(
+    sType: sType,
+    pNext: pNext,
+    input: input,
+    srcAccelerationStructureData: srcAccelerationStructureData,
+    dstAccelerationStructureData: dstAccelerationStructureData,
+    scratchData: scratchData,
+    srcInfos: srcInfos,
+    srcInfosCount: srcInfosCount,
+  )
+
 proc newVkPhysicalDeviceDiagnosticsConfigFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceDiagnosticsConfigFeaturesNV, pNext: pointer = nil, diagnosticsConfig: VkBool32): VkPhysicalDeviceDiagnosticsConfigFeaturesNV =
   result = VkPhysicalDeviceDiagnosticsConfigFeaturesNV(
     sType: sType,
@@ -19720,8 +23479,8 @@ proc newVkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR*(sType: VkSt
     shaderSubgroupUniformControlFlow: shaderSubgroupUniformControlFlow,
   )
 
-proc newVkPhysicalDeviceRobustness2FeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceRobustness2FeaturesEXT, pNext: pointer = nil, robustBufferAccess2: VkBool32, robustImageAccess2: VkBool32, nullDescriptor: VkBool32): VkPhysicalDeviceRobustness2FeaturesEXT =
-  result = VkPhysicalDeviceRobustness2FeaturesEXT(
+proc newVkPhysicalDeviceRobustness2FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceRobustness2FeaturesKHR, pNext: pointer = nil, robustBufferAccess2: VkBool32, robustImageAccess2: VkBool32, nullDescriptor: VkBool32): VkPhysicalDeviceRobustness2FeaturesKHR =
+  result = VkPhysicalDeviceRobustness2FeaturesKHR(
     sType: sType,
     pNext: pNext,
     robustBufferAccess2: robustBufferAccess2,
@@ -19729,8 +23488,8 @@ proc newVkPhysicalDeviceRobustness2FeaturesEXT*(sType: VkStructureType = VkStruc
     nullDescriptor: nullDescriptor,
   )
 
-proc newVkPhysicalDeviceRobustness2PropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceRobustness2PropertiesEXT, pNext: pointer = nil, robustStorageBufferAccessSizeAlignment: VkDeviceSize, robustUniformBufferAccessSizeAlignment: VkDeviceSize): VkPhysicalDeviceRobustness2PropertiesEXT =
-  result = VkPhysicalDeviceRobustness2PropertiesEXT(
+proc newVkPhysicalDeviceRobustness2PropertiesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceRobustness2PropertiesKHR, pNext: pointer = nil, robustStorageBufferAccessSizeAlignment: VkDeviceSize, robustUniformBufferAccessSizeAlignment: VkDeviceSize): VkPhysicalDeviceRobustness2PropertiesKHR =
+  result = VkPhysicalDeviceRobustness2PropertiesKHR(
     sType: sType,
     pNext: pNext,
     robustStorageBufferAccessSizeAlignment: robustStorageBufferAccessSizeAlignment,
@@ -20103,11 +23862,239 @@ proc newVkPhysicalDeviceDepthClipControlFeaturesEXT*(sType: VkStructureType = Vk
     depthClipControl: depthClipControl,
   )
 
+proc newVkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT, pNext: pointer = nil, zeroInitializeDeviceMemory: VkBool32): VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT =
+  result = VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    zeroInitializeDeviceMemory: zeroInitializeDeviceMemory,
+  )
+
+proc newVkBeginCustomResolveInfoEXT*(sType: VkStructureType = VkStructureType.BeginCustomResolveInfoEXT, pNext: pointer = nil): VkBeginCustomResolveInfoEXT =
+  result = VkBeginCustomResolveInfoEXT(
+    sType: sType,
+    pNext: pNext,
+  )
+
+proc newVkPhysicalDeviceCustomResolveFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceCustomResolveFeaturesEXT, pNext: pointer = nil, customResolve: VkBool32): VkPhysicalDeviceCustomResolveFeaturesEXT =
+  result = VkPhysicalDeviceCustomResolveFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    customResolve: customResolve,
+  )
+
+proc newVkCustomResolveCreateInfoEXT*(sType: VkStructureType = VkStructureType.CustomResolveCreateInfoEXT, pNext: pointer = nil, customResolve: VkBool32, colorAttachmentFormats: openarray[VkFormat], depthAttachmentFormat: VkFormat, stencilAttachmentFormat: VkFormat): VkCustomResolveCreateInfoEXT =
+  result = VkCustomResolveCreateInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    customResolve: customResolve,
+    colorAttachmentCount: len(colorAttachmentFormats).uint32,
+    pColorAttachmentFormats: if len(colorAttachmentFormats) == 0: nil else: cast[ptr VkFormat](colorAttachmentFormats),
+    depthAttachmentFormat: depthAttachmentFormat,
+    stencilAttachmentFormat: stencilAttachmentFormat,
+  )
+
+proc newVkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT, pNext: pointer = nil, deviceGeneratedCommands: VkBool32, dynamicGeneratedPipelineLayout: VkBool32): VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT =
+  result = VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    deviceGeneratedCommands: deviceGeneratedCommands,
+    dynamicGeneratedPipelineLayout: dynamicGeneratedPipelineLayout,
+  )
+
+proc newVkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT, pNext: pointer = nil, maxIndirectPipelineCount: uint32, maxIndirectShaderObjectCount: uint32, maxIndirectSequenceCount: uint32, maxIndirectCommandsTokenCount: uint32, maxIndirectCommandsTokenOffset: uint32, maxIndirectCommandsIndirectStride: uint32, supportedIndirectCommandsInputModes: VkIndirectCommandsInputModeFlagsEXT, supportedIndirectCommandsShaderStages: VkShaderStageFlags, supportedIndirectCommandsShaderStagesPipelineBinding: VkShaderStageFlags, supportedIndirectCommandsShaderStagesShaderBinding: VkShaderStageFlags, deviceGeneratedCommandsTransformFeedback: VkBool32, deviceGeneratedCommandsMultiDrawIndirectCount: VkBool32): VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT =
+  result = VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    maxIndirectPipelineCount: maxIndirectPipelineCount,
+    maxIndirectShaderObjectCount: maxIndirectShaderObjectCount,
+    maxIndirectSequenceCount: maxIndirectSequenceCount,
+    maxIndirectCommandsTokenCount: maxIndirectCommandsTokenCount,
+    maxIndirectCommandsTokenOffset: maxIndirectCommandsTokenOffset,
+    maxIndirectCommandsIndirectStride: maxIndirectCommandsIndirectStride,
+    supportedIndirectCommandsInputModes: supportedIndirectCommandsInputModes,
+    supportedIndirectCommandsShaderStages: supportedIndirectCommandsShaderStages,
+    supportedIndirectCommandsShaderStagesPipelineBinding: supportedIndirectCommandsShaderStagesPipelineBinding,
+    supportedIndirectCommandsShaderStagesShaderBinding: supportedIndirectCommandsShaderStagesShaderBinding,
+    deviceGeneratedCommandsTransformFeedback: deviceGeneratedCommandsTransformFeedback,
+    deviceGeneratedCommandsMultiDrawIndirectCount: deviceGeneratedCommandsMultiDrawIndirectCount,
+  )
+
+proc newVkGeneratedCommandsPipelineInfoEXT*(sType: VkStructureType = VkStructureType.GeneratedCommandsPipelineInfoEXT, pNext: pointer = nil, pipeline: VkPipeline): VkGeneratedCommandsPipelineInfoEXT =
+  result = VkGeneratedCommandsPipelineInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    pipeline: pipeline,
+  )
+
+proc newVkGeneratedCommandsShaderInfoEXT*(sType: VkStructureType = VkStructureType.GeneratedCommandsShaderInfoEXT, pNext: pointer = nil, shaders: openarray[VkShaderEXT]): VkGeneratedCommandsShaderInfoEXT =
+  result = VkGeneratedCommandsShaderInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    shaderCount: len(shaders).uint32,
+    pShaders: if len(shaders) == 0: nil else: cast[ptr VkShaderEXT](shaders),
+  )
+
+proc newVkGeneratedCommandsMemoryRequirementsInfoEXT*(sType: VkStructureType = VkStructureType.GeneratedCommandsMemoryRequirementsInfoEXT, pNext: pointer = nil, indirectExecutionSet: VkIndirectExecutionSetEXT, indirectCommandsLayout: VkIndirectCommandsLayoutEXT, maxSequenceCount: uint32, maxDrawCount: uint32): VkGeneratedCommandsMemoryRequirementsInfoEXT =
+  result = VkGeneratedCommandsMemoryRequirementsInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    indirectExecutionSet: indirectExecutionSet,
+    indirectCommandsLayout: indirectCommandsLayout,
+    maxSequenceCount: maxSequenceCount,
+    maxDrawCount: maxDrawCount,
+  )
+
+proc newVkIndirectExecutionSetPipelineInfoEXT*(sType: VkStructureType = VkStructureType.IndirectExecutionSetPipelineInfoEXT, pNext: pointer = nil, initialPipeline: VkPipeline, maxPipelineCount: uint32): VkIndirectExecutionSetPipelineInfoEXT =
+  result = VkIndirectExecutionSetPipelineInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    initialPipeline: initialPipeline,
+    maxPipelineCount: maxPipelineCount,
+  )
+
+proc newVkIndirectExecutionSetShaderLayoutInfoEXT*(sType: VkStructureType = VkStructureType.IndirectExecutionSetShaderLayoutInfoEXT, pNext: pointer = nil, setLayouts: openarray[VkDescriptorSetLayout]): VkIndirectExecutionSetShaderLayoutInfoEXT =
+  result = VkIndirectExecutionSetShaderLayoutInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    setLayoutCount: len(setLayouts).uint32,
+    pSetLayouts: if len(setLayouts) == 0: nil else: cast[ptr VkDescriptorSetLayout](setLayouts),
+  )
+
+proc newVkIndirectExecutionSetShaderInfoEXT*(sType: VkStructureType = VkStructureType.IndirectExecutionSetShaderInfoEXT, pNext: pointer = nil, initialShaders: openarray[VkShaderEXT], setLayoutInfos: openarray[VkIndirectExecutionSetShaderLayoutInfoEXT], maxShaderCount: uint32, pushConstantRanges: openarray[VkPushConstantRange]): VkIndirectExecutionSetShaderInfoEXT =
+  result = VkIndirectExecutionSetShaderInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    shaderCount: len(initialShaders).uint32,
+    pInitialShaders: if len(initialShaders) == 0: nil else: cast[ptr VkShaderEXT](initialShaders),
+    pSetLayoutInfos: if len(setLayoutInfos) == 0: nil else: cast[ptr VkIndirectExecutionSetShaderLayoutInfoEXT](setLayoutInfos),
+    maxShaderCount: maxShaderCount,
+    pushConstantRangeCount: len(pushConstantRanges).uint32,
+    pPushConstantRanges: if len(pushConstantRanges) == 0: nil else: cast[ptr VkPushConstantRange](pushConstantRanges),
+  )
+
+proc newVkIndirectExecutionSetCreateInfoEXT*(sType: VkStructureType = VkStructureType.IndirectExecutionSetCreateInfoEXT, pNext: pointer = nil, `type`: VkIndirectExecutionSetInfoTypeEXT, info: VkIndirectExecutionSetInfoEXT): VkIndirectExecutionSetCreateInfoEXT =
+  result = VkIndirectExecutionSetCreateInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    `type`: `type`,
+    info: info,
+  )
+
+proc newVkGeneratedCommandsInfoEXT*(sType: VkStructureType = VkStructureType.GeneratedCommandsInfoEXT, pNext: pointer = nil, shaderStages: VkShaderStageFlags, indirectExecutionSet: VkIndirectExecutionSetEXT, indirectCommandsLayout: VkIndirectCommandsLayoutEXT, indirectAddress: VkDeviceAddress, indirectAddressSize: VkDeviceSize, preprocessAddress: VkDeviceAddress, preprocessSize: VkDeviceSize, maxSequenceCount: uint32, sequenceCountAddress: VkDeviceAddress, maxDrawCount: uint32): VkGeneratedCommandsInfoEXT =
+  result = VkGeneratedCommandsInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    shaderStages: shaderStages,
+    indirectExecutionSet: indirectExecutionSet,
+    indirectCommandsLayout: indirectCommandsLayout,
+    indirectAddress: indirectAddress,
+    indirectAddressSize: indirectAddressSize,
+    preprocessAddress: preprocessAddress,
+    preprocessSize: preprocessSize,
+    maxSequenceCount: maxSequenceCount,
+    sequenceCountAddress: sequenceCountAddress,
+    maxDrawCount: maxDrawCount,
+  )
+
+proc newVkWriteIndirectExecutionSetPipelineEXT*(sType: VkStructureType = VkStructureType.WriteIndirectExecutionSetPipelineEXT, pNext: pointer = nil, index: uint32, pipeline: VkPipeline): VkWriteIndirectExecutionSetPipelineEXT =
+  result = VkWriteIndirectExecutionSetPipelineEXT(
+    sType: sType,
+    pNext: pNext,
+    index: index,
+    pipeline: pipeline,
+  )
+
+proc newVkWriteIndirectExecutionSetShaderEXT*(sType: VkStructureType = VkStructureType.WriteIndirectExecutionSetShaderEXT, pNext: pointer = nil, index: uint32, shader: VkShaderEXT): VkWriteIndirectExecutionSetShaderEXT =
+  result = VkWriteIndirectExecutionSetShaderEXT(
+    sType: sType,
+    pNext: pNext,
+    index: index,
+    shader: shader,
+  )
+
+proc newVkIndirectCommandsLayoutCreateInfoEXT*(sType: VkStructureType = VkStructureType.IndirectCommandsLayoutCreateInfoEXT, pNext: pointer = nil, flags: VkIndirectCommandsLayoutUsageFlagsEXT = 0.VkIndirectCommandsLayoutUsageFlagsEXT, shaderStages: VkShaderStageFlags, indirectStride: uint32, pipelineLayout: VkPipelineLayout, tokens: openarray[VkIndirectCommandsLayoutTokenEXT]): VkIndirectCommandsLayoutCreateInfoEXT =
+  result = VkIndirectCommandsLayoutCreateInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    shaderStages: shaderStages,
+    indirectStride: indirectStride,
+    pipelineLayout: pipelineLayout,
+    tokenCount: len(tokens).uint32,
+    pTokens: if len(tokens) == 0: nil else: cast[ptr VkIndirectCommandsLayoutTokenEXT](tokens),
+  )
+
+proc newVkIndirectCommandsLayoutTokenEXT*(sType: VkStructureType = VkStructureType.IndirectCommandsLayoutTokenEXT, pNext: pointer = nil, `type`: VkIndirectCommandsTokenTypeEXT, data: VkIndirectCommandsTokenDataEXT, offset: uint32): VkIndirectCommandsLayoutTokenEXT =
+  result = VkIndirectCommandsLayoutTokenEXT(
+    sType: sType,
+    pNext: pNext,
+    `type`: `type`,
+    data: data,
+    offset: offset,
+  )
+
+proc newVkDrawIndirectCountIndirectCommandEXT*(bufferAddress: VkDeviceAddress, stride: uint32, commandCount: uint32): VkDrawIndirectCountIndirectCommandEXT =
+  result = VkDrawIndirectCountIndirectCommandEXT(
+    bufferAddress: bufferAddress,
+    stride: stride,
+    commandCount: commandCount,
+  )
+
+proc newVkIndirectCommandsVertexBufferTokenEXT*(vertexBindingUnit: uint32): VkIndirectCommandsVertexBufferTokenEXT =
+  result = VkIndirectCommandsVertexBufferTokenEXT(
+    vertexBindingUnit: vertexBindingUnit,
+  )
+
+proc newVkBindVertexBufferIndirectCommandEXT*(bufferAddress: VkDeviceAddress, size: uint32, stride: uint32): VkBindVertexBufferIndirectCommandEXT =
+  result = VkBindVertexBufferIndirectCommandEXT(
+    bufferAddress: bufferAddress,
+    size: size,
+    stride: stride,
+  )
+
+proc newVkIndirectCommandsIndexBufferTokenEXT*(mode: VkIndirectCommandsInputModeFlagBitsEXT): VkIndirectCommandsIndexBufferTokenEXT =
+  result = VkIndirectCommandsIndexBufferTokenEXT(
+    mode: mode,
+  )
+
+proc newVkBindIndexBufferIndirectCommandEXT*(bufferAddress: VkDeviceAddress, size: uint32, indexType: VkIndexType): VkBindIndexBufferIndirectCommandEXT =
+  result = VkBindIndexBufferIndirectCommandEXT(
+    bufferAddress: bufferAddress,
+    size: size,
+    indexType: indexType,
+  )
+
+proc newVkIndirectCommandsPushConstantTokenEXT*(updateRange: VkPushConstantRange): VkIndirectCommandsPushConstantTokenEXT =
+  result = VkIndirectCommandsPushConstantTokenEXT(
+    updateRange: updateRange,
+  )
+
+proc newVkIndirectCommandsExecutionSetTokenEXT*(`type`: VkIndirectExecutionSetInfoTypeEXT, shaderStages: VkShaderStageFlags): VkIndirectCommandsExecutionSetTokenEXT =
+  result = VkIndirectCommandsExecutionSetTokenEXT(
+    `type`: `type`,
+    shaderStages: shaderStages,
+  )
+
 proc newVkPipelineViewportDepthClipControlCreateInfoEXT*(sType: VkStructureType = VkStructureType.PipelineViewportDepthClipControlCreateInfoEXT, pNext: pointer = nil, negativeOneToOne: VkBool32): VkPipelineViewportDepthClipControlCreateInfoEXT =
   result = VkPipelineViewportDepthClipControlCreateInfoEXT(
     sType: sType,
     pNext: pNext,
     negativeOneToOne: negativeOneToOne,
+  )
+
+proc newVkPhysicalDeviceDepthClampControlFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDepthClampControlFeaturesEXT, pNext: pointer = nil, depthClampControl: VkBool32): VkPhysicalDeviceDepthClampControlFeaturesEXT =
+  result = VkPhysicalDeviceDepthClampControlFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    depthClampControl: depthClampControl,
+  )
+
+proc newVkPipelineViewportDepthClampControlCreateInfoEXT*(sType: VkStructureType = VkStructureType.PipelineViewportDepthClampControlCreateInfoEXT, pNext: pointer = nil, depthClampMode: VkDepthClampModeEXT, pDepthClampRange: ptr VkDepthClampRangeEXT): VkPipelineViewportDepthClampControlCreateInfoEXT =
+  result = VkPipelineViewportDepthClampControlCreateInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    depthClampMode: depthClampMode,
+    pDepthClampRange: pDepthClampRange,
   )
 
 proc newVkPhysicalDeviceVertexInputDynamicStateFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceVertexInputDynamicStateFeaturesEXT, pNext: pointer = nil, vertexInputDynamicState: VkBool32): VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT =
@@ -20207,6 +24194,14 @@ proc newVkBufferMemoryBarrier2*(sType: VkStructureType = VkStructureType.BufferM
     size: size,
   )
 
+proc newVkMemoryBarrierAccessFlags3KHR*(sType: VkStructureType = VkStructureType.MemoryBarrierAccessFlags3KHR, pNext: pointer = nil, srcAccessMask3: VkAccessFlags3KHR, dstAccessMask3: VkAccessFlags3KHR): VkMemoryBarrierAccessFlags3KHR =
+  result = VkMemoryBarrierAccessFlags3KHR(
+    sType: sType,
+    pNext: pNext,
+    srcAccessMask3: srcAccessMask3,
+    dstAccessMask3: dstAccessMask3,
+  )
+
 proc newVkDependencyInfo*(sType: VkStructureType = VkStructureType.DependencyInfo, pNext: pointer = nil, dependencyFlags: VkDependencyFlags, memoryBarriers: openarray[VkMemoryBarrier2], bufferMemoryBarriers: openarray[VkBufferMemoryBarrier2], imageMemoryBarriers: openarray[VkImageMemoryBarrier2]): VkDependencyInfo =
   result = VkDependencyInfo(
     sType: sType,
@@ -20273,15 +24268,23 @@ proc newVkPhysicalDeviceSynchronization2Features*(sType: VkStructureType = VkStr
     synchronization2: synchronization2,
   )
 
-proc newVkPhysicalDeviceHostImageCopyFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceHostImageCopyFeaturesEXT, pNext: pointer = nil, hostImageCopy: VkBool32): VkPhysicalDeviceHostImageCopyFeaturesEXT =
-  result = VkPhysicalDeviceHostImageCopyFeaturesEXT(
+proc newVkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceUnifiedImageLayoutsFeaturesKHR, pNext: pointer = nil, unifiedImageLayouts: VkBool32, unifiedImageLayoutsVideo: VkBool32): VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR =
+  result = VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    unifiedImageLayouts: unifiedImageLayouts,
+    unifiedImageLayoutsVideo: unifiedImageLayoutsVideo,
+  )
+
+proc newVkPhysicalDeviceHostImageCopyFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceHostImageCopyFeatures, pNext: pointer = nil, hostImageCopy: VkBool32): VkPhysicalDeviceHostImageCopyFeatures =
+  result = VkPhysicalDeviceHostImageCopyFeatures(
     sType: sType,
     pNext: pNext,
     hostImageCopy: hostImageCopy,
   )
 
-proc newVkPhysicalDeviceHostImageCopyPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceHostImageCopyPropertiesEXT, pNext: pointer = nil, copySrcLayouts: openarray[VkImageLayout], copyDstLayouts: openarray[VkImageLayout], optimalTilingLayoutUUID: array[VK_UUID_SIZE, uint8], identicalMemoryTypeRequirements: VkBool32): VkPhysicalDeviceHostImageCopyPropertiesEXT =
-  result = VkPhysicalDeviceHostImageCopyPropertiesEXT(
+proc newVkPhysicalDeviceHostImageCopyProperties*(sType: VkStructureType = VkStructureType.PhysicalDeviceHostImageCopyProperties, pNext: pointer = nil, copySrcLayouts: openarray[VkImageLayout], copyDstLayouts: openarray[VkImageLayout], optimalTilingLayoutUUID: array[VK_UUID_SIZE, uint8], identicalMemoryTypeRequirements: VkBool32): VkPhysicalDeviceHostImageCopyProperties =
+  result = VkPhysicalDeviceHostImageCopyProperties(
     sType: sType,
     pNext: pNext,
     copySrcLayoutCount: len(copySrcLayouts).uint32,
@@ -20292,8 +24295,8 @@ proc newVkPhysicalDeviceHostImageCopyPropertiesEXT*(sType: VkStructureType = VkS
     identicalMemoryTypeRequirements: identicalMemoryTypeRequirements,
   )
 
-proc newVkMemoryToImageCopyEXT*(sType: VkStructureType = VkStructureType.MemoryToImageCopyEXT, pNext: pointer = nil, pHostPointer: pointer = nil, memoryRowLength: uint32, memoryImageHeight: uint32, imageSubresource: VkImageSubresourceLayers, imageOffset: VkOffset3D, imageExtent: VkExtent3D): VkMemoryToImageCopyEXT =
-  result = VkMemoryToImageCopyEXT(
+proc newVkMemoryToImageCopy*(sType: VkStructureType = VkStructureType.MemoryToImageCopy, pNext: pointer = nil, pHostPointer: pointer = nil, memoryRowLength: uint32, memoryImageHeight: uint32, imageSubresource: VkImageSubresourceLayers, imageOffset: VkOffset3D, imageExtent: VkExtent3D): VkMemoryToImageCopy =
+  result = VkMemoryToImageCopy(
     sType: sType,
     pNext: pNext,
     pHostPointer: pHostPointer,
@@ -20304,8 +24307,8 @@ proc newVkMemoryToImageCopyEXT*(sType: VkStructureType = VkStructureType.MemoryT
     imageExtent: imageExtent,
   )
 
-proc newVkImageToMemoryCopyEXT*(sType: VkStructureType = VkStructureType.ImageToMemoryCopyEXT, pNext: pointer = nil, pHostPointer: pointer = nil, memoryRowLength: uint32, memoryImageHeight: uint32, imageSubresource: VkImageSubresourceLayers, imageOffset: VkOffset3D, imageExtent: VkExtent3D): VkImageToMemoryCopyEXT =
-  result = VkImageToMemoryCopyEXT(
+proc newVkImageToMemoryCopy*(sType: VkStructureType = VkStructureType.ImageToMemoryCopy, pNext: pointer = nil, pHostPointer: pointer = nil, memoryRowLength: uint32, memoryImageHeight: uint32, imageSubresource: VkImageSubresourceLayers, imageOffset: VkOffset3D, imageExtent: VkExtent3D): VkImageToMemoryCopy =
+  result = VkImageToMemoryCopy(
     sType: sType,
     pNext: pNext,
     pHostPointer: pHostPointer,
@@ -20316,30 +24319,30 @@ proc newVkImageToMemoryCopyEXT*(sType: VkStructureType = VkStructureType.ImageTo
     imageExtent: imageExtent,
   )
 
-proc newVkCopyMemoryToImageInfoEXT*(sType: VkStructureType = VkStructureType.CopyMemoryToImageInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkMemoryToImageCopyEXT]): VkCopyMemoryToImageInfoEXT =
-  result = VkCopyMemoryToImageInfoEXT(
+proc newVkCopyMemoryToImageInfo*(sType: VkStructureType = VkStructureType.CopyMemoryToImageInfo, pNext: pointer = nil, flags: VkHostImageCopyFlags = 0.VkHostImageCopyFlags, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkMemoryToImageCopy]): VkCopyMemoryToImageInfo =
+  result = VkCopyMemoryToImageInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     dstImage: dstImage,
     dstImageLayout: dstImageLayout,
     regionCount: len(regions).uint32,
-    pRegions: if len(regions) == 0: nil else: cast[ptr VkMemoryToImageCopyEXT](regions),
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkMemoryToImageCopy](regions),
   )
 
-proc newVkCopyImageToMemoryInfoEXT*(sType: VkStructureType = VkStructureType.CopyImageToMemoryInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, srcImage: VkImage, srcImageLayout: VkImageLayout, regions: openarray[VkImageToMemoryCopyEXT]): VkCopyImageToMemoryInfoEXT =
-  result = VkCopyImageToMemoryInfoEXT(
+proc newVkCopyImageToMemoryInfo*(sType: VkStructureType = VkStructureType.CopyImageToMemoryInfo, pNext: pointer = nil, flags: VkHostImageCopyFlags = 0.VkHostImageCopyFlags, srcImage: VkImage, srcImageLayout: VkImageLayout, regions: openarray[VkImageToMemoryCopy]): VkCopyImageToMemoryInfo =
+  result = VkCopyImageToMemoryInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
     srcImage: srcImage,
     srcImageLayout: srcImageLayout,
     regionCount: len(regions).uint32,
-    pRegions: if len(regions) == 0: nil else: cast[ptr VkImageToMemoryCopyEXT](regions),
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkImageToMemoryCopy](regions),
   )
 
-proc newVkCopyImageToImageInfoEXT*(sType: VkStructureType = VkStructureType.CopyImageToImageInfoEXT, pNext: pointer = nil, flags: VkHostImageCopyFlagsEXT = 0.VkHostImageCopyFlagsEXT, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkImageCopy2]): VkCopyImageToImageInfoEXT =
-  result = VkCopyImageToImageInfoEXT(
+proc newVkCopyImageToImageInfo*(sType: VkStructureType = VkStructureType.CopyImageToImageInfo, pNext: pointer = nil, flags: VkHostImageCopyFlags = 0.VkHostImageCopyFlags, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regions: openarray[VkImageCopy2]): VkCopyImageToImageInfo =
+  result = VkCopyImageToImageInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
@@ -20351,8 +24354,8 @@ proc newVkCopyImageToImageInfoEXT*(sType: VkStructureType = VkStructureType.Copy
     pRegions: if len(regions) == 0: nil else: cast[ptr VkImageCopy2](regions),
   )
 
-proc newVkHostImageLayoutTransitionInfoEXT*(sType: VkStructureType = VkStructureType.HostImageLayoutTransitionInfoEXT, pNext: pointer = nil, image: VkImage, oldLayout: VkImageLayout, newLayout: VkImageLayout, subresourceRange: VkImageSubresourceRange): VkHostImageLayoutTransitionInfoEXT =
-  result = VkHostImageLayoutTransitionInfoEXT(
+proc newVkHostImageLayoutTransitionInfo*(sType: VkStructureType = VkStructureType.HostImageLayoutTransitionInfo, pNext: pointer = nil, image: VkImage, oldLayout: VkImageLayout, newLayout: VkImageLayout, subresourceRange: VkImageSubresourceRange): VkHostImageLayoutTransitionInfo =
+  result = VkHostImageLayoutTransitionInfo(
     sType: sType,
     pNext: pNext,
     image: image,
@@ -20361,15 +24364,15 @@ proc newVkHostImageLayoutTransitionInfoEXT*(sType: VkStructureType = VkStructure
     subresourceRange: subresourceRange,
   )
 
-proc newVkSubresourceHostMemcpySizeEXT*(sType: VkStructureType = VkStructureType.SubresourceHostMemcpySizeEXT, pNext: pointer = nil, size: VkDeviceSize): VkSubresourceHostMemcpySizeEXT =
-  result = VkSubresourceHostMemcpySizeEXT(
+proc newVkSubresourceHostMemcpySize*(sType: VkStructureType = VkStructureType.SubresourceHostMemcpySize, pNext: pointer = nil, size: VkDeviceSize): VkSubresourceHostMemcpySize =
+  result = VkSubresourceHostMemcpySize(
     sType: sType,
     pNext: pNext,
     size: size,
   )
 
-proc newVkHostImageCopyDevicePerformanceQueryEXT*(sType: VkStructureType = VkStructureType.HostImageCopyDevicePerformanceQueryEXT, pNext: pointer = nil, optimalDeviceAccess: VkBool32, identicalMemoryLayout: VkBool32): VkHostImageCopyDevicePerformanceQueryEXT =
-  result = VkHostImageCopyDevicePerformanceQueryEXT(
+proc newVkHostImageCopyDevicePerformanceQuery*(sType: VkStructureType = VkStructureType.HostImageCopyDevicePerformanceQuery, pNext: pointer = nil, optimalDeviceAccess: VkBool32, identicalMemoryLayout: VkBool32): VkHostImageCopyDevicePerformanceQuery =
+  result = VkHostImageCopyDevicePerformanceQuery(
     sType: sType,
     pNext: pNext,
     optimalDeviceAccess: optimalDeviceAccess,
@@ -20502,6 +24505,20 @@ proc newVkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT*(sType: VkS
     multisampledRenderToSingleSampled: multisampledRenderToSingleSampled,
   )
 
+proc newVkSurfaceCapabilitiesPresentId2KHR*(sType: VkStructureType = VkStructureType.SurfaceCapabilitiesPresentId2KHR, pNext: pointer = nil, presentId2Supported: VkBool32): VkSurfaceCapabilitiesPresentId2KHR =
+  result = VkSurfaceCapabilitiesPresentId2KHR(
+    sType: sType,
+    pNext: pNext,
+    presentId2Supported: presentId2Supported,
+  )
+
+proc newVkSurfaceCapabilitiesPresentWait2KHR*(sType: VkStructureType = VkStructureType.SurfaceCapabilitiesPresentWait2KHR, pNext: pointer = nil, presentWait2Supported: VkBool32): VkSurfaceCapabilitiesPresentWait2KHR =
+  result = VkSurfaceCapabilitiesPresentWait2KHR(
+    sType: sType,
+    pNext: pNext,
+    presentWait2Supported: presentWait2Supported,
+  )
+
 proc newVkSubpassResolvePerformanceQueryEXT*(sType: VkStructureType = VkStructureType.SubpassResolvePerformanceQueryEXT, pNext: pointer = nil, optimal: VkBool32): VkSubpassResolvePerformanceQueryEXT =
   result = VkSubpassResolvePerformanceQueryEXT(
     sType: sType,
@@ -20517,8 +24534,8 @@ proc newVkMultisampledRenderToSingleSampledInfoEXT*(sType: VkStructureType = VkS
     rasterizationSamples: rasterizationSamples,
   )
 
-proc newVkPhysicalDevicePipelineProtectedAccessFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineProtectedAccessFeaturesEXT, pNext: pointer = nil, pipelineProtectedAccess: VkBool32): VkPhysicalDevicePipelineProtectedAccessFeaturesEXT =
-  result = VkPhysicalDevicePipelineProtectedAccessFeaturesEXT(
+proc newVkPhysicalDevicePipelineProtectedAccessFeatures*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineProtectedAccessFeatures, pNext: pointer = nil, pipelineProtectedAccess: VkBool32): VkPhysicalDevicePipelineProtectedAccessFeatures =
+  result = VkPhysicalDevicePipelineProtectedAccessFeatures(
     sType: sType,
     pNext: pNext,
     pipelineProtectedAccess: pipelineProtectedAccess,
@@ -20563,6 +24580,58 @@ proc newVkVideoFormatPropertiesKHR*(sType: VkStructureType = VkStructureType.Vid
     imageType: imageType,
     imageTiling: imageTiling,
     imageUsageFlags: imageUsageFlags,
+  )
+
+proc newVkVideoEncodeQuantizationMapCapabilitiesKHR*(sType: VkStructureType = VkStructureType.VideoEncodeQuantizationMapCapabilitiesKHR, pNext: pointer = nil, maxQuantizationMapExtent: VkExtent2D): VkVideoEncodeQuantizationMapCapabilitiesKHR =
+  result = VkVideoEncodeQuantizationMapCapabilitiesKHR(
+    sType: sType,
+    pNext: pNext,
+    maxQuantizationMapExtent: maxQuantizationMapExtent,
+  )
+
+proc newVkVideoEncodeH264QuantizationMapCapabilitiesKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH264QuantizationMapCapabilitiesKHR, pNext: pointer = nil, minQpDelta: int32, maxQpDelta: int32): VkVideoEncodeH264QuantizationMapCapabilitiesKHR =
+  result = VkVideoEncodeH264QuantizationMapCapabilitiesKHR(
+    sType: sType,
+    pNext: pNext,
+    minQpDelta: minQpDelta,
+    maxQpDelta: maxQpDelta,
+  )
+
+proc newVkVideoEncodeH265QuantizationMapCapabilitiesKHR*(sType: VkStructureType = VkStructureType.VideoEncodeH265QuantizationMapCapabilitiesKHR, pNext: pointer = nil, minQpDelta: int32, maxQpDelta: int32): VkVideoEncodeH265QuantizationMapCapabilitiesKHR =
+  result = VkVideoEncodeH265QuantizationMapCapabilitiesKHR(
+    sType: sType,
+    pNext: pNext,
+    minQpDelta: minQpDelta,
+    maxQpDelta: maxQpDelta,
+  )
+
+proc newVkVideoEncodeAV1QuantizationMapCapabilitiesKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1QuantizationMapCapabilitiesKHR, pNext: pointer = nil, minQIndexDelta: int32, maxQIndexDelta: int32): VkVideoEncodeAV1QuantizationMapCapabilitiesKHR =
+  result = VkVideoEncodeAV1QuantizationMapCapabilitiesKHR(
+    sType: sType,
+    pNext: pNext,
+    minQIndexDelta: minQIndexDelta,
+    maxQIndexDelta: maxQIndexDelta,
+  )
+
+proc newVkVideoFormatQuantizationMapPropertiesKHR*(sType: VkStructureType = VkStructureType.VideoFormatQuantizationMapPropertiesKHR, pNext: pointer = nil, quantizationMapTexelSize: VkExtent2D): VkVideoFormatQuantizationMapPropertiesKHR =
+  result = VkVideoFormatQuantizationMapPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    quantizationMapTexelSize: quantizationMapTexelSize,
+  )
+
+proc newVkVideoFormatH265QuantizationMapPropertiesKHR*(sType: VkStructureType = VkStructureType.VideoFormatH265QuantizationMapPropertiesKHR, pNext: pointer = nil, compatibleCtbSizes: VkVideoEncodeH265CtbSizeFlagsKHR): VkVideoFormatH265QuantizationMapPropertiesKHR =
+  result = VkVideoFormatH265QuantizationMapPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    compatibleCtbSizes: compatibleCtbSizes,
+  )
+
+proc newVkVideoFormatAV1QuantizationMapPropertiesKHR*(sType: VkStructureType = VkStructureType.VideoFormatAV1QuantizationMapPropertiesKHR, pNext: pointer = nil, compatibleSuperblockSizes: VkVideoEncodeAV1SuperblockSizeFlagsKHR): VkVideoFormatAV1QuantizationMapPropertiesKHR =
+  result = VkVideoFormatAV1QuantizationMapPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    compatibleSuperblockSizes: compatibleSuperblockSizes,
   )
 
 proc newVkVideoProfileInfoKHR*(sType: VkStructureType = VkStructureType.VideoProfileInfoKHR, pNext: pointer = nil, videoCodecOperation: VkVideoCodecOperationFlagBitsKHR, chromaSubsampling: VkVideoChromaSubsamplingFlagsKHR, lumaBitDepth: VkVideoComponentBitDepthFlagsKHR, chromaBitDepth: VkVideoComponentBitDepthFlagsKHR): VkVideoProfileInfoKHR =
@@ -20661,6 +24730,13 @@ proc newVkPhysicalDeviceVideoMaintenance1FeaturesKHR*(sType: VkStructureType = V
     videoMaintenance1: videoMaintenance1,
   )
 
+proc newVkPhysicalDeviceVideoMaintenance2FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVideoMaintenance2FeaturesKHR, pNext: pointer = nil, videoMaintenance2: VkBool32): VkPhysicalDeviceVideoMaintenance2FeaturesKHR =
+  result = VkPhysicalDeviceVideoMaintenance2FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    videoMaintenance2: videoMaintenance2,
+  )
+
 proc newVkVideoInlineQueryInfoKHR*(sType: VkStructureType = VkStructureType.VideoInlineQueryInfoKHR, pNext: pointer = nil, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32): VkVideoInlineQueryInfoKHR =
   result = VkVideoInlineQueryInfoKHR(
     sType: sType,
@@ -20703,6 +24779,14 @@ proc newVkVideoDecodeH264SessionParametersCreateInfoKHR*(sType: VkStructureType 
     maxStdSPSCount: maxStdSPSCount,
     maxStdPPSCount: maxStdPPSCount,
     pParametersAddInfo: pParametersAddInfo,
+  )
+
+proc newVkVideoDecodeH264InlineSessionParametersInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH264InlineSessionParametersInfoKHR, pNext: pointer = nil, pStdSPS: ptr StdVideoH264SequenceParameterSet, pStdPPS: ptr StdVideoH264PictureParameterSet): VkVideoDecodeH264InlineSessionParametersInfoKHR =
+  result = VkVideoDecodeH264InlineSessionParametersInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pStdSPS: pStdSPS,
+    pStdPPS: pStdPPS,
   )
 
 proc newVkVideoDecodeH264PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH264PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeH264PictureInfo, sliceOffsets: openarray[uint32]): VkVideoDecodeH264PictureInfoKHR =
@@ -20757,6 +24841,15 @@ proc newVkVideoDecodeH265SessionParametersCreateInfoKHR*(sType: VkStructureType 
     pParametersAddInfo: pParametersAddInfo,
   )
 
+proc newVkVideoDecodeH265InlineSessionParametersInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH265InlineSessionParametersInfoKHR, pNext: pointer = nil, pStdVPS: ptr StdVideoH265VideoParameterSet, pStdSPS: ptr StdVideoH265SequenceParameterSet, pStdPPS: ptr StdVideoH265PictureParameterSet): VkVideoDecodeH265InlineSessionParametersInfoKHR =
+  result = VkVideoDecodeH265InlineSessionParametersInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pStdVPS: pStdVPS,
+    pStdSPS: pStdSPS,
+    pStdPPS: pStdPPS,
+  )
+
 proc newVkVideoDecodeH265PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeH265PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeH265PictureInfo, sliceSegmentOffsets: openarray[uint32]): VkVideoDecodeH265PictureInfoKHR =
   result = VkVideoDecodeH265PictureInfoKHR(
     sType: sType,
@@ -20771,6 +24864,38 @@ proc newVkVideoDecodeH265DpbSlotInfoKHR*(sType: VkStructureType = VkStructureTyp
     sType: sType,
     pNext: pNext,
     pStdReferenceInfo: pStdReferenceInfo,
+  )
+
+proc newVkPhysicalDeviceVideoDecodeVP9FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVideoDecodeVP9FeaturesKHR, pNext: pointer = nil, videoDecodeVP9: VkBool32): VkPhysicalDeviceVideoDecodeVP9FeaturesKHR =
+  result = VkPhysicalDeviceVideoDecodeVP9FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    videoDecodeVP9: videoDecodeVP9,
+  )
+
+proc newVkVideoDecodeVP9ProfileInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeVP9ProfileInfoKHR, pNext: pointer = nil, stdProfile: StdVideoVP9Profile): VkVideoDecodeVP9ProfileInfoKHR =
+  result = VkVideoDecodeVP9ProfileInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    stdProfile: stdProfile,
+  )
+
+proc newVkVideoDecodeVP9CapabilitiesKHR*(sType: VkStructureType = VkStructureType.VideoDecodeVP9CapabilitiesKHR, pNext: pointer = nil, maxLevel: StdVideoVP9Level): VkVideoDecodeVP9CapabilitiesKHR =
+  result = VkVideoDecodeVP9CapabilitiesKHR(
+    sType: sType,
+    pNext: pNext,
+    maxLevel: maxLevel,
+  )
+
+proc newVkVideoDecodeVP9PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeVP9PictureInfoKHR, pNext: pointer = nil, pStdPictureInfo: ptr StdVideoDecodeVP9PictureInfo, referenceNameSlotIndices: array[VK_MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR, int32], uncompressedHeaderOffset: uint32, compressedHeaderOffset: uint32, tilesOffset: uint32): VkVideoDecodeVP9PictureInfoKHR =
+  result = VkVideoDecodeVP9PictureInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pStdPictureInfo: pStdPictureInfo,
+    referenceNameSlotIndices: referenceNameSlotIndices,
+    uncompressedHeaderOffset: uncompressedHeaderOffset,
+    compressedHeaderOffset: compressedHeaderOffset,
+    tilesOffset: tilesOffset,
   )
 
 proc newVkVideoDecodeAV1ProfileInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeAV1ProfileInfoKHR, pNext: pointer = nil, stdProfile: StdVideoAV1Profile, filmGrainSupport: VkBool32): VkVideoDecodeAV1ProfileInfoKHR =
@@ -20790,6 +24915,13 @@ proc newVkVideoDecodeAV1CapabilitiesKHR*(sType: VkStructureType = VkStructureTyp
 
 proc newVkVideoDecodeAV1SessionParametersCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeAV1SessionParametersCreateInfoKHR, pNext: pointer = nil, pStdSequenceHeader: ptr StdVideoAV1SequenceHeader): VkVideoDecodeAV1SessionParametersCreateInfoKHR =
   result = VkVideoDecodeAV1SessionParametersCreateInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pStdSequenceHeader: pStdSequenceHeader,
+  )
+
+proc newVkVideoDecodeAV1InlineSessionParametersInfoKHR*(sType: VkStructureType = VkStructureType.VideoDecodeAV1InlineSessionParametersInfoKHR, pNext: pointer = nil, pStdSequenceHeader: ptr StdVideoAV1SequenceHeader): VkVideoDecodeAV1InlineSessionParametersInfoKHR =
+  result = VkVideoDecodeAV1InlineSessionParametersInfoKHR(
     sType: sType,
     pNext: pNext,
     pStdSequenceHeader: pStdSequenceHeader,
@@ -20906,6 +25038,28 @@ proc newVkVideoEncodeInfoKHR*(sType: VkStructureType = VkStructureType.VideoEnco
     referenceSlotCount: len(referenceSlots).uint32,
     pReferenceSlots: if len(referenceSlots) == 0: nil else: cast[ptr VkVideoReferenceSlotInfoKHR](referenceSlots),
     precedingExternallyEncodedBytes: precedingExternallyEncodedBytes,
+  )
+
+proc newVkVideoEncodeQuantizationMapInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeQuantizationMapInfoKHR, pNext: pointer = nil, quantizationMap: VkImageView, quantizationMapExtent: VkExtent2D): VkVideoEncodeQuantizationMapInfoKHR =
+  result = VkVideoEncodeQuantizationMapInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    quantizationMap: quantizationMap,
+    quantizationMapExtent: quantizationMapExtent,
+  )
+
+proc newVkVideoEncodeQuantizationMapSessionParametersCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeQuantizationMapSessionParametersCreateInfoKHR, pNext: pointer = nil, quantizationMapTexelSize: VkExtent2D): VkVideoEncodeQuantizationMapSessionParametersCreateInfoKHR =
+  result = VkVideoEncodeQuantizationMapSessionParametersCreateInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    quantizationMapTexelSize: quantizationMapTexelSize,
+  )
+
+proc newVkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR, pNext: pointer = nil, videoEncodeQuantizationMap: VkBool32): VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR =
+  result = VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    videoEncodeQuantizationMap: videoEncodeQuantizationMap,
   )
 
 proc newVkQueryPoolVideoEncodeFeedbackCreateInfoKHR*(sType: VkStructureType = VkStructureType.QueryPoolVideoEncodeFeedbackCreateInfoKHR, pNext: pointer = nil, encodeFeedbackFlags: VkVideoEncodeFeedbackFlagsKHR): VkQueryPoolVideoEncodeFeedbackCreateInfoKHR =
@@ -21296,6 +25450,156 @@ proc newVkVideoEncodeH265DpbSlotInfoKHR*(sType: VkStructureType = VkStructureTyp
     pStdReferenceInfo: pStdReferenceInfo,
   )
 
+proc newVkVideoEncodeAV1CapabilitiesKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1CapabilitiesKHR, pNext: pointer = nil, flags: VkVideoEncodeAV1CapabilityFlagsKHR = 0.VkVideoEncodeAV1CapabilityFlagsKHR, maxLevel: StdVideoAV1Level, codedPictureAlignment: VkExtent2D, maxTiles: VkExtent2D, minTileSize: VkExtent2D, maxTileSize: VkExtent2D, superblockSizes: VkVideoEncodeAV1SuperblockSizeFlagsKHR, maxSingleReferenceCount: uint32, singleReferenceNameMask: uint32, maxUnidirectionalCompoundReferenceCount: uint32, maxUnidirectionalCompoundGroup1ReferenceCount: uint32, unidirectionalCompoundReferenceNameMask: uint32, maxBidirectionalCompoundReferenceCount: uint32, maxBidirectionalCompoundGroup1ReferenceCount: uint32, maxBidirectionalCompoundGroup2ReferenceCount: uint32, bidirectionalCompoundReferenceNameMask: uint32, maxTemporalLayerCount: uint32, maxSpatialLayerCount: uint32, maxOperatingPoints: uint32, minQIndex: uint32, maxQIndex: uint32, prefersGopRemainingFrames: VkBool32, requiresGopRemainingFrames: VkBool32, stdSyntaxFlags: VkVideoEncodeAV1StdFlagsKHR): VkVideoEncodeAV1CapabilitiesKHR =
+  result = VkVideoEncodeAV1CapabilitiesKHR(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    maxLevel: maxLevel,
+    codedPictureAlignment: codedPictureAlignment,
+    maxTiles: maxTiles,
+    minTileSize: minTileSize,
+    maxTileSize: maxTileSize,
+    superblockSizes: superblockSizes,
+    maxSingleReferenceCount: maxSingleReferenceCount,
+    singleReferenceNameMask: singleReferenceNameMask,
+    maxUnidirectionalCompoundReferenceCount: maxUnidirectionalCompoundReferenceCount,
+    maxUnidirectionalCompoundGroup1ReferenceCount: maxUnidirectionalCompoundGroup1ReferenceCount,
+    unidirectionalCompoundReferenceNameMask: unidirectionalCompoundReferenceNameMask,
+    maxBidirectionalCompoundReferenceCount: maxBidirectionalCompoundReferenceCount,
+    maxBidirectionalCompoundGroup1ReferenceCount: maxBidirectionalCompoundGroup1ReferenceCount,
+    maxBidirectionalCompoundGroup2ReferenceCount: maxBidirectionalCompoundGroup2ReferenceCount,
+    bidirectionalCompoundReferenceNameMask: bidirectionalCompoundReferenceNameMask,
+    maxTemporalLayerCount: maxTemporalLayerCount,
+    maxSpatialLayerCount: maxSpatialLayerCount,
+    maxOperatingPoints: maxOperatingPoints,
+    minQIndex: minQIndex,
+    maxQIndex: maxQIndex,
+    prefersGopRemainingFrames: prefersGopRemainingFrames,
+    requiresGopRemainingFrames: requiresGopRemainingFrames,
+    stdSyntaxFlags: stdSyntaxFlags,
+  )
+
+proc newVkVideoEncodeAV1QualityLevelPropertiesKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1QualityLevelPropertiesKHR, pNext: pointer = nil, preferredRateControlFlags: VkVideoEncodeAV1RateControlFlagsKHR, preferredGopFrameCount: uint32, preferredKeyFramePeriod: uint32, preferredConsecutiveBipredictiveFrameCount: uint32, preferredTemporalLayerCount: uint32, preferredConstantQIndex: VkVideoEncodeAV1QIndexKHR, preferredMaxSingleReferenceCount: uint32, preferredSingleReferenceNameMask: uint32, preferredMaxUnidirectionalCompoundReferenceCount: uint32, preferredMaxUnidirectionalCompoundGroup1ReferenceCount: uint32, preferredUnidirectionalCompoundReferenceNameMask: uint32, preferredMaxBidirectionalCompoundReferenceCount: uint32, preferredMaxBidirectionalCompoundGroup1ReferenceCount: uint32, preferredMaxBidirectionalCompoundGroup2ReferenceCount: uint32, preferredBidirectionalCompoundReferenceNameMask: uint32): VkVideoEncodeAV1QualityLevelPropertiesKHR =
+  result = VkVideoEncodeAV1QualityLevelPropertiesKHR(
+    sType: sType,
+    pNext: pNext,
+    preferredRateControlFlags: preferredRateControlFlags,
+    preferredGopFrameCount: preferredGopFrameCount,
+    preferredKeyFramePeriod: preferredKeyFramePeriod,
+    preferredConsecutiveBipredictiveFrameCount: preferredConsecutiveBipredictiveFrameCount,
+    preferredTemporalLayerCount: preferredTemporalLayerCount,
+    preferredConstantQIndex: preferredConstantQIndex,
+    preferredMaxSingleReferenceCount: preferredMaxSingleReferenceCount,
+    preferredSingleReferenceNameMask: preferredSingleReferenceNameMask,
+    preferredMaxUnidirectionalCompoundReferenceCount: preferredMaxUnidirectionalCompoundReferenceCount,
+    preferredMaxUnidirectionalCompoundGroup1ReferenceCount: preferredMaxUnidirectionalCompoundGroup1ReferenceCount,
+    preferredUnidirectionalCompoundReferenceNameMask: preferredUnidirectionalCompoundReferenceNameMask,
+    preferredMaxBidirectionalCompoundReferenceCount: preferredMaxBidirectionalCompoundReferenceCount,
+    preferredMaxBidirectionalCompoundGroup1ReferenceCount: preferredMaxBidirectionalCompoundGroup1ReferenceCount,
+    preferredMaxBidirectionalCompoundGroup2ReferenceCount: preferredMaxBidirectionalCompoundGroup2ReferenceCount,
+    preferredBidirectionalCompoundReferenceNameMask: preferredBidirectionalCompoundReferenceNameMask,
+  )
+
+proc newVkPhysicalDeviceVideoEncodeAV1FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVideoEncodeAV1FeaturesKHR, pNext: pointer = nil, videoEncodeAV1: VkBool32): VkPhysicalDeviceVideoEncodeAV1FeaturesKHR =
+  result = VkPhysicalDeviceVideoEncodeAV1FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    videoEncodeAV1: videoEncodeAV1,
+  )
+
+proc newVkVideoEncodeAV1SessionCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1SessionCreateInfoKHR, pNext: pointer = nil, useMaxLevel: VkBool32, maxLevel: StdVideoAV1Level): VkVideoEncodeAV1SessionCreateInfoKHR =
+  result = VkVideoEncodeAV1SessionCreateInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    useMaxLevel: useMaxLevel,
+    maxLevel: maxLevel,
+  )
+
+proc newVkVideoEncodeAV1SessionParametersCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1SessionParametersCreateInfoKHR, pNext: pointer = nil, pStdSequenceHeader: ptr StdVideoAV1SequenceHeader, pStdDecoderModelInfo: ptr StdVideoEncodeAV1DecoderModelInfo, stdOperatingPoints: openarray[StdVideoEncodeAV1OperatingPointInfo]): VkVideoEncodeAV1SessionParametersCreateInfoKHR =
+  result = VkVideoEncodeAV1SessionParametersCreateInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pStdSequenceHeader: pStdSequenceHeader,
+    pStdDecoderModelInfo: pStdDecoderModelInfo,
+    stdOperatingPointCount: len(stdOperatingPoints).uint32,
+    pStdOperatingPoints: if len(stdOperatingPoints) == 0: nil else: cast[ptr StdVideoEncodeAV1OperatingPointInfo](stdOperatingPoints),
+  )
+
+proc newVkVideoEncodeAV1DpbSlotInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1DpbSlotInfoKHR, pNext: pointer = nil, pStdReferenceInfo: ptr StdVideoEncodeAV1ReferenceInfo): VkVideoEncodeAV1DpbSlotInfoKHR =
+  result = VkVideoEncodeAV1DpbSlotInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    pStdReferenceInfo: pStdReferenceInfo,
+  )
+
+proc newVkVideoEncodeAV1PictureInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1PictureInfoKHR, pNext: pointer = nil, predictionMode: VkVideoEncodeAV1PredictionModeKHR, rateControlGroup: VkVideoEncodeAV1RateControlGroupKHR, constantQIndex: uint32, pStdPictureInfo: ptr StdVideoEncodeAV1PictureInfo, referenceNameSlotIndices: array[VK_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR, int32], primaryReferenceCdfOnly: VkBool32, generateObuExtensionHeader: VkBool32): VkVideoEncodeAV1PictureInfoKHR =
+  result = VkVideoEncodeAV1PictureInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    predictionMode: predictionMode,
+    rateControlGroup: rateControlGroup,
+    constantQIndex: constantQIndex,
+    pStdPictureInfo: pStdPictureInfo,
+    referenceNameSlotIndices: referenceNameSlotIndices,
+    primaryReferenceCdfOnly: primaryReferenceCdfOnly,
+    generateObuExtensionHeader: generateObuExtensionHeader,
+  )
+
+proc newVkVideoEncodeAV1ProfileInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1ProfileInfoKHR, pNext: pointer = nil, stdProfile: StdVideoAV1Profile): VkVideoEncodeAV1ProfileInfoKHR =
+  result = VkVideoEncodeAV1ProfileInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    stdProfile: stdProfile,
+  )
+
+proc newVkVideoEncodeAV1RateControlInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1RateControlInfoKHR, pNext: pointer = nil, flags: VkVideoEncodeAV1RateControlFlagsKHR = 0.VkVideoEncodeAV1RateControlFlagsKHR, gopFrameCount: uint32, keyFramePeriod: uint32, consecutiveBipredictiveFrameCount: uint32, temporalLayerCount: uint32): VkVideoEncodeAV1RateControlInfoKHR =
+  result = VkVideoEncodeAV1RateControlInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    gopFrameCount: gopFrameCount,
+    keyFramePeriod: keyFramePeriod,
+    consecutiveBipredictiveFrameCount: consecutiveBipredictiveFrameCount,
+    temporalLayerCount: temporalLayerCount,
+  )
+
+proc newVkVideoEncodeAV1QIndexKHR*(intraQIndex: uint32, predictiveQIndex: uint32, bipredictiveQIndex: uint32): VkVideoEncodeAV1QIndexKHR =
+  result = VkVideoEncodeAV1QIndexKHR(
+    intraQIndex: intraQIndex,
+    predictiveQIndex: predictiveQIndex,
+    bipredictiveQIndex: bipredictiveQIndex,
+  )
+
+proc newVkVideoEncodeAV1FrameSizeKHR*(intraFrameSize: uint32, predictiveFrameSize: uint32, bipredictiveFrameSize: uint32): VkVideoEncodeAV1FrameSizeKHR =
+  result = VkVideoEncodeAV1FrameSizeKHR(
+    intraFrameSize: intraFrameSize,
+    predictiveFrameSize: predictiveFrameSize,
+    bipredictiveFrameSize: bipredictiveFrameSize,
+  )
+
+proc newVkVideoEncodeAV1GopRemainingFrameInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1GopRemainingFrameInfoKHR, pNext: pointer = nil, useGopRemainingFrames: VkBool32, gopRemainingIntra: uint32, gopRemainingPredictive: uint32, gopRemainingBipredictive: uint32): VkVideoEncodeAV1GopRemainingFrameInfoKHR =
+  result = VkVideoEncodeAV1GopRemainingFrameInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    useGopRemainingFrames: useGopRemainingFrames,
+    gopRemainingIntra: gopRemainingIntra,
+    gopRemainingPredictive: gopRemainingPredictive,
+    gopRemainingBipredictive: gopRemainingBipredictive,
+  )
+
+proc newVkVideoEncodeAV1RateControlLayerInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeAV1RateControlLayerInfoKHR, pNext: pointer = nil, useMinQIndex: VkBool32, minQIndex: VkVideoEncodeAV1QIndexKHR, useMaxQIndex: VkBool32, maxQIndex: VkVideoEncodeAV1QIndexKHR, useMaxFrameSize: VkBool32, maxFrameSize: VkVideoEncodeAV1FrameSizeKHR): VkVideoEncodeAV1RateControlLayerInfoKHR =
+  result = VkVideoEncodeAV1RateControlLayerInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    useMinQIndex: useMinQIndex,
+    minQIndex: minQIndex,
+    useMaxQIndex: useMaxQIndex,
+    maxQIndex: maxQIndex,
+    useMaxFrameSize: useMaxFrameSize,
+    maxFrameSize: maxFrameSize,
+  )
+
 proc newVkPhysicalDeviceInheritedViewportScissorFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceInheritedViewportScissorFeaturesNV, pNext: pointer = nil, inheritedViewportScissor2D: VkBool32): VkPhysicalDeviceInheritedViewportScissorFeaturesNV =
   result = VkPhysicalDeviceInheritedViewportScissorFeaturesNV(
     sType: sType,
@@ -21342,12 +25646,59 @@ proc newVkPipelineRasterizationProvokingVertexStateCreateInfoEXT*(sType: VkStruc
     provokingVertexMode: provokingVertexMode,
   )
 
+proc newVkVideoEncodeIntraRefreshCapabilitiesKHR*(sType: VkStructureType = VkStructureType.VideoEncodeIntraRefreshCapabilitiesKHR, pNext: pointer = nil, intraRefreshModes: VkVideoEncodeIntraRefreshModeFlagsKHR, maxIntraRefreshCycleDuration: uint32, maxIntraRefreshActiveReferencePictures: uint32, partitionIndependentIntraRefreshRegions: VkBool32, nonRectangularIntraRefreshRegions: VkBool32): VkVideoEncodeIntraRefreshCapabilitiesKHR =
+  result = VkVideoEncodeIntraRefreshCapabilitiesKHR(
+    sType: sType,
+    pNext: pNext,
+    intraRefreshModes: intraRefreshModes,
+    maxIntraRefreshCycleDuration: maxIntraRefreshCycleDuration,
+    maxIntraRefreshActiveReferencePictures: maxIntraRefreshActiveReferencePictures,
+    partitionIndependentIntraRefreshRegions: partitionIndependentIntraRefreshRegions,
+    nonRectangularIntraRefreshRegions: nonRectangularIntraRefreshRegions,
+  )
+
+proc newVkVideoEncodeSessionIntraRefreshCreateInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeSessionIntraRefreshCreateInfoKHR, pNext: pointer = nil, intraRefreshMode: VkVideoEncodeIntraRefreshModeFlagBitsKHR): VkVideoEncodeSessionIntraRefreshCreateInfoKHR =
+  result = VkVideoEncodeSessionIntraRefreshCreateInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    intraRefreshMode: intraRefreshMode,
+  )
+
+proc newVkVideoEncodeIntraRefreshInfoKHR*(sType: VkStructureType = VkStructureType.VideoEncodeIntraRefreshInfoKHR, pNext: pointer = nil, intraRefreshCycleDuration: uint32, intraRefreshIndex: uint32): VkVideoEncodeIntraRefreshInfoKHR =
+  result = VkVideoEncodeIntraRefreshInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    intraRefreshCycleDuration: intraRefreshCycleDuration,
+    intraRefreshIndex: intraRefreshIndex,
+  )
+
+proc newVkVideoReferenceIntraRefreshInfoKHR*(sType: VkStructureType = VkStructureType.VideoReferenceIntraRefreshInfoKHR, pNext: pointer = nil, dirtyIntraRefreshRegions: uint32): VkVideoReferenceIntraRefreshInfoKHR =
+  result = VkVideoReferenceIntraRefreshInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    dirtyIntraRefreshRegions: dirtyIntraRefreshRegions,
+  )
+
+proc newVkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR, pNext: pointer = nil, videoEncodeIntraRefresh: VkBool32): VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR =
+  result = VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    videoEncodeIntraRefresh: videoEncodeIntraRefresh,
+  )
+
 proc newVkCuModuleCreateInfoNVX*(sType: VkStructureType = VkStructureType.CuModuleCreateInfoNVX, pNext: pointer = nil, dataSize: uint, pData: pointer = nil): VkCuModuleCreateInfoNVX =
   result = VkCuModuleCreateInfoNVX(
     sType: sType,
     pNext: pNext,
     dataSize: dataSize,
     pData: pData,
+  )
+
+proc newVkCuModuleTexturingModeCreateInfoNVX*(sType: VkStructureType = VkStructureType.CuModuleTexturingModeCreateInfoNVX, pNext: pointer = nil, use64bitTexturing: VkBool32): VkCuModuleTexturingModeCreateInfoNVX =
+  result = VkCuModuleTexturingModeCreateInfoNVX(
+    sType: sType,
+    pNext: pNext,
+    use64bitTexturing: use64bitTexturing,
   )
 
 proc newVkCuFunctionCreateInfoNVX*(sType: VkStructureType = VkStructureType.CuFunctionCreateInfoNVX, pNext: pointer = nil, module: VkCuModuleNVX, pName: cstring): VkCuFunctionCreateInfoNVX =
@@ -21576,6 +25927,15 @@ proc newVkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR*(sType: VkStructu
     triStripVertexOrderIndependentOfProvokingVertex: triStripVertexOrderIndependentOfProvokingVertex,
   )
 
+proc newVkPhysicalDeviceShaderFmaFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderFmaFeaturesKHR, pNext: pointer = nil, shaderFmaFloat16: VkBool32, shaderFmaFloat32: VkBool32, shaderFmaFloat64: VkBool32): VkPhysicalDeviceShaderFmaFeaturesKHR =
+  result = VkPhysicalDeviceShaderFmaFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    shaderFmaFloat16: shaderFmaFloat16,
+    shaderFmaFloat32: shaderFmaFloat32,
+    shaderFmaFloat64: shaderFmaFloat64,
+  )
+
 proc newVkPhysicalDeviceRayTracingMotionBlurFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceRayTracingMotionBlurFeaturesNV, pNext: pointer = nil, rayTracingMotionBlur: VkBool32, rayTracingMotionBlurPipelineTraceRaysIndirect: VkBool32): VkPhysicalDeviceRayTracingMotionBlurFeaturesNV =
   result = VkPhysicalDeviceRayTracingMotionBlurFeaturesNV(
     sType: sType,
@@ -21589,6 +25949,14 @@ proc newVkPhysicalDeviceRayTracingValidationFeaturesNV*(sType: VkStructureType =
     sType: sType,
     pNext: pNext,
     rayTracingValidation: rayTracingValidation,
+  )
+
+proc newVkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV, pNext: pointer = nil, spheres: VkBool32, linearSweptSpheres: VkBool32): VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV =
+  result = VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    spheres: spheres,
+    linearSweptSpheres: linearSweptSpheres,
   )
 
 proc newVkAccelerationStructureGeometryMotionTrianglesDataNV*(sType: VkStructureType = VkStructureType.AccelerationStructureGeometryMotionTrianglesDataNV, pNext: pointer = nil, vertexData: VkDeviceOrHostAddressConstKHR): VkAccelerationStructureGeometryMotionTrianglesDataNV =
@@ -21864,6 +26232,12 @@ proc newVkRenderingInfo*(sType: VkStructureType = VkStructureType.RenderingInfo,
     pStencilAttachment: pStencilAttachment,
   )
 
+proc newVkRenderingEndInfoKHR*(sType: VkStructureType = VkStructureType.RenderingEndInfoKHR, pNext: pointer = nil): VkRenderingEndInfoKHR =
+  result = VkRenderingEndInfoKHR(
+    sType: sType,
+    pNext: pNext,
+  )
+
 proc newVkRenderingAttachmentInfo*(sType: VkStructureType = VkStructureType.RenderingAttachmentInfo, pNext: pointer = nil, imageView: VkImageView, imageLayout: VkImageLayout, resolveMode: VkResolveModeFlagBits, resolveImageView: VkImageView, resolveImageLayout: VkImageLayout, loadOp: VkAttachmentLoadOp, storeOp: VkAttachmentStoreOp, clearValue: VkClearValue): VkRenderingAttachmentInfo =
   result = VkRenderingAttachmentInfo(
     sType: sType,
@@ -22109,15 +26483,15 @@ proc newVkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT*(sType: VkSt
     imageCompressionControlSwapchain: imageCompressionControlSwapchain,
   )
 
-proc newVkImageSubresource2KHR*(sType: VkStructureType = VkStructureType.ImageSubresource2KHR, pNext: pointer = nil, imageSubresource: VkImageSubresource): VkImageSubresource2KHR =
-  result = VkImageSubresource2KHR(
+proc newVkImageSubresource2*(sType: VkStructureType = VkStructureType.ImageSubresource2, pNext: pointer = nil, imageSubresource: VkImageSubresource): VkImageSubresource2 =
+  result = VkImageSubresource2(
     sType: sType,
     pNext: pNext,
     imageSubresource: imageSubresource,
   )
 
-proc newVkSubresourceLayout2KHR*(sType: VkStructureType = VkStructureType.SubresourceLayout2KHR, pNext: pointer = nil, subresourceLayout: VkSubresourceLayout): VkSubresourceLayout2KHR =
-  result = VkSubresourceLayout2KHR(
+proc newVkSubresourceLayout2*(sType: VkStructureType = VkStructureType.SubresourceLayout2, pNext: pointer = nil, subresourceLayout: VkSubresourceLayout): VkSubresourceLayout2 =
+  result = VkSubresourceLayout2(
     sType: sType,
     pNext: pNext,
     subresourceLayout: subresourceLayout,
@@ -22444,15 +26818,15 @@ proc newVkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT*(sType: VkStructureType = 
     nonSeamlessCubeMap: nonSeamlessCubeMap,
   )
 
-proc newVkPhysicalDevicePipelineRobustnessFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineRobustnessFeaturesEXT, pNext: pointer = nil, pipelineRobustness: VkBool32): VkPhysicalDevicePipelineRobustnessFeaturesEXT =
-  result = VkPhysicalDevicePipelineRobustnessFeaturesEXT(
+proc newVkPhysicalDevicePipelineRobustnessFeatures*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineRobustnessFeatures, pNext: pointer = nil, pipelineRobustness: VkBool32): VkPhysicalDevicePipelineRobustnessFeatures =
+  result = VkPhysicalDevicePipelineRobustnessFeatures(
     sType: sType,
     pNext: pNext,
     pipelineRobustness: pipelineRobustness,
   )
 
-proc newVkPipelineRobustnessCreateInfoEXT*(sType: VkStructureType = VkStructureType.PipelineRobustnessCreateInfoEXT, pNext: pointer = nil, storageBuffers: VkPipelineRobustnessBufferBehaviorEXT, uniformBuffers: VkPipelineRobustnessBufferBehaviorEXT, vertexInputs: VkPipelineRobustnessBufferBehaviorEXT, images: VkPipelineRobustnessImageBehaviorEXT): VkPipelineRobustnessCreateInfoEXT =
-  result = VkPipelineRobustnessCreateInfoEXT(
+proc newVkPipelineRobustnessCreateInfo*(sType: VkStructureType = VkStructureType.PipelineRobustnessCreateInfo, pNext: pointer = nil, storageBuffers: VkPipelineRobustnessBufferBehavior, uniformBuffers: VkPipelineRobustnessBufferBehavior, vertexInputs: VkPipelineRobustnessBufferBehavior, images: VkPipelineRobustnessImageBehavior): VkPipelineRobustnessCreateInfo =
+  result = VkPipelineRobustnessCreateInfo(
     sType: sType,
     pNext: pNext,
     storageBuffers: storageBuffers,
@@ -22461,8 +26835,8 @@ proc newVkPipelineRobustnessCreateInfoEXT*(sType: VkStructureType = VkStructureT
     images: images,
   )
 
-proc newVkPhysicalDevicePipelineRobustnessPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineRobustnessPropertiesEXT, pNext: pointer = nil, defaultRobustnessStorageBuffers: VkPipelineRobustnessBufferBehaviorEXT, defaultRobustnessUniformBuffers: VkPipelineRobustnessBufferBehaviorEXT, defaultRobustnessVertexInputs: VkPipelineRobustnessBufferBehaviorEXT, defaultRobustnessImages: VkPipelineRobustnessImageBehaviorEXT): VkPhysicalDevicePipelineRobustnessPropertiesEXT =
-  result = VkPhysicalDevicePipelineRobustnessPropertiesEXT(
+proc newVkPhysicalDevicePipelineRobustnessProperties*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineRobustnessProperties, pNext: pointer = nil, defaultRobustnessStorageBuffers: VkPipelineRobustnessBufferBehavior, defaultRobustnessUniformBuffers: VkPipelineRobustnessBufferBehavior, defaultRobustnessVertexInputs: VkPipelineRobustnessBufferBehavior, defaultRobustnessImages: VkPipelineRobustnessImageBehavior): VkPhysicalDevicePipelineRobustnessProperties =
+  result = VkPhysicalDevicePipelineRobustnessProperties(
     sType: sType,
     pNext: pNext,
     defaultRobustnessStorageBuffers: defaultRobustnessStorageBuffers,
@@ -22515,6 +26889,13 @@ proc newVkTilePropertiesQCOM*(sType: VkStructureType = VkStructureType.TilePrope
     origin: origin,
   )
 
+proc newVkTileMemoryBindInfoQCOM*(sType: VkStructureType = VkStructureType.TileMemoryBindInfoQCOM, pNext: pointer = nil, memory: VkDeviceMemory): VkTileMemoryBindInfoQCOM =
+  result = VkTileMemoryBindInfoQCOM(
+    sType: sType,
+    pNext: pNext,
+    memory: memory,
+  )
+
 proc newVkPhysicalDeviceAmigoProfilingFeaturesSEC*(sType: VkStructureType = VkStructureType.PhysicalDeviceAmigoProfilingFeaturesSEC, pNext: pointer = nil, amigoProfiling: VkBool32): VkPhysicalDeviceAmigoProfilingFeaturesSEC =
   result = VkPhysicalDeviceAmigoProfilingFeaturesSEC(
     sType: sType,
@@ -22537,11 +26918,11 @@ proc newVkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT*(sType: VkStruct
     attachmentFeedbackLoopLayout: attachmentFeedbackLoopLayout,
   )
 
-proc newVkPhysicalDeviceDepthClampZeroOneFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDepthClampZeroOneFeaturesEXT, pNext: pointer = nil, depthClampZeroOne: VkBool32): VkPhysicalDeviceDepthClampZeroOneFeaturesEXT =
-  result = VkPhysicalDeviceDepthClampZeroOneFeaturesEXT(
+proc newVkAttachmentFeedbackLoopInfoEXT*(sType: VkStructureType = VkStructureType.AttachmentFeedbackLoopInfoEXT, pNext: pointer = nil, feedbackLoopEnable: VkBool32): VkAttachmentFeedbackLoopInfoEXT =
+  result = VkAttachmentFeedbackLoopInfoEXT(
     sType: sType,
     pNext: pNext,
-    depthClampZeroOne: depthClampZeroOne,
+    feedbackLoopEnable: feedbackLoopEnable,
   )
 
 proc newVkPhysicalDeviceAddressBindingReportFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceAddressBindingReportFeaturesEXT, pNext: pointer = nil, reportAddressBinding: VkBool32): VkPhysicalDeviceAddressBindingReportFeaturesEXT =
@@ -22549,6 +26930,22 @@ proc newVkPhysicalDeviceAddressBindingReportFeaturesEXT*(sType: VkStructureType 
     sType: sType,
     pNext: pNext,
     reportAddressBinding: reportAddressBinding,
+  )
+
+proc newVkRenderingAttachmentFlagsInfoKHR*(sType: VkStructureType = VkStructureType.RenderingAttachmentFlagsInfoKHR, pNext: pointer = nil, flags: VkRenderingAttachmentFlagsKHR = 0.VkRenderingAttachmentFlagsKHR): VkRenderingAttachmentFlagsInfoKHR =
+  result = VkRenderingAttachmentFlagsInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+  )
+
+proc newVkResolveImageModeInfoKHR*(sType: VkStructureType = VkStructureType.ResolveImageModeInfoKHR, pNext: pointer = nil, flags: VkResolveImageFlagsKHR = 0.VkResolveImageFlagsKHR, resolveMode: VkResolveModeFlagBits, stencilResolveMode: VkResolveModeFlagBits): VkResolveImageModeInfoKHR =
+  result = VkResolveImageModeInfoKHR(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    resolveMode: resolveMode,
+    stencilResolveMode: stencilResolveMode,
   )
 
 proc newVkDeviceAddressBindingCallbackDataEXT*(sType: VkStructureType = VkStructureType.DeviceAddressBindingCallbackDataEXT, pNext: pointer = nil, flags: VkDeviceAddressBindingFlagsEXT = 0.VkDeviceAddressBindingFlagsEXT, baseAddress: VkDeviceAddress, size: VkDeviceSize, bindingType: VkDeviceAddressBindingTypeEXT): VkDeviceAddressBindingCallbackDataEXT =
@@ -22721,6 +27118,23 @@ proc newVkDecompressMemoryRegionNV*(srcAddress: VkDeviceAddress, dstAddress: VkD
     decompressionMethod: decompressionMethod,
   )
 
+proc newVkDecompressMemoryRegionEXT*(srcAddress: VkDeviceAddress, dstAddress: VkDeviceAddress, compressedSize: VkDeviceSize, decompressedSize: VkDeviceSize): VkDecompressMemoryRegionEXT =
+  result = VkDecompressMemoryRegionEXT(
+    srcAddress: srcAddress,
+    dstAddress: dstAddress,
+    compressedSize: compressedSize,
+    decompressedSize: decompressedSize,
+  )
+
+proc newVkDecompressMemoryInfoEXT*(sType: VkStructureType = VkStructureType.DecompressMemoryInfoEXT, pNext: pointer = nil, decompressionMethod: VkMemoryDecompressionMethodFlagsEXT, regions: openarray[VkDecompressMemoryRegionEXT]): VkDecompressMemoryInfoEXT =
+  result = VkDecompressMemoryInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    decompressionMethod: decompressionMethod,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkDecompressMemoryRegionEXT](regions),
+  )
+
 proc newVkPhysicalDeviceShaderCoreBuiltinsPropertiesARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderCoreBuiltinsPropertiesARM, pNext: pointer = nil, shaderCoreMask: uint64, shaderCoreCount: uint32, shaderWarpsPerCore: uint32): VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM =
   result = VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM(
     sType: sType,
@@ -22766,15 +27180,22 @@ proc newVkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT*(sType: VkS
     dynamicRenderingUnusedAttachments: dynamicRenderingUnusedAttachments,
   )
 
-proc newVkSurfacePresentModeEXT*(sType: VkStructureType = VkStructureType.SurfacePresentModeEXT, pNext: pointer = nil, presentMode: VkPresentModeKHR): VkSurfacePresentModeEXT =
-  result = VkSurfacePresentModeEXT(
+proc newVkPhysicalDeviceInternallySynchronizedQueuesFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR, pNext: pointer = nil, internallySynchronizedQueues: VkBool32): VkPhysicalDeviceInternallySynchronizedQueuesFeaturesKHR =
+  result = VkPhysicalDeviceInternallySynchronizedQueuesFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    internallySynchronizedQueues: internallySynchronizedQueues,
+  )
+
+proc newVkSurfacePresentModeKHR*(sType: VkStructureType = VkStructureType.SurfacePresentModeKHR, pNext: pointer = nil, presentMode: VkPresentModeKHR): VkSurfacePresentModeKHR =
+  result = VkSurfacePresentModeKHR(
     sType: sType,
     pNext: pNext,
     presentMode: presentMode,
   )
 
-proc newVkSurfacePresentScalingCapabilitiesEXT*(sType: VkStructureType = VkStructureType.SurfacePresentScalingCapabilitiesEXT, pNext: pointer = nil, supportedPresentScaling: VkPresentScalingFlagsEXT, supportedPresentGravityX: VkPresentGravityFlagsEXT, supportedPresentGravityY: VkPresentGravityFlagsEXT, minScaledImageExtent: VkExtent2D, maxScaledImageExtent: VkExtent2D): VkSurfacePresentScalingCapabilitiesEXT =
-  result = VkSurfacePresentScalingCapabilitiesEXT(
+proc newVkSurfacePresentScalingCapabilitiesKHR*(sType: VkStructureType = VkStructureType.SurfacePresentScalingCapabilitiesKHR, pNext: pointer = nil, supportedPresentScaling: VkPresentScalingFlagsKHR, supportedPresentGravityX: VkPresentGravityFlagsKHR, supportedPresentGravityY: VkPresentGravityFlagsKHR, minScaledImageExtent: VkExtent2D, maxScaledImageExtent: VkExtent2D): VkSurfacePresentScalingCapabilitiesKHR =
+  result = VkSurfacePresentScalingCapabilitiesKHR(
     sType: sType,
     pNext: pNext,
     supportedPresentScaling: supportedPresentScaling,
@@ -22784,47 +27205,47 @@ proc newVkSurfacePresentScalingCapabilitiesEXT*(sType: VkStructureType = VkStruc
     maxScaledImageExtent: maxScaledImageExtent,
   )
 
-proc newVkSurfacePresentModeCompatibilityEXT*(sType: VkStructureType = VkStructureType.SurfacePresentModeCompatibilityEXT, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSurfacePresentModeCompatibilityEXT =
-  result = VkSurfacePresentModeCompatibilityEXT(
+proc newVkSurfacePresentModeCompatibilityKHR*(sType: VkStructureType = VkStructureType.SurfacePresentModeCompatibilityKHR, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSurfacePresentModeCompatibilityKHR =
+  result = VkSurfacePresentModeCompatibilityKHR(
     sType: sType,
     pNext: pNext,
     presentModeCount: len(presentModes).uint32,
     pPresentModes: if len(presentModes) == 0: nil else: cast[ptr VkPresentModeKHR](presentModes),
   )
 
-proc newVkPhysicalDeviceSwapchainMaintenance1FeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceSwapchainMaintenance1FeaturesEXT, pNext: pointer = nil, swapchainMaintenance1: VkBool32): VkPhysicalDeviceSwapchainMaintenance1FeaturesEXT =
-  result = VkPhysicalDeviceSwapchainMaintenance1FeaturesEXT(
+proc newVkPhysicalDeviceSwapchainMaintenance1FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceSwapchainMaintenance1FeaturesKHR, pNext: pointer = nil, swapchainMaintenance1: VkBool32): VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR =
+  result = VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR(
     sType: sType,
     pNext: pNext,
     swapchainMaintenance1: swapchainMaintenance1,
   )
 
-proc newVkSwapchainPresentFenceInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentFenceInfoEXT, pNext: pointer = nil, fences: openarray[VkFence]): VkSwapchainPresentFenceInfoEXT =
-  result = VkSwapchainPresentFenceInfoEXT(
+proc newVkSwapchainPresentFenceInfoKHR*(sType: VkStructureType = VkStructureType.SwapchainPresentFenceInfoKHR, pNext: pointer = nil, fences: openarray[VkFence]): VkSwapchainPresentFenceInfoKHR =
+  result = VkSwapchainPresentFenceInfoKHR(
     sType: sType,
     pNext: pNext,
     swapchainCount: len(fences).uint32,
     pFences: if len(fences) == 0: nil else: cast[ptr VkFence](fences),
   )
 
-proc newVkSwapchainPresentModesCreateInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentModesCreateInfoEXT, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSwapchainPresentModesCreateInfoEXT =
-  result = VkSwapchainPresentModesCreateInfoEXT(
+proc newVkSwapchainPresentModesCreateInfoKHR*(sType: VkStructureType = VkStructureType.SwapchainPresentModesCreateInfoKHR, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSwapchainPresentModesCreateInfoKHR =
+  result = VkSwapchainPresentModesCreateInfoKHR(
     sType: sType,
     pNext: pNext,
     presentModeCount: len(presentModes).uint32,
     pPresentModes: if len(presentModes) == 0: nil else: cast[ptr VkPresentModeKHR](presentModes),
   )
 
-proc newVkSwapchainPresentModeInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentModeInfoEXT, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSwapchainPresentModeInfoEXT =
-  result = VkSwapchainPresentModeInfoEXT(
+proc newVkSwapchainPresentModeInfoKHR*(sType: VkStructureType = VkStructureType.SwapchainPresentModeInfoKHR, pNext: pointer = nil, presentModes: openarray[VkPresentModeKHR]): VkSwapchainPresentModeInfoKHR =
+  result = VkSwapchainPresentModeInfoKHR(
     sType: sType,
     pNext: pNext,
     swapchainCount: len(presentModes).uint32,
     pPresentModes: if len(presentModes) == 0: nil else: cast[ptr VkPresentModeKHR](presentModes),
   )
 
-proc newVkSwapchainPresentScalingCreateInfoEXT*(sType: VkStructureType = VkStructureType.SwapchainPresentScalingCreateInfoEXT, pNext: pointer = nil, scalingBehavior: VkPresentScalingFlagsEXT, presentGravityX: VkPresentGravityFlagsEXT, presentGravityY: VkPresentGravityFlagsEXT): VkSwapchainPresentScalingCreateInfoEXT =
-  result = VkSwapchainPresentScalingCreateInfoEXT(
+proc newVkSwapchainPresentScalingCreateInfoKHR*(sType: VkStructureType = VkStructureType.SwapchainPresentScalingCreateInfoKHR, pNext: pointer = nil, scalingBehavior: VkPresentScalingFlagsKHR, presentGravityX: VkPresentGravityFlagsKHR, presentGravityY: VkPresentGravityFlagsKHR): VkSwapchainPresentScalingCreateInfoKHR =
+  result = VkSwapchainPresentScalingCreateInfoKHR(
     sType: sType,
     pNext: pNext,
     scalingBehavior: scalingBehavior,
@@ -22832,8 +27253,8 @@ proc newVkSwapchainPresentScalingCreateInfoEXT*(sType: VkStructureType = VkStruc
     presentGravityY: presentGravityY,
   )
 
-proc newVkReleaseSwapchainImagesInfoEXT*(sType: VkStructureType = VkStructureType.ReleaseSwapchainImagesInfoEXT, pNext: pointer = nil, swapchain: VkSwapchainKHR, imageIndices: openarray[uint32]): VkReleaseSwapchainImagesInfoEXT =
-  result = VkReleaseSwapchainImagesInfoEXT(
+proc newVkReleaseSwapchainImagesInfoKHR*(sType: VkStructureType = VkStructureType.ReleaseSwapchainImagesInfoKHR, pNext: pointer = nil, swapchain: VkSwapchainKHR, imageIndices: openarray[uint32]): VkReleaseSwapchainImagesInfoKHR =
+  result = VkReleaseSwapchainImagesInfoKHR(
     sType: sType,
     pNext: pNext,
     swapchain: swapchain,
@@ -22851,6 +27272,13 @@ proc newVkPhysicalDeviceDepthBiasControlFeaturesEXT*(sType: VkStructureType = Vk
     depthBiasExact: depthBiasExact,
   )
 
+proc newVkPhysicalDeviceRayTracingInvocationReorderFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceRayTracingInvocationReorderFeaturesEXT, pNext: pointer = nil, rayTracingInvocationReorder: VkBool32): VkPhysicalDeviceRayTracingInvocationReorderFeaturesEXT =
+  result = VkPhysicalDeviceRayTracingInvocationReorderFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    rayTracingInvocationReorder: rayTracingInvocationReorder,
+  )
+
 proc newVkPhysicalDeviceRayTracingInvocationReorderFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceRayTracingInvocationReorderFeaturesNV, pNext: pointer = nil, rayTracingInvocationReorder: VkBool32): VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV =
   result = VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV(
     sType: sType,
@@ -22858,7 +27286,15 @@ proc newVkPhysicalDeviceRayTracingInvocationReorderFeaturesNV*(sType: VkStructur
     rayTracingInvocationReorder: rayTracingInvocationReorder,
   )
 
-proc newVkPhysicalDeviceRayTracingInvocationReorderPropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceRayTracingInvocationReorderPropertiesNV, pNext: pointer = nil, rayTracingInvocationReorderReorderingHint: VkRayTracingInvocationReorderModeNV): VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV =
+proc newVkPhysicalDeviceRayTracingInvocationReorderPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceRayTracingInvocationReorderPropertiesEXT, pNext: pointer = nil, rayTracingInvocationReorderReorderingHint: VkRayTracingInvocationReorderModeEXT, maxShaderBindingTableRecordIndex: uint32): VkPhysicalDeviceRayTracingInvocationReorderPropertiesEXT =
+  result = VkPhysicalDeviceRayTracingInvocationReorderPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    rayTracingInvocationReorderReorderingHint: rayTracingInvocationReorderReorderingHint,
+    maxShaderBindingTableRecordIndex: maxShaderBindingTableRecordIndex,
+  )
+
+proc newVkPhysicalDeviceRayTracingInvocationReorderPropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceRayTracingInvocationReorderPropertiesNV, pNext: pointer = nil, rayTracingInvocationReorderReorderingHint: VkRayTracingInvocationReorderModeEXT): VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV =
   result = VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV(
     sType: sType,
     pNext: pNext,
@@ -22912,8 +27348,8 @@ proc newVkPhysicalDeviceRayTracingPositionFetchFeaturesKHR*(sType: VkStructureTy
     rayTracingPositionFetch: rayTracingPositionFetch,
   )
 
-proc newVkDeviceImageSubresourceInfoKHR*(sType: VkStructureType = VkStructureType.DeviceImageSubresourceInfoKHR, pNext: pointer = nil, pCreateInfo: ptr VkImageCreateInfo, pSubresource: ptr VkImageSubresource2KHR): VkDeviceImageSubresourceInfoKHR =
-  result = VkDeviceImageSubresourceInfoKHR(
+proc newVkDeviceImageSubresourceInfo*(sType: VkStructureType = VkStructureType.DeviceImageSubresourceInfo, pNext: pointer = nil, pCreateInfo: ptr VkImageCreateInfo, pSubresource: ptr VkImageSubresource2): VkDeviceImageSubresourceInfo =
+  result = VkDeviceImageSubresourceInfo(
     sType: sType,
     pNext: pNext,
     pCreateInfo: pCreateInfo,
@@ -22951,8 +27387,8 @@ proc newVkQueryLowLatencySupportNV*(sType: VkStructureType = VkStructureType.Que
     pQueriedLowLatencyData: pQueriedLowLatencyData,
   )
 
-proc newVkMemoryMapInfoKHR*(sType: VkStructureType = VkStructureType.MemoryMapInfoKHR, pNext: pointer = nil, flags: VkMemoryMapFlags = 0.VkMemoryMapFlags, memory: VkDeviceMemory, offset: VkDeviceSize, size: VkDeviceSize): VkMemoryMapInfoKHR =
-  result = VkMemoryMapInfoKHR(
+proc newVkMemoryMapInfo*(sType: VkStructureType = VkStructureType.MemoryMapInfo, pNext: pointer = nil, flags: VkMemoryMapFlags = 0.VkMemoryMapFlags, memory: VkDeviceMemory, offset: VkDeviceSize, size: VkDeviceSize): VkMemoryMapInfo =
+  result = VkMemoryMapInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
@@ -22961,8 +27397,8 @@ proc newVkMemoryMapInfoKHR*(sType: VkStructureType = VkStructureType.MemoryMapIn
     size: size,
   )
 
-proc newVkMemoryUnmapInfoKHR*(sType: VkStructureType = VkStructureType.MemoryUnmapInfoKHR, pNext: pointer = nil, flags: VkMemoryUnmapFlagsKHR = 0.VkMemoryUnmapFlagsKHR, memory: VkDeviceMemory): VkMemoryUnmapInfoKHR =
-  result = VkMemoryUnmapInfoKHR(
+proc newVkMemoryUnmapInfo*(sType: VkStructureType = VkStructureType.MemoryUnmapInfo, pNext: pointer = nil, flags: VkMemoryUnmapFlags = 0.VkMemoryUnmapFlags, memory: VkDeviceMemory): VkMemoryUnmapInfo =
+  result = VkMemoryUnmapInfo(
     sType: sType,
     pNext: pNext,
     flags: flags,
@@ -23094,7 +27530,14 @@ proc newVkPhysicalDeviceCooperativeMatrixPropertiesKHR*(sType: VkStructureType =
     cooperativeMatrixSupportedStages: cooperativeMatrixSupportedStages,
   )
 
-proc newVkPhysicalDeviceShaderEnqueuePropertiesAMDX*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderEnqueuePropertiesAMDX, pNext: pointer = nil, maxExecutionGraphDepth: uint32, maxExecutionGraphShaderOutputNodes: uint32, maxExecutionGraphShaderPayloadSize: uint32, maxExecutionGraphShaderPayloadCount: uint32, executionGraphDispatchAddressAlignment: uint32): VkPhysicalDeviceShaderEnqueuePropertiesAMDX =
+proc newVkPhysicalDeviceCooperativeMatrixConversionFeaturesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM, pNext: pointer = nil, cooperativeMatrixConversion: VkBool32): VkPhysicalDeviceCooperativeMatrixConversionFeaturesQCOM =
+  result = VkPhysicalDeviceCooperativeMatrixConversionFeaturesQCOM(
+    sType: sType,
+    pNext: pNext,
+    cooperativeMatrixConversion: cooperativeMatrixConversion,
+  )
+
+proc newVkPhysicalDeviceShaderEnqueuePropertiesAMDX*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderEnqueuePropertiesAMDX, pNext: pointer = nil, maxExecutionGraphDepth: uint32, maxExecutionGraphShaderOutputNodes: uint32, maxExecutionGraphShaderPayloadSize: uint32, maxExecutionGraphShaderPayloadCount: uint32, executionGraphDispatchAddressAlignment: uint32, maxExecutionGraphWorkgroupCount: array[3, uint32], maxExecutionGraphWorkgroups: uint32): VkPhysicalDeviceShaderEnqueuePropertiesAMDX =
   result = VkPhysicalDeviceShaderEnqueuePropertiesAMDX(
     sType: sType,
     pNext: pNext,
@@ -23103,13 +27546,16 @@ proc newVkPhysicalDeviceShaderEnqueuePropertiesAMDX*(sType: VkStructureType = Vk
     maxExecutionGraphShaderPayloadSize: maxExecutionGraphShaderPayloadSize,
     maxExecutionGraphShaderPayloadCount: maxExecutionGraphShaderPayloadCount,
     executionGraphDispatchAddressAlignment: executionGraphDispatchAddressAlignment,
+    maxExecutionGraphWorkgroupCount: maxExecutionGraphWorkgroupCount,
+    maxExecutionGraphWorkgroups: maxExecutionGraphWorkgroups,
   )
 
-proc newVkPhysicalDeviceShaderEnqueueFeaturesAMDX*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderEnqueueFeaturesAMDX, pNext: pointer = nil, shaderEnqueue: VkBool32): VkPhysicalDeviceShaderEnqueueFeaturesAMDX =
+proc newVkPhysicalDeviceShaderEnqueueFeaturesAMDX*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderEnqueueFeaturesAMDX, pNext: pointer = nil, shaderEnqueue: VkBool32, shaderMeshEnqueue: VkBool32): VkPhysicalDeviceShaderEnqueueFeaturesAMDX =
   result = VkPhysicalDeviceShaderEnqueueFeaturesAMDX(
     sType: sType,
     pNext: pNext,
     shaderEnqueue: shaderEnqueue,
+    shaderMeshEnqueue: shaderMeshEnqueue,
   )
 
 proc newVkExecutionGraphPipelineCreateInfoAMDX*(sType: VkStructureType = VkStructureType.ExecutionGraphPipelineCreateInfoAMDX, pNext: pointer = nil, flags: VkPipelineCreateFlags = 0.VkPipelineCreateFlags, stages: openarray[VkPipelineShaderStageCreateInfo], pLibraryInfo: ptr VkPipelineLibraryCreateInfoKHR, layout: VkPipelineLayout, basePipelineHandle: VkPipeline, basePipelineIndex: int32): VkExecutionGraphPipelineCreateInfoAMDX =
@@ -23133,11 +27579,13 @@ proc newVkPipelineShaderStageNodeCreateInfoAMDX*(sType: VkStructureType = VkStru
     index: index,
   )
 
-proc newVkExecutionGraphPipelineScratchSizeAMDX*(sType: VkStructureType = VkStructureType.ExecutionGraphPipelineScratchSizeAMDX, pNext: pointer = nil, size: VkDeviceSize): VkExecutionGraphPipelineScratchSizeAMDX =
+proc newVkExecutionGraphPipelineScratchSizeAMDX*(sType: VkStructureType = VkStructureType.ExecutionGraphPipelineScratchSizeAMDX, pNext: pointer = nil, minSize: VkDeviceSize, maxSize: VkDeviceSize, sizeGranularity: VkDeviceSize): VkExecutionGraphPipelineScratchSizeAMDX =
   result = VkExecutionGraphPipelineScratchSizeAMDX(
     sType: sType,
     pNext: pNext,
-    size: size,
+    minSize: minSize,
+    maxSize: maxSize,
+    sizeGranularity: sizeGranularity,
   )
 
 proc newVkDispatchGraphInfoAMDX*(nodeIndex: uint32, payloadCount: uint32, payloads: VkDeviceOrHostAddressConstAMDX, payloadStride: uint64): VkDispatchGraphInfoAMDX =
@@ -23179,15 +27627,45 @@ proc newVkAntiLagPresentationInfoAMD*(sType: VkStructureType = VkStructureType.A
     frameIndex: frameIndex,
   )
 
-proc newVkBindMemoryStatusKHR*(sType: VkStructureType = VkStructureType.BindMemoryStatusKHR, pNext: pointer = nil, pResult: ptr VkResult): VkBindMemoryStatusKHR =
-  result = VkBindMemoryStatusKHR(
+proc newVkBindMemoryStatus*(sType: VkStructureType = VkStructureType.BindMemoryStatus, pNext: pointer = nil, pResult: ptr VkResult): VkBindMemoryStatus =
+  result = VkBindMemoryStatus(
     sType: sType,
     pNext: pNext,
     pResult: pResult,
   )
 
-proc newVkBindDescriptorSetsInfoKHR*(sType: VkStructureType = VkStructureType.BindDescriptorSetsInfoKHR, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, firstSet: uint32, descriptorSets: openarray[VkDescriptorSet], dynamicOffsets: openarray[uint32]): VkBindDescriptorSetsInfoKHR =
-  result = VkBindDescriptorSetsInfoKHR(
+proc newVkPhysicalDeviceTileMemoryHeapFeaturesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceTileMemoryHeapFeaturesQCOM, pNext: pointer = nil, tileMemoryHeap: VkBool32): VkPhysicalDeviceTileMemoryHeapFeaturesQCOM =
+  result = VkPhysicalDeviceTileMemoryHeapFeaturesQCOM(
+    sType: sType,
+    pNext: pNext,
+    tileMemoryHeap: tileMemoryHeap,
+  )
+
+proc newVkPhysicalDeviceTileMemoryHeapPropertiesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceTileMemoryHeapPropertiesQCOM, pNext: pointer = nil, queueSubmitBoundary: VkBool32, tileBufferTransfers: VkBool32): VkPhysicalDeviceTileMemoryHeapPropertiesQCOM =
+  result = VkPhysicalDeviceTileMemoryHeapPropertiesQCOM(
+    sType: sType,
+    pNext: pNext,
+    queueSubmitBoundary: queueSubmitBoundary,
+    tileBufferTransfers: tileBufferTransfers,
+  )
+
+proc newVkTileMemorySizeInfoQCOM*(sType: VkStructureType = VkStructureType.TileMemorySizeInfoQCOM, pNext: pointer = nil, size: VkDeviceSize): VkTileMemorySizeInfoQCOM =
+  result = VkTileMemorySizeInfoQCOM(
+    sType: sType,
+    pNext: pNext,
+    size: size,
+  )
+
+proc newVkTileMemoryRequirementsQCOM*(sType: VkStructureType = VkStructureType.TileMemoryRequirementsQCOM, pNext: pointer = nil, size: VkDeviceSize, alignment: VkDeviceSize): VkTileMemoryRequirementsQCOM =
+  result = VkTileMemoryRequirementsQCOM(
+    sType: sType,
+    pNext: pNext,
+    size: size,
+    alignment: alignment,
+  )
+
+proc newVkBindDescriptorSetsInfo*(sType: VkStructureType = VkStructureType.BindDescriptorSetsInfo, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, firstSet: uint32, descriptorSets: openarray[VkDescriptorSet], dynamicOffsets: openarray[uint32]): VkBindDescriptorSetsInfo =
+  result = VkBindDescriptorSetsInfo(
     sType: sType,
     pNext: pNext,
     stageFlags: stageFlags,
@@ -23199,8 +27677,8 @@ proc newVkBindDescriptorSetsInfoKHR*(sType: VkStructureType = VkStructureType.Bi
     pDynamicOffsets: if len(dynamicOffsets) == 0: nil else: cast[ptr uint32](dynamicOffsets),
   )
 
-proc newVkPushConstantsInfoKHR*(sType: VkStructureType = VkStructureType.PushConstantsInfoKHR, pNext: pointer = nil, layout: VkPipelineLayout, stageFlags: VkShaderStageFlags, offset: uint32, size: uint32, pValues: pointer = nil): VkPushConstantsInfoKHR =
-  result = VkPushConstantsInfoKHR(
+proc newVkPushConstantsInfo*(sType: VkStructureType = VkStructureType.PushConstantsInfo, pNext: pointer = nil, layout: VkPipelineLayout, stageFlags: VkShaderStageFlags, offset: uint32, size: uint32, pValues: pointer = nil): VkPushConstantsInfo =
+  result = VkPushConstantsInfo(
     sType: sType,
     pNext: pNext,
     layout: layout,
@@ -23210,8 +27688,8 @@ proc newVkPushConstantsInfoKHR*(sType: VkStructureType = VkStructureType.PushCon
     pValues: pValues,
   )
 
-proc newVkPushDescriptorSetInfoKHR*(sType: VkStructureType = VkStructureType.PushDescriptorSetInfoKHR, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, set: uint32, descriptorWrites: openarray[VkWriteDescriptorSet]): VkPushDescriptorSetInfoKHR =
-  result = VkPushDescriptorSetInfoKHR(
+proc newVkPushDescriptorSetInfo*(sType: VkStructureType = VkStructureType.PushDescriptorSetInfo, pNext: pointer = nil, stageFlags: VkShaderStageFlags, layout: VkPipelineLayout, set: uint32, descriptorWrites: openarray[VkWriteDescriptorSet]): VkPushDescriptorSetInfo =
+  result = VkPushDescriptorSetInfo(
     sType: sType,
     pNext: pNext,
     stageFlags: stageFlags,
@@ -23221,8 +27699,8 @@ proc newVkPushDescriptorSetInfoKHR*(sType: VkStructureType = VkStructureType.Pus
     pDescriptorWrites: if len(descriptorWrites) == 0: nil else: cast[ptr VkWriteDescriptorSet](descriptorWrites),
   )
 
-proc newVkPushDescriptorSetWithTemplateInfoKHR*(sType: VkStructureType = VkStructureType.PushDescriptorSetWithTemplateInfoKHR, pNext: pointer = nil, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer = nil): VkPushDescriptorSetWithTemplateInfoKHR =
-  result = VkPushDescriptorSetWithTemplateInfoKHR(
+proc newVkPushDescriptorSetWithTemplateInfo*(sType: VkStructureType = VkStructureType.PushDescriptorSetWithTemplateInfo, pNext: pointer = nil, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer = nil): VkPushDescriptorSetWithTemplateInfo =
+  result = VkPushDescriptorSetWithTemplateInfo(
     sType: sType,
     pNext: pNext,
     descriptorUpdateTemplate: descriptorUpdateTemplate,
@@ -23525,6 +28003,13 @@ proc newVkRenderPassStripeSubmitInfoARM*(sType: VkStructureType = VkStructureTyp
     pStripeSemaphoreInfos: if len(stripeSemaphoreInfos) == 0: nil else: cast[ptr VkSemaphoreSubmitInfo](stripeSemaphoreInfos),
   )
 
+proc newVkPhysicalDevicePipelineOpacityMicromapFeaturesARM*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineOpacityMicromapFeaturesARM, pNext: pointer = nil, pipelineOpacityMicromap: VkBool32): VkPhysicalDevicePipelineOpacityMicromapFeaturesARM =
+  result = VkPhysicalDevicePipelineOpacityMicromapFeaturesARM(
+    sType: sType,
+    pNext: pNext,
+    pipelineOpacityMicromap: pipelineOpacityMicromap,
+  )
+
 proc newVkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR, pNext: pointer = nil, shaderMaximalReconvergence: VkBool32): VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR =
   result = VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR(
     sType: sType,
@@ -23532,45 +28017,45 @@ proc newVkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR*(sType: VkStructur
     shaderMaximalReconvergence: shaderMaximalReconvergence,
   )
 
-proc newVkPhysicalDeviceShaderSubgroupRotateFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderSubgroupRotateFeaturesKHR, pNext: pointer = nil, shaderSubgroupRotate: VkBool32, shaderSubgroupRotateClustered: VkBool32): VkPhysicalDeviceShaderSubgroupRotateFeaturesKHR =
-  result = VkPhysicalDeviceShaderSubgroupRotateFeaturesKHR(
+proc newVkPhysicalDeviceShaderSubgroupRotateFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderSubgroupRotateFeatures, pNext: pointer = nil, shaderSubgroupRotate: VkBool32, shaderSubgroupRotateClustered: VkBool32): VkPhysicalDeviceShaderSubgroupRotateFeatures =
+  result = VkPhysicalDeviceShaderSubgroupRotateFeatures(
     sType: sType,
     pNext: pNext,
     shaderSubgroupRotate: shaderSubgroupRotate,
     shaderSubgroupRotateClustered: shaderSubgroupRotateClustered,
   )
 
-proc newVkPhysicalDeviceShaderExpectAssumeFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderExpectAssumeFeaturesKHR, pNext: pointer = nil, shaderExpectAssume: VkBool32): VkPhysicalDeviceShaderExpectAssumeFeaturesKHR =
-  result = VkPhysicalDeviceShaderExpectAssumeFeaturesKHR(
+proc newVkPhysicalDeviceShaderExpectAssumeFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderExpectAssumeFeatures, pNext: pointer = nil, shaderExpectAssume: VkBool32): VkPhysicalDeviceShaderExpectAssumeFeatures =
+  result = VkPhysicalDeviceShaderExpectAssumeFeatures(
     sType: sType,
     pNext: pNext,
     shaderExpectAssume: shaderExpectAssume,
   )
 
-proc newVkPhysicalDeviceShaderFloatControls2FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderFloatControls2FeaturesKHR, pNext: pointer = nil, shaderFloatControls2: VkBool32): VkPhysicalDeviceShaderFloatControls2FeaturesKHR =
-  result = VkPhysicalDeviceShaderFloatControls2FeaturesKHR(
+proc newVkPhysicalDeviceShaderFloatControls2Features*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderFloatControls2Features, pNext: pointer = nil, shaderFloatControls2: VkBool32): VkPhysicalDeviceShaderFloatControls2Features =
+  result = VkPhysicalDeviceShaderFloatControls2Features(
     sType: sType,
     pNext: pNext,
     shaderFloatControls2: shaderFloatControls2,
   )
 
-proc newVkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceDynamicRenderingLocalReadFeaturesKHR, pNext: pointer = nil, dynamicRenderingLocalRead: VkBool32): VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR =
-  result = VkPhysicalDeviceDynamicRenderingLocalReadFeaturesKHR(
+proc newVkPhysicalDeviceDynamicRenderingLocalReadFeatures*(sType: VkStructureType = VkStructureType.PhysicalDeviceDynamicRenderingLocalReadFeatures, pNext: pointer = nil, dynamicRenderingLocalRead: VkBool32): VkPhysicalDeviceDynamicRenderingLocalReadFeatures =
+  result = VkPhysicalDeviceDynamicRenderingLocalReadFeatures(
     sType: sType,
     pNext: pNext,
     dynamicRenderingLocalRead: dynamicRenderingLocalRead,
   )
 
-proc newVkRenderingAttachmentLocationInfoKHR*(sType: VkStructureType = VkStructureType.RenderingAttachmentLocationInfoKHR, pNext: pointer = nil, colorAttachmentLocations: openarray[uint32]): VkRenderingAttachmentLocationInfoKHR =
-  result = VkRenderingAttachmentLocationInfoKHR(
+proc newVkRenderingAttachmentLocationInfo*(sType: VkStructureType = VkStructureType.RenderingAttachmentLocationInfo, pNext: pointer = nil, colorAttachmentLocations: openarray[uint32]): VkRenderingAttachmentLocationInfo =
+  result = VkRenderingAttachmentLocationInfo(
     sType: sType,
     pNext: pNext,
     colorAttachmentCount: len(colorAttachmentLocations).uint32,
     pColorAttachmentLocations: if len(colorAttachmentLocations) == 0: nil else: cast[ptr uint32](colorAttachmentLocations),
   )
 
-proc newVkRenderingInputAttachmentIndexInfoKHR*(sType: VkStructureType = VkStructureType.RenderingInputAttachmentIndexInfoKHR, pNext: pointer = nil, colorAttachmentInputIndices: openarray[uint32], pDepthInputAttachmentIndex: ptr uint32, pStencilInputAttachmentIndex: ptr uint32): VkRenderingInputAttachmentIndexInfoKHR =
-  result = VkRenderingInputAttachmentIndexInfoKHR(
+proc newVkRenderingInputAttachmentIndexInfo*(sType: VkStructureType = VkStructureType.RenderingInputAttachmentIndexInfo, pNext: pointer = nil, colorAttachmentInputIndices: openarray[uint32], pDepthInputAttachmentIndex: ptr uint32, pStencilInputAttachmentIndex: ptr uint32): VkRenderingInputAttachmentIndexInfo =
+  result = VkRenderingInputAttachmentIndexInfo(
     sType: sType,
     pNext: pNext,
     colorAttachmentCount: len(colorAttachmentInputIndices).uint32,
@@ -23616,6 +28101,15 @@ proc newVkMemoryMapPlacedInfoEXT*(sType: VkStructureType = VkStructureType.Memor
     pPlacedAddress: pPlacedAddress,
   )
 
+proc newVkPhysicalDeviceShaderBfloat16FeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderBfloat16FeaturesKHR, pNext: pointer = nil, shaderBFloat16Type: VkBool32, shaderBFloat16DotProduct: VkBool32, shaderBFloat16CooperativeMatrix: VkBool32): VkPhysicalDeviceShaderBfloat16FeaturesKHR =
+  result = VkPhysicalDeviceShaderBfloat16FeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    shaderBFloat16Type: shaderBFloat16Type,
+    shaderBFloat16DotProduct: shaderBFloat16DotProduct,
+    shaderBFloat16CooperativeMatrix: shaderBFloat16CooperativeMatrix,
+  )
+
 proc newVkPhysicalDeviceRawAccessChainsFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceRawAccessChainsFeaturesNV, pNext: pointer = nil, shaderRawAccessChains: VkBool32): VkPhysicalDeviceRawAccessChainsFeaturesNV =
   result = VkPhysicalDeviceRawAccessChainsFeaturesNV(
     sType: sType,
@@ -23656,6 +28150,1175 @@ proc newVkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT*(sType: VkStructur
     sType: sType,
     pNext: pNext,
     shaderReplicatedComposites: shaderReplicatedComposites,
+  )
+
+proc newVkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR, pNext: pointer = nil, presentModeFifoLatestReady: VkBool32): VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR =
+  result = VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    presentModeFifoLatestReady: presentModeFifoLatestReady,
+  )
+
+proc newVkDepthClampRangeEXT*(minDepthClamp: float32, maxDepthClamp: float32): VkDepthClampRangeEXT =
+  result = VkDepthClampRangeEXT(
+    minDepthClamp: minDepthClamp,
+    maxDepthClamp: maxDepthClamp,
+  )
+
+proc newVkPhysicalDeviceCooperativeMatrix2FeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCooperativeMatrix2FeaturesNV, pNext: pointer = nil, cooperativeMatrixWorkgroupScope: VkBool32, cooperativeMatrixFlexibleDimensions: VkBool32, cooperativeMatrixReductions: VkBool32, cooperativeMatrixConversions: VkBool32, cooperativeMatrixPerElementOperations: VkBool32, cooperativeMatrixTensorAddressing: VkBool32, cooperativeMatrixBlockLoads: VkBool32): VkPhysicalDeviceCooperativeMatrix2FeaturesNV =
+  result = VkPhysicalDeviceCooperativeMatrix2FeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    cooperativeMatrixWorkgroupScope: cooperativeMatrixWorkgroupScope,
+    cooperativeMatrixFlexibleDimensions: cooperativeMatrixFlexibleDimensions,
+    cooperativeMatrixReductions: cooperativeMatrixReductions,
+    cooperativeMatrixConversions: cooperativeMatrixConversions,
+    cooperativeMatrixPerElementOperations: cooperativeMatrixPerElementOperations,
+    cooperativeMatrixTensorAddressing: cooperativeMatrixTensorAddressing,
+    cooperativeMatrixBlockLoads: cooperativeMatrixBlockLoads,
+  )
+
+proc newVkPhysicalDeviceCooperativeMatrix2PropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCooperativeMatrix2PropertiesNV, pNext: pointer = nil, cooperativeMatrixWorkgroupScopeMaxWorkgroupSize: uint32, cooperativeMatrixFlexibleDimensionsMaxDimension: uint32, cooperativeMatrixWorkgroupScopeReservedSharedMemory: uint32): VkPhysicalDeviceCooperativeMatrix2PropertiesNV =
+  result = VkPhysicalDeviceCooperativeMatrix2PropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    cooperativeMatrixWorkgroupScopeMaxWorkgroupSize: cooperativeMatrixWorkgroupScopeMaxWorkgroupSize,
+    cooperativeMatrixFlexibleDimensionsMaxDimension: cooperativeMatrixFlexibleDimensionsMaxDimension,
+    cooperativeMatrixWorkgroupScopeReservedSharedMemory: cooperativeMatrixWorkgroupScopeReservedSharedMemory,
+  )
+
+proc newVkCooperativeMatrixFlexibleDimensionsPropertiesNV*(sType: VkStructureType = VkStructureType.CooperativeMatrixFlexibleDimensionsPropertiesNV, pNext: pointer = nil, MGranularity: uint32, NGranularity: uint32, KGranularity: uint32, AType: VkComponentTypeKHR, BType: VkComponentTypeKHR, CType: VkComponentTypeKHR, ResultType: VkComponentTypeKHR, saturatingAccumulation: VkBool32, scope: VkScopeKHR, workgroupInvocations: uint32): VkCooperativeMatrixFlexibleDimensionsPropertiesNV =
+  result = VkCooperativeMatrixFlexibleDimensionsPropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    MGranularity: MGranularity,
+    NGranularity: NGranularity,
+    KGranularity: KGranularity,
+    AType: AType,
+    BType: BType,
+    CType: CType,
+    ResultType: ResultType,
+    saturatingAccumulation: saturatingAccumulation,
+    scope: scope,
+    workgroupInvocations: workgroupInvocations,
+  )
+
+proc newVkPhysicalDeviceHdrVividFeaturesHUAWEI*(sType: VkStructureType = VkStructureType.PhysicalDeviceHdrVividFeaturesHUAWEI, pNext: pointer = nil, hdrVivid: VkBool32): VkPhysicalDeviceHdrVividFeaturesHUAWEI =
+  result = VkPhysicalDeviceHdrVividFeaturesHUAWEI(
+    sType: sType,
+    pNext: pNext,
+    hdrVivid: hdrVivid,
+  )
+
+proc newVkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceVertexAttributeRobustnessFeaturesEXT, pNext: pointer = nil, vertexAttributeRobustness: VkBool32): VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT =
+  result = VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    vertexAttributeRobustness: vertexAttributeRobustness,
+  )
+
+proc newVkPhysicalDeviceDenseGeometryFormatFeaturesAMDX*(sType: VkStructureType = VkStructureType.PhysicalDeviceDenseGeometryFormatFeaturesAMDX, pNext: pointer = nil, denseGeometryFormat: VkBool32): VkPhysicalDeviceDenseGeometryFormatFeaturesAMDX =
+  result = VkPhysicalDeviceDenseGeometryFormatFeaturesAMDX(
+    sType: sType,
+    pNext: pNext,
+    denseGeometryFormat: denseGeometryFormat,
+  )
+
+proc newVkAccelerationStructureDenseGeometryFormatTrianglesDataAMDX*(sType: VkStructureType = VkStructureType.AccelerationStructureDenseGeometryFormatTrianglesDataAMDX, pNext: pointer = nil, compressedData: VkDeviceOrHostAddressConstKHR, dataSize: VkDeviceSize, numTriangles: uint32, numVertices: uint32, maxPrimitiveIndex: uint32, maxGeometryIndex: uint32, format: VkCompressedTriangleFormatAMDX): VkAccelerationStructureDenseGeometryFormatTrianglesDataAMDX =
+  result = VkAccelerationStructureDenseGeometryFormatTrianglesDataAMDX(
+    sType: sType,
+    pNext: pNext,
+    compressedData: compressedData,
+    dataSize: dataSize,
+    numTriangles: numTriangles,
+    numVertices: numVertices,
+    maxPrimitiveIndex: maxPrimitiveIndex,
+    maxGeometryIndex: maxGeometryIndex,
+    format: format,
+  )
+
+proc newVkPhysicalDeviceDepthClampZeroOneFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceDepthClampZeroOneFeaturesKHR, pNext: pointer = nil, depthClampZeroOne: VkBool32): VkPhysicalDeviceDepthClampZeroOneFeaturesKHR =
+  result = VkPhysicalDeviceDepthClampZeroOneFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    depthClampZeroOne: depthClampZeroOne,
+  )
+
+proc newVkPhysicalDeviceCooperativeVectorFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCooperativeVectorFeaturesNV, pNext: pointer = nil, cooperativeVector: VkBool32, cooperativeVectorTraining: VkBool32): VkPhysicalDeviceCooperativeVectorFeaturesNV =
+  result = VkPhysicalDeviceCooperativeVectorFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    cooperativeVector: cooperativeVector,
+    cooperativeVectorTraining: cooperativeVectorTraining,
+  )
+
+proc newVkCooperativeVectorPropertiesNV*(sType: VkStructureType = VkStructureType.CooperativeVectorPropertiesNV, pNext: pointer = nil, inputType: VkComponentTypeKHR, inputInterpretation: VkComponentTypeKHR, matrixInterpretation: VkComponentTypeKHR, biasInterpretation: VkComponentTypeKHR, resultType: VkComponentTypeKHR, transpose: VkBool32): VkCooperativeVectorPropertiesNV =
+  result = VkCooperativeVectorPropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    inputType: inputType,
+    inputInterpretation: inputInterpretation,
+    matrixInterpretation: matrixInterpretation,
+    biasInterpretation: biasInterpretation,
+    resultType: resultType,
+    transpose: transpose,
+  )
+
+proc newVkPhysicalDeviceCooperativeVectorPropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceCooperativeVectorPropertiesNV, pNext: pointer = nil, cooperativeVectorSupportedStages: VkShaderStageFlags, cooperativeVectorTrainingFloat16Accumulation: VkBool32, cooperativeVectorTrainingFloat32Accumulation: VkBool32, maxCooperativeVectorComponents: uint32): VkPhysicalDeviceCooperativeVectorPropertiesNV =
+  result = VkPhysicalDeviceCooperativeVectorPropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    cooperativeVectorSupportedStages: cooperativeVectorSupportedStages,
+    cooperativeVectorTrainingFloat16Accumulation: cooperativeVectorTrainingFloat16Accumulation,
+    cooperativeVectorTrainingFloat32Accumulation: cooperativeVectorTrainingFloat32Accumulation,
+    maxCooperativeVectorComponents: maxCooperativeVectorComponents,
+  )
+
+proc newVkConvertCooperativeVectorMatrixInfoNV*(sType: VkStructureType = VkStructureType.ConvertCooperativeVectorMatrixInfoNV, pNext: pointer = nil, srcSize: uint, srcData: VkDeviceOrHostAddressConstKHR, pDstSize: ptr uint, dstData: VkDeviceOrHostAddressKHR, srcComponentType: VkComponentTypeKHR, dstComponentType: VkComponentTypeKHR, numRows: uint32, numColumns: uint32, srcLayout: VkCooperativeVectorMatrixLayoutNV, srcStride: uint, dstLayout: VkCooperativeVectorMatrixLayoutNV, dstStride: uint): VkConvertCooperativeVectorMatrixInfoNV =
+  result = VkConvertCooperativeVectorMatrixInfoNV(
+    sType: sType,
+    pNext: pNext,
+    srcSize: srcSize,
+    srcData: srcData,
+    pDstSize: pDstSize,
+    dstData: dstData,
+    srcComponentType: srcComponentType,
+    dstComponentType: dstComponentType,
+    numRows: numRows,
+    numColumns: numColumns,
+    srcLayout: srcLayout,
+    srcStride: srcStride,
+    dstLayout: dstLayout,
+    dstStride: dstStride,
+  )
+
+proc newVkPhysicalDeviceTileShadingFeaturesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceTileShadingFeaturesQCOM, pNext: pointer = nil, tileShading: VkBool32, tileShadingFragmentStage: VkBool32, tileShadingColorAttachments: VkBool32, tileShadingDepthAttachments: VkBool32, tileShadingStencilAttachments: VkBool32, tileShadingInputAttachments: VkBool32, tileShadingSampledAttachments: VkBool32, tileShadingPerTileDraw: VkBool32, tileShadingPerTileDispatch: VkBool32, tileShadingDispatchTile: VkBool32, tileShadingApron: VkBool32, tileShadingAnisotropicApron: VkBool32, tileShadingAtomicOps: VkBool32, tileShadingImageProcessing: VkBool32): VkPhysicalDeviceTileShadingFeaturesQCOM =
+  result = VkPhysicalDeviceTileShadingFeaturesQCOM(
+    sType: sType,
+    pNext: pNext,
+    tileShading: tileShading,
+    tileShadingFragmentStage: tileShadingFragmentStage,
+    tileShadingColorAttachments: tileShadingColorAttachments,
+    tileShadingDepthAttachments: tileShadingDepthAttachments,
+    tileShadingStencilAttachments: tileShadingStencilAttachments,
+    tileShadingInputAttachments: tileShadingInputAttachments,
+    tileShadingSampledAttachments: tileShadingSampledAttachments,
+    tileShadingPerTileDraw: tileShadingPerTileDraw,
+    tileShadingPerTileDispatch: tileShadingPerTileDispatch,
+    tileShadingDispatchTile: tileShadingDispatchTile,
+    tileShadingApron: tileShadingApron,
+    tileShadingAnisotropicApron: tileShadingAnisotropicApron,
+    tileShadingAtomicOps: tileShadingAtomicOps,
+    tileShadingImageProcessing: tileShadingImageProcessing,
+  )
+
+proc newVkPhysicalDeviceTileShadingPropertiesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceTileShadingPropertiesQCOM, pNext: pointer = nil, maxApronSize: uint32, preferNonCoherent: VkBool32, tileGranularity: VkExtent2D, maxTileShadingRate: VkExtent2D): VkPhysicalDeviceTileShadingPropertiesQCOM =
+  result = VkPhysicalDeviceTileShadingPropertiesQCOM(
+    sType: sType,
+    pNext: pNext,
+    maxApronSize: maxApronSize,
+    preferNonCoherent: preferNonCoherent,
+    tileGranularity: tileGranularity,
+    maxTileShadingRate: maxTileShadingRate,
+  )
+
+proc newVkRenderPassTileShadingCreateInfoQCOM*(sType: VkStructureType = VkStructureType.RenderPassTileShadingCreateInfoQCOM, pNext: pointer = nil, flags: VkTileShadingRenderPassFlagsQCOM = 0.VkTileShadingRenderPassFlagsQCOM, tileApronSize: VkExtent2D): VkRenderPassTileShadingCreateInfoQCOM =
+  result = VkRenderPassTileShadingCreateInfoQCOM(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    tileApronSize: tileApronSize,
+  )
+
+proc newVkPerTileBeginInfoQCOM*(sType: VkStructureType = VkStructureType.PerTileBeginInfoQCOM, pNext: pointer = nil): VkPerTileBeginInfoQCOM =
+  result = VkPerTileBeginInfoQCOM(
+    sType: sType,
+    pNext: pNext,
+  )
+
+proc newVkPerTileEndInfoQCOM*(sType: VkStructureType = VkStructureType.PerTileEndInfoQCOM, pNext: pointer = nil): VkPerTileEndInfoQCOM =
+  result = VkPerTileEndInfoQCOM(
+    sType: sType,
+    pNext: pNext,
+  )
+
+proc newVkDispatchTileInfoQCOM*(sType: VkStructureType = VkStructureType.DispatchTileInfoQCOM, pNext: pointer = nil): VkDispatchTileInfoQCOM =
+  result = VkDispatchTileInfoQCOM(
+    sType: sType,
+    pNext: pNext,
+  )
+
+proc newVkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE*(sType: VkStructureType = VkStructureType.PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE, pNext: pointer = nil, maxFragmentDensityMapLayers: uint32): VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE =
+  result = VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE(
+    sType: sType,
+    pNext: pNext,
+    maxFragmentDensityMapLayers: maxFragmentDensityMapLayers,
+  )
+
+proc newVkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE*(sType: VkStructureType = VkStructureType.PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE, pNext: pointer = nil, fragmentDensityMapLayered: VkBool32): VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE =
+  result = VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE(
+    sType: sType,
+    pNext: pNext,
+    fragmentDensityMapLayered: fragmentDensityMapLayered,
+  )
+
+proc newVkPipelineFragmentDensityMapLayeredCreateInfoVALVE*(sType: VkStructureType = VkStructureType.PipelineFragmentDensityMapLayeredCreateInfoVALVE, pNext: pointer = nil, maxFragmentDensityMapLayers: uint32): VkPipelineFragmentDensityMapLayeredCreateInfoVALVE =
+  result = VkPipelineFragmentDensityMapLayeredCreateInfoVALVE(
+    sType: sType,
+    pNext: pNext,
+    maxFragmentDensityMapLayers: maxFragmentDensityMapLayers,
+  )
+
+proc newVkSetPresentConfigNV*(sType: VkStructureType = VkStructureType.SetPresentConfigNV, pNext: pointer = nil, numFramesPerBatch: uint32, presentConfigFeedback: uint32): VkSetPresentConfigNV =
+  result = VkSetPresentConfigNV(
+    sType: sType,
+    pNext: pNext,
+    numFramesPerBatch: numFramesPerBatch,
+    presentConfigFeedback: presentConfigFeedback,
+  )
+
+proc newVkPhysicalDevicePresentMeteringFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDevicePresentMeteringFeaturesNV, pNext: pointer = nil, presentMetering: VkBool32): VkPhysicalDevicePresentMeteringFeaturesNV =
+  result = VkPhysicalDevicePresentMeteringFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    presentMetering: presentMetering,
+  )
+
+proc newVkExternalComputeQueueDeviceCreateInfoNV*(sType: VkStructureType = VkStructureType.ExternalComputeQueueDeviceCreateInfoNV, pNext: pointer = nil, reservedExternalQueues: uint32): VkExternalComputeQueueDeviceCreateInfoNV =
+  result = VkExternalComputeQueueDeviceCreateInfoNV(
+    sType: sType,
+    pNext: pNext,
+    reservedExternalQueues: reservedExternalQueues,
+  )
+
+proc newVkExternalComputeQueueCreateInfoNV*(sType: VkStructureType = VkStructureType.ExternalComputeQueueCreateInfoNV, pNext: pointer = nil, preferredQueue: VkQueue): VkExternalComputeQueueCreateInfoNV =
+  result = VkExternalComputeQueueCreateInfoNV(
+    sType: sType,
+    pNext: pNext,
+    preferredQueue: preferredQueue,
+  )
+
+proc newVkExternalComputeQueueDataParamsNV*(sType: VkStructureType = VkStructureType.ExternalComputeQueueDataParamsNV, pNext: pointer = nil, deviceIndex: uint32): VkExternalComputeQueueDataParamsNV =
+  result = VkExternalComputeQueueDataParamsNV(
+    sType: sType,
+    pNext: pNext,
+    deviceIndex: deviceIndex,
+  )
+
+proc newVkPhysicalDeviceExternalComputeQueuePropertiesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceExternalComputeQueuePropertiesNV, pNext: pointer = nil, externalDataSize: uint32, maxExternalQueues: uint32): VkPhysicalDeviceExternalComputeQueuePropertiesNV =
+  result = VkPhysicalDeviceExternalComputeQueuePropertiesNV(
+    sType: sType,
+    pNext: pNext,
+    externalDataSize: externalDataSize,
+    maxExternalQueues: maxExternalQueues,
+  )
+
+proc newVkPhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT, pNext: pointer = nil, shaderUniformBufferUnsizedArray: VkBool32): VkPhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT =
+  result = VkPhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    shaderUniformBufferUnsizedArray: shaderUniformBufferUnsizedArray,
+  )
+
+proc newVkPhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE, pNext: pointer = nil, shaderMixedFloatDotProductFloat16AccFloat32: VkBool32, shaderMixedFloatDotProductFloat16AccFloat16: VkBool32, shaderMixedFloatDotProductBFloat16Acc: VkBool32, shaderMixedFloatDotProductFloat8AccFloat32: VkBool32): VkPhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE =
+  result = VkPhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE(
+    sType: sType,
+    pNext: pNext,
+    shaderMixedFloatDotProductFloat16AccFloat32: shaderMixedFloatDotProductFloat16AccFloat32,
+    shaderMixedFloatDotProductFloat16AccFloat16: shaderMixedFloatDotProductFloat16AccFloat16,
+    shaderMixedFloatDotProductBFloat16Acc: shaderMixedFloatDotProductBFloat16Acc,
+    shaderMixedFloatDotProductFloat8AccFloat32: shaderMixedFloatDotProductFloat8AccFloat32,
+  )
+
+proc newVkPhysicalDeviceFormatPackFeaturesARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceFormatPackFeaturesARM, pNext: pointer = nil, formatPack: VkBool32): VkPhysicalDeviceFormatPackFeaturesARM =
+  result = VkPhysicalDeviceFormatPackFeaturesARM(
+    sType: sType,
+    pNext: pNext,
+    formatPack: formatPack,
+  )
+
+proc newVkTensorDescriptionARM*(sType: VkStructureType = VkStructureType.TensorDescriptionARM, pNext: pointer = nil, tiling: VkTensorTilingARM, format: VkFormat, dimensions: openarray[int64], strides: openarray[int64], usage: VkTensorUsageFlagsARM): VkTensorDescriptionARM =
+  result = VkTensorDescriptionARM(
+    sType: sType,
+    pNext: pNext,
+    tiling: tiling,
+    format: format,
+    dimensionCount: len(dimensions).uint32,
+    pDimensions: if len(dimensions) == 0: nil else: cast[ptr int64](dimensions),
+    pStrides: if len(strides) == 0: nil else: cast[ptr int64](strides),
+    usage: usage,
+  )
+
+proc newVkTensorCreateInfoARM*(sType: VkStructureType = VkStructureType.TensorCreateInfoARM, pNext: pointer = nil, flags: VkTensorCreateFlagsARM = 0.VkTensorCreateFlagsARM, pDescription: ptr VkTensorDescriptionARM, sharingMode: VkSharingMode, queueFamilyIndices: openarray[uint32]): VkTensorCreateInfoARM =
+  result = VkTensorCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    pDescription: pDescription,
+    sharingMode: sharingMode,
+    queueFamilyIndexCount: len(queueFamilyIndices).uint32,
+    pQueueFamilyIndices: if len(queueFamilyIndices) == 0: nil else: cast[ptr uint32](queueFamilyIndices),
+  )
+
+proc newVkTensorViewCreateInfoARM*(sType: VkStructureType = VkStructureType.TensorViewCreateInfoARM, pNext: pointer = nil, flags: VkTensorViewCreateFlagsARM = 0.VkTensorViewCreateFlagsARM, tensor: VkTensorARM, format: VkFormat): VkTensorViewCreateInfoARM =
+  result = VkTensorViewCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    tensor: tensor,
+    format: format,
+  )
+
+proc newVkTensorMemoryRequirementsInfoARM*(sType: VkStructureType = VkStructureType.TensorMemoryRequirementsInfoARM, pNext: pointer = nil, tensor: VkTensorARM): VkTensorMemoryRequirementsInfoARM =
+  result = VkTensorMemoryRequirementsInfoARM(
+    sType: sType,
+    pNext: pNext,
+    tensor: tensor,
+  )
+
+proc newVkBindTensorMemoryInfoARM*(sType: VkStructureType = VkStructureType.BindTensorMemoryInfoARM, pNext: pointer = nil, tensor: VkTensorARM, memory: VkDeviceMemory, memoryOffset: VkDeviceSize): VkBindTensorMemoryInfoARM =
+  result = VkBindTensorMemoryInfoARM(
+    sType: sType,
+    pNext: pNext,
+    tensor: tensor,
+    memory: memory,
+    memoryOffset: memoryOffset,
+  )
+
+proc newVkWriteDescriptorSetTensorARM*(sType: VkStructureType = VkStructureType.WriteDescriptorSetTensorARM, pNext: pointer = nil, tensorViews: openarray[VkTensorViewARM]): VkWriteDescriptorSetTensorARM =
+  result = VkWriteDescriptorSetTensorARM(
+    sType: sType,
+    pNext: pNext,
+    tensorViewCount: len(tensorViews).uint32,
+    pTensorViews: if len(tensorViews) == 0: nil else: cast[ptr VkTensorViewARM](tensorViews),
+  )
+
+proc newVkTensorFormatPropertiesARM*(sType: VkStructureType = VkStructureType.TensorFormatPropertiesARM, pNext: pointer = nil, optimalTilingTensorFeatures: VkFormatFeatureFlags2, linearTilingTensorFeatures: VkFormatFeatureFlags2): VkTensorFormatPropertiesARM =
+  result = VkTensorFormatPropertiesARM(
+    sType: sType,
+    pNext: pNext,
+    optimalTilingTensorFeatures: optimalTilingTensorFeatures,
+    linearTilingTensorFeatures: linearTilingTensorFeatures,
+  )
+
+proc newVkPhysicalDeviceTensorPropertiesARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceTensorPropertiesARM, pNext: pointer = nil, maxTensorDimensionCount: uint32, maxTensorElements: uint64, maxPerDimensionTensorElements: uint64, maxTensorStride: int64, maxTensorSize: uint64, maxTensorShaderAccessArrayLength: uint32, maxTensorShaderAccessSize: uint32, maxDescriptorSetStorageTensors: uint32, maxPerStageDescriptorSetStorageTensors: uint32, maxDescriptorSetUpdateAfterBindStorageTensors: uint32, maxPerStageDescriptorUpdateAfterBindStorageTensors: uint32, shaderStorageTensorArrayNonUniformIndexingNative: VkBool32, shaderTensorSupportedStages: VkShaderStageFlags): VkPhysicalDeviceTensorPropertiesARM =
+  result = VkPhysicalDeviceTensorPropertiesARM(
+    sType: sType,
+    pNext: pNext,
+    maxTensorDimensionCount: maxTensorDimensionCount,
+    maxTensorElements: maxTensorElements,
+    maxPerDimensionTensorElements: maxPerDimensionTensorElements,
+    maxTensorStride: maxTensorStride,
+    maxTensorSize: maxTensorSize,
+    maxTensorShaderAccessArrayLength: maxTensorShaderAccessArrayLength,
+    maxTensorShaderAccessSize: maxTensorShaderAccessSize,
+    maxDescriptorSetStorageTensors: maxDescriptorSetStorageTensors,
+    maxPerStageDescriptorSetStorageTensors: maxPerStageDescriptorSetStorageTensors,
+    maxDescriptorSetUpdateAfterBindStorageTensors: maxDescriptorSetUpdateAfterBindStorageTensors,
+    maxPerStageDescriptorUpdateAfterBindStorageTensors: maxPerStageDescriptorUpdateAfterBindStorageTensors,
+    shaderStorageTensorArrayNonUniformIndexingNative: shaderStorageTensorArrayNonUniformIndexingNative,
+    shaderTensorSupportedStages: shaderTensorSupportedStages,
+  )
+
+proc newVkTensorMemoryBarrierARM*(sType: VkStructureType = VkStructureType.TensorMemoryBarrierARM, pNext: pointer = nil, srcStageMask: VkPipelineStageFlags2, srcAccessMask: VkAccessFlags2, dstStageMask: VkPipelineStageFlags2, dstAccessMask: VkAccessFlags2, srcQueueFamilyIndex: uint32, dstQueueFamilyIndex: uint32, tensor: VkTensorARM): VkTensorMemoryBarrierARM =
+  result = VkTensorMemoryBarrierARM(
+    sType: sType,
+    pNext: pNext,
+    srcStageMask: srcStageMask,
+    srcAccessMask: srcAccessMask,
+    dstStageMask: dstStageMask,
+    dstAccessMask: dstAccessMask,
+    srcQueueFamilyIndex: srcQueueFamilyIndex,
+    dstQueueFamilyIndex: dstQueueFamilyIndex,
+    tensor: tensor,
+  )
+
+proc newVkTensorDependencyInfoARM*(sType: VkStructureType = VkStructureType.TensorDependencyInfoARM, pNext: pointer = nil, tensorMemoryBarriers: openarray[VkTensorMemoryBarrierARM]): VkTensorDependencyInfoARM =
+  result = VkTensorDependencyInfoARM(
+    sType: sType,
+    pNext: pNext,
+    tensorMemoryBarrierCount: len(tensorMemoryBarriers).uint32,
+    pTensorMemoryBarriers: if len(tensorMemoryBarriers) == 0: nil else: cast[ptr VkTensorMemoryBarrierARM](tensorMemoryBarriers),
+  )
+
+proc newVkPhysicalDeviceTensorFeaturesARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceTensorFeaturesARM, pNext: pointer = nil, tensorNonPacked: VkBool32, shaderTensorAccess: VkBool32, shaderStorageTensorArrayDynamicIndexing: VkBool32, shaderStorageTensorArrayNonUniformIndexing: VkBool32, descriptorBindingStorageTensorUpdateAfterBind: VkBool32, tensors: VkBool32): VkPhysicalDeviceTensorFeaturesARM =
+  result = VkPhysicalDeviceTensorFeaturesARM(
+    sType: sType,
+    pNext: pNext,
+    tensorNonPacked: tensorNonPacked,
+    shaderTensorAccess: shaderTensorAccess,
+    shaderStorageTensorArrayDynamicIndexing: shaderStorageTensorArrayDynamicIndexing,
+    shaderStorageTensorArrayNonUniformIndexing: shaderStorageTensorArrayNonUniformIndexing,
+    descriptorBindingStorageTensorUpdateAfterBind: descriptorBindingStorageTensorUpdateAfterBind,
+    tensors: tensors,
+  )
+
+proc newVkDeviceTensorMemoryRequirementsARM*(sType: VkStructureType = VkStructureType.DeviceTensorMemoryRequirementsARM, pNext: pointer = nil, pCreateInfo: ptr VkTensorCreateInfoARM): VkDeviceTensorMemoryRequirementsARM =
+  result = VkDeviceTensorMemoryRequirementsARM(
+    sType: sType,
+    pNext: pNext,
+    pCreateInfo: pCreateInfo,
+  )
+
+proc newVkCopyTensorInfoARM*(sType: VkStructureType = VkStructureType.CopyTensorInfoARM, pNext: pointer = nil, srcTensor: VkTensorARM, dstTensor: VkTensorARM, regions: openarray[VkTensorCopyARM]): VkCopyTensorInfoARM =
+  result = VkCopyTensorInfoARM(
+    sType: sType,
+    pNext: pNext,
+    srcTensor: srcTensor,
+    dstTensor: dstTensor,
+    regionCount: len(regions).uint32,
+    pRegions: if len(regions) == 0: nil else: cast[ptr VkTensorCopyARM](regions),
+  )
+
+proc newVkTensorCopyARM*(sType: VkStructureType = VkStructureType.TensorCopyARM, pNext: pointer = nil, dimensionCount: uint32, pSrcOffset: ptr uint64, pDstOffset: ptr uint64, pExtent: ptr uint64): VkTensorCopyARM =
+  result = VkTensorCopyARM(
+    sType: sType,
+    pNext: pNext,
+    dimensionCount: dimensionCount,
+    pSrcOffset: pSrcOffset,
+    pDstOffset: pDstOffset,
+    pExtent: pExtent,
+  )
+
+proc newVkMemoryDedicatedAllocateInfoTensorARM*(sType: VkStructureType = VkStructureType.MemoryDedicatedAllocateInfoTensorARM, pNext: pointer = nil, tensor: VkTensorARM): VkMemoryDedicatedAllocateInfoTensorARM =
+  result = VkMemoryDedicatedAllocateInfoTensorARM(
+    sType: sType,
+    pNext: pNext,
+    tensor: tensor,
+  )
+
+proc newVkPhysicalDeviceDescriptorBufferTensorPropertiesARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceDescriptorBufferTensorPropertiesARM, pNext: pointer = nil, tensorCaptureReplayDescriptorDataSize: uint, tensorViewCaptureReplayDescriptorDataSize: uint, tensorDescriptorSize: uint): VkPhysicalDeviceDescriptorBufferTensorPropertiesARM =
+  result = VkPhysicalDeviceDescriptorBufferTensorPropertiesARM(
+    sType: sType,
+    pNext: pNext,
+    tensorCaptureReplayDescriptorDataSize: tensorCaptureReplayDescriptorDataSize,
+    tensorViewCaptureReplayDescriptorDataSize: tensorViewCaptureReplayDescriptorDataSize,
+    tensorDescriptorSize: tensorDescriptorSize,
+  )
+
+proc newVkPhysicalDeviceDescriptorBufferTensorFeaturesARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceDescriptorBufferTensorFeaturesARM, pNext: pointer = nil, descriptorBufferTensorDescriptors: VkBool32): VkPhysicalDeviceDescriptorBufferTensorFeaturesARM =
+  result = VkPhysicalDeviceDescriptorBufferTensorFeaturesARM(
+    sType: sType,
+    pNext: pNext,
+    descriptorBufferTensorDescriptors: descriptorBufferTensorDescriptors,
+  )
+
+proc newVkTensorCaptureDescriptorDataInfoARM*(sType: VkStructureType = VkStructureType.TensorCaptureDescriptorDataInfoARM, pNext: pointer = nil, tensor: VkTensorARM): VkTensorCaptureDescriptorDataInfoARM =
+  result = VkTensorCaptureDescriptorDataInfoARM(
+    sType: sType,
+    pNext: pNext,
+    tensor: tensor,
+  )
+
+proc newVkTensorViewCaptureDescriptorDataInfoARM*(sType: VkStructureType = VkStructureType.TensorViewCaptureDescriptorDataInfoARM, pNext: pointer = nil, tensorView: VkTensorViewARM): VkTensorViewCaptureDescriptorDataInfoARM =
+  result = VkTensorViewCaptureDescriptorDataInfoARM(
+    sType: sType,
+    pNext: pNext,
+    tensorView: tensorView,
+  )
+
+proc newVkDescriptorGetTensorInfoARM*(sType: VkStructureType = VkStructureType.DescriptorGetTensorInfoARM, pNext: pointer = nil, tensorView: VkTensorViewARM): VkDescriptorGetTensorInfoARM =
+  result = VkDescriptorGetTensorInfoARM(
+    sType: sType,
+    pNext: pNext,
+    tensorView: tensorView,
+  )
+
+proc newVkFrameBoundaryTensorsARM*(sType: VkStructureType = VkStructureType.FrameBoundaryTensorsARM, pNext: pointer = nil, tensors: openarray[VkTensorARM]): VkFrameBoundaryTensorsARM =
+  result = VkFrameBoundaryTensorsARM(
+    sType: sType,
+    pNext: pNext,
+    tensorCount: len(tensors).uint32,
+    pTensors: if len(tensors) == 0: nil else: cast[ptr VkTensorARM](tensors),
+  )
+
+proc newVkPhysicalDeviceExternalTensorInfoARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceExternalTensorInfoARM, pNext: pointer = nil, flags: VkTensorCreateFlagsARM = 0.VkTensorCreateFlagsARM, pDescription: ptr VkTensorDescriptionARM, handleType: VkExternalMemoryHandleTypeFlagBits): VkPhysicalDeviceExternalTensorInfoARM =
+  result = VkPhysicalDeviceExternalTensorInfoARM(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    pDescription: pDescription,
+    handleType: handleType,
+  )
+
+proc newVkExternalTensorPropertiesARM*(sType: VkStructureType = VkStructureType.ExternalTensorPropertiesARM, pNext: pointer = nil, externalMemoryProperties: VkExternalMemoryProperties): VkExternalTensorPropertiesARM =
+  result = VkExternalTensorPropertiesARM(
+    sType: sType,
+    pNext: pNext,
+    externalMemoryProperties: externalMemoryProperties,
+  )
+
+proc newVkExternalMemoryTensorCreateInfoARM*(sType: VkStructureType = VkStructureType.ExternalMemoryTensorCreateInfoARM, pNext: pointer = nil, handleTypes: VkExternalMemoryHandleTypeFlags): VkExternalMemoryTensorCreateInfoARM =
+  result = VkExternalMemoryTensorCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    handleTypes: handleTypes,
+  )
+
+proc newVkPhysicalDeviceShaderFloat8FeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderFloat8FeaturesEXT, pNext: pointer = nil, shaderFloat8: VkBool32, shaderFloat8CooperativeMatrix: VkBool32): VkPhysicalDeviceShaderFloat8FeaturesEXT =
+  result = VkPhysicalDeviceShaderFloat8FeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    shaderFloat8: shaderFloat8,
+    shaderFloat8CooperativeMatrix: shaderFloat8CooperativeMatrix,
+  )
+
+proc newVkSurfaceCreateInfoOHOS*(sType: VkStructureType = VkStructureType.SurfaceCreateInfoOHOS, pNext: pointer = nil, flags: VkSurfaceCreateFlagsOHOS = 0.VkSurfaceCreateFlagsOHOS, window: ptr OHNativeWindow): VkSurfaceCreateInfoOHOS =
+  result = VkSurfaceCreateInfoOHOS(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    window: window,
+  )
+
+proc newVkPhysicalDeviceDataGraphFeaturesARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceDataGraphFeaturesARM, pNext: pointer = nil, dataGraph: VkBool32, dataGraphUpdateAfterBind: VkBool32, dataGraphSpecializationConstants: VkBool32, dataGraphDescriptorBuffer: VkBool32, dataGraphShaderModule: VkBool32): VkPhysicalDeviceDataGraphFeaturesARM =
+  result = VkPhysicalDeviceDataGraphFeaturesARM(
+    sType: sType,
+    pNext: pNext,
+    dataGraph: dataGraph,
+    dataGraphUpdateAfterBind: dataGraphUpdateAfterBind,
+    dataGraphSpecializationConstants: dataGraphSpecializationConstants,
+    dataGraphDescriptorBuffer: dataGraphDescriptorBuffer,
+    dataGraphShaderModule: dataGraphShaderModule,
+  )
+
+proc newVkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM, pNext: pointer = nil, dimension: uint32, zeroCount: uint32, groupSize: uint32): VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM =
+  result = VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM(
+    sType: sType,
+    pNext: pNext,
+    dimension: dimension,
+    zeroCount: zeroCount,
+    groupSize: groupSize,
+  )
+
+proc newVkDataGraphPipelineConstantARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineConstantARM, pNext: pointer = nil, id: uint32, pConstantData: pointer = nil): VkDataGraphPipelineConstantARM =
+  result = VkDataGraphPipelineConstantARM(
+    sType: sType,
+    pNext: pNext,
+    id: id,
+    pConstantData: pConstantData,
+  )
+
+proc newVkDataGraphPipelineResourceInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineResourceInfoARM, pNext: pointer = nil, descriptorSet: uint32, binding: uint32, arrayElement: uint32): VkDataGraphPipelineResourceInfoARM =
+  result = VkDataGraphPipelineResourceInfoARM(
+    sType: sType,
+    pNext: pNext,
+    descriptorSet: descriptorSet,
+    binding: binding,
+    arrayElement: arrayElement,
+  )
+
+proc newVkDataGraphPipelineCompilerControlCreateInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineCompilerControlCreateInfoARM, pNext: pointer = nil, pVendorOptions: cstring): VkDataGraphPipelineCompilerControlCreateInfoARM =
+  result = VkDataGraphPipelineCompilerControlCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    pVendorOptions: pVendorOptions,
+  )
+
+proc newVkDataGraphPipelineCreateInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineCreateInfoARM, pNext: pointer = nil, flags: VkPipelineCreateFlags2KHR = 0.VkPipelineCreateFlags2KHR, layout: VkPipelineLayout, resourceInfos: openarray[VkDataGraphPipelineResourceInfoARM]): VkDataGraphPipelineCreateInfoARM =
+  result = VkDataGraphPipelineCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    layout: layout,
+    resourceInfoCount: len(resourceInfos).uint32,
+    pResourceInfos: if len(resourceInfos) == 0: nil else: cast[ptr VkDataGraphPipelineResourceInfoARM](resourceInfos),
+  )
+
+proc newVkDataGraphPipelineShaderModuleCreateInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineShaderModuleCreateInfoARM, pNext: pointer = nil, module: VkShaderModule, pName: cstring, pSpecializationInfo: ptr VkSpecializationInfo, constants: openarray[VkDataGraphPipelineConstantARM]): VkDataGraphPipelineShaderModuleCreateInfoARM =
+  result = VkDataGraphPipelineShaderModuleCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    module: module,
+    pName: pName,
+    pSpecializationInfo: pSpecializationInfo,
+    constantCount: len(constants).uint32,
+    pConstants: if len(constants) == 0: nil else: cast[ptr VkDataGraphPipelineConstantARM](constants),
+  )
+
+proc newVkDataGraphPipelineSessionCreateInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineSessionCreateInfoARM, pNext: pointer = nil, flags: VkDataGraphPipelineSessionCreateFlagsARM = 0.VkDataGraphPipelineSessionCreateFlagsARM, dataGraphPipeline: VkPipeline): VkDataGraphPipelineSessionCreateInfoARM =
+  result = VkDataGraphPipelineSessionCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    dataGraphPipeline: dataGraphPipeline,
+  )
+
+proc newVkDataGraphPipelineSessionBindPointRequirementsInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineSessionBindPointRequirementsInfoARM, pNext: pointer = nil, session: VkDataGraphPipelineSessionARM): VkDataGraphPipelineSessionBindPointRequirementsInfoARM =
+  result = VkDataGraphPipelineSessionBindPointRequirementsInfoARM(
+    sType: sType,
+    pNext: pNext,
+    session: session,
+  )
+
+proc newVkDataGraphPipelineSessionBindPointRequirementARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineSessionBindPointRequirementARM, pNext: pointer = nil, bindPoint: VkDataGraphPipelineSessionBindPointARM, bindPointType: VkDataGraphPipelineSessionBindPointTypeARM, numObjects: uint32): VkDataGraphPipelineSessionBindPointRequirementARM =
+  result = VkDataGraphPipelineSessionBindPointRequirementARM(
+    sType: sType,
+    pNext: pNext,
+    bindPoint: bindPoint,
+    bindPointType: bindPointType,
+    numObjects: numObjects,
+  )
+
+proc newVkDataGraphPipelineSessionMemoryRequirementsInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineSessionMemoryRequirementsInfoARM, pNext: pointer = nil, session: VkDataGraphPipelineSessionARM, bindPoint: VkDataGraphPipelineSessionBindPointARM, objectIndex: uint32): VkDataGraphPipelineSessionMemoryRequirementsInfoARM =
+  result = VkDataGraphPipelineSessionMemoryRequirementsInfoARM(
+    sType: sType,
+    pNext: pNext,
+    session: session,
+    bindPoint: bindPoint,
+    objectIndex: objectIndex,
+  )
+
+proc newVkBindDataGraphPipelineSessionMemoryInfoARM*(sType: VkStructureType = VkStructureType.BindDataGraphPipelineSessionMemoryInfoARM, pNext: pointer = nil, session: VkDataGraphPipelineSessionARM, bindPoint: VkDataGraphPipelineSessionBindPointARM, objectIndex: uint32, memory: VkDeviceMemory, memoryOffset: VkDeviceSize): VkBindDataGraphPipelineSessionMemoryInfoARM =
+  result = VkBindDataGraphPipelineSessionMemoryInfoARM(
+    sType: sType,
+    pNext: pNext,
+    session: session,
+    bindPoint: bindPoint,
+    objectIndex: objectIndex,
+    memory: memory,
+    memoryOffset: memoryOffset,
+  )
+
+proc newVkDataGraphPipelineInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineInfoARM, pNext: pointer = nil, dataGraphPipeline: VkPipeline): VkDataGraphPipelineInfoARM =
+  result = VkDataGraphPipelineInfoARM(
+    sType: sType,
+    pNext: pNext,
+    dataGraphPipeline: dataGraphPipeline,
+  )
+
+proc newVkDataGraphPipelinePropertyQueryResultARM*(sType: VkStructureType = VkStructureType.DataGraphPipelinePropertyQueryResultARM, pNext: pointer = nil, property: VkDataGraphPipelinePropertyARM, isText: VkBool32, dataSize: uint, pData: pointer = nil): VkDataGraphPipelinePropertyQueryResultARM =
+  result = VkDataGraphPipelinePropertyQueryResultARM(
+    sType: sType,
+    pNext: pNext,
+    property: property,
+    isText: isText,
+    dataSize: dataSize,
+    pData: pData,
+  )
+
+proc newVkDataGraphPipelineIdentifierCreateInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineIdentifierCreateInfoARM, pNext: pointer = nil, identifierSize: uint32, pIdentifier: ptr uint8): VkDataGraphPipelineIdentifierCreateInfoARM =
+  result = VkDataGraphPipelineIdentifierCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    identifierSize: identifierSize,
+    pIdentifier: pIdentifier,
+  )
+
+proc newVkDataGraphPipelineDispatchInfoARM*(sType: VkStructureType = VkStructureType.DataGraphPipelineDispatchInfoARM, pNext: pointer = nil, flags: VkDataGraphPipelineDispatchFlagsARM = 0.VkDataGraphPipelineDispatchFlagsARM): VkDataGraphPipelineDispatchInfoARM =
+  result = VkDataGraphPipelineDispatchInfoARM(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+  )
+
+proc newVkPhysicalDeviceDataGraphProcessingEngineARM*(`type`: VkPhysicalDeviceDataGraphProcessingEngineTypeARM, isForeign: VkBool32): VkPhysicalDeviceDataGraphProcessingEngineARM =
+  result = VkPhysicalDeviceDataGraphProcessingEngineARM(
+    `type`: `type`,
+    isForeign: isForeign,
+  )
+
+proc newVkPhysicalDeviceDataGraphOperationSupportARM*(operationType: VkPhysicalDeviceDataGraphOperationTypeARM, name: array[VK_MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM, char], version: uint32): VkPhysicalDeviceDataGraphOperationSupportARM =
+  result = VkPhysicalDeviceDataGraphOperationSupportARM(
+    operationType: operationType,
+    name: name,
+    version: version,
+  )
+
+proc newVkQueueFamilyDataGraphPropertiesARM*(sType: VkStructureType = VkStructureType.QueueFamilyDataGraphPropertiesARM, pNext: pointer = nil, engine: VkPhysicalDeviceDataGraphProcessingEngineARM, operation: VkPhysicalDeviceDataGraphOperationSupportARM): VkQueueFamilyDataGraphPropertiesARM =
+  result = VkQueueFamilyDataGraphPropertiesARM(
+    sType: sType,
+    pNext: pNext,
+    engine: engine,
+    operation: operation,
+  )
+
+proc newVkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM, pNext: pointer = nil, queueFamilyIndex: uint32, engineType: VkPhysicalDeviceDataGraphProcessingEngineTypeARM): VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM =
+  result = VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM(
+    sType: sType,
+    pNext: pNext,
+    queueFamilyIndex: queueFamilyIndex,
+    engineType: engineType,
+  )
+
+proc newVkQueueFamilyDataGraphProcessingEnginePropertiesARM*(sType: VkStructureType = VkStructureType.QueueFamilyDataGraphProcessingEnginePropertiesARM, pNext: pointer = nil, foreignSemaphoreHandleTypes: VkExternalSemaphoreHandleTypeFlags, foreignMemoryHandleTypes: VkExternalMemoryHandleTypeFlags): VkQueueFamilyDataGraphProcessingEnginePropertiesARM =
+  result = VkQueueFamilyDataGraphProcessingEnginePropertiesARM(
+    sType: sType,
+    pNext: pNext,
+    foreignSemaphoreHandleTypes: foreignSemaphoreHandleTypes,
+    foreignMemoryHandleTypes: foreignMemoryHandleTypes,
+  )
+
+proc newVkDataGraphProcessingEngineCreateInfoARM*(sType: VkStructureType = VkStructureType.DataGraphProcessingEngineCreateInfoARM, pNext: pointer = nil, processingEngines: openarray[VkPhysicalDeviceDataGraphProcessingEngineARM]): VkDataGraphProcessingEngineCreateInfoARM =
+  result = VkDataGraphProcessingEngineCreateInfoARM(
+    sType: sType,
+    pNext: pNext,
+    processingEngineCount: len(processingEngines).uint32,
+    pProcessingEngines: if len(processingEngines) == 0: nil else: cast[ptr VkPhysicalDeviceDataGraphProcessingEngineARM](processingEngines),
+  )
+
+proc newVkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC*(sType: VkStructureType = VkStructureType.PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC, pNext: pointer = nil, pipelineCacheIncrementalMode: VkBool32): VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC =
+  result = VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC(
+    sType: sType,
+    pNext: pNext,
+    pipelineCacheIncrementalMode: pipelineCacheIncrementalMode,
+  )
+
+proc newVkDataGraphPipelineBuiltinModelCreateInfoQCOM*(sType: VkStructureType = VkStructureType.DataGraphPipelineBuiltinModelCreateInfoQCOM, pNext: pointer = nil, pOperation: ptr VkPhysicalDeviceDataGraphOperationSupportARM): VkDataGraphPipelineBuiltinModelCreateInfoQCOM =
+  result = VkDataGraphPipelineBuiltinModelCreateInfoQCOM(
+    sType: sType,
+    pNext: pNext,
+    pOperation: pOperation,
+  )
+
+proc newVkPhysicalDeviceDataGraphModelFeaturesQCOM*(sType: VkStructureType = VkStructureType.PhysicalDeviceDataGraphModelFeaturesQCOM, pNext: pointer = nil, dataGraphModel: VkBool32): VkPhysicalDeviceDataGraphModelFeaturesQCOM =
+  result = VkPhysicalDeviceDataGraphModelFeaturesQCOM(
+    sType: sType,
+    pNext: pNext,
+    dataGraphModel: dataGraphModel,
+  )
+
+proc newVkPhysicalDeviceShaderUntypedPointersFeaturesKHR*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderUntypedPointersFeaturesKHR, pNext: pointer = nil, shaderUntypedPointers: VkBool32): VkPhysicalDeviceShaderUntypedPointersFeaturesKHR =
+  result = VkPhysicalDeviceShaderUntypedPointersFeaturesKHR(
+    sType: sType,
+    pNext: pNext,
+    shaderUntypedPointers: shaderUntypedPointers,
+  )
+
+proc newVkNativeBufferOHOS*(sType: VkStructureType, pNext: pointer = nil, handle: ptr OHBufferHandle): VkNativeBufferOHOS =
+  result = VkNativeBufferOHOS(
+    sType: sType,
+    pNext: pNext,
+    handle: handle,
+  )
+
+proc newVkSwapchainImageCreateInfoOHOS*(sType: VkStructureType, pNext: pointer = nil, usage: VkSwapchainImageUsageFlagsOHOS): VkSwapchainImageCreateInfoOHOS =
+  result = VkSwapchainImageCreateInfoOHOS(
+    sType: sType,
+    pNext: pNext,
+    usage: usage,
+  )
+
+proc newVkPhysicalDevicePresentationPropertiesOHOS*(sType: VkStructureType, pNext: pointer = nil, sharedImage: VkBool32): VkPhysicalDevicePresentationPropertiesOHOS =
+  result = VkPhysicalDevicePresentationPropertiesOHOS(
+    sType: sType,
+    pNext: pNext,
+    sharedImage: sharedImage,
+  )
+
+proc newVkPhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE*(sType: VkStructureType = VkStructureType.PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE, pNext: pointer = nil, videoEncodeRgbConversion: VkBool32): VkPhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE =
+  result = VkPhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE(
+    sType: sType,
+    pNext: pNext,
+    videoEncodeRgbConversion: videoEncodeRgbConversion,
+  )
+
+proc newVkVideoEncodeRgbConversionCapabilitiesVALVE*(sType: VkStructureType = VkStructureType.VideoEncodeRgbConversionCapabilitiesVALVE, pNext: pointer = nil, rgbModels: VkVideoEncodeRgbModelConversionFlagsVALVE, rgbRanges: VkVideoEncodeRgbRangeCompressionFlagsVALVE, xChromaOffsets: VkVideoEncodeRgbChromaOffsetFlagsVALVE, yChromaOffsets: VkVideoEncodeRgbChromaOffsetFlagsVALVE): VkVideoEncodeRgbConversionCapabilitiesVALVE =
+  result = VkVideoEncodeRgbConversionCapabilitiesVALVE(
+    sType: sType,
+    pNext: pNext,
+    rgbModels: rgbModels,
+    rgbRanges: rgbRanges,
+    xChromaOffsets: xChromaOffsets,
+    yChromaOffsets: yChromaOffsets,
+  )
+
+proc newVkVideoEncodeProfileRgbConversionInfoVALVE*(sType: VkStructureType = VkStructureType.VideoEncodeProfileRgbConversionInfoVALVE, pNext: pointer = nil, performEncodeRgbConversion: VkBool32): VkVideoEncodeProfileRgbConversionInfoVALVE =
+  result = VkVideoEncodeProfileRgbConversionInfoVALVE(
+    sType: sType,
+    pNext: pNext,
+    performEncodeRgbConversion: performEncodeRgbConversion,
+  )
+
+proc newVkVideoEncodeSessionRgbConversionCreateInfoVALVE*(sType: VkStructureType = VkStructureType.VideoEncodeSessionRgbConversionCreateInfoVALVE, pNext: pointer = nil, rgbModel: VkVideoEncodeRgbModelConversionFlagBitsVALVE, rgbRange: VkVideoEncodeRgbRangeCompressionFlagBitsVALVE, xChromaOffset: VkVideoEncodeRgbChromaOffsetFlagBitsVALVE, yChromaOffset: VkVideoEncodeRgbChromaOffsetFlagBitsVALVE): VkVideoEncodeSessionRgbConversionCreateInfoVALVE =
+  result = VkVideoEncodeSessionRgbConversionCreateInfoVALVE(
+    sType: sType,
+    pNext: pNext,
+    rgbModel: rgbModel,
+    rgbRange: rgbRange,
+    xChromaOffset: xChromaOffset,
+    yChromaOffset: yChromaOffset,
+  )
+
+proc newVkPhysicalDeviceShader64BitIndexingFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceShader64BitIndexingFeaturesEXT, pNext: pointer = nil, shader64BitIndexing: VkBool32): VkPhysicalDeviceShader64BitIndexingFeaturesEXT =
+  result = VkPhysicalDeviceShader64BitIndexingFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    shader64BitIndexing: shader64BitIndexing,
+  )
+
+proc newVkNativeBufferUsageOHOS*(sType: VkStructureType = VkStructureType.NativeBufferUsageOHOS, pNext: pointer = nil, OHOSNativeBufferUsage: uint64): VkNativeBufferUsageOHOS =
+  result = VkNativeBufferUsageOHOS(
+    sType: sType,
+    pNext: pNext,
+    OHOSNativeBufferUsage: OHOSNativeBufferUsage,
+  )
+
+proc newVkNativeBufferPropertiesOHOS*(sType: VkStructureType = VkStructureType.NativeBufferPropertiesOHOS, pNext: pointer = nil, allocationSize: VkDeviceSize, memoryTypeBits: uint32): VkNativeBufferPropertiesOHOS =
+  result = VkNativeBufferPropertiesOHOS(
+    sType: sType,
+    pNext: pNext,
+    allocationSize: allocationSize,
+    memoryTypeBits: memoryTypeBits,
+  )
+
+proc newVkNativeBufferFormatPropertiesOHOS*(sType: VkStructureType = VkStructureType.NativeBufferFormatPropertiesOHOS, pNext: pointer = nil, format: VkFormat, externalFormat: uint64, formatFeatures: VkFormatFeatureFlags, samplerYcbcrConversionComponents: VkComponentMapping, suggestedYcbcrModel: VkSamplerYcbcrModelConversion, suggestedYcbcrRange: VkSamplerYcbcrRange, suggestedXChromaOffset: VkChromaLocation, suggestedYChromaOffset: VkChromaLocation): VkNativeBufferFormatPropertiesOHOS =
+  result = VkNativeBufferFormatPropertiesOHOS(
+    sType: sType,
+    pNext: pNext,
+    format: format,
+    externalFormat: externalFormat,
+    formatFeatures: formatFeatures,
+    samplerYcbcrConversionComponents: samplerYcbcrConversionComponents,
+    suggestedYcbcrModel: suggestedYcbcrModel,
+    suggestedYcbcrRange: suggestedYcbcrRange,
+    suggestedXChromaOffset: suggestedXChromaOffset,
+    suggestedYChromaOffset: suggestedYChromaOffset,
+  )
+
+proc newVkImportNativeBufferInfoOHOS*(sType: VkStructureType = VkStructureType.ImportNativeBufferInfoOHOS, pNext: pointer = nil, buffer: ptr OH_NativeBuffer): VkImportNativeBufferInfoOHOS =
+  result = VkImportNativeBufferInfoOHOS(
+    sType: sType,
+    pNext: pNext,
+    buffer: buffer,
+  )
+
+proc newVkMemoryGetNativeBufferInfoOHOS*(sType: VkStructureType = VkStructureType.MemoryGetNativeBufferInfoOHOS, pNext: pointer = nil, memory: VkDeviceMemory): VkMemoryGetNativeBufferInfoOHOS =
+  result = VkMemoryGetNativeBufferInfoOHOS(
+    sType: sType,
+    pNext: pNext,
+    memory: memory,
+  )
+
+proc newVkExternalFormatOHOS*(sType: VkStructureType = VkStructureType.ExternalFormatOHOS, pNext: pointer = nil, externalFormat: uint64): VkExternalFormatOHOS =
+  result = VkExternalFormatOHOS(
+    sType: sType,
+    pNext: pNext,
+    externalFormat: externalFormat,
+  )
+
+proc newVkPhysicalDevicePerformanceCountersByRegionFeaturesARM*(sType: VkStructureType = VkStructureType.PhysicalDevicePerformanceCountersByRegionFeaturesARM, pNext: pointer = nil, performanceCountersByRegion: VkBool32): VkPhysicalDevicePerformanceCountersByRegionFeaturesARM =
+  result = VkPhysicalDevicePerformanceCountersByRegionFeaturesARM(
+    sType: sType,
+    pNext: pNext,
+    performanceCountersByRegion: performanceCountersByRegion,
+  )
+
+proc newVkPhysicalDevicePerformanceCountersByRegionPropertiesARM*(sType: VkStructureType = VkStructureType.PhysicalDevicePerformanceCountersByRegionPropertiesARM, pNext: pointer = nil, maxPerRegionPerformanceCounters: uint32, performanceCounterRegionSize: VkExtent2D, rowStrideAlignment: uint32, regionAlignment: uint32, identityTransformOrder: VkBool32): VkPhysicalDevicePerformanceCountersByRegionPropertiesARM =
+  result = VkPhysicalDevicePerformanceCountersByRegionPropertiesARM(
+    sType: sType,
+    pNext: pNext,
+    maxPerRegionPerformanceCounters: maxPerRegionPerformanceCounters,
+    performanceCounterRegionSize: performanceCounterRegionSize,
+    rowStrideAlignment: rowStrideAlignment,
+    regionAlignment: regionAlignment,
+    identityTransformOrder: identityTransformOrder,
+  )
+
+proc newVkPerformanceCounterARM*(sType: VkStructureType = VkStructureType.PerformanceCounterARM, pNext: pointer = nil, counterID: uint32): VkPerformanceCounterARM =
+  result = VkPerformanceCounterARM(
+    sType: sType,
+    pNext: pNext,
+    counterID: counterID,
+  )
+
+proc newVkPerformanceCounterDescriptionARM*(sType: VkStructureType = VkStructureType.PerformanceCounterDescriptionARM, pNext: pointer = nil, flags: VkPerformanceCounterDescriptionFlagsARM = 0.VkPerformanceCounterDescriptionFlagsARM, name: array[VK_MAX_DESCRIPTION_SIZE, char]): VkPerformanceCounterDescriptionARM =
+  result = VkPerformanceCounterDescriptionARM(
+    sType: sType,
+    pNext: pNext,
+    flags: flags,
+    name: name,
+  )
+
+proc newVkRenderPassPerformanceCountersByRegionBeginInfoARM*(sType: VkStructureType = VkStructureType.RenderPassPerformanceCountersByRegionBeginInfoARM, pNext: pointer = nil, counterAddresses: openarray[VkDeviceAddress], serializeRegions: VkBool32, counterIndices: openarray[uint32]): VkRenderPassPerformanceCountersByRegionBeginInfoARM =
+  result = VkRenderPassPerformanceCountersByRegionBeginInfoARM(
+    sType: sType,
+    pNext: pNext,
+    counterAddressCount: len(counterAddresses).uint32,
+    pCounterAddresses: if len(counterAddresses) == 0: nil else: cast[ptr VkDeviceAddress](counterAddresses),
+    serializeRegions: serializeRegions,
+    counterIndexCount: len(counterIndices).uint32,
+    pCounterIndices: if len(counterIndices) == 0: nil else: cast[ptr uint32](counterIndices),
+  )
+
+proc newVkComputeOccupancyPriorityParametersNV*(sType: VkStructureType = VkStructureType.ComputeOccupancyPriorityParametersNV, pNext: pointer = nil, occupancyPriority: float32, occupancyThrottling: float32): VkComputeOccupancyPriorityParametersNV =
+  result = VkComputeOccupancyPriorityParametersNV(
+    sType: sType,
+    pNext: pNext,
+    occupancyPriority: occupancyPriority,
+    occupancyThrottling: occupancyThrottling,
+  )
+
+proc newVkPhysicalDeviceComputeOccupancyPriorityFeaturesNV*(sType: VkStructureType = VkStructureType.PhysicalDeviceComputeOccupancyPriorityFeaturesNV, pNext: pointer = nil, computeOccupancyPriority: VkBool32): VkPhysicalDeviceComputeOccupancyPriorityFeaturesNV =
+  result = VkPhysicalDeviceComputeOccupancyPriorityFeaturesNV(
+    sType: sType,
+    pNext: pNext,
+    computeOccupancyPriority: computeOccupancyPriority,
+  )
+
+proc newVkPhysicalDeviceShaderLongVectorFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderLongVectorFeaturesEXT, pNext: pointer = nil, longVector: VkBool32): VkPhysicalDeviceShaderLongVectorFeaturesEXT =
+  result = VkPhysicalDeviceShaderLongVectorFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    longVector: longVector,
+  )
+
+proc newVkPhysicalDeviceShaderLongVectorPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderLongVectorPropertiesEXT, pNext: pointer = nil, maxVectorComponents: uint32): VkPhysicalDeviceShaderLongVectorPropertiesEXT =
+  result = VkPhysicalDeviceShaderLongVectorPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    maxVectorComponents: maxVectorComponents,
+  )
+
+proc newVkPhysicalDeviceTextureCompressionASTC3DFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceTextureCompressionASTC3DFeaturesEXT, pNext: pointer = nil, textureCompressionASTC_3D: VkBool32): VkPhysicalDeviceTextureCompressionASTC3DFeaturesEXT =
+  result = VkPhysicalDeviceTextureCompressionASTC3DFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    textureCompressionASTC_3D: textureCompressionASTC_3D,
+  )
+
+proc newVkPhysicalDeviceShaderSubgroupPartitionedFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT, pNext: pointer = nil, shaderSubgroupPartitioned: VkBool32): VkPhysicalDeviceShaderSubgroupPartitionedFeaturesEXT =
+  result = VkPhysicalDeviceShaderSubgroupPartitionedFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    shaderSubgroupPartitioned: shaderSubgroupPartitioned,
+  )
+
+proc newVkHostAddressRangeEXT*(address: pointer = nil, size: uint): VkHostAddressRangeEXT =
+  result = VkHostAddressRangeEXT(
+    address: address,
+    size: size,
+  )
+
+proc newVkHostAddressRangeConstEXT*(address: pointer = nil, size: uint): VkHostAddressRangeConstEXT =
+  result = VkHostAddressRangeConstEXT(
+    address: address,
+    size: size,
+  )
+
+proc newVkDeviceAddressRangeEXT*(address: VkDeviceAddress, size: VkDeviceSize): VkDeviceAddressRangeEXT =
+  result = VkDeviceAddressRangeEXT(
+    address: address,
+    size: size,
+  )
+
+proc newVkTexelBufferDescriptorInfoEXT*(sType: VkStructureType = VkStructureType.TexelBufferDescriptorInfoEXT, pNext: pointer = nil, format: VkFormat, addressRange: VkDeviceAddressRangeEXT): VkTexelBufferDescriptorInfoEXT =
+  result = VkTexelBufferDescriptorInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    format: format,
+    addressRange: addressRange,
+  )
+
+proc newVkImageDescriptorInfoEXT*(sType: VkStructureType = VkStructureType.ImageDescriptorInfoEXT, pNext: pointer = nil, pView: ptr VkImageViewCreateInfo, layout: VkImageLayout): VkImageDescriptorInfoEXT =
+  result = VkImageDescriptorInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    pView: pView,
+    layout: layout,
+  )
+
+proc newVkResourceDescriptorInfoEXT*(sType: VkStructureType = VkStructureType.ResourceDescriptorInfoEXT, pNext: pointer = nil, `type`: VkDescriptorType, data: VkResourceDescriptorDataEXT): VkResourceDescriptorInfoEXT =
+  result = VkResourceDescriptorInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    `type`: `type`,
+    data: data,
+  )
+
+proc newVkBindHeapInfoEXT*(sType: VkStructureType = VkStructureType.BindHeapInfoEXT, pNext: pointer = nil, heapRange: VkDeviceAddressRangeEXT, reservedRangeOffset: VkDeviceSize, reservedRangeSize: VkDeviceSize): VkBindHeapInfoEXT =
+  result = VkBindHeapInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    heapRange: heapRange,
+    reservedRangeOffset: reservedRangeOffset,
+    reservedRangeSize: reservedRangeSize,
+  )
+
+proc newVkPushDataInfoEXT*(sType: VkStructureType = VkStructureType.PushDataInfoEXT, pNext: pointer = nil, offset: uint32, data: VkHostAddressRangeConstEXT): VkPushDataInfoEXT =
+  result = VkPushDataInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    offset: offset,
+    data: data,
+  )
+
+proc newVkDescriptorMappingSourceConstantOffsetEXT*(heapOffset: uint32, heapArrayStride: uint32, pEmbeddedSampler: ptr VkSamplerCreateInfo, samplerHeapOffset: uint32, samplerHeapArrayStride: uint32): VkDescriptorMappingSourceConstantOffsetEXT =
+  result = VkDescriptorMappingSourceConstantOffsetEXT(
+    heapOffset: heapOffset,
+    heapArrayStride: heapArrayStride,
+    pEmbeddedSampler: pEmbeddedSampler,
+    samplerHeapOffset: samplerHeapOffset,
+    samplerHeapArrayStride: samplerHeapArrayStride,
+  )
+
+proc newVkDescriptorMappingSourcePushIndexEXT*(heapOffset: uint32, pushOffset: uint32, heapIndexStride: uint32, heapArrayStride: uint32, pEmbeddedSampler: ptr VkSamplerCreateInfo, useCombinedImageSamplerIndex: VkBool32, samplerHeapOffset: uint32, samplerPushOffset: uint32, samplerHeapIndexStride: uint32, samplerHeapArrayStride: uint32): VkDescriptorMappingSourcePushIndexEXT =
+  result = VkDescriptorMappingSourcePushIndexEXT(
+    heapOffset: heapOffset,
+    pushOffset: pushOffset,
+    heapIndexStride: heapIndexStride,
+    heapArrayStride: heapArrayStride,
+    pEmbeddedSampler: pEmbeddedSampler,
+    useCombinedImageSamplerIndex: useCombinedImageSamplerIndex,
+    samplerHeapOffset: samplerHeapOffset,
+    samplerPushOffset: samplerPushOffset,
+    samplerHeapIndexStride: samplerHeapIndexStride,
+    samplerHeapArrayStride: samplerHeapArrayStride,
+  )
+
+proc newVkDescriptorMappingSourceIndirectIndexEXT*(heapOffset: uint32, pushOffset: uint32, addressOffset: uint32, heapIndexStride: uint32, heapArrayStride: uint32, pEmbeddedSampler: ptr VkSamplerCreateInfo, useCombinedImageSamplerIndex: VkBool32, samplerHeapOffset: uint32, samplerPushOffset: uint32, samplerAddressOffset: uint32, samplerHeapIndexStride: uint32, samplerHeapArrayStride: uint32): VkDescriptorMappingSourceIndirectIndexEXT =
+  result = VkDescriptorMappingSourceIndirectIndexEXT(
+    heapOffset: heapOffset,
+    pushOffset: pushOffset,
+    addressOffset: addressOffset,
+    heapIndexStride: heapIndexStride,
+    heapArrayStride: heapArrayStride,
+    pEmbeddedSampler: pEmbeddedSampler,
+    useCombinedImageSamplerIndex: useCombinedImageSamplerIndex,
+    samplerHeapOffset: samplerHeapOffset,
+    samplerPushOffset: samplerPushOffset,
+    samplerAddressOffset: samplerAddressOffset,
+    samplerHeapIndexStride: samplerHeapIndexStride,
+    samplerHeapArrayStride: samplerHeapArrayStride,
+  )
+
+proc newVkDescriptorMappingSourceIndirectIndexArrayEXT*(heapOffset: uint32, pushOffset: uint32, addressOffset: uint32, heapIndexStride: uint32, pEmbeddedSampler: ptr VkSamplerCreateInfo, useCombinedImageSamplerIndex: VkBool32, samplerHeapOffset: uint32, samplerPushOffset: uint32, samplerAddressOffset: uint32, samplerHeapIndexStride: uint32): VkDescriptorMappingSourceIndirectIndexArrayEXT =
+  result = VkDescriptorMappingSourceIndirectIndexArrayEXT(
+    heapOffset: heapOffset,
+    pushOffset: pushOffset,
+    addressOffset: addressOffset,
+    heapIndexStride: heapIndexStride,
+    pEmbeddedSampler: pEmbeddedSampler,
+    useCombinedImageSamplerIndex: useCombinedImageSamplerIndex,
+    samplerHeapOffset: samplerHeapOffset,
+    samplerPushOffset: samplerPushOffset,
+    samplerAddressOffset: samplerAddressOffset,
+    samplerHeapIndexStride: samplerHeapIndexStride,
+  )
+
+proc newVkDescriptorMappingSourceHeapDataEXT*(heapOffset: uint32, pushOffset: uint32): VkDescriptorMappingSourceHeapDataEXT =
+  result = VkDescriptorMappingSourceHeapDataEXT(
+    heapOffset: heapOffset,
+    pushOffset: pushOffset,
+  )
+
+proc newVkDescriptorMappingSourceShaderRecordIndexEXT*(heapOffset: uint32, shaderRecordOffset: uint32, heapIndexStride: uint32, heapArrayStride: uint32, pEmbeddedSampler: ptr VkSamplerCreateInfo, useCombinedImageSamplerIndex: VkBool32, samplerHeapOffset: uint32, samplerShaderRecordOffset: uint32, samplerHeapIndexStride: uint32, samplerHeapArrayStride: uint32): VkDescriptorMappingSourceShaderRecordIndexEXT =
+  result = VkDescriptorMappingSourceShaderRecordIndexEXT(
+    heapOffset: heapOffset,
+    shaderRecordOffset: shaderRecordOffset,
+    heapIndexStride: heapIndexStride,
+    heapArrayStride: heapArrayStride,
+    pEmbeddedSampler: pEmbeddedSampler,
+    useCombinedImageSamplerIndex: useCombinedImageSamplerIndex,
+    samplerHeapOffset: samplerHeapOffset,
+    samplerShaderRecordOffset: samplerShaderRecordOffset,
+    samplerHeapIndexStride: samplerHeapIndexStride,
+    samplerHeapArrayStride: samplerHeapArrayStride,
+  )
+
+proc newVkDescriptorMappingSourceIndirectAddressEXT*(pushOffset: uint32, addressOffset: uint32): VkDescriptorMappingSourceIndirectAddressEXT =
+  result = VkDescriptorMappingSourceIndirectAddressEXT(
+    pushOffset: pushOffset,
+    addressOffset: addressOffset,
+  )
+
+proc newVkDescriptorSetAndBindingMappingEXT*(sType: VkStructureType = VkStructureType.DescriptorSetAndBindingMappingEXT, pNext: pointer = nil, descriptorSet: uint32, firstBinding: uint32, bindingCount: uint32, resourceMask: VkSpirvResourceTypeFlagsEXT, source: VkDescriptorMappingSourceEXT, sourceData: VkDescriptorMappingSourceDataEXT): VkDescriptorSetAndBindingMappingEXT =
+  result = VkDescriptorSetAndBindingMappingEXT(
+    sType: sType,
+    pNext: pNext,
+    descriptorSet: descriptorSet,
+    firstBinding: firstBinding,
+    bindingCount: bindingCount,
+    resourceMask: resourceMask,
+    source: source,
+    sourceData: sourceData,
+  )
+
+proc newVkShaderDescriptorSetAndBindingMappingInfoEXT*(sType: VkStructureType = VkStructureType.ShaderDescriptorSetAndBindingMappingInfoEXT, pNext: pointer = nil, mappings: openarray[VkDescriptorSetAndBindingMappingEXT]): VkShaderDescriptorSetAndBindingMappingInfoEXT =
+  result = VkShaderDescriptorSetAndBindingMappingInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    mappingCount: len(mappings).uint32,
+    pMappings: if len(mappings) == 0: nil else: cast[ptr VkDescriptorSetAndBindingMappingEXT](mappings),
+  )
+
+proc newVkSamplerCustomBorderColorIndexCreateInfoEXT*(sType: VkStructureType = VkStructureType.SamplerCustomBorderColorIndexCreateInfoEXT, pNext: pointer = nil, index: uint32): VkSamplerCustomBorderColorIndexCreateInfoEXT =
+  result = VkSamplerCustomBorderColorIndexCreateInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    index: index,
+  )
+
+proc newVkOpaqueCaptureDataCreateInfoEXT*(sType: VkStructureType = VkStructureType.OpaqueCaptureDataCreateInfoEXT, pNext: pointer = nil, pData: ptr VkHostAddressRangeConstEXT): VkOpaqueCaptureDataCreateInfoEXT =
+  result = VkOpaqueCaptureDataCreateInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    pData: pData,
+  )
+
+proc newVkIndirectCommandsLayoutPushDataTokenNV*(sType: VkStructureType = VkStructureType.IndirectCommandsLayoutPushDataTokenNV, pNext: pointer = nil, pushDataOffset: uint32, pushDataSize: uint32): VkIndirectCommandsLayoutPushDataTokenNV =
+  result = VkIndirectCommandsLayoutPushDataTokenNV(
+    sType: sType,
+    pNext: pNext,
+    pushDataOffset: pushDataOffset,
+    pushDataSize: pushDataSize,
+  )
+
+proc newVkSubsampledImageFormatPropertiesEXT*(sType: VkStructureType = VkStructureType.SubsampledImageFormatPropertiesEXT, pNext: pointer = nil, subsampledImageDescriptorCount: uint32): VkSubsampledImageFormatPropertiesEXT =
+  result = VkSubsampledImageFormatPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    subsampledImageDescriptorCount: subsampledImageDescriptorCount,
+  )
+
+proc newVkPhysicalDeviceDescriptorHeapFeaturesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDescriptorHeapFeaturesEXT, pNext: pointer = nil, descriptorHeap: VkBool32, descriptorHeapCaptureReplay: VkBool32): VkPhysicalDeviceDescriptorHeapFeaturesEXT =
+  result = VkPhysicalDeviceDescriptorHeapFeaturesEXT(
+    sType: sType,
+    pNext: pNext,
+    descriptorHeap: descriptorHeap,
+    descriptorHeapCaptureReplay: descriptorHeapCaptureReplay,
+  )
+
+proc newVkPhysicalDeviceDescriptorHeapPropertiesEXT*(sType: VkStructureType = VkStructureType.PhysicalDeviceDescriptorHeapPropertiesEXT, pNext: pointer = nil, samplerHeapAlignment: VkDeviceSize, resourceHeapAlignment: VkDeviceSize, maxSamplerHeapSize: VkDeviceSize, maxResourceHeapSize: VkDeviceSize, minSamplerHeapReservedRange: VkDeviceSize, minSamplerHeapReservedRangeWithEmbedded: VkDeviceSize, minResourceHeapReservedRange: VkDeviceSize, samplerDescriptorSize: VkDeviceSize, imageDescriptorSize: VkDeviceSize, bufferDescriptorSize: VkDeviceSize, samplerDescriptorAlignment: VkDeviceSize, imageDescriptorAlignment: VkDeviceSize, bufferDescriptorAlignment: VkDeviceSize, maxPushDataSize: VkDeviceSize, imageCaptureReplayOpaqueDataSize: uint, maxDescriptorHeapEmbeddedSamplers: uint32, samplerYcbcrConversionCount: uint32, sparseDescriptorHeaps: VkBool32, protectedDescriptorHeaps: VkBool32): VkPhysicalDeviceDescriptorHeapPropertiesEXT =
+  result = VkPhysicalDeviceDescriptorHeapPropertiesEXT(
+    sType: sType,
+    pNext: pNext,
+    samplerHeapAlignment: samplerHeapAlignment,
+    resourceHeapAlignment: resourceHeapAlignment,
+    maxSamplerHeapSize: maxSamplerHeapSize,
+    maxResourceHeapSize: maxResourceHeapSize,
+    minSamplerHeapReservedRange: minSamplerHeapReservedRange,
+    minSamplerHeapReservedRangeWithEmbedded: minSamplerHeapReservedRangeWithEmbedded,
+    minResourceHeapReservedRange: minResourceHeapReservedRange,
+    samplerDescriptorSize: samplerDescriptorSize,
+    imageDescriptorSize: imageDescriptorSize,
+    bufferDescriptorSize: bufferDescriptorSize,
+    samplerDescriptorAlignment: samplerDescriptorAlignment,
+    imageDescriptorAlignment: imageDescriptorAlignment,
+    bufferDescriptorAlignment: bufferDescriptorAlignment,
+    maxPushDataSize: maxPushDataSize,
+    imageCaptureReplayOpaqueDataSize: imageCaptureReplayOpaqueDataSize,
+    maxDescriptorHeapEmbeddedSamplers: maxDescriptorHeapEmbeddedSamplers,
+    samplerYcbcrConversionCount: samplerYcbcrConversionCount,
+    sparseDescriptorHeaps: sparseDescriptorHeaps,
+    protectedDescriptorHeaps: protectedDescriptorHeaps,
+  )
+
+proc newVkCommandBufferInheritanceDescriptorHeapInfoEXT*(sType: VkStructureType = VkStructureType.CommandBufferInheritanceDescriptorHeapInfoEXT, pNext: pointer = nil, pSamplerHeapBindInfo: ptr VkBindHeapInfoEXT, pResourceHeapBindInfo: ptr VkBindHeapInfoEXT): VkCommandBufferInheritanceDescriptorHeapInfoEXT =
+  result = VkCommandBufferInheritanceDescriptorHeapInfoEXT(
+    sType: sType,
+    pNext: pNext,
+    pSamplerHeapBindInfo: pSamplerHeapBindInfo,
+    pResourceHeapBindInfo: pResourceHeapBindInfo,
+  )
+
+proc newVkPhysicalDeviceDescriptorHeapTensorPropertiesARM*(sType: VkStructureType = VkStructureType.PhysicalDeviceDescriptorHeapTensorPropertiesARM, pNext: pointer = nil, tensorDescriptorSize: VkDeviceSize, tensorDescriptorAlignment: VkDeviceSize, tensorCaptureReplayOpaqueDataSize: uint): VkPhysicalDeviceDescriptorHeapTensorPropertiesARM =
+  result = VkPhysicalDeviceDescriptorHeapTensorPropertiesARM(
+    sType: sType,
+    pNext: pNext,
+    tensorDescriptorSize: tensorDescriptorSize,
+    tensorDescriptorAlignment: tensorDescriptorAlignment,
+    tensorCaptureReplayOpaqueDataSize: tensorCaptureReplayOpaqueDataSize,
   )
 
 # Procs
@@ -23749,7 +29412,7 @@ var
   vkCreateRenderPass*: proc (device: VkDevice, pCreateInfo: ptr VkRenderPassCreateInfo, pAllocator: ptr VkAllocationCallbacks, pRenderPass: ptr VkRenderPass): VkResult {.stdcall.}
   vkDestroyRenderPass*: proc (device: VkDevice, renderPass: VkRenderPass, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
   vkGetRenderAreaGranularity*: proc (device: VkDevice, renderPass: VkRenderPass, pGranularity: ptr VkExtent2D) {.stdcall.}
-  vkGetRenderingAreaGranularityKHR*: proc (device: VkDevice, pRenderingAreaInfo: ptr VkRenderingAreaInfoKHR, pGranularity: ptr VkExtent2D) {.stdcall.}
+  vkGetRenderingAreaGranularity*: proc (device: VkDevice, pRenderingAreaInfo: ptr VkRenderingAreaInfo, pGranularity: ptr VkExtent2D) {.stdcall.}
   vkCreateCommandPool*: proc (device: VkDevice, pCreateInfo: ptr VkCommandPoolCreateInfo, pAllocator: ptr VkAllocationCallbacks, pCommandPool: ptr VkCommandPool): VkResult {.stdcall.}
   vkDestroyCommandPool*: proc (device: VkDevice, commandPool: VkCommandPool, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
   vkResetCommandPool*: proc (device: VkDevice, commandPool: VkCommandPool, flags: VkCommandPoolResetFlags): VkResult {.stdcall.}
@@ -23790,7 +29453,9 @@ var
   vkCmdCopyBufferToImage*: proc (commandBuffer: VkCommandBuffer, srcBuffer: VkBuffer, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkBufferImageCopy) {.stdcall.}
   vkCmdCopyImageToBuffer*: proc (commandBuffer: VkCommandBuffer, srcImage: VkImage, srcImageLayout: VkImageLayout, dstBuffer: VkBuffer, regionCount: uint32, pRegions: ptr VkBufferImageCopy) {.stdcall.}
   vkCmdCopyMemoryIndirectNV*: proc (commandBuffer: VkCommandBuffer, copyBufferAddress: VkDeviceAddress, copyCount: uint32, stride: uint32) {.stdcall.}
+  vkCmdCopyMemoryIndirectKHR*: proc (commandBuffer: VkCommandBuffer, pCopyMemoryIndirectInfo: ptr VkCopyMemoryIndirectInfoKHR) {.stdcall.}
   vkCmdCopyMemoryToImageIndirectNV*: proc (commandBuffer: VkCommandBuffer, copyBufferAddress: VkDeviceAddress, copyCount: uint32, stride: uint32, dstImage: VkImage, dstImageLayout: VkImageLayout, pImageSubresources: ptr VkImageSubresourceLayers) {.stdcall.}
+  vkCmdCopyMemoryToImageIndirectKHR*: proc (commandBuffer: VkCommandBuffer, pCopyMemoryToImageIndirectInfo: ptr VkCopyMemoryToImageIndirectInfoKHR) {.stdcall.}
   vkCmdUpdateBuffer*: proc (commandBuffer: VkCommandBuffer, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, dataSize: VkDeviceSize, pData: pointer) {.stdcall.}
   vkCmdFillBuffer*: proc (commandBuffer: VkCommandBuffer, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, size: VkDeviceSize, data: uint32) {.stdcall.}
   vkCmdClearColorImage*: proc (commandBuffer: VkCommandBuffer, image: VkImage, imageLayout: VkImageLayout, pColor: ptr VkClearColorValue, rangeCount: uint32, pRanges: ptr VkImageSubresourceRange) {.stdcall.}
@@ -23805,6 +29470,7 @@ var
   vkCmdEndQuery*: proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, query: uint32) {.stdcall.}
   vkCmdBeginConditionalRenderingEXT*: proc (commandBuffer: VkCommandBuffer, pConditionalRenderingBegin: ptr VkConditionalRenderingBeginInfoEXT) {.stdcall.}
   vkCmdEndConditionalRenderingEXT*: proc (commandBuffer: VkCommandBuffer) {.stdcall.}
+  vkCmdBeginCustomResolveEXT*: proc (commandBuffer: VkCommandBuffer, pBeginCustomResolveInfo: ptr VkBeginCustomResolveInfoEXT) {.stdcall.}
   vkCmdResetQueryPool*: proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32) {.stdcall.}
   vkCmdWriteTimestamp*: proc (commandBuffer: VkCommandBuffer, pipelineStage: VkPipelineStageFlagBits, queryPool: VkQueryPool, query: uint32) {.stdcall.}
   vkCmdCopyQueryPoolResults*: proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, stride: VkDeviceSize, flags: VkQueryResultFlags) {.stdcall.}
@@ -23814,6 +29480,7 @@ var
   vkCmdEndRenderPass*: proc (commandBuffer: VkCommandBuffer) {.stdcall.}
   vkCmdExecuteCommands*: proc (commandBuffer: VkCommandBuffer, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer) {.stdcall.}
   vkCreateAndroidSurfaceKHR*: proc (instance: VkInstance, pCreateInfo: ptr VkAndroidSurfaceCreateInfoKHR, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}
+  vkCreateSurfaceOHOS*: proc (instance: VkInstance, pCreateInfo: ptr VkSurfaceCreateInfoOHOS, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}
   vkGetPhysicalDeviceDisplayPropertiesKHR*: proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkDisplayPropertiesKHR): VkResult {.stdcall.}
   vkGetPhysicalDeviceDisplayPlanePropertiesKHR*: proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkDisplayPlanePropertiesKHR): VkResult {.stdcall.}
   vkGetDisplayPlaneSupportedDisplaysKHR*: proc (physicalDevice: VkPhysicalDevice, planeIndex: uint32, pDisplayCount: ptr uint32, pDisplays: ptr VkDisplayKHR): VkResult {.stdcall.}
@@ -23835,6 +29502,8 @@ var
   vkCreateViSurfaceNN*: proc (instance: VkInstance, pCreateInfo: ptr VkViSurfaceCreateInfoNN, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}
   vkCreateWaylandSurfaceKHR*: proc (instance: VkInstance, pCreateInfo: ptr VkWaylandSurfaceCreateInfoKHR, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}
   vkGetPhysicalDeviceWaylandPresentationSupportKHR*: proc (physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, display: ptr wl_display): VkBool32 {.stdcall.}
+  vkCreateUbmSurfaceSEC*: proc (instance: VkInstance, pCreateInfo: ptr VkUbmSurfaceCreateInfoSEC, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}
+  vkGetPhysicalDeviceUbmPresentationSupportSEC*: proc (physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, device: ptr ubm_device): VkBool32 {.stdcall.}
   vkCreateWin32SurfaceKHR*: proc (instance: VkInstance, pCreateInfo: ptr VkWin32SurfaceCreateInfoKHR, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}
   vkGetPhysicalDeviceWin32PresentationSupportKHR*: proc (physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32): VkBool32 {.stdcall.}
   vkCreateXlibSurfaceKHR*: proc (instance: VkInstance, pCreateInfo: ptr VkXlibSurfaceCreateInfoKHR, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}
@@ -23863,6 +29532,15 @@ var
   vkGetGeneratedCommandsMemoryRequirementsNV*: proc (device: VkDevice, pInfo: ptr VkGeneratedCommandsMemoryRequirementsInfoNV, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}
   vkCreateIndirectCommandsLayoutNV*: proc (device: VkDevice, pCreateInfo: ptr VkIndirectCommandsLayoutCreateInfoNV, pAllocator: ptr VkAllocationCallbacks, pIndirectCommandsLayout: ptr VkIndirectCommandsLayoutNV): VkResult {.stdcall.}
   vkDestroyIndirectCommandsLayoutNV*: proc (device: VkDevice, indirectCommandsLayout: VkIndirectCommandsLayoutNV, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
+  vkCmdExecuteGeneratedCommandsEXT*: proc (commandBuffer: VkCommandBuffer, isPreprocessed: VkBool32, pGeneratedCommandsInfo: ptr VkGeneratedCommandsInfoEXT) {.stdcall.}
+  vkCmdPreprocessGeneratedCommandsEXT*: proc (commandBuffer: VkCommandBuffer, pGeneratedCommandsInfo: ptr VkGeneratedCommandsInfoEXT, stateCommandBuffer: VkCommandBuffer) {.stdcall.}
+  vkGetGeneratedCommandsMemoryRequirementsEXT*: proc (device: VkDevice, pInfo: ptr VkGeneratedCommandsMemoryRequirementsInfoEXT, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}
+  vkCreateIndirectCommandsLayoutEXT*: proc (device: VkDevice, pCreateInfo: ptr VkIndirectCommandsLayoutCreateInfoEXT, pAllocator: ptr VkAllocationCallbacks, pIndirectCommandsLayout: ptr VkIndirectCommandsLayoutEXT): VkResult {.stdcall.}
+  vkDestroyIndirectCommandsLayoutEXT*: proc (device: VkDevice, indirectCommandsLayout: VkIndirectCommandsLayoutEXT, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
+  vkCreateIndirectExecutionSetEXT*: proc (device: VkDevice, pCreateInfo: ptr VkIndirectExecutionSetCreateInfoEXT, pAllocator: ptr VkAllocationCallbacks, pIndirectExecutionSet: ptr VkIndirectExecutionSetEXT): VkResult {.stdcall.}
+  vkDestroyIndirectExecutionSetEXT*: proc (device: VkDevice, indirectExecutionSet: VkIndirectExecutionSetEXT, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
+  vkUpdateIndirectExecutionSetPipelineEXT*: proc (device: VkDevice, indirectExecutionSet: VkIndirectExecutionSetEXT, executionSetWriteCount: uint32, pExecutionSetWrites: ptr VkWriteIndirectExecutionSetPipelineEXT) {.stdcall.}
+  vkUpdateIndirectExecutionSetShaderEXT*: proc (device: VkDevice, indirectExecutionSet: VkIndirectExecutionSetEXT, executionSetWriteCount: uint32, pExecutionSetWrites: ptr VkWriteIndirectExecutionSetShaderEXT) {.stdcall.}
   vkGetPhysicalDeviceFeatures2*: proc (physicalDevice: VkPhysicalDevice, pFeatures: ptr VkPhysicalDeviceFeatures2) {.stdcall.}
   vkGetPhysicalDeviceProperties2*: proc (physicalDevice: VkPhysicalDevice, pProperties: ptr VkPhysicalDeviceProperties2) {.stdcall.}
   vkGetPhysicalDeviceFormatProperties2*: proc (physicalDevice: VkPhysicalDevice, format: VkFormat, pFormatProperties: ptr VkFormatProperties2) {.stdcall.}
@@ -23870,7 +29548,7 @@ var
   vkGetPhysicalDeviceQueueFamilyProperties2*: proc (physicalDevice: VkPhysicalDevice, pQueueFamilyPropertyCount: ptr uint32, pQueueFamilyProperties: ptr VkQueueFamilyProperties2) {.stdcall.}
   vkGetPhysicalDeviceMemoryProperties2*: proc (physicalDevice: VkPhysicalDevice, pMemoryProperties: ptr VkPhysicalDeviceMemoryProperties2) {.stdcall.}
   vkGetPhysicalDeviceSparseImageFormatProperties2*: proc (physicalDevice: VkPhysicalDevice, pFormatInfo: ptr VkPhysicalDeviceSparseImageFormatInfo2, pPropertyCount: ptr uint32, pProperties: ptr VkSparseImageFormatProperties2) {.stdcall.}
-  vkCmdPushDescriptorSetKHR*: proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, layout: VkPipelineLayout, set: uint32, descriptorWriteCount: uint32, pDescriptorWrites: ptr VkWriteDescriptorSet) {.stdcall.}
+  vkCmdPushDescriptorSet*: proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, layout: VkPipelineLayout, set: uint32, descriptorWriteCount: uint32, pDescriptorWrites: ptr VkWriteDescriptorSet) {.stdcall.}
   vkTrimCommandPool*: proc (device: VkDevice, commandPool: VkCommandPool, flags: VkCommandPoolTrimFlags) {.stdcall.}
   vkGetPhysicalDeviceExternalBufferProperties*: proc (physicalDevice: VkPhysicalDevice, pExternalBufferInfo: ptr VkPhysicalDeviceExternalBufferInfo, pExternalBufferProperties: ptr VkExternalBufferProperties) {.stdcall.}
   vkGetMemoryWin32HandleKHR*: proc (device: VkDevice, pGetWin32HandleInfo: ptr VkMemoryGetWin32HandleInfoKHR, pHandle: ptr HANDLE): VkResult {.stdcall.}
@@ -23927,7 +29605,7 @@ var
   vkCreateDescriptorUpdateTemplate*: proc (device: VkDevice, pCreateInfo: ptr VkDescriptorUpdateTemplateCreateInfo, pAllocator: ptr VkAllocationCallbacks, pDescriptorUpdateTemplate: ptr VkDescriptorUpdateTemplate): VkResult {.stdcall.}
   vkDestroyDescriptorUpdateTemplate*: proc (device: VkDevice, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
   vkUpdateDescriptorSetWithTemplate*: proc (device: VkDevice, descriptorSet: VkDescriptorSet, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, pData: pointer) {.stdcall.}
-  vkCmdPushDescriptorSetWithTemplateKHR*: proc (commandBuffer: VkCommandBuffer, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer) {.stdcall.}
+  vkCmdPushDescriptorSetWithTemplate*: proc (commandBuffer: VkCommandBuffer, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer) {.stdcall.}
   vkSetHdrMetadataEXT*: proc (device: VkDevice, swapchainCount: uint32, pSwapchains: ptr VkSwapchainKHR, pMetadata: ptr VkHdrMetadataEXT) {.stdcall.}
   vkGetSwapchainStatusKHR*: proc (device: VkDevice, swapchain: VkSwapchainKHR): VkResult {.stdcall.}
   vkGetRefreshCycleDurationGOOGLE*: proc (device: VkDevice, swapchain: VkSwapchainKHR, pDisplayTimingProperties: ptr VkRefreshCycleDurationGOOGLE): VkResult {.stdcall.}
@@ -24040,11 +29718,15 @@ var
   vkGetPhysicalDeviceCooperativeMatrixPropertiesNV*: proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkCooperativeMatrixPropertiesNV): VkResult {.stdcall.}
   vkCmdTraceRaysIndirectKHR*: proc (commandBuffer: VkCommandBuffer, pRaygenShaderBindingTable: ptr VkStridedDeviceAddressRegionKHR, pMissShaderBindingTable: ptr VkStridedDeviceAddressRegionKHR, pHitShaderBindingTable: ptr VkStridedDeviceAddressRegionKHR, pCallableShaderBindingTable: ptr VkStridedDeviceAddressRegionKHR, indirectDeviceAddress: VkDeviceAddress) {.stdcall.}
   vkCmdTraceRaysIndirect2KHR*: proc (commandBuffer: VkCommandBuffer, indirectDeviceAddress: VkDeviceAddress) {.stdcall.}
+  vkGetClusterAccelerationStructureBuildSizesNV*: proc (device: VkDevice, pInfo: ptr VkClusterAccelerationStructureInputInfoNV, pSizeInfo: ptr VkAccelerationStructureBuildSizesInfoKHR) {.stdcall.}
+  vkCmdBuildClusterAccelerationStructureIndirectNV*: proc (commandBuffer: VkCommandBuffer, pCommandInfos: ptr VkClusterAccelerationStructureCommandsInfoNV) {.stdcall.}
   vkGetDeviceAccelerationStructureCompatibilityKHR*: proc (device: VkDevice, pVersionInfo: ptr VkAccelerationStructureVersionInfoKHR, pCompatibility: ptr VkAccelerationStructureCompatibilityKHR) {.stdcall.}
   vkGetRayTracingShaderGroupStackSizeKHR*: proc (device: VkDevice, pipeline: VkPipeline, group: uint32, groupShader: VkShaderGroupShaderKHR): VkDeviceSize {.stdcall.}
   vkCmdSetRayTracingPipelineStackSizeKHR*: proc (commandBuffer: VkCommandBuffer, pipelineStackSize: uint32) {.stdcall.}
   vkGetImageViewHandleNVX*: proc (device: VkDevice, pInfo: ptr VkImageViewHandleInfoNVX): uint32 {.stdcall.}
+  vkGetImageViewHandle64NVX*: proc (device: VkDevice, pInfo: ptr VkImageViewHandleInfoNVX): uint64 {.stdcall.}
   vkGetImageViewAddressNVX*: proc (device: VkDevice, imageView: VkImageView, pProperties: ptr VkImageViewAddressPropertiesNVX): VkResult {.stdcall.}
+  vkGetDeviceCombinedImageSamplerIndexNVX*: proc (device: VkDevice, imageViewIndex: uint64, samplerIndex: uint64): uint64 {.stdcall.}
   vkGetPhysicalDeviceSurfacePresentModes2EXT*: proc (physicalDevice: VkPhysicalDevice, pSurfaceInfo: ptr VkPhysicalDeviceSurfaceInfo2KHR, pPresentModeCount: ptr uint32, pPresentModes: ptr VkPresentModeKHR): VkResult {.stdcall.}
   vkGetDeviceGroupSurfacePresentModes2EXT*: proc (device: VkDevice, pSurfaceInfo: ptr VkPhysicalDeviceSurfaceInfo2KHR, pModes: ptr VkDeviceGroupPresentModeFlagsKHR): VkResult {.stdcall.}
   vkAcquireFullScreenExclusiveModeEXT*: proc (device: VkDevice, swapchain: VkSwapchainKHR): VkResult {.stdcall.}
@@ -24071,7 +29753,7 @@ var
   vkGetPipelineExecutablePropertiesKHR*: proc (device: VkDevice, pPipelineInfo: ptr VkPipelineInfoKHR, pExecutableCount: ptr uint32, pProperties: ptr VkPipelineExecutablePropertiesKHR): VkResult {.stdcall.}
   vkGetPipelineExecutableStatisticsKHR*: proc (device: VkDevice, pExecutableInfo: ptr VkPipelineExecutableInfoKHR, pStatisticCount: ptr uint32, pStatistics: ptr VkPipelineExecutableStatisticKHR): VkResult {.stdcall.}
   vkGetPipelineExecutableInternalRepresentationsKHR*: proc (device: VkDevice, pExecutableInfo: ptr VkPipelineExecutableInfoKHR, pInternalRepresentationCount: ptr uint32, pInternalRepresentations: ptr VkPipelineExecutableInternalRepresentationKHR): VkResult {.stdcall.}
-  vkCmdSetLineStippleKHR*: proc (commandBuffer: VkCommandBuffer, lineStippleFactor: uint32, lineStipplePattern: uint16) {.stdcall.}
+  vkCmdSetLineStipple*: proc (commandBuffer: VkCommandBuffer, lineStippleFactor: uint32, lineStipplePattern: uint16) {.stdcall.}
   vkGetFaultData*: proc (device: VkDevice, faultQueryBehavior: VkFaultQueryBehavior, pUnrecordedFaults: ptr VkBool32, pFaultCount: ptr uint32, pFaults: ptr VkFaultData): VkResult {.stdcall.}
   vkGetPhysicalDeviceToolProperties*: proc (physicalDevice: VkPhysicalDevice, pToolCount: ptr uint32, pToolProperties: ptr VkPhysicalDeviceToolProperties): VkResult {.stdcall.}
   vkCreateAccelerationStructureKHR*: proc (device: VkDevice, pCreateInfo: ptr VkAccelerationStructureCreateInfoKHR, pAllocator: ptr VkAllocationCallbacks, pAccelerationStructure: ptr VkAccelerationStructureKHR): VkResult {.stdcall.}
@@ -24092,7 +29774,7 @@ var
   vkCmdSetPrimitiveTopology*: proc (commandBuffer: VkCommandBuffer, primitiveTopology: VkPrimitiveTopology) {.stdcall.}
   vkCmdSetViewportWithCount*: proc (commandBuffer: VkCommandBuffer, viewportCount: uint32, pViewports: ptr VkViewport) {.stdcall.}
   vkCmdSetScissorWithCount*: proc (commandBuffer: VkCommandBuffer, scissorCount: uint32, pScissors: ptr VkRect2D) {.stdcall.}
-  vkCmdBindIndexBuffer2KHR*: proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, size: VkDeviceSize, indexType: VkIndexType) {.stdcall.}
+  vkCmdBindIndexBuffer2*: proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, size: VkDeviceSize, indexType: VkIndexType) {.stdcall.}
   vkCmdBindVertexBuffers2*: proc (commandBuffer: VkCommandBuffer, firstBinding: uint32, bindingCount: uint32, pBuffers: ptr VkBuffer, pOffsets: ptr VkDeviceSize, pSizes: ptr VkDeviceSize, pStrides: ptr VkDeviceSize) {.stdcall.}
   vkCmdSetDepthTestEnable*: proc (commandBuffer: VkCommandBuffer, depthTestEnable: VkBool32) {.stdcall.}
   vkCmdSetDepthWriteEnable*: proc (commandBuffer: VkCommandBuffer, depthWriteEnable: VkBool32) {.stdcall.}
@@ -24162,10 +29844,10 @@ var
   vkCmdWriteTimestamp2*: proc (commandBuffer: VkCommandBuffer, stage: VkPipelineStageFlags2, queryPool: VkQueryPool, query: uint32) {.stdcall.}
   vkCmdWriteBufferMarker2AMD*: proc (commandBuffer: VkCommandBuffer, stage: VkPipelineStageFlags2, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, marker: uint32) {.stdcall.}
   vkGetQueueCheckpointData2NV*: proc (queue: VkQueue, pCheckpointDataCount: ptr uint32, pCheckpointData: ptr VkCheckpointData2NV) {.stdcall.}
-  vkCopyMemoryToImageEXT*: proc (device: VkDevice, pCopyMemoryToImageInfo: ptr VkCopyMemoryToImageInfoEXT): VkResult {.stdcall.}
-  vkCopyImageToMemoryEXT*: proc (device: VkDevice, pCopyImageToMemoryInfo: ptr VkCopyImageToMemoryInfoEXT): VkResult {.stdcall.}
-  vkCopyImageToImageEXT*: proc (device: VkDevice, pCopyImageToImageInfo: ptr VkCopyImageToImageInfoEXT): VkResult {.stdcall.}
-  vkTransitionImageLayoutEXT*: proc (device: VkDevice, transitionCount: uint32, pTransitions: ptr VkHostImageLayoutTransitionInfoEXT): VkResult {.stdcall.}
+  vkCopyMemoryToImage*: proc (device: VkDevice, pCopyMemoryToImageInfo: ptr VkCopyMemoryToImageInfo): VkResult {.stdcall.}
+  vkCopyImageToMemory*: proc (device: VkDevice, pCopyImageToMemoryInfo: ptr VkCopyImageToMemoryInfo): VkResult {.stdcall.}
+  vkCopyImageToImage*: proc (device: VkDevice, pCopyImageToImageInfo: ptr VkCopyImageToImageInfo): VkResult {.stdcall.}
+  vkTransitionImageLayout*: proc (device: VkDevice, transitionCount: uint32, pTransitions: ptr VkHostImageLayoutTransitionInfo): VkResult {.stdcall.}
   vkGetCommandPoolMemoryConsumption*: proc (device: VkDevice, commandPool: VkCommandPool, commandBuffer: VkCommandBuffer, pConsumption: ptr VkCommandPoolMemoryConsumption) {.stdcall.}
   vkGetPhysicalDeviceVideoCapabilitiesKHR*: proc (physicalDevice: VkPhysicalDevice, pVideoProfile: ptr VkVideoProfileInfoKHR, pCapabilities: ptr VkVideoCapabilitiesKHR): VkResult {.stdcall.}
   vkGetPhysicalDeviceVideoFormatPropertiesKHR*: proc (physicalDevice: VkPhysicalDevice, pVideoFormatInfo: ptr VkPhysicalDeviceVideoFormatInfoKHR, pVideoFormatPropertyCount: ptr uint32, pVideoFormatProperties: ptr VkVideoFormatPropertiesKHR): VkResult {.stdcall.}
@@ -24185,6 +29867,10 @@ var
   vkCmdEncodeVideoKHR*: proc (commandBuffer: VkCommandBuffer, pEncodeInfo: ptr VkVideoEncodeInfoKHR) {.stdcall.}
   vkCmdDecompressMemoryNV*: proc (commandBuffer: VkCommandBuffer, decompressRegionCount: uint32, pDecompressMemoryRegions: ptr VkDecompressMemoryRegionNV) {.stdcall.}
   vkCmdDecompressMemoryIndirectCountNV*: proc (commandBuffer: VkCommandBuffer, indirectCommandsAddress: VkDeviceAddress, indirectCommandsCountAddress: VkDeviceAddress, stride: uint32) {.stdcall.}
+  vkGetPartitionedAccelerationStructuresBuildSizesNV*: proc (device: VkDevice, pInfo: ptr VkPartitionedAccelerationStructureInstancesInputNV, pSizeInfo: ptr VkAccelerationStructureBuildSizesInfoKHR) {.stdcall.}
+  vkCmdBuildPartitionedAccelerationStructuresNV*: proc (commandBuffer: VkCommandBuffer, pBuildInfo: ptr VkBuildPartitionedAccelerationStructureInfoNV) {.stdcall.}
+  vkCmdDecompressMemoryEXT*: proc (commandBuffer: VkCommandBuffer, pDecompressMemoryInfoEXT: ptr VkDecompressMemoryInfoEXT) {.stdcall.}
+  vkCmdDecompressMemoryIndirectCountEXT*: proc (commandBuffer: VkCommandBuffer, decompressionMethod: VkMemoryDecompressionMethodFlagsEXT, indirectCommandsAddress: VkDeviceAddress, indirectCommandsCountAddress: VkDeviceAddress, maxDecompressionCount: uint32, stride: uint32) {.stdcall.}
   vkCreateCuModuleNVX*: proc (device: VkDevice, pCreateInfo: ptr VkCuModuleCreateInfoNVX, pAllocator: ptr VkAllocationCallbacks, pModule: ptr VkCuModuleNVX): VkResult {.stdcall.}
   vkCreateCuFunctionNVX*: proc (device: VkDevice, pCreateInfo: ptr VkCuFunctionCreateInfoNVX, pAllocator: ptr VkAllocationCallbacks, pFunction: ptr VkCuFunctionNVX): VkResult {.stdcall.}
   vkDestroyCuModuleNVX*: proc (device: VkDevice, module: VkCuModuleNVX, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
@@ -24204,6 +29890,7 @@ var
   vkSetDeviceMemoryPriorityEXT*: proc (device: VkDevice, memory: VkDeviceMemory, priority: float32) {.stdcall.}
   vkAcquireDrmDisplayEXT*: proc (physicalDevice: VkPhysicalDevice, drmFd: int32, display: VkDisplayKHR): VkResult {.stdcall.}
   vkGetDrmDisplayEXT*: proc (physicalDevice: VkPhysicalDevice, drmFd: int32, connectorId: uint32, display: ptr VkDisplayKHR): VkResult {.stdcall.}
+  vkWaitForPresent2KHR*: proc (device: VkDevice, swapchain: VkSwapchainKHR, pPresentWait2Info: ptr VkPresentWait2InfoKHR): VkResult {.stdcall.}
   vkWaitForPresentKHR*: proc (device: VkDevice, swapchain: VkSwapchainKHR, presentId: uint64, timeout: uint64): VkResult {.stdcall.}
   vkCreateBufferCollectionFUCHSIA*: proc (device: VkDevice, pCreateInfo: ptr VkBufferCollectionCreateInfoFUCHSIA, pAllocator: ptr VkAllocationCallbacks, pCollection: ptr VkBufferCollectionFUCHSIA): VkResult {.stdcall.}
   vkSetBufferCollectionBufferConstraintsFUCHSIA*: proc (device: VkDevice, collection: VkBufferCollectionFUCHSIA, pBufferConstraintsInfo: ptr VkBufferConstraintsInfoFUCHSIA): VkResult {.stdcall.}
@@ -24218,6 +29905,7 @@ var
   vkCmdCudaLaunchKernelNV*: proc (commandBuffer: VkCommandBuffer, pLaunchInfo: ptr VkCudaLaunchInfoNV) {.stdcall.}
   vkCmdBeginRendering*: proc (commandBuffer: VkCommandBuffer, pRenderingInfo: ptr VkRenderingInfo) {.stdcall.}
   vkCmdEndRendering*: proc (commandBuffer: VkCommandBuffer) {.stdcall.}
+  vkCmdEndRendering2KHR*: proc (commandBuffer: VkCommandBuffer, pRenderingEndInfo: ptr VkRenderingEndInfoKHR) {.stdcall.}
   vkGetDescriptorSetLayoutHostMappingInfoVALVE*: proc (device: VkDevice, pBindingReference: ptr VkDescriptorSetBindingReferenceVALVE, pHostMapping: ptr VkDescriptorSetLayoutHostMappingInfoVALVE) {.stdcall.}
   vkGetDescriptorSetHostMappingVALVE*: proc (device: VkDevice, descriptorSet: VkDescriptorSet, ppData: ptr pointer) {.stdcall.}
   vkCreateMicromapEXT*: proc (device: VkDevice, pCreateInfo: ptr VkMicromapCreateInfoEXT, pAllocator: ptr VkAllocationCallbacks, pMicromap: ptr VkMicromapEXT): VkResult {.stdcall.}
@@ -24236,9 +29924,10 @@ var
   vkGetMicromapBuildSizesEXT*: proc (device: VkDevice, buildType: VkAccelerationStructureBuildTypeKHR, pBuildInfo: ptr VkMicromapBuildInfoEXT, pSizeInfo: ptr VkMicromapBuildSizesInfoEXT) {.stdcall.}
   vkGetShaderModuleIdentifierEXT*: proc (device: VkDevice, shaderModule: VkShaderModule, pIdentifier: ptr VkShaderModuleIdentifierEXT) {.stdcall.}
   vkGetShaderModuleCreateInfoIdentifierEXT*: proc (device: VkDevice, pCreateInfo: ptr VkShaderModuleCreateInfo, pIdentifier: ptr VkShaderModuleIdentifierEXT) {.stdcall.}
-  vkGetImageSubresourceLayout2KHR*: proc (device: VkDevice, image: VkImage, pSubresource: ptr VkImageSubresource2KHR, pLayout: ptr VkSubresourceLayout2KHR) {.stdcall.}
+  vkGetImageSubresourceLayout2*: proc (device: VkDevice, image: VkImage, pSubresource: ptr VkImageSubresource2, pLayout: ptr VkSubresourceLayout2) {.stdcall.}
   vkGetPipelinePropertiesEXT*: proc (device: VkDevice, pPipelineInfo: ptr VkPipelineInfoEXT, pPipelineProperties: ptr VkBaseOutStructure): VkResult {.stdcall.}
   vkExportMetalObjectsEXT*: proc (device: VkDevice, pMetalObjectsInfo: ptr VkExportMetalObjectsInfoEXT) {.stdcall.}
+  vkCmdBindTileMemoryQCOM*: proc (commandBuffer: VkCommandBuffer, pTileMemoryBindInfo: ptr VkTileMemoryBindInfoQCOM) {.stdcall.}
   vkGetFramebufferTilePropertiesQCOM*: proc (device: VkDevice, framebuffer: VkFramebuffer, pPropertiesCount: ptr uint32, pProperties: ptr VkTilePropertiesQCOM): VkResult {.stdcall.}
   vkGetDynamicRenderingTilePropertiesQCOM*: proc (device: VkDevice, pRenderingInfo: ptr VkRenderingInfo, pProperties: ptr VkTilePropertiesQCOM): VkResult {.stdcall.}
   vkGetPhysicalDeviceOpticalFlowImageFormatsNV*: proc (physicalDevice: VkPhysicalDevice, pOpticalFlowImageFormatInfo: ptr VkOpticalFlowImageFormatInfoNV, pFormatCount: ptr uint32, pImageFormatProperties: ptr VkOpticalFlowImageFormatPropertiesNV): VkResult {.stdcall.}
@@ -24248,27 +29937,31 @@ var
   vkCmdOpticalFlowExecuteNV*: proc (commandBuffer: VkCommandBuffer, session: VkOpticalFlowSessionNV, pExecuteInfo: ptr VkOpticalFlowExecuteInfoNV) {.stdcall.}
   vkGetDeviceFaultInfoEXT*: proc (device: VkDevice, pFaultCounts: ptr VkDeviceFaultCountsEXT, pFaultInfo: ptr VkDeviceFaultInfoEXT): VkResult {.stdcall.}
   vkCmdSetDepthBias2EXT*: proc (commandBuffer: VkCommandBuffer, pDepthBiasInfo: ptr VkDepthBiasInfoEXT) {.stdcall.}
-  vkReleaseSwapchainImagesEXT*: proc (device: VkDevice, pReleaseInfo: ptr VkReleaseSwapchainImagesInfoEXT): VkResult {.stdcall.}
-  vkGetDeviceImageSubresourceLayoutKHR*: proc (device: VkDevice, pInfo: ptr VkDeviceImageSubresourceInfoKHR, pLayout: ptr VkSubresourceLayout2KHR) {.stdcall.}
-  vkMapMemory2KHR*: proc (device: VkDevice, pMemoryMapInfo: ptr VkMemoryMapInfoKHR, ppData: ptr pointer): VkResult {.stdcall.}
-  vkUnmapMemory2KHR*: proc (device: VkDevice, pMemoryUnmapInfo: ptr VkMemoryUnmapInfoKHR): VkResult {.stdcall.}
+  vkReleaseSwapchainImagesKHR*: proc (device: VkDevice, pReleaseInfo: ptr VkReleaseSwapchainImagesInfoKHR): VkResult {.stdcall.}
+  vkGetDeviceImageSubresourceLayout*: proc (device: VkDevice, pInfo: ptr VkDeviceImageSubresourceInfo, pLayout: ptr VkSubresourceLayout2) {.stdcall.}
+  vkMapMemory2*: proc (device: VkDevice, pMemoryMapInfo: ptr VkMemoryMapInfo, ppData: ptr pointer): VkResult {.stdcall.}
+  vkUnmapMemory2*: proc (device: VkDevice, pMemoryUnmapInfo: ptr VkMemoryUnmapInfo): VkResult {.stdcall.}
   vkCreateShadersEXT*: proc (device: VkDevice, createInfoCount: uint32, pCreateInfos: ptr VkShaderCreateInfoEXT, pAllocator: ptr VkAllocationCallbacks, pShaders: ptr VkShaderEXT): VkResult {.stdcall.}
   vkDestroyShaderEXT*: proc (device: VkDevice, shader: VkShaderEXT, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
   vkGetShaderBinaryDataEXT*: proc (device: VkDevice, shader: VkShaderEXT, pDataSize: ptr uint, pData: pointer): VkResult {.stdcall.}
   vkCmdBindShadersEXT*: proc (commandBuffer: VkCommandBuffer, stageCount: uint32, pStages: ptr VkShaderStageFlagBits, pShaders: ptr VkShaderEXT) {.stdcall.}
+  vkSetSwapchainPresentTimingQueueSizeEXT*: proc (device: VkDevice, swapchain: VkSwapchainKHR, size: uint32): VkResult {.stdcall.}
+  vkGetSwapchainTimingPropertiesEXT*: proc (device: VkDevice, swapchain: VkSwapchainKHR, pSwapchainTimingProperties: ptr VkSwapchainTimingPropertiesEXT, pSwapchainTimingPropertiesCounter: ptr uint64): VkResult {.stdcall.}
+  vkGetSwapchainTimeDomainPropertiesEXT*: proc (device: VkDevice, swapchain: VkSwapchainKHR, pSwapchainTimeDomainProperties: ptr VkSwapchainTimeDomainPropertiesEXT, pTimeDomainsCounter: ptr uint64): VkResult {.stdcall.}
+  vkGetPastPresentationTimingEXT*: proc (device: VkDevice, pPastPresentationTimingInfo: ptr VkPastPresentationTimingInfoEXT, pPastPresentationTimingProperties: ptr VkPastPresentationTimingPropertiesEXT): VkResult {.stdcall.}
   vkGetScreenBufferPropertiesQNX*: proc (device: VkDevice, buffer: ptr screen_buffer, pProperties: ptr VkScreenBufferPropertiesQNX): VkResult {.stdcall.}
   vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR*: proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkCooperativeMatrixPropertiesKHR): VkResult {.stdcall.}
   vkGetExecutionGraphPipelineScratchSizeAMDX*: proc (device: VkDevice, executionGraph: VkPipeline, pSizeInfo: ptr VkExecutionGraphPipelineScratchSizeAMDX): VkResult {.stdcall.}
   vkGetExecutionGraphPipelineNodeIndexAMDX*: proc (device: VkDevice, executionGraph: VkPipeline, pNodeInfo: ptr VkPipelineShaderStageNodeCreateInfoAMDX, pNodeIndex: ptr uint32): VkResult {.stdcall.}
   vkCreateExecutionGraphPipelinesAMDX*: proc (device: VkDevice, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkExecutionGraphPipelineCreateInfoAMDX, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}
-  vkCmdInitializeGraphScratchMemoryAMDX*: proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress) {.stdcall.}
-  vkCmdDispatchGraphAMDX*: proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, pCountInfo: ptr VkDispatchGraphCountInfoAMDX) {.stdcall.}
-  vkCmdDispatchGraphIndirectAMDX*: proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, pCountInfo: ptr VkDispatchGraphCountInfoAMDX) {.stdcall.}
-  vkCmdDispatchGraphIndirectCountAMDX*: proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, countInfo: VkDeviceAddress) {.stdcall.}
-  vkCmdBindDescriptorSets2KHR*: proc (commandBuffer: VkCommandBuffer, pBindDescriptorSetsInfo: ptr VkBindDescriptorSetsInfoKHR) {.stdcall.}
-  vkCmdPushConstants2KHR*: proc (commandBuffer: VkCommandBuffer, pPushConstantsInfo: ptr VkPushConstantsInfoKHR) {.stdcall.}
-  vkCmdPushDescriptorSet2KHR*: proc (commandBuffer: VkCommandBuffer, pPushDescriptorSetInfo: ptr VkPushDescriptorSetInfoKHR) {.stdcall.}
-  vkCmdPushDescriptorSetWithTemplate2KHR*: proc (commandBuffer: VkCommandBuffer, pPushDescriptorSetWithTemplateInfo: ptr VkPushDescriptorSetWithTemplateInfoKHR) {.stdcall.}
+  vkCmdInitializeGraphScratchMemoryAMDX*: proc (commandBuffer: VkCommandBuffer, executionGraph: VkPipeline, scratch: VkDeviceAddress, scratchSize: VkDeviceSize) {.stdcall.}
+  vkCmdDispatchGraphAMDX*: proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, scratchSize: VkDeviceSize, pCountInfo: ptr VkDispatchGraphCountInfoAMDX) {.stdcall.}
+  vkCmdDispatchGraphIndirectAMDX*: proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, scratchSize: VkDeviceSize, pCountInfo: ptr VkDispatchGraphCountInfoAMDX) {.stdcall.}
+  vkCmdDispatchGraphIndirectCountAMDX*: proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, scratchSize: VkDeviceSize, countInfo: VkDeviceAddress) {.stdcall.}
+  vkCmdBindDescriptorSets2*: proc (commandBuffer: VkCommandBuffer, pBindDescriptorSetsInfo: ptr VkBindDescriptorSetsInfo) {.stdcall.}
+  vkCmdPushConstants2*: proc (commandBuffer: VkCommandBuffer, pPushConstantsInfo: ptr VkPushConstantsInfo) {.stdcall.}
+  vkCmdPushDescriptorSet2*: proc (commandBuffer: VkCommandBuffer, pPushDescriptorSetInfo: ptr VkPushDescriptorSetInfo) {.stdcall.}
+  vkCmdPushDescriptorSetWithTemplate2*: proc (commandBuffer: VkCommandBuffer, pPushDescriptorSetWithTemplateInfo: ptr VkPushDescriptorSetWithTemplateInfo) {.stdcall.}
   vkCmdSetDescriptorBufferOffsets2EXT*: proc (commandBuffer: VkCommandBuffer, pSetDescriptorBufferOffsetsInfo: ptr VkSetDescriptorBufferOffsetsInfoEXT) {.stdcall.}
   vkCmdBindDescriptorBufferEmbeddedSamplers2EXT*: proc (commandBuffer: VkCommandBuffer, pBindDescriptorBufferEmbeddedSamplersInfo: ptr VkBindDescriptorBufferEmbeddedSamplersInfoEXT) {.stdcall.}
   vkSetLatencySleepModeNV*: proc (device: VkDevice, swapchain: VkSwapchainKHR, pSleepModeInfo: ptr VkLatencySleepModeInfoNV): VkResult {.stdcall.}
@@ -24276,8 +29969,60 @@ var
   vkSetLatencyMarkerNV*: proc (device: VkDevice, swapchain: VkSwapchainKHR, pLatencyMarkerInfo: ptr VkSetLatencyMarkerInfoNV) {.stdcall.}
   vkGetLatencyTimingsNV*: proc (device: VkDevice, swapchain: VkSwapchainKHR, pLatencyMarkerInfo: ptr VkGetLatencyMarkerInfoNV) {.stdcall.}
   vkQueueNotifyOutOfBandNV*: proc (queue: VkQueue, pQueueTypeInfo: ptr VkOutOfBandQueueTypeInfoNV) {.stdcall.}
-  vkCmdSetRenderingAttachmentLocationsKHR*: proc (commandBuffer: VkCommandBuffer, pLocationInfo: ptr VkRenderingAttachmentLocationInfoKHR) {.stdcall.}
-  vkCmdSetRenderingInputAttachmentIndicesKHR*: proc (commandBuffer: VkCommandBuffer, pInputAttachmentIndexInfo: ptr VkRenderingInputAttachmentIndexInfoKHR) {.stdcall.}
+  vkCmdSetRenderingAttachmentLocations*: proc (commandBuffer: VkCommandBuffer, pLocationInfo: ptr VkRenderingAttachmentLocationInfo) {.stdcall.}
+  vkCmdSetRenderingInputAttachmentIndices*: proc (commandBuffer: VkCommandBuffer, pInputAttachmentIndexInfo: ptr VkRenderingInputAttachmentIndexInfo) {.stdcall.}
+  vkCmdSetDepthClampRangeEXT*: proc (commandBuffer: VkCommandBuffer, depthClampMode: VkDepthClampModeEXT, pDepthClampRange: ptr VkDepthClampRangeEXT) {.stdcall.}
+  vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV*: proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkCooperativeMatrixFlexibleDimensionsPropertiesNV): VkResult {.stdcall.}
+  vkGetMemoryMetalHandleEXT*: proc (device: VkDevice, pGetMetalHandleInfo: ptr VkMemoryGetMetalHandleInfoEXT, pHandle: ptr pointer): VkResult {.stdcall.}
+  vkGetMemoryMetalHandlePropertiesEXT*: proc (device: VkDevice, handleType: VkExternalMemoryHandleTypeFlagBits, pHandle: pointer, pMemoryMetalHandleProperties: ptr VkMemoryMetalHandlePropertiesEXT): VkResult {.stdcall.}
+  vkGetPhysicalDeviceCooperativeVectorPropertiesNV*: proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkCooperativeVectorPropertiesNV): VkResult {.stdcall.}
+  vkConvertCooperativeVectorMatrixNV*: proc (device: VkDevice, pInfo: ptr VkConvertCooperativeVectorMatrixInfoNV): VkResult {.stdcall.}
+  vkCmdConvertCooperativeVectorMatrixNV*: proc (commandBuffer: VkCommandBuffer, infoCount: uint32, pInfos: ptr VkConvertCooperativeVectorMatrixInfoNV) {.stdcall.}
+  vkCmdDispatchTileQCOM*: proc (commandBuffer: VkCommandBuffer, pDispatchTileInfo: ptr VkDispatchTileInfoQCOM) {.stdcall.}
+  vkCmdBeginPerTileExecutionQCOM*: proc (commandBuffer: VkCommandBuffer, pPerTileBeginInfo: ptr VkPerTileBeginInfoQCOM) {.stdcall.}
+  vkCmdEndPerTileExecutionQCOM*: proc (commandBuffer: VkCommandBuffer, pPerTileEndInfo: ptr VkPerTileEndInfoQCOM) {.stdcall.}
+  vkCreateExternalComputeQueueNV*: proc (device: VkDevice, pCreateInfo: ptr VkExternalComputeQueueCreateInfoNV, pAllocator: ptr VkAllocationCallbacks, pExternalQueue: ptr VkExternalComputeQueueNV): VkResult {.stdcall.}
+  vkDestroyExternalComputeQueueNV*: proc (device: VkDevice, externalQueue: VkExternalComputeQueueNV, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
+  vkGetExternalComputeQueueDataNV*: proc (externalQueue: VkExternalComputeQueueNV, params: ptr VkExternalComputeQueueDataParamsNV, pData: pointer) {.stdcall.}
+  vkCreateTensorARM*: proc (device: VkDevice, pCreateInfo: ptr VkTensorCreateInfoARM, pAllocator: ptr VkAllocationCallbacks, pTensor: ptr VkTensorARM): VkResult {.stdcall.}
+  vkDestroyTensorARM*: proc (device: VkDevice, tensor: VkTensorARM, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
+  vkCreateTensorViewARM*: proc (device: VkDevice, pCreateInfo: ptr VkTensorViewCreateInfoARM, pAllocator: ptr VkAllocationCallbacks, pView: ptr VkTensorViewARM): VkResult {.stdcall.}
+  vkDestroyTensorViewARM*: proc (device: VkDevice, tensorView: VkTensorViewARM, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
+  vkGetTensorMemoryRequirementsARM*: proc (device: VkDevice, pInfo: ptr VkTensorMemoryRequirementsInfoARM, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}
+  vkBindTensorMemoryARM*: proc (device: VkDevice, bindInfoCount: uint32, pBindInfos: ptr VkBindTensorMemoryInfoARM): VkResult {.stdcall.}
+  vkGetDeviceTensorMemoryRequirementsARM*: proc (device: VkDevice, pInfo: ptr VkDeviceTensorMemoryRequirementsARM, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}
+  vkCmdCopyTensorARM*: proc (commandBuffer: VkCommandBuffer, pCopyTensorInfo: ptr VkCopyTensorInfoARM) {.stdcall.}
+  vkGetTensorOpaqueCaptureDescriptorDataARM*: proc (device: VkDevice, pInfo: ptr VkTensorCaptureDescriptorDataInfoARM, pData: pointer): VkResult {.stdcall.}
+  vkGetTensorViewOpaqueCaptureDescriptorDataARM*: proc (device: VkDevice, pInfo: ptr VkTensorViewCaptureDescriptorDataInfoARM, pData: pointer): VkResult {.stdcall.}
+  vkGetPhysicalDeviceExternalTensorPropertiesARM*: proc (physicalDevice: VkPhysicalDevice, pExternalTensorInfo: ptr VkPhysicalDeviceExternalTensorInfoARM, pExternalTensorProperties: ptr VkExternalTensorPropertiesARM) {.stdcall.}
+  vkCreateDataGraphPipelinesARM*: proc (device: VkDevice, deferredOperation: VkDeferredOperationKHR, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkDataGraphPipelineCreateInfoARM, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}
+  vkCreateDataGraphPipelineSessionARM*: proc (device: VkDevice, pCreateInfo: ptr VkDataGraphPipelineSessionCreateInfoARM, pAllocator: ptr VkAllocationCallbacks, pSession: ptr VkDataGraphPipelineSessionARM): VkResult {.stdcall.}
+  vkGetDataGraphPipelineSessionBindPointRequirementsARM*: proc (device: VkDevice, pInfo: ptr VkDataGraphPipelineSessionBindPointRequirementsInfoARM, pBindPointRequirementCount: ptr uint32, pBindPointRequirements: ptr VkDataGraphPipelineSessionBindPointRequirementARM): VkResult {.stdcall.}
+  vkGetDataGraphPipelineSessionMemoryRequirementsARM*: proc (device: VkDevice, pInfo: ptr VkDataGraphPipelineSessionMemoryRequirementsInfoARM, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}
+  vkBindDataGraphPipelineSessionMemoryARM*: proc (device: VkDevice, bindInfoCount: uint32, pBindInfos: ptr VkBindDataGraphPipelineSessionMemoryInfoARM): VkResult {.stdcall.}
+  vkDestroyDataGraphPipelineSessionARM*: proc (device: VkDevice, session: VkDataGraphPipelineSessionARM, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}
+  vkCmdDispatchDataGraphARM*: proc (commandBuffer: VkCommandBuffer, session: VkDataGraphPipelineSessionARM, pInfo: ptr VkDataGraphPipelineDispatchInfoARM) {.stdcall.}
+  vkGetDataGraphPipelineAvailablePropertiesARM*: proc (device: VkDevice, pPipelineInfo: ptr VkDataGraphPipelineInfoARM, pPropertiesCount: ptr uint32, pProperties: ptr VkDataGraphPipelinePropertyARM): VkResult {.stdcall.}
+  vkGetDataGraphPipelinePropertiesARM*: proc (device: VkDevice, pPipelineInfo: ptr VkDataGraphPipelineInfoARM, propertiesCount: uint32, pProperties: ptr VkDataGraphPipelinePropertyQueryResultARM): VkResult {.stdcall.}
+  vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM*: proc (physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, pQueueFamilyDataGraphPropertyCount: ptr uint32, pQueueFamilyDataGraphProperties: ptr VkQueueFamilyDataGraphPropertiesARM): VkResult {.stdcall.}
+  vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM*: proc (physicalDevice: VkPhysicalDevice, pQueueFamilyDataGraphProcessingEngineInfo: ptr VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM, pQueueFamilyDataGraphProcessingEngineProperties: ptr VkQueueFamilyDataGraphProcessingEnginePropertiesARM) {.stdcall.}
+  vkGetNativeBufferPropertiesOHOS*: proc (device: VkDevice, buffer: ptr OH_NativeBuffer, pProperties: ptr VkNativeBufferPropertiesOHOS): VkResult {.stdcall.}
+  vkGetMemoryNativeBufferOHOS*: proc (device: VkDevice, pInfo: ptr VkMemoryGetNativeBufferInfoOHOS, pBuffer: ptr ptr OH_NativeBuffer): VkResult {.stdcall.}
+  vkGetSwapchainGrallocUsageOHOS*: proc (device: VkDevice, format: VkFormat, imageUsage: VkImageUsageFlags, grallocUsage: ptr uint64): VkResult {.stdcall.}
+  vkAcquireImageOHOS*: proc (device: VkDevice, image: VkImage, nativeFenceFd: int32, semaphore: VkSemaphore, fence: VkFence): VkResult {.stdcall.}
+  vkQueueSignalReleaseImageOHOS*: proc (queue: VkQueue, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, image: VkImage, pNativeFenceFd: ptr int32): VkResult {.stdcall.}
+  vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM*: proc (physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, pCounterCount: ptr uint32, pCounters: ptr VkPerformanceCounterARM, pCounterDescriptions: ptr VkPerformanceCounterDescriptionARM): VkResult {.stdcall.}
+  vkCmdSetComputeOccupancyPriorityNV*: proc (commandBuffer: VkCommandBuffer, pParameters: ptr VkComputeOccupancyPriorityParametersNV) {.stdcall.}
+  vkWriteSamplerDescriptorsEXT*: proc (device: VkDevice, samplerCount: uint32, pSamplers: ptr VkSamplerCreateInfo, pDescriptors: ptr VkHostAddressRangeEXT): VkResult {.stdcall.}
+  vkWriteResourceDescriptorsEXT*: proc (device: VkDevice, resourceCount: uint32, pResources: ptr VkResourceDescriptorInfoEXT, pDescriptors: ptr VkHostAddressRangeEXT): VkResult {.stdcall.}
+  vkCmdBindSamplerHeapEXT*: proc (commandBuffer: VkCommandBuffer, pBindInfo: ptr VkBindHeapInfoEXT) {.stdcall.}
+  vkCmdBindResourceHeapEXT*: proc (commandBuffer: VkCommandBuffer, pBindInfo: ptr VkBindHeapInfoEXT) {.stdcall.}
+  vkCmdPushDataEXT*: proc (commandBuffer: VkCommandBuffer, pPushDataInfo: ptr VkPushDataInfoEXT) {.stdcall.}
+  vkRegisterCustomBorderColorEXT*: proc (device: VkDevice, pBorderColor: ptr VkSamplerCustomBorderColorCreateInfoEXT, requestIndex: VkBool32, pIndex: ptr uint32): VkResult {.stdcall.}
+  vkUnregisterCustomBorderColorEXT*: proc (device: VkDevice, index: uint32) {.stdcall.}
+  vkGetImageOpaqueCaptureDataEXT*: proc (device: VkDevice, imageCount: uint32, pImages: ptr VkImage, pDatas: ptr VkHostAddressRangeEXT): VkResult {.stdcall.}
+  vkGetPhysicalDeviceDescriptorSizeEXT*: proc (physicalDevice: VkPhysicalDevice, descriptorType: VkDescriptorType): VkDeviceSize {.stdcall.}
+  vkGetTensorOpaqueCaptureDataARM*: proc (device: VkDevice, tensorCount: uint32, pTensors: ptr VkTensorARM, pDatas: ptr VkHostAddressRangeEXT): VkResult {.stdcall.}
 
 # Vulkan 1_0
 proc vkLoad1_0*() =
@@ -24294,6 +30039,7 @@ proc vkLoad1_0*() =
   vkCreateDevice = cast[proc (physicalDevice: VkPhysicalDevice, pCreateInfo: ptr VkDeviceCreateInfo, pAllocator: ptr VkAllocationCallbacks, pDevice: ptr VkDevice): VkResult {.stdcall.}](vkGetProc("vkCreateDevice"))
   vkDestroyDevice = cast[proc (device: VkDevice, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyDevice"))
   vkEnumerateDeviceExtensionProperties = cast[proc (physicalDevice: VkPhysicalDevice, pLayerName: cstring, pPropertyCount: ptr uint32, pProperties: ptr VkExtensionProperties): VkResult {.stdcall.}](vkGetProc("vkEnumerateDeviceExtensionProperties"))
+  vkEnumerateDeviceLayerProperties = cast[proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkLayerProperties): VkResult {.stdcall.}](vkGetProc("vkEnumerateDeviceLayerProperties"))
   vkEnumerateDeviceLayerProperties = cast[proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkLayerProperties): VkResult {.stdcall.}](vkGetProc("vkEnumerateDeviceLayerProperties"))
   vkGetDeviceQueue = cast[proc (device: VkDevice, queueFamilyIndex: uint32, queueIndex: uint32, pQueue: ptr VkQueue) {.stdcall.}](vkGetProc("vkGetDeviceQueue"))
   vkQueueSubmit = cast[proc (queue: VkQueue, submitCount: uint32, pSubmits: ptr VkSubmitInfo, fence: VkFence): VkResult {.stdcall.}](vkGetProc("vkQueueSubmit"))
@@ -24320,30 +30066,50 @@ proc vkLoad1_0*() =
   vkWaitForFences = cast[proc (device: VkDevice, fenceCount: uint32, pFences: ptr VkFence, waitAll: VkBool32, timeout: uint64): VkResult {.stdcall.}](vkGetProc("vkWaitForFences"))
   vkCreateSemaphore = cast[proc (device: VkDevice, pCreateInfo: ptr VkSemaphoreCreateInfo, pAllocator: ptr VkAllocationCallbacks, pSemaphore: ptr VkSemaphore): VkResult {.stdcall.}](vkGetProc("vkCreateSemaphore"))
   vkDestroySemaphore = cast[proc (device: VkDevice, semaphore: VkSemaphore, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroySemaphore"))
-  vkCreateEvent = cast[proc (device: VkDevice, pCreateInfo: ptr VkEventCreateInfo, pAllocator: ptr VkAllocationCallbacks, pEvent: ptr VkEvent): VkResult {.stdcall.}](vkGetProc("vkCreateEvent"))
-  vkDestroyEvent = cast[proc (device: VkDevice, event: VkEvent, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyEvent"))
-  vkGetEventStatus = cast[proc (device: VkDevice, event: VkEvent): VkResult {.stdcall.}](vkGetProc("vkGetEventStatus"))
-  vkSetEvent = cast[proc (device: VkDevice, event: VkEvent): VkResult {.stdcall.}](vkGetProc("vkSetEvent"))
-  vkResetEvent = cast[proc (device: VkDevice, event: VkEvent): VkResult {.stdcall.}](vkGetProc("vkResetEvent"))
   vkCreateQueryPool = cast[proc (device: VkDevice, pCreateInfo: ptr VkQueryPoolCreateInfo, pAllocator: ptr VkAllocationCallbacks, pQueryPool: ptr VkQueryPool): VkResult {.stdcall.}](vkGetProc("vkCreateQueryPool"))
   vkDestroyQueryPool = cast[proc (device: VkDevice, queryPool: VkQueryPool, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyQueryPool"))
   vkGetQueryPoolResults = cast[proc (device: VkDevice, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32, dataSize: uint, pData: pointer, stride: VkDeviceSize, flags: VkQueryResultFlags): VkResult {.stdcall.}](vkGetProc("vkGetQueryPoolResults"))
   vkCreateBuffer = cast[proc (device: VkDevice, pCreateInfo: ptr VkBufferCreateInfo, pAllocator: ptr VkAllocationCallbacks, pBuffer: ptr VkBuffer): VkResult {.stdcall.}](vkGetProc("vkCreateBuffer"))
   vkDestroyBuffer = cast[proc (device: VkDevice, buffer: VkBuffer, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyBuffer"))
-  vkCreateBufferView = cast[proc (device: VkDevice, pCreateInfo: ptr VkBufferViewCreateInfo, pAllocator: ptr VkAllocationCallbacks, pView: ptr VkBufferView): VkResult {.stdcall.}](vkGetProc("vkCreateBufferView"))
-  vkDestroyBufferView = cast[proc (device: VkDevice, bufferView: VkBufferView, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyBufferView"))
   vkCreateImage = cast[proc (device: VkDevice, pCreateInfo: ptr VkImageCreateInfo, pAllocator: ptr VkAllocationCallbacks, pImage: ptr VkImage): VkResult {.stdcall.}](vkGetProc("vkCreateImage"))
   vkDestroyImage = cast[proc (device: VkDevice, image: VkImage, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyImage"))
   vkGetImageSubresourceLayout = cast[proc (device: VkDevice, image: VkImage, pSubresource: ptr VkImageSubresource, pLayout: ptr VkSubresourceLayout) {.stdcall.}](vkGetProc("vkGetImageSubresourceLayout"))
   vkCreateImageView = cast[proc (device: VkDevice, pCreateInfo: ptr VkImageViewCreateInfo, pAllocator: ptr VkAllocationCallbacks, pView: ptr VkImageView): VkResult {.stdcall.}](vkGetProc("vkCreateImageView"))
   vkDestroyImageView = cast[proc (device: VkDevice, imageView: VkImageView, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyImageView"))
+  vkCreateCommandPool = cast[proc (device: VkDevice, pCreateInfo: ptr VkCommandPoolCreateInfo, pAllocator: ptr VkAllocationCallbacks, pCommandPool: ptr VkCommandPool): VkResult {.stdcall.}](vkGetProc("vkCreateCommandPool"))
+  vkDestroyCommandPool = cast[proc (device: VkDevice, commandPool: VkCommandPool, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyCommandPool"))
+  vkResetCommandPool = cast[proc (device: VkDevice, commandPool: VkCommandPool, flags: VkCommandPoolResetFlags): VkResult {.stdcall.}](vkGetProc("vkResetCommandPool"))
+  vkAllocateCommandBuffers = cast[proc (device: VkDevice, pAllocateInfo: ptr VkCommandBufferAllocateInfo, pCommandBuffers: ptr VkCommandBuffer): VkResult {.stdcall.}](vkGetProc("vkAllocateCommandBuffers"))
+  vkFreeCommandBuffers = cast[proc (device: VkDevice, commandPool: VkCommandPool, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer) {.stdcall.}](vkGetProc("vkFreeCommandBuffers"))
+  vkBeginCommandBuffer = cast[proc (commandBuffer: VkCommandBuffer, pBeginInfo: ptr VkCommandBufferBeginInfo): VkResult {.stdcall.}](vkGetProc("vkBeginCommandBuffer"))
+  vkEndCommandBuffer = cast[proc (commandBuffer: VkCommandBuffer): VkResult {.stdcall.}](vkGetProc("vkEndCommandBuffer"))
+  vkResetCommandBuffer = cast[proc (commandBuffer: VkCommandBuffer, flags: VkCommandBufferResetFlags): VkResult {.stdcall.}](vkGetProc("vkResetCommandBuffer"))
+  vkCmdCopyBuffer = cast[proc (commandBuffer: VkCommandBuffer, srcBuffer: VkBuffer, dstBuffer: VkBuffer, regionCount: uint32, pRegions: ptr VkBufferCopy) {.stdcall.}](vkGetProc("vkCmdCopyBuffer"))
+  vkCmdCopyImage = cast[proc (commandBuffer: VkCommandBuffer, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageCopy) {.stdcall.}](vkGetProc("vkCmdCopyImage"))
+  vkCmdCopyBufferToImage = cast[proc (commandBuffer: VkCommandBuffer, srcBuffer: VkBuffer, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkBufferImageCopy) {.stdcall.}](vkGetProc("vkCmdCopyBufferToImage"))
+  vkCmdCopyImageToBuffer = cast[proc (commandBuffer: VkCommandBuffer, srcImage: VkImage, srcImageLayout: VkImageLayout, dstBuffer: VkBuffer, regionCount: uint32, pRegions: ptr VkBufferImageCopy) {.stdcall.}](vkGetProc("vkCmdCopyImageToBuffer"))
+  vkCmdUpdateBuffer = cast[proc (commandBuffer: VkCommandBuffer, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, dataSize: VkDeviceSize, pData: pointer) {.stdcall.}](vkGetProc("vkCmdUpdateBuffer"))
+  vkCmdFillBuffer = cast[proc (commandBuffer: VkCommandBuffer, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, size: VkDeviceSize, data: uint32) {.stdcall.}](vkGetProc("vkCmdFillBuffer"))
+  vkCmdPipelineBarrier = cast[proc (commandBuffer: VkCommandBuffer, srcStageMask: VkPipelineStageFlags, dstStageMask: VkPipelineStageFlags, dependencyFlags: VkDependencyFlags, memoryBarrierCount: uint32, pMemoryBarriers: ptr VkMemoryBarrier, bufferMemoryBarrierCount: uint32, pBufferMemoryBarriers: ptr VkBufferMemoryBarrier, imageMemoryBarrierCount: uint32, pImageMemoryBarriers: ptr VkImageMemoryBarrier) {.stdcall.}](vkGetProc("vkCmdPipelineBarrier"))
+  vkCmdBeginQuery = cast[proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, query: uint32, flags: VkQueryControlFlags) {.stdcall.}](vkGetProc("vkCmdBeginQuery"))
+  vkCmdEndQuery = cast[proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, query: uint32) {.stdcall.}](vkGetProc("vkCmdEndQuery"))
+  vkCmdResetQueryPool = cast[proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32) {.stdcall.}](vkGetProc("vkCmdResetQueryPool"))
+  vkCmdWriteTimestamp = cast[proc (commandBuffer: VkCommandBuffer, pipelineStage: VkPipelineStageFlagBits, queryPool: VkQueryPool, query: uint32) {.stdcall.}](vkGetProc("vkCmdWriteTimestamp"))
+  vkCmdCopyQueryPoolResults = cast[proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, stride: VkDeviceSize, flags: VkQueryResultFlags) {.stdcall.}](vkGetProc("vkCmdCopyQueryPoolResults"))
+  vkCmdExecuteCommands = cast[proc (commandBuffer: VkCommandBuffer, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer) {.stdcall.}](vkGetProc("vkCmdExecuteCommands"))
+  vkCreateEvent = cast[proc (device: VkDevice, pCreateInfo: ptr VkEventCreateInfo, pAllocator: ptr VkAllocationCallbacks, pEvent: ptr VkEvent): VkResult {.stdcall.}](vkGetProc("vkCreateEvent"))
+  vkDestroyEvent = cast[proc (device: VkDevice, event: VkEvent, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyEvent"))
+  vkGetEventStatus = cast[proc (device: VkDevice, event: VkEvent): VkResult {.stdcall.}](vkGetProc("vkGetEventStatus"))
+  vkSetEvent = cast[proc (device: VkDevice, event: VkEvent): VkResult {.stdcall.}](vkGetProc("vkSetEvent"))
+  vkResetEvent = cast[proc (device: VkDevice, event: VkEvent): VkResult {.stdcall.}](vkGetProc("vkResetEvent"))
+  vkCreateBufferView = cast[proc (device: VkDevice, pCreateInfo: ptr VkBufferViewCreateInfo, pAllocator: ptr VkAllocationCallbacks, pView: ptr VkBufferView): VkResult {.stdcall.}](vkGetProc("vkCreateBufferView"))
+  vkDestroyBufferView = cast[proc (device: VkDevice, bufferView: VkBufferView, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyBufferView"))
   vkCreateShaderModule = cast[proc (device: VkDevice, pCreateInfo: ptr VkShaderModuleCreateInfo, pAllocator: ptr VkAllocationCallbacks, pShaderModule: ptr VkShaderModule): VkResult {.stdcall.}](vkGetProc("vkCreateShaderModule"))
   vkDestroyShaderModule = cast[proc (device: VkDevice, shaderModule: VkShaderModule, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyShaderModule"))
   vkCreatePipelineCache = cast[proc (device: VkDevice, pCreateInfo: ptr VkPipelineCacheCreateInfo, pAllocator: ptr VkAllocationCallbacks, pPipelineCache: ptr VkPipelineCache): VkResult {.stdcall.}](vkGetProc("vkCreatePipelineCache"))
   vkDestroyPipelineCache = cast[proc (device: VkDevice, pipelineCache: VkPipelineCache, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyPipelineCache"))
   vkGetPipelineCacheData = cast[proc (device: VkDevice, pipelineCache: VkPipelineCache, pDataSize: ptr uint, pData: pointer): VkResult {.stdcall.}](vkGetProc("vkGetPipelineCacheData"))
   vkMergePipelineCaches = cast[proc (device: VkDevice, dstCache: VkPipelineCache, srcCacheCount: uint32, pSrcCaches: ptr VkPipelineCache): VkResult {.stdcall.}](vkGetProc("vkMergePipelineCaches"))
-  vkCreateGraphicsPipelines = cast[proc (device: VkDevice, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkGraphicsPipelineCreateInfo, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}](vkGetProc("vkCreateGraphicsPipelines"))
   vkCreateComputePipelines = cast[proc (device: VkDevice, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkComputePipelineCreateInfo, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}](vkGetProc("vkCreateComputePipelines"))
   vkDestroyPipeline = cast[proc (device: VkDevice, pipeline: VkPipeline, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyPipeline"))
   vkCreatePipelineLayout = cast[proc (device: VkDevice, pCreateInfo: ptr VkPipelineLayoutCreateInfo, pAllocator: ptr VkAllocationCallbacks, pPipelineLayout: ptr VkPipelineLayout): VkResult {.stdcall.}](vkGetProc("vkCreatePipelineLayout"))
@@ -24358,20 +30124,21 @@ proc vkLoad1_0*() =
   vkAllocateDescriptorSets = cast[proc (device: VkDevice, pAllocateInfo: ptr VkDescriptorSetAllocateInfo, pDescriptorSets: ptr VkDescriptorSet): VkResult {.stdcall.}](vkGetProc("vkAllocateDescriptorSets"))
   vkFreeDescriptorSets = cast[proc (device: VkDevice, descriptorPool: VkDescriptorPool, descriptorSetCount: uint32, pDescriptorSets: ptr VkDescriptorSet): VkResult {.stdcall.}](vkGetProc("vkFreeDescriptorSets"))
   vkUpdateDescriptorSets = cast[proc (device: VkDevice, descriptorWriteCount: uint32, pDescriptorWrites: ptr VkWriteDescriptorSet, descriptorCopyCount: uint32, pDescriptorCopies: ptr VkCopyDescriptorSet) {.stdcall.}](vkGetProc("vkUpdateDescriptorSets"))
+  vkCmdBindPipeline = cast[proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, pipeline: VkPipeline) {.stdcall.}](vkGetProc("vkCmdBindPipeline"))
+  vkCmdBindDescriptorSets = cast[proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, layout: VkPipelineLayout, firstSet: uint32, descriptorSetCount: uint32, pDescriptorSets: ptr VkDescriptorSet, dynamicOffsetCount: uint32, pDynamicOffsets: ptr uint32) {.stdcall.}](vkGetProc("vkCmdBindDescriptorSets"))
+  vkCmdClearColorImage = cast[proc (commandBuffer: VkCommandBuffer, image: VkImage, imageLayout: VkImageLayout, pColor: ptr VkClearColorValue, rangeCount: uint32, pRanges: ptr VkImageSubresourceRange) {.stdcall.}](vkGetProc("vkCmdClearColorImage"))
+  vkCmdDispatch = cast[proc (commandBuffer: VkCommandBuffer, groupCountX: uint32, groupCountY: uint32, groupCountZ: uint32) {.stdcall.}](vkGetProc("vkCmdDispatch"))
+  vkCmdDispatchIndirect = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize) {.stdcall.}](vkGetProc("vkCmdDispatchIndirect"))
+  vkCmdSetEvent = cast[proc (commandBuffer: VkCommandBuffer, event: VkEvent, stageMask: VkPipelineStageFlags) {.stdcall.}](vkGetProc("vkCmdSetEvent"))
+  vkCmdResetEvent = cast[proc (commandBuffer: VkCommandBuffer, event: VkEvent, stageMask: VkPipelineStageFlags) {.stdcall.}](vkGetProc("vkCmdResetEvent"))
+  vkCmdWaitEvents = cast[proc (commandBuffer: VkCommandBuffer, eventCount: uint32, pEvents: ptr VkEvent, srcStageMask: VkPipelineStageFlags, dstStageMask: VkPipelineStageFlags, memoryBarrierCount: uint32, pMemoryBarriers: ptr VkMemoryBarrier, bufferMemoryBarrierCount: uint32, pBufferMemoryBarriers: ptr VkBufferMemoryBarrier, imageMemoryBarrierCount: uint32, pImageMemoryBarriers: ptr VkImageMemoryBarrier) {.stdcall.}](vkGetProc("vkCmdWaitEvents"))
+  vkCmdPushConstants = cast[proc (commandBuffer: VkCommandBuffer, layout: VkPipelineLayout, stageFlags: VkShaderStageFlags, offset: uint32, size: uint32, pValues: pointer) {.stdcall.}](vkGetProc("vkCmdPushConstants"))
+  vkCreateGraphicsPipelines = cast[proc (device: VkDevice, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkGraphicsPipelineCreateInfo, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}](vkGetProc("vkCreateGraphicsPipelines"))
   vkCreateFramebuffer = cast[proc (device: VkDevice, pCreateInfo: ptr VkFramebufferCreateInfo, pAllocator: ptr VkAllocationCallbacks, pFramebuffer: ptr VkFramebuffer): VkResult {.stdcall.}](vkGetProc("vkCreateFramebuffer"))
   vkDestroyFramebuffer = cast[proc (device: VkDevice, framebuffer: VkFramebuffer, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyFramebuffer"))
   vkCreateRenderPass = cast[proc (device: VkDevice, pCreateInfo: ptr VkRenderPassCreateInfo, pAllocator: ptr VkAllocationCallbacks, pRenderPass: ptr VkRenderPass): VkResult {.stdcall.}](vkGetProc("vkCreateRenderPass"))
   vkDestroyRenderPass = cast[proc (device: VkDevice, renderPass: VkRenderPass, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyRenderPass"))
   vkGetRenderAreaGranularity = cast[proc (device: VkDevice, renderPass: VkRenderPass, pGranularity: ptr VkExtent2D) {.stdcall.}](vkGetProc("vkGetRenderAreaGranularity"))
-  vkCreateCommandPool = cast[proc (device: VkDevice, pCreateInfo: ptr VkCommandPoolCreateInfo, pAllocator: ptr VkAllocationCallbacks, pCommandPool: ptr VkCommandPool): VkResult {.stdcall.}](vkGetProc("vkCreateCommandPool"))
-  vkDestroyCommandPool = cast[proc (device: VkDevice, commandPool: VkCommandPool, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyCommandPool"))
-  vkResetCommandPool = cast[proc (device: VkDevice, commandPool: VkCommandPool, flags: VkCommandPoolResetFlags): VkResult {.stdcall.}](vkGetProc("vkResetCommandPool"))
-  vkAllocateCommandBuffers = cast[proc (device: VkDevice, pAllocateInfo: ptr VkCommandBufferAllocateInfo, pCommandBuffers: ptr VkCommandBuffer): VkResult {.stdcall.}](vkGetProc("vkAllocateCommandBuffers"))
-  vkFreeCommandBuffers = cast[proc (device: VkDevice, commandPool: VkCommandPool, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer) {.stdcall.}](vkGetProc("vkFreeCommandBuffers"))
-  vkBeginCommandBuffer = cast[proc (commandBuffer: VkCommandBuffer, pBeginInfo: ptr VkCommandBufferBeginInfo): VkResult {.stdcall.}](vkGetProc("vkBeginCommandBuffer"))
-  vkEndCommandBuffer = cast[proc (commandBuffer: VkCommandBuffer): VkResult {.stdcall.}](vkGetProc("vkEndCommandBuffer"))
-  vkResetCommandBuffer = cast[proc (commandBuffer: VkCommandBuffer, flags: VkCommandBufferResetFlags): VkResult {.stdcall.}](vkGetProc("vkResetCommandBuffer"))
-  vkCmdBindPipeline = cast[proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, pipeline: VkPipeline) {.stdcall.}](vkGetProc("vkCmdBindPipeline"))
   vkCmdSetViewport = cast[proc (commandBuffer: VkCommandBuffer, firstViewport: uint32, viewportCount: uint32, pViewports: ptr VkViewport) {.stdcall.}](vkGetProc("vkCmdSetViewport"))
   vkCmdSetScissor = cast[proc (commandBuffer: VkCommandBuffer, firstScissor: uint32, scissorCount: uint32, pScissors: ptr VkRect2D) {.stdcall.}](vkGetProc("vkCmdSetScissor"))
   vkCmdSetLineWidth = cast[proc (commandBuffer: VkCommandBuffer, lineWidth: float32) {.stdcall.}](vkGetProc("vkCmdSetLineWidth"))
@@ -24381,40 +30148,19 @@ proc vkLoad1_0*() =
   vkCmdSetStencilCompareMask = cast[proc (commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, compareMask: uint32) {.stdcall.}](vkGetProc("vkCmdSetStencilCompareMask"))
   vkCmdSetStencilWriteMask = cast[proc (commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, writeMask: uint32) {.stdcall.}](vkGetProc("vkCmdSetStencilWriteMask"))
   vkCmdSetStencilReference = cast[proc (commandBuffer: VkCommandBuffer, faceMask: VkStencilFaceFlags, reference: uint32) {.stdcall.}](vkGetProc("vkCmdSetStencilReference"))
-  vkCmdBindDescriptorSets = cast[proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, layout: VkPipelineLayout, firstSet: uint32, descriptorSetCount: uint32, pDescriptorSets: ptr VkDescriptorSet, dynamicOffsetCount: uint32, pDynamicOffsets: ptr uint32) {.stdcall.}](vkGetProc("vkCmdBindDescriptorSets"))
   vkCmdBindIndexBuffer = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, indexType: VkIndexType) {.stdcall.}](vkGetProc("vkCmdBindIndexBuffer"))
   vkCmdBindVertexBuffers = cast[proc (commandBuffer: VkCommandBuffer, firstBinding: uint32, bindingCount: uint32, pBuffers: ptr VkBuffer, pOffsets: ptr VkDeviceSize) {.stdcall.}](vkGetProc("vkCmdBindVertexBuffers"))
   vkCmdDraw = cast[proc (commandBuffer: VkCommandBuffer, vertexCount: uint32, instanceCount: uint32, firstVertex: uint32, firstInstance: uint32) {.stdcall.}](vkGetProc("vkCmdDraw"))
   vkCmdDrawIndexed = cast[proc (commandBuffer: VkCommandBuffer, indexCount: uint32, instanceCount: uint32, firstIndex: uint32, vertexOffset: int32, firstInstance: uint32) {.stdcall.}](vkGetProc("vkCmdDrawIndexed"))
   vkCmdDrawIndirect = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, drawCount: uint32, stride: uint32) {.stdcall.}](vkGetProc("vkCmdDrawIndirect"))
   vkCmdDrawIndexedIndirect = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, drawCount: uint32, stride: uint32) {.stdcall.}](vkGetProc("vkCmdDrawIndexedIndirect"))
-  vkCmdDispatch = cast[proc (commandBuffer: VkCommandBuffer, groupCountX: uint32, groupCountY: uint32, groupCountZ: uint32) {.stdcall.}](vkGetProc("vkCmdDispatch"))
-  vkCmdDispatchIndirect = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize) {.stdcall.}](vkGetProc("vkCmdDispatchIndirect"))
-  vkCmdCopyBuffer = cast[proc (commandBuffer: VkCommandBuffer, srcBuffer: VkBuffer, dstBuffer: VkBuffer, regionCount: uint32, pRegions: ptr VkBufferCopy) {.stdcall.}](vkGetProc("vkCmdCopyBuffer"))
-  vkCmdCopyImage = cast[proc (commandBuffer: VkCommandBuffer, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageCopy) {.stdcall.}](vkGetProc("vkCmdCopyImage"))
   vkCmdBlitImage = cast[proc (commandBuffer: VkCommandBuffer, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageBlit, filter: VkFilter) {.stdcall.}](vkGetProc("vkCmdBlitImage"))
-  vkCmdCopyBufferToImage = cast[proc (commandBuffer: VkCommandBuffer, srcBuffer: VkBuffer, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkBufferImageCopy) {.stdcall.}](vkGetProc("vkCmdCopyBufferToImage"))
-  vkCmdCopyImageToBuffer = cast[proc (commandBuffer: VkCommandBuffer, srcImage: VkImage, srcImageLayout: VkImageLayout, dstBuffer: VkBuffer, regionCount: uint32, pRegions: ptr VkBufferImageCopy) {.stdcall.}](vkGetProc("vkCmdCopyImageToBuffer"))
-  vkCmdUpdateBuffer = cast[proc (commandBuffer: VkCommandBuffer, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, dataSize: VkDeviceSize, pData: pointer) {.stdcall.}](vkGetProc("vkCmdUpdateBuffer"))
-  vkCmdFillBuffer = cast[proc (commandBuffer: VkCommandBuffer, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, size: VkDeviceSize, data: uint32) {.stdcall.}](vkGetProc("vkCmdFillBuffer"))
-  vkCmdClearColorImage = cast[proc (commandBuffer: VkCommandBuffer, image: VkImage, imageLayout: VkImageLayout, pColor: ptr VkClearColorValue, rangeCount: uint32, pRanges: ptr VkImageSubresourceRange) {.stdcall.}](vkGetProc("vkCmdClearColorImage"))
   vkCmdClearDepthStencilImage = cast[proc (commandBuffer: VkCommandBuffer, image: VkImage, imageLayout: VkImageLayout, pDepthStencil: ptr VkClearDepthStencilValue, rangeCount: uint32, pRanges: ptr VkImageSubresourceRange) {.stdcall.}](vkGetProc("vkCmdClearDepthStencilImage"))
   vkCmdClearAttachments = cast[proc (commandBuffer: VkCommandBuffer, attachmentCount: uint32, pAttachments: ptr VkClearAttachment, rectCount: uint32, pRects: ptr VkClearRect) {.stdcall.}](vkGetProc("vkCmdClearAttachments"))
   vkCmdResolveImage = cast[proc (commandBuffer: VkCommandBuffer, srcImage: VkImage, srcImageLayout: VkImageLayout, dstImage: VkImage, dstImageLayout: VkImageLayout, regionCount: uint32, pRegions: ptr VkImageResolve) {.stdcall.}](vkGetProc("vkCmdResolveImage"))
-  vkCmdSetEvent = cast[proc (commandBuffer: VkCommandBuffer, event: VkEvent, stageMask: VkPipelineStageFlags) {.stdcall.}](vkGetProc("vkCmdSetEvent"))
-  vkCmdResetEvent = cast[proc (commandBuffer: VkCommandBuffer, event: VkEvent, stageMask: VkPipelineStageFlags) {.stdcall.}](vkGetProc("vkCmdResetEvent"))
-  vkCmdWaitEvents = cast[proc (commandBuffer: VkCommandBuffer, eventCount: uint32, pEvents: ptr VkEvent, srcStageMask: VkPipelineStageFlags, dstStageMask: VkPipelineStageFlags, memoryBarrierCount: uint32, pMemoryBarriers: ptr VkMemoryBarrier, bufferMemoryBarrierCount: uint32, pBufferMemoryBarriers: ptr VkBufferMemoryBarrier, imageMemoryBarrierCount: uint32, pImageMemoryBarriers: ptr VkImageMemoryBarrier) {.stdcall.}](vkGetProc("vkCmdWaitEvents"))
-  vkCmdPipelineBarrier = cast[proc (commandBuffer: VkCommandBuffer, srcStageMask: VkPipelineStageFlags, dstStageMask: VkPipelineStageFlags, dependencyFlags: VkDependencyFlags, memoryBarrierCount: uint32, pMemoryBarriers: ptr VkMemoryBarrier, bufferMemoryBarrierCount: uint32, pBufferMemoryBarriers: ptr VkBufferMemoryBarrier, imageMemoryBarrierCount: uint32, pImageMemoryBarriers: ptr VkImageMemoryBarrier) {.stdcall.}](vkGetProc("vkCmdPipelineBarrier"))
-  vkCmdBeginQuery = cast[proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, query: uint32, flags: VkQueryControlFlags) {.stdcall.}](vkGetProc("vkCmdBeginQuery"))
-  vkCmdEndQuery = cast[proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, query: uint32) {.stdcall.}](vkGetProc("vkCmdEndQuery"))
-  vkCmdResetQueryPool = cast[proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32) {.stdcall.}](vkGetProc("vkCmdResetQueryPool"))
-  vkCmdWriteTimestamp = cast[proc (commandBuffer: VkCommandBuffer, pipelineStage: VkPipelineStageFlagBits, queryPool: VkQueryPool, query: uint32) {.stdcall.}](vkGetProc("vkCmdWriteTimestamp"))
-  vkCmdCopyQueryPoolResults = cast[proc (commandBuffer: VkCommandBuffer, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, stride: VkDeviceSize, flags: VkQueryResultFlags) {.stdcall.}](vkGetProc("vkCmdCopyQueryPoolResults"))
-  vkCmdPushConstants = cast[proc (commandBuffer: VkCommandBuffer, layout: VkPipelineLayout, stageFlags: VkShaderStageFlags, offset: uint32, size: uint32, pValues: pointer) {.stdcall.}](vkGetProc("vkCmdPushConstants"))
   vkCmdBeginRenderPass = cast[proc (commandBuffer: VkCommandBuffer, pRenderPassBegin: ptr VkRenderPassBeginInfo, contents: VkSubpassContents) {.stdcall.}](vkGetProc("vkCmdBeginRenderPass"))
   vkCmdNextSubpass = cast[proc (commandBuffer: VkCommandBuffer, contents: VkSubpassContents) {.stdcall.}](vkGetProc("vkCmdNextSubpass"))
   vkCmdEndRenderPass = cast[proc (commandBuffer: VkCommandBuffer) {.stdcall.}](vkGetProc("vkCmdEndRenderPass"))
-  vkCmdExecuteCommands = cast[proc (commandBuffer: VkCommandBuffer, commandBufferCount: uint32, pCommandBuffers: ptr VkCommandBuffer) {.stdcall.}](vkGetProc("vkCmdExecuteCommands"))
 
 # Vulkan 1_1
 proc vkLoad1_1*() =
@@ -24422,7 +30168,6 @@ proc vkLoad1_1*() =
   vkBindImageMemory2 = cast[proc (device: VkDevice, bindInfoCount: uint32, pBindInfos: ptr VkBindImageMemoryInfo): VkResult {.stdcall.}](vkGetProc("vkBindImageMemory2"))
   vkGetDeviceGroupPeerMemoryFeatures = cast[proc (device: VkDevice, heapIndex: uint32, localDeviceIndex: uint32, remoteDeviceIndex: uint32, pPeerMemoryFeatures: ptr VkPeerMemoryFeatureFlags) {.stdcall.}](vkGetProc("vkGetDeviceGroupPeerMemoryFeatures"))
   vkCmdSetDeviceMask = cast[proc (commandBuffer: VkCommandBuffer, deviceMask: uint32) {.stdcall.}](vkGetProc("vkCmdSetDeviceMask"))
-  vkCmdDispatchBase = cast[proc (commandBuffer: VkCommandBuffer, baseGroupX: uint32, baseGroupY: uint32, baseGroupZ: uint32, groupCountX: uint32, groupCountY: uint32, groupCountZ: uint32) {.stdcall.}](vkGetProc("vkCmdDispatchBase"))
   vkEnumeratePhysicalDeviceGroups = cast[proc (instance: VkInstance, pPhysicalDeviceGroupCount: ptr uint32, pPhysicalDeviceGroupProperties: ptr VkPhysicalDeviceGroupProperties): VkResult {.stdcall.}](vkGetProc("vkEnumeratePhysicalDeviceGroups"))
   vkGetImageMemoryRequirements2 = cast[proc (device: VkDevice, pInfo: ptr VkImageMemoryRequirementsInfo2, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetImageMemoryRequirements2"))
   vkGetBufferMemoryRequirements2 = cast[proc (device: VkDevice, pInfo: ptr VkBufferMemoryRequirementsInfo2, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetBufferMemoryRequirements2"))
@@ -24436,24 +30181,26 @@ proc vkLoad1_1*() =
   vkGetPhysicalDeviceSparseImageFormatProperties2 = cast[proc (physicalDevice: VkPhysicalDevice, pFormatInfo: ptr VkPhysicalDeviceSparseImageFormatInfo2, pPropertyCount: ptr uint32, pProperties: ptr VkSparseImageFormatProperties2) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceSparseImageFormatProperties2"))
   vkTrimCommandPool = cast[proc (device: VkDevice, commandPool: VkCommandPool, flags: VkCommandPoolTrimFlags) {.stdcall.}](vkGetProc("vkTrimCommandPool"))
   vkGetDeviceQueue2 = cast[proc (device: VkDevice, pQueueInfo: ptr VkDeviceQueueInfo2, pQueue: ptr VkQueue) {.stdcall.}](vkGetProc("vkGetDeviceQueue2"))
-  vkCreateSamplerYcbcrConversion = cast[proc (device: VkDevice, pCreateInfo: ptr VkSamplerYcbcrConversionCreateInfo, pAllocator: ptr VkAllocationCallbacks, pYcbcrConversion: ptr VkSamplerYcbcrConversion): VkResult {.stdcall.}](vkGetProc("vkCreateSamplerYcbcrConversion"))
-  vkDestroySamplerYcbcrConversion = cast[proc (device: VkDevice, ycbcrConversion: VkSamplerYcbcrConversion, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroySamplerYcbcrConversion"))
-  vkCreateDescriptorUpdateTemplate = cast[proc (device: VkDevice, pCreateInfo: ptr VkDescriptorUpdateTemplateCreateInfo, pAllocator: ptr VkAllocationCallbacks, pDescriptorUpdateTemplate: ptr VkDescriptorUpdateTemplate): VkResult {.stdcall.}](vkGetProc("vkCreateDescriptorUpdateTemplate"))
-  vkDestroyDescriptorUpdateTemplate = cast[proc (device: VkDevice, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyDescriptorUpdateTemplate"))
-  vkUpdateDescriptorSetWithTemplate = cast[proc (device: VkDevice, descriptorSet: VkDescriptorSet, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, pData: pointer) {.stdcall.}](vkGetProc("vkUpdateDescriptorSetWithTemplate"))
   vkGetPhysicalDeviceExternalBufferProperties = cast[proc (physicalDevice: VkPhysicalDevice, pExternalBufferInfo: ptr VkPhysicalDeviceExternalBufferInfo, pExternalBufferProperties: ptr VkExternalBufferProperties) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceExternalBufferProperties"))
   vkGetPhysicalDeviceExternalFenceProperties = cast[proc (physicalDevice: VkPhysicalDevice, pExternalFenceInfo: ptr VkPhysicalDeviceExternalFenceInfo, pExternalFenceProperties: ptr VkExternalFenceProperties) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceExternalFenceProperties"))
   vkGetPhysicalDeviceExternalSemaphoreProperties = cast[proc (physicalDevice: VkPhysicalDevice, pExternalSemaphoreInfo: ptr VkPhysicalDeviceExternalSemaphoreInfo, pExternalSemaphoreProperties: ptr VkExternalSemaphoreProperties) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceExternalSemaphoreProperties"))
+  vkGetPhysicalDeviceFeatures = cast[proc (physicalDevice: VkPhysicalDevice, pFeatures: ptr VkPhysicalDeviceFeatures) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceFeatures"))
+  vkGetPhysicalDeviceProperties = cast[proc (physicalDevice: VkPhysicalDevice, pProperties: ptr VkPhysicalDeviceProperties) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceProperties"))
+  vkGetPhysicalDeviceFormatProperties = cast[proc (physicalDevice: VkPhysicalDevice, format: VkFormat, pFormatProperties: ptr VkFormatProperties) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceFormatProperties"))
+  vkGetPhysicalDeviceImageFormatProperties = cast[proc (physicalDevice: VkPhysicalDevice, format: VkFormat, `type`: VkImageType, tiling: VkImageTiling, usage: VkImageUsageFlags, flags: VkImageCreateFlags, pImageFormatProperties: ptr VkImageFormatProperties): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceImageFormatProperties"))
+  vkGetPhysicalDeviceQueueFamilyProperties = cast[proc (physicalDevice: VkPhysicalDevice, pQueueFamilyPropertyCount: ptr uint32, pQueueFamilyProperties: ptr VkQueueFamilyProperties) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceQueueFamilyProperties"))
+  vkGetPhysicalDeviceMemoryProperties = cast[proc (physicalDevice: VkPhysicalDevice, pMemoryProperties: ptr VkPhysicalDeviceMemoryProperties) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceMemoryProperties"))
+  vkGetPhysicalDeviceSparseImageFormatProperties = cast[proc (physicalDevice: VkPhysicalDevice, format: VkFormat, `type`: VkImageType, samples: VkSampleCountFlagBits, usage: VkImageUsageFlags, tiling: VkImageTiling, pPropertyCount: ptr uint32, pProperties: ptr VkSparseImageFormatProperties) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceSparseImageFormatProperties"))
+  vkCmdDispatchBase = cast[proc (commandBuffer: VkCommandBuffer, baseGroupX: uint32, baseGroupY: uint32, baseGroupZ: uint32, groupCountX: uint32, groupCountY: uint32, groupCountZ: uint32) {.stdcall.}](vkGetProc("vkCmdDispatchBase"))
+  vkCreateDescriptorUpdateTemplate = cast[proc (device: VkDevice, pCreateInfo: ptr VkDescriptorUpdateTemplateCreateInfo, pAllocator: ptr VkAllocationCallbacks, pDescriptorUpdateTemplate: ptr VkDescriptorUpdateTemplate): VkResult {.stdcall.}](vkGetProc("vkCreateDescriptorUpdateTemplate"))
+  vkDestroyDescriptorUpdateTemplate = cast[proc (device: VkDevice, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyDescriptorUpdateTemplate"))
+  vkUpdateDescriptorSetWithTemplate = cast[proc (device: VkDevice, descriptorSet: VkDescriptorSet, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, pData: pointer) {.stdcall.}](vkGetProc("vkUpdateDescriptorSetWithTemplate"))
   vkGetDescriptorSetLayoutSupport = cast[proc (device: VkDevice, pCreateInfo: ptr VkDescriptorSetLayoutCreateInfo, pSupport: ptr VkDescriptorSetLayoutSupport) {.stdcall.}](vkGetProc("vkGetDescriptorSetLayoutSupport"))
+  vkCreateSamplerYcbcrConversion = cast[proc (device: VkDevice, pCreateInfo: ptr VkSamplerYcbcrConversionCreateInfo, pAllocator: ptr VkAllocationCallbacks, pYcbcrConversion: ptr VkSamplerYcbcrConversion): VkResult {.stdcall.}](vkGetProc("vkCreateSamplerYcbcrConversion"))
+  vkDestroySamplerYcbcrConversion = cast[proc (device: VkDevice, ycbcrConversion: VkSamplerYcbcrConversion, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroySamplerYcbcrConversion"))
 
 # Vulkan 1_2
 proc vkLoad1_2*() =
-  vkCmdDrawIndirectCount = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, countBuffer: VkBuffer, countBufferOffset: VkDeviceSize, maxDrawCount: uint32, stride: uint32) {.stdcall.}](vkGetProc("vkCmdDrawIndirectCount"))
-  vkCmdDrawIndexedIndirectCount = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, countBuffer: VkBuffer, countBufferOffset: VkDeviceSize, maxDrawCount: uint32, stride: uint32) {.stdcall.}](vkGetProc("vkCmdDrawIndexedIndirectCount"))
-  vkCreateRenderPass2 = cast[proc (device: VkDevice, pCreateInfo: ptr VkRenderPassCreateInfo2, pAllocator: ptr VkAllocationCallbacks, pRenderPass: ptr VkRenderPass): VkResult {.stdcall.}](vkGetProc("vkCreateRenderPass2"))
-  vkCmdBeginRenderPass2 = cast[proc (commandBuffer: VkCommandBuffer, pRenderPassBegin: ptr VkRenderPassBeginInfo, pSubpassBeginInfo: ptr VkSubpassBeginInfo) {.stdcall.}](vkGetProc("vkCmdBeginRenderPass2"))
-  vkCmdNextSubpass2 = cast[proc (commandBuffer: VkCommandBuffer, pSubpassBeginInfo: ptr VkSubpassBeginInfo, pSubpassEndInfo: ptr VkSubpassEndInfo) {.stdcall.}](vkGetProc("vkCmdNextSubpass2"))
-  vkCmdEndRenderPass2 = cast[proc (commandBuffer: VkCommandBuffer, pSubpassEndInfo: ptr VkSubpassEndInfo) {.stdcall.}](vkGetProc("vkCmdEndRenderPass2"))
   vkResetQueryPool = cast[proc (device: VkDevice, queryPool: VkQueryPool, firstQuery: uint32, queryCount: uint32) {.stdcall.}](vkGetProc("vkResetQueryPool"))
   vkGetSemaphoreCounterValue = cast[proc (device: VkDevice, semaphore: VkSemaphore, pValue: ptr uint64): VkResult {.stdcall.}](vkGetProc("vkGetSemaphoreCounterValue"))
   vkWaitSemaphores = cast[proc (device: VkDevice, pWaitInfo: ptr VkSemaphoreWaitInfo, timeout: uint64): VkResult {.stdcall.}](vkGetProc("vkWaitSemaphores"))
@@ -24461,6 +30208,16 @@ proc vkLoad1_2*() =
   vkGetBufferDeviceAddress = cast[proc (device: VkDevice, pInfo: ptr VkBufferDeviceAddressInfo): VkDeviceAddress {.stdcall.}](vkGetProc("vkGetBufferDeviceAddress"))
   vkGetBufferOpaqueCaptureAddress = cast[proc (device: VkDevice, pInfo: ptr VkBufferDeviceAddressInfo): uint64 {.stdcall.}](vkGetProc("vkGetBufferOpaqueCaptureAddress"))
   vkGetDeviceMemoryOpaqueCaptureAddress = cast[proc (device: VkDevice, pInfo: ptr VkDeviceMemoryOpaqueCaptureAddressInfo): uint64 {.stdcall.}](vkGetProc("vkGetDeviceMemoryOpaqueCaptureAddress"))
+  vkCmdDrawIndirectCount = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, countBuffer: VkBuffer, countBufferOffset: VkDeviceSize, maxDrawCount: uint32, stride: uint32) {.stdcall.}](vkGetProc("vkCmdDrawIndirectCount"))
+  vkCmdDrawIndexedIndirectCount = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, countBuffer: VkBuffer, countBufferOffset: VkDeviceSize, maxDrawCount: uint32, stride: uint32) {.stdcall.}](vkGetProc("vkCmdDrawIndexedIndirectCount"))
+  vkCreateRenderPass2 = cast[proc (device: VkDevice, pCreateInfo: ptr VkRenderPassCreateInfo2, pAllocator: ptr VkAllocationCallbacks, pRenderPass: ptr VkRenderPass): VkResult {.stdcall.}](vkGetProc("vkCreateRenderPass2"))
+  vkCmdBeginRenderPass2 = cast[proc (commandBuffer: VkCommandBuffer, pRenderPassBegin: ptr VkRenderPassBeginInfo, pSubpassBeginInfo: ptr VkSubpassBeginInfo) {.stdcall.}](vkGetProc("vkCmdBeginRenderPass2"))
+  vkCmdNextSubpass2 = cast[proc (commandBuffer: VkCommandBuffer, pSubpassBeginInfo: ptr VkSubpassBeginInfo, pSubpassEndInfo: ptr VkSubpassEndInfo) {.stdcall.}](vkGetProc("vkCmdNextSubpass2"))
+  vkCmdEndRenderPass2 = cast[proc (commandBuffer: VkCommandBuffer, pSubpassEndInfo: ptr VkSubpassEndInfo) {.stdcall.}](vkGetProc("vkCmdEndRenderPass2"))
+  vkCreateRenderPass = cast[proc (device: VkDevice, pCreateInfo: ptr VkRenderPassCreateInfo, pAllocator: ptr VkAllocationCallbacks, pRenderPass: ptr VkRenderPass): VkResult {.stdcall.}](vkGetProc("vkCreateRenderPass"))
+  vkCmdBeginRenderPass = cast[proc (commandBuffer: VkCommandBuffer, pRenderPassBegin: ptr VkRenderPassBeginInfo, contents: VkSubpassContents) {.stdcall.}](vkGetProc("vkCmdBeginRenderPass"))
+  vkCmdNextSubpass = cast[proc (commandBuffer: VkCommandBuffer, contents: VkSubpassContents) {.stdcall.}](vkGetProc("vkCmdNextSubpass"))
+  vkCmdEndRenderPass = cast[proc (commandBuffer: VkCommandBuffer) {.stdcall.}](vkGetProc("vkCmdEndRenderPass"))
 
 # Vulkan 1_3
 proc vkLoad1_3*() =
@@ -24469,9 +30226,6 @@ proc vkLoad1_3*() =
   vkDestroyPrivateDataSlot = cast[proc (device: VkDevice, privateDataSlot: VkPrivateDataSlot, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyPrivateDataSlot"))
   vkSetPrivateData = cast[proc (device: VkDevice, objectType: VkObjectType, objectHandle: uint64, privateDataSlot: VkPrivateDataSlot, data: uint64): VkResult {.stdcall.}](vkGetProc("vkSetPrivateData"))
   vkGetPrivateData = cast[proc (device: VkDevice, objectType: VkObjectType, objectHandle: uint64, privateDataSlot: VkPrivateDataSlot, pData: ptr uint64) {.stdcall.}](vkGetProc("vkGetPrivateData"))
-  vkCmdSetEvent2 = cast[proc (commandBuffer: VkCommandBuffer, event: VkEvent, pDependencyInfo: ptr VkDependencyInfo) {.stdcall.}](vkGetProc("vkCmdSetEvent2"))
-  vkCmdResetEvent2 = cast[proc (commandBuffer: VkCommandBuffer, event: VkEvent, stageMask: VkPipelineStageFlags2) {.stdcall.}](vkGetProc("vkCmdResetEvent2"))
-  vkCmdWaitEvents2 = cast[proc (commandBuffer: VkCommandBuffer, eventCount: uint32, pEvents: ptr VkEvent, pDependencyInfos: ptr VkDependencyInfo) {.stdcall.}](vkGetProc("vkCmdWaitEvents2"))
   vkCmdPipelineBarrier2 = cast[proc (commandBuffer: VkCommandBuffer, pDependencyInfo: ptr VkDependencyInfo) {.stdcall.}](vkGetProc("vkCmdPipelineBarrier2"))
   vkCmdWriteTimestamp2 = cast[proc (commandBuffer: VkCommandBuffer, stage: VkPipelineStageFlags2, queryPool: VkQueryPool, query: uint32) {.stdcall.}](vkGetProc("vkCmdWriteTimestamp2"))
   vkQueueSubmit2 = cast[proc (queue: VkQueue, submitCount: uint32, pSubmits: ptr VkSubmitInfo2, fence: VkFence): VkResult {.stdcall.}](vkGetProc("vkQueueSubmit2"))
@@ -24479,6 +30233,12 @@ proc vkLoad1_3*() =
   vkCmdCopyImage2 = cast[proc (commandBuffer: VkCommandBuffer, pCopyImageInfo: ptr VkCopyImageInfo2) {.stdcall.}](vkGetProc("vkCmdCopyImage2"))
   vkCmdCopyBufferToImage2 = cast[proc (commandBuffer: VkCommandBuffer, pCopyBufferToImageInfo: ptr VkCopyBufferToImageInfo2) {.stdcall.}](vkGetProc("vkCmdCopyBufferToImage2"))
   vkCmdCopyImageToBuffer2 = cast[proc (commandBuffer: VkCommandBuffer, pCopyImageToBufferInfo: ptr VkCopyImageToBufferInfo2) {.stdcall.}](vkGetProc("vkCmdCopyImageToBuffer2"))
+  vkGetDeviceBufferMemoryRequirements = cast[proc (device: VkDevice, pInfo: ptr VkDeviceBufferMemoryRequirements, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetDeviceBufferMemoryRequirements"))
+  vkGetDeviceImageMemoryRequirements = cast[proc (device: VkDevice, pInfo: ptr VkDeviceImageMemoryRequirements, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetDeviceImageMemoryRequirements"))
+  vkGetDeviceImageSparseMemoryRequirements = cast[proc (device: VkDevice, pInfo: ptr VkDeviceImageMemoryRequirements, pSparseMemoryRequirementCount: ptr uint32, pSparseMemoryRequirements: ptr VkSparseImageMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetDeviceImageSparseMemoryRequirements"))
+  vkCmdSetEvent2 = cast[proc (commandBuffer: VkCommandBuffer, event: VkEvent, pDependencyInfo: ptr VkDependencyInfo) {.stdcall.}](vkGetProc("vkCmdSetEvent2"))
+  vkCmdResetEvent2 = cast[proc (commandBuffer: VkCommandBuffer, event: VkEvent, stageMask: VkPipelineStageFlags2) {.stdcall.}](vkGetProc("vkCmdResetEvent2"))
+  vkCmdWaitEvents2 = cast[proc (commandBuffer: VkCommandBuffer, eventCount: uint32, pEvents: ptr VkEvent, pDependencyInfos: ptr VkDependencyInfo) {.stdcall.}](vkGetProc("vkCmdWaitEvents2"))
   vkCmdBlitImage2 = cast[proc (commandBuffer: VkCommandBuffer, pBlitImageInfo: ptr VkBlitImageInfo2) {.stdcall.}](vkGetProc("vkCmdBlitImage2"))
   vkCmdResolveImage2 = cast[proc (commandBuffer: VkCommandBuffer, pResolveImageInfo: ptr VkResolveImageInfo2) {.stdcall.}](vkGetProc("vkCmdResolveImage2"))
   vkCmdBeginRendering = cast[proc (commandBuffer: VkCommandBuffer, pRenderingInfo: ptr VkRenderingInfo) {.stdcall.}](vkGetProc("vkCmdBeginRendering"))
@@ -24498,9 +30258,36 @@ proc vkLoad1_3*() =
   vkCmdSetRasterizerDiscardEnable = cast[proc (commandBuffer: VkCommandBuffer, rasterizerDiscardEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetRasterizerDiscardEnable"))
   vkCmdSetDepthBiasEnable = cast[proc (commandBuffer: VkCommandBuffer, depthBiasEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetDepthBiasEnable"))
   vkCmdSetPrimitiveRestartEnable = cast[proc (commandBuffer: VkCommandBuffer, primitiveRestartEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetPrimitiveRestartEnable"))
-  vkGetDeviceBufferMemoryRequirements = cast[proc (device: VkDevice, pInfo: ptr VkDeviceBufferMemoryRequirements, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetDeviceBufferMemoryRequirements"))
-  vkGetDeviceImageMemoryRequirements = cast[proc (device: VkDevice, pInfo: ptr VkDeviceImageMemoryRequirements, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetDeviceImageMemoryRequirements"))
-  vkGetDeviceImageSparseMemoryRequirements = cast[proc (device: VkDevice, pInfo: ptr VkDeviceImageMemoryRequirements, pSparseMemoryRequirementCount: ptr uint32, pSparseMemoryRequirements: ptr VkSparseImageMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetDeviceImageSparseMemoryRequirements"))
+
+# Vulkan 1_4
+proc vkLoad1_4*() =
+  vkMapMemory2 = cast[proc (device: VkDevice, pMemoryMapInfo: ptr VkMemoryMapInfo, ppData: ptr pointer): VkResult {.stdcall.}](vkGetProc("vkMapMemory2"))
+  vkUnmapMemory2 = cast[proc (device: VkDevice, pMemoryUnmapInfo: ptr VkMemoryUnmapInfo): VkResult {.stdcall.}](vkGetProc("vkUnmapMemory2"))
+  vkGetDeviceImageSubresourceLayout = cast[proc (device: VkDevice, pInfo: ptr VkDeviceImageSubresourceInfo, pLayout: ptr VkSubresourceLayout2) {.stdcall.}](vkGetProc("vkGetDeviceImageSubresourceLayout"))
+  vkGetImageSubresourceLayout2 = cast[proc (device: VkDevice, image: VkImage, pSubresource: ptr VkImageSubresource2, pLayout: ptr VkSubresourceLayout2) {.stdcall.}](vkGetProc("vkGetImageSubresourceLayout2"))
+  vkCopyMemoryToImage = cast[proc (device: VkDevice, pCopyMemoryToImageInfo: ptr VkCopyMemoryToImageInfo): VkResult {.stdcall.}](vkGetProc("vkCopyMemoryToImage"))
+  vkCopyImageToMemory = cast[proc (device: VkDevice, pCopyImageToMemoryInfo: ptr VkCopyImageToMemoryInfo): VkResult {.stdcall.}](vkGetProc("vkCopyImageToMemory"))
+  vkCopyImageToImage = cast[proc (device: VkDevice, pCopyImageToImageInfo: ptr VkCopyImageToImageInfo): VkResult {.stdcall.}](vkGetProc("vkCopyImageToImage"))
+  vkTransitionImageLayout = cast[proc (device: VkDevice, transitionCount: uint32, pTransitions: ptr VkHostImageLayoutTransitionInfo): VkResult {.stdcall.}](vkGetProc("vkTransitionImageLayout"))
+  vkCmdPushDescriptorSet = cast[proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, layout: VkPipelineLayout, set: uint32, descriptorWriteCount: uint32, pDescriptorWrites: ptr VkWriteDescriptorSet) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSet"))
+  vkCmdPushDescriptorSetWithTemplate = cast[proc (commandBuffer: VkCommandBuffer, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetWithTemplate"))
+  vkCmdBindDescriptorSets2 = cast[proc (commandBuffer: VkCommandBuffer, pBindDescriptorSetsInfo: ptr VkBindDescriptorSetsInfo) {.stdcall.}](vkGetProc("vkCmdBindDescriptorSets2"))
+  vkCmdPushConstants2 = cast[proc (commandBuffer: VkCommandBuffer, pPushConstantsInfo: ptr VkPushConstantsInfo) {.stdcall.}](vkGetProc("vkCmdPushConstants2"))
+  vkCmdPushDescriptorSet2 = cast[proc (commandBuffer: VkCommandBuffer, pPushDescriptorSetInfo: ptr VkPushDescriptorSetInfo) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSet2"))
+  vkCmdPushDescriptorSetWithTemplate2 = cast[proc (commandBuffer: VkCommandBuffer, pPushDescriptorSetWithTemplateInfo: ptr VkPushDescriptorSetWithTemplateInfo) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetWithTemplate2"))
+  vkCmdSetLineStipple = cast[proc (commandBuffer: VkCommandBuffer, lineStippleFactor: uint32, lineStipplePattern: uint16) {.stdcall.}](vkGetProc("vkCmdSetLineStipple"))
+  vkCmdBindIndexBuffer2 = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, size: VkDeviceSize, indexType: VkIndexType) {.stdcall.}](vkGetProc("vkCmdBindIndexBuffer2"))
+  vkGetRenderingAreaGranularity = cast[proc (device: VkDevice, pRenderingAreaInfo: ptr VkRenderingAreaInfo, pGranularity: ptr VkExtent2D) {.stdcall.}](vkGetProc("vkGetRenderingAreaGranularity"))
+  vkCmdSetRenderingAttachmentLocations = cast[proc (commandBuffer: VkCommandBuffer, pLocationInfo: ptr VkRenderingAttachmentLocationInfo) {.stdcall.}](vkGetProc("vkCmdSetRenderingAttachmentLocations"))
+  vkCmdSetRenderingInputAttachmentIndices = cast[proc (commandBuffer: VkCommandBuffer, pInputAttachmentIndexInfo: ptr VkRenderingInputAttachmentIndexInfo) {.stdcall.}](vkGetProc("vkCmdSetRenderingInputAttachmentIndices"))
+  vkCreateRenderPass2 = cast[proc (device: VkDevice, pCreateInfo: ptr VkRenderPassCreateInfo2, pAllocator: ptr VkAllocationCallbacks, pRenderPass: ptr VkRenderPass): VkResult {.stdcall.}](vkGetProc("vkCreateRenderPass2"))
+  vkDestroyRenderPass = cast[proc (device: VkDevice, renderPass: VkRenderPass, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyRenderPass"))
+  vkCreateFramebuffer = cast[proc (device: VkDevice, pCreateInfo: ptr VkFramebufferCreateInfo, pAllocator: ptr VkAllocationCallbacks, pFramebuffer: ptr VkFramebuffer): VkResult {.stdcall.}](vkGetProc("vkCreateFramebuffer"))
+  vkDestroyFramebuffer = cast[proc (device: VkDevice, framebuffer: VkFramebuffer, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyFramebuffer"))
+  vkGetRenderAreaGranularity = cast[proc (device: VkDevice, renderPass: VkRenderPass, pGranularity: ptr VkExtent2D) {.stdcall.}](vkGetProc("vkGetRenderAreaGranularity"))
+  vkCmdBeginRenderPass2 = cast[proc (commandBuffer: VkCommandBuffer, pRenderPassBegin: ptr VkRenderPassBeginInfo, pSubpassBeginInfo: ptr VkSubpassBeginInfo) {.stdcall.}](vkGetProc("vkCmdBeginRenderPass2"))
+  vkCmdNextSubpass2 = cast[proc (commandBuffer: VkCommandBuffer, pSubpassBeginInfo: ptr VkSubpassBeginInfo, pSubpassEndInfo: ptr VkSubpassEndInfo) {.stdcall.}](vkGetProc("vkCmdNextSubpass2"))
+  vkCmdEndRenderPass2 = cast[proc (commandBuffer: VkCommandBuffer, pSubpassEndInfo: ptr VkSubpassEndInfo) {.stdcall.}](vkGetProc("vkCmdEndRenderPass2"))
 
 # Load VK_KHR_surface
 proc loadVK_KHR_surface*() =
@@ -24620,7 +30407,9 @@ proc loadVK_NVX_binary_import*() =
 # Load VK_NVX_image_view_handle
 proc loadVK_NVX_image_view_handle*() =
   vkGetImageViewHandleNVX = cast[proc (device: VkDevice, pInfo: ptr VkImageViewHandleInfoNVX): uint32 {.stdcall.}](vkGetProc("vkGetImageViewHandleNVX"))
+  vkGetImageViewHandle64NVX = cast[proc (device: VkDevice, pInfo: ptr VkImageViewHandleInfoNVX): uint64 {.stdcall.}](vkGetProc("vkGetImageViewHandle64NVX"))
   vkGetImageViewAddressNVX = cast[proc (device: VkDevice, imageView: VkImageView, pProperties: ptr VkImageViewAddressPropertiesNVX): VkResult {.stdcall.}](vkGetProc("vkGetImageViewAddressNVX"))
+  vkGetDeviceCombinedImageSamplerIndexNVX = cast[proc (device: VkDevice, imageViewIndex: uint64, samplerIndex: uint64): uint64 {.stdcall.}](vkGetProc("vkGetDeviceCombinedImageSamplerIndexNVX"))
 
 # Load VK_AMD_shader_info
 proc loadVK_AMD_shader_info*() =
@@ -24669,19 +30458,10 @@ proc loadVK_KHR_external_semaphore_fd*() =
   vkImportSemaphoreFdKHR = cast[proc (device: VkDevice, pImportSemaphoreFdInfo: ptr VkImportSemaphoreFdInfoKHR): VkResult {.stdcall.}](vkGetProc("vkImportSemaphoreFdKHR"))
   vkGetSemaphoreFdKHR = cast[proc (device: VkDevice, pGetFdInfo: ptr VkSemaphoreGetFdInfoKHR, pFd: ptr int): VkResult {.stdcall.}](vkGetProc("vkGetSemaphoreFdKHR"))
 
-# Load VK_KHR_push_descriptor
-proc loadVK_KHR_push_descriptor*() =
-  vkCmdPushDescriptorSetKHR = cast[proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, layout: VkPipelineLayout, set: uint32, descriptorWriteCount: uint32, pDescriptorWrites: ptr VkWriteDescriptorSet) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetKHR"))
-  vkCmdPushDescriptorSetWithTemplateKHR = cast[proc (commandBuffer: VkCommandBuffer, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetWithTemplateKHR"))
-
 # Load VK_EXT_conditional_rendering
 proc loadVK_EXT_conditional_rendering*() =
   vkCmdBeginConditionalRenderingEXT = cast[proc (commandBuffer: VkCommandBuffer, pConditionalRenderingBegin: ptr VkConditionalRenderingBeginInfoEXT) {.stdcall.}](vkGetProc("vkCmdBeginConditionalRenderingEXT"))
   vkCmdEndConditionalRenderingEXT = cast[proc (commandBuffer: VkCommandBuffer) {.stdcall.}](vkGetProc("vkCmdEndConditionalRenderingEXT"))
-
-# Load VK_KHR_descriptor_update_template
-proc loadVK_KHR_descriptor_update_template*() =
-  vkCmdPushDescriptorSetWithTemplateKHR = cast[proc (commandBuffer: VkCommandBuffer, descriptorUpdateTemplate: VkDescriptorUpdateTemplate, layout: VkPipelineLayout, set: uint32, pData: pointer) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetWithTemplateKHR"))
 
 # Load VK_NV_clip_space_w_scaling
 proc loadVK_NV_clip_space_w_scaling*() =
@@ -24787,10 +30567,23 @@ proc loadVK_AMDX_shader_enqueue*() =
   vkCreateExecutionGraphPipelinesAMDX = cast[proc (device: VkDevice, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkExecutionGraphPipelineCreateInfoAMDX, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}](vkGetProc("vkCreateExecutionGraphPipelinesAMDX"))
   vkGetExecutionGraphPipelineScratchSizeAMDX = cast[proc (device: VkDevice, executionGraph: VkPipeline, pSizeInfo: ptr VkExecutionGraphPipelineScratchSizeAMDX): VkResult {.stdcall.}](vkGetProc("vkGetExecutionGraphPipelineScratchSizeAMDX"))
   vkGetExecutionGraphPipelineNodeIndexAMDX = cast[proc (device: VkDevice, executionGraph: VkPipeline, pNodeInfo: ptr VkPipelineShaderStageNodeCreateInfoAMDX, pNodeIndex: ptr uint32): VkResult {.stdcall.}](vkGetProc("vkGetExecutionGraphPipelineNodeIndexAMDX"))
-  vkCmdInitializeGraphScratchMemoryAMDX = cast[proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress) {.stdcall.}](vkGetProc("vkCmdInitializeGraphScratchMemoryAMDX"))
-  vkCmdDispatchGraphAMDX = cast[proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, pCountInfo: ptr VkDispatchGraphCountInfoAMDX) {.stdcall.}](vkGetProc("vkCmdDispatchGraphAMDX"))
-  vkCmdDispatchGraphIndirectAMDX = cast[proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, pCountInfo: ptr VkDispatchGraphCountInfoAMDX) {.stdcall.}](vkGetProc("vkCmdDispatchGraphIndirectAMDX"))
-  vkCmdDispatchGraphIndirectCountAMDX = cast[proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, countInfo: VkDeviceAddress) {.stdcall.}](vkGetProc("vkCmdDispatchGraphIndirectCountAMDX"))
+  vkCmdInitializeGraphScratchMemoryAMDX = cast[proc (commandBuffer: VkCommandBuffer, executionGraph: VkPipeline, scratch: VkDeviceAddress, scratchSize: VkDeviceSize) {.stdcall.}](vkGetProc("vkCmdInitializeGraphScratchMemoryAMDX"))
+  vkCmdDispatchGraphAMDX = cast[proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, scratchSize: VkDeviceSize, pCountInfo: ptr VkDispatchGraphCountInfoAMDX) {.stdcall.}](vkGetProc("vkCmdDispatchGraphAMDX"))
+  vkCmdDispatchGraphIndirectAMDX = cast[proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, scratchSize: VkDeviceSize, pCountInfo: ptr VkDispatchGraphCountInfoAMDX) {.stdcall.}](vkGetProc("vkCmdDispatchGraphIndirectAMDX"))
+  vkCmdDispatchGraphIndirectCountAMDX = cast[proc (commandBuffer: VkCommandBuffer, scratch: VkDeviceAddress, scratchSize: VkDeviceSize, countInfo: VkDeviceAddress) {.stdcall.}](vkGetProc("vkCmdDispatchGraphIndirectCountAMDX"))
+
+# Load VK_EXT_descriptor_heap
+proc loadVK_EXT_descriptor_heap*() =
+  vkWriteSamplerDescriptorsEXT = cast[proc (device: VkDevice, samplerCount: uint32, pSamplers: ptr VkSamplerCreateInfo, pDescriptors: ptr VkHostAddressRangeEXT): VkResult {.stdcall.}](vkGetProc("vkWriteSamplerDescriptorsEXT"))
+  vkWriteResourceDescriptorsEXT = cast[proc (device: VkDevice, resourceCount: uint32, pResources: ptr VkResourceDescriptorInfoEXT, pDescriptors: ptr VkHostAddressRangeEXT): VkResult {.stdcall.}](vkGetProc("vkWriteResourceDescriptorsEXT"))
+  vkCmdBindSamplerHeapEXT = cast[proc (commandBuffer: VkCommandBuffer, pBindInfo: ptr VkBindHeapInfoEXT) {.stdcall.}](vkGetProc("vkCmdBindSamplerHeapEXT"))
+  vkCmdBindResourceHeapEXT = cast[proc (commandBuffer: VkCommandBuffer, pBindInfo: ptr VkBindHeapInfoEXT) {.stdcall.}](vkGetProc("vkCmdBindResourceHeapEXT"))
+  vkCmdPushDataEXT = cast[proc (commandBuffer: VkCommandBuffer, pPushDataInfo: ptr VkPushDataInfoEXT) {.stdcall.}](vkGetProc("vkCmdPushDataEXT"))
+  vkGetImageOpaqueCaptureDataEXT = cast[proc (device: VkDevice, imageCount: uint32, pImages: ptr VkImage, pDatas: ptr VkHostAddressRangeEXT): VkResult {.stdcall.}](vkGetProc("vkGetImageOpaqueCaptureDataEXT"))
+  vkGetPhysicalDeviceDescriptorSizeEXT = cast[proc (physicalDevice: VkPhysicalDevice, descriptorType: VkDescriptorType): VkDeviceSize {.stdcall.}](vkGetProc("vkGetPhysicalDeviceDescriptorSizeEXT"))
+  vkRegisterCustomBorderColorEXT = cast[proc (device: VkDevice, pBorderColor: ptr VkSamplerCustomBorderColorCreateInfoEXT, requestIndex: VkBool32, pIndex: ptr uint32): VkResult {.stdcall.}](vkGetProc("vkRegisterCustomBorderColorEXT"))
+  vkUnregisterCustomBorderColorEXT = cast[proc (device: VkDevice, index: uint32) {.stdcall.}](vkGetProc("vkUnregisterCustomBorderColorEXT"))
+  vkGetTensorOpaqueCaptureDataARM = cast[proc (device: VkDevice, tensorCount: uint32, pTensors: ptr VkTensorARM, pDatas: ptr VkHostAddressRangeEXT): VkResult {.stdcall.}](vkGetProc("vkGetTensorOpaqueCaptureDataARM"))
 
 # Load VK_EXT_sample_locations
 proc loadVK_EXT_sample_locations*() =
@@ -24864,6 +30657,7 @@ proc loadVK_EXT_external_memory_host*() =
 # Load VK_AMD_buffer_marker
 proc loadVK_AMD_buffer_marker*() =
   vkCmdWriteBufferMarkerAMD = cast[proc (commandBuffer: VkCommandBuffer, pipelineStage: VkPipelineStageFlagBits, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, marker: uint32) {.stdcall.}](vkGetProc("vkCmdWriteBufferMarkerAMD"))
+  vkCmdWriteBufferMarker2AMD = cast[proc (commandBuffer: VkCommandBuffer, stage: VkPipelineStageFlags2, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, marker: uint32) {.stdcall.}](vkGetProc("vkCmdWriteBufferMarker2AMD"))
 
 # Load VK_NV_mesh_shader
 proc loadVK_NV_mesh_shader*() =
@@ -24880,6 +30674,14 @@ proc loadVK_NV_scissor_exclusive*() =
 proc loadVK_NV_device_diagnostic_checkpoints*() =
   vkCmdSetCheckpointNV = cast[proc (commandBuffer: VkCommandBuffer, pCheckpointMarker: pointer) {.stdcall.}](vkGetProc("vkCmdSetCheckpointNV"))
   vkGetQueueCheckpointDataNV = cast[proc (queue: VkQueue, pCheckpointDataCount: ptr uint32, pCheckpointData: ptr VkCheckpointDataNV) {.stdcall.}](vkGetProc("vkGetQueueCheckpointDataNV"))
+  vkGetQueueCheckpointData2NV = cast[proc (queue: VkQueue, pCheckpointDataCount: ptr uint32, pCheckpointData: ptr VkCheckpointData2NV) {.stdcall.}](vkGetProc("vkGetQueueCheckpointData2NV"))
+
+# Load VK_EXT_present_timing
+proc loadVK_EXT_present_timing*() =
+  vkSetSwapchainPresentTimingQueueSizeEXT = cast[proc (device: VkDevice, swapchain: VkSwapchainKHR, size: uint32): VkResult {.stdcall.}](vkGetProc("vkSetSwapchainPresentTimingQueueSizeEXT"))
+  vkGetSwapchainTimingPropertiesEXT = cast[proc (device: VkDevice, swapchain: VkSwapchainKHR, pSwapchainTimingProperties: ptr VkSwapchainTimingPropertiesEXT, pSwapchainTimingPropertiesCounter: ptr uint64): VkResult {.stdcall.}](vkGetProc("vkGetSwapchainTimingPropertiesEXT"))
+  vkGetSwapchainTimeDomainPropertiesEXT = cast[proc (device: VkDevice, swapchain: VkSwapchainKHR, pSwapchainTimeDomainProperties: ptr VkSwapchainTimeDomainPropertiesEXT, pTimeDomainsCounter: ptr uint64): VkResult {.stdcall.}](vkGetProc("vkGetSwapchainTimeDomainPropertiesEXT"))
+  vkGetPastPresentationTimingEXT = cast[proc (device: VkDevice, pPastPresentationTimingInfo: ptr VkPastPresentationTimingInfoEXT, pPastPresentationTimingProperties: ptr VkPastPresentationTimingPropertiesEXT): VkResult {.stdcall.}](vkGetProc("vkGetPastPresentationTimingEXT"))
 
 # Load VK_INTEL_performance_query
 proc loadVK_INTEL_performance_query*() =
@@ -24909,11 +30711,6 @@ proc loadVK_EXT_metal_surface*() =
 proc loadVK_KHR_fragment_shading_rate*() =
   vkGetPhysicalDeviceFragmentShadingRatesKHR = cast[proc (physicalDevice: VkPhysicalDevice, pFragmentShadingRateCount: ptr uint32, pFragmentShadingRates: ptr VkPhysicalDeviceFragmentShadingRateKHR): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceFragmentShadingRatesKHR"))
   vkCmdSetFragmentShadingRateKHR = cast[proc (commandBuffer: VkCommandBuffer, pFragmentSize: ptr VkExtent2D, combinerOps: array[2, VkFragmentShadingRateCombinerOpKHR]) {.stdcall.}](vkGetProc("vkCmdSetFragmentShadingRateKHR"))
-
-# Load VK_KHR_dynamic_rendering_local_read
-proc loadVK_KHR_dynamic_rendering_local_read*() =
-  vkCmdSetRenderingAttachmentLocationsKHR = cast[proc (commandBuffer: VkCommandBuffer, pLocationInfo: ptr VkRenderingAttachmentLocationInfoKHR) {.stdcall.}](vkGetProc("vkCmdSetRenderingAttachmentLocationsKHR"))
-  vkCmdSetRenderingInputAttachmentIndicesKHR = cast[proc (commandBuffer: VkCommandBuffer, pInputAttachmentIndexInfo: ptr VkRenderingInputAttachmentIndexInfoKHR) {.stdcall.}](vkGetProc("vkCmdSetRenderingInputAttachmentIndicesKHR"))
 
 # Load VK_KHR_present_wait
 proc loadVK_KHR_present_wait*() =
@@ -24951,22 +30748,6 @@ proc loadVK_KHR_pipeline_executable_properties*() =
   vkGetPipelineExecutablePropertiesKHR = cast[proc (device: VkDevice, pPipelineInfo: ptr VkPipelineInfoKHR, pExecutableCount: ptr uint32, pProperties: ptr VkPipelineExecutablePropertiesKHR): VkResult {.stdcall.}](vkGetProc("vkGetPipelineExecutablePropertiesKHR"))
   vkGetPipelineExecutableStatisticsKHR = cast[proc (device: VkDevice, pExecutableInfo: ptr VkPipelineExecutableInfoKHR, pStatisticCount: ptr uint32, pStatistics: ptr VkPipelineExecutableStatisticKHR): VkResult {.stdcall.}](vkGetProc("vkGetPipelineExecutableStatisticsKHR"))
   vkGetPipelineExecutableInternalRepresentationsKHR = cast[proc (device: VkDevice, pExecutableInfo: ptr VkPipelineExecutableInfoKHR, pInternalRepresentationCount: ptr uint32, pInternalRepresentations: ptr VkPipelineExecutableInternalRepresentationKHR): VkResult {.stdcall.}](vkGetProc("vkGetPipelineExecutableInternalRepresentationsKHR"))
-
-# Load VK_EXT_host_image_copy
-proc loadVK_EXT_host_image_copy*() =
-  vkCopyMemoryToImageEXT = cast[proc (device: VkDevice, pCopyMemoryToImageInfo: ptr VkCopyMemoryToImageInfoEXT): VkResult {.stdcall.}](vkGetProc("vkCopyMemoryToImageEXT"))
-  vkCopyImageToMemoryEXT = cast[proc (device: VkDevice, pCopyImageToMemoryInfo: ptr VkCopyImageToMemoryInfoEXT): VkResult {.stdcall.}](vkGetProc("vkCopyImageToMemoryEXT"))
-  vkCopyImageToImageEXT = cast[proc (device: VkDevice, pCopyImageToImageInfo: ptr VkCopyImageToImageInfoEXT): VkResult {.stdcall.}](vkGetProc("vkCopyImageToImageEXT"))
-  vkTransitionImageLayoutEXT = cast[proc (device: VkDevice, transitionCount: uint32, pTransitions: ptr VkHostImageLayoutTransitionInfoEXT): VkResult {.stdcall.}](vkGetProc("vkTransitionImageLayoutEXT"))
-
-# Load VK_KHR_map_memory2
-proc loadVK_KHR_map_memory2*() =
-  vkMapMemory2KHR = cast[proc (device: VkDevice, pMemoryMapInfo: ptr VkMemoryMapInfoKHR, ppData: ptr pointer): VkResult {.stdcall.}](vkGetProc("vkMapMemory2KHR"))
-  vkUnmapMemory2KHR = cast[proc (device: VkDevice, pMemoryUnmapInfo: ptr VkMemoryUnmapInfoKHR): VkResult {.stdcall.}](vkGetProc("vkUnmapMemory2KHR"))
-
-# Load VK_EXT_swapchain_maintenance1
-proc loadVK_EXT_swapchain_maintenance1*() =
-  vkReleaseSwapchainImagesEXT = cast[proc (device: VkDevice, pReleaseInfo: ptr VkReleaseSwapchainImagesInfoEXT): VkResult {.stdcall.}](vkGetProc("vkReleaseSwapchainImagesEXT"))
 
 # Load VK_NV_device_generated_commands
 proc loadVK_NV_device_generated_commands*() =
@@ -25006,14 +30787,15 @@ proc loadVK_KHR_object_refresh*() =
   vkCmdRefreshObjectsKHR = cast[proc (commandBuffer: VkCommandBuffer, pRefreshObjects: ptr VkRefreshObjectListKHR) {.stdcall.}](vkGetProc("vkCmdRefreshObjectsKHR"))
   vkGetPhysicalDeviceRefreshableObjectTypesKHR = cast[proc (physicalDevice: VkPhysicalDevice, pRefreshableObjectTypeCount: ptr uint32, pRefreshableObjectTypes: ptr VkObjectType): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceRefreshableObjectTypesKHR"))
 
+# Load VK_QCOM_tile_shading
+proc loadVK_QCOM_tile_shading*() =
+  vkCmdDispatchTileQCOM = cast[proc (commandBuffer: VkCommandBuffer, pDispatchTileInfo: ptr VkDispatchTileInfoQCOM) {.stdcall.}](vkGetProc("vkCmdDispatchTileQCOM"))
+  vkCmdBeginPerTileExecutionQCOM = cast[proc (commandBuffer: VkCommandBuffer, pPerTileBeginInfo: ptr VkPerTileBeginInfoQCOM) {.stdcall.}](vkGetProc("vkCmdBeginPerTileExecutionQCOM"))
+  vkCmdEndPerTileExecutionQCOM = cast[proc (commandBuffer: VkCommandBuffer, pPerTileEndInfo: ptr VkPerTileEndInfoQCOM) {.stdcall.}](vkGetProc("vkCmdEndPerTileExecutionQCOM"))
+
 # Load VK_EXT_metal_objects
 proc loadVK_EXT_metal_objects*() =
   vkExportMetalObjectsEXT = cast[proc (device: VkDevice, pMetalObjectsInfo: ptr VkExportMetalObjectsInfoEXT) {.stdcall.}](vkGetProc("vkExportMetalObjectsEXT"))
-
-# Load VK_KHR_synchronization2
-proc loadVK_KHR_synchronization2*() =
-  vkCmdWriteBufferMarker2AMD = cast[proc (commandBuffer: VkCommandBuffer, stage: VkPipelineStageFlags2, dstBuffer: VkBuffer, dstOffset: VkDeviceSize, marker: uint32) {.stdcall.}](vkGetProc("vkCmdWriteBufferMarker2AMD"))
-  vkGetQueueCheckpointData2NV = cast[proc (queue: VkQueue, pCheckpointDataCount: ptr uint32, pCheckpointData: ptr VkCheckpointData2NV) {.stdcall.}](vkGetProc("vkGetQueueCheckpointData2NV"))
 
 # Load VK_EXT_descriptor_buffer
 proc loadVK_EXT_descriptor_buffer*() =
@@ -25178,6 +30960,11 @@ proc loadVK_NV_device_generated_commands_compute*() =
   vkCmdUpdatePipelineIndirectBufferNV = cast[proc (commandBuffer: VkCommandBuffer, pipelineBindPoint: VkPipelineBindPoint, pipeline: VkPipeline) {.stdcall.}](vkGetProc("vkCmdUpdatePipelineIndirectBufferNV"))
   vkGetPipelineIndirectDeviceAddressNV = cast[proc (device: VkDevice, pInfo: ptr VkPipelineIndirectDeviceAddressInfoNV): VkDeviceAddress {.stdcall.}](vkGetProc("vkGetPipelineIndirectDeviceAddressNV"))
 
+# Load VK_OHOS_external_memory
+proc loadVK_OHOS_external_memory*() =
+  vkGetNativeBufferPropertiesOHOS = cast[proc (device: VkDevice, buffer: ptr OH_NativeBuffer, pProperties: ptr VkNativeBufferPropertiesOHOS): VkResult {.stdcall.}](vkGetProc("vkGetNativeBufferPropertiesOHOS"))
+  vkGetMemoryNativeBufferOHOS = cast[proc (device: VkDevice, pInfo: ptr VkMemoryGetNativeBufferInfoOHOS, pBuffer: ptr ptr OH_NativeBuffer): VkResult {.stdcall.}](vkGetProc("vkGetMemoryNativeBufferOHOS"))
+
 # Load VK_EXT_extended_dynamic_state3
 proc loadVK_EXT_extended_dynamic_state3*() =
   vkCmdSetDepthClampEnableEXT = cast[proc (commandBuffer: VkCommandBuffer, depthClampEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetDepthClampEnableEXT"))
@@ -25212,6 +30999,20 @@ proc loadVK_EXT_extended_dynamic_state3*() =
   vkCmdSetRepresentativeFragmentTestEnableNV = cast[proc (commandBuffer: VkCommandBuffer, representativeFragmentTestEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetRepresentativeFragmentTestEnableNV"))
   vkCmdSetCoverageReductionModeNV = cast[proc (commandBuffer: VkCommandBuffer, coverageReductionMode: VkCoverageReductionModeNV) {.stdcall.}](vkGetProc("vkCmdSetCoverageReductionModeNV"))
 
+# Load VK_ARM_tensors
+proc loadVK_ARM_tensors*() =
+  vkCreateTensorARM = cast[proc (device: VkDevice, pCreateInfo: ptr VkTensorCreateInfoARM, pAllocator: ptr VkAllocationCallbacks, pTensor: ptr VkTensorARM): VkResult {.stdcall.}](vkGetProc("vkCreateTensorARM"))
+  vkDestroyTensorARM = cast[proc (device: VkDevice, tensor: VkTensorARM, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyTensorARM"))
+  vkCreateTensorViewARM = cast[proc (device: VkDevice, pCreateInfo: ptr VkTensorViewCreateInfoARM, pAllocator: ptr VkAllocationCallbacks, pView: ptr VkTensorViewARM): VkResult {.stdcall.}](vkGetProc("vkCreateTensorViewARM"))
+  vkDestroyTensorViewARM = cast[proc (device: VkDevice, tensorView: VkTensorViewARM, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyTensorViewARM"))
+  vkGetTensorMemoryRequirementsARM = cast[proc (device: VkDevice, pInfo: ptr VkTensorMemoryRequirementsInfoARM, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetTensorMemoryRequirementsARM"))
+  vkBindTensorMemoryARM = cast[proc (device: VkDevice, bindInfoCount: uint32, pBindInfos: ptr VkBindTensorMemoryInfoARM): VkResult {.stdcall.}](vkGetProc("vkBindTensorMemoryARM"))
+  vkGetDeviceTensorMemoryRequirementsARM = cast[proc (device: VkDevice, pInfo: ptr VkDeviceTensorMemoryRequirementsARM, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetDeviceTensorMemoryRequirementsARM"))
+  vkCmdCopyTensorARM = cast[proc (commandBuffer: VkCommandBuffer, pCopyTensorInfo: ptr VkCopyTensorInfoARM) {.stdcall.}](vkGetProc("vkCmdCopyTensorARM"))
+  vkGetPhysicalDeviceExternalTensorPropertiesARM = cast[proc (physicalDevice: VkPhysicalDevice, pExternalTensorInfo: ptr VkPhysicalDeviceExternalTensorInfoARM, pExternalTensorProperties: ptr VkExternalTensorPropertiesARM) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceExternalTensorPropertiesARM"))
+  vkGetTensorOpaqueCaptureDescriptorDataARM = cast[proc (device: VkDevice, pInfo: ptr VkTensorCaptureDescriptorDataInfoARM, pData: pointer): VkResult {.stdcall.}](vkGetProc("vkGetTensorOpaqueCaptureDescriptorDataARM"))
+  vkGetTensorViewOpaqueCaptureDescriptorDataARM = cast[proc (device: VkDevice, pInfo: ptr VkTensorViewCaptureDescriptorDataInfoARM, pData: pointer): VkResult {.stdcall.}](vkGetProc("vkGetTensorViewOpaqueCaptureDescriptorDataARM"))
+
 # Load VK_EXT_shader_module_identifier
 proc loadVK_EXT_shader_module_identifier*() =
   vkGetShaderModuleIdentifierEXT = cast[proc (device: VkDevice, shaderModule: VkShaderModule, pIdentifier: ptr VkShaderModuleIdentifierEXT) {.stdcall.}](vkGetProc("vkGetShaderModuleIdentifierEXT"))
@@ -25225,16 +31026,13 @@ proc loadVK_NV_optical_flow*() =
   vkBindOpticalFlowSessionImageNV = cast[proc (device: VkDevice, session: VkOpticalFlowSessionNV, bindingPoint: VkOpticalFlowSessionBindingPointNV, view: VkImageView, layout: VkImageLayout): VkResult {.stdcall.}](vkGetProc("vkBindOpticalFlowSessionImageNV"))
   vkCmdOpticalFlowExecuteNV = cast[proc (commandBuffer: VkCommandBuffer, session: VkOpticalFlowSessionNV, pExecuteInfo: ptr VkOpticalFlowExecuteInfoNV) {.stdcall.}](vkGetProc("vkCmdOpticalFlowExecuteNV"))
 
-# Load VK_KHR_maintenance5
-proc loadVK_KHR_maintenance5*() =
-  vkCmdBindIndexBuffer2KHR = cast[proc (commandBuffer: VkCommandBuffer, buffer: VkBuffer, offset: VkDeviceSize, size: VkDeviceSize, indexType: VkIndexType) {.stdcall.}](vkGetProc("vkCmdBindIndexBuffer2KHR"))
-  vkGetRenderingAreaGranularityKHR = cast[proc (device: VkDevice, pRenderingAreaInfo: ptr VkRenderingAreaInfoKHR, pGranularity: ptr VkExtent2D) {.stdcall.}](vkGetProc("vkGetRenderingAreaGranularityKHR"))
-  vkGetDeviceImageSubresourceLayoutKHR = cast[proc (device: VkDevice, pInfo: ptr VkDeviceImageSubresourceInfoKHR, pLayout: ptr VkSubresourceLayout2KHR) {.stdcall.}](vkGetProc("vkGetDeviceImageSubresourceLayoutKHR"))
-  vkGetImageSubresourceLayout2KHR = cast[proc (device: VkDevice, image: VkImage, pSubresource: ptr VkImageSubresource2KHR, pLayout: ptr VkSubresourceLayout2KHR) {.stdcall.}](vkGetProc("vkGetImageSubresourceLayout2KHR"))
-
 # Load VK_AMD_anti_lag
 proc loadVK_AMD_anti_lag*() =
   vkAntiLagUpdateAMD = cast[proc (device: VkDevice, pData: ptr VkAntiLagDataAMD) {.stdcall.}](vkGetProc("vkAntiLagUpdateAMD"))
+
+# Load VK_KHR_present_wait2
+proc loadVK_KHR_present_wait2*() =
+  vkWaitForPresent2KHR = cast[proc (device: VkDevice, swapchain: VkSwapchainKHR, pPresentWait2Info: ptr VkPresentWait2InfoKHR): VkResult {.stdcall.}](vkGetProc("vkWaitForPresent2KHR"))
 
 # Load VK_EXT_shader_object
 proc loadVK_EXT_shader_object*() =
@@ -25276,6 +31074,7 @@ proc loadVK_EXT_shader_object*() =
   vkCmdSetShadingRateImageEnableNV = cast[proc (commandBuffer: VkCommandBuffer, shadingRateImageEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetShadingRateImageEnableNV"))
   vkCmdSetRepresentativeFragmentTestEnableNV = cast[proc (commandBuffer: VkCommandBuffer, representativeFragmentTestEnable: VkBool32) {.stdcall.}](vkGetProc("vkCmdSetRepresentativeFragmentTestEnableNV"))
   vkCmdSetCoverageReductionModeNV = cast[proc (commandBuffer: VkCommandBuffer, coverageReductionMode: VkCoverageReductionModeNV) {.stdcall.}](vkGetProc("vkCmdSetCoverageReductionModeNV"))
+  vkCmdSetDepthClampRangeEXT = cast[proc (commandBuffer: VkCommandBuffer, depthClampMode: VkDepthClampModeEXT, pDepthClampRange: ptr VkDepthClampRangeEXT) {.stdcall.}](vkGetProc("vkCmdSetDepthClampRangeEXT"))
 
 # Load VK_KHR_pipeline_binary
 proc loadVK_KHR_pipeline_binary*() =
@@ -25290,6 +31089,10 @@ proc loadVK_QCOM_tile_properties*() =
   vkGetFramebufferTilePropertiesQCOM = cast[proc (device: VkDevice, framebuffer: VkFramebuffer, pPropertiesCount: ptr uint32, pProperties: ptr VkTilePropertiesQCOM): VkResult {.stdcall.}](vkGetProc("vkGetFramebufferTilePropertiesQCOM"))
   vkGetDynamicRenderingTilePropertiesQCOM = cast[proc (device: VkDevice, pRenderingInfo: ptr VkRenderingInfo, pProperties: ptr VkTilePropertiesQCOM): VkResult {.stdcall.}](vkGetProc("vkGetDynamicRenderingTilePropertiesQCOM"))
 
+# Load VK_KHR_swapchain_maintenance1
+proc loadVK_KHR_swapchain_maintenance1*() =
+  vkReleaseSwapchainImagesKHR = cast[proc (device: VkDevice, pReleaseInfo: ptr VkReleaseSwapchainImagesInfoKHR): VkResult {.stdcall.}](vkGetProc("vkReleaseSwapchainImagesKHR"))
+
 # Load VK_NV_external_sci_sync2
 proc loadVK_NV_external_sci_sync2*() =
   vkCreateSemaphoreSciSyncPoolNV = cast[proc (device: VkDevice, pCreateInfo: ptr VkSemaphoreSciSyncPoolCreateInfoNV, pAllocator: ptr VkAllocationCallbacks, pSemaphorePool: ptr VkSemaphoreSciSyncPoolNV): VkResult {.stdcall.}](vkGetProc("vkCreateSemaphoreSciSyncPoolNV"))
@@ -25299,6 +31102,12 @@ proc loadVK_NV_external_sci_sync2*() =
   vkImportFenceSciSyncFenceNV = cast[proc (device: VkDevice, pImportFenceSciSyncInfo: ptr VkImportFenceSciSyncInfoNV): VkResult {.stdcall.}](vkGetProc("vkImportFenceSciSyncFenceNV"))
   vkImportFenceSciSyncObjNV = cast[proc (device: VkDevice, pImportFenceSciSyncInfo: ptr VkImportFenceSciSyncInfoNV): VkResult {.stdcall.}](vkGetProc("vkImportFenceSciSyncObjNV"))
   vkGetPhysicalDeviceSciSyncAttributesNV = cast[proc (physicalDevice: VkPhysicalDevice, pSciSyncAttributesInfo: ptr VkSciSyncAttributesInfoNV, pAttributes: NvSciSyncAttrList): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceSciSyncAttributesNV"))
+
+# Load VK_NV_cooperative_vector
+proc loadVK_NV_cooperative_vector*() =
+  vkGetPhysicalDeviceCooperativeVectorPropertiesNV = cast[proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkCooperativeVectorPropertiesNV): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceCooperativeVectorPropertiesNV"))
+  vkConvertCooperativeVectorMatrixNV = cast[proc (device: VkDevice, pInfo: ptr VkConvertCooperativeVectorMatrixInfoNV): VkResult {.stdcall.}](vkGetProc("vkConvertCooperativeVectorMatrixNV"))
+  vkCmdConvertCooperativeVectorMatrixNV = cast[proc (commandBuffer: VkCommandBuffer, infoCount: uint32, pInfos: ptr VkConvertCooperativeVectorMatrixInfoNV) {.stdcall.}](vkGetProc("vkCmdConvertCooperativeVectorMatrixNV"))
 
 # Load VK_NV_low_latency2
 proc loadVK_NV_low_latency2*() =
@@ -25312,6 +31121,20 @@ proc loadVK_NV_low_latency2*() =
 proc loadVK_KHR_cooperative_matrix*() =
   vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = cast[proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkCooperativeMatrixPropertiesKHR): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR"))
 
+# Load VK_ARM_data_graph
+proc loadVK_ARM_data_graph*() =
+  vkCreateDataGraphPipelinesARM = cast[proc (device: VkDevice, deferredOperation: VkDeferredOperationKHR, pipelineCache: VkPipelineCache, createInfoCount: uint32, pCreateInfos: ptr VkDataGraphPipelineCreateInfoARM, pAllocator: ptr VkAllocationCallbacks, pPipelines: ptr VkPipeline): VkResult {.stdcall.}](vkGetProc("vkCreateDataGraphPipelinesARM"))
+  vkCreateDataGraphPipelineSessionARM = cast[proc (device: VkDevice, pCreateInfo: ptr VkDataGraphPipelineSessionCreateInfoARM, pAllocator: ptr VkAllocationCallbacks, pSession: ptr VkDataGraphPipelineSessionARM): VkResult {.stdcall.}](vkGetProc("vkCreateDataGraphPipelineSessionARM"))
+  vkGetDataGraphPipelineSessionBindPointRequirementsARM = cast[proc (device: VkDevice, pInfo: ptr VkDataGraphPipelineSessionBindPointRequirementsInfoARM, pBindPointRequirementCount: ptr uint32, pBindPointRequirements: ptr VkDataGraphPipelineSessionBindPointRequirementARM): VkResult {.stdcall.}](vkGetProc("vkGetDataGraphPipelineSessionBindPointRequirementsARM"))
+  vkGetDataGraphPipelineSessionMemoryRequirementsARM = cast[proc (device: VkDevice, pInfo: ptr VkDataGraphPipelineSessionMemoryRequirementsInfoARM, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetDataGraphPipelineSessionMemoryRequirementsARM"))
+  vkBindDataGraphPipelineSessionMemoryARM = cast[proc (device: VkDevice, bindInfoCount: uint32, pBindInfos: ptr VkBindDataGraphPipelineSessionMemoryInfoARM): VkResult {.stdcall.}](vkGetProc("vkBindDataGraphPipelineSessionMemoryARM"))
+  vkDestroyDataGraphPipelineSessionARM = cast[proc (device: VkDevice, session: VkDataGraphPipelineSessionARM, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyDataGraphPipelineSessionARM"))
+  vkCmdDispatchDataGraphARM = cast[proc (commandBuffer: VkCommandBuffer, session: VkDataGraphPipelineSessionARM, pInfo: ptr VkDataGraphPipelineDispatchInfoARM) {.stdcall.}](vkGetProc("vkCmdDispatchDataGraphARM"))
+  vkGetDataGraphPipelineAvailablePropertiesARM = cast[proc (device: VkDevice, pPipelineInfo: ptr VkDataGraphPipelineInfoARM, pPropertiesCount: ptr uint32, pProperties: ptr VkDataGraphPipelinePropertyARM): VkResult {.stdcall.}](vkGetProc("vkGetDataGraphPipelineAvailablePropertiesARM"))
+  vkGetDataGraphPipelinePropertiesARM = cast[proc (device: VkDevice, pPipelineInfo: ptr VkDataGraphPipelineInfoARM, propertiesCount: uint32, pProperties: ptr VkDataGraphPipelinePropertyQueryResultARM): VkResult {.stdcall.}](vkGetProc("vkGetDataGraphPipelinePropertiesARM"))
+  vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = cast[proc (physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, pQueueFamilyDataGraphPropertyCount: ptr uint32, pQueueFamilyDataGraphProperties: ptr VkQueueFamilyDataGraphPropertiesARM): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM"))
+  vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = cast[proc (physicalDevice: VkPhysicalDevice, pQueueFamilyDataGraphProcessingEngineInfo: ptr VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM, pQueueFamilyDataGraphProcessingEngineProperties: ptr VkQueueFamilyDataGraphProcessingEnginePropertiesARM) {.stdcall.}](vkGetProc("vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM"))
+
 # Load VK_EXT_attachment_feedback_loop_dynamic_state
 proc loadVK_EXT_attachment_feedback_loop_dynamic_state*() =
   vkCmdSetAttachmentFeedbackLoopEnableEXT = cast[proc (commandBuffer: VkCommandBuffer, aspectMask: VkImageAspectFlags) {.stdcall.}](vkGetProc("vkCmdSetAttachmentFeedbackLoopEnableEXT"))
@@ -25320,10 +31143,6 @@ proc loadVK_EXT_attachment_feedback_loop_dynamic_state*() =
 proc loadVK_QNX_external_memory_screen_buffer*() =
   vkGetScreenBufferPropertiesQNX = cast[proc (device: VkDevice, buffer: ptr screen_buffer, pProperties: ptr VkScreenBufferPropertiesQNX): VkResult {.stdcall.}](vkGetProc("vkGetScreenBufferPropertiesQNX"))
 
-# Load VK_KHR_line_rasterization
-proc loadVK_KHR_line_rasterization*() =
-  vkCmdSetLineStippleKHR = cast[proc (commandBuffer: VkCommandBuffer, lineStippleFactor: uint32, lineStipplePattern: uint16) {.stdcall.}](vkGetProc("vkCmdSetLineStippleKHR"))
-
 # Load VK_KHR_calibrated_timestamps
 proc loadVK_KHR_calibrated_timestamps*() =
   vkGetPhysicalDeviceCalibrateableTimeDomainsKHR = cast[proc (physicalDevice: VkPhysicalDevice, pTimeDomainCount: ptr uint32, pTimeDomains: ptr VkTimeDomainKHR): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceCalibrateableTimeDomainsKHR"))
@@ -25331,12 +31150,94 @@ proc loadVK_KHR_calibrated_timestamps*() =
 
 # Load VK_KHR_maintenance6
 proc loadVK_KHR_maintenance6*() =
-  vkCmdBindDescriptorSets2KHR = cast[proc (commandBuffer: VkCommandBuffer, pBindDescriptorSetsInfo: ptr VkBindDescriptorSetsInfoKHR) {.stdcall.}](vkGetProc("vkCmdBindDescriptorSets2KHR"))
-  vkCmdPushConstants2KHR = cast[proc (commandBuffer: VkCommandBuffer, pPushConstantsInfo: ptr VkPushConstantsInfoKHR) {.stdcall.}](vkGetProc("vkCmdPushConstants2KHR"))
-  vkCmdPushDescriptorSet2KHR = cast[proc (commandBuffer: VkCommandBuffer, pPushDescriptorSetInfo: ptr VkPushDescriptorSetInfoKHR) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSet2KHR"))
-  vkCmdPushDescriptorSetWithTemplate2KHR = cast[proc (commandBuffer: VkCommandBuffer, pPushDescriptorSetWithTemplateInfo: ptr VkPushDescriptorSetWithTemplateInfoKHR) {.stdcall.}](vkGetProc("vkCmdPushDescriptorSetWithTemplate2KHR"))
   vkCmdSetDescriptorBufferOffsets2EXT = cast[proc (commandBuffer: VkCommandBuffer, pSetDescriptorBufferOffsetsInfo: ptr VkSetDescriptorBufferOffsetsInfoEXT) {.stdcall.}](vkGetProc("vkCmdSetDescriptorBufferOffsets2EXT"))
   vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = cast[proc (commandBuffer: VkCommandBuffer, pBindDescriptorBufferEmbeddedSamplersInfo: ptr VkBindDescriptorBufferEmbeddedSamplersInfoEXT) {.stdcall.}](vkGetProc("vkCmdBindDescriptorBufferEmbeddedSamplers2EXT"))
+
+# Load VK_QCOM_tile_memory_heap
+proc loadVK_QCOM_tile_memory_heap*() =
+  vkCmdBindTileMemoryQCOM = cast[proc (commandBuffer: VkCommandBuffer, pTileMemoryBindInfo: ptr VkTileMemoryBindInfoQCOM) {.stdcall.}](vkGetProc("vkCmdBindTileMemoryQCOM"))
+
+# Load VK_KHR_copy_memory_indirect
+proc loadVK_KHR_copy_memory_indirect*() =
+  vkCmdCopyMemoryIndirectKHR = cast[proc (commandBuffer: VkCommandBuffer, pCopyMemoryIndirectInfo: ptr VkCopyMemoryIndirectInfoKHR) {.stdcall.}](vkGetProc("vkCmdCopyMemoryIndirectKHR"))
+  vkCmdCopyMemoryToImageIndirectKHR = cast[proc (commandBuffer: VkCommandBuffer, pCopyMemoryToImageIndirectInfo: ptr VkCopyMemoryToImageIndirectInfoKHR) {.stdcall.}](vkGetProc("vkCmdCopyMemoryToImageIndirectKHR"))
+
+# Load VK_EXT_memory_decompression
+proc loadVK_EXT_memory_decompression*() =
+  vkCmdDecompressMemoryEXT = cast[proc (commandBuffer: VkCommandBuffer, pDecompressMemoryInfoEXT: ptr VkDecompressMemoryInfoEXT) {.stdcall.}](vkGetProc("vkCmdDecompressMemoryEXT"))
+  vkCmdDecompressMemoryIndirectCountEXT = cast[proc (commandBuffer: VkCommandBuffer, decompressionMethod: VkMemoryDecompressionMethodFlagsEXT, indirectCommandsAddress: VkDeviceAddress, indirectCommandsCountAddress: VkDeviceAddress, maxDecompressionCount: uint32, stride: uint32) {.stdcall.}](vkGetProc("vkCmdDecompressMemoryIndirectCountEXT"))
+
+# Load VK_NV_external_compute_queue
+proc loadVK_NV_external_compute_queue*() =
+  vkCreateExternalComputeQueueNV = cast[proc (device: VkDevice, pCreateInfo: ptr VkExternalComputeQueueCreateInfoNV, pAllocator: ptr VkAllocationCallbacks, pExternalQueue: ptr VkExternalComputeQueueNV): VkResult {.stdcall.}](vkGetProc("vkCreateExternalComputeQueueNV"))
+  vkDestroyExternalComputeQueueNV = cast[proc (device: VkDevice, externalQueue: VkExternalComputeQueueNV, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyExternalComputeQueueNV"))
+  vkGetExternalComputeQueueDataNV = cast[proc (externalQueue: VkExternalComputeQueueNV, params: ptr VkExternalComputeQueueDataParamsNV, pData: pointer) {.stdcall.}](vkGetProc("vkGetExternalComputeQueueDataNV"))
+
+# Load VK_NV_cluster_acceleration_structure
+proc loadVK_NV_cluster_acceleration_structure*() =
+  vkGetClusterAccelerationStructureBuildSizesNV = cast[proc (device: VkDevice, pInfo: ptr VkClusterAccelerationStructureInputInfoNV, pSizeInfo: ptr VkAccelerationStructureBuildSizesInfoKHR) {.stdcall.}](vkGetProc("vkGetClusterAccelerationStructureBuildSizesNV"))
+  vkCmdBuildClusterAccelerationStructureIndirectNV = cast[proc (commandBuffer: VkCommandBuffer, pCommandInfos: ptr VkClusterAccelerationStructureCommandsInfoNV) {.stdcall.}](vkGetProc("vkCmdBuildClusterAccelerationStructureIndirectNV"))
+
+# Load VK_NV_partitioned_acceleration_structure
+proc loadVK_NV_partitioned_acceleration_structure*() =
+  vkGetPartitionedAccelerationStructuresBuildSizesNV = cast[proc (device: VkDevice, pInfo: ptr VkPartitionedAccelerationStructureInstancesInputNV, pSizeInfo: ptr VkAccelerationStructureBuildSizesInfoKHR) {.stdcall.}](vkGetProc("vkGetPartitionedAccelerationStructuresBuildSizesNV"))
+  vkCmdBuildPartitionedAccelerationStructuresNV = cast[proc (commandBuffer: VkCommandBuffer, pBuildInfo: ptr VkBuildPartitionedAccelerationStructureInfoNV) {.stdcall.}](vkGetProc("vkCmdBuildPartitionedAccelerationStructuresNV"))
+
+# Load VK_EXT_device_generated_commands
+proc loadVK_EXT_device_generated_commands*() =
+  vkGetGeneratedCommandsMemoryRequirementsEXT = cast[proc (device: VkDevice, pInfo: ptr VkGeneratedCommandsMemoryRequirementsInfoEXT, pMemoryRequirements: ptr VkMemoryRequirements2) {.stdcall.}](vkGetProc("vkGetGeneratedCommandsMemoryRequirementsEXT"))
+  vkCmdPreprocessGeneratedCommandsEXT = cast[proc (commandBuffer: VkCommandBuffer, pGeneratedCommandsInfo: ptr VkGeneratedCommandsInfoEXT, stateCommandBuffer: VkCommandBuffer) {.stdcall.}](vkGetProc("vkCmdPreprocessGeneratedCommandsEXT"))
+  vkCmdExecuteGeneratedCommandsEXT = cast[proc (commandBuffer: VkCommandBuffer, isPreprocessed: VkBool32, pGeneratedCommandsInfo: ptr VkGeneratedCommandsInfoEXT) {.stdcall.}](vkGetProc("vkCmdExecuteGeneratedCommandsEXT"))
+  vkCreateIndirectCommandsLayoutEXT = cast[proc (device: VkDevice, pCreateInfo: ptr VkIndirectCommandsLayoutCreateInfoEXT, pAllocator: ptr VkAllocationCallbacks, pIndirectCommandsLayout: ptr VkIndirectCommandsLayoutEXT): VkResult {.stdcall.}](vkGetProc("vkCreateIndirectCommandsLayoutEXT"))
+  vkDestroyIndirectCommandsLayoutEXT = cast[proc (device: VkDevice, indirectCommandsLayout: VkIndirectCommandsLayoutEXT, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyIndirectCommandsLayoutEXT"))
+  vkCreateIndirectExecutionSetEXT = cast[proc (device: VkDevice, pCreateInfo: ptr VkIndirectExecutionSetCreateInfoEXT, pAllocator: ptr VkAllocationCallbacks, pIndirectExecutionSet: ptr VkIndirectExecutionSetEXT): VkResult {.stdcall.}](vkGetProc("vkCreateIndirectExecutionSetEXT"))
+  vkDestroyIndirectExecutionSetEXT = cast[proc (device: VkDevice, indirectExecutionSet: VkIndirectExecutionSetEXT, pAllocator: ptr VkAllocationCallbacks) {.stdcall.}](vkGetProc("vkDestroyIndirectExecutionSetEXT"))
+  vkUpdateIndirectExecutionSetPipelineEXT = cast[proc (device: VkDevice, indirectExecutionSet: VkIndirectExecutionSetEXT, executionSetWriteCount: uint32, pExecutionSetWrites: ptr VkWriteIndirectExecutionSetPipelineEXT) {.stdcall.}](vkGetProc("vkUpdateIndirectExecutionSetPipelineEXT"))
+  vkUpdateIndirectExecutionSetShaderEXT = cast[proc (device: VkDevice, indirectExecutionSet: VkIndirectExecutionSetEXT, executionSetWriteCount: uint32, pExecutionSetWrites: ptr VkWriteIndirectExecutionSetShaderEXT) {.stdcall.}](vkGetProc("vkUpdateIndirectExecutionSetShaderEXT"))
+
+# Load VK_EXT_depth_clamp_control
+proc loadVK_EXT_depth_clamp_control*() =
+  vkCmdSetDepthClampRangeEXT = cast[proc (commandBuffer: VkCommandBuffer, depthClampMode: VkDepthClampModeEXT, pDepthClampRange: ptr VkDepthClampRangeEXT) {.stdcall.}](vkGetProc("vkCmdSetDepthClampRangeEXT"))
+
+# Load VK_OHOS_surface
+proc loadVK_OHOS_surface*() =
+  vkCreateSurfaceOHOS = cast[proc (instance: VkInstance, pCreateInfo: ptr VkSurfaceCreateInfoOHOS, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}](vkGetProc("vkCreateSurfaceOHOS"))
+
+# Load VK_OHOS_native_buffer
+proc loadVK_OHOS_native_buffer*() =
+  vkGetSwapchainGrallocUsageOHOS = cast[proc (device: VkDevice, format: VkFormat, imageUsage: VkImageUsageFlags, grallocUsage: ptr uint64): VkResult {.stdcall.}](vkGetProc("vkGetSwapchainGrallocUsageOHOS"))
+  vkAcquireImageOHOS = cast[proc (device: VkDevice, image: VkImage, nativeFenceFd: int32, semaphore: VkSemaphore, fence: VkFence): VkResult {.stdcall.}](vkGetProc("vkAcquireImageOHOS"))
+  vkQueueSignalReleaseImageOHOS = cast[proc (queue: VkQueue, waitSemaphoreCount: uint32, pWaitSemaphores: ptr VkSemaphore, image: VkImage, pNativeFenceFd: ptr int32): VkResult {.stdcall.}](vkGetProc("vkQueueSignalReleaseImageOHOS"))
+
+# Load VK_NV_cooperative_matrix2
+proc loadVK_NV_cooperative_matrix2*() =
+  vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV = cast[proc (physicalDevice: VkPhysicalDevice, pPropertyCount: ptr uint32, pProperties: ptr VkCooperativeMatrixFlexibleDimensionsPropertiesNV): VkResult {.stdcall.}](vkGetProc("vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV"))
+
+# Load VK_EXT_external_memory_metal
+proc loadVK_EXT_external_memory_metal*() =
+  vkGetMemoryMetalHandleEXT = cast[proc (device: VkDevice, pGetMetalHandleInfo: ptr VkMemoryGetMetalHandleInfoEXT, pHandle: ptr pointer): VkResult {.stdcall.}](vkGetProc("vkGetMemoryMetalHandleEXT"))
+  vkGetMemoryMetalHandlePropertiesEXT = cast[proc (device: VkDevice, handleType: VkExternalMemoryHandleTypeFlagBits, pHandle: pointer, pMemoryMetalHandleProperties: ptr VkMemoryMetalHandlePropertiesEXT): VkResult {.stdcall.}](vkGetProc("vkGetMemoryMetalHandlePropertiesEXT"))
+
+# Load VK_ARM_performance_counters_by_region
+proc loadVK_ARM_performance_counters_by_region*() =
+  vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM = cast[proc (physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, pCounterCount: ptr uint32, pCounters: ptr VkPerformanceCounterARM, pCounterDescriptions: ptr VkPerformanceCounterDescriptionARM): VkResult {.stdcall.}](vkGetProc("vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM"))
+
+# Load VK_EXT_custom_resolve
+proc loadVK_EXT_custom_resolve*() =
+  vkCmdBeginCustomResolveEXT = cast[proc (commandBuffer: VkCommandBuffer, pBeginCustomResolveInfo: ptr VkBeginCustomResolveInfoEXT) {.stdcall.}](vkGetProc("vkCmdBeginCustomResolveEXT"))
+
+# Load VK_KHR_maintenance10
+proc loadVK_KHR_maintenance10*() =
+  vkCmdEndRendering2KHR = cast[proc (commandBuffer: VkCommandBuffer, pRenderingEndInfo: ptr VkRenderingEndInfoKHR) {.stdcall.}](vkGetProc("vkCmdEndRendering2KHR"))
+
+# Load VK_NV_compute_occupancy_priority
+proc loadVK_NV_compute_occupancy_priority*() =
+  vkCmdSetComputeOccupancyPriorityNV = cast[proc (commandBuffer: VkCommandBuffer, pParameters: ptr VkComputeOccupancyPriorityParametersNV) {.stdcall.}](vkGetProc("vkCmdSetComputeOccupancyPriorityNV"))
+
+# Load VK_SEC_ubm_surface
+proc loadVK_SEC_ubm_surface*() =
+  vkCreateUbmSurfaceSEC = cast[proc (instance: VkInstance, pCreateInfo: ptr VkUbmSurfaceCreateInfoSEC, pAllocator: ptr VkAllocationCallbacks, pSurface: ptr VkSurfaceKHR): VkResult {.stdcall.}](vkGetProc("vkCreateUbmSurfaceSEC"))
+  vkGetPhysicalDeviceUbmPresentationSupportSEC = cast[proc (physicalDevice: VkPhysicalDevice, queueFamilyIndex: uint32, device: ptr ubm_device): VkBool32 {.stdcall.}](vkGetProc("vkGetPhysicalDeviceUbmPresentationSupportSEC"))
 
 # VkDeviceSize helpers
 proc `==`*(x, y: VkDeviceSize): bool {.borrow.}
@@ -25380,6 +31281,8 @@ proc `==`*(x, y: VkRenderPass): bool {.borrow.}
 proc `==`*(x, y: VkPipelineCache): bool {.borrow.}
 proc `==`*(x, y: VkPipelineBinaryKHR): bool {.borrow.}
 proc `==`*(x, y: VkIndirectCommandsLayoutNV): bool {.borrow.}
+proc `==`*(x, y: VkIndirectCommandsLayoutEXT): bool {.borrow.}
+proc `==`*(x, y: VkIndirectExecutionSetEXT): bool {.borrow.}
 proc `==`*(x, y: VkDescriptorUpdateTemplate): bool {.borrow.}
 proc `==`*(x, y: VkSamplerYcbcrConversion): bool {.borrow.}
 proc `==`*(x, y: VkValidationCacheEXT): bool {.borrow.}
@@ -25394,6 +31297,9 @@ proc `==`*(x, y: VkCuFunctionNVX): bool {.borrow.}
 proc `==`*(x, y: VkOpticalFlowSessionNV): bool {.borrow.}
 proc `==`*(x, y: VkMicromapEXT): bool {.borrow.}
 proc `==`*(x, y: VkShaderEXT): bool {.borrow.}
+proc `==`*(x, y: VkTensorARM): bool {.borrow.}
+proc `==`*(x, y: VkTensorViewARM): bool {.borrow.}
+proc `==`*(x, y: VkDataGraphPipelineSessionARM): bool {.borrow.}
 proc `==`*(x, y: VkDisplayKHR): bool {.borrow.}
 proc `==`*(x, y: VkDisplayModeKHR): bool {.borrow.}
 proc `==`*(x, y: VkSurfaceKHR): bool {.borrow.}
@@ -25405,6 +31311,7 @@ proc `==`*(x, y: VkVideoSessionParametersKHR): bool {.borrow.}
 proc `==`*(x, y: VkSemaphoreSciSyncPoolNV): bool {.borrow.}
 proc `==`*(x, y: VkCudaModuleNV): bool {.borrow.}
 proc `==`*(x, y: VkCudaFunctionNV): bool {.borrow.}
+proc `==`*(x, y: VkExternalComputeQueueNV): bool {.borrow.}
 
 # Flags helpers
 import std/macros
@@ -25422,6 +31329,16 @@ proc `==`*(x, y: VkFramebufferCreateFlags): bool {.inline.} =
 proc `<=`*(x, y: VkFramebufferCreateFlags): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
 proc contains*(x: VkFramebufferCreateFlags; y: VkFramebufferCreateFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkQueryPoolCreateFlags]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkQueryPoolCreateFlagBits, args))
+
+proc `==`*(x, y: VkQueryPoolCreateFlags): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkQueryPoolCreateFlags): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkQueryPoolCreateFlags; y: VkQueryPoolCreateFlagBits): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkRenderPassCreateFlags]; args: varargs[untyped]): untyped =
@@ -25754,14 +31671,14 @@ proc `<=`*(x, y: VkMemoryMapFlags): bool {.inline.} =
 proc contains*(x: VkMemoryMapFlags; y: VkMemoryMapFlagBits): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
-template `{}`*(t: typedesc[VkMemoryUnmapFlagsKHR]; args: varargs[untyped]): untyped =
-  t(flagsImpl(uint32, VkMemoryUnmapFlagBitsKHR, args))
+template `{}`*(t: typedesc[VkMemoryUnmapFlags]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkMemoryUnmapFlagBits, args))
 
-proc `==`*(x, y: VkMemoryUnmapFlagsKHR): bool {.inline.} =
+proc `==`*(x, y: VkMemoryUnmapFlags): bool {.inline.} =
   x.uint32 == y.uint32
-proc `<=`*(x, y: VkMemoryUnmapFlagsKHR): bool {.inline.} =
+proc `<=`*(x, y: VkMemoryUnmapFlags): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
-proc contains*(x: VkMemoryUnmapFlagsKHR; y: VkMemoryUnmapFlagBitsKHR): bool {.inline.} =
+proc contains*(x: VkMemoryUnmapFlags; y: VkMemoryUnmapFlagBits): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkImageAspectFlags]; args: varargs[untyped]): untyped =
@@ -25924,6 +31841,36 @@ proc `<=`*(x, y: VkGeometryInstanceFlagsKHR): bool {.inline.} =
 proc contains*(x: VkGeometryInstanceFlagsKHR; y: VkGeometryInstanceFlagBitsKHR): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
+template `{}`*(t: typedesc[VkClusterAccelerationStructureGeometryFlagsNV]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkClusterAccelerationStructureGeometryFlagBitsNV, args))
+
+proc `==`*(x, y: VkClusterAccelerationStructureGeometryFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkClusterAccelerationStructureGeometryFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkClusterAccelerationStructureGeometryFlagsNV; y: VkClusterAccelerationStructureGeometryFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkClusterAccelerationStructureClusterFlagsNV]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkClusterAccelerationStructureClusterFlagBitsNV, args))
+
+proc `==`*(x, y: VkClusterAccelerationStructureClusterFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkClusterAccelerationStructureClusterFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkClusterAccelerationStructureClusterFlagsNV; y: VkClusterAccelerationStructureClusterFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkClusterAccelerationStructureAddressResolutionFlagsNV]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkClusterAccelerationStructureAddressResolutionFlagBitsNV, args))
+
+proc `==`*(x, y: VkClusterAccelerationStructureAddressResolutionFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkClusterAccelerationStructureAddressResolutionFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkClusterAccelerationStructureAddressResolutionFlagsNV; y: VkClusterAccelerationStructureAddressResolutionFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkBuildAccelerationStructureFlagsKHR]; args: varargs[untyped]): untyped =
   t(flagsImpl(uint32, VkBuildAccelerationStructureFlagBitsKHR, args))
 
@@ -26024,14 +31971,14 @@ proc `<=`*(x, y: VkRenderingFlags): bool {.inline.} =
 proc contains*(x: VkRenderingFlags; y: VkRenderingFlagBits): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
-template `{}`*(t: typedesc[VkMemoryDecompressionMethodFlagsNV]; args: varargs[untyped]): untyped =
-  t(flagsImpl(uint32, VkMemoryDecompressionMethodFlagBitsNV, args))
+template `{}`*(t: typedesc[VkMemoryDecompressionMethodFlagsEXT]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkMemoryDecompressionMethodFlagBitsEXT, args))
 
-proc `==`*(x, y: VkMemoryDecompressionMethodFlagsNV): bool {.inline.} =
+proc `==`*(x, y: VkMemoryDecompressionMethodFlagsEXT): bool {.inline.} =
   x.uint32 == y.uint32
-proc `<=`*(x, y: VkMemoryDecompressionMethodFlagsNV): bool {.inline.} =
+proc `<=`*(x, y: VkMemoryDecompressionMethodFlagsEXT): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
-proc contains*(x: VkMemoryDecompressionMethodFlagsNV; y: VkMemoryDecompressionMethodFlagBitsNV): bool {.inline.} =
+proc contains*(x: VkMemoryDecompressionMethodFlagsEXT; y: VkMemoryDecompressionMethodFlagBitsEXT): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkBuildMicromapFlagsEXT]; args: varargs[untyped]): untyped =
@@ -26054,24 +32001,134 @@ proc `<=`*(x, y: VkMicromapCreateFlagsEXT): bool {.inline.} =
 proc contains*(x: VkMicromapCreateFlagsEXT; y: VkMicromapCreateFlagBitsEXT): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
-template `{}`*(t: typedesc[VkPipelineCreateFlags2KHR]; args: varargs[untyped]): untyped =
-  t(flagsImpl(uint32, VkPipelineCreateFlagBits2KHR, args))
+template `{}`*(t: typedesc[VkIndirectCommandsLayoutUsageFlagsEXT]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkIndirectCommandsLayoutUsageFlagBitsEXT, args))
 
-proc `==`*(x, y: VkPipelineCreateFlags2KHR): bool {.inline.} =
+proc `==`*(x, y: VkIndirectCommandsLayoutUsageFlagsEXT): bool {.inline.} =
   x.uint32 == y.uint32
-proc `<=`*(x, y: VkPipelineCreateFlags2KHR): bool {.inline.} =
+proc `<=`*(x, y: VkIndirectCommandsLayoutUsageFlagsEXT): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
-proc contains*(x: VkPipelineCreateFlags2KHR; y: VkPipelineCreateFlagBits2KHR): bool {.inline.} =
+proc contains*(x: VkIndirectCommandsLayoutUsageFlagsEXT; y: VkIndirectCommandsLayoutUsageFlagBitsEXT): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
-template `{}`*(t: typedesc[VkBufferUsageFlags2KHR]; args: varargs[untyped]): untyped =
-  t(flagsImpl(uint32, VkBufferUsageFlagBits2KHR, args))
+template `{}`*(t: typedesc[VkIndirectCommandsInputModeFlagsEXT]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkIndirectCommandsInputModeFlagBitsEXT, args))
 
-proc `==`*(x, y: VkBufferUsageFlags2KHR): bool {.inline.} =
+proc `==`*(x, y: VkIndirectCommandsInputModeFlagsEXT): bool {.inline.} =
   x.uint32 == y.uint32
-proc `<=`*(x, y: VkBufferUsageFlags2KHR): bool {.inline.} =
+proc `<=`*(x, y: VkIndirectCommandsInputModeFlagsEXT): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
-proc contains*(x: VkBufferUsageFlags2KHR; y: VkBufferUsageFlagBits2KHR): bool {.inline.} =
+proc contains*(x: VkIndirectCommandsInputModeFlagsEXT; y: VkIndirectCommandsInputModeFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkPipelineCreateFlags2]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkPipelineCreateFlagBits2, args))
+
+proc `==`*(x, y: VkPipelineCreateFlags2): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkPipelineCreateFlags2): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkPipelineCreateFlags2; y: VkPipelineCreateFlagBits2): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkBufferUsageFlags2]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkBufferUsageFlagBits2, args))
+
+proc `==`*(x, y: VkBufferUsageFlags2): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkBufferUsageFlags2): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkBufferUsageFlags2; y: VkBufferUsageFlagBits2): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkAddressCopyFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkAddressCopyFlagBitsKHR, args))
+
+proc `==`*(x, y: VkAddressCopyFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkAddressCopyFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkAddressCopyFlagsKHR; y: VkAddressCopyFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkTensorCreateFlagsARM]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkTensorCreateFlagBitsARM, args))
+
+proc `==`*(x, y: VkTensorCreateFlagsARM): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkTensorCreateFlagsARM): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkTensorCreateFlagsARM; y: VkTensorCreateFlagBitsARM): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkTensorUsageFlagsARM]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkTensorUsageFlagBitsARM, args))
+
+proc `==`*(x, y: VkTensorUsageFlagsARM): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkTensorUsageFlagsARM): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkTensorUsageFlagsARM; y: VkTensorUsageFlagBitsARM): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkTensorViewCreateFlagsARM]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkTensorViewCreateFlagBitsARM, args))
+
+proc `==`*(x, y: VkTensorViewCreateFlagsARM): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkTensorViewCreateFlagsARM): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkTensorViewCreateFlagsARM; y: VkTensorViewCreateFlagBitsARM): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkDataGraphPipelineSessionCreateFlagsARM]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkDataGraphPipelineSessionCreateFlagBitsARM, args))
+
+proc `==`*(x, y: VkDataGraphPipelineSessionCreateFlagsARM): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkDataGraphPipelineSessionCreateFlagsARM): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkDataGraphPipelineSessionCreateFlagsARM; y: VkDataGraphPipelineSessionCreateFlagBitsARM): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoEncodeRgbModelConversionFlagsVALVE]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeRgbModelConversionFlagBitsVALVE, args))
+
+proc `==`*(x, y: VkVideoEncodeRgbModelConversionFlagsVALVE): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeRgbModelConversionFlagsVALVE): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeRgbModelConversionFlagsVALVE; y: VkVideoEncodeRgbModelConversionFlagBitsVALVE): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoEncodeRgbRangeCompressionFlagsVALVE]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeRgbRangeCompressionFlagBitsVALVE, args))
+
+proc `==`*(x, y: VkVideoEncodeRgbRangeCompressionFlagsVALVE): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeRgbRangeCompressionFlagsVALVE): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeRgbRangeCompressionFlagsVALVE; y: VkVideoEncodeRgbRangeCompressionFlagBitsVALVE): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoEncodeRgbChromaOffsetFlagsVALVE]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeRgbChromaOffsetFlagBitsVALVE, args))
+
+proc `==`*(x, y: VkVideoEncodeRgbChromaOffsetFlagsVALVE): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeRgbChromaOffsetFlagsVALVE): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeRgbChromaOffsetFlagsVALVE; y: VkVideoEncodeRgbChromaOffsetFlagBitsVALVE): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkSpirvResourceTypeFlagsEXT]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkSpirvResourceTypeFlagBitsEXT, args))
+
+proc `==`*(x, y: VkSpirvResourceTypeFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkSpirvResourceTypeFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkSpirvResourceTypeFlagsEXT; y: VkSpirvResourceTypeFlagBitsEXT): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkCompositeAlphaFlagsKHR]; args: varargs[untyped]): untyped =
@@ -26162,6 +32219,16 @@ proc `==`*(x, y: VkExternalMemoryHandleTypeFlagsNV): bool {.inline.} =
 proc `<=`*(x, y: VkExternalMemoryHandleTypeFlagsNV): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
 proc contains*(x: VkExternalMemoryHandleTypeFlagsNV; y: VkExternalMemoryHandleTypeFlagBitsNV): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkClusterAccelerationStructureIndexFormatFlagsNV]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkClusterAccelerationStructureIndexFormatFlagBitsNV, args))
+
+proc `==`*(x, y: VkClusterAccelerationStructureIndexFormatFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkClusterAccelerationStructureIndexFormatFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkClusterAccelerationStructureIndexFormatFlagsNV; y: VkClusterAccelerationStructureIndexFormatFlagBitsNV): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkExternalMemoryFeatureFlagsNV]; args: varargs[untyped]): untyped =
@@ -26344,14 +32411,24 @@ proc `<=`*(x, y: VkSubmitFlags): bool {.inline.} =
 proc contains*(x: VkSubmitFlags; y: VkSubmitFlagBits): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
-template `{}`*(t: typedesc[VkHostImageCopyFlagsEXT]; args: varargs[untyped]): untyped =
-  t(flagsImpl(uint32, VkHostImageCopyFlagBitsEXT, args))
+template `{}`*(t: typedesc[VkHostImageCopyFlags]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkHostImageCopyFlagBits, args))
 
-proc `==`*(x, y: VkHostImageCopyFlagsEXT): bool {.inline.} =
+proc `==`*(x, y: VkHostImageCopyFlags): bool {.inline.} =
   x.uint32 == y.uint32
-proc `<=`*(x, y: VkHostImageCopyFlagsEXT): bool {.inline.} =
+proc `<=`*(x, y: VkHostImageCopyFlags): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
-proc contains*(x: VkHostImageCopyFlagsEXT; y: VkHostImageCopyFlagBitsEXT): bool {.inline.} =
+proc contains*(x: VkHostImageCopyFlags; y: VkHostImageCopyFlagBits): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkPartitionedAccelerationStructureInstanceFlagsNV]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkPartitionedAccelerationStructureInstanceFlagBitsNV, args))
+
+proc `==`*(x, y: VkPartitionedAccelerationStructureInstanceFlagsNV): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkPartitionedAccelerationStructureInstanceFlagsNV): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkPartitionedAccelerationStructureInstanceFlagsNV; y: VkPartitionedAccelerationStructureInstanceFlagBitsNV): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkImageConstraintsInfoFlagsFUCHSIA]; args: varargs[untyped]): untyped =
@@ -26402,6 +32479,26 @@ proc `==`*(x, y: VkExportMetalObjectTypeFlagsEXT): bool {.inline.} =
 proc `<=`*(x, y: VkExportMetalObjectTypeFlagsEXT): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
 proc contains*(x: VkExportMetalObjectTypeFlagsEXT; y: VkExportMetalObjectTypeFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkRenderingAttachmentFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkRenderingAttachmentFlagBitsKHR, args))
+
+proc `==`*(x, y: VkRenderingAttachmentFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkRenderingAttachmentFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkRenderingAttachmentFlagsKHR; y: VkRenderingAttachmentFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkResolveImageFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkResolveImageFlagBitsKHR, args))
+
+proc `==`*(x, y: VkResolveImageFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkResolveImageFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkResolveImageFlagsKHR; y: VkResolveImageFlagBitsKHR): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkDeviceAddressBindingFlagsEXT]; args: varargs[untyped]): untyped =
@@ -26464,24 +32561,24 @@ proc `<=`*(x, y: VkFrameBoundaryFlagsEXT): bool {.inline.} =
 proc contains*(x: VkFrameBoundaryFlagsEXT; y: VkFrameBoundaryFlagBitsEXT): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
-template `{}`*(t: typedesc[VkPresentScalingFlagsEXT]; args: varargs[untyped]): untyped =
-  t(flagsImpl(uint32, VkPresentScalingFlagBitsEXT, args))
+template `{}`*(t: typedesc[VkPresentScalingFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkPresentScalingFlagBitsKHR, args))
 
-proc `==`*(x, y: VkPresentScalingFlagsEXT): bool {.inline.} =
+proc `==`*(x, y: VkPresentScalingFlagsKHR): bool {.inline.} =
   x.uint32 == y.uint32
-proc `<=`*(x, y: VkPresentScalingFlagsEXT): bool {.inline.} =
+proc `<=`*(x, y: VkPresentScalingFlagsKHR): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
-proc contains*(x: VkPresentScalingFlagsEXT; y: VkPresentScalingFlagBitsEXT): bool {.inline.} =
+proc contains*(x: VkPresentScalingFlagsKHR; y: VkPresentScalingFlagBitsKHR): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
-template `{}`*(t: typedesc[VkPresentGravityFlagsEXT]; args: varargs[untyped]): untyped =
-  t(flagsImpl(uint32, VkPresentGravityFlagBitsEXT, args))
+template `{}`*(t: typedesc[VkPresentGravityFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkPresentGravityFlagBitsKHR, args))
 
-proc `==`*(x, y: VkPresentGravityFlagsEXT): bool {.inline.} =
+proc `==`*(x, y: VkPresentGravityFlagsKHR): bool {.inline.} =
   x.uint32 == y.uint32
-proc `<=`*(x, y: VkPresentGravityFlagsEXT): bool {.inline.} =
+proc `<=`*(x, y: VkPresentGravityFlagsKHR): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
-proc contains*(x: VkPresentGravityFlagsEXT; y: VkPresentGravityFlagBitsEXT): bool {.inline.} =
+proc contains*(x: VkPresentGravityFlagsKHR; y: VkPresentGravityFlagBitsKHR): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkShaderCreateFlagsEXT]; args: varargs[untyped]): untyped =
@@ -26494,6 +32591,16 @@ proc `<=`*(x, y: VkShaderCreateFlagsEXT): bool {.inline.} =
 proc contains*(x: VkShaderCreateFlagsEXT; y: VkShaderCreateFlagBitsEXT): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
+template `{}`*(t: typedesc[VkTileShadingRenderPassFlagsQCOM]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkTileShadingRenderPassFlagBitsQCOM, args))
+
+proc `==`*(x, y: VkTileShadingRenderPassFlagsQCOM): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkTileShadingRenderPassFlagsQCOM): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkTileShadingRenderPassFlagsQCOM; y: VkTileShadingRenderPassFlagBitsQCOM): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 template `{}`*(t: typedesc[VkPhysicalDeviceSchedulingControlsFlagsARM]; args: varargs[untyped]): untyped =
   t(flagsImpl(uint32, VkPhysicalDeviceSchedulingControlsFlagBitsARM, args))
 
@@ -26502,6 +32609,46 @@ proc `==`*(x, y: VkPhysicalDeviceSchedulingControlsFlagsARM): bool {.inline.} =
 proc `<=`*(x, y: VkPhysicalDeviceSchedulingControlsFlagsARM): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
 proc contains*(x: VkPhysicalDeviceSchedulingControlsFlagsARM; y: VkPhysicalDeviceSchedulingControlsFlagBitsARM): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkPresentStageFlagsEXT]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkPresentStageFlagBitsEXT, args))
+
+proc `==`*(x, y: VkPresentStageFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkPresentStageFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkPresentStageFlagsEXT; y: VkPresentStageFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkPastPresentationTimingFlagsEXT]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkPastPresentationTimingFlagBitsEXT, args))
+
+proc `==`*(x, y: VkPastPresentationTimingFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkPastPresentationTimingFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkPastPresentationTimingFlagsEXT; y: VkPastPresentationTimingFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkPresentTimingInfoFlagsEXT]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkPresentTimingInfoFlagBitsEXT, args))
+
+proc `==`*(x, y: VkPresentTimingInfoFlagsEXT): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkPresentTimingInfoFlagsEXT): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkPresentTimingInfoFlagsEXT; y: VkPresentTimingInfoFlagBitsEXT): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkSwapchainImageUsageFlagsOHOS]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkSwapchainImageUsageFlagBitsOHOS, args))
+
+proc `==`*(x, y: VkSwapchainImageUsageFlagsOHOS): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkSwapchainImageUsageFlagsOHOS): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkSwapchainImageUsageFlagsOHOS; y: VkSwapchainImageUsageFlagBitsOHOS): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkVideoCodecOperationFlagsKHR]; args: varargs[untyped]): untyped =
@@ -26532,6 +32679,16 @@ proc `==`*(x, y: VkVideoSessionCreateFlagsKHR): bool {.inline.} =
 proc `<=`*(x, y: VkVideoSessionCreateFlagsKHR): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
 proc contains*(x: VkVideoSessionCreateFlagsKHR; y: VkVideoSessionCreateFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoSessionParametersCreateFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoSessionParametersCreateFlagBitsKHR, args))
+
+proc `==`*(x, y: VkVideoSessionParametersCreateFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoSessionParametersCreateFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoSessionParametersCreateFlagsKHR; y: VkVideoSessionParametersCreateFlagBitsKHR): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkVideoCodingControlFlagsKHR]; args: varargs[untyped]): untyped =
@@ -26572,6 +32729,16 @@ proc `==`*(x, y: VkVideoDecodeH264PictureLayoutFlagsKHR): bool {.inline.} =
 proc `<=`*(x, y: VkVideoDecodeH264PictureLayoutFlagsKHR): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
 proc contains*(x: VkVideoDecodeH264PictureLayoutFlagsKHR; y: VkVideoDecodeH264PictureLayoutFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoEncodeFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeFlagBitsKHR, args))
+
+proc `==`*(x, y: VkVideoEncodeFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeFlagsKHR; y: VkVideoEncodeFlagBitsKHR): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkVideoEncodeUsageFlagsKHR]; args: varargs[untyped]): untyped =
@@ -26622,6 +32789,16 @@ proc `==`*(x, y: VkVideoEncodeRateControlModeFlagsKHR): bool {.inline.} =
 proc `<=`*(x, y: VkVideoEncodeRateControlModeFlagsKHR): bool {.inline.} =
   (x.uint32 and not y.uint32) == 0
 proc contains*(x: VkVideoEncodeRateControlModeFlagsKHR; y: VkVideoEncodeRateControlModeFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoEncodeIntraRefreshModeFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeIntraRefreshModeFlagBitsKHR, args))
+
+proc `==`*(x, y: VkVideoEncodeIntraRefreshModeFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeIntraRefreshModeFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeIntraRefreshModeFlagsKHR; y: VkVideoEncodeIntraRefreshModeFlagBitsKHR): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
 template `{}`*(t: typedesc[VkVideoChromaSubsamplingFlagsKHR]; args: varargs[untyped]): untyped =
@@ -26724,6 +32901,56 @@ proc `<=`*(x, y: VkVideoEncodeH265TransformBlockSizeFlagsKHR): bool {.inline.} =
 proc contains*(x: VkVideoEncodeH265TransformBlockSizeFlagsKHR; y: VkVideoEncodeH265TransformBlockSizeFlagBitsKHR): bool {.inline.} =
   (x.uint32 and y.uint32) != 0
 
+template `{}`*(t: typedesc[VkVideoEncodeAV1CapabilityFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeAV1CapabilityFlagBitsKHR, args))
+
+proc `==`*(x, y: VkVideoEncodeAV1CapabilityFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeAV1CapabilityFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeAV1CapabilityFlagsKHR; y: VkVideoEncodeAV1CapabilityFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoEncodeAV1StdFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeAV1StdFlagBitsKHR, args))
+
+proc `==`*(x, y: VkVideoEncodeAV1StdFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeAV1StdFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeAV1StdFlagsKHR; y: VkVideoEncodeAV1StdFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoEncodeAV1RateControlFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeAV1RateControlFlagBitsKHR, args))
+
+proc `==`*(x, y: VkVideoEncodeAV1RateControlFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeAV1RateControlFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeAV1RateControlFlagsKHR; y: VkVideoEncodeAV1RateControlFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkVideoEncodeAV1SuperblockSizeFlagsKHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkVideoEncodeAV1SuperblockSizeFlagBitsKHR, args))
+
+proc `==`*(x, y: VkVideoEncodeAV1SuperblockSizeFlagsKHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkVideoEncodeAV1SuperblockSizeFlagsKHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkVideoEncodeAV1SuperblockSizeFlagsKHR; y: VkVideoEncodeAV1SuperblockSizeFlagBitsKHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
+template `{}`*(t: typedesc[VkAccessFlags3KHR]; args: varargs[untyped]): untyped =
+  t(flagsImpl(uint32, VkAccessFlagBits3KHR, args))
+
+proc `==`*(x, y: VkAccessFlags3KHR): bool {.inline.} =
+  x.uint32 == y.uint32
+proc `<=`*(x, y: VkAccessFlags3KHR): bool {.inline.} =
+  (x.uint32 and not y.uint32) == 0
+proc contains*(x: VkAccessFlags3KHR; y: VkAccessFlagBits3KHR): bool {.inline.} =
+  (x.uint32 and y.uint32) != 0
+
 
 var
   vkCreateInstance*: proc (pCreateInfo: ptr VkInstanceCreateInfo, pAllocator: ptr VkAllocationCallbacks, pInstance: ptr VkInstance): VkResult {.stdcall.}
@@ -26741,7 +32968,7 @@ proc vkPreload*(load1_1: bool = true) =
   if load1_1:
     vkEnumerateInstanceVersion = cast[proc (pApiVersion: ptr uint32): VkResult {.stdcall.}](vkGetProc("vkEnumerateInstanceVersion"))
 
-proc vkInit*(instance: VkInstance, load1_0 = true, load1_1: bool = true, load1_2 = true, load1_3: bool = true) =
+proc vkInit*(instance: VkInstance, load1_0 = true, load1_1: bool = true, load1_2 = true, load1_3: bool = true, load1_4: bool = true) =
   currInst = cast[pointer](instance)
   if currInst == nil:
     raise newException(NilAccessDefect, "Instance is nil")
@@ -26754,6 +32981,7 @@ proc vkInit*(instance: VkInstance, load1_0 = true, load1_1: bool = true, load1_2
   when not defined(macosx):
     if load1_3:
       vkLoad1_3()
+    if load1_4:
+      vkLoad1_4()
 
-# Header-style constants for compatibility with C Vulkan headers.
-include "vulkan/headers"
+include vulkan/headers
